@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>CodeIgniterへようこそ</title>
 
 <style type="text/css">
 
@@ -45,20 +45,20 @@ code {
 </head>
 <body>
 
-<h1>Welcome to CodeIgniter!</h1>
+<h1>CodeIgniter へようこそ!</h1>
 
-<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+<p>今ご覧のこのページは、CodeIgniter によって動的に生成されました。</p>
 
-<p>If you would like to edit this page you'll find it located at:</p>
+<p>このページを編集したい場合は、次の場所にあります:</p>
 <code>application/views/welcome_message.php</code>
 
-<p>The corresponding controller for this page is found at:</p>
+<p>このページのコントローラは次の場所にあります:</p>
 <code>application/controllers/welcome.php</code>
 
-<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+<p>CodeIgniterを使うのが初めてなら、<a href="user_guide_ja/">ユーザガイド</a>を読むことから始めてください。</p>
 
 
-<p><br />Page rendered in {elapsed_time} seconds</p>
+<p><br />このページは、{elapsed_time} 秒でレンダリングされました。</p>
 
 </body>
 </html>
