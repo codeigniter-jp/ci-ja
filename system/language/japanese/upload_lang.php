@@ -1,22 +1,22 @@
 <?php
 
-$lang['upload_userfile_not_set'] = "Unable to find a post variable called userfile.";
-$lang['upload_file_exceeds_limit'] = "The uploaded file exceeds the maximum allowed size in your PHP configuration file.";
-$lang['upload_file_exceeds_form_limit'] = "The uploaded file exceeds the maximum size allowed by the submission form.";
-$lang['upload_file_partial'] = "The file was only partially uploaded.";
-$lang['upload_no_temp_directory'] = "The temporary folder is missing.";
-$lang['upload_unable_to_write_file'] = "The file could not be written to disk.";
-$lang['upload_stopped_by_extension'] = "The file upload was stopped by extension.";
-$lang['upload_no_file_selected'] = "You did not select a file to upload.";
-$lang['upload_invalid_filetype'] = "The filetype you are attempting to upload is not allowed.";
-$lang['upload_invalid_filesize'] = "The file you are attempting to upload is larger than the permitted size.";
-$lang['upload_invalid_dimensions'] = "The image you are attempting to upload exceedes the maximum height or width.";
-$lang['upload_destination_error'] = "A problem was encountered while attempting to move the uploaded file to the final destination.";
-$lang['upload_no_filepath'] = "The upload path does not appear to be valid.";
-$lang['upload_no_file_types'] = "You have not specified any allowed file types.";
-$lang['upload_bad_filename'] = "The file name you submitted already exists on the server.";
-$lang['upload_not_writable'] = "The upload destination folder does not appear to be writable.";
+$lang['upload_userfile_not_set'] = "ユーザファイルがセットされていません。";
+$lang['upload_file_exceeds_limit'] = "アップロードされたファイルはPHP設定ファイルで許可されている最大サイズを超過しています。";
+$lang['upload_file_exceeds_form_limit'] = "アップロードされたファイルはフォームで許可されている最大サイズを超過しています。";
+$lang['upload_file_partial'] = "ファイルの一部しかアップロードされていません。";
+$lang['upload_no_temp_directory'] = "一時ディレクトリがありません。";
+$lang['upload_unable_to_write_file'] = "ファイルをディスクに書き込めませんでした。";
+$lang['upload_stopped_by_extension'] = "アップロードは、拡張子により中止されました。";
+$lang['upload_no_file_selected'] = "アップロードするファイルが選択されていません。";
+$lang['upload_invalid_filetype'] = "アップロードしようとしたファイルは、許可されていない種類です。";
+$lang['upload_invalid_filesize'] = "アップロードしようとしたファイルは、許可されているサイズを超えています。";
+$lang['upload_invalid_dimensions'] = "アップロードしようとした画像は、幅または高さが最大サイズを超えています。";
+$lang['upload_destination_error'] = "アップロードされたファイルを保存先に移動しようとして問題が発生しました。";
+$lang['upload_no_filepath'] = "アップロードパスが間違っています。";
+$lang['upload_no_file_types'] = "許可されているファイルタイプが指定されていません。";
+$lang['upload_bad_filename'] = "送信されたファイル名と同名のファイルがすでにサーバ上に存在します。";
+$lang['upload_not_writable'] = "アップロード先のフォルダに書き込みできません。";
 
 
 /* End of file upload_lang.php */
-/* Location: ./system/language/english/upload_lang.php */
+/* Location: ./system/language/japanese/upload_lang.php */

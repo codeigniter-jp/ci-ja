@@ -1,18 +1,18 @@
 <?php
 
-$lang['ftp_no_connection']			= "Unable to locate a valid connection ID.  Please make sure you are connected before peforming any file routines.";
-$lang['ftp_unable_to_connect']		= "Unable to connect to your FTP server using the supplied hostname.";
-$lang['ftp_unable_to_login']		= "Unable to login to your FTP server.  Please check your username and password.";
-$lang['ftp_unable_to_makdir']		= "Unable to create the directory you have specified.";
-$lang['ftp_unable_to_changedir']	= "Unable to change directories.";
-$lang['ftp_unable_to_chmod']		= "Unable to set file permissions.  Please check your path.  Note: This feature is only available in PHP 5 or higher.";
-$lang['ftp_unable_to_upload']		= "Unable to upload the specified file.  Please check your path.";
-$lang['ftp_unable_to_download']		= "Unable to download the specified file.  Please check your path.";
-$lang['ftp_no_source_file']			= "Unable to locate the source file.  Please check your path.";
-$lang['ftp_unable_to_rename']		= "Unable to rename the file.";
-$lang['ftp_unable_to_delete']		= "Unable to delete the file.";
-$lang['ftp_unable_to_move']			= "Unable to move the file.  Please make sure the destination directory exists.";
+$lang['ftp_no_connection']			= "正しい接続IDが見つかりません。ファイル処理を行う前にまず接続されているか確かめてください。";
+$lang['ftp_unable_to_connect']		= "指定したホスト名でFTPサーバに接続できません。";
+$lang['ftp_unable_to_login']		= "FTP サーバにログインできません。ユーザ名とパスワードを確かめてください。";
+$lang['ftp_unable_to_makdir']		= "指定したディレクトリを作成できません。";
+$lang['ftp_unable_to_changedir']	= "ディレクトリを変更できません。";
+$lang['ftp_unable_to_chmod']		= "パーミッションをセットできません。パスを確かめてください。注意:この機能は、PHP 5 以上でのみ利用できます。";
+$lang['ftp_unable_to_upload']		= "指定したファイルをアップロードできません。パスを確かめてください。";
+$lang['ftp_unable_to_download']		= "指定したファイルをダウンロードできません。パスを確かめてください。";
+$lang['ftp_no_source_file']			= "操作するファイルが特定できません。パスを確かめてください。";
+$lang['ftp_unable_to_rename']		= "ファイルをリネームできません。";
+$lang['ftp_unable_to_delete']		= "ファイルを削除できません。";
+$lang['ftp_unable_to_move']			= "ファイルを移動できません。移動先のディレクトリが存在するか確かめてください。";
 
 
 /* End of file ftp_lang.php */
-/* Location: ./system/language/english/ftp_lang.php */
+/* Location: ./system/language/japanese/ftp_lang.php */
