@@ -1040,7 +1040,7 @@ class CI_Form_validation {
 			return $this->valid_email(trim($str));
 		}
 
-		foreach(explode(',', $str) as $email)
+		foreach (explode(',', $str) as $email)
 		{
 			if (trim($email) != '' && $this->valid_email(trim($email)) === FALSE)
 			{
@@ -1177,7 +1177,7 @@ class CI_Form_validation {
 	{
 		if ( ! is_numeric($str))
 		{
-			return false;
+			return FALSE;
 		}
 		return $str > $min;
 	}
@@ -1195,7 +1195,7 @@ class CI_Form_validation {
 	{
 		if ( ! is_numeric($str))
 		{
-			return false;
+			return FALSE;
 		}
 		return $str < $max;
 	}
