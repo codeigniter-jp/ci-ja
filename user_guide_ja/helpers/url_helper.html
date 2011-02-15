@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>URL Helper : CodeIgniter User Guide</title>
-
+<title>URLヘルパ : CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,18 +16,18 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -40,10 +39,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-URL Helper
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+URLヘルパ
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,33 +54,31 @@ URL Helper
 <div id="content">
 
 
-<h1>URL Helper</h1>
+<h1>URLヘルパ</h1>
 
-<p>The URL Helper file contains functions that assist in working with URLs.</p>
+<p>URLヘルパのファイルには、URLを処理するのを支援する関数が含まれます。</p>
 
 
-<h2>Loading this Helper</h2>
+<h2>ヘルパのロード</h2>
 
-<p>This helper is loaded using the following code:</p>
+<p>このヘルパは次のコードでロードできます:</p>
 <code>$this->load->helper('url');</code>
 
-<p>The following functions are available:</p>
+<p>次の関数が利用可能です:</p>
 
 <h2>site_url()</h2>
 
-<p>Returns your site URL, as specified in your config file.  The index.php file (or whatever you have set as your
-site <dfn>index_page</dfn> in your config file) will be added to the URL, as will any URI segments you pass to the function.</p>
+<p>設定ファイルで指定されているサイトのURLを返します。index.php ファイル (または、設定ファイルで設定しているユーザサイトの <dfn>index_page</dfn> ) がURLに追加され、この関数に渡されたURIセグメントが追加されます。</p>
 
-<p>You are encouraged to use this function any time you need to generate a local URL so that your pages become more portable
-in the event your URL changes.</p>
+<p>ローカルの（サイト内の）URLを生成する必要がある時は、いつもこの関数を使うようお勧めします、この関数を使うと、URLが変更になった時でも、移植性が高まります。</p>
 
-<p>Segments can be optionally passed to the function as a string or an array.  Here is a string example:</p>
+<p>オプションで、セグメントを文字列または配列としてこの関数に渡すことができます。下記は文字列での例です:</p>
 
 <code>echo site_url("news/local/123");</code>
 
-<p>The above example would return something like: http://example.com/index.php/news/local/123</p>
+<p>上の例では、次のようなものが返されます: http://example.com/index.php/news/local/123</p>
 
-<p>Here is an example of segments passed as an array:</p>
+<p>次は、配列でセグメントを渡す例です:</p>
 
 <code>
 $segments = array('news', 'local', '123');<br />
@@ -90,66 +87,57 @@ echo site_url($segments);</code>
 
 
 <h2>base_url()</h2>
-<p>Returns your site base URL, as specified in your config file.  Example:</p>
+<p>設定ファイルで指定されているサイトのベースURLを返します。例:</p>
 <code>echo base_url();</code>
 
-
 <h2>current_url()</h2>
-<p>Returns the full URL (including segments) of the page being currently viewed.</p>
-
+<p>現在表示されているページの完全なURL (セグメントを含む) を返します。</p>
 
 <h2>uri_string()</h2>
-<p>Returns the URI segments of any page that contains this function.  For example, if your URL was this:</p>
-<code>http://some-site.com/blog/comments/123</code>
+<p>この関数が呼び出されたページのURIセグメントを返します。例えば、URLが以下のようなものであれば:</p>
+<code>http://some-site.com/blog/comments/123</code> 
 
-<p>The function would return:</p>
+<p>この関数は次のような値を返します:</p>
 <code>/blog/comments/123</code>
 
-
 <h2>index_page()</h2>
-<p>Returns your site "index" page, as specified in your config file.  Example:</p>
+<p>設定ファイルで指定されているサイトの "index" ページを返します。例:</p>
 <code>echo index_page();</code>
 
 
 
 <h2>anchor()</h2>
 
-<p>Creates a standard HTML anchor link based on your local site URL:</p>
+<p>サイトのURLにもとづいて、標準のHTMLアンカーリンクを生成します:</p>
 
 <code>&lt;a href="http://example.com">Click Here&lt;/a></code>
 
-<p>The tag has three optional parameters:</p>
+<p>このコードには、3つのオプションの引数があります:</p>
 
 <code>anchor(<var>uri segments</var>, <var>text</var>, <var>attributes</var>)</code>
 
-<p>The first parameter can contain any segments you wish appended to the URL.  As with the <dfn>site_url()</dfn> function above,
-segments can be a string or an array.</p>
+<p>第1引数は、URLに追加したいセグメントを指定します。上の<dfn> site_url()</dfn> 関数のように、文字列または、配列でセグメントを指定します。</p>
 
-<p><strong>Note:</strong>&nbsp; If you are building links that are internal to your application do not include the base URL (http://...).  This
-will be added automatically from the information specified in your config file. Include only the URI segments you wish appended to the URL.</p>
+<p><strong>Note:</strong>&nbsp; アプリケーション内部のリンクを生成するときは、ベースURL (http://...) を含まないようにしてください。設定ファイルで指定されている情報から、ベースURLは自動的に追加されます。URLに追加したいURIセグメントだけを含めるようにしてください。</p>
 
-<p>The second segment is the text you would like the link to say.  If you leave it blank, the URL will be used.</p>
+<p>第2引数は、リンクに指定したいテキストになります。空のままにしておくと、URLが使用されます。</p>
 
-<p>The third parameter can contain a list of attributes you would like added to the link.  The attributes can be a simple string or an associative array.</p>
+<p>第3引数はリンクタグに追加したい属性のリストを指定できます。属性は、文字列または、連想配列で指定します。</p>
 
-<p>Here are some examples:</p>
+<p>いくつか例を挙げます:</p>
 
-<code>echo anchor('news/local/123', 'My News', 'title="News title"');</code>
+<code>echo anchor('news/local/123', 'ニュース', 'title="ニュースタイトル"');</code>
 
-<p>Would produce: &lt;a href="http://example.com/index.php/news/local/123" title="News title">My News&lt;/a></p>
+<p>上のコードは次のHTMLを生成します: &lt;a href="http://example.com/index.php/news/local/123" title="ニュースタイトル">ニュース&lt;/a></p>
 
-<code>echo anchor('news/local/123', 'My News', array('title' => 'The best news!'));</code>
+<code>echo anchor('news/local/123', 'ニュース', array('title' => 'ベストニュース！'));</code>
 
-<p>Would produce: &lt;a href="http://example.com/index.php/news/local/123" title="The best news!">My News&lt;/a></p>
+<p>上のコードは次のHTMLを生成します: &lt;a href="http://example.com/index.php/news/local/123" title="べストニュース！">ニュース&lt;/a></p>
 
 
 <h2>anchor_popup()</h2>
 
-<p>Nearly identical to the <dfn>anchor()</dfn> function except that it opens the URL in a new window.
-
-You can specify JavaScript window attributes in the third parameter to control how the window is opened. If
-the third parameter is not set it will simply open a new window with your own browser settings.  Here is an example
-with attributes:</p>
+<p>新しいウィンドでURLを開くこと以外は、<dfn>anchor()</dfn> 関数とほとんど同じです。ウィンドウの開き方をコントロールするために、JavaScript のwindowオブジェクトの属性（プロパティ）を第3引数で指定できます。第3引数が設定されていない場合は、ユーザのブラウザの設定により新しいウィンドウを開きます。下記は、属性を指定する場合の例です:</p>
 
 <code>
 
@@ -165,78 +153,74 @@ $atts = array(<br />
 <br />
 echo anchor_popup('news/local/123', 'Click Me!', $atts);</code>
 
-<p>Note: The above attributes are the function defaults so you only need to set the ones that are different from what you need.
-If you want the function to use all of its defaults simply pass an empty array in the third parameter:</p>
+<p>Note: 上の属性は、この関数の初期値になりますので、これと異なる値にしたい箇所を設定するだけで構いません。すべての属性に初期値を使用する場合は、単に第3引数に空の配列を渡してください:</p>
 
 <code>echo anchor_popup('news/local/123', 'Click Me!', array());</code>
 
 
 <h2>mailto()</h2>
 
-<p>Creates a standard HTML email link.  Usage example:</p>
+<p>標準のHTMLメールリンクを作成します。使用例:</p>
 
-<code>echo mailto('me@my-site.com', 'Click Here to Contact Me');</code>
+<code>echo mailto('me@my-site.com', 'コンタクトするにはここをクリック');</code>
 
-<p>As with the <dfn>anchor()</dfn> tab above, you can set attributes using the third parameter.</p>
+<p>上の <dfn>anchor()</dfn> 関数のように、第3引数で、属性を指定できます。</p>
 
 
 <h2>safe_mailto()</h2>
 
-<p>Identical to the above function except it writes an obfuscated version of the mailto tag using ordinal numbers
-written with JavaScript to help prevent the email address from being harvested by spam bots.</p>
+<p> この関数は、スパムロボットにメールアドレスが収集されてしまうのを防ぐため、メールアドレスのリンクを JavaScript で書き出すために、序数を使った難読化バージョンの mailto タグを書き出します。この点を除いて、上の関数と同じです。</p>
 
 
 <h2>auto_link()</h2>
 
-<p>Automatically turns URLs and email addresses contained in a string into links.  Example:</p>
-
+<p>自動で、文字列に含まれる URL とメールアドレスをリンクに変換します。例:</p>
 <code>$string = auto_link($string);</code>
 
-<p>The second parameter determines whether URLs and emails are converted or just one or the other.  Default behavior is both
-if the parameter is not specified.  Email links are encoded as safe_mailto() as shown above.</p>
+<p>第 2 引数は、URL とメールアドレスのどちらを変換するか、あるいは両方を変換するかを指定します。指定しない場合、デフォルトでは、両方を変換するようになっています。Email リンクは上にあるように safe_mailto() を使ってエンコードされます。</p>
 
-<p>Converts only URLs:</p>
+<p>URL のみを変換する場合は:</p>
 <code>$string = auto_link($string, 'url');</code>
 
-<p>Converts only Email addresses:</p>
+<p>メールアドレスのみを変換する場合は:</p>
 <code>$string = auto_link($string, 'email');</code>
 
-<p>The third parameter determines whether links are shown in a new window.  The value can be TRUE or FALSE (boolean):</p>
+<p>
+第 3 引数は、リンクを新しいウィンドウで開くかどうかを指定します。値は、TRUE または FALSE (ブール値) になります:
+</p>
 <code>$string = auto_link($string, 'both', TRUE);</code>
 
 
 <h2>url_title()</h2>
-<p>Takes a string as input and creates a human-friendly URL string. This is useful if, for example, you have a blog
-in which you'd like to use the title of your entries in the URL.  Example:</p>
+<p>入力として文字列をとり、人間にわかりやすい URL 文字列を生成します。これは、たとえば、ブログを作成していたとして、その中で、記事のタイトルを URL に使いたいときなどに役立ちます。例:</p>
 
 <code>$title = "What's wrong with CSS?";<br />
 <br />
 $url_title = url_title($title);<br />
 <br />
-// Produces:  Whats-wrong-with-CSS
-</code>
+// 次のコードを生成します:  whats-wrong-with-css</code>
 
 
-<p>The second parameter determines the word delimiter.  By default dashes are used.  Options are:  <dfn>dash</dfn>, or <dfn>underscore</dfn>:</p>
+<p>第 2 引数で、単語の区切りを決めます。初期状態では、ダッシュ ( &quot;-&quot; )  が使用されます。次のオプションが選べます:  <dfn>dash</dfn> または <dfn>underscore</dfn>:</p>
 
 <code>$title = "What's wrong with CSS?";<br />
 <br />
 $url_title = url_title($title, 'underscore');<br />
 <br />
-// Produces:  Whats_wrong_with_CSS
+// 次のコードを生成します:  Whats_wrong_with_CSS
 </code>
 
-<p>The third parameter determines whether or not lowercase characters are forced.  By default they are not.  Options are boolean <dfn>TRUE</dfn>/<dfn>FALSE</dfn>:</p>
+<p>第 3 引数で、文字列を強制的に小文字に変換するかどうかを決めます。デフォルトでは変換されません。次のオプション (ブール値) が選べます:  <dfn>TRUE</dfn>/<dfn>FALSE</dfn>:</p>
 
 <code>$title = "What's wrong with CSS?";<br />
 <br />
 $url_title = url_title($title, 'underscore', TRUE);<br />
 <br />
-// Produces:  whats_wrong_with_css
+// 次のコードを生成します:  whats_wrong_with_CSS
 </code>
 
 <h3>prep_url()</h3>
-<p>This function will add <kbd>http://</kbd> in the event that a scheme is missing from a URL.  Pass the URL string to the function like this:</p>
+<p>この関数は、与えられた URL の文字列にスキーマがない場合に <kbd>http://</kbd> を追加します。次のように URL の文字列を渡します:</p>
 <code>
 $url = "example.com";<br /><br />
 $url = prep_url($url);</code>
@@ -246,23 +230,23 @@ $url = prep_url($url);</code>
 
 <h2>redirect()</h2>
 
-<p>Does a "header redirect" to the URI specified. If you specify the full site URL that link will be build, but for local links simply providing the URI segments
-to the controller you want to direct to will create the link. The function will build the URL based on your config file values.</p>
+<p>指定した URI に対して "ヘッダ リダイレクト" します。フル URL (http://...) を指定しても生成されますが，ローカルのリンクなら，単にコントローラのセグメントから指定します。URL は設定ファイルの値を元に生成されます。</p>
 
-<p>The optional second parameter allows you to choose between the "location"
-method (default) or the "refresh" method.  Location is faster, but on Windows servers it can sometimes be a problem.  The optional third parameter allows you to send a specific HTTP Response Code - this could be used for example to create 301 redirects for search engine purposes. The default Response Code is 302. The third parameter is <em>only</em> available with 'location' redirects, and not 'refresh'. Examples:</p>
+<p>オプションの第 2 引数で "location" (デフォルト) を使う方法か "refresh" を使う方法かを選べます。Location は高速ですが、Windows サーバでは、時々問題を起こします。オプションの第3引数では送りたい HTTP Response Code を指定することができます。例えば検索エンジンが起こした 301 リダイレクトを送ることができます。デフォルトの Response Code は 302 です。第 3 引数は "location"<em> だけで</em>使え、"refresh" では使えません。例です:</p>
+
+
 
 <code>if ($logged_in == FALSE)<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redirect('/login/form/', 'refresh');<br />
-}<br />
-<br />
-// with 301 redirect<br />
-redirect('/article/13', 'location', 301);</code>
+}<br /> 
+<br /> 
+// 301 リダイレクトの場合<br /> 
+redirect('/article/13', 'location', 301);</code> 
+}</code>
 
-<p class="important"><strong>Note:</strong> In order for this function to work it must be used before anything is outputted
-to the browser since it utilizes server headers.<br />
-<strong>Note:</strong> For  very fine grained control over headers, you should use the <a href="../libraries/output.html">Output  Library</a>'s set_header() function.</p>
+<p class="important"><strong>Note:</strong> この関数はサーバのヘッダを利用するので、動作させるにはブラウザに何かを出力する前に、この関数を使う必要があります。<br />
+<strong>Note:</strong> とても細かいヘッダーのコントロールを行う場合は、<a href="../libraries/output.html">出力クラス</a>の set_header() メソッドを使うべきです。</p> 
 
 
 
@@ -275,13 +259,13 @@ to the browser since it utilizes server headers.<br />
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="typography_helper.html">Typography Helper</a>
+前のトピック:&nbsp;&nbsp;<a href="typography_helper.html">タイポグラフィーヘルパ</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="xml_helper.html">XML Helper</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="xml_helper.html">XMLヘルパ</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

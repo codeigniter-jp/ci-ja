@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Upgrading from 1.6.3 to 1.7.0 : CodeIgniter User Guide</title>
+<title>1.6.3 から 1.7.0 へのアップグレード: CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -28,8 +28,8 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Upgrading from 1.6.3 to 1.7.0
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+1.6.3 から 1.7.0 へのアップグレード
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,15 +55,15 @@ Upgrading from 1.6.3 to 1.7.0
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Upgrading from 1.6.3 to 1.7.0</h1>
+<h1>1.6.3 から 1.7.0 へのアップグレード</h1>
 
-<p>Before performing an update you should take your site offline by replacing the index.php file with a static one.</p>
+<p>アップグレードの前にはindex.phpを静的ページと置き換えてサイトを停止してください。</p>
 
 
 
-<h2>Step 1: Update your CodeIgniter files</h2>
+<h2>ステップ 1: CodeIgniter ファイルの更新</h2>
 
-<p>Replace these files and directories in your "system" folder with the new versions:</p>
+<p>"system"フォルダ内の以下のディレクトリに入っているファイル新しいバージョンのもので置き換えます:</p>
 
 <ul>
 
@@ -74,33 +74,29 @@ Upgrading from 1.6.3 to 1.7.0
 <li><dfn>system/libraries</dfn></li>
 </ul>
 
-<p class="important"><strong>Note:</strong> If you have any custom developed files in these folders please make copies of them first.</p>
+<p class="important"><strong>Note:</strong> このディレクトリの中のファイルを更新した場合は、必ず最初にコピーを残しておきます。</p>
 
 
-<h2>Step 2: Update your Session Table</h2>
+<h2>Step 2: Session テーブルのアップデート</h2>
 
-<p>If you are using the Session class in your application, AND if you are storing session data to a database, you must add a new column named <dfn>user_data</dfn> to your session table.
-Here is an example of what this column might look like for MySQL:</p>
+<p>アプリケーション内で Sessionクラス を利用していて、なおかつセッションデータをデータベースで管理している場合、セッションテーブルに <dfn>user_data</dfn> という新しいカラムを追加します。MySQLの場合だと、このカラムは以下のようになります:</p>
 
 <code>user_data text NOT NULL</code>
 
-<p>To add this column you will run a query similar to this:</p>
+<p>このカラムを追加するには、以下のようなクエリを発行します:</p>
 
 <code>ALTER TABLE `ci_sessions` ADD `user_data` text NOT NULL</code>
 
-<p>You'll find more information regarding the new Session functionality in the  <a href="../libraries/sessions.html">Session class</a> page.</p>
+<p><a href="../libraries/sessions.html">Sessionクラス</a> のページに、新しい Session 機能についてのより詳しい情報が紹介されています。</p>
 
 
-<h2>Step 3: Update your Validation Syntax</h2>
+<h2>Step 3: バリデーション構文のアップデート</h2>
 
-<p>This is an <strong>optional</strong>, but recommended step, for people currently using the Validation class.  CI 1.7 introduces a new  <a href="../libraries/form_validation.html">Form Validation class</a>, which
-deprecates the old Validation library.  We have left the old one in place so that existing applications that use it will not break, but you are encouraged to
-migrate to the new version as soon as possible.  Please read the user guide carefully as the new library works a little differently, and has several new features.</p>
+<p>これは <strong>オプション</strong> ですが、現在 Validationクラスを利用されている方は作業される事をお勧めします。CI 1.7 では、新しい <a href="../libraries/form_validation.html">Form バリデーションクラス</a> が導入されますので、それに伴い古いバリデーションライブラリは非推奨となります。現在稼動しているアプリケーションとの互換性を考慮し、古いライブラリも残してありますが、出来るだけ早く新しいバージョンに乗り換えられる事をお勧めします。新しいライブラリは従来のものと若干異なった挙動で、いくつかの新機能も備えていますので、ユーザガイドを注意して読んでください。</p>
 
 
-
-<h2>Step 4: Update your user guide</h2>
-<p>Please replace your local copy of the user guide with the new version, including the image files.</p>
+<h2>ステップ 4: ユーザーガイドを更新します。</h2>
+<p>ローカルにあるユーザーガイドを、画像ファイルを含めて新しいバージョンのもので置き換えます。</p>
 
 </div>
 <!-- END CONTENT -->
@@ -108,13 +104,13 @@ migrate to the new version as soon as possible.  Please read the user guide care
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="index.html">Installation Instructions</a>
+前のトピック:&nbsp;&nbsp;<a href="index.html">インストール方法</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="troubleshooting.html">Troubleshooting</a>
+<a href="#top">ページ先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="troubleshooting.html">トラブルシューティング</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

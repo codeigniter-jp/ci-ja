@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Common Functions : CodeIgniter User Guide</title>
+<title>共通関数 : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -13,6 +12,7 @@
 <script type="text/javascript" src="../nav/moo.fx.js"></script>
 <script type="text/javascript" src="../nav/user_guide_menu.js"></script>
 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv='expires' content='-1' />
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
@@ -28,23 +28,22 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
 <!-- END NAVIGATION -->
-
 
 <!-- START BREADCRUMB -->
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Auto-loading Resources
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+共通関数
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,70 +54,64 @@ Auto-loading Resources
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Common Functions</h1>
+<h1>共通関数</h1>
 
-<p>CodeIgniter uses a few functions for its operation that are globally defined, and are available to you at any point. These do not require loading any libraries or helpers.</p>
+<p>CodeIgniterにはグローバルで定義された関数がいくつか存在し、ライブラリやヘルパをロードすること無くどの場所でも使うことができます。</p>
 
 <h2>is_php('<var>version_number</var>')</h2>
 
-<p>is_php() determines of the PHP version being used is greater than the supplied <var>version_number</var>.</p>
+<p>is_php() は、<var>version_number</var>で指定したバージョン以降のPHPが利用されているかを判定します。</p>
 
 <code>if (is_php('5.3.0'))<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;$str = quoted_printable_encode($str);<br />
 }</code>
 
-<p>Returns boolean <kbd>TRUE</kbd> if the installed version of PHP is equal to or greater than the supplied version number.  Returns  <kbd>FALSE</kbd> if the installed version of PHP is lower than the supplied version number.</p>
-
+<p>指定したバージョンと同じかそれ以降のバージョンのPHPがインストールされていれば、ブール値の <kbd>TRUE</kbd> を返します。指定したバージョン未満のPHPがインストールされていれば、 <kbd>FALSE</kbd> を返します。</p>
 
 <h2>is_really_writable('<var>path/to/file</var>')</h2>
 
-<p>is_writable() returns TRUE on Windows servers when you really can't write to the file as the OS reports to PHP as FALSE only if the read-only attribute is marked. This function determines if a file is actually writable by attempting to write to it first. Generally only recommended on platforms where this information may be unreliable.</p>
+<p>is_writable() は、Windowsサーバーの場合、OSが本当はファイルに書けないのだけれどもOSがPHPに書き込み可能と言ってきたときにTRUEを返し、read-only属性がマークされている場合だけFALSEを返します。この関数は本当にそのファイルに書き込みができるのかどうかを、実際にファイルに書き込みをしてみて判断します。この関数は書き込み情報が当てにならないOSの場合のみ使うようにしてください。</p>
 
 <code>if (is_really_writable('file.txt'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo &quot;I could write to this if I wanted to&quot;;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo &quot;書きたい時に書き込みができます&quot;;<br />
 }<br />
 else<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo &quot;File is not writable&quot;;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo &quot;ファイルに書き込みはできません&quot;;<br />
 }</code>
 
 <h2>config_item('<var>item_key</var>')</h2>
-<p>The <a href="../libraries/config.html">Config library</a> is the preferred way of accessing configuration information, however config_item() can be used to retrieve single keys. See Config library documentation for more information.</p>
+<p><a href="../libraries/config.html">設定(Config)ライブラリ</a> に設定情報を入れておくことが推奨されていますが、config_item() を使って 1つだけのキーを使って取得することも可能です。設定ライブラリに詳細があります。
 
 <h2>show_error('<var>message</var>'), show_404('<var>page</var>'), log_message('<var>level</var>', '<samp>message</samp>')</h2>
-<p>These are each outlined on the <a href="errors.html">Error Handling</a> page.</p>
+<p>これらの詳細は<a href="errors.html">エラーの処理</a>ページにあります。</p>
 
 <h2>set_status_header(<var>code</var>, '<var>text</var>');</h2>
 
-<p>Permits you to manually set a server status header.  Example:</p>
+<p>サーバが返すHTTPレスポンスヘッダのステータスを手動でセットできます。例:</p>
 
 <code>set_status_header(401);<br />
-// Sets the header as:  Unauthorized</code>
+// ヘッダは Unauthorized に設定されます</code>
 
-<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">See here</a> for a full list of headers.</p>
-
+<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">全てのHTTPレスポンスヘッダの一覧</a>をご覧ください。</p>
 
 <h2>remove_invisible_characters(<var>$str</var>)</h2>
-<p>This function prevents inserting null characters between ascii characters, like Java\0script.</p>
-
-
+<p>Java\0script のように、文字列にヌル文字が混入されるのを防ぎます。</p>
 
 </div>
-
-
 <!-- END CONTENT -->
-
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="autoloader.html">Auto-loading Resources</a><a href="hooks.html"></a>
+前のトピック:&nbsp;&nbsp;<a href="autoloader.html">リソースの自動読み込み</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="routing.html">URI Routing</a></p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="routing.html">URIルーティング</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

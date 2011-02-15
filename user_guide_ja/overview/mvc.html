@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Model-View-Controller : CodeIgniter User Guide</title>
+<title>Model-View-Controller : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,17 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
-
-</head>
+<meta name='description' content='CodeIgniter ユーザガイド' /></head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +39,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
 MVC
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -58,25 +56,15 @@ MVC
 
 <h1>Model-View-Controller</h1>
 
-<p>CodeIgniter is based on the Model-View-Controller development pattern.
-
-MVC is a software approach that separates application logic from presentation.  In practice, it permits your web pages to contain minimal scripting since the presentation is separate from the PHP scripting.</p>
-
+<p>CodeIgniter はModel-View-Controller パターンに基づいています。MVC はプレゼンテーションからアプリケーションロジックを分離するためのソフトウェアアプローチです。実際には、PHPスクリプトからプレゼンテーションが分離されるので、webページには、必要最小限のスクリプトだけを書くようにできます。</p>
 <ul>
-<li>The <strong>Model</strong> represents your data structures. Typically your model classes will contain functions that help you
-retrieve, insert, and update information in your  database.</li>
-<li>The <strong>View</strong> is the information that is being presented to a user.  A View will normally be a web page, but
-in CodeIgniter, a view can also be a page fragment like a header or footer. It can also be an RSS page, or any other type of "page".</li>
-<li>The <strong>Controller</strong> serves as an <em>intermediary</em> between the Model, the View,
-and any other resources needed to process the HTTP request and generate a web page.</li>
-
+<li><strong>モデル</strong> はデータ構造をあらわします。モデルクラスは多くの場合、データベースから情報を取得・挿入・更新するメソッドを持ちます。</li>
+<li><strong>ビュー</strong> はユーザに表示される情報です。ビューは通常はwebページですが、CodeIgniterでは、ヘッダ・フッタなどのページの断片である場合もあります。またRSSページや他のタイプのページである場合もあります。</li>
+<li><strong>コントローラ</strong> はモデルとビュー、それから、HTTPリクエストを処理しwebページを生成するために必要とされるリソース、これらを<em>仲介しながら</em> 動作します。</li>
 </ul>
 
-<p>CodeIgniter has a fairly loose approach to MVC since Models are not required.
-If you don't need the added separation, or find that maintaining models requires more complexity than you
-want, you can ignore them and build your application minimally using Controllers and Views. CodeIgniter also
-enables you to incorporate your own existing scripts, or even develop core libraries for the system,
- enabling you to work in a way that makes the most sense to you.</p>
+<p>CodeIgniter においては、モデルは必ずしも必要ではありません。ですのでMVCに対してややルーズなアプローチをとっているといえます。 余計な分離が不要な場合や、モデルをメンテナンスすることが希望より複雑であることがわかった場合には、
+モデルを使用せず、最低限、コントローラとビューを利用してアプリケーションを構築できます。さらに、CodeIgniter では既存のスクリプトを組み入れることもできるだけでなく、あなたが一番理解しやすい方法でプログラミングするために、システムのコアライブラリを開発することさえできます。</p>
 
 
 
@@ -87,13 +75,13 @@ enables you to incorporate your own existing scripts, or even develop core libra
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="appflow.html">Application Flow Chart</a>
+前のトピック:&nbsp;&nbsp;<a href="appflow.html">アプリケーションフローチャート</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="goals.html">Architectural Goals</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="goals.html">アーキテクチャのゴール</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Creating Drivers : CodeIgniter User Guide</title>
+<title>ドライバの作成 : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -28,8 +28,8 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Creating Drivers
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ドライバの作成
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,16 +55,17 @@ Creating Drivers
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Creating Drivers</h1>
+<h1>ドライバの作成</h1>
 
-<h2>Driver Directory and File Structure</h2>
+<h2>ドライバのディレクトリとファイル構成</h2>
 
-<p>Sample driver directory and file structure layout:</p>
+<p>ドライバのディレクトリとファイル配置の例:</p>
 
 <ul>
 	<li>/application/libraries/Driver_name
 		<ul>
 			<li>Driver_name.php</li>
+
 			<li>drivers
 				<ul>
 					<li>Driver_name_subclass_1.php</li>
@@ -73,13 +74,11 @@ Creating Drivers
 				</ul>
 			</li>
 		</ul>
+
 	</li>
 </ul>
 
-<p class="important"><strong>NOTE:</strong> In order to maintain compatibility on case-sensitive file systems, the <samp>Driver_name</samp> directory must be <var>ucfirst()</var></p>
-
-<!-- @todo write this! -->
-
+<p class="important"><strong>NOTE:</strong> 大文字と小文字を区別するファイルシステムの上で互換性を維持するために、<samp>Driver_name</samp> ディレクトリの名前は <var>ucfirst()</var> (訳注: 先頭が大文字) でなければいけません。</p>
 
 </div>
 <!-- END CONTENT -->
@@ -87,13 +86,13 @@ Creating Drivers
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="drivers.html">Using CodeIgniter Drivers</a>
+前のトピック:&nbsp;&nbsp;<a href="drivers.html">ドライバの使用</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="core_classes.html">Creating Core System Classes</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="core_classes.html">コアシステムクラスの作成</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

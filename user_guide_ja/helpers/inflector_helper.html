@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Inflector Helper : CodeIgniter User Guide</title>
-
+<title>語形変換ヘルパ : CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +40,9 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Inflector Helper
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+語形変換ヘルパ</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -56,70 +54,66 @@ Inflector Helper
 <div id="content">
 
 
-<h1>Inflector Helper</h1>
+<h1>語形変換ヘルパ</h1>
 
-<p>The Inflector Helper file contains functions that permits you to change words to plural, singular, camel case, etc.</p>
+<p>語形変換ヘルパのファイルには、語句を複数形、単数形、キャメル記法などに変換できる関数が含まれます。</p>
 
 
-<h2>Loading this Helper</h2>
+<h2>ヘルパのロード</h2>
 
-<p>This helper is loaded using the following code:</p>
+<p>このヘルパは次のコードを使ってロードします:</p>
 <code>$this->load->helper('inflector');</code>
 
-<p>The following functions are available:</p>
+<p>次の関数が利用できます:</p>
 
 
 <h2>singular()</h2>
 
-<p>Changes a plural word to singular.  Example:</p>
+<p>複数形の単語を単数形に変換します。例:</p>
 
 <code>
 $word = "dogs";<br />
-echo singular($word); // Returns "dog"
-</code>
+echo singular($word); // "dog" を返します</code>
 
 
 <h2>plural()</h2>
 
-<p>Changes a singular word to plural.  Example:</p>
+<p>単数形の単語を複数形に変換します。例:</p>
 
 <code>
 $word = "dog";<br />
-echo plural($word); // Returns "dogs"
-</code>
+echo plural($word); // "dogs" を返します</code>
 
-
-<p>To force a word to end with &quot;es&quot; use a second &quot;true&quot; argument. </p>
+<p>強制的に &quot;es&quot; で終わるようにするには、第2引数に &quot;true&quot; を指定します。 </p>
 <code> $word = &quot;pass&quot;;<br />
-echo plural($word, TRUE); // Returns &quot;passes&quot; </code>
+echo plural($word, TRUE); // &quot;passes&quot; を返します</code>
+
 
 <h2>camelize()</h2>
-<p>Changes a string of words separated by spaces or underscores to camel case.  Example:</p>
+
+<p>スペースまたはアンダースコアで区切られた語句をキャメル記法に変換します。例:</p>
 
 <code>
 $word = "my_dog_spot";<br />
-echo camelize($word); // Returns "myDogSpot"
-</code>
+echo camelize($word); // "myDogSpot" を返します</code>
 
 
 <h2>underscore()</h2>
 
-<p>Takes multiple words separated by spaces and underscores them.  Example:</p>
+<p>スペースで区切られた複数の単語を取り出して、アンダースコアでつなぎます。例:</p>
 
 <code>
 $word = "my dog spot";<br />
-echo underscore($word); // Returns "my_dog_spot"
-</code>
+echo underscore($word); // "my_dog_spot" を返します </code>
 
 
 <h2>humanize()</h2>
 
-<p>Takes multiple words separated by underscores and adds spaces between them.  Each word is capitalized. Example:</p>
+<p>アンダースコアで区切られた複数の単語を取り出して、スペースでつなぎます。各単語は大文字ではじめられます。例:</p>
 
 <code>
 $word = "my_dog_spot";<br />
-echo humanize($word); // Returns "My Dog Spot"
-</code>
+echo humanize($word); // "My Dog Spot" を返します</code>
 
 
 
@@ -138,13 +132,13 @@ echo humanize($word); // Returns "My Dog Spot"
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="html_helper.html"> HTML Helper</a>
+前のトピック:&nbsp;&nbsp;<a href="html_helper.html"> HTMLヘルパ</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="number_helper.html">Number Helper</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="language_helper.html">言語ヘルパ</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

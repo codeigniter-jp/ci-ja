@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Creating Ancillary Classes : CodeIgniter User Guide</title>
-
+<title>補助的なクラスの作成 : CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +40,9 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Creating Ancillary Classes
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+補助的なクラスの作成</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,62 +53,61 @@ Creating Ancillary Classes
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Creating Ancillary Classes</h1>
+<h1>補助的なクラスの作成</h1>
 
-<p>In some cases you may want to develop classes that exist apart from your controllers but have the ability to
-utilize all of CodeIgniter's resources. This is easily possible as you'll see.</p>
+<p>コントローラの既存クラスから別クラスを開発するような場合でも、CodeIgniterのすべてのリソースを利用することが可能です。以下のように簡単にできます。</p>
 
 <h2>get_instance()</h2>
 
 
-<p><strong>Any class that you instantiate within your controller functions can access CodeIgniter's native resources</strong> simply by using the <kbd>get_instance()</kbd> function.
-This function returns the main CodeIgniter object.</p>
+<p><strong>コントローラ内部でインスタンスされたあらゆるクラスは、</strong><kbd>get_instance()</kbd>メソッドを用いることにより、
+<strong>簡単にCodeIgniterのネイティブリソースにアクセスすることができます。</strong>
+このメソッドは、CodeIgniterの主オブジェクトを返します。</p>
 
-<p>Normally, to call any of the available CodeIgniter functions requires you to use the <kbd>$this</kbd> construct:</p>
+<p>通常、CodeIgniterの利用可能な機能を呼び出すには、<kbd>$this</kbd>変数の初期化メソッドを用います:</p>
 
 <code>
 <strong>$this</strong>->load->helper('url');<br />
 <strong>$this</strong>->load->library('session');<br />
 <strong>$this</strong>->config->item('base_url');<br />
-etc.
+など
 </code>
 
-<p><kbd>$this</kbd>, however, only works within your controllers, your models, or your views.
-If you would like to use CodeIgniter's classes from within your own custom classes you can do so as follows:</p>
+<p>しかし、<kbd>$this</kbd>変数は、コントローラ、モデル、ビューの中で直接使うときだけ動作します。もし、自作クラスでCodeIgniterのクラスを使用したい場合は、以下のようにします。</p>
 
 
-<p>First, assign the CodeIgniter object to a variable:</p>
+<p>まず、CodeIgniterオブジェクトを変数に代入します:</p>
 
 <code>$CI =& get_instance();</code>
 
-<p>Once you've assigned the object to a variable, you'll use that variable <em>instead</em> of <kbd>$this</kbd>:</p>
+<p>オブジェクトを変数に代入したら、<kbd>$this</kbd>変数の代わりにその変数を用います:</p>
 
 <code>
 $CI =& get_instance();<br /><br />
 $CI->load->helper('url');<br />
 $CI->load->library('session');<br />
 $CI->config->item('base_url');<br />
-etc.
+など
 </code>
 
-<p class="important"><strong>Note:</strong> You'll notice that the above get_instance() function is being passed by reference:
+<p class="important"><strong>Note:</strong> 上でget_instance()メソッドが「参照渡し」されていることに注意してください:
 <br /><br />
 <var>$CI =& get_instance();</var>
 <br /><br />
-This is very important. Assigning by reference allows you to use the original CodeIgniter object rather than creating a copy of it.</p>
+これは非常に重要です。「参照渡し」することで、コピーではなく、本来のCodeIgniterのオブジェクトを利用することができます。 </p>
 </div>
 <!-- END CONTENT -->
 
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="creating_libraries.html">Creating Core Libraries</a>
+前のトピック:&nbsp;&nbsp;<a href="creating_libraries.html">コアライブラリの作成</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="autoloader.html">Auto-loading Resources</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="autoloader.html">リソースの自動読み込み</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Trackback Class : CodeIgniter User Guide</title>
+<title>トラックバッククラス : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Trackback Class
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+トラックバッククラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -56,33 +56,33 @@ Trackback Class
 <div id="content">
 
 
-<h1>Trackback Class</h1>
+<h1>トラックバッククラス</h1>
 
-<p>The Trackback Class provides functions that enable you to send and receive Trackback data.</p>
+<p>トラックバッククラスでは、トラックバックを送受信するのを可能にするメソッドが提供されています。</p>
 
 
-<p>If you are not familiar with Trackbacks you'll find more information <a href="http://en.wikipedia.org/wiki/Trackback">here</a>.</p>
+<p>トラックバックについてあまりご存じでない場合は、詳しい情報を<a href="http://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A9%E3%83%83%E3%82%AF%E3%83%90%E3%83%83%E3%82%AF">こちら</a>でご覧いただけます。</p>
 
-<h2>Initializing the Class</h2>
+<h2>クラスの初期化</h2>
 
-<p>Like most other classes in CodeIgniter, the Trackback class is initialized in your controller using the <dfn>$this->load->library</dfn> function:</p>
+<p> CodeIgniterの他の多くのクラスと同様、トラックバッククラスは、コントローラの中で、<dfn>$this->load->library</dfn> メソッドを使って初期化されます:</p>
 
 <code>$this->load->library('trackback');</code>
-<p>Once loaded, the Trackback library object will be available using: <dfn>$this->trackback</dfn></p>
+<p>初期化されたら、トラックバックライブラリのオブジェクトは次のコードで利用できます: <dfn>$this->trackback</dfn></p>
 
 
-<h2>Sending Trackbacks</h2>
+<h2>トラックバックの送信</h2>
 
-<p>A Trackback can be sent from any of your controller functions using code similar to this example:</p>
+<p>次のサンプルのようなコードを使えば、コントローラのメソッド内であればどこからでもトラックバックを送信することができます:</p>
 
 <code>$this->load->library('trackback');<br />
 <br />
 $tb_data = array(<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ping_url'&nbsp;&nbsp;=> 'http://example.com/trackback/456',<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'http://www.my-example.com/blog/entry/123',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'The Title of My Entry',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'excerpt'&nbsp;&nbsp;&nbsp;=> 'The entry content.',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_name' => 'My Blog Name',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '記事のタイトル',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'excerpt'&nbsp;&nbsp;&nbsp;=> '記事内容',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_name' => 'ブログの名前',<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'charset'&nbsp;&nbsp;&nbsp;=> 'utf-8'<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
 <br />
@@ -92,55 +92,48 @@ if ( ! $this->trackback->send($tb_data))<br />
 }<br />
 else<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo 'Trackback was sent!';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo 'トラックバックが送信されました!';<br />
 }</code>
 
-<p>Description of array data:</p>
+<p>配列データについての説明です:</p>
 
 <ul>
-<li><strong>ping_url</strong> - The URL of the site you are sending the Trackback to. You can send Trackbacks to multiple URLs by separating each URL with a comma.</li>
-<li><strong>url</strong> - The URL to YOUR site where the weblog entry can be seen.</li>
-<li><strong>title</strong> - The title of your weblog entry.</li>
-<li><strong>excerpt</strong> - The content of your weblog entry. Note: the Trackback class will automatically send only the first 500 characters of your entry.  It will also strip all HTML.</li>
-<li><strong>blog_name</strong> - The name of your weblog.</li>
-<li><strong>charset</strong> - The character encoding your weblog is written in.  If omitted, UTF-8 will be used.</li>
+<li><strong>ping_url</strong> - トラックバックを送信する相手のURL。各URLをカンマ ( &quot;,&quot; ) で区切れば、複数のURLに対してトラックバックを送信できます。</li>
+<li><strong>url</strong> - ブログのエントリ（記事）がある送信元サイトのURL。</li>
+<li><strong>title</strong> - ブログのエントリのタイトル。</li>
+<li><strong>excerpt</strong> - ブログの記事内容。Note: トラックバッククラスは、記事のはじめから500字を自動で送信します。また、記事のHTMLは取り除かれます。</li>
+<li><strong>blog_name</strong> - ブログの名前。</li>
+<li><strong>charset</strong> - ブログが書かれている文字コード。省略された場合は、UTF-8が使用されます。</li>
 </ul>
 
-<p>The Trackback sending function returns TRUE/FALSE (boolean) on success or failure.  If it fails, you can retrieve the error message using:</p>
+<p>トラックバック送信メソッドは、成功したか失敗したかにより、TRUE/FALSE (ブール値) を返します。失敗したときは、次のようにしてエラーメッセージを取得できます:</p>
 
 <code>$this->trackback->display_errors();</code>
 
 
-<h2>Receiving Trackbacks</h2>
+<h2>トラックバックの受信</h2>
 
-<p>Before you can receive Trackbacks you must create a weblog.  If you don't have a blog yet there's no point in continuing.</p>
+<p>トラックバックを受信する前には、まずブログを作成する必要があります。もしブログをまだ作成していないのであれば、続けて読んでも意味がありません。</p>
 
-<p>Receiving Trackbacks is a little more complex than sending them, only because you will need a database table in which to store them,
-and you will need to validate the incoming trackback data.  You are encouraged to implement a thorough validation process to
-guard against spam and duplicate data.  You may also want to limit the number of Trackbacks you allow from a particular IP within
-a given span of time to further curtail spam.  The process of receiving a Trackback is quite simple;
-the validation is what takes most of the effort.</p>
+<p>トラックバックの受信は、保存するデータベーステーブルが必要になり、受信したトラックバックデータを検証する必要があるので、送信するよりもやや複雑になります。スパムや重複投稿を防止できるよう検証処理を実装することをお勧めします。また、スパム防止のため、一定時間内の同一IPアドレスからの投稿数を制限したいかもしれません。トラックバックを受信する処理は非常に単純です。検証処理こそが最大の努力を払うところになります。</p>
 
-<h2>Your Ping URL</h2>
+<h2>トラックバックPing URL</h2>
 
-<p>In order to accept Trackbacks you must display a Trackback URL next to each one of your weblog entries.  This will be the URL
-that people will use to send you Trackbacks (we will refer to this as your "Ping URL").</p>
+<p>トラックバックを受信するには、各ブログの記事の下に、Trackback URLを表示しなければなりません。これは、他の人がトラックバックを送信するURLになります（これは &quot;トラックバックPing URL&quot; として参照されます）。</p>
 
-<p>Your Ping URL must point to a controller function where your Trackback receiving code is located, and the URL
-must contain the ID number for each particular entry, so that when the Trackback is received you'll be
-able to associate it with a particular entry.</p>
+<p>トラックバックPing URL は、コントローラの中の、トラックバックを受信させるコードがあるメソッドを指していなければならず、また、URLには、個別の記事のID番号が含まれていなければなりません。そうすることで、トラックバックを個別の記事に関連づけて受信することができます。</p>
 
-<p>For example, if your controller class is called <dfn>Trackback</dfn>, and the receiving function is called <dfn>receive</dfn>, your
-Ping URLs will look something like this:</p>
+<p>たとえば、コントローラクラスが <dfn>Trackback</dfn> という名前で、受信メソッドが <dfn>receive </dfn>という名前のとき、トラックバック
+Ping URLは、次のようになります:</p>
 
 <code>http://example.com/index.php/trackback/receive/<samp>entry_id</samp></code>
 
-<p>Where <samp>entry_id</samp> represents the individual ID number for each of your entries.</p>
+<p>ここでの <samp>entry_id</samp> は、個別の記事の固有のID番号をあらわします。</p>
 
 
-<h2>Creating a Trackback Table</h2>
+<h2>トラックバック用のテーブルの作成</h2>
 
-<p>Before you can receive Trackbacks you must create a table in which to store them.  Here is a basic prototype for such a table:</p>
+<p>トラックバックを受信する前に、トラックバックを保存するテーブルを作成する必要があります。以下は、テーブルの基本的な例です:</p>
 
 <textarea class="textarea" style="width:100%" cols="50" rows="13">
 CREATE TABLE trackbacks (
@@ -157,25 +150,23 @@ CREATE TABLE trackbacks (
 );</textarea>
 
 
-<p>The Trackback specification only requires four pieces of information to be sent in a Trackback (url, title, excerpt, blog_name),
-but to make the data more useful we've added a few more fields in the above table schema (date, IP address, etc.).</p>
+<p>トラックバックの仕様では、トラックバックを送信するには、4つの情報 (url、title、excerpt、blog_name)　だけが必要になりますが、データをより役立つものにするために、もう少し多くのフィールドをテーブルのスキーマに追加します (date、IP address、など)。</p>
 
-<h2>Processing a Trackback</h2>
+<h2>トラックバックの処理</h2>
 
-<p>Here is an example showing how you will receive and process a Trackback.  The following
-code is intended for use within the controller function where you expect to receive Trackbacks.</p>
+<p>以下は、トラックバックを受信し処理する方法を示した例です。次のコードは、コントローラの中のトラックバックを受信するメソッド内で使うことを意図しています。</p>
 
 <code>$this->load->library('trackback');<br />
 $this->load->database();<br />
 <br />
 if ($this->uri->segment(3) == FALSE)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->trackback->send_error("Unable to determine the entry ID");<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this->trackback->send_error("記事IDを特定できません");<br />
 }<br />
 <br />
 if ( ! $this->trackback->receive())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->trackback->send_error("The Trackback did not contain valid data");<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this->trackback->send_error("トラックバックデータに不正なデータが含まれます");<br />
 }<br />
 <br />
 $data = array(<br />
@@ -196,32 +187,29 @@ $this->trackback->send_success();</code>
 
 <h4>Notes:</h4>
 
-<p>The entry ID number is expected in the third segment of your URL.  This is based on the URI example we gave earlier:</p>
+<p>記事ID番号は、URLの第3セグメントにあると想定しています。上で挙げたサンプルのURLにもとづいています:</p>
 
 <code>http://example.com/index.php/trackback/receive/<samp>entry_id</samp></code>
 
-<p>Notice the entry_id is in the third URI segment, which you can retrieve using:</p>
+<p>第3 URI セグメントにある entry_id は、次のようにして取得可能ですので覚えておいてください:</p>
 
 <code>$this->uri->segment(3);</code>
 
-<p>In our Trackback receiving code above, if the third segment is missing, we will issue an error.  Without a valid entry ID, there's no
-reason to continue.</p>
+<p>上のトラックバックを受信するコードでは、もし第3セグメントがない場合、エラーを発行しています。 [ 訳注:トラックバック送信元に対し、Pingのエラー応答メッセージを返します。 ]正しい記事IDがない場合、続行する理由はありません。</p>
 
-<p>The <dfn>$this->trackback->receive()</dfn> function is simply a validation function that looks at the incoming data
-and makes sure it contains the four pieces of data that are required (url, title, excerpt, blog_name).
-It returns TRUE on success and FALSE on failure.  If it fails you will issue an error message.</p>
+<p><dfn>this->trackback->receive()</dfn> メソッドは、単に、受信したデータを検証し、受信したデータに必要な4つのデータ (url、title、excerpt、blog_name) が含まれるかを確かめるメソッドです。検証に成功した場合はTRUEを失敗した場合はFALSEを返します。失敗した場合にエラーメッセージを発行しています。</p>
 
-<p>The incoming Trackback data can be retrieved using this function:</p>
+<p>受信したトラックバックデータは、次のメソッドで取得可能です:</p>
 
 <code>$this->trackback->data('<var>item</var>')</code>
 
-<p>Where <var>item</var> represents one of these four pieces of info: url, title, excerpt, or blog_name</p>
+<p>ここでの <var>item</var> は、次のようなトラックバック情報の項目を表します: url、title、excerpt、あるいはblog_name</p>
 
-<p>If the Trackback data is successfully received, you will issue a success message using:</p>
+<p>トラックバックが正常に受信されたら、次のようにして成功メッセージを発行します [ 訳注:トラックバック送信元に対し、Pingの応答メッセージを返します。 ]:</p>
 
 <code>$this->trackback->send_success();</code>
 
-<p class="important"><strong>Note:</strong> The above code contains no data validation, which you are encouraged to add.</p>
+<p class="important"><strong>Note:</strong> 上のコードには、データの検証がありません。データの検証を追加することをお勧めします。</p>
 
 
 
@@ -233,13 +221,13 @@ It returns TRUE on success and FALSE on failure.  If it fails you will issue an 
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="sessions.html">Session Class</a>
+前のトピック:&nbsp;&nbsp;<a href="sessions.html">セッションクラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="parser.html">Template Parser Class</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="parser.html">テンプレートパーサクラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

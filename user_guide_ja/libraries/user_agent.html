@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>User Agent Class : CodeIgniter User Guide</title>
+<title>ユーザエージェントクラス : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,9 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-User Agent Class
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ユーザエージェントクラス</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -56,43 +55,40 @@ User Agent Class
 <div id="content">
 
 
-<h1>User Agent Class</h1>
+<h1>ユーザエージェントクラス</h1>
 
-<p>The User Agent Class provides functions that help identify information about the browser, mobile device, or robot visiting your site.
-In addition you can get referrer information as well as language and supported character-set information.</p>
+<p>ユーザエージェントクラスには、サイトを訪問したブラウザ・携帯機器あるいは検索エンジンのロボットに関する情報を識別するのに役立つメソッドが備わっています。さらに、言語やサポートされる文字セットに関する情報も取得することができます。</p>
 
-<h2>Initializing the Class</h2>
+<h2>クラスの初期化</h2>
 
-<p>Like most other classes in CodeIgniter, the User Agent class is initialized in your controller using the <dfn>$this->load->library</dfn> function:</p>
+<p>CodeIgniterの大部分のクラスと同様に、ユーザエージェントクラスは、コントローラで <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
 
 <code>$this->load->library('user_agent');</code>
-<p>Once loaded, the object will be available using: <dfn>$this->agent</dfn></p>
+<p>一度初期化されると、そのオブジェクトは次のようにして利用できます: <dfn>$this->agent</dfn></p>
 
-<h2>User Agent Definitions</h2>
+<h2>User Agent の定義</h2>
 
-<p>The user agent name definitions are located in a config file located at: <dfn>application/config/user_agents.php</dfn>.  You may add items to the
-various user agent arrays if needed.</p>
+<p>ユーザエージェントの名前の定義は、次の設定ファイルにあります: <dfn>application/config/user_agents.php</dfn>。必要であれば、様々なユーザエージェントの配列を項目に追加できます。</p>
 
-<h2>Example</h2>
+<h2>例</h2>
 
-<p>When the User Agent class is initialized it will attempt to determine whether the user agent browsing your site is
-a web browser, a mobile device, or a robot.  It will also gather the platform information if it is available.</p>
+<p>ユーザエージェントクラスが初期化されるとき、サイトを閲覧しているブラウザ・携帯機器・あるいは検索エンジンのロボットの特定が行われます。また、取得可能であれば、プラットフォームの情報も収集します。</p>
 
 
 <code>
-$this->load->library('user_agent');<br />
+$this-&gt;load-&gt;library('user_agent');<br />
 <br />
-if ($this->agent->is_browser())<br />
+if ($this-&gt;agent-&gt;is_browser())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$agent  = $this->agent->browser().' '.$this->agent->version();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$agent  = $this-&gt;agent-&gt;browser().' '.$this-&gt;agent-&gt;version();<br />
 }<br />
-elseif ($this->agent->is_robot())<br />
+elseif ($this-&gt;agent-&gt;is_robot())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$agent = $this->agent->robot();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$agent = $this-&gt;agent-&gt;robot();<br />
 }<br />
-elseif ($this->agent->is_mobile())<br />
+elseif ($this-&gt;agent-&gt;is_mobile())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$agent = $this->agent->mobile();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$agent = $this-&gt;agent-&gt;mobile();<br />
 }<br />
 else<br />
 {<br />
@@ -101,109 +97,105 @@ else<br />
 <br />
 echo $agent;<br />
 <br />
-echo $this->agent->platform(); // Platform info (Windows, Linux, Mac, etc.)
+echo $this-&gt;agent-&gt;platform(); // プラットフォーム情報 (Windows、Linux、Mac、など)
 </code>
 
 
-<h1>Function Reference</h1>
+<h1>メソッドリファレンス</h1>
 
 
-<h2>$this->agent->is_browser()</h2>
-<p>Returns TRUE/FALSE (boolean) if the user agent is a known web browser.</p>
+<h2>$this-&gt;agent-&gt;is_browser()</h2>
+<p>ユーザエージェントのブラウザが既知のものかどうかに応じてTRUE/FALSE (ブール値) を返します。</p>
 
-<code> if ($this->agent->is_browser('Safari'))<br />
-{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using Safari.';<br />
-}<br />
-else if ($this->agent->is_browser())<br />
-{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using a browser.';<br />
+<code> if ($this-&gt;agent-&gt;is_browser('Safari'))<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using Safari.';<br>
+}<br>
+
+else if ($this-&gt;agent-&gt;is_browser())<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using a browser.';<br>
 }</code>
 
-<p class="important"><strong>Note:</strong>&nbsp; The string "Safari" in this example is an array key in the list of browser definitions.
-You can find this list in <dfn>application/config/user_agents.php</dfn> if you want to add new browsers or change the stings.</p>
+<p class="important"><strong>Note:</strong>&nbsp; この例での "Safari" という文字列は，ブラウザを定義するリストのキー値です。このリストは <dfn>application/config/user_agents.php</dfn> で定義されており，新しいブラウザを追加したり文字列を変更することができます。</p>
 
-<h2>$this->agent->is_mobile()</h2>
-<p>Returns TRUE/FALSE (boolean) if the user agent is a known mobile device.</p>
+<h2>$this-&gt;agent-&gt;is_mobile()</h2>
+<p>ユーザエージェントの携帯機器が既知のものかどうかに応じてTRUE/FALSE (ブール値) を返します。</p>
 
-<code> if ($this->agent->is_mobile('iphone'))<br />
-{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('iphone/home');<br />
-}<br />
-else if ($this->agent->is_mobile())<br />
-{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('mobile/home');<br />
-}<br/>
-else<br />
-{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('web/home');<br />
+<code> if ($this-&gt;agent-&gt;is_mobile('iphone'))<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('iphone/home');<br>
+}<br>
+else if ($this-&gt;agent-&gt;is_mobile())<br>
+{<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('mobile/home');<br>
+}<br>
+else<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('web/home');<br>
 }</code>
 
-<h2>$this->agent->is_robot()</h2>
-<p>Returns TRUE/FALSE (boolean) if the user agent is a known robot.</p>
+<h2>$this-&gt;agent-&gt;is_robot()</h2>
+<p>ユーザエージェントのロボット（クローラ）が既知のものかどうかに応じてTRUE/FALSE (ブール値) を返します。</p>
 
-<p class="important"><strong>Note:</strong>&nbsp; The user agent library only contains the most common robot
-definitions.  It is not a complete list of bots. There are hundreds of them so searching for each one would not be
-very efficient. If you find that some bots that commonly visit your site are missing from the list you can add them to your
-<dfn>application/config/user_agents.php</dfn> file.</p>
+<p class="important"><strong>Note:</strong>&nbsp; ユーザエージェントライブラリにはもっとも一般的なロボットしか定義されていません。完全なロボットのリストではありません。何百ものロボットがあるので、それぞれを調べるのは効率がよくありません。リストにないロボットがいつもサイトを訪問するのがわかった場合は、<dfn>application/config/user_agents.php</dfn> ファイルにそれを追加することができます。</p>
 
-<h2>$this->agent->is_referral()</h2>
-<p>Returns TRUE/FALSE (boolean) if the user agent was referred from another site.</p>
+<h2>$this-&gt;agent-&gt;is_referral()</h2>
+<p>ユーザエージェントが、他のサイトから参照してきたかどうかを TRUE/FALSE (ブール値) で返します。</p>
 
 
-<h2>$this->agent->browser()</h2>
-<p>Returns a string containing the name of the web browser viewing your site.</p>
+<h2>$this-&gt;agent-&gt;browser()</h2>
+<p>サイトを閲覧しているブラウザの名前をあらわす文字列を返します。</p>
 
-<h2>$this->agent->version()</h2>
-<p>Returns a string containing the version number of the web browser viewing your site.</p>
+<h2>$this-&gt;agent-&gt;version()</h2>
+<p>サイトを閲覧しているブラウザのバージョン番号をあらわす文字列を返します。</p>
 
-<h2>$this->agent->mobile()</h2>
-<p>Returns a string containing the name of the mobile device viewing your site.</p>
+<h2>$this-&gt;agent-&gt;mobile()</h2>
+<p>サイトを閲覧している携帯機器をあらわす文字列を返します。</p>
 
-<h2>$this->agent->robot()</h2>
-<p>Returns a string containing the name of the robot viewing your site.</p>
+<h2>$this-&gt;agent-&gt;robot()</h2>
+<p>サイトを閲覧している検索エンジンのロボット（クローラ）の名前をあらわす文字列を返します。</p>
 
-<h2>$this->agent->platform()</h2>
-<p>Returns a string containing the platform viewing your site (Linux, Windows, OS X, etc.).</p>
+<h2>$this-&gt;agent-&gt;platform()</h2>
+<p>サイトを閲覧しているプラットフォーム (Linux、Windows、OS X など) をあらわす文字列を返します。 </p>
 
-<h2>$this->agent->referrer()</h2>
-<p>The referrer, if the user agent was referred from another site. Typically you'll test for this as follows:</p>
+<h2>$this-&gt;agent-&gt;referrer()</h2>
+<p>ユーザエージェントが他のサイトから参照していた場合の参照元。通常は、次のようにテストします:</p>
 
-<code> if ($this->agent->is_referral())<br />
+<code> if ($this-&gt;agent-&gt;is_referral())<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;echo $this->agent->referrer();<br />
 }</code>
 
 
-<h2>$this->agent->agent_string()</h2>
-<p>Returns a string containing the full user agent string.  Typically it will be something like this:</p>
+<h2>$this-&gt;agent-&gt;agent_string()</h2>
+<p>ユーザエージェントの完全な文字列を返します。  通常は以下のようになります:</p>
 
 <code>Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.0.4) Gecko/20060613 Camino/1.0.2</code>
 
 
-<h2>$this->agent->accept_lang()</h2>
-<p>Lets you determine if the user agent accepts a particular language. Example:</p>
+<h2>$this-&gt;agent-&gt;accept_lang()</h2>
+<p>ユーザエージェントで特定の言語が使えるかを判断します。例:</p>
 
-<code>if ($this->agent->accept_lang('en'))<br />
+<code>if ($this-&gt;agent-&gt;accept_lang('en'))<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;echo 'You accept English!';<br />
 }</code>
 
-<p class="important"><strong>Note:</strong> This function is not typically very reliable
-since some browsers do not provide language info, and even among those that do, it is not always accurate. </p>
+<p class="important"><strong>Note:</strong> 平均的には、ブラウザは言語の情報を提供していますが、そうしないブラウザがいくつかあるので、このメソッドは、普通はそれほど信頼性がありません。常に正確であるとは限りません。 </p>
 
 
 
-<h2>$this->agent->accept_charset()</h2>
-<p>Lets you determine if the user agent accepts a particular character set. Example:</p>
+<h2>$this-&gt;agent-&gt;accept_charset()</h2>
+<p>ユーザエージェントで特定の文字セットが使えるかを判断します。例:</p>
 
-<code>if ($this->agent->accept_charset('utf-8'))<br />
+<code>if ($this-&gt;agent-&gt;accept_charset('utf-8'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo 'You browser supports UTF-8!';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo 'お使いのブラウザは、UTF-8に対応しています!';<br />
 }</code>
 
-<p class="important"><strong>Note:</strong> This function is not typically very reliable
-since some browsers do not provide character-set info, and even among those that do, it is not always accurate. </p>
+<p class="important"><strong>Note:</strong>平均的には、ブラウザは文字セットの情報を提供していますが、そうしないブラウザがいくつかあるので、このメソッドは、普通はそれほど信頼性がありません。常に正確であるとは限りません。 </p>
 
 
 
@@ -213,13 +205,13 @@ since some browsers do not provide character-set info, and even among those that
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="uri.html">URI Class</a>
+前のトピック:&nbsp;&nbsp;<a href="uri.html">URI クラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="xmlrpc.html">XML-RPC Class</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="xmlrpc.html">XML-RPC クラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

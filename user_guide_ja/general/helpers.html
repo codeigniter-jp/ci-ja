@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Helper Functions : CodeIgniter User Guide</title>
+<title>ヘルパ関数 : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Helper Functions
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ヘルパ関数
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,84 +55,84 @@ Helper Functions
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Helper Functions</h1>
+<h1>ヘルパ関数</h1>
 
-<p>Helpers, as the name suggests, help you with tasks.  Each helper file is simply a collection of functions in a particular
-category.  There are <dfn>URL Helpers</dfn>, that assist in creating links, there are <dfn>Form Helpers</dfn>
-that help you create form elements, <dfn>Text Helpers</dfn> perform various text formatting routines,
-<dfn>Cookie Helpers</dfn> set and read cookies, <dfn>File Helpers</dfn> help you deal with files, etc.
+<p>ヘルパは、その名前のとおり、タスクの実行に役立つものです。各ヘルパのファイルは、特定分野についての関数のコレクションです。
+リンクを作成するのを支援する<dfn>URL ヘルパ</dfn>、フォームの要素を作成するのに役立つ <dfn>Form ヘルパ</dfn>、
+様々なテキスト整形処理を行う<dfn>Text ヘルパ</dfn>、
+クッキーを読み書きする<dfn>Cookie ヘルパ</dfn>、ファイルを取り扱うのに役立つ <dfn>File ヘルパ</dfn> などがあります。
 </p>
 
-<p>Unlike most other systems in CodeIgniter, Helpers are not written in an Object Oriented format.  They are simple, procedural functions.
-Each helper function performs one specific task, with no dependence on other functions.</p>
+<p>CodeIgniter の中の大部分のシステムとは違い、ヘルパはオブジェクト指向の形式で書かれていません。シンプルな手続き型の関数です。
+各ヘルパ関数は、他の関数に依存することなく、特定のひとつのタスクを行います。</p>
 
-<p>CodeIgniter does not load Helper Files by default, so the first step in using
-a Helper is to load it.  Once loaded, it becomes globally available in your <a href="../general/controllers.html">controller</a> and <a href="../general/views.html">views</a>.</p>
+<p>CodeIgniterはデフォルトでは、ヘルパを読み込みません。ヘルパを利用する最初のステップは、
+それを読み込むことです。一旦読み込まれると、 <a href="../general/controllers.html">コントローラ </a>と <a href="../general/views.html">ビュー </a>の中でどこでも利用できます。</p>
 
-<p>Helpers are typically stored in your <dfn>system/helpers</dfn>, or <dfn>application/helpers </dfn>directory.	CodeIgniter will look first in your <dfn>application/helpers</dfn>
-directory.  If the directory does not exist or the specified helper is not located there CI will instead look in your global
-<dfn>system/helpers</dfn> folder.</p>
+<p>ヘルパは通常は、 <dfn>system/helpers</dfn> ディレクトリまたは、<dfn>application/helpers</dfn> に格納されています。CodeIgniter は <dfn>application/helpers</dfn>
+ディレクトリを最初に認識します。このディレクトリが存在しない時や、読み込もうとするヘルパがこのディレクトリの中にない場合、CodeIgniterは代わりにグローバルな 
+<dfn>system/helpers</dfn> フォルダを探します。</p>
 
 
-<h2>Loading a Helper</h2>
+<h2>ヘルパの読み込み</h2>
 
-<p>Loading a helper file is quite simple using the following function:</p>
+<p>ヘルパファイルを読み込むのは、次のようなメソッドを使う、非常に単純なものです:</p>
 
 <code>$this->load->helper('<var>name</var>');</code>
 
-<p>Where <var>name</var> is the file name of the helper, without the .php file extension or the "helper" part.</p>
+<p>ここでの <var>name</var> は、ヘルパの名前になります。 .php ファイルの拡張子やファイル名についている"helper" をあらわす部分 [ 訳注:ヘルパの物理ファイル名の末尾には「_helper」というサフィックスがついています ] は不要です。</p>
 
-<p>For example, to load the <dfn>URL Helper</dfn> file, which is named <var>url_helper.php</var>, you would do this:</p>
+<p>たとえば、<var>url_helper.php</var> というファイル名の <dfn>URL ヘルパ</dfn> のファイルを読み込むには、次のようにします:</p>
 
 <code>$this->load->helper('<var>url</var>');</code>
 
-<p>A helper can be loaded anywhere within your controller functions (or even within your View files, although that's not a good practice),
-as long as you load it before you use it.  You can load your helpers in your controller constructor so that they become available
-automatically in any function, or you can load a helper in a specific function that needs it.</p>
+<p>ヘルパは、利用する前にロードしさえすれば、コントローラのメソッドの中の(良いやり方ではありませんが、
+あるいはビューファイルの）どこでロードしてもかまいません。コントローラのコンストラクタでロードすれば、
+どのメソッドでも利用できるようになりますし、特定のメソッド内で必要な時だけ読み込むこともできます。</p>
 
-<p class="important">Note: The Helper loading function above does not return a value, so don't try to assign it to a variable.  Just use it as shown.</p>
+<p class="important">Note: ヘルパの読み込みメソッドは、値を返さないので、変数に返り値を代入しようとしないでください。例示したように使用するにとどめてください。</p>
 
 
-<h2>Loading Multiple Helpers</h2>
+<h2>複数のヘルパを読み込む</h2>
 
-<p>If you need to load more than one helper you can specify them in an array, like this:</p>
+<p>一つ以上のヘルパを読み込む必要がある場合は、次のように、配列の中で指定することができます:</p>
 
 <code>$this->load->helper( <samp>array(</samp>'<var>helper1</var>', '<var>helper2</var>', '<var>helper3</var>'<samp>)</samp> );</code>
 
-<h2>Auto-loading Helpers</h2>
+<h2>ヘルパの自動読み込み</h2>
 
-<p>If you find that you need a particular helper globally throughout your application, you can tell CodeIgniter to auto-load it during system initialization.
-This is done by opening the <var>application/config/autoload.php</var> file and adding the helper to the autoload array.</p>
+<p>あるヘルパがアプリケーションでグローバルに必要とされることがわかった時には、システムを初期化するときに自動読み込みするよう、CodeIgniter に対して通知しておくことができます。
+<var>application/config/autoload.php</var> ファイルを開き、そこにある配列のautoloadにヘルパを追加することで、そうすることが可能です。</p>
 
 
-<h2>Using a Helper</h2>
+<h2>ヘルパの使用</h2>
 
-<p>Once you've loaded the Helper File containing the function you intend to use, you'll call it the way you would a standard PHP function.</p>
+<p>使いたい関数が含まれるヘルパファイルをまず読み込んだ後、通常のPHPの関数を利用するように呼び出します。</p>
 
-<p>For example, to create a link using the <dfn>anchor()</dfn> function in one of your view files you would do this:</p>
+<p>たとえば、ビューのファイルで <dfn>anchor()</dfn> 関数を使ってリンクを生成するには、次のようにします:</p>
 
-<code>&lt;?php echo anchor('blog/comments', 'Click Here');?&gt;</code>
+<code>&lt;?php　echo anchor('blog/comments', 'ここをクリック');?&gt;</code>
 
-<p>Where "Click Here" is the name of the link, and "blog/comments" is the URI to the controller/function you wish to link to.</p>
+<p>ここでの "ここをクリック" はリンクの名前になり、"blog/comments" は、リンク先のコントローラ/メソッドのURIになります。</p>
 
-<h2>"Extending" Helpers</h2>
+<h2>ヘルパ の "拡張"</h2>
 
-<p>To "extend" Helpers, create a file in your <dfn>application/helpers/</dfn> folder with an identical name to the existing Helper, but prefixed with <kbd>MY_</kbd> (this item is configurable.  See below.).</p>
+<p>ヘルパを "拡張" するには、<kbd>MY_</kbd> (この項目は、変更可能です。下記をご覧ください。) とプリフィックスを付加し、それ以外は既存のヘルパと全く同じ名前をつけて、<dfn>application/helpers/</dfn> フォルダにファイルを作成してください。</p>
 
-<p>If all you need to do is add some functionality to an existing helper - perhaps add a function or two, or change how a particular
-	helper function operates - then it's overkill to replace the entire helper with your version.  In this case it's better to simply
-	"extend" the Helper.  The term "extend" is used loosely since Helper functions are procedural and discrete and cannot be extended
-	in the traditional programmatic sense.  Under the hood, this gives you the ability to add to the functions a Helper provides,
-	or to modify how the native Helper functions operate.</p>
+<p>既存のヘルパにいくつかの機能を追加する - 恐らくひとつかふたつの関数を追加するか、特定のヘルパ関数が
+どのように動作するかを変更する - だけだとすると、ヘルパ全体をユーザバージョンに置き換えてしまうのは、やり過ぎです。こういう場合には、ヘルパを単に
+"拡張"する方がベターです。ヘルパ関数は、手続き型で、それぞれ独立しており、
+通例のプログラミング上の意味では、拡張（継承）できません。ですので、ここでの"拡張"という言葉は、広い意味で使っています。  
+こういった意味で、ヘルパが提供する関数を追加したり、もともとのヘルパ関数がどのように動作するかを変更することができます。</p>
 
-<p>For example, to extend the native <kbd>Array Helper</kbd> you'll create a file named <dfn>application/helpers/</dfn><kbd>MY_array_helper.php</kbd>, and add or override functions:</p>
+<p>たとえば、もともとの <kbd>Array Helper</kbd> を拡張するには、<dfn>application/helpers/</dfn><kbd>MY_array_helper.php</kbd> という名前のファイルを作成し、関数を追加または上書き（オーバーライド）します:</p>
 
 <code>
-// any_in_array() is not in the Array Helper, so it defines a new function<br />
+// any_in_array() は、Array Helperの中にはありません。つまり、新しい関数を定義しています。<br />
 function any_in_array($needle, $haystack)<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;$needle = (is_array($needle)) ? $needle : array($needle);<br />
-	<br />
+  <br />
 &nbsp;&nbsp;&nbsp;&nbsp;foreach ($needle as $item)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;{<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (in_array($item, $haystack))<br />
@@ -140,11 +140,11 @@ function any_in_array($needle, $haystack)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return TRUE;<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
-	<br />
+  <br />
 &nbsp;&nbsp;&nbsp;&nbsp;return FALSE;<br />
 }<br />
 <br />
-// random_element() is included in Array Helper, so it overrides the native function<br />
+// random_element() は、Array Helperに含まれています。つまり、もともとの関数を上書き（オーバーライド）しています<br />
 function random_element($array)<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;shuffle($array);<br />
@@ -152,18 +152,18 @@ function random_element($array)<br />
 }<br />
 </code>
 
-<h3>Setting Your Own Prefix</h3>
+<h3>独自のプリフィックスの設定</h3>
 
-<p>The filename prefix for "extending" Helpers is the same used to extend libraries and Core classes.  To set your own prefix, open your <dfn>application/config/config.php</dfn> file and look for this item:</p>
+<p>ヘルパを "拡張する" ためのファイル名のプリフィックスは、ライブラリやコアクラスを拡張するときに使用するものと同じになります。独自のプリフィックスをセットするには、<dfn>application/config/config.php</dfn> ファイルを開き、次の項目を探してください:</p>
 
 <code>$config['subclass_prefix'] = 'MY_';</code>
 
-<p>Please note that all native CodeIgniter libraries are prefixed with <kbd>CI_</kbd> so DO NOT use that as your prefix.</p>
+<p>CodeIgniter に組み込みの全ライブラリは、 <kbd>CI_</kbd> というプリフィックスがつけられているので、これをユーザ指定のプリフィックスとして使用してはいけないという事を覚えておいてください。</p>
 
 
-<h2>Now What?</h2>
+<h2>この後は、何をすればよいですか?</h2>
 
-<p>In the Table of Contents you'll find a list of all the available Helper Files.  Browse each one to see what they do.</p>
+<p>目次の中に、利用可能な全ヘルパファイルのリストが書いてあるのがわかると思います。それぞれを閲覧して、何をするものなのかを見てみてください。</p>
 
 
 </div>
@@ -172,13 +172,13 @@ function random_element($array)<br />
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="models.html">Models</a>
+前のトピック:&nbsp;&nbsp;<a href="models.html">モデル</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="libraries.html">Using Libraries</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="libraries.html">ライブラリの使用</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

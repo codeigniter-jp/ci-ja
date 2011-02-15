@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Database Quick Start : CodeIgniter User Guide</title>
-
+<title>データベース Quick Start : CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -42,11 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-<a href="index.html">Database Library</a> &nbsp;&#8250;&nbsp;
-Database Example Code
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+データベースサンプルコード</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -59,24 +57,23 @@ Database Example Code
 <div id="content">
 
 
-<h1>Database Quick Start: Example Code</h1>
+<h1>データベース Quick Start: コードの例文</h1>
 
-<p>The following page contains example code showing how the database class is used.  For complete details please
-read the individual pages describing each function.</p>
+<p>このページでは、データベースクラスの使用方法が示されています。詳細を全部知るには、各機能についての個別のページをご覧ください。</p>
 
 
-<h2>Initializing the Database Class</h2>
+<h2>データベースクラスの初期化</h2>
 
-<p>The following code loads and initializes the database class based on your <a href="configuration.html">configuration</a> settings:</p>
+<p>次のコードは <a href="configuration.html">設定ファイル</a> での設定に基づいてデータベースクラスをロードし初期化します:</p>
 
 <code>$this->load->database();</code>
 
-<p>Once loaded the class is ready to be used as described below.</p>
+<p>いったんロードされれば、クラスは、後述する例のように使うための準備が整います。</p>
 
-<p>Note: If all your pages require database access you can connect automatically.  See the <a href="connecting.html">connecting</a> page for details.</p>
+<p>Note: 全ページでデータベースアクセスが必要な場合は、自動的に接続することもできます。 <a href="connecting.html">接続</a> のページで詳細をご覧ください。</p>
 
 
-<h2>Standard Query With Multiple Results (Object Version)</h2>
+<h2>複数の結果を取得する標準的な問い合わせ(オブジェクトを用いる方法)</h2>
 
 <code>$query = $this->db->query('SELECT name, title, email FROM my_table');<br />
 <br />
@@ -90,10 +87,10 @@ foreach ($query->result() as $row)<br />
 echo 'Total Results: ' . $query->num_rows();
 </code>
 
-<p>The above <dfn>result()</dfn> function returns an array of <strong>objects</strong>.  Example:  $row->title</p>
+<p>上の <dfn>result()</dfn> メソッドは<strong>オブジェクト</strong>の配列を返します。例：  $row->title</p>
 
 
-<h2>Standard Query With Multiple Results (Array Version)</h2>
+<h2>複数の結果を取得する標準的な問い合わせ (配列を用いる方法)</h2>
 
 <code>$query = $this->db->query('SELECT name, title, email FROM my_table');<br />
 <br />
@@ -104,13 +101,12 @@ foreach ($query->result_array() as $row)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;echo $row['email'];<br />
 }</code>
 
-<p>The above <dfn>result_array()</dfn> function returns an array of standard array indexes.  Example:  $row['title']</p>
+<p>上の <dfn>result_array()</dfn> メソッドは標準的な添字を使う配列を返します。例:  $row['title']</p>
 
 
-<h2>Testing for Results</h2>
+<h2>結果を調べる</h2>
 
-<p>If you run queries that might <strong>not</strong> produce a result, you are encouraged to test for a result first
-using the <dfn>num_rows()</dfn> function:</p>
+<p>問い合わせが結果を <strong>返さない</strong>かもしれない場合は、まず <dfn>num_rows()</dfn> メソッドを使って、結果を調べるようにしてみてください:</p>
 
 <code>
 $query = $this->db->query("YOUR QUERY");<br />
@@ -129,7 +125,7 @@ if ($query->num_rows() > 0)<br />
 
 
 
-<h2>Standard Query With Single Result</h2>
+<h2>一つの結果を返す標準的な問い合わせ</h2>
 
 <code>$query = $this->db->query('SELECT name FROM my_table LIMIT 1');<br />
 <br />
@@ -137,10 +133,10 @@ $row = $query->row();<br />
 echo $row->name;<br />
 </code>
 
-<p>The above <dfn>row()</dfn> function returns an <strong>object</strong>.  Example:  $row->name</p>
+<p>上の <dfn>row()</dfn> メソッドは<strong>オブジェクト</strong>を返します。例:  $row->name</p>
 
 
-<h2>Standard Query With Single Result (Array version)</h2>
+<h2>一つの結果を返す標準的な問い合わせ (配列を使う方法)</h2>
 
 <code>$query = $this->db->query('SELECT name FROM my_table LIMIT 1');<br />
 <br />
@@ -148,10 +144,10 @@ $row = $query->row_array();<br />
 echo $row['name'];<br />
 </code>
 
-<p>The above <dfn>row_array()</dfn> function returns an <strong>array</strong>.  Example:  $row['name']</p>
+<p>上の <dfn>row_array()</dfn> メソッドは <strong>配列</strong> を返します。  例:  $row['name']</p>
 
 
-<h2>Standard Insert</h2>
+<h2>標準的な新規レコード作成</h2>
 
 <code>
 $sql = "INSERT INTO mytable (title, name) <br />
@@ -159,15 +155,14 @@ $sql = "INSERT INTO mytable (title, name) <br />
 <br />
 $this->db->query($sql);<br />
 <br />
-echo $this->db->affected_rows();
-</code>
+echo $this->db->affected_rows();</code>
 
 
 
 
-<h2>Active Record Query</h2>
+<h2>Active Record を使った問い合わせ</h2>
 
-<p>The <a href="active_record.html">Active Record Pattern</a> gives you a simplified means of retrieving data:</p>
+<p><a href="active_record.html">Active Record パターン</a> を使うと、データの取得が簡単になります:</p>
 
 <code>
 $query = $this->db->get('table_name');<br />
@@ -177,12 +172,10 @@ foreach ($query->result() as $row)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;echo $row->title;<br />
 }</code>
 
-<p>The above <dfn>get()</dfn> function retrieves all the results from the supplied table.
-The <a href="active_record.html">Active Record</a> class contains a full compliment of functions
-for working with data.</p>
+<p>上の <dfn>get()</dfn> メソッドは 指定されたテーブルの全データを取得します。 <a href="active_record.html">Active Record</a> クラスは、データを処理するためのフル装備のメソッドをもっています。</p>
 
 
-<h2>Active Record Insert</h2>
+<h2>Active Record を使った新規レコード作成</h2>
 
 <code>
 $data = array(<br />
@@ -193,7 +186,7 @@ $data = array(<br />
 <br />
 $this->db->insert('mytable', $data);
 <br /><br />
-// Produces: INSERT INTO mytable (title, name, date) VALUES ('{$title}', '{$name}', '{$date}')</code>
+// SQL文: INSERT INTO mytable (title, name, date) VALUES ('{$title}', '{$name}', '{$date}')</code>
 
 
 
@@ -204,13 +197,13 @@ $this->db->insert('mytable', $data);
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="index.html">Database Class</a>
+前のトピック:&nbsp;&nbsp;<a href="index.html">データベースクラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="configuration.html">Database Configuration</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="configuration.html">データベース設定</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

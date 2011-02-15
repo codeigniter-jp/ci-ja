@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Upgrading from 1.7.2 to 2.0.0 : CodeIgniter User Guide</title>
+<title>1.7.2 から 2.0.0 へのアップグレード : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -28,8 +28,8 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Upgrading from 1.7.2 to 2.0.0
+<a href="../index.html">ユーザーガイド Home</a> &nbsp;&#8250;&nbsp;
+1.7.2 から 2.0.0 へのアップグレード
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザーガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,62 +55,62 @@ Upgrading from 1.7.2 to 2.0.0
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Upgrading from 1.7.2 to 2.0.0</h1>
+<h1>1.7.2 から 2.0.0 へのアップグレード</h1>
 
-<p>Before performing an update you should take your site offline by replacing the index.php file with a static one.</p>
+<p>アップグレードの前にはindex.phpを静的ページと置き換えてサイトを停止してください。</p>
 
 
 
-<h2>Step 1: Update your CodeIgniter files</h2>
+<h2>ステップ 1: CodeIgniter ファイルの更新</h2>
 
-<p>Replace all files and directories in your "system" folder <strong>except</strong> your <kbd>application</kbd> folder.</p>
+<p>"system"フォルダ内の <kbd>application</kbd> フォルダを<strong>除く</strong>全てのファイルとディレクトリを置き換えます。</p>
 
-<p class="important"><strong>Note:</strong> If you have any custom developed files in these folders please make copies of them first.</p>
+<p class="important"><strong>Note:</strong> これらのディレクトリの中のファイルを更新している場合は、必ず最初にコピーを残しておいてください。</p>
 
-<h2>Step 2: Adjust get_dir_file_info() where necessary</h2>
+<h2>ステップ 2: 必要に応じて get_dir_file_info() の調整</h2>
 
-<p>Version 2.0.0 brings a non-backwards compatible change to <kbd>get_dir_file_info()</kbd> in the <a href="../helpers/file_helper.html">File Helper</a>.  Non-backwards compatible changes are extremely rare
-	in CodeIgniter, but this one we feel was warranted due to how easy it was to create serious server performance issues.  If you <em>need</em>
-	recursiveness where you are using this helper function, change such instances, setting the second parameter, <kbd>$top_level_only</kbd> to FALSE:</p>
+<p>バージョン2.0.0では、<a href="../helpers/file_helper.html">ファイルヘルパ</a>の <kbd>get_dir_file_info()</kbd> に後方非互換の変更があります。CodeIgniter では後方互換性の無い変更は非常にまれですが、
+これは簡単に深刻なサーバのパフォーマンスの問題を生じさせることから、この変更は正当化できる気がします。もし、このヘルパ関数で再帰的な処理 <em>必要</em>なら、
+第2引数 <kbd>$top_level_only</kbd> を FALSE に設定してください。</p>
 
 <code>get_dir_file_info('/path/to/directory', <kbd>FALSE</kbd>);</code>
 
 </p>
 
-<h2>Step 3: Convert your Plugins to Helpers</h2>
+<h2>ステップ 3: プラグインをヘルパに変換</h2>
 
-<p>2.0.0 gets rid of the "Plugin" system as their functionality was identical to Helpers, but non-extensible.  You will need to rename your plugin files from <var>filename_pi.php</var> to <var>filename_helper.php</var>, move them to your <kbd>helpers</kbd> folder, and change all instances of:
-
+<p>2.0.0 では、機能的にはヘルパと同じでありながら拡張性の無い"プラグイン"は排除されます。プラグインファイルを <var>filename_pi.php</var> から <var>filename_helper.php</var> にリネームし、それらを <kbd>helpers</kbd> フォルダに移動して、以下のような場合を:
+	
 	<code>$this->load->plugin('foo');</code>
-
-to
+	
+から下記に変更します。
 
 	<code>$this->load->helper('foo');</code>
 
 </p>
 
-<h2>Step 4: Update stored encrypted data</h2>
+<h2>Step 4: 暗号化保存されているデータの更新</h2>
 
-<p class="important"><strong>Note:</strong> If your application does not use the Encryption library, does not store Encrypted data permanently, or is on an environment that does not support Mcrypt, you may skip this step.</p>
+<p class="important"><strong>Note:</strong> もし、アプリケーションが暗号化ライブラリを使用していなかったり、暗号化されたデータを永続的に保存していなかったり、または、Mcrypt をサポートしていない環境の場合は、このステップをスキップしてください。</p>
 
-<p>The Encryption library has had a number of improvements, some for encryption strength and some for performance, that has an unavoidable consequence of
-	making it no longer possible to decode encrypted data produced by the original version of this library.  To help with the transition, a new method has
-	been added, <kbd>encode_from_legacy()</kbd> that will decode the data with the original algorithm and return a re-encoded string using the improved methods.
-	This will enable you to easily replace stale encrypted data with fresh in your applications, either on the fly or en masse.</p>
+<p>暗号化ライブラリは、暗号化強度やパフォーマンスなど多くの点で改良されました。
+その結果、以前の暗号化ライブラリで暗号化されたデータを復号化することが不可能になっています。
+一連の処理を助けるために、以前のアルゴリズムで復号化し新たに改良されたメソッドで暗号化しなおす新しいメソッド <kbd>encode_from_legacy()</kbd> が追加されています。
+このメソッドは、その場であるいはまとめて、以前の暗号化データを新しい暗号化データに簡単に置き換えることができます。</p>
 
-<p>Please read <a href="../libraries/encryption.html#legacy">how to use this method</a> in the Encryption library documentation.</p>
+<p>暗号化ライブラリのドキュメントの <a href="../libraries/encryption.html#legacy">このメソッドの使い方</a> を読んでください。</p>
 
-<h2>Step 5: Remove loading calls for the compatibility helper.</h2>
-<p>The compatibility helper has been removed from the CodeIgniter core. All methods in it should be natively available in supported PHP versions.</p>
+<h2>Step 5: 互換性ヘルパの読み込みの削除</h2>
+<p>互換性ヘルパは CodeIgniter のコアから削除されました。すべてのメソッドは動作環境の PHP バージョンではネイティブに含まれています。</p>
 
-<h2>Step 6: Update Class extension</h2>
-<p>All core classes are now prefixed with <kbd>CI_</kbd>.  Update Models and Controllers to extend CI_Model and CI_Controller, respectively.</p> 
+<h2>Step 6: クラスの継承の更新</h2>
+<p>すべてのコアクラスは現在 <kbd>CI_</kbd> という接頭辞を付けられています。モデルとコントローラは、おのおの CI_Model と CI_Controller を継承するよう更新してください。</p> 
 
-<h2>Step 7: Update Parent Constructor calls</h2>
-<p>All native CodeIgniter classes now use the PHP 5 <kbd>__construct()</kbd> convention. Please update extended libraries to call <kbd>parent::__construct()</kbd>.</p>
+<h2>Step 7: 親クラスのコンストラクタの呼び出しの更新</h2>
+<p>すべてのネイティブの CodeIgniter のクラスは PHP 5 の規約 <kbd>__construct()</kbd> を使用します。継承されたライブラリは  <kbd>parent::__construct()</kbd> を呼び出すように更新してください。</p>
 
-<h2>Step 8: Update your user guide</h2>
-<p>Please replace your local copy of the user guide with the new version, including the image files.</p>
+<h2>ステップ 8: ユーザーガイドの更新</h2>
+<p>ローカルにあるユーザーガイドも、画像ファイルを含めて新しいバージョンのもので置き換えてください。</p>
 
 </div>
 <!-- END CONTENT -->
@@ -118,13 +118,13 @@ to
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="index.html">Installation Instructions</a>
+前のトピック:&nbsp;&nbsp;<a href="index.html">インストール方法</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="troubleshooting.html">Troubleshooting</a>
+<a href="#top">ページ先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザーガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="troubleshooting.html">トラブルシューティング</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

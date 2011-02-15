@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Creating Libraries : CodeIgniter User Guide</title>
+<title>ライブラリの作成 : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Creating Libraries
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ライブラリの作成
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,47 +55,48 @@ Creating Libraries
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Creating Libraries</h1>
+<h1>ライブラリの作成</h1>
 
-<p>When we use the term "Libraries" we are normally referring to the classes that are located in the <kbd>libraries</kbd>
-directory and described in the Class Reference of this user guide.  In this case, however, we will instead describe how you can create
-your own libraries within your <dfn>application/libraries</dfn> directory in order to maintain separation between your local resources
-and the global framework resources.</p>
+<p>"ライブラリ" と言えば、ふつうは、 <kbd>libraries</kbd>
+ディレクトリにあるクラスで、このユーザガイドのクラスリファレンスで説明されているクラスのことを指します。
+しかし、ここでは、その代りに、ユーザライブラリの作成方法を説明します。
+ユーザライブラリは、グローバルなフレームワークのリソースからローカルなリソースを区別しておくため <dfn>application/libraries</dfn> ディレクトリに作成します。</p>
 
-<p>As an added bonus, CodeIgniter permits your libraries to <kbd>extend</kbd> native classes if you simply need to add some functionality
-to an existing library. Or you can even replace native libraries just by placing identically named versions in your <dfn>application/libraries</dfn> folder.</p>
+<p>追加の特典として、CodeIgniterでは、既存のライブラリに単に、機能を追加するのであれば、ネイティブなクラスを <kbd>継承(extend)</kbd> してユーザライブラリを作成できます。
+<dfn>application/libraries</dfn> フォルダに同じ名前で設置しさえすれば、ネイティブなクラスを独自のものと置き換えることもできます。</p>
 
-<p>In summary:</p>
-
-<ul>
-<li>You can create entirely new libraries.</li>
-<li>You can extend native libraries.</li>
-<li>You can replace native libraries.</li>
-</ul>
-
-<p>The page below explains these three concepts in detail.</p>
-
-<p class="important"><strong>Note:</strong> The Database classes can not be extended or replaced with your own classes.  All other classes are able to be replaced/extended.</p>
-
-
-<h2>Storage</h2>
-
-<p>Your library classes should be placed within your <dfn>application/libraries</dfn> folder, as this is where CodeIgniter will look for them when
-they are initialized.</p>
-
-
-<h2>Naming Conventions</h2>
+<p>まとめると:</p>
 
 <ul>
-<li>File names must be capitalized. For example:&nbsp; <dfn>Myclass.php</dfn></li>
-<li>Class declarations must be capitalized. For example:&nbsp;  <kbd>class Myclass</kbd></li>
-<li>Class names and file names must match.</li>
+<li>まったく新しいライブラリを作成することができます。</li>
+<li>ネイティブなライブラリを拡張(継承)できます。</li>
+<li>ネイティブなライブラリを置き換えることができます。</li>
+</ul>
+
+<p>このページの以下では、これらの3つのコンセプトの詳細について説明します。</p>
+
+<p class="important"><strong>Note:</strong> データベースクラスは拡張(継承)またはユーザクラスに置き換えができません。
+他のクラスは全部置き換え/拡張(継承)が可能です。</p>
+
+
+<h2>保存場所</h2>
+
+<p>ユーザライブラリは、<dfn>application/libraries</dfn> フォルダに設置する必要があります。これは、CodeIgniter が
+初期化するのに探しに行く場所になります。</p>
+
+
+<h2>名づけルール</h2>
+
+<ul>
+<li>ファイル名は先頭が大文字である必要があります。例: <dfn>Myclass.php</dfn></li>
+<li>クラスの宣言は先頭が大文字である必要があります。例:&nbsp;  <kbd>class Myclass</kbd></li>
+<li>クラス名とファイル名は一致する必要があります。</li>
 </ul>
 
 
-<h2>The Class File</h2>
+<h2>クラスファイル</h2>
 
-<p>Classes should have this basic prototype (Note:  We are using the name <kbd>Someclass</kbd> purely as an example):</p>
+<p>クラスはこのような基本的なひな形になります。 (Note:単にサンプル用に、 <kbd>Someclass</kbd> という名前を使っています):</p>
 
 <code>&lt;?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 <br /><br />
@@ -108,33 +109,33 @@ class Someclass {<br />
 ?&gt;</code>
 
 
-<h2>Using Your Class</h2>
+<h2>クラスの使用</h2>
 
-<p>From within any of your <a href="controllers.html">Controller</a> functions you can initialize your class using the standard:</p>
+<p><a href="controllers.html">コントローラ</a> のメソッド内のいずれの場所からも、次のような標準的なやり方で、クラスを初期化することができます:</p>
 
 <code>$this->load->library('<kbd>someclass</kbd>');</code>
 
-<p>Where <em>someclass</em> is the file name, without the ".php" file extension. You can submit the file name capitalized or lower case.
-CodeIgniter doesn't care.</p>
+<p>ここでの <em>someclass</em> は、".php" ファイルの拡張子を除いたファイル名になります。ファイル名は最初が大文字でも小文字でも指定できます。
+CodeIgniter ではどちらでも動きます。</p>
 
-<p>Once loaded you can access your class using the <kbd>lower case</kbd> version:</p>
+<p>いったんロードされると、<kbd>小文字</kbd>で表したクラス名でクラスにアクセスできます:</p>
 
-<code>$this-><kbd>someclass</kbd>->some_function();&nbsp; // Object instances will always be lower case
+<code>$this-><kbd>someclass</kbd>->some_function();&nbsp; // オブジェクトインスタンスは、常に小文字になります
 </code>
 
 
 
-<h2>Passing Parameters When Initializing Your Class</h2>
+<h2>クラス初期化時のパラメータの引き渡し</h2>
 
-<p>In the library loading function you can dynamically pass data as an array via the second parameter and it will be passed to your class
-constructor:</p>
+<p>ライブラリの読み込みメソッドで、第2引数を経由して動的に配列でデータを渡すことができます。
+データはクラスのコンストラクタに渡されます:</p>
 
 <code>
 $params = array('type' => 'large', 'color' => 'red');<br />
 <br />
 $this->load->library('Someclass', <kbd>$params</kbd>);</code>
 
-<p>If you use this feature you must set up your class constructor to expect data:</p>
+<p>この機能を使うとき、クラスのコンストラクタでデータを受け取れるようにしておかなければなりません:</p>
 
 <code>&lt;?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');<br />
 <br />
@@ -142,14 +143,14 @@ class Someclass {<br />
 <br />
 &nbsp;&nbsp;&nbsp;&nbsp;function __construct($params)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Do something with $params<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// $paramsを使って何かを行う<br />
 &nbsp;&nbsp;&nbsp;&nbsp;}<br />
 }<br /><br />
 ?&gt;</code>
 
-<p class="important">You can also pass parameters stored in a config file.  Simply create a config file named identically to the class <kbd>file name</kbd>
-and store it in your <dfn>application/config/</dfn> folder.  Note that if you dynamically pass parameters as described above,
-the config file option will not be available.</p>
+<p class="important">設定ファイルに保存したパラメータを渡すこともできます。単純に、クラスの<kbd>ファイル名</kbd>と同じ名前の設定ファイルを作成し、
+<dfn>application/config/</dfn> に入れておきます。上のように動的にパラメータが渡される場合は、
+設定ファイルのオプションは利用できなくなることを注意してください。</p>
 
 
 
@@ -157,13 +158,13 @@ the config file option will not be available.</p>
 
 
 
-<h2>Utilizing CodeIgniter Resources within Your Library</h2>
+<h2>ライブラリの内部でCodeIgniterのリソースを利用する</h2>
 
 
-<p>To access CodeIgniter's native resources within your library use the <kbd>get_instance()</kbd> function.
-This function returns the CodeIgniter super object.</p>
+<p>ライブラリの内部でCodeIgniterのネイティブなリソースにアクセスするには、<kbd>get_instance()</kbd> 関数を使います。
+この関数はCodeIgniterのルートオブジェクトを返します。</p>
 
-<p>Normally from within your controller functions you will call any of the available CodeIgniter functions using the <kbd>$this</kbd> construct:</p>
+<p>通常は、コントローラのメソッド内でアクセスするには、CodeIgniter のどんな機能を使うにも <kbd>$this</kbd> の初期化メソッドを使います:</p>
 
 <code>
 <strong>$this</strong>->load->helper('url');<br />
@@ -172,15 +173,15 @@ This function returns the CodeIgniter super object.</p>
 etc.
 </code>
 
-<p><kbd>$this</kbd>, however, only works directly within your controllers, your models, or your views.
-If you would like to use CodeIgniter's classes from within your own custom classes you can do so as follows:</p>
+<p> しかし、<kbd>$this</kbd> は、コントローラ、モデル、ビューの中で直接使うときだけ動作します。
+CodeIgniterのクラスを自作クラスの中で呼び出して使いたい場合は、次のようにすることで使えます:</p>
 
 
-<p>First, assign the CodeIgniter object to a variable:</p>
+<p>まず、CodeIgniter オブジェクトを変数に代入します:</p>
 
 <code>$CI =&amp; get_instance();</code>
 
-<p>Once you've assigned the object to a variable, you'll use that variable <em>instead</em> of <kbd>$this</kbd>:</p>
+<p>変数にオブジェクトを代入したら、<kbd>$this</kbd>のかわりにその変数を使います:</p>
 
 <code>
 $CI =&amp; get_instance();<br />
@@ -188,56 +189,56 @@ $CI =&amp; get_instance();<br />
 $CI->load->helper('url');<br />
 $CI->load->library('session');<br />
 $CI->config->item('base_url');<br />
-etc.
+など
 </code>
 
-<p class="important"><strong>Note:</strong> You'll notice that the above get_instance() function is being passed by reference:
+<p class="important"><strong>Note:</strong> 上で、get_instance() 関数が参照渡しされているのを注意してください:
 <br /><br />
 <var>$CI =&amp; get_instance();</var>
 <br />
 <br />
-<kbd>This is very important.</kbd> Assigning by reference allows you to use the original CodeIgniter object rather than creating a copy of it.</p>
+<kbd>これは非常に重要です。</kbd>参照渡しすることで、コピーではなく、オリジナルのCodeIgniterオブジェクトを利用できます。</p>
 
 
-<h2>Replacing Native Libraries with Your Versions</h2>
+<h2>ネイティブライブラリをユーザバージョンのライブラリで置換する</h2>
 
-<p>Simply by naming your class files identically to a native library will cause CodeIgniter to use it instead of the native one. To use this
-feature you must name the file and the class declaration exactly the same as the native library.  For example, to replace the native <kbd>Email</kbd> library
-you'll create a file named <dfn>application/libraries/Email.php</dfn>, and declare your class with:</p>
+<p>単に、ネイティブライブラリと同じファイル名をユーザクラスの名前にすれば、CodeIgniterは、ネイティブクラスを使う代わりにユーザクラスを使うようになります。この機能を使うには、
+ファイル名とクラス宣言をネイティブライブラリと正確に同じにする必要があります。たとえば、ネイティブの <kbd>Email</kbd> ライブラリを置き換えるには、
+<dfn>application/libraries/Email.php </dfn>という名前のファイルを作成し、その中で、下記のようにクラスを宣言します:</p>
 
 <code>
 class CI_Email {<br /><br />
 
 }</code>
 
-<p>Note that most native classes are prefixed with <kbd>CI_</kbd>.</p>
+<p>ネイティブクラスのほとんどには、<kbd>CI_</kbd> というプリフィックス(接頭辞)が付いているのを注意してください。</p>
 
-<p>To load your library you'll see the standard loading function:</p>
+<p>ユーザライブラリをロードするには、下記のように、通常のロードメソッドを使います:</p>
 
 <code>$this->load->library('<kbd>email</kbd>');</code>
 
-<p class="important"><strong>Note:</strong> At this time the Database classes can not be replaced with your own versions.</p>
+<p class="important"><strong>Note:</strong> 現時点ではデータベースクラスはユーザバージョンに置換できません。</p>
 
 
-<h2>Extending Native Libraries</h2>
+<h2>ネイティブライブラリの拡張(継承)</h2>
 
-<p>If all you need to do is add some functionality to an existing library - perhaps add a function or two - then
-it's overkill to replace the entire library with your version.  In this case it's better to simply extend the class.
-Extending a class is nearly identical to replacing a class with a couple exceptions:</p>
+<p>既存の関数に何かの機能を追加する - おそらく一つか二つのメソッド追加 - だけでよいのであれば、
+ライブラリの全部をユーザバージョンに置き換えてしまうのはやり過ぎです。このようなケースでは、クラスを単に拡張(継承)するのが適しています。
+クラスの拡張はクラスの置き換えと次の2点を除いてよく似ています:</p>
 
 <ul>
-<li>The class declaration must extend the parent class.</li>
-<li>Your new class name and filename must be prefixed with <kbd>MY_</kbd> (this item is configurable.  See below.).</li>
+<li>クラス宣言では親クラスを継承する必要があります。</li>
+<li>新しいクラスの名前とファイル名には、<kbd>MY_</kbd> というプリフィックス(この項目は変更できます。このページの下の方をご覧ください)を付ける必要があります。</li>
 </ul>
 
-<p>For example, to extend the native <kbd>Email</kbd> class you'll create a file named <dfn>application/libraries/</dfn><kbd>MY_Email.php</kbd>, and declare your class with:</p>
+<p>たとえば、ネイティブの<kbd>Email</kbd>クラスを拡張するには、<dfn>application/libraries/</dfn><kbd>MY_Email.php</kbd> という名前のファイルを作成し、次のようにクラス宣言をします:</p>
 
 <code>
 class MY_Email extends CI_Email {<br /><br />
 
 }</code>
 
-<p>Note: If you need to use a constructor in your class make sure you extend the parent constructor:</p>
+<p>Note: ユーザクラスでコンストラクタを使う場合は親クラスのコンストラクタを呼ぶのを忘れないでください:</p>
 
 
 <code>
@@ -250,27 +251,27 @@ class MY_Email extends CI_Email {<br />
 }</code>
 
 
-<h3>Loading Your Sub-class</h3>
+<h3>ユーザ作成のサブクラスをロードする</h3>
 
-<p>To load your sub-class you'll use the standard syntax normally used.  DO NOT include your prefix.  For example,
-to load the example above, which extends the Email class, you will use:</p>
+<p>ユーザ作成のサブクラスをロードするには、通常使う構文を使うことができます。プリフィックスを含めてはいけません。たとえば、
+上の例でEmailクラスを拡張したクラスをロードするには、次のようなコードを使います:</p>
 
 <code>$this->load->library('<kbd>email</kbd>');</code>
 
-<p>Once loaded you will use the class variable as you normally would for the class you are extending.  In the case of
-the email class all calls will use:</p>
+<p>ロードしたら、通常のクラスをロードしたときに使うオブジェクト操作用の変数をユーザクラス用に使うことができます。
+このemailクラスの例では、次のようなコードを使ってクラスのメソッドを呼び出します:</p>
 
 
 <code>$this-><kbd>email</kbd>->some_function();</code>
 
 
-<h3>Setting Your Own Prefix</h3>
+<h3>独自のプリフィックスを設定する</h3>
 
-<p>To set your own sub-class prefix, open your <dfn>application/config/config.php</dfn> file and look for this item:</p>
+<p>ユーザ作成のサブクラスにつけるプリフィックスを設定するには、<dfn>application/config/config.php</dfn> ファイルを開き、次の項目を探して設定してください:</p>
 
 <code>$config['subclass_prefix'] = 'MY_';</code>
 
-<p>Please note that all native CodeIgniter libraries are prefixed with <kbd>CI_</kbd> so DO NOT use that as your prefix.</p>
+<p>CodeIgniter の全ネイティブライブラリには <kbd>CI_</kbd> というプリフィックスがついているのを注意してください。ユーザ作成クラスのプリフィックスには、この <kbd>CI_</kbd> を使用してはいけません。</p>
 
 
 
@@ -280,13 +281,13 @@ the email class all calls will use:</p>
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="libraries.html">Using CodeIgniter Libraries</a>
+前のトピック:&nbsp;&nbsp;<a href="libraries.html">CodeIgniter ライブラリの使用</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="drivers.html">Using CodeIgniter Drivers</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="drivers.html">CodeIgniterドライバの利用</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

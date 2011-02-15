@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>CodeIgniter User Guide</title>
-
+<title>CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +40,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Upgrading from 1.4.1 to 1.5.0
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+1.4.1 から 1.5.0 へのアップグレード
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,37 +54,36 @@ Upgrading from 1.4.1 to 1.5.0
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Upgrading from 1.4.1 to 1.5.0</h1>
+<h1>1.4.1 から 1.5.0 へのアップグレード</h1>
 
-<p class="important"><strong>Note:</strong> The instructions on this page assume you are running version 1.4.1.  If you
-have not upgraded to that version please do so first.</p>
+<p class="important"><strong>Note:</strong> このページは、バージョン 1.4.1 向けです。それ以外のバージョンをお使いなら、まず最初にアップグレードしてください。</p>
 
-<p>Before performing an update you should take your site offline by replacing the index.php file with a static one.</p>
-
+<p>アップグレードを行う前に、index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。</p>
 
 
-<h2>Step 1: Update your CodeIgniter files</h2>
 
-<p>Replace these files and directories in your "system" folder with the new versions:</p>
+<h2>Step 1: CodeIgniter ファイルのアップグレード</h2>
+
+<p>"system" フォルダの以下のファイルとディレクトリを新しいバージョンのものに置き換えてください:
 
 <ul>
 
-<li><dfn>application/config/user_agents.php</dfn> (new file for 1.5)</li>
-<li><dfn>application/config/smileys.php</dfn> (new file for 1.5)</li>
+<li><dfn>application/config/user_agents.php</dfn> (1.5 向けの新しいファイル)</li>
+<li><dfn>application/config/smileys.php</dfn> (1.5 向けの新しいファイル)</li>
 <li><dfn>codeigniter/</dfn></li>
-<li><dfn>database/</dfn> (new folder for 1.5. Replaces the "drivers" folder)</li>
+<li><dfn>database/</dfn> (1.5 向けの新しいファイル。"drivers"フォルダを置き換えます)</li>
 <li><dfn>helpers/</dfn></li>
 <li><dfn>language/</dfn></li>
 <li><dfn>libraries/</dfn></li>
 <li><dfn>scaffolding/</dfn></li>
 </ul>
 
-<p class="important"><strong>Note:</strong> If you have any custom developed files in these folders please make copies of them first.</p>
+<p class="important"><strong>Note:</strong> ユーザバージョンのファイルがフォルダ内にある場合には、最初にそれらのコピーを取っておいてください。</p>
 
 
-<h2>Step 2: Update your database.php file</h2>
+<h2>Step 2: database.php ファイルのアップグレード</h2>
 
-<p>Open your <dfn>application/config/database.php</dfn> file and add these new items:</p>
+<p><dfn>application/config/database.php</dfn> を開いて、以下の新しい要素を追加してください:</p>
 
 <pre>
 $db['default']['cache_on'] = FALSE;
@@ -94,9 +92,9 @@ $db['default']['cachedir'] = '';
 
 
 
-<h2>Step 3: Update your config.php file</h2>
+<h2>Step 3: config.php ファイルのアップグレード</h2>
 
-<p>Open your <dfn>application/config/config.php</dfn> file and <kbd>ADD</kbd> these new items:</p>
+<p><dfn>application/config/config.php</dfn> ファイルを開いて、以下の新しい要素を <kbd>追加</kbd> してください:</p>
 
 <pre>
 /*
@@ -105,7 +103,7 @@ $db['default']['cachedir'] = '';
 |--------------------------------------------------------------------------
 |
 | This item allows you to set the filename/classname prefix when extending
-| native libraries.  For more information please see the user guide:
+| native libraries.  For more information please see the ユーザガイド:
 |
 | http://codeigniter.com/user_guide/general/core_classes.html
 | http://codeigniter.com/user_guide/general/creating_libraries.html
@@ -126,7 +124,7 @@ $config['subclass_prefix'] = 'MY_';
 $config['rewrite_short_tags'] = FALSE;
 </pre>
 
-<p>In that same file <kbd>REMOVE</kbd> this item:</p>
+<p>同じファイルにある、以下の要素を <kbd>削除</kbd> してください:</p>
 
 
 <pre>
@@ -143,21 +141,21 @@ $config['rewrite_short_tags'] = FALSE;
 $config['log_errors'] = FALSE;
 </pre>
 
-<p>Error logging is now disabled simply by setting the threshold to zero.</p>
+<p>エラーのロギングは、現在しきい値をゼロに設定する事で無効になります。</p>
 
 
 
-<h2>Step 4: Update your main index.php file</h2>
+<h2>Step 4: メインの index.php ファイルのアップグレード</h2>
 
-<p>If you are running a stock <dfn>index.php</dfn> file simply replace your version with the new one.</p>
+<p>元の <dfn>index.php</dfn> ファイルをそのまま利用しているなら、それを単に置き換えてください。</p>
 
-<p>If your <dfn>index.php</dfn> file has internal modifications, please add your modifications to the new file and use it.</p>
+<p>もし <dfn>index.php</dfn> ファイル内部に変更を加えているなら、それらの変更を新しいファイルに追加して利用してください。</p>
 
 
 
-<h2>Step 5: Update your user guide</h2>
+<h2>Step 5: ユーザガイドの更新</h2>
 
-<p>Please also replace your local copy of the user guide with the new version.</p>
+<p>また、ユーザガイドのローカルコピーを新しいバージョンのものに置き換えてください。</p>
 
 </div>
 <!-- END CONTENT -->
@@ -165,13 +163,14 @@ $config['log_errors'] = FALSE;
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="index.html">Installation Instructions</a>
+前のトピック:&nbsp;&nbsp;<a href="index.html">インストールの解説</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="troubleshooting.html">Troubleshooting</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="troubleshooting.html">トラブルシューティング</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

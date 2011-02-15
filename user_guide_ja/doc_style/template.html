@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>CodeIgniter Project Documentation Template</title>
+<title>CodeIgniter プロジェクトドキュメントテンプレート</title>
 
 <style type='text/css' media='all'>@import url('./userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -21,8 +21,8 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>Project Title</h1></td>
-<td id="breadcrumb_right"><a href="#">Right Breadcrumb</a></td>
+<td><h1>プロジェクトのタイトル</h1></td>
+<td id="breadcrumb_right"><a href="#">右のパンくずリスト</a></td>
 </tr>
 </table>
 </div>
@@ -33,11 +33,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://example.com/">Project Home</a> &nbsp;&#8250;&nbsp;
-<a href="#">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Foo Class
+<a href="http://example.com/">プロジェクト Home</a> &nbsp;&#8250;&nbsp;
+<a href="#">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+Foo クラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="example.com/user_guide/" />Search Project User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="example.com/user_guide/" />プロジェクトのユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -49,26 +49,26 @@ Foo Class
 <div id="content">
 
 
-<h1>Foo Class</h1>
+<h1>Foo クラス</h1>
 
-<p>Brief description of Foo Class.  If it extends a native CodeIgniter class, please link to the class in the CodeIgniter documents here.</p>
+<p>Foo クラスの簡単な説明です。 もしも CodeIgniter 固有のクラスを継承している場合には、その CodeIgniter クラスのドキュメントへのリンクをここに貼ります。</p>
 
-<p class="important"><strong>Important:</strong>&nbsp; This is an important note with <kbd>EMPHASIS</kbd>.</p>
-
-<p>Features:</p>
+<p class="important"><strong>重要:</strong>&nbsp; ここには重要事項を <kbd>強調</kbd> して書きます。</p>
+	
+<p>特徴:</p>
 
 <ul>
 	<li>Foo</li>
 	<li>Bar</li>
 </ul>
 
-<h2>Usage Heading</h2>
+<h2>使用法の見出し</h2>
 
-<p>Within a text string, <var>highlight variables</var> using <var>&lt;var&gt;&lt;/var&gt;</var> tags, and <dfn>highlight code</dfn> using the <dfn>&lt;dfn&gt;&lt;/dfn&gt;</dfn> tags.</p>
+<p> Foo の使用法を詳しく書きます。変数やファイル名をハイライトとともに普通のテキストで  <var>&lt;var&gt; タグ</var> で書きます。そしてコードを <dfn>&lt;dfn&gt; タグ</dfn> で書きます。</p>
 
-<h3>Sub-heading</h3>
-
-<p>Put code examples within <dfn>&lt;code&gt;&lt;/code&gt;</dfn> tags:</p>
+<h3>小見出し</h3> 
+ 
+<p>サンプルコードは <dfn>&lt;code&gt;&lt;/code&gt;</dfn> タグ内に記述します:</p> 
 
 <code>
 	$this->load->library('foo');<br />
@@ -76,37 +76,35 @@ Foo Class
 	$this->foo->bar('bat');
 </code>
 
+<h2>設定項目の表</h2>
 
-<h2>Table Preferences</h2>
-
-<p>Use tables where appropriate for long lists of preferences.</p>
-
+<p>表をつかって長い設定項目のリストを書きます。</p>
 
 <table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
 <tr>
-	<th>Preference</th>
-	<th>Default&nbsp;Value</th>
-	<th>Options</th>
-	<th>Description</th>
+	<th>設定項目</th>
+	<th>初期値&nbsp;Value</th>
+	<th>選択肢</th>
+	<th>説明</th>
 </tr>
 <tr>
 	<td class="td"><strong>foo</strong></td>
 	<td class="td">Foo</td>
-	<td class="td">None</td>
-	<td class="td">Description of foo.</td>
+	<td class="td">なし</td>
+	<td class="td">foo の詳細。</td>
 </tr>
 <tr>
 	<td class="td"><strong>bar</strong></td>
 	<td class="td">Bar</td>
-	<td class="td">bat, bag, or bak</td>
-	<td class="td">Description of bar.</td>
+	<td class="td">bat, bag, または bak</td>
+	<td class="td">bar の詳細。</td>
 </tr>
 </table>
 
-<h2>Foo Function Reference</h2>
+<h2>Foo メソッドのリファレンス</h2>
 
 <h3>$this->foo->bar()</h3>
-<p>Description</p>
+<p>詳細</p>
 <code>$this->foo->bar('<var>baz</var>')</code>
 
 </div>
@@ -115,13 +113,13 @@ Foo Class
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="#">Previous Class</a>
+前のトピック:&nbsp;&nbsp;<a href="#">前のクラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="#">Next Class</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="#">次のクラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

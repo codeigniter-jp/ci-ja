@@ -1,13 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Session Class : CodeIgniter User Guide</title>
+<title>セッションクラス : CodeIgniter ユーザガイド 日本語版</title>
 
-<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<style type='text/css' media='all'>
+@import url('../userguide.css');
+</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
-
 <script type="text/javascript" src="../nav/nav.js"></script>
 <script type="text/javascript" src="../nav/prototype.lite.js"></script>
 <script type="text/javascript" src="../nav/moo.fx.js"></script>
@@ -17,19 +18,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +42,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Session Class
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+セッションクラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -56,152 +57,149 @@ Session Class
 <div id="content">
 
 
-<h1>Session Class</h1>
+<h1>セッションクラス</h1>
 
-<p>The Session class permits you maintain a user's "state" and track their activity while they browse your site.
-The Session class stores session information for each user as serialized (and optionally encrypted) data in a cookie.
-It can also store the session data in a database table for added security, as this permits the session ID in the
-user's cookie to be matched against the stored session ID. By default only the cookie is saved.  If you choose to
-use the database option you'll need to create the session table as indicated below.
+<p>セッションクラスを使うと、サイトを閲覧中のユーザの"状態"を維持でき、ユーザのアクションを追跡できます。
+セッションクラスは、各ユーザのセッションの情報をシリアライズして（オプションで暗号化して）クッキーに保管します。
+また、セキュリティを高めるため、ユーザのクッキー内のセッションIDと保管されたセッションIDを照合するようにして、
+セッションデータをデータベースのテーブルに保存することもできます。デフォルトでは、クッキーだけが保存されます。
+データベースのオプションを利用する場合は、後述するように、セッションテーブルを作成する必要があります。
 </p>
 
-<p class="important"><strong>Note:</strong> The Session class does <strong>not</strong> utilize native PHP sessions. It
-generates its own session data, offering more flexibility for developers.</p>
+<p class="important"><strong>Note:</strong> セッションクラスは、PHPに組み込みのセッションを<strong>利用しません</strong>。
+このクラスは、独自のセッションデータを生成し、開発者にさらなる柔軟性を提供します。</p>
 
-<p class="important"><strong>Note:</strong> Even if you are not using encrypted sessions, you must set
-an <a href="./encryption.html">encryption key</a> in your config file which is used to aid in preventing session data manipulation.</p>
+<p class="important"><strong>Note:</strong> 暗号化セッションを使用しない場合でも，設定ファイルで <a href="./encryption.html">encryption key</a> を指定しなければいけません。第三者にセッションデータを操作されるのを防ぐためです。</p>
 
-<h2>Initializing a Session</h2>
+<h2>セッションの初期化</h2>
 
-<p>Sessions will typically run globally with each page load, so the session class must either be
-<a href="../general/libraries.html">initialized</a> in your
-<a href="../general/controllers.html">controller</a> constructors, or it can be
-<a href="../general/autoloader.html">auto-loaded</a> by the system.
-For the most part the session class will run unattended in the background, so simply initializing the class
-will cause it to read, create, and update sessions.</p>
-
-
-<p>To initialize the Session class manually in your controller constructor, use the <dfn>$this->load->library</dfn> function:</p>
-
-<code>$this->load->library('session');</code>
-<p>Once loaded, the Sessions library object will be available using: <dfn>$this->session</dfn></p>
+<p>セッションは通常、各ページの読込みに対してグローバルに動作します。ですので、セッションクラスは、
+<a href="../general/controllers.html">コントローラ</a>のコンストラクタで
+<a href="../general/libraries.html">初期化</a>されるか、あるいは、システムで
+<a href="../general/autoloader.html">自動読込み</a>されるか、どちらかが必要になります。
+単にクラスを初期化することが、セッションを読み込み、作成し、更新することになるので、大部分で、
+セッションクラスはバックグラウンドで勝手に動作します。</p>
 
 
-<h2>How do Sessions work?</h2>
+<p>セッションクラスをコントローラのコンストラクタで手動で初期化するには、次のように、<dfn>$this-&gt;load-&gt;library</dfn> メソッドを使います:</p>
 
-<p>When a page is loaded, the session class will check to see if valid session data exists in the user's session cookie.
-If sessions data does <strong>not</strong> exist (or if it has expired) a new session will be created and saved in the cookie.
-If a session does exist, its information will be updated and the cookie will be updated. With each update, the session_id will be regenerated.</p>
-
-<p>It's important for you to understand that once initialized, the Session class runs automatically.  There is nothing
-you need to do to cause the above behavior to happen.  You can, as you'll see below, work with session data or
-even add your own data to a user's session, but the process of reading, writing, and updating a session is automatic.</p>
+<code>$this-&gt;load-&gt;library('session');</code>
+<p>一度読み込まれると、セッションライブラリのオブジェクトは、次のようにして利用できます: <dfn>$this-&gt;session</dfn></p>
 
 
-<h2>What is Session Data?</h2>
+<h2>セッションはどのように動作しますか?</h2>
 
-<p>A <em>session</em>, as far as CodeIgniter is concerned, is simply an array containing the following information:</p>
+<p>ページが読み込まれた時、セッションクラスによって、ユーザのセッションクッキーのデータが正しいものかどうかがチェックされます。
+セッションデータが<strong>存在しない</strong>場合(あるいは、有効期限切れの場合)、新しいセッションが作成され、クッキーに保存されます。
+セッションが存在する時は、セッションの情報とクッキーがアップデートされます。アップデートするたびにsession_idは再生成されます。</p>
+
+<p>いったん初期化したら、セッションクラスは自動的に動作するということは重要です。
+上のような動作をさせるために何かをしなければならないということはありません。下で見ていきますが、セッションデータを利用して処理したり、セッションデータにデータを追加したりもできます。
+しかし、セッションの読込み・書き込み・更新は自動的に行われるのです。</p>
+
+
+<h2>セッションデータとは?</h2>
+
+<p><em>セッション</em>は、CodeIgniterに関する限りは、単に次のデータを保持している配列だといえます:</p>
 
 <ul>
-<li>The user's unique Session ID (this is a statistically random string with very strong entropy, hashed with MD5 for portability, and regenerated (by default) every five minutes)</li>
-<li>The user's IP Address</li>
-<li>The user's User Agent data (the first 50 characters of the browser data string)</li>
-<li>The "last activity"  time stamp.</li>
+<li>ユーザの固有のセッションID(これは、扱いやすいようにMD5でハッシュ計算された、非常にばらつき度合いが大きい統計的にランダムな文字列で、（規定では）5分ごとに再生成されます。)</li>
+<li>ユーザのIPアドレス</li>
+<li>ユーザのユーザエージェントデータ (ブラウザデータの文字列の最初の50文字)</li>
+<li>"最終アクティブ日時"。</li>
 </ul>
 
-<p>The above data is stored in a cookie as a serialized array with this prototype:</p>
+<p>上のデータは、クッキーに、次のようにシリアライズされた配列として保管されます:</p>
 
 <code>[array]<br />
 (<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'session_id'&nbsp;&nbsp;&nbsp;&nbsp;=> random hash,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ip_address'&nbsp;&nbsp;&nbsp;&nbsp;=> 'string - user IP address',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'user_agent'&nbsp;&nbsp;&nbsp;&nbsp;=> 'string - user agent data',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'last_activity' => timestamp<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'session_id'&nbsp;&nbsp;&nbsp;&nbsp;=&gt; random hash,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ip_address'&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 'string - user IP address',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'user_agent'&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 'string - user agent data',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'last_activity' =&gt; timestamp<br />
 )</code>
 
-<p>If you have the encryption option enabled, the serialized array will be encrypted before being stored in the cookie,
-making the data highly secure and impervious to being read or altered by someone. More info regarding encryption
-can be <a href="encryption.html">found here</a>, although the Session class will take care of initializing
-and encrypting the data automatically.</p>
+<p>暗号化オプションを有効にした場合、シリアライズされた配列は、クッキーに保存される前に暗号化され、
+データを高いセキュリティにし、誰かに読み取られたり置き換えられたりすることがないようにします。
+暗号化についての詳しい情報は、<a href="encryption.html">こちらにあります</a>が、セッションクラスは、
+暗号化クラスの初期化とデータの暗号化を自動的に行います。</p>
 
-<p>Note: Session cookies are only updated every five minutes by default to reduce processor load.  If you repeatedly reload a page
-you'll notice that the "last activity" time only updates if five minutes or more has passed since the last time
-the cookie was written. This time is configurable by changing the $config['sess_time_to_update'] line in your system/config/config.php file.</p>
+<p>Note: CPUの処理負荷を減らすため、セッションクッキーは、デフォルトでは、5分ごとにのみ入れ替わります。
+何度もページを更新すると、最終アクティブ日時は、クッキーが書き込まれてから5分以上経過した場合だけ更新されるのが分かると思います。
+この時間は system/config/config.php ファイルの $config['sess_time_to_update'] の行をユーザ指定に変更して設定することができます。</p>
 
-<h2>Retrieving Session Data</h2>
+<h2>セッションデータの読み取り</h2>
 
-<p>Any piece of information from the session array is available using the following function:</p>
+<p>セッション配列のどんな情報も、次のメソッドで利用可能です:</p>
 
-<code>$this->session->userdata('<samp>item</samp>');</code>
+<code>$this-&gt;session-&gt;userdata('<samp>item</samp>');</code>
 
-<p>Where <samp>item</samp> is the array index corresponding to the item you wish to fetch.  For example, to fetch the session ID you
-will do this:</p>
+<p>ここでの <samp>item</samp> は、読み取りたい項目を示す配列のインデックスになります。
+例えば、セッションIDを読み取りたいのであれば、次のようにします:</p>
 
-<code>$session_id = $this->session->userdata('<samp>session_id</samp>');</code>
+<code>$session_id = $this-&gt;session-&gt;userdata('<samp>session_id</samp>');</code>
 
-<p><strong>Note:</strong> The function returns FALSE (boolean) if the item you are trying to access does not exist.</p>
+<p><strong>Note:</strong> このメソッドは、アクセスしようとする項目が存在しない場合、FALSE (ブール値) を返します。</p>
 
 
-<h2>Adding Custom Session Data</h2>
+<h2>ユーザ定義のセッションデータを追加する</h2>
 
-<p>A useful aspect of the session array is that you can add your own data to it and it will be stored in the user's cookie.
-Why would you want to do this?  Here's one example:</p>
+<p>セッション配列の便利な面は、独自のデータを追加できることで、ユーザのクッキーの中に保管されます。
+なぜこのようなことを行いたいのでしょうか？次のはその一例です:</p>
 
-<p>Let's say a particular user logs into your site. Once authenticated,
-you could add their username and email address to the session cookie, making that data globally available to you without
-having to run a database query when you need it.</p>
+<p>サイトに特定のユーザがログインしたとします。
+いったん認証したら、ユーザ名とメールアドレスが必要になったときにデータベースクエリを発行せずにグローバルに利用できるよう、
+ユーザ名とメールアドレスをセッションクッキーに保存します。</p>
 
-<p>To add your data to the session array involves passing an array containing your new data to this function:</p>
+<p>セッション配列にデータを追加するには、次のメソッドを使って、新しいデータを含む配列を渡す必要があります:</p>
 
-<code>$this->session->set_userdata(<samp>$array</samp>);</code>
+<code>$this-&gt;session-&gt;set_userdata(<samp>$array</samp>);</code>
 
-<p>Where <samp>$array</samp> is an associative array containing your new data.  Here's an example:</p>
+<p>ここでの <samp>$array</samp> は、新しいデータの連想配列になります。以下は例です:</p>
 
 
 <p><code>$newdata = array(<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'username'&nbsp; => 'johndoe',<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'email'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'johndoe@some-site.com',<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'logged_in' => TRUE<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
-	<br />
-	$this->session->set_userdata(<samp>$newdata</samp>);</code></p>
-<p>If you want to add userdata one value at a time, set_userdata() also supports this syntax. </p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'username'&nbsp; =&gt; 'johndoe',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'email'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 'johndoe@some-site.com',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'logged_in' =&gt; TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this-&gt;session-&gt;set_userdata(<samp>$newdata</samp>);</code></p>
+<p>一度に一つの値を追加したいのであれば、set_userdata() メソッドが次の構文で、サポートされています。 </p>
 <p><code>$this-&gt;session-&gt;set_userdata('some_name', 'some_value');</code></p>
-<p class="important"><strong>Note:</strong> Cookies can only hold 4KB of data, so be careful not to exceed the capacity.  The
-encryption process in particular produces a longer data string than the original so keep careful track of how much data you are storing.</p>
+<p class="important"><strong>Note:</strong> クッキーは4KBのデータだけを保持できますので、許容量を超えないよう注意してください。
+ここの暗号化処理をすると、元の文字列より長い文字列になりますので、どの程度のデータを保存したのかを把握するよう注意してください。</p>
 
-<h2>Removing Session Data</h2>
-<p>Just as set_userdata() can be used to add information into a session, unset_userdata() can be used to remove it, by passing the session key. For example, if you wanted to remove 'some_name' from your session information: </p>
+<h2>セッションデータの削除</h2>
+<p>ちょうど set_userdata() がセッションに情報を追加できるように、unset_userdata() は、セッションキーを渡すことにより、情報を取り除くことができます。例えば、'some_name' を セッション情報から削除したいとすると、次のようになります: </p>
 <p><code>$this-&gt;session-&gt;unset_userdata('some_name');</code></p>
-<p>This function can also be passed an associative array of items to unset.</p>
+<p>このメソッドは、削除したい項目の連想配列を渡すこともできます。</p>
 <p><code>$array_items = array('username' => '', 'email' => '');<br />
 <br />
 $this-&gt;session-&gt;unset_userdata(<samp>$array_items</samp>);</code></p>
 <h2>Flashdata</h2>
-<p>CodeIgniter supports &quot;flashdata&quot;, or session data that will only be available for the next server request, and are then automatically cleared. These can be very useful, and are typically used for informational or status messages (for example: &quot;record 2 deleted&quot;).</p>
-<p>Note: Flash variables are prefaced with &quot;flash_&quot; so avoid this prefix in your own session names.</p>
-<p>To add flashdata:</p>
+<p>CodeIgniter では、&quot;フラッシュデータ&quot;、言い換えると、次のサーバリクエストだけで利用可能で、その後自動的に削除されるセッションデータをサポートしています。これは、非常に有用で、通知メッセージやステータスメッセージ（たとえば次のようなものです：「レコード2は削除されました」）によく利用されます。</p>
+<p>Note: フラッシュ変数の前には、&quot;flash_&quot; が付加されますので、セッション名にはこのプリフィックスを使わないようにしてください。</p>
+<p>フラッシュデータを追加するには:</p>
 <p><code>$this-&gt;session-&gt;set_flashdata('item', 'value');</code></p>
-<p>You can also pass an array to set_flashdata(), in the same manner as set_userdata(). </p>
-<p>To read a flashdata variable:</p>
+<p>また、set_userdata() と同じやり方で、set_flashdata() に配列を渡すこともできます。 </p>
+<p>フラッシュデータを読み取るには:</p>
 <p><code>$this-&gt;session-&gt;flashdata('item');</code></p>
-<p>If you find that you need to preserve a flashdata variable through an additional request, you can do so using the keep_flashdata() function.</p>
+<p>追加のリクエストまでフラッシュ変数を持ち越す必要が出てきた場合、keep_flashdata() メソッドを使って、そうすることができます。</p>
 <p><code>$this-&gt;session-&gt;keep_flashdata('item');</code></p>
-<h2>Saving Session Data to a Database</h2>
-<p>While the session data array stored in the user's cookie contains a Session ID,
-unless you store session data in a database there is no way to validate it.  For some applications that require little or no
-security, session ID validation may not be needed, but if your application requires security, validation is mandatory.  Otherwise, an old session
-could be restored by a user modifying their cookies.</p>
+<h2>セッションデータをデータベースに保存する</h2>
+<p>ユーザのクッキーの中に保管されるセッションデータの配列にはセッションIDが含まれていますが、セッションデータをデータベースに保存しているのでないなら、セッションIDを検証する方法はありません。
+少しかあるいはまったくセキュリティを必要としなアプリケーション用には、セッションIDの検証は必要ありません。
+しかし、セキュリティが必要なアプリケーションであれば、検証は必須です。さもなければ，ユーザがクッキーを書き換えることにより，古いセッションをリストアできてしまいます。</p>
 
-<p>When session data is available in a database, every time a valid session is found in the user's cookie, a database
-query is performed to match it.  If the session ID does not match, the session is destroyed.  Session IDs can never
-be updated, they can only be generated when a new session is created.</p>
+<p>セッションデータがデータベースで利用可能なとき、正しい形式のセッションがユーザのクッキーの中にあった場合は、データベースのクエリでそれを照合します。
+セッションIDが不一致の場合は、セッションが破棄されます。
+セッションIDは更新されることがなく、新しいセッションが作成されるときに生成されます。</p>
 
+<p>セッションを記録するには、セッション保存用のデータベーステーブルをまず作成しなければなりません。
+次は、セッションクラスが必要とする (MySQL用の) 基本的な例です。:</p>
 
-<p>In order to store sessions, you must first create a database table for this purpose.  Here is the basic
-prototype (for MySQL) required by the session class:</p>
-
-<textarea class="textarea" style="width:100%" cols="50" rows="8">
+<textarea name="textarea" cols="50" rows="8" class="textarea" style="width:99%">
 CREATE TABLE IF NOT EXISTS  `ci_sessions` (
 session_id varchar(40) DEFAULT '0' NOT NULL,
 ip_address varchar(16) DEFAULT '0' NOT NULL,
@@ -211,94 +209,94 @@ user_data text DEFAULT '' NOT NULL,
 PRIMARY KEY (session_id)
 );</textarea>
 
-<p><strong>Note:</strong> By default the table is called <dfn>ci_sessions</dfn>, but you can name it anything you want
-as long as you update the <kbd>application/config/config.php</kbd> file so that it contains the name you have chosen.
-Once you have created your database table you can enable the database option in your config.php file as follows:</p>
+<p><strong>Note:</strong> デフォルトでは、<dfn>ci_sessions</dfn>という名前のテーブルになりますが <kbd>application/config/config.php</kbd> ファイルを更新する限り、
+望みどおりどんな名前も付けれらますので、テーブル名は、選んだ名前になります。データベーステーブルを作成したら、
+config.php ファイルで次のようにデータベースオプションを有効にできます:</p>
 
 <code>$config['sess_use_database'] = TRUE;</code>
 
-<p>Once enabled, the Session class will store session data in the DB.</p>
+<p>有効化されると、セッションクラスはセッションデータをDBに保存するようになります。</p>
 
-<p>Make sure you've specified the table name in your config file as well:</p>
+<p>設定ファイルで次のように、テーブル名を指定するのを確認してください:</p>
 
 <code>$config['sess_table_name'] = 'ci_sessions';</code>
 
-<p class="important"><strong>Note:</strong> The Session class has built-in garbage collection which clears out expired sessions so you
-do not need to write your own routine to do it.</p>
+<p class="important"><strong>Note:</strong> セッションクラスには、有効期限切れのセッションをクリアする組み込みのガベージコレクションがありますので、
+独自のクリア処理を書く必要はありません。</p>
 
 
-<h2>Destroying a Session </h2>
-<p>To clear the current session: </p>
+<h2>セッションの破棄 </h2>
+<p>現在のセッションをクリアするには次のようにします: </p>
 <code>$this-&gt;session-&gt;sess_destroy();</code>
-<p class="important"><strong>Note:</strong> This function should be the last one called, and even flash variables will no longer be available.  If you only want some items destroyed and not all, use <dfn>unset_userdata()</dfn>.</p>
+<p class="important"><strong>Note:</strong> このメソッドは、最後に呼び出してください。呼び出した後は、フラッシュデータも破棄されます。もし、一部の項目を破棄したい場合は、<dfn>unset_userdata()</dfn> を使ってください。</p> 
 
 
 
-<h2>Session Preferences</h2>
-<p>You'll find the following Session related preferences in your <kbd>application/config/config.php</kbd> file:</p>
+<h2>セッションの設定</h2>
+<p><kbd>application/config/config.php</kbd> ファイルの中に、セッション関連の設定があります:</p>
 
 
 <table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
 <tr>
-	<th>Preference</th>
-	<th>Default</th>
-	<th>Options</th>
-	<th>Description</th>
+     <th>設定項目</th>
+     <th>初期値</th>
+     <th>選択肢</th>
+     <th>説明</th>
 </tr>
 <tr>
-	<td class="td"><strong>sess_cookie_name</strong></td>
-	<td class="td">ci_session</td>
-	<td class="td">None</td>
-	<td class="td">The name you want the session cookie saved as.</td>
+     <td class="td"><strong>sess_cookie_name</strong></td>
+     <td class="td">ci_session</td>
+     <td class="td">なし</td>
+     <td class="td">セッションクッキーを保存するときの名前。</td>
 </tr>
 <tr>
-	<td class="td"><strong>sess_expiration</strong></td>
-	<td class="td">7200</td>
-	<td class="td">None</td>
-	<td class="td">The number of seconds you would like the session to last. The default value is 2 hours (7200 seconds). If you would like a non-expiring session set the value to zero: 0</td>
+     <td class="td"><strong>sess_expiration</strong></td>
+     <td class="td">7200</td>
+     <td class="td">なし</td>
+     <td class="td">セッションを終了させたい秒数。デフォルトでは 2 時間 (7200 秒)。有効期限がないセッションを使いたい場合は 0 に設定してください。</td>
 </tr>
 <tr>
 	<td class="td"><strong>sess_expire_on_close</strong></td>
 	<td class="td">FALSE</td>
 	<td class="td">TRUE/FALSE (boolean)</td>
-	<td class="td">Whether to cause the session to expire automatically when the browser window is closed.</td>
+	<td class="td">ブラウザが閉じられたときに自動でセッションを破棄するかどうか。</td>
 </tr>
 <tr>
-	<td class="td"><strong>sess_encrypt_cookie</strong></td>
-	<td class="td">FALSE</td>
-	<td class="td">TRUE/FALSE (boolean)</td>
-	<td class="td">Whether to encrypt the session data.</td>
+     <td class="td"><strong>sess_encrypt_cookie</strong></td>
+     <td class="td">FALSE</td>
+     <td class="td">TRUE/FALSE (ブール値)</td>
+     <td class="td">セッションデータを暗号化するかどうか。</td>
 </tr>
 <tr>
-	<td class="td"><strong>sess_use_database</strong></td>
-	<td class="td">FALSE</td>
-	<td class="td">TRUE/FALSE (boolean)</td>
-	<td class="td">Whether to save the session data to a database.  You must create the table before enabling this option.</td>
+     <td class="td"><strong>sess_use_database</strong></td>
+     <td class="td">FALSE</td>
+     <td class="td">TRUE/FALSE (ブール値)</td>
+     <td class="td">セッションデータをデータベースに保存するかどうか。このオプションを有効にする前に、テーブルを作成する必要があります。</td>
 </tr>
 <tr>
-	<td class="td"><strong>sess_table_name</strong></td>
-	<td class="td">ci_sessions</td>
-	<td class="td">Any valid SQL table name</td>
-	<td class="td">The name of the session database table.</td>
+     <td class="td"><strong>sess_table_name</strong></td>
+     <td class="td">ci_sessions</td
+>
+     <td class="td">正しいSQLテーブル名</td>
+     <td class="td">セッションデータベーステーブル名。</td>
 </tr>
 <tr>
-	<td class="td"><strong>sess_time_to_update</strong></td>
-	<td class="td">300</td>
-	<td class="td">Time in seconds</td>
-	<td class="td">This options controls how often the session class will regenerate itself and create a new session id.</td>
+    <td class="td"><strong>sess_time_to_update</strong></td>
+    <td class="td">300</td>
+    <td class="td">秒</td>
+    <td class="td">この項目は、セッションクラスが、どれくらい頻繁にセッションを再生成し新しいセッションIDを作成するかを設定します。</td>
 </tr>
 <tr>
-	<td class="td"><strong>sess_match_ip</strong></td>
-	<td class="td">FALSE</td>
-	<td class="td">TRUE/FALSE (boolean)</td>
-	<td class="td">Whether to match the user's IP address when reading the session data.  Note that some ISPs dynamically
-	changes the IP, so if you want a non-expiring session you will likely set this to FALSE.</td>
+     <td class="td"><strong>sess_match_ip</strong></td>
+     <td class="td">FALSE</td>
+     <td class="td">TRUE/FALSE (ブール値)</td>
+     <td class="td">セッションデータを読み取る時、ユーザのIPアドレスを照合するかどうか。ISPによっては、IPアドレスが動的に変わるのを注意してください。有効期限がないセッションを利用したい場合は、FALSEにしておいてください。</td>
 </tr>
 <tr>
-	<td class="td"><strong>sess_match_useragent</strong></td>
-	<td class="td">TRUE</td>
-	<td class="td">TRUE/FALSE (boolean)</td>
-	<td class="td">Whether to match the User Agent when reading the session data.</td>
+     <td class="td"><strong>sess_match_useragent</strong></td>
+     <td class="td">TRUE</td>
+     <td class="td">TRUE/FALSE (ブール値)</td>
+     <td class="td">セッションデータを読み取る際に、ユーザエージェントを照合するかどうか。</td>
 </tr>
 </table>
 
@@ -309,13 +307,13 @@ do not need to write your own routine to do it.</p>
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="security.html">Security Class</a>
+前のトピック:&nbsp;&nbsp;<a href="security.html">セキュリティクラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="trackback.html">Trackback Class</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="trackback.html">トラックバッククラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

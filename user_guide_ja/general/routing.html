@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>URI Routing : CodeIgniter User Guide</title>
-
+<title>URI ルーティング : CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +40,9 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-URI Routing
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+URI ルーティング</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,17 +53,15 @@ URI Routing
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>URI Routing</h1>
+<h1>URI ルーティング</h1>
 
-<p>Typically there is a one-to-one relationship between a URL string and its corresponding controller class/method.
-The segments in a URI normally follow this pattern:</p>
+<p>通常はURLの文字列と関連するコントローラのクラス/メソッドには一対一の関係があります。URIの中のセグメントは通常下記のようなパターンになっています:</p>
 
 <code>example.com/<dfn>class</dfn>/<samp>function</samp>/<var>id</var>/</code>
 
-<p>In some instances, however, you may want to remap this relationship so that a different class/function can be called
-instead of the one corresponding to the URL.</p>
+<p>しかし、URLが表すものが呼ばれる代わりに、異なるクラス/メソッドが呼ばれるように関連付けを再マッピングしたい場合もあるかと思います。</p>
 
-<p>For example, lets say you want your URLs to have this prototype:</p>
+<p>たとえば、次のような例のURLにしたい時:</p>
 
 <p>
 example.com/product/1/<br />
@@ -74,78 +70,72 @@ example.com/product/3/<br />
 example.com/product/4/
 </p>
 
-<p>Normally the second segment of the URL is reserved for the function name, but in the example above it instead has a product ID.
-To overcome this, CodeIgniter allows you to remap the URI handler.</p>
+<p>通常は、URLの第2セグメントは、メソッド名として予約されていますが、上の例では、代わりに商品IDになっています。これに対応するため、CodeIgniter ではURIハンドラ [ 訳注： URIに関連付けられたコントローラ/メソッドのこと ] を再マッピングすることが可能です。</p>
 
 
-<h2>Setting your own routing rules</h2>
+<h2>ユーザ定義のルーティングを設定する</h2>
 
-<p>Routing rules are defined in your <var>application/config/routes.php</var> file.  In it you'll see an array called <dfn>$route</dfn> that
-permits you to specify your own routing criteria. Routes can either be specified using <dfn>wildcards</dfn> or <dfn>Regular Expressions</dfn></p>
+<p>ルーティング（経路制御）ルールは <var>application/config/routes.php</var> ファイルで定義されています。その中に <dfn>$route</dfn> という名前の配列があると思いますが、ここでユーザ定義のルーティング条件を指定することができます。ルート（経路）は、<dfn>ワイルドカード</dfn>または<dfn>正規表現</dfn>のどちらかを使って指定できます。</p>
 
 
-<h2>Wildcards</h2>
+<h2>ワイルドカード</h2>
 
-<p>A typical wildcard route might look something like this:</p>
+<p>ワイルドカードを使った典型的なルート（経路）指定は次のような感じになります:</p>
 
 <code>$route['product/:num'] = "catalog/product_lookup";</code>
 
-<p>In a route, the array key contains the URI to be matched, while the array value  contains the destination it should be re-routed to.
-In the above example, if the literal word "product" is found in the first segment of the URL, and a number is found in the second segment,
-the "catalog" class and the "product_lookup" method are instead used.</p>
+<p>ルートの中で、配列のキーは、マッチさせるURIで、一方の配列の値は、再ルート先になります。上の例では、リテラルの"product"がURLの第1セグメントに、数字が第2セグメントにそれぞれ設定されていた場合、"catalog"クラスの"product_lookup"メソッドが通常のルールの代わりに使用されることになります。</p>
 
-<p>You can match literal values or you can use two wildcard types:</p>
+<p>リテラル値または次の2種類のワイルドカードを使ってマッチさせることができます:</p>
 
-<p><strong>(:num)</strong> will match a segment containing only numbers.<br />
-<strong>(:any)</strong> will match a segment containing any character.
-</p>
+<p><strong>(:num)</strong> は、セグメントが数字のみを含む場合にマッチします。<br />
+<strong>(:any)</strong> は、セグメントの中身が、どのような文字列でもマッチします。</p>
 
-<p class="important"><strong>Note:</strong> Routes will run in the order they are defined.
-Higher routes will always take precedence over lower ones.</p>
+<p class="important"><strong>Note:</strong> ルートは、定義されている順番にもとづいて実行されます。優先度が高いルートが、低いものより常に先に来るようにします。</p>
 
-<h2>Examples</h2>
 
-<p>Here are a few routing examples:</p>
+<h2>例</h2>
+
+<p>ルーティングについて、いくつか例を挙げます:</p>
 
 <code>$route['journals'] = "blogs";</code>
-<p>A URL containing the word "journals" in the first segment will be remapped to the "blogs" class.</p>
+<p>URL の第1セグメントに "journals" という語を含むURLは、"blogs" クラスに再マッピングされます。</p>
 
 <code>$route['blog/joe'] = "blogs/users/34";</code>
-<p>A URL containing the segments blog/joe will be remapped to the "blogs" class and the "users" method.  The ID will be set to "34".</p>
+<p> blog/joe というセグメントが含まれるURLは、"blogs" クラスの "users" メソッドに再マッピングされます。ID は "34" にセットされます。</p>
+
 
 <code>$route['product/(:any)'] = "catalog/product_lookup";</code>
-<p>A URL with "product" as the first segment, and anything in the second will be remapped to the "catalog" class and the  "product_lookup" method.</p>
+<p>第1セグメントが "product" 第2セグメントに何かが設定されたURLであれば、"catalog" クラスの  "product_lookup" メソッドに再マッピングされます。</p>
 
 <code>$route['product/(:num)'] = "catalog/product_lookup_by_id/$1";</code>
-<p>A URL with "product" as the first segment, and a number in the second will be remapped to the "catalog" class and the "product_lookup_by_id" method passing in the match as a variable to the function.</p>
+<p>第1セグメントが "product" 第2セグメントに数値が設定されたURLであれば、"catalog" クラスの  "product_lookup_by_id" メソッドにマッチした値を変数として再マッピングされます。</p>
 
-<p class="important"><strong>Important:</strong> Do not use leading/trailing slashes.</p>
+<p class="important"><strong>重要:</strong> マッチさせるワードには、先頭および末尾にスラッシュ ( &quot;/&quot; ) をつけてはいけません。</p>
 
-<h2>Regular Expressions</h2>
+<h2>正規表現</h2>
 
-<p>If you prefer you can use regular expressions to define your routing rules.  Any valid regular expression is allowed, as are back-references.</p>
+<p>ルーティングルールに正規表現を使うこともできます。正しい正規表現であれば後方参照(戻り参照) のようなものであっても、どんなものも使用できます。</p>
 
-<p class="important"><strong>Note:</strong>&nbsp; If you use back-references you must use the dollar syntax rather than the double backslash syntax.</p>
+<p class="important"><strong>Note:</strong>&nbsp; 後方参照(戻り参照)を使うときは、ダブルバックスラッシュ ( &quot;\\&quot; ) を使った構文ではなく、ドル記号 ( &quot;$&quot; ) を使う構文で指定してください。</p>
 
-<p>A typical RegEx route might look something like this:</p>
+<p>正規表現を使った典型的なルート指定は次のような感じになります:</p>
 
 <code>$route['products/([a-z]+)/(\d+)'] = "$1/id_$2";</code>
 
-<p>In the above example, a URI similar to <dfn>products/shirts/123</dfn> would instead call the <dfn>shirts</dfn> controller class and the <dfn>id_123</dfn> function.</p>
+<p>上の例では、<dfn>products/shirts/123</dfn> のようなURIは、通常のルールの代わりに、<dfn>shirts</dfn> コントローラクラスの<dfn>id_123</dfn> メソッドが呼ばれます。</p>
 
-<p>You can also mix and match wildcards with regular expressions.</p>
+<p>また、正規表現にワイルドカードを混在させてマッチさせることもできます。</p>
 
-<h2>Reserved Routes</h2>
+<h2>予約済みのルート</h2>
 
-<p>There are two reserved routes:</p>
+<p>予約済みのルートが2つあります:</p>
 
 <code>$route['default_controller'] = 'welcome';</code>
 
-<p>This route indicates which controller class should be loaded if the URI contains no data, which will be the case
-when people load your root URL. In the above example, the "welcome" class would be loaded.  You
-are encouraged to always have a default route otherwise a 404 page will appear by default.</p>
+<p>このルートは URI がデータを含まない時に、どのコントローラを呼ぶべきかを指定するものです。上の例では、"welcome" クラスがロードされます。デフォルトルートは常に設定しておくことをおすすめします。そうしておかないと、デフォルトで404ページが表示されてしまいます。</p>
 
-<p class="important"><strong>Important:</strong>&nbsp; The reserved routes must come before any wildcard or regular expression routes.</p>
+<p class="important"><strong>重要:</strong>&nbsp; 予約済みのルートは、ワイルドカードあるいは正規表現で定義したルートよりも前に来なければなりません。</p>
 
 </div>
 <!-- END CONTENT -->
@@ -153,13 +143,13 @@ are encouraged to always have a default route otherwise a 404 page will appear b
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="common_functions.html">Common Functions</a>
+前のトピック:&nbsp; <a href="common_functions.html">共通関数</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="errors.html">Error Handling</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="errors.html">エラーの処理</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

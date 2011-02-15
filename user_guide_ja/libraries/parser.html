@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Template Parser Class : CodeIgniter User Guide</title>
+<title>テンプレートパーサクラス : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Template Parser Class
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+テンプレートパーサクラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -58,10 +58,10 @@ Template Parser Class
 
 
 
-<h1>Template Parser Class</h1>
+<h1>テンプレートパーサクラス</h1>
 
-<p>The Template Parser Class enables you to parse pseudo-variables contained within your view files. It can parse simple
-variables or variable tag pairs. If you've never used a template engine, pseudo-variables look like this:</p>
+<p>テンプレートパーサクラスを使うと、ビューファイルに含まれる擬似変数を解析できます。
+単一の擬似変数と擬似変数のペアを解析できます。テンプレートエンジンを一度も使ったことがないでしょうか？擬似変数とは次のようなものです:</p>
 
 <code>&lt;html&gt;<br />
 &lt;head&gt;<br />
@@ -79,30 +79,30 @@ variables or variable tag pairs. If you've never used a template engine, pseudo-
 &lt;/body&gt;<br />
 &lt;/html&gt;</code>
 
-<p>These variables are not actual PHP variables, but rather plain text representations that allow you to eliminate
-PHP from your templates (view files).</p>
+<p>これらの疑似変数は、本当の PHP 変数ではなく、テンプレート (ビューファイル) からPHPを取り除くための、
+普通のテキストです。</p>
 
-<p class="important"><strong>Note:</strong> CodeIgniter does <strong>not</strong> require you to use this class
-since using pure PHP in your view pages lets them run a little faster.  However, some developers prefer to use a template engine if
-they work with designers who they feel would find some confusion working with PHP.</p>
+<p class="important"><strong>Note:</strong> ビューページで純粋なPHPを使う方が少し早いので、CodeIgniterでは、
+このクラスを必ずしも <strong>必要としません</strong>。しかし、PHPのコードで混乱してしまうデザイナーと一緒に仕事をしている場合、
+開発者の中には、テンプレートエンジンを使用したい人もいると思います。</p>
 
-<p><strong>Also Note:</strong> The Template Parser Class is <strong>not</strong>  a
-full-blown template parsing solution. We've kept it very lean on purpose in order to maintain maximum performance.</p>
+<p><strong>Also Note:</strong> テンプレートパーサクラスは、本格的なテンプレート解析ソリューションでは<strong>ありません</strong>。
+私達は、パフォーマンス最大化のために、これを非常にスマートにしています。</p>
 
 
-<h2>Initializing the Class</h2>
+<h2>クラスの初期化</h2>
 
-<p>Like most other classes in CodeIgniter, the Parser class is initialized in your controller using the <dfn>$this->load->library</dfn> function:</p>
+<p>CodeIgniter の大抵のクラスのように、パーサクラスは、コントローラの中で <dfn>$this->load->library</dfn> メソッドを使用することで初期化できます:</p>
 
 <code>$this->load->library('parser');</code>
-<p>Once loaded, the Parser library object will be available using: <dfn>$this->parser</dfn></p>
+<p>ロードしたら、パーサライブラリのオブジェクトは次のように使うことができます: <dfn>$this->parser</dfn></p>
 
 
-<p>The following functions are available in this library:</p>
+<p>次のメソッドがこのライブラリで利用できます:</p>
 
 <h2>$this->parser->parse()</h2>
 
-<p>This method accepts a template name and data array as input, and it generates a parsed version.  Example:</p>
+<p>このメソッドは、テンプレート名とデータの配列を入力とし、構文解析したものを生成します。例:</p>
 
 <code>$this->load->library('parser');<br />
 <br />
@@ -113,25 +113,23 @@ $data = array(<br />
 <br />
 $this->parser->parse('blog_template', $data);</code>
 
-<p>The first parameter contains the name of the <a href="../general/views.html">view file</a> (in this example the file would be called blog_template.php),
-and the second parameter contains an associative array of data to be replaced in the template.  In the above example, the
-template would contain two variables: {blog_title} and {blog_heading}</p>
+<p>第1引数は、<a href="../general/views.html">ビューファイル</a>の名前(この例では、ファイルは、blog_template.phpという名前です)になり、
+第2引数は、テンプレートに渡すデータの連想配列になります。
+上の例では、テンプレートには、次の2つの擬似変数が含まれています: {blog_title} と {blog_heading}</p>
 
-<p>There is no need to "echo" or do something with the data returned by <dfn>$this->parser->parse()</dfn>.  It is automatically
-passed to the output class to be sent to the browser.  However, if you do want the data returned instead of sent to the output class you can
-pass TRUE (boolean) to the third parameter:</p>
+<p><dfn>$this->parser->parse()</dfn> メソッドが返す値は、"echo" で出力したりする必要はありません。
+ブラウザに送信するために、出力クラスに自動的に渡されます。しかし、出力クラスにデータを渡す代わりに、
+データを返すようにするために、第3引数にTRUEを設定することができます:</p>
 
 <code>$string = $this->parser->parse('blog_template', $data, TRUE);</code>
 
-<h2>$this->parser->parse_string()</h2>
+<h2>$this->parser->parse_string()</h2> 
 
-<p>This method works exactly like parse(), only accepts a string as the first parameter in place of a view file.</p>
+<p>このメソッドは parse() と全く同じ働きを持ちますが、ビューファイルの代わりに文字列だけを第1引数で受け付けます。</p>
 
+<h2>ペアの擬似変数</h2>
 
-<h2>Variable Pairs</h2>
-
-<p>The above example code allows simple variables to be replaced.  What if you would like an entire block of variables to be
-repeated, with each iteration containing new values?  Consider the template example we showed at the top of the page:</p>
+<p>上のサンプルコードは、単一の擬似変数が置き換えられるものです。全部の変数ブロックを毎回新しい値を使って繰り返させたい場合は、どのようなものになるのでしょうか。ページの先頭で示したサンプルのテンプレートで考えてみます:</p>
 
 <code>&lt;html&gt;<br />
 &lt;head&gt;<br />
@@ -149,13 +147,13 @@ repeated, with each iteration containing new values?  Consider the template exam
 &lt;/body&gt;<br />
 &lt;/html&gt;</code>
 
-<p>In the above code you'll notice a pair of variables: <kbd>{blog_entries}</kbd> data... <kbd>{/blog_entries}</kbd>.
-In a case like this, the entire chunk of data between these pairs would be repeated multiple times, corresponding
-to the number of rows in a result.</p>
+<p>上のコードでは、ペアの擬似変数があるのに気がついたかもしれません: <kbd>{blog_entries}</kbd> データ... <kbd>{/blog_entries}</kbd>。
+このようなケースでは、ペアの間に書かれた各データは、
+結果の行数に対応して複数回繰り返されて全体が表示されます。</p>
 
-<p>Parsing variable pairs is done using the identical code shown above to parse single variables,
-except, you will add a multi-dimensional array corresponding to your variable pair data.
-Consider this example:</p>
+<p>上で示した単一の擬似変数を解析したのと同じコードを使って、ペアの擬似変数を解析するのが途中まで終わりました。
+残りは、ペアの擬似変数の中にあるデータに対応する、多次元配列を追加することです。
+次のような例が挙げられます:</p>
 
 
 <code>$this->load->library('parser');<br />
@@ -174,8 +172,8 @@ $data = array(<br />
 <br />
 $this->parser->parse('blog_template', $data);</code>
 
-<p>If your "pair" data is coming from a database result, which is already a multi-dimensional array, you can simply
-use the database result_array() function:</p>
+<p>すでに多次元配列になっているデータベースの結果オブジェクトから&quot;組&quot;のデータが取り出される場合、
+result_array() メソッドを利用することができます:</p>
 
 <code>
 $query = $this->db->query("SELECT * FROM blog");<br />
@@ -199,13 +197,13 @@ $this->parser->parse('blog_template', $data);</code>
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="trackback.html">Trackback Class</a>
+前のトピック:&nbsp;&nbsp;<a href="trackback.html">トラックバッククラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="typography.html">Typography</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="typography.html">タイポグラフィークラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

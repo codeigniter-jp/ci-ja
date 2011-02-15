@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>String Helper : CodeIgniter User Guide</title>
-
+<title>文字列ヘルパ：CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +40,9 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-String Helper
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+文字列ヘルパ</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -56,51 +54,49 @@ String Helper
 <div id="content">
 
 
-<h1>String Helper</h1>
+<h1>文字列ヘルパ</h1>
 
-<p>The String Helper file contains functions that assist in working with strings.</p>
+<p>文字列ヘルパの中身は、文字列を処理するのに役立つ関数です。</p>
 
 
-<h2>Loading this Helper</h2>
+<h2>ヘルパのロード</h2>
 
-<p>This helper is loaded using the following code:</p>
+<p>このヘルパは次のコードを使ってロードします:</p>
 <code>$this->load->helper('string');</code>
 
-<p>The following functions are available:</p>
+<p>次の関数が利用できます:</p>
 
 <h2>random_string()</h2>
 
-<p>Generates a random string based on the type and length you specify.  Useful for creating passwords or generating random hashes.</p>
+<p>指定したタイプとサイズのランダムな文字列を生成します。パスワードを作成したり、ランダムなハッシュ値を生成したりするのに役立ちます。</p>
 
-<p>The first parameter specifies the type of string, the second parameter specifies the length.  The following choices are available:</p>
+<p>第1引数には、文字列のタイプを指定し、第2引数には、文字列のサイズ (文字数) を指定します。次の選択肢が使えます:</p>
 
- alpha, alunum, numeric, nozero, unique, md5, encrypt and sha1
+alpha, alunum, numeric, nozero, unique, md5, encrypt and sha1
 <ul>
-	<li><strong>alpha</strong>:&nbsp; A string with lower and uppercase letters only.</li>
-	<li><strong>alnum</strong>:&nbsp; Alpha-numeric string with lower and uppercase characters.</li>
-	<li><strong>numeric</strong>:&nbsp; Numeric string.</li>
-	<li><strong>nozero</strong>:&nbsp; Numeric string with no zeros.</li>
-	<li><strong>unique</strong>:&nbsp; Encrypted with MD5 and uniqid(). Note: The length parameter is not available for this type.
-	Returns a fixed length 32 character string.</li>
-	<li><strong>sha1</strong>:&nbsp; An encrypted random number based on <kbd>do_hash()</kbd> from the <a href="security_helper.html">security helper</a>.</li>
+        <li><strong>alpha</strong>:&nbsp; 大文字小文字の文字列。</li>
+    <li><strong>alnum</strong>:&nbsp; 大文字小文字の英数字。</li>
+    <li><strong>numeric</strong>:&nbsp; 数字文字列。</li>
+    <li><strong>nozero</strong>:&nbsp; ゼロ以外の数字文字列。</li>
+    <li><strong>unique</strong>:&nbsp; MD5 と uniqid() での暗号化。Note: このタイプにはサイズのパラメータは存在しません。固定長の 32 文字の文字列を返します。</li>
+    <li><strong>sha1</strong>:&nbsp; <a href="security_helper.html">セキュリティヘルパ</a>の <kbd>do_hash()</kbd> に基づいた暗号化された乱数。</li>
 </ul>
 
-<p>Usage example:</p>
+<p>使用例です:</p>
 
 <code>echo random_string('alnum', 16);</code>
 
 
 <h2>alternator()</h2>
 
-<p>Allows two or more items to be alternated between, when cycling through a loop.  Example:</p>
+<p>ループの中でローテーションで使うように、2 つ以上の文字列を入れ替え可能にします。例:</p>
 
 <code>for ($i = 0; $i < 10; $i++)<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;echo alternator('string one', 'string two');<br />
 }<br />
 </code>
-
-<p>You can add as many parameters as you want, and with each iteration of your loop the next item will be returned.</p>
+<p>必要な数だけ追加でき、各ループで繰り返す度に次の項目が返ります。</p>
 
 <code>for ($i = 0; $i < 10; $i++)<br />
 {<br />
@@ -108,55 +104,55 @@ String Helper
 }<br />
 </code>
 
-<p><strong>Note:</strong> To use multiple separate calls to this function simply call the function with no arguments to re-initialize.</p>
+<p><strong>Note:</strong> この関数を複数回に分けて呼び出すとき、再度初期化するために、一度、引数なしでこの関数を呼び出してください。</p>
 
 
 
 <h2>repeater()</h2>
-<p>Generates repeating copies of the data you submit. Example:</p>
+<p>渡したデータのコピーを繰り返し生成します。例:</p>
 <code>$string = "\n";<br />
 echo repeater($string, 30);</code>
 
-<p>The above would generate 30 newlines.</p>
+<p>上の例では、30の新しい行が生成されます。</p>
 <h2>reduce_double_slashes()</h2>
-<p>Converts double slashes in a string to a single slash, except those found in http://. Example: </p>
+<p>http:// のダブルスラッシュを除いて、文字列中のダブルスラッシュをシングルスラッシュに変換します。例: </p>
 <code>$string = &quot;http://example.com//index.php&quot;;<br />
-echo reduce_double_slashes($string); // results in &quot;http://example.com/index.php&quot;</code>
+echo reduce_double_slashes($string); // &quot;http://example.com/index.php&quot; を返します</code>
 <h2>trim_slashes()</h2>
-<p>Removes any leading/trailing slashes from a string. Example:<br />
-	<br />
-	<code>$string = &quot;/this/that/theother/&quot;;<br />
-echo trim_slashes($string); // results in this/that/theother</code></p>
+<p>文字列から、先頭と末尾のスラッシュを除去します。例:<br />
+    <br />
+    <code>$string = &quot;/this/that/theother/&quot;;<br />
+echo trim_slashes($string); // this/that/theother を返します</code></p>
 
 
 <h2>reduce_multiples()</h2>
-<p>Reduces multiple instances of a particular character occuring directly after each other. Example:</p>
+<p>連続した文字を縮約します。例:</p>
 <code>
 $string="Fred, Bill,, Joe, Jimmy";<br />
-$string=reduce_multiples($string,","); //results in "Fred, Bill, Joe, Jimmy"
+$string=reduce_multiples($string,","); // "Fred, Bill, Joe, Jimmy" を返します
 </code>
-<p>The function accepts the following parameters:
-<code>reduce_multiples(string: text to search in, string: character to reduce, boolean: whether to remove the character from the front and end of the string)</code>
+<p>次の引数を指定することができます。
 
-The first parameter contains the string in which you want to reduce the multiplies. The second parameter contains the character you want to have reduced.
-The third parameter is FALSE by default; if set to TRUE it will remove occurences of the character at the beginning and the end of the string. Example:
+<code>reduce_multiples(string: 対象文字列, string: 縮約文字, boolean: 先頭と末尾の縮約文字を削除するかどうか)</code>
+
+第 1 引数は縮約文字を含む文字列を指定します。第 2 引数は縮約文字を指定します。第 3 引数はデフォルトでは FALSE が指定されます。TRUE を指定した場合は先頭と末尾にある縮約文字が削除されます。例:
 
 <code>
 $string=",Fred, Bill,, Joe, Jimmy,";<br />
-$string=reduce_multiples($string, ", ", TRUE); //results in "Fred, Bill, Joe, Jimmy"
+$string=reduce_multiples($string,",",TRUE); // "Fred, Bill, Joe, Jimmy" を返します
 </code>
-</p>
+</p> 
 
 <h2>quotes_to_entities()</h2>
-<p>Converts single and double quotes in a string to the corresponding HTML entities. Example:</p>
+<p>文字列の中のシングルおよびダブルクオートを HTML 文字参照に変換します。 例:</p>
 <code>$string="Joe's \"dinner\"";<br />
-$string=quotes_to_entities($string); //results in "Joe&amp;#39;s &amp;quot;dinner&amp;quot;"
+$string=quotes_to_entities($string); // "Joe&amp;#39;s &amp;quot;dinner&amp;quot;" を返します
 </code>
 
 <h2>strip_quotes()</h2>
-<p>Removes single and double quotes from a string. Example:</p>
+<p>文字列からシングルおよびダブルクオートを除去します。例:</p>
 <code>$string="Joe's \"dinner\"";<br />
-$string=strip_quotes($string); //results in "Joes dinner"
+$string=strip_quotes($string); // "Joes dinner" を返します
 </code>
 
 </div>
@@ -165,13 +161,13 @@ $string=strip_quotes($string); //results in "Joes dinner"
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="smiley_helper.html">Smiley Helper</a>
+前のトピック:&nbsp;&nbsp;<a href="smiley_helper.html">スマイリーヘルパ</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="text_helper.html">Text Helper</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="text_helper.html">テキストヘルパ</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

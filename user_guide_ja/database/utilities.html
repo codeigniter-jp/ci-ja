@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Database Utility Class : CodeIgniter User Guide</title>
-
+<title>データベースユーティリティクラス : CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,11 +40,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-<a href="index.html">Database Library</a> &nbsp;&#8250;&nbsp;
-Database Utility Class
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+データベースユーティリティクラス</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -57,41 +55,41 @@ Database Utility Class
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Database Utility Class</h1>
+<h1>データベースユーティリティクラス</h1>
 
-<p>The Database Utility Class contains functions that help you manage your database.</p>
+<p>データベースユーティリティクラスは、データベースの管理に便利なメソッドを持っています。</p>
 
-<h3>Table of Contents</h3>
+<h3>目次</h3>
 
 <ul>
-<li><a href="#init">Initializing the Utility Class</a></li>
-<li><a href="#list">Listing your Databases</a></li>
-<li><a href="#exists">Checking for a specific Database</a></li>
-<li><a href="#opttb">Optimizing your Tables</a></li>
-<li><a href="#repair">Repairing your Databases</a></li>
-<li><a href="#optdb">Optimizing your Database</a></li>
-<li><a href="#csv">CSV Files from a Database Result</a></li>
-<li><a href="#xml">XML Files from a Database Result</a></li>
-<li><a href="#backup">Backing up your Database</a></li>
+<li><a href="#init">ユーティリティクラスの初期化</a></li>
+<li><a href="#list">データベースのリストアップ</a></li>
+<li><a href="#exists">特定データベースのチェック</a></li>
+<li><a href="#opttb">テーブルの最適化</a></li>
+<li><a href="#repair">テーブルの修復</a></li>
+<li><a href="#optdb">データベースの最適化</a></li>
+<li><a href="#csv">問合せ結果からの CSV 生成</a></li>
+<li><a href="#xml">問合せ結果からの XML 生成</a></li>
+<li><a href="#backup">データベースのバックアップ</a></li>
 </ul>
 
 
 
-<h2><a name="init"></a>Initializing the Utility Class</h2>
+<h2><a name="init"></a>ユーティリティクラスの初期化</h2>
 
-<p class="important"><strong>Important:</strong>&nbsp; In order to initialize the Utility class, your database driver must
-already be running, since the utilities class relies on it.</p>
+<p class="important"><strong>Important:</strong>&nbsp;ユーティリティクラスは、データベースドライバに依存しているので、ユーティリティクラスを初期化するには、あらかじめデータベースドライバが実行されている必要があります。</p>
 
-<p>Load the Utility Class as follows:</p>
+<p>ユーティリティクラスは次のようにロードします:</p>
 
 <code>$this->load->dbutil()</code>
 
-<p>Once initialized you will access the functions using the <dfn>$this->dbutil</dfn> object:</p>
+<p>いったん初期化されれば、ユーティリティのメソッドは、<dfn>$this->dbutil</dfn> オブジェクトを利用してアクセスできます:</p>
 
 <code>$this->dbutil->some_function()</code>
 
 <h2><a name="list"></a>$this->dbutil->list_databases()</h2>
-<p>Returns an array of database names:</p>
+<p>データベース名の配列を返します:</p>
+
 
 <code>
 $dbs = $this->dbutil->list_databases();<br />
@@ -104,59 +102,57 @@ foreach($dbs as $db)<br />
 
 <h2><a name="exists"></a>$this->db->database_exists();</h2>
 
-<p>Sometimes it's helpful to know whether a particular database exists.
-Returns a boolean TRUE/FALSE.  Usage example:</p>
+<p>特定のデータベースが存在するかどうかを知る場合に役立ちます。ブール値の TRUE/FALSE を返します。使用例:</p>
 
 <code>
 if ($this->db->database_exists('database_name'))<br />
 {<br />
-&nbsp;&nbsp; // some code...<br />
+&nbsp;&nbsp; // 何らかのコード...<br />
 }
 </code>
 
-<p>Note:  Replace <em>database_name</em> with the name of the table you are looking for. This function is case sensitive.</p>
+<p>Note:  <em>database_name</em> を探しているテーブル名に置き換えてください。このメソッドは大文字小文字を区別します。</p>
 
 
 
 <h2><a name="opttb"></a>$this->dbutil->optimize_table('table_name');</h2>
 
-<p class="important"><strong>Note:</strong>&nbsp; This features is only available for MySQL/MySQLi databases.</p>
+<p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL / MySQLi データベースでのみ使用できます。</p>
 
 
-<p>Permits you to optimize a table using the table name specified in the first parameter. Returns TRUE/FALSE based on success or failure:</p>
+<p>第1引数に指定した名前のテーブルを最適化できます。処理が成功したか失敗したかにより、TRUE / FALSE を返します:</p>
 
 <code>
 if ($this->dbutil->optimize_table('table_name'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp; echo 'Success!';<br />
+&nbsp;&nbsp;&nbsp; echo '成功!';<br />
 }
 </code>
 
-<p><strong>Note:</strong> Not all database platforms support table optimization.</p>
+<p><strong>Note:</strong> すべてのデータベースプラットフォームがテーブルの最適化をサポートしているわけではありません。</p>
 
 
 <h2><a name="repair"></a>$this->dbutil->repair_table('table_name');</h2>
 
-<p class="important"><strong>Note:</strong>&nbsp; This features is only available for MySQL/MySQLi databases.</p>
+<p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL / MySQLi データベースでのみ使用できます。</p>
 
 
-<p>Permits you to repair a table using the table name specified in the first parameter. Returns TRUE/FALSE based on success or failure:</p>
+<p>第1引数に指定した名前のテーブルを修復できます。処理が成功したか失敗したかにより、TRUE / FALSE を返します:</p>
 
 <code>
 if ($this->dbutil->repair_table('table_name'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp; echo 'Success!';<br />
-}
-</code>
+&nbsp;&nbsp;&nbsp; echo '成功!';<br />
+}</code>
 
-<p><strong>Note:</strong> Not all database platforms support table repairs.</p>
+<p><strong>Note:</strong>すべてのデータベースプラットフォームがテーブルの修復をサポートしているわけではありません。</p>
 
 
 <h2><a name="optdb"></a>$this->dbutil->optimize_database();</h2>
 
-<p class="important"><strong>Note:</strong>&nbsp; This features is only available for MySQL/MySQLi databases.</p>
+<p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL / MySQLi データベースでのみ使用できます。</p>
 
-<p>Permits you to optimize the database your DB class is currently connected to. Returns an array containing the DB status messages or FALSE on failure.</p>
+<p>現在接続中のデータベースを最適化します。DBステータスメッセージの配列または、失敗した場合に FALSE を返します。</p>
 
 <code>
 $result = $this->dbutil->optimize_database();<br />
@@ -164,16 +160,14 @@ $result = $this->dbutil->optimize_database();<br />
 if ($result !== FALSE)<br />
 {<br />
 &nbsp;&nbsp;&nbsp; print_r($result);<br />
-}
-</code>
+}</code>
 
-<p><strong>Note:</strong> Not all database platforms support table optimization.</p>
+<p><strong>Note:</strong>すべてのデータベースプラットフォームがデータベースの最適化をサポートしているわけではありません。</p>
 
 
 <h2><a name="csv"></a>$this->dbutil->csv_from_result($db_result)</h2>
 
-<p>Permits you to generate a CSV file from a query result. The first parameter of the function must contain the result object from your query.
-Example:</p>
+<p>クエリの結果からCSVを生成することができます。第1引数に結果オブジェクトを指定する必要があります。例:</p>
 
 <code>
 $this->load->dbutil();<br />
@@ -183,8 +177,7 @@ $query = $this->db->query("SELECT * FROM mytable");<br />
 echo $this->dbutil->csv_from_result($query);
 </code>
 
-<p>The second and third parameters allows you to
-set the delimiter and newline character.  By default tabs are used as the delimiter and "\n" is used as a new line.  Example:</p>
+<p>第2、第3引数で、区切り文字（デリミタ）と改行文字を指定できます。デフォルトでは、デリミタにタブを改行に "\n" (LF) を使います。例:</p>
 
 <code>
 $delimiter = ",";<br />
@@ -193,14 +186,12 @@ $newline = "\r\n";<br />
 echo $this->dbutil->csv_from_result($query, $delimiter, $newline);
 </code>
 
-<p><strong>Important:</strong>&nbsp; This function will NOT write the CSV file for you.  It simply creates the CSV layout.
-If you need to write the file use the <a href="../helpers/file_helper.html">File Helper</a>.</p>
+<p><strong>Important:</strong>&nbsp; このメソッドは、CSV を ファイルには書き出しません。単に、CSV に整形するだけです。ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパ</a> を利用します。</p>
 
 
 <h2><a name="xml"></a>$this->dbutil->xml_from_result($db_result)</h2>
 
-<p>Permits you to generate an XML file from a query result. The first parameter expects a query result object, the second
-may contain an optional array of config parameters.  Example:</p>
+<p>クエリの結果からXMLを生成します。第一引数には、結果オブジェクトが入り、第2引数には、オプションで設定パラメータの配列が入ります。例:</p>
 
 <code>
 $this->load->dbutil();<br />
@@ -214,83 +205,89 @@ $config = array (<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tab'&nbsp;&nbsp;&nbsp;&nbsp;=> "\t"<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
 <br />
-echo $this->dbutil->xml_from_result($query, $config);
-</code>
+echo $this->dbutil->xml_from_result($query, $config);</code>
 
-<p><strong>Important:</strong>&nbsp; This function will NOT write the XML file for you.  It simply creates the XML layout.
-If you need to write the file use the <a href="../helpers/file_helper.html">File Helper</a>.</p>
+<p><strong>Important:</strong>&nbsp;このメソッドは、XML を ファイルには書き出しません。単に、XML に整形するだけです。ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパ</a> を利用します。</p>
 
 
 <h2><a name="backup"></a>$this->dbutil->backup()</h2>
 
-<p>Permits you to backup your full database or individual tables.  The backup data can be compressed in either Zip or Gzip format.</p>
+<p>データベース全体もしくは個別のテーブルをバックアップできます。バックアップデータはZip または Gzip フォーマットのどちらかの形式で圧縮できます[ 訳注: バックアップ結果をファイルに保存するには、ファイルヘルパを利用する必要があります。 ]。</p>
 
-<p class="important"><strong>Note:</strong>&nbsp; This features is only available for MySQL databases.</p>
+<p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL データベースでのみ使用できます。</p>
 
-<p>Note: Due to the limited execution time and memory available to PHP, backing up very large
-databases may not be possible.  If your database is very large you might need to backup directly from your SQL server
-via the command line, or have your server admin do it for you if you do not have root privileges.</p>
+<p>Note: 実行制限時間とPHPが利用できる空きメモリ容量に注意してください。大規模なデータベースのバックアップはできないかもしれません。データベースが大規模な場合は、サーバで直接SQLを使ってバックアップする必要があるかしれません。ルート権限を持たない場合にはサーバ管理者がそれを行う必要があります。</p>
 
-<h3>Usage Example</h3>
+<h3>使用例</h3>
 
 <code>
-<dfn>// Load the DB utility class</dfn><br />
+<dfn>// DB ユーティリティクラスをロード</dfn><br />
 $this->load->dbutil();<br /><br />
 
-<dfn>// Backup your entire database and assign it to a variable</dfn><br />
+<dfn>// データベース全体をバックアップしその結果を変数に代入</dfn><br />
 $backup =& $this->dbutil->backup();
 
 <br /><br />
-<dfn>// Load the file helper and write the file to your server</dfn><br />
+<dfn>// ヘルパをロードし、サーバにファイルを書き出す</dfn><br />
 $this->load->helper('file');<br />
 write_file('/path/to/mybackup.gz', $backup);
 
 <br /><br />
-<dfn>// Load the download helper and send the file to your desktop</dfn><br />
+<dfn>// ダウンロードヘルパをロードし、ファイルをデスクトップに送信する</dfn><br />
 $this->load->helper('download');<br />
 force_download('mybackup.gz', $backup);
 </code>
 
-<h3>Setting Backup Preferences</h3>
+<h3>バックアップオプションの設定</h3>
 
-<p>Backup preferences are set by submitting an array of values to the first parameter of the backup function. Example:</p>
+<p>バックアップのオプションは、バックアップメソッドの第1引数で配列で渡すことができます。例:</p>
 
 <code>$prefs = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tables'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array('table1', 'table2'),&nbsp;&nbsp;// Array of tables to backup.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ignore'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array(),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// List of tables to omit from the backup<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tables'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array('table1', 'table2'),&nbsp;&nbsp;// バックアップするテーブルの配列。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ignore'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array(),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップしないテーブルのリスト。<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'format'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'txt',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// gzip, zip, txt<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename'&nbsp;&nbsp;&nbsp;&nbsp;=> 'mybackup.sql',&nbsp;&nbsp;&nbsp;&nbsp;// File name - NEEDED ONLY WITH ZIP FILES<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_drop'&nbsp;&nbsp;&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Whether to add DROP TABLE statements to backup file<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_insert'&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Whether to add INSERT data to backup file<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'newline'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> "\n"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Newline character used in backup file<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename'&nbsp;&nbsp;&nbsp;&nbsp;=> 'mybackup.sql',&nbsp;&nbsp;&nbsp;&nbsp;// ファイル名 - ZIPファイルのときだけ必要<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_drop'&nbsp;&nbsp;&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップファイルにDROP TABLE 文を追加するかどうか<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_insert'&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップファイルにINSERT 文を追加するかどうか<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'newline'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> "\n"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップファイルで使う改行文字<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
 <br />
 $this->dbutil->backup($prefs);
 </code>
 
 
-<h3>Description of Backup Preferences</h3>
+<h3>バックアップオプションの説明</h3>
 
 <table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
 <tr>
-<th>Preference</th>
-<th>Default&nbsp;Value</th>
-<th>Options</th>
-<th>Description</th>
+<th>設定項目</th>
+<th>初期値</th>
+<th>選択肢</th>
+<th>説明</th>
 </tr><tr>
-<td class="td"><strong>tables</strong></td><td class="td">empty array</td><td class="td">None</td><td class="td">An array of tables you want backed up.  If left blank all tables will be exported.</td>
+<td class="td"><strong>tables</strong></td>
+<td class="td">空の配列</td>
+<td class="td">なし</td>
+<td class="td">バックアップしたいテーブルの配列。空のままにしておけば、全テーブルがエクスポートされます。</td>
 </tr><tr>
-<td class="td"><strong>ignore</strong></td><td class="td">empty array</td><td class="td">None</td><td class="td">An array of tables you want the backup routine to ignore.</td>
+<td class="td"><strong>ignore</strong></td><td class="td">空の配列</td><td class="td">なし</td>
+<td class="td">バックアップ処理の対象外にするテーブルの配列。</td>
 </tr><tr>
-<td class="td"><strong>format</strong></td><td class="td">gzip</td><td class="td">gzip, zip, txt</td><td class="td">The file format of the export file.</td>
+<td class="td"><strong>format</strong></td><td class="td">gzip</td><td class="td">gzip, zip, txt</td>
+<td class="td">エクスポートファイルのファイル形式。</td>
 </tr><tr>
-<td class="td"><strong>filename</strong></td><td class="td">the current date/time</td><td class="td">None</td><td class="td">The name of the backed-up file. The name is needed only if you are using zip compression.</td>
+<td class="td"><strong>filename</strong></td>
+<td class="td">現在日時</td><td class="td">なし</td>
+<td class="td">バックアップファイルの名前。名前は、ZIP圧縮を使う場合のみ必要になります。</td>
 </tr><tr>
-<td class="td"><strong>add_drop</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td><td class="td">Whether to include DROP TABLE statements in your SQL export file.</td>
+<td class="td"><strong>add_drop</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td>
+<td class="td">SQLエクスポートファイルに、DROP TABLE 文を追加するかどうか。</td>
 </tr><tr>
-<td class="td"><strong>add_insert</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td><td class="td">Whether to include INSERT statements in your SQL export file.</td>
+<td class="td"><strong>add_insert</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td>
+<td class="td">SQLエクスポートファイルに、INSERT 文を追加するかどうか。</td>
 </tr><tr>
-<td class="td"><strong>newline</strong></td><td class="td">"\n"</td><td class="td">"\n", "\r", "\r\n"</td><td class="td">Type of newline to use in your SQL export file.</td>
+<td class="td"><strong>newline</strong></td><td class="td">"\n"</td><td class="td">"\n", "\r", "\r\n"</td>
+<td class="td">SQL エクスポートファイルで使う改行文字の種類。</td>
 
 </tr>
 </table>
@@ -302,12 +299,12 @@ $this->dbutil->backup($prefs);
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="forge.html">DB Forge Class</a>
+前のトピック:&nbsp;&nbsp;<a href="forge.html">DBフォージクラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="../libraries/email.html"> Email Class</a></p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="../libraries/email.html"> Email クラス</a><p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

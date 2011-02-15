@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Calendaring Class : CodeIgniter User Guide</title>
+<title>カレンダークラス : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,9 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Calendaring Class
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+カレンダークラス</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -58,41 +57,37 @@ Calendaring Class
 
 
 
-<h1>Calendaring Class</h1>
+<h1>カレンダークラス</h1>
 
-<p>The Calendar class enables you to dynamically create calendars. Your calendars can be formatted through the use of a calendar
-template, allowing 100% control over every aspect of its design. In addition, you can pass data to your calendar cells.</p>
+<p>カレンダークラスを使うと動的にカレンダーを生成できます。カレンダーはデザインのどんな側面も100%コントロール可能なカレンダーテンプレートをもとに整形されます。</p>
 
-<h2>Initializing the Class</h2>
+<h2>クラスの初期化</h2>
 
-<p>Like most other classes in CodeIgniter, the Calendar class is initialized in your controller using the <dfn>$this->load->library</dfn> function:</p>
+<p>CodeIgniterの大半のクラスと同様に、カレンダークラスはコントローラの中で、 <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
 
 <code>$this->load->library('calendar');</code>
-<p>Once loaded, the Calendar object will be available using: <dfn>$this->calendar</dfn></p>
+<p>一旦呼び出せば、カレンダーオブジェクトは <dfn>$this->calendar</dfn> を使用することで利用できます。</p>
 
 
-<h2>Displaying a Calendar</h2>
+<h2>カレンダーの表示</h2>
 
-<p>Here is a very simple example showing how you can display a calendar:</p>
+<p>カレンダーの表示方法の非常に簡単な例です:</p>
 
 <code>$this->load->library('calendar');<br />
 <br />
 echo $this->calendar->generate();</code>
 
-<p>The above code will generate a calendar for the current month/year based on your server time.
-To show a calendar for a specific month and year you will pass this information to the calendar generating function:</p>
+<p>上のコードは、サーバ時間の年月のカレンダーを生成します。特定の年月のカレンダーを表示させるには、カレンダー生成関数に次のように情報を渡します:</p>
 
 <code>$this->load->library('calendar');<br />
 <br />
 echo $this->calendar->generate(<kbd>2006</kbd>, <kbd>6</kbd>);</code>
 
-<p>The above code will generate a calendar showing the month of June in 2006.  The first parameter specifies the year, the second parameter specifies the month.</p>
+<p>上のコードは、2006年6月を表示するカレンダーを生成します。最初の引数は年を、2番目の引数は月を指定します。</p>
 
-<h2>Passing Data to your Calendar Cells</h2>
+<h2>カレンダーのセルへのデータ引き渡し</h2>
 
-<p>To add data to your calendar cells involves creating an associative array in which the keys correspond to the days
-you wish to populate and the array value contains the data.  The array is passed to the third parameter of the calendar
-generating function.  Consider this example:</p>
+<p>カレンダーのセルにデータを追加するには、埋め込みたい日をキーにし、それに対応する値に、埋め込むデータを入れた連想配列を作成します。作成した配列は、カレンダー生成関数の第３引数に渡します。次のような例が考えられます:</p>
 
 <code>$this->load->library('calendar');<br />
 <br />
@@ -105,17 +100,14 @@ $data = array(<br />
 <br />
 echo $this->calendar->generate(<kbd>2006</kbd>, <kbd>6</kbd>, <var>$data</var>);</code>
 
-<p>Using the above example, day numbers 3, 7, 13, and 26 will become links pointing to the URLs you've provided.</p>
+<p>上の例を使用すると、3,7,13および26日が渡されたURLを指すリンクになります。</p>
 
-<p class="important"><strong>Note:</strong> By default it is assumed that your array will contain links.
-In the section that explains the calendar template below you'll see how you can customize
-how data passed to your cells is handled so you can pass different types of information.</p>
+<p class="important"><strong>Note:</strong> 初期状態では、配列にはリンクが含まれるものとされています。下のカレンダーテンプレートを説明した箇所では、セルに渡されたデータがどのように扱われるかが示されています。そこで、違う情報のタイプを指定することができ、どのようにしてカスタマイズ可能かを知ることができます。</p>
 
 
-<h2>Setting Display Preferences</h2>
+<h2>表示設定の変更</h2>
 
-<p>There are seven preferences you can set to control various aspects of the calendar.  Preferences are set by passing an
-array of preferences in the second parameter of the loading function. Here is an example:</p>
+<p>7つの設定項目でカレンダーの様々な面をコントロールできます。設定項目は呼び出し関数の第二引数に配列として渡して設定します。例です:</p>
 
 
 <code>
@@ -129,41 +121,50 @@ $this->load->library('calendar', $prefs);<br />
 <br />
 echo $this->calendar->generate();</code>
 
-<p>The above code would start the calendar on saturday, use the "long" month heading, and the "short" day names.  More information
-regarding preferences below.</p>
+<p>上のコードは、土曜日から始まり、「長い」形式の月名と「短い」形式の曜日名をヘッダに使用します。設定項目についての詳しい情報は下記のとおりです。</p>
 
 
 
 
 <table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
 <tr>
-<th>Preference</th>
-<th>Default&nbsp;Value</th>
-<th>Options</th>
-<th>Description</th>
+<th>設定項目</th>
+<th>初期値</th>
+<th>オプション</th>
+<th>説明</th>
 </tr><tr>
-<td class="td"><strong>template</strong></td><td class="td">None</td><td class="td">None</td><td class="td">A string containing your calendar template. See the template section below.</td>
+<td class="td"><strong>template</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">カレンダーテンプレートの文字列。テンプレートのセクションを参照。</td>
 </tr><tr>
-<td class="td"><strong>local_time</strong></td><td class="td">time()</td><td class="td">None</td><td class="td">A Unix timestamp corresponding to the current time.</td>
+<td class="td"><strong>local_time</strong></td><td class="td">time()</td>
+<td class="td">なし</td>
+<td class="td">現在時刻として関連づけるUNIXタイムスタンプ。</td>
 </tr><tr>
-<td class="td"><strong>start_day</strong></td><td class="td">sunday</td><td class="td">Any week day (sunday, monday, tuesday, etc.)</td><td class="td">Sets the day of the week the calendar should start on.</td>
+<td class="td"><strong>start_day</strong></td><td class="td">sunday</td>
+<td class="td"> すべての曜日(sunday, monday, tuesday, など)</td>
+<td class="td">カレンダーの開始曜日。</td>
 </tr><tr>
-<td class="td"><strong>month_type</strong></td><td class="td">long</td><td class="td">long, short</td><td class="td">Determines what version of the month name to use in the header. long = January, short = Jan.</td>
+<td class="td"><strong>month_type</strong></td><td class="td">long</td><td class="td">long, short</td>
+<td class="td">ヘッダの月名をどの形式にするか。 long = January, short = Jan.</td>
 </tr><tr>
-<td class="td"><strong>day_type</strong></td><td class="td">abr</td><td class="td">long, short, abr</td><td class="td">Determines what version of the weekday names to use in the column headers. long = Sunday, short = Sun, abr = Su.</td>
+<td class="td"><strong>day_type</strong></td><td class="td">abr</td><td class="td">long, short, abr</td>
+<td class="td">ヘッダのカラムの曜日名の形式にどの形式を用いるか。 long = Sunday, short = Sun, abr = Su.</td>
 </tr><tr>
-<td class="td"><strong>show_next_prev</strong></td><td class="td">FALSE</td><td class="td">TRUE/FALSE (boolean)</td><td class="td">Determines whether to display links allowing you to toggle to next/previous months. See information on this feature below.</td>
+<td class="td"><strong>show_next_prev</strong></td><td class="td">FALSE</td><td class="td">TRUE/FALSE (boolean)</td>
+<td class="td">次/ 前 の 月に移動できるURLを表示するかどうか。この機能については下記参照。</td>
 </tr><tr>
-<td class="td"><strong>next_prev_url</strong></td><td class="td">None</td><td class="td">A URL</td><td class="td">Sets the basepath used in the next/previous calendar links.</td>
+<td class="td"><strong>next_prev_url</strong></td><td class="td">None</td><td class="td">URL</td>
+<td class="td">次の月/ 前の月 のリンクを利用する場合の基準パス。</td>
 </tr>
 </table>
 
 
 
-<h2>Showing Next/Previous Month Links</h2>
+<h2>次の月 / 前の月 リンクの表示</h2>
 
-<p>To allow your calendar to dynamically increment/decrement via the next/previous links requires that you set up your calendar
-code similar to this example:</p>
+<p>次へ / 前へ のリンクを経由してカレンダーを動的に進める / 戻る ようにするには、次の例のようなコードをカレンダーのコードに設定する必要があります:</p>
 
 
 <code>$prefs = array (<br />
@@ -175,20 +176,19 @@ $this-&gt;load-&gt;library('calendar', $prefs);<br />
 <br />
 echo $this->calendar->generate(<var>$this->uri->segment(3)</var>, <var>$this->uri->segment(4)</var>);</code>
 
-<p>You'll notice a few things about the above example:</p>
+<p>上のサンプルで、何点か気づいた点があるはずです:</p>
 
 <ul>
-<li>You must set the "show_next_prev" to TRUE.</li>
-<li>You must supply the URL to the controller containing your calendar in the "next_prev_url" preference.</li>
-<li>You must supply the "year" and "month" to the calendar generating function via the URI segments where they appear (Note:  The calendar class automatically adds the year/month to the base URL you provide.).</li>
+<li>&quot;show_next_prev&quot; を TRUE にする必要があります。</li>
+<li>&quot;next_prev_url&quot; の設定項目でカレンダーが設置されているコントローラへのURLを指定しなければなりません。</li>
+<li>カレンダー生成関数に指定する「年」と「月」には、URIセグメントに出現するものを指定します（Note: カレンダークラスは基準のURLに対して年・月を自動的に追加します）</li>
 </ul>
 
 
 
-<h2>Creating a Calendar Template</h2>
+<h2>カレンダーテンプレートの作成</h2>
 
-<p>By creating a calendar template you have 100% control over the design of your calendar. Each component of your
-calendar will be placed within a pair of pseudo-variables as shown here:</p>
+<p>カレンダーテンプレートを作成することで、カレンダーのデザインを100%コントロールできます。カレンダーの各部品は次に示す擬似変数のペアの間に配置されます:</p>
 
 
 <code>
@@ -236,13 +236,13 @@ echo $this->calendar->generate();</code>
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="benchmark.html">Benchmark Class</a>
+前のトピック:&nbsp;&nbsp;<a href="benchmark.html">ベンチマーククラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="cart.html">Cart Class</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="cart.html">カートクラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

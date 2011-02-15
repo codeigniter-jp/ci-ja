@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Reserved Names : CodeIgniter User Guide</title>
+<title>予約語一覧 : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -13,6 +12,7 @@
 <script type="text/javascript" src="../nav/moo.fx.js"></script>
 <script type="text/javascript" src="../nav/user_guide_menu.js"></script>
 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv='expires' content='-1' />
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
@@ -28,41 +28,37 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
 </tr>
 </table>
 </div>
 <!-- END NAVIGATION -->
 
-
 <!-- START BREADCRUMB -->
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Controllers
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;予約語一覧
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
 
 <br clear="all" />
 
-
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Reserved Names</h1>
+<h1>予約語一覧</h1>
 
-<p>In order to help out, CodeIgniter uses a series of functions and names in its operation. Because of this, some names cannot be used by a developer. Following is a list of reserved names that cannot be used.</p>
-<h3>Controller names</h3>
-<p>Since your controller classes will extend the main application controller you
-must be careful not to name your functions identically to the ones used by that class, otherwise your local functions
-will override them.  The following
-is a list of reserved names.  Do not name your controller any of these:</p>
+<p>CodeIgniterでは実行の際に様々な関数、定数、クラス名を使用します。そのため既に定義済みの名称は使用することができません。</p>
+
+<h3>コントローラ名</h3>
+<p>コントローラはメインアプリケーションコントローラを継承するため、メインコントローラが扱うメソッド名と同じメソッド名を使うことはできません。同じ名称にした場合、ローカルクラスで定義されたメソッドの内容で上書きされてしまいます。以下は予約語の一覧です。コントローラ内<!--のメソッド名には-->では、以下の名称を使わないようにしましょう。
+
 <ul>
 	<li>Controller</li>
 	<li>CI_Base</li>
@@ -70,7 +66,7 @@ is a list of reserved names.  Do not name your controller any of these:</p>
 	<li>Default</li>
 	<li>index</li>
 </ul>
-<h3>Functions</h3>
+<h3>関数名</h3>
 <ul>
 	<li>is_really_writable()</li>
 	<li>load_class()</li>
@@ -82,13 +78,13 @@ is a list of reserved names.  Do not name your controller any of these:</p>
 	<li>_exception_handler()</li>
 	<li>get_instance()</li>
 	</ul>
-<h3>Variables</h3>
+<h3>変数名</h3>
 <ul>
 	<li>$config</li>
 	<li>$mimes</li>
 	<li>$lang</li>
 </ul>
-<h3>Constants</h3>
+<h3>定数名</h3>
 <ul>
 	<li>EXT</li>
 	<li>FCPATH</li>
@@ -112,15 +108,15 @@ is a list of reserved names.  Do not name your controller any of these:</p>
 </div>
 <!-- END CONTENT -->
 
-
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="controllers.html">Controllers</a>
+前のトピック:&nbsp;&nbsp;<a href="controllers.html">コントローラ</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="views.html">Views</a></p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="views.html">ビュー</a></p>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

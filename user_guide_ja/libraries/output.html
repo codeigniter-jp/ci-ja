@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Output Class : CodeIgniter User Guide</title>
+<title>出力クラス : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,9 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Output Class
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+出力クラス</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -56,48 +55,40 @@ Output Class
 <div id="content">
 
 
-<h1>Output Class</h1>
+<h1>出力クラス</h1>
 
-<p>The Output class is a small class with one main function:  To send the finalized web page to the requesting browser.  It is
-also responsible for <a href="../general/caching.html">caching</a> your web pages, if you use that feature.</p>
+<p>出力クラスはリクエストを発信したブラウザに処理済みのwebページを送信するという一つの主要機能をもった小さなクラスです。また、このクラスは、キャッシュ機能を利用する場合にページを<a href="../general/caching.html">キャッシュ</a>する責任も持っています。</p>
 
-<p class="important"><strong>Note:</strong> This class is initialized automatically by the system so there is no need to do it manually.</p>
+<p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
 
-<p>Under normal circumstances you won't even notice the Output class since it works transparently without your intervention.
-For example, when you use the <a href="../libraries/loader.html">Loader</a> class to load a view file, it's automatically
-passed to the Output class, which will be called automatically by CodeIgniter at the end of system execution.
-It is possible, however, for you to manually intervene with the output if you need to, using either of the two following functions:</p>
+<p>出力クラスは、ユーザの介入なしに隠れて動作するので、通常の環境では、出力クラスを意識することはありません。たとえばビューファイルを読み込むために<a href="../libraries/loader.html">ローダ（読み込み処理）</a>クラスを使用した場合、ビューファイルは出力クラスに自動的に渡され、CodeIgniterのシステムによって実行の最後で呼ばれます。しかし、必要があれば、次のいずれかのメソッドを使って、手動で出力に介入することもできます:</p>
 
 <h2>$this->output->set_output();</h2>
 
-<p>Permits you to manually set the final output string.  Usage example:</p>
+<p>最終出力の文字列を手動でセットできます。使用例:</p>
 
 <code>$this->output->set_output($data);</code>
 
-<p><strong>Important:</strong> If you do set your output manually, it must be the last thing done in the function you call it from.
-For example, if you build a page in one of your controller functions, don't set the output until the end.</p>
+<p><strong>Important:</strong> 手動で出力をセットしたとき、呼ばれているメソッドの処理がそこで終わります。たとえば、コントローラのメソッドの中で、ページを構築した場合、処理の最後になるまで、出力をセットしてはいけません。</p>
 
 
 <h2>$this->output->get_output();</h2>
 
-<p>Permits you to manually retrieve any output that has been sent for storage in the output class.  Usage example:</p>
+<p>出力クラスに保存するために送られた出力を手動で読み取ることができます。使用例:</p>
 <code>$string = $this->output->get_output();</code>
 
-<p>Note that data will only be retrievable from this function if it has been previously sent to the output class by one of the
-CodeIgniter functions like <var>$this->load->view()</var>.</p>
+<p><var>$this->load->view()</var> などのCodeIgniterの機能を使って、すでに出力クラスに送られたデータの場合、このメソッドを使ってのみ、そのデータを取得できるということに注意しておいてください。</p>
 
+<h2>$this->output->append_output();</h2> 
 
-<h2>$this->output->append_output();</h2>
+<p>出力文字列にデータを追加する。使用例:</p>
 
-<p>Appends data onto the output string.  Usage example:</p>
-
-<code>$this->output->append_output($data);</code>
-
+<code>$this->output->append_output($data);</code> 
 
 
 <h2>$this->output->set_header();</h2>
 
-<p>Permits you to manually set server headers, which the output class will send for you when outputting the final rendered display.  Example:</p>
+<p>最終レンダリングされた表示を出力クラスが出力する際に、サーバが返すHTTPレスポンスのヘッダを手動でセットできます。例:</p>
 
 <code>
 $this->output->set_header("HTTP/1.0 200 OK");<br />
@@ -107,41 +98,43 @@ $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
 $this->output->set_header("Cache-Control: post-check=0, pre-check=0");<br />
 $this->output->set_header("Pragma: no-cache");	</code>
 
-
 <h2>$this->output->set_status_header(<var>code</var>, '<var>text</var>');</h2>
 
-<p>Permits you to manually set a server status header.  Example:</p>
+<p>サーバが返すHTTPレスポンスヘッダのステータスを手動でセットできます。例:</p>
 
-<code>$this->output->set_status_header('401');<br />
-// Sets the header as:  Unauthorized</code>
+<code>
+$this->output->set_status_header('401');<br />
+// ヘッダは Unauthorized に設定されます
+</code>
 
-<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">See here</a> for a full list of headers.</p>
+<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">全てのHTTPレスポンスヘッダの一覧</a>をご覧ください。</p>
 
 <h2>$this->output->enable_profiler();</h2>
 
-<p>Permits you to enable/disable the <a href="../general/profiling.html">Profiler</a>, which will display benchmark and other data
-at the bottom of your pages for debugging and optimization purposes.</p>
+<p>デバッグあるいは最適化のためにベンチマークなどのデータをページの末尾に表示する<a href="../general/profiling.html">プロファイラ</a>を有効/無効にします。</p>
 
-<p>To enable the profiler place the following function anywhere within your <a href="../general/controllers.html">Controller</a> functions:</p>
+<p>プロファイラを有効にするには、<a href="../general/controllers.html">コントローラ</a> のメソッド内のいずれかの場所に、次のメソッドを設置してください:</p>
 <code>$this->output->enable_profiler(TRUE);</code>
 
-<p>When enabled a report will be generated and inserted at the bottom of your pages.</p>
+<p>有効化されると、レポートが生成され、ページの最下部に挿入されます。</p>
 
-<p>To disable the profiler you will use:</p>
+<p>プロファイラを無効にするには、次のコードを使います:</p>
 <code>$this->output->enable_profiler(FALSE);</code>
 
-<h2>$this->output->set_profiler_sections();</h2>
+<h2>$this->output->set_profiler_sections();</h2> 
 
-<p>Permits you to enable/disable specific sections of the Profiler when enabled.  Please refer to the <a href="../general/profiling.html">Profiler</a> documentation for further information.</p>
+<p>プロファイラが有効な場合に各セクションの有効／無効を指定することができます。
+より詳しい情報は <a href="../general/profiling.html">プロファイラ</a> をご覧下さい。</p>
 
-<h2>$this->output->cache();</h2>
-<p>The CodeIgniter output library also controls caching.  For more information, please see the <a href="../general/caching.html">caching documentation</a>.</p>
+<h2>$this->output->cache()</h2>
 
-<h2>Parsing Execution Variables</h2>
+<p>CodeIgniterの出力クラスはキャッシュ操作も可能です。より詳しい情報は、<a href="../general/caching.html">Webページのキャッシュ</a>をご覧下さい。</p>
 
-	<p>CodeIgniter will parse the pseudo-variables <var>{elapsed_time}</var> and <var>{memory_usage}</var> in your output by default.  To disable this, set the <var>$parse_exec_vars</var> class property to <var>FALSE</var> in your controller.
+<h2>実行変数の解析</h2> 
 
-	<code>$this->output->parse_exec_vars = FALSE;</code>
+<p>初期状態において CodeIgniter は出力中に擬似変数 <var>{elapsed_time}</var> と <var>{memory_usage}</var> を解析します。これを無効にするには、コントローラー内でクラスプロパティの <var>$parse_exec_vars</var> を <var>FALSE</var> に設定します。</p>
+
+<code>$this->output->parse_exec_vars = FALSE;</code> 
 
 </div>
 <!-- END CONTENT -->
@@ -149,13 +142,13 @@ at the bottom of your pages for debugging and optimization purposes.</p>
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="language.html">Language Class</a>
+前のトピック:&nbsp;&nbsp;<a href="language.html">言語クラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="pagination.html">Pagination Class</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="pagination.html">ページネーションクラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

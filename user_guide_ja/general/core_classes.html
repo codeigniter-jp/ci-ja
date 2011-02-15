@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Creating Core System Classes : CodeIgniter User Guide</title>
+<title>コアシステムクラスの作成 : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Creating Core System Classes
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+コアシステムクラスの作成
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,22 +55,22 @@ Creating Core System Classes
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Creating Core System Classes</h1>
+<h1>コアシステムクラスの作成</h1>
 
-<p>Every time CodeIgniter runs there are several base classes that are initialized automatically as part of the core framework.
-It is possible, however, to swap any of the core system classes with your own versions or even extend the core versions.</p>
+<p>CodeIgniter が実行されるたびに、フレームワークの一部として自動的に初期化される基本クラスがいくつかあります。
+しかし、コアシステムのクラスをユーザバージョンのクラスと置き換えたり、コアシステムのクラスを拡張したりすることもできます。</p>
 
-<p><strong>Most users will never have any need to do this,
-but the option to replace or extend them does exist for those who would like to significantly alter the CodeIgniter core.</strong>
+<p><strong>ほとんどのユーザにとっては、そうすることは、まず必要ないでしょう。
+しかし、CodeIgniter のコアを大きく変えたい人のために、置き換えたり拡張したりできる選択肢が用意されています。</strong>
 </p>
 
-<p class="important"><strong>Note:</strong>&nbsp; Messing with a core system class has a lot of implications, so make sure you
-know what you are doing before attempting it.</p>
+<p class="important"><strong>Note:</strong>&nbsp; コアのシステムクラスを扱うと様々な影響が出てきますので、コアクラスを変更する前には、必ず、
+変更することで何が起こるかを調べるようにしてください。</p>
 
 
-<h2>System Class List</h2>
+<h2>システムクラスのリスト</h2>
 
-<p>The following is a list of the core system files that are invoked every time CodeIgniter runs:</p>
+<p>下記は、CodeIgniter を実行する度にいつも読み出されるコアシステムファイルのリストです:</p>
 
 <ul>
 <li>Benchmark</li>
@@ -88,17 +88,17 @@ know what you are doing before attempting it.</p>
 <li>Utf8</li>
 </ul>
 
-<h2>Replacing Core Classes</h2>
+<h2>コアクラスの置き換え</h2>
 
-<p>To use one of your own system classes instead of a default one simply place your version inside your local <dfn>application/core</dfn> directory:</p>
+<p>デフォルトのクラスの代わりにユーザ定義のシステムクラスを使うには、単に、ユーザが作成したバージョンのものを <dfn>application/core</dfn> ディレクトリの中に配置するだけです:</p>
 
 <code>application/core/<dfn>some-class.php</dfn></code>
 
-<p>If this directory does not exist you can create it.</p>
+<p>このディレクトリが存在しない場合は、自分で作成することもできます。</p>
 
-<p>Any file named identically to one from the list above will be used instead of the one normally used.</p>
+<p>ファイル名は、上のリストの中にある通常のものと置き換えるものの名前と同じ名前にします。</p>
 
-<p>Please note that your class must use <kbd>CI</kbd> as a prefix. For example, if your file is named <kbd>Input.php</kbd> the class will be named:</p>
+<p>ユーザクラスには、 <kbd>CI</kbd> をプリフィックスとして使わなければならないことを注意してください。たとえば、ファイルが <kbd>Input.php</kbd> という名前ならクラスは次のように名付けます:</p>
 
 <code>
 class CI_Input {<br /><br />
@@ -108,25 +108,25 @@ class CI_Input {<br /><br />
 
 
 
-<h2>Extending Core Class</h2>
+<h2>コアクラスの拡張(継承)</h2>
 
-<p>If all you need to do is add some functionality to an existing library - perhaps add a function or two - then
-it's overkill to replace the entire library with your version.  In this case it's better to simply extend the class.
-Extending a class is nearly identical to replacing a class with a couple exceptions:</p>
+<p>既存の関数に何かの機能を追加する - おそらく1つか2つのメソッド追加 - だけでよいのであれば、
+ライブラリの全部をユーザ定義のものに置き換えてしまうのはやり過ぎです。このようなケースでは、クラスを単に拡張(継承)するのが適しています。
+クラスの拡張はクラスの置き換えと次の2点を除いてよく似ています:</p>
 
 <ul>
-<li>The class declaration must extend the parent class.</li>
-<li>Your new class name and filename must be prefixed with <kbd>MY_</kbd> (this item is configurable.  See below.).</li>
+<li>クラス宣言では親クラスを継承する必要があります。</li>
+<li>新しいクラスの名前とファイル名には、<kbd>MY_</kbd> というプリフィックス(この項目は変更できます。このページの下の方をご覧ください)を付ける必要があります。</li>
 </ul>
 
-<p>For example, to extend the native <kbd>Input</kbd> class you'll create a file named <dfn>application/core/</dfn><kbd>MY_Input.php</kbd>, and declare your class with:</p>
+<p>たとえば、ネイティブの <kbd>Input</kbd> クラスを拡張するには、<dfn>application/core/</dfn><kbd>MY_Input.php</kbd> という名前のファイルを作成し、次のようにクラス宣言をします:</p>
 
 <code>
 class MY_Input extends CI_Input {<br /><br />
 
 }</code>
 
-<p>Note: If you need to use a constructor in your class make sure you extend the parent constructor:</p>
+<p>Note: ユーザクラスでコンストラクタを使う場合は親クラスのコンストラクタを呼ぶのを忘れないでください:</p>
 
 <code>
 class MY_Input extends CI_Input {<br />
@@ -137,11 +137,11 @@ class MY_Input extends CI_Input {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;}<br />
 }</code>
 
-<p class="important"><strong>Tip:</strong>&nbsp; Any functions in your class that are named identically to the functions in the parent class will be used instead of the native ones
-(this is known as "method overriding").
-This allows you to substantially alter the CodeIgniter core.</p>
+<p class="important"><strong>Tip:</strong>&nbsp; 親クラスのメソッドと同じ名前のユーザクラスのメソッドはみな、ネイティブのものと置き換えられて使用されます
+("メソッドのオーバーライド" として知られています ).
+これにより、実質的に、CodeIgniter のコアを置き換えることができます。</p>
 
-<p>If you are extending the Controller core class, then be sure to extend your new class in your application controller's constructors.</p>
+<p>もしコントローラのコアクラスを拡張したいなら、コントローラのコンストラクタに新しいクラスを継承させます。</p>
 
 <code>class Welcome extends MY_Controller {<br />
 <br />
@@ -156,13 +156,13 @@ This allows you to substantially alter the CodeIgniter core.</p>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br />
 }</code>
 
-<h3>Setting Your Own Prefix</h3>
+<h3>ユーザクラスのプリフィックス(接頭辞)の設定</h3>
 
-<p>To set your own sub-class prefix, open your <dfn>application/config/config.php</dfn> file and look for this item:</p>
+<p>ユーザ作成のサブクラスにつけるプリフィックスを設定するには、<dfn>application/config/config.php</dfn> ファイルを開き、次の項目を探して設定してください:</p>
 
 <code>$config['subclass_prefix'] = 'MY_';</code>
 
-<p>Please note that all native CodeIgniter libraries are prefixed with <kbd>CI_</kbd> so DO NOT use that as your prefix.</p>
+<p>CodeIgniter の全ネイティブライブラリには <kbd>CI_</kbd> というプリフィックスがついているのを注意してください。ユーザ作成クラスのプリフィックスには、この <kbd>CI_</kbd> を使用してはいけません。</p>
 
 
 
@@ -173,13 +173,13 @@ This allows you to substantially alter the CodeIgniter core.</p>
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="creating_libraries.html">Creating Your Own Libraries</a>
+前のトピック:&nbsp;&nbsp;<a href="creating_libraries.html">ユーザライブラリの作成</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="hooks.html">Hooks - Extending the Core</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="hooks.html">フック - コアの拡張</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

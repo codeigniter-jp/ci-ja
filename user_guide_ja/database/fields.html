@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Field Data : CodeIgniter User Guide</title>
-
+<title>フィールドの情報 : CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -40,11 +39,11 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-<a href="index.html">Database Library</a> &nbsp;&#8250;&nbsp;
-Field Names
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+フィールドの情報
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -57,14 +56,14 @@ Field Names
 <div id="content">
 
 
-<h1>Field Data</h1>
+<h1>フィールドの情報</h1>
 
 
 <h2>$this->db->list_fields()</h2>
-<p>Returns an array containing the field names. This query can be called two ways:</p>
+<p>フィールド名のリストを返します。２つの方法で問い合わせできます:</p>
 
 
-<p>1. You can supply the table name and call it from the <dfn>$this->db-></dfn> object:</p>
+<p>1.  <dfn>$this->db-></dfn> オブジェクトで使うときは、テーブル名を指定できます:</p>
 
 <code>
 $fields = $this->db->list_fields('table_name');<br /><br />
@@ -75,8 +74,7 @@ foreach ($fields as $field)<br />
 }
 </code>
 
-<p>2. You can gather the field names associated with any query you run by calling the function
-from your query result object:</p>
+<p>2. 結果オブジェクトでこのメソッドを使えば、実行したクエリに関連するフィールド名を知ることができます:</p>
 
 <code>
 $query = $this->db->query('SELECT * FROM some_table');
@@ -91,28 +89,28 @@ foreach ($query->list_fields() as $field)<br />
 
 <h2>$this->db->field_exists()</h2>
 
-<p>Sometimes it's helpful to know whether a particular field exists before performing an action.
-Returns a boolean TRUE/FALSE.  Usage example:</p>
+<p>実行前に、特定のフィールドが存在するか知りたい場合に役立ちます。ブール値で TRUE / FALSE を返します。使用例:</p>
 
 <code>
 if ($this->db->field_exists('field_name', 'table_name'))<br />
 {<br />
-&nbsp;&nbsp; // some code...<br />
+&nbsp;&nbsp; // 何かのコード...<br />
 }
 </code>
 
-<p>Note:  Replace <em>field_name</em> with the name of the column you are looking for, and replace
-<em>table_name</em> with the name of the table you are looking for.</p>
+<p>注意:  <em>field_name</em> を探したい列名に置き換え、<em>table_name</em> を列を探すテーブル名に置き換えてください。</p>
+
+
 
 
 <h2>$this->db->field_data()</h2>
-<p>Returns an array of objects containing field information.</p>
-<p>Sometimes it's helpful to gather the field names or other metadata, like the column type, max length, etc.</p>
+<p>フィールド情報のオブジェクトを配列で返します。</p>
+<p>フィールド名や型や最大サイズなどのその他のメタデータを知りたい場合に役立ちます。</p>
 
 
-<p class="important">Note: Not all databases provide meta-data.</p>
+<p class="important">Note: すべてのデータベースがメタデータを提供するわけではありません。</p>
 
-<p>Usage example:</p>
+<p>使用例:</p>
 
 <code>
 $fields = $this->db->field_data('table_name');<br /><br />
@@ -126,21 +124,21 @@ foreach ($fields as $field)<br />
 }
 </code>
 
-<p>If you have run a query already you can use the result object instead of supplying the table name:</p>
+<p>すでにクエリを実行した後であれば、テーブル名を指定する代わりに、次のように、結果オブジェクトを使用できます:</p>
 
 <code>
-$query = $this->db->query("YOUR QUERY");<br />
+$query = $this->db->query("クエリ");<br />
 $fields = $query->field_data();
 </code>
 
 
-<p>The following data is available from this function if supported by your database:</p>
+<p>利用するデータベースが対応していれば、このメソッドで次のデータが利用可能になります:</p>
 
 <ul>
-<li>name - column name</li>
-<li>max_length - maximum length of the column</li>
-<li>primary_key - 1 if the column is a primary key</li>
-<li>type - the type of the column</li>
+<li>name - 列名</li>
+<li>max_length - 列データの最大サイズ</li>
+<li>primary_key - カラムが主キーであれば 1 が設定</li>
+<li>type - 列の型</li>
 </ul>
 
 
@@ -150,13 +148,12 @@ $fields = $query->field_data();
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="table_data.html"> Table Data</a>
+前のトピック:&nbsp;&nbsp;<a href="table_data.html"> テーブルの情報</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="call_function.html">Custom Function Calls</a>
-</p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="call_function.html">PHPネイティブ関数の呼び出し</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

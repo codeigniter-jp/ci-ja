@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Config Class : CodeIgniter User Guide</title>
+<title>設定クラス : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,9 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Config Class
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+設定クラス</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -56,110 +55,96 @@ Config Class
 <div id="content">
 
 
-<h1>Config Class</h1>
+<h1>設定クラス</h1>
 
-<p>The Config class provides a means to retrieve configuration preferences.  These preferences can
-come from the default config file (<samp>application/config/config.php</samp>) or from your own custom config files.</p>
+<p>設定クラスは、設定情報を取得する手段を提供します。設定情報は、デフォルトの設定ファイル (<samp>application/config/config.php</samp>) または、ユーザ定義の設定ファイルから取得できます。</p>
 
-<p class="important"><strong>Note:</strong> This class is initialized automatically by the system so there is no need to do it manually.</p>
+<p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
 
 
-<h2>Anatomy of a Config File</h2>
+<h2>設定ファイルの詳細</h2>
 
-<p>By default, CodeIgniter has one primary config file, located at <samp>application/config/config.php</samp>.  If you open the file using
-your text editor you'll see that config items are stored in an array called <var>$config</var>.</p>
+<p>初期状態では、CodeIgniter には、<samp>application/config/config.php</samp> にある一個のメイン設定ファイルがあります。テキストエディタを使ってファイルを開くと、<var>$config</var> という名前の配列に、設定項目がセットされているのがわかると思います。</p>
 
-<p>You can add your own config items to
-this file, or if you prefer to keep your configuration items separate (assuming you even need config items),
-simply create your own file and save it in <dfn>config</dfn> folder.</p>
+<p>このファイルにユーザ定義の設定項目を追加することもできますし、設定項目を分けておきたい場合は (ユーザ定義の設定項目が必要だと仮定した場合の話です)、単に、ユーザ用のファイルを作成し、<dfn>config</dfn> フォルダに保存するだけです。</p>
 
-<p><strong>Note:</strong> If you do create your own config files use the same format as the primary one, storing your items in
-an array called  <var>$config</var>. CodeIgniter will intelligently manage these files so there will be no conflict even though
-the array has the same name (assuming an array index is not named the same as another).</p>
+<p><strong>Note:</strong> ユーザ用の設定ファイルを作成する場合は、メインのものと同じフォーマットを使って、 <var>$config</var>という名前の配列に設定項目をセットしてください。CodeIgniter では(配列の添字が他と同じ名前でないとすれば)配列の名前が同じであったとしても衝突がないように、設定ファイルが賢く管理されます。</p>
 
-<h2>Loading a Config File</h2>
+<h2>設定ファイルの読み込み</h2>
 
-<p><strong>Note:</strong> CodeIgniter automatically loads the primary config file (<samp>application/config/config.php</samp>),
-so you will only need to load a config file if you have created your own.</p>
+<p><strong>Note:</strong> CodeIgniter では、メインの設定ファイル (<samp>application/config/config.php</samp>) は自動で読み込まれますので、ユーザ定義の設定ファイルだけをロードする必要があります。</p>
 
-<p>There are two ways to load a config file:</p>
+<p>設定ファイルをロードするには2つの方法があります:</p>
 
-<ol><li><strong>Manual Loading</strong>
+<ol>
+<li><strong>手動での読み込み</strong>
 
-<p>To load one of your custom config files you will use the following function within the <a href="../general/controllers.html">controller</a> that needs it:</p>
+<p>ユーザ定義の設定ファイルをロードするには、その設定ファイルが必要になる<a href="../general/controllers.html">コントローラ</a>の中で次のメソッドを使います:</p>
 
 <code>$this->config->load('<var>filename</var>');</code>
 
-<p>Where <var>filename</var> is the name of your config file, without the .php file extension.</p>
+<p>ここでの <var>filename</var> は、ファイル拡張子の .php を除いたユーザ定義設定ファイルの名前になります。</p>
 
-<p>If you need to load multiple config files normally they will be merged into one master config array.  Name collisions can occur, however, if
-you have identically named array indexes in different config files.  To avoid collisions you can set the second parameter to <kbd>TRUE</kbd>
-and each config file will be stored in an array index corresponding to the name of the config file. Example:</p>
+<p>複数の設定ファイルを読み込む必要がある場合、通常は一つのマスタ設定配列に設定項目が展開されます。しかし、別々の設定ファイルで、同じ名前の添字を使っていた場合は、名前の衝突が起こる可能性があります。衝突を避けるには、第2引数を<kbd>TRUE</kbd>
+に設定し、格納先の配列の添字でをそれぞれの設定ファイルを設定ファイルの名前にして、その中に設定を格納させます。例:</p>
 
 <code>
-// Stored in an array with this prototype:  $this->config['blog_settings'] = $config<br />
+// 次のような形で配列に保管されます:  $this->config['blog_settings'] = $config<br />
 $this->config->load('<var>blog_settings</var>', <kbd>TRUE</kbd>);</code>
+<p>上記の方法でセットした設定項目を読み取る方法については、下の <dfn>設定項目の取り出し</dfn> というタイトルのセクションを見てください。</p>
 
-<p>Please see the section entitled <dfn>Fetching Config Items</dfn> below to learn how to retrieve config items set this way.</p>
+<p>第3引数で、設定ファイルが存在しなかった時に発生するエラーを出さないようにすることができます[ 訳注: TRUEに設定するとエラーがでなくなります。 ]:</p>
 
-<p>The third parameter allows you to suppress errors in the event that a config file does not exist:</p>
+<code>$this->config->load('<var>blog_settings</var>', <dfn>FALSE</dfn>, <kbd>TRUE</kbd>);</code></li>
+<li><strong>自動読み込み</strong></li>
 
-<code>$this->config->load('<var>blog_settings</var>', <dfn>FALSE</dfn>, <kbd>TRUE</kbd>);</code>
-
-</li>
-<li><strong>Auto-loading</strong>
-
-<p>If you find that you need a particular config file globally, you can have it loaded automatically by the system.  To do this,
-open the <strong>autoload.php</strong> file, located at <samp>application/config/autoload.php</samp>, and add your config file as
-indicated in the file.</p>
+<p>特定の設定ファイルをグローバルに利用すべきことが分かった場合、システムでその設定を自動読み込みすることができます。これを実施するには、<samp>application/config/autoload.php</samp> にある<strong> autoload.php</strong> ファイルを開き、そこに書いてある方法に従って、設定ファイルを追加してください。</p>
 </li>
 </ol>
 
 
-<h2>Fetching Config Items</h2>
+<h2>設定項目の取り出し</h2>
 
-<p>To retrieve an item from your config file, use the following function:</p>
+<p>設定ファイルから設定項目を読み取るには、次のメソッドを使います:</p>
 
 <code>$this->config->item('<var>item name</var>');</code>
 
-<p>Where <var>item name</var> is the $config array index you want to retrieve. For example, to fetch your language choice you'll do this:</p>
+<p>ここでの <var>item name</var> は、読み取りたい $config 配列の添字です。たとえば、選択した言語を取得するには次のようにします:</p>
 
 <code>$lang = $this->config->item('language');</code>
 
-<p>The function returns FALSE (boolean) if the item you are trying to fetch does not exist.</p>
+<p>このメソッドは、読み取ろうとする項目が存在しない場合、FALSE (ブール値) を返します。</p>
 
-<p>If you are using the second parameter of the <kbd>$this->config->load</kbd> function in order to assign your config items to a specific index
-you can retrieve it by specifying the index name in the second parameter of the <kbd>$this->config->item()</kbd> function.  Example:</p>
+<p>指定の添字に設定項目を代入するために、<kbd>$this->config->load</kbd> メソッドの第2引数を使った場合、<kbd>$this->config->item()</kbd> メソッドの第2引数でも指定した添字の名前を設定することで、それを読み取ることができます。例:</p>
 
 <code>
-// Loads a config file named blog_settings.php and assigns it to an index named "blog_settings"<br />
+//  blog_settings.php というファイル名の設定ファイルをロードし、"blog_settings" というインデックスに代入します<br />
 $this->config->load('<var>blog_settings</var>', <kbd>TRUE</kbd>);<br /><br />
 
-// Retrieve a config item named site_name contained within the blog_settings array<br />
+// blog_settings 配列にある site_name という設定項目を取得します<br />
 $site_name = $this->config->item('<dfn>site_name</dfn>', '<var>blog_settings</var>');<br /><br />
 
-// An alternate way to specify the same item:<br />
+// 同じ項目を指定する別の方法です:<br />
 $blog_config = $this->config->item('<var>blog_settings</var>');<br />
 $site_name = $blog_config['site_name'];</code>
+<h2>設定項目をセットする</h2>
 
-<h2>Setting a Config Item</h2>
-
-<p>If you would like to dynamically set a config item or change an existing one, you can do so using:</p>
+<p>動的に設定項目をセットしたり既存の設定を変更したりするには、下記のようなコードを使います:</p>
 
 <code>$this->config->set_item('<var>item_name</var>', '<var>item_value</var>');</code>
 
-<p>Where <var>item_name</var> is the $config array index you want to change, and <var>item_value</var> is its value.</p>
+<p>ここでの <var>item_name</var> は、変更したい項目の $config 配列の添字で、 <var>item_value</var> はその値になります。</p>
 
 
-<h2>Helper Functions</h2>
+<h2>ヘルパメソッド</h2>
 
-<p>The config class has the following helper functions:</p>
+<p>設定クラスには、次のヘルパメソッドがあります:</p>
 
 <h2>$this->config->site_url();</h2>
-<p>This function retrieves the URL to your site, along with the "index" value you've specified in the config file.</p>
+<p>このメソッドは、設定ファイルで、"index" の値に指定した、サイトへのURLを取得します。</p>
 
 <h2>$this->config->system_url();</h2>
-<p>This function retrieves the URL to your <dfn>system folder</dfn>.</p>
+<p>このメソッドを使うと <dfn>system フォルダ</dfn> のURLを取得できます。</p>
 
 
 </div>
@@ -168,13 +153,13 @@ $site_name = $blog_config['site_name'];</code>
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="calendar.html">Calendaring Class</a>
+前のトピック:&nbsp;&nbsp;<a href="calendar.html">カレンダークラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="../database/index.html">Database Class</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="../database/index.html">データベースクラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

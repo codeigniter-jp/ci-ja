@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Generating Query Results : CodeIgniter User Guide</title>
-
+<title>クエリ結果の生成 : CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,11 +40,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-<a href="index.html">Database Library</a> &nbsp;&#8250;&nbsp;
-Query Results
-</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+クエリ結果</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -59,19 +57,17 @@ Query Results
 
 
 
-<h1>Generating Query Results</h1>
+<h1>クエリ結果の生成</h1>
 
 
-<p>There are several ways to generate query results:</p>
+<p>クエリ結果を生成する方法はいくつかあります:</p>
 
 	<h2>result()</h2>
-
-	<p>This function returns the query result as an array of <strong>objects</strong>, or <strong>an empty array</strong> on failure.
-
-	Typically you'll use this in a foreach loop, like this:</p>
-
+	
+	<p>このメソッドは、結果を<strong>オブジェクト</strong>の配列として、または失敗した場合には <strong>空の配列</strong> を返します。典型的には、次のように、これをforeach ループで使用します:</p>
+	
 	<code>
-	$query = $this->db->query("YOUR QUERY");<br />
+	$query = $this->db->query("ここにクエリ");<br />
 	<br />
 	foreach ($query->result() as $row)<br />
 	{<br />
@@ -79,13 +75,13 @@ Query Results
 	&nbsp;&nbsp;&nbsp;echo $row->name;<br />
 	&nbsp;&nbsp;&nbsp;echo $row->body;<br />
 	}</code>
+	
+	<p>上の<dfn>メソッド</dfn>は<dfn>result_object()</dfn> の別名です。</p>
 
-	<p>The above <dfn>function</dfn> is an alias of <dfn>result_object()</dfn>.</p>
-
-	<p>If you run queries that might <strong>not</strong> produce a result, you are encouraged to test the result first:</p>
-
+	<p>実行したクエリでは、結果が<strong>生成されない</strong>可能性があるときは、最初に結果を調べるようにしてください:</p>
+	
 	<code>
-	$query = $this->db->query("YOUR QUERY");<br />
+	$query = $this->db->query("ここにクエリ");<br />
 	<br />
 	if ($query->num_rows() > 0)<br />
 	{<br />
@@ -96,13 +92,13 @@ Query Results
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->body;<br />
 	&nbsp;&nbsp;&nbsp;}<br />
 	}
-	</code>
-
+</code>
+	
 	<h2>result_array()</h2>
-
-	<p>This function returns the query result as a pure array, or an empty array when no result is produced.  Typically you'll use this in a foreach loop, like this:</p>
+	
+	<p>このメソッドは、結果を純粋な配列として、あるいは結果が生成されなかったときには空の配列を返します。典型的には、次のように、foreachループで使用されます:</p>
 	<code>
-	$query = $this->db->query("YOUR QUERY");<br />
+	$query = $this->db->query("ここにクエリ");<br />
 	<br />
 	foreach ($query->result_array() as $row)<br />
 	{<br />
@@ -113,11 +109,10 @@ Query Results
 
 
 	<h2>row()</h2>
-
-	<p>This function returns a single result row.  If your query has more than one row, it returns only the first row.
-	The result is returned as an <strong>object</strong>.  Here's a usage example:</p>
+	
+	<p>このメソッドは単一行を返します。クエリの応答が一つ以上の行になる場合は、最初の行だけが返ります。結果は<strong>オブジェクト</strong>で返ります。使用方法の例です:</p>
 	<code>
-	$query = $this->db->query("YOUR QUERY");<br />
+	$query = $this->db->query("ここにクエリ");<br />
 	<br />
 	if ($query->num_rows() > 0)<br />
 	{<br />
@@ -127,19 +122,17 @@ Query Results
 	&nbsp;&nbsp;&nbsp;echo $row->name;<br />
 	&nbsp;&nbsp;&nbsp;echo $row->body;<br />
 	}
-	</code>
-
-	<p>If you want a specific row returned you can submit the row number as a digit in the first parameter:</p>
-
+</code>
+	
+	<p>特定の行を返したいときは、第１引数に、行番号を数値として渡すことができます:</p>
+	
 	<code>$row = $query->row(<dfn>5</dfn>);</code>
-
-
 	<h2>row_array()</h2>
 
-	<p>Identical to the above <var>row()</var> function, except it returns an array.  Example:</p>
+	<p>配列を返すこと以外は、上の <var>row()</var> メソッドと同じです。例:</p>
 
 	<code>
-	$query = $this->db->query("YOUR QUERY");<br />
+	$query = $this->db->query("ここにクエリ");<br />
 	<br />
 	if ($query->num_rows() > 0)<br />
 	{<br />
@@ -148,16 +141,16 @@ Query Results
 	&nbsp;&nbsp;&nbsp;echo $row['title'];<br />
 	&nbsp;&nbsp;&nbsp;echo $row['name'];<br />
 	&nbsp;&nbsp;&nbsp;echo $row['body'];<br />
-	}
-	</code>
+	}	</code>
 
-
-	<p>If you want a specific row returned you can submit the row number as a digit in the first parameter:</p>
-
+	
+	<p>特定の行を返したいときは、第１引数に、行番号を数値として渡すことができます: </p>
+	
 	<code>$row = $query->row_array(<dfn>5</dfn>);</code>
+	
 
+ 	<p>さらに、次のようなバリエーションで、結果を 進む/もどる/最初に移動/最後に移動 してデータを見ていくことができます:</p>
 
-	<p>In addition, you can walk forward/backwards/first/last through your results using these variations:</p>
 
 <p>
 	<strong>$row = $query->first_row()</strong><br />
@@ -166,7 +159,7 @@ Query Results
 	<strong>$row = $query->previous_row()</strong>
 </p>
 
-<p>By default they return an object unless you put the word "array" in the parameter:</p>
+<p>引数に"array"と指定しなければ、デフォルトでは、これらのメソッドはオブジェクトを返します:</p>
 
 <p>
 	<strong>$row = $query->first_row('array')</strong><br />
@@ -176,19 +169,18 @@ Query Results
 </p>
 
 
-
-<h1>Result Helper Functions</h1>
+<h1>結果ヘルパメソッド</h1>
 
 
 <h2>$query->num_rows()</h2>
-<p>The number of rows returned by the query. Note: In this example, <dfn>$query</dfn> is the variable that the query result object is assigned to:</p>
+<p>クエリで返された行数を取得します。Note: 下記の例では <dfn>$query</dfn> は、クエリの結果オブジェクトを代入した変数です:</p>
 
 <code>$query = $this->db->query('SELECT * FROM my_table');<br /><br />
 echo $query->num_rows();
 </code>
 
 <h2>$query->num_fields()</h2>
-<p>The number of FIELDS (columns) returned by the query.  Make sure to call the function using your query result object:</p>
+<p>問い合わせ結果のフィールド数 (列数) を返します。このメソッドは、クエリ結果オブジェクトを使っていることを確かめてから呼び出してください:</p>
 
 <code>$query = $this->db->query('SELECT * FROM my_table');<br /><br />
 echo $query->num_fields();
@@ -197,27 +189,23 @@ echo $query->num_fields();
 
 
 <h2>$query->free_result()</h2>
-<p>It frees the memory associated with the result and deletes the result resource ID.  Normally PHP frees its memory automatically at the end of script
-execution.  However, if you are running a lot of queries in a particular script you might want to free the result after each query result has been
-generated in order to cut down on memory consumptions.  Example:
-</p>
+<p>結果に関連付けられたメモリを解放し、結果のリソースIDを削除します。ふつうは、PHP は、スクリプトの実行を終えると、メモリを自動で解放します。しかし、特定のスクリプトで多くのクエリを実行しているとき、メモリの使用量を削減するために、各クエリの結果が生成されたあとにメモリを開放したい場合があります。例:</p>
 
 <code>$query = $this->db->query('SELECT title FROM my_table');<br /><br />
 foreach ($query->result() as $row)<br />
 {<br />
 &nbsp;&nbsp;&nbsp;echo $row->title;<br />
 }<br />
-$query->free_result();  // The $query result object will no longer be available<br />
+$query->free_result();  // 結果オブジェクトの $query はもう利用できなくなります<br />
 <br />
 $query2 = $this->db->query('SELECT name FROM some_table');<br /><br />
 $row = $query2->row();<br />
 echo $row->name;<br />
-$query2->free_result();  // The $query2 result object will no longer be available
-</code>
+$query2->free_result();  // 結果オブジェクトの $query2 はもう利用できなくなります</code>
 
 
 
-
+	
 
 </div>
 <!-- END CONTENT -->
@@ -225,13 +213,13 @@ $query2->free_result();  // The $query2 result object will no longer be availabl
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="queries.html">Queries</a>
+前のトピック:&nbsp;&nbsp;<a href="queries.html">クエリ</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="helpers.html">Query Helper Functions</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="helpers.html">クエリヘルパメソッド</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

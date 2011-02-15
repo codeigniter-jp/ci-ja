@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Profiling Your Application : CodeIgniter User Guide</title>
-
+<title>アプリケーションのプロファイリング : CodeIgniter ユーザガイド 日本語版</title>
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,19 +16,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +40,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Profiling Your Application
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+アプリケーションのプロファイリング
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -56,106 +55,103 @@ Profiling Your Application
 <div id="content">
 
 
-<h1>Profiling Your Application</h1>
+<h1>アプリケーションのプロファイリング</h1>
 
-<p>The Profiler Class will display benchmark results, queries you have run, and $_POST data at the bottom of your pages.
-This information can be useful during development in order to help with debugging and optimization.</p>
-
-
-<h2>Initializing the Class</h2>
-
-<p class="important"><strong>Important:</strong>&nbsp; This class does <kbd>NOT</kbd> need to be initialized. It is loaded automatically by the
-<a href="../libraries/output.html">Output Class</a> if profiling is enabled as shown below.</p>
-
-<h2>Enabling the Profiler</h2>
-
-	<p>To enable the profiler place the following function anywhere within your <a href="controllers.html">Controller</a> functions:</p>
-	<code>$this->output->enable_profiler(TRUE);</code>
-
-	<p>When enabled a report will be generated and inserted at the bottom of your pages.</p>
-
-	<p>To disable the profiler you will use:</p>
-	<code>$this->output->enable_profiler(FALSE);</code>
+<p>プロファイラクラスを使うと、ベンチマーク結果、実行したクエリ、$_POST データをページの一番下に表示させることができます。この情報は、開発中にデバッグや最適化を支援するものとして役立つものです。</p>
 
 
-<h2>Setting Benchmark Points</h2>
+<h2>クラスを初期化する</h2>
 
-	<p>In order for the Profiler to compile and display your benchmark data you must name your mark points using specific syntax.</p>
+<p class="important"><strong>重要:</strong>&nbsp; このクラスは初期化<kbd>する必要がありません</kbd>。下記に示すようにプロファイリングが有効になっている場合は、<a href="../libraries/output.html">出力クラス</a>で自動的にロードされます。</p>
 
-	<p>Please read the information on setting Benchmark points in <a href="../libraries/benchmark.html">Benchmark Class</a> page.</p>
+<h2>プロファイラを有効化する</h2>
+
+        <p><a href="controllers.html">コントローラ</a> のメソッド内のいずれかの場所で次のメソッドを含むコードを記述すれば、プロファイラが有効になります:</p>
+        <code>$this->output->enable_profiler(TRUE);</code>
+
+        <p>有効化されると、レポートが生成され、ページの一番下に差し込まれます。</p>
+
+        <p>プロファイラを無効にするには、次の文を使います:</p>
+        <code>$this->output->enable_profiler(FALSE);</code>
 
 
-<h2>Enabling and Disabling Profiler Sections</h2>
+<h2>ベンチマークの観測点をセットする</h2>
 
-	<p>Each section of Profiler data can be enabled or disabled by setting a corresponding config variable to <var>TRUE</var> or <var>FALSE</var>.  This can be done one of two ways.  First, you can set application wide defaults with the <dfn>application/config/profiler.php</dfn> config file.</p>
+        <p>ベンチマークのデータをプロファイラを使ってコンパイルし表示するには、特定の構文を使って観測点の名前を付ける必要があります。</p>
 
-	<code>$config['config']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= FALSE;<br />
-	$config['queries']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= FALSE;<br /></code>
+        <p>ベンチマークの観測点設定についての情報は、<a href="../libraries/benchmark.html">ベンチマーククラス</a> の解説ページをお読みください。</p>
 
-	<p>In your controllers, you can override the defaults and config file values by calling the <kbd>set_profiler_sections()</kbd> method of the <a href="../libraries/output.html">Output class</a>:</p>
 
-	<code>$sections = array(<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;'config' &nbsp;=> TRUE,<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;'queries' => TRUE<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;);<br />
-	<br />
-	$this->output->set_profiler_sections($sections);</code>
+<h2>プロファイラセクションの有効化と無効化</h2>
 
-	<p>Available sections and the array key used to access them are described in the table below.</p>
+  <p>プロファイラデータの各セクションは、対応する設定変数に <var>TRUE</var> または <var>FALSE</var> を指定する事で、有効または無効に出来ます。これには 2 つの方法があります。1 つめは、設定ファイルの <dfn>application/config/profiler.php</dfn> でアプリケーション全体のデフォルトを指定する方法です。</p>
 
-	<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
-		<tr>
-		<th>Key</th>
-		<th>Description</th>
-		<th>Default</th>
-		</tr><tr>
+<code>$config['config']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= FALSE;<br />
+        $config['queries']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= FALSE;<br /></code>
 
-		<td class="td"><strong>benchmarks</strong></td>
-		<td class="td">Elapsed time of Benchmark points and total execution time</td>
-		<td class="td">TRUE</td>
-		</tr><tr>
+        <p>コントローラ内で<a href="../libraries/output.html">出力クラス</a>の <kbd>set_profiler_sections()</kbd> メソッドをコールすることで、既定値や設定ファイルの値を上書きする事も出来ます:</p>
 
-		<td class="td"><strong>config</strong></td>
-		<td class="td">CodeIgniter Config variables</td>
-		<td class="td">TRUE</td>
-		</tr><tr>
+<code>$sections = array(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'config' &nbsp;=> TRUE,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'queries' => TRUE<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br />
+        <br />
+        $this->output->set_profiler_sections($sections);</code>
 
-		<td class="td"><strong>controller_info</strong></td>
-		<td class="td">The Controller class and method requested</td>
-		<td class="td">TRUE</td>
-		</tr><tr>
+        <p>利用可能なセクションとそれにアクセスする為の配列のキーは以下の表のとおりです。</p>
 
-		<td class="td"><strong>get</strong></td>
-		<td class="td">Any GET data passed in the request</td>
-		<td class="td">TRUE</td>
-		</tr><tr>
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+                <tr>
+                <th>キー</th>
+                <th>説明</th>
+                <th>既定値</th>
+                </tr><tr>
 
-		<td class="td"><strong>http_headers</strong></td>
-		<td class="td">The HTTP headers for the current request</td>
-		<td class="td">TRUE</td>
-		</tr><tr>
+                <td class="td"><strong>benchmarks</strong></td>
+                <td class="td">ベンチマーク観測点での経過時間と総実行時間</td>
+                <td class="td">TRUE</td>
+                </tr><tr>
 
-		<td class="td"><strong>memory_usage</strong></td>
-		<td class="td">Amount of memory consumed by the current request, in bytes</td>
-		<td class="td">TRUE</td>
-		</tr><tr>
+                <td class="td"><strong>config</strong></td>
+                <td class="td">CodeIgniter の設定変数</td>
+                <td class="td">TRUE</td>
+                </tr><tr>
 
-		<td class="td"><strong>post</strong></td>
-		<td class="td">Any POST data passed in the request</td>
-		<td class="td">TRUE</td>
-		</tr><tr>
+                <td class="td"><strong>controller_info</strong></td>
+                <td class="td">リクエストされたコントローラのクラスとメソッド</td>
+                <td class="td">TRUE</td>
+                </tr><tr>
 
-		<td class="td"><strong>queries</strong></td>
-		<td class="td">Listing of all database queries executed, including execution time</td>
-		<td class="td">TRUE</td>
-		</tr><tr>
+                <td class="td"><strong>get</strong></td>
+                <td class="td">リクエストに渡された全ての GET データ</td>
+                <td class="td">TRUE</td>
+                </tr><tr>
 
-		<td class="td"><strong>uri_string</strong></td>
-		<td class="td">The URI of the current request</td>
-		<td class="td">TRUE</td>
-		</tr><tr>
-	</table>
+                <td class="td"><strong>http_headers</strong></td>
+                <td class="td">現在のリクエストの HTTP ヘッダ</td>
+                <td class="td">TRUE</td>
+                </tr><tr>
 
+                <td class="td"><strong>memory_usage</strong></td>
+                <td class="td">現在のリクエストで消費されたバイト単位のメモリ容量</td>
+                <td class="td">TRUE</td>
+                </tr><tr>
+
+                <td class="td"><strong>post</strong></td>
+                <td class="td">リクエストに渡された全ての POST データ</td>
+                <td class="td">TRUE</td>
+                </tr><tr>
+
+                <td class="td"><strong>queries</strong></td>
+                <td class="td">実行時間を含む、実行された全てのデータベースクエリの一覧</td>
+                <td class="td">TRUE</td>
+                </tr><tr>
+
+                <td class="td"><strong>uri_string</strong></td>
+                <td class="td">現在のリクエスト URI</td>
+                <td class="td">TRUE</td>
+                </tr><tr>
+        </table>
 
 </div>
 <!-- END CONTENT -->
@@ -163,13 +159,13 @@ This information can be useful during development in order to help with debuggin
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="caching.html">Caching</a>
+前のトピック:&nbsp;&nbsp;<a href="caching.html">キャッシュ</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="managing_apps.html">Managing Applications</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="managing_apps.html">アプリケーションの管理</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>
