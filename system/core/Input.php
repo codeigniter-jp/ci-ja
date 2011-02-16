@@ -211,7 +211,7 @@ class CI_Input {
 	* @param	bool	true makes the cookie secure
 	* @return	void
 	*/
-	function set_cookie($name = '', $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = FALSE)
+	function set_cookie($name = '', $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = NULL)
 	{
 		if (is_array($name))
 		{
@@ -244,6 +244,12 @@ class CI_Input {
 		else
 		{
 			$expire = ($expire > 0) ? time() + $expire : 0;
+		}
+
+		// If TRUE/FALSE is not provided, use the config
+		if ( ! is_bool($secure))
+		{
+			$secure = (bool) (config_item('cookie_secure') === TRUE);
 		}
 
 		setcookie($prefix.$name, $value, $expire, $path, $domain, $secure);
