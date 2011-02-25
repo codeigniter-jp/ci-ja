@@ -7,7 +7,7 @@ dir="_export"
 
 show_usage() {
   echo " usage: $0 ci-ja_version tag"
-  echo "    eg: $0 2.0.0-1 v2.0.0-1"
+  echo "    eg: $0 2.0.0-1 v2.0.0-1-ja"
 }
 
 
@@ -27,6 +27,7 @@ hg archive -r "$tag" "$dir/$pkg"
 
 
 cd "$dir/$pkg"
+rm .hg_archival.txt .hgignore .hgtags
 rm -rf _scripts
 
 
