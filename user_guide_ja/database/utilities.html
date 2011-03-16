@@ -94,18 +94,18 @@
 <code>
 $dbs = $this->dbutil->list_databases();<br />
 <br />
-foreach($dbs as $db)<br />
+foreach ($dbs as $db)<br />
 {<br />
 &nbsp;&nbsp;&nbsp; echo $db;<br />
 }</code>
 
 
-<h2><a name="exists"></a>$this->db->database_exists();</h2>
+<h2><a name="exists"></a>$this->dbutil->database_exists();</h2>
 
 <p>特定のデータベースが存在するかどうかを知る場合に役立ちます。ブール値の TRUE/FALSE を返します。使用例:</p>
 
 <code>
-if ($this->db->database_exists('database_name'))<br />
+if ($this->dbutil->database_exists('database_name'))<br />
 {<br />
 &nbsp;&nbsp; // 何らかのコード...<br />
 }

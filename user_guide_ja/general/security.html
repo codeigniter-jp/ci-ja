@@ -80,6 +80,23 @@
 
 <p>$_POST および $_COOKIE 配列 以外の全グローバル変数は、システムが初期化されるときにクリアされます。このクリア処理はregister_globals = off と同等の効果を発揮します。 </p>
 
+<a name="error_reporting"></a>
+<h2>error_reporting</h2>
+
+<p>
+    In production environments, it is typically desirable to disable PHP's 
+    error reporting by setting the internal error_reporting flag to a value of 0. This disables native PHP
+    errors from being rendered as output, which may potentially contain
+    sensitive information.
+</p>
+
+<p>
+    Setting CodeIgniter's <kbd>ENVIRONMENT</kbd> constant in index.php to a
+    value of '<kbd>production</kbd>' will turn off these errors. In development
+    mode, it is recommended that a value of '<kbd>development</kbd>' is used.
+    More information about differentiating between environments can be found
+    on the <a href="environments.html">Handling Environments</a> page.
+</p>
 
 <h2>magic_quotes_runtime</h2>
 

@@ -123,11 +123,31 @@ else<br />
 
 <code>$this->input->post('some_data', TRUE);</code>
 
+<p>To return an array of all POST items call without any parameters.</p>
+<p>To return all POST items and pass them through the XSS filter leave the first parameter blank while setting the second parameter to boolean;</p>
+<p>The function returns FALSE (boolean) if there are no items in the POST.</p>
+
+<code>
+	$this->input->post(); // returns all POST items with XSS filter
+	<br />
+	$this->input->post(NULL, FALSE); // returns all POST items without XSS
+</code>
+
 <h2>$this->input->get()</h2>
 
 <p>このメソッドは、get データを取り出すということ以外は、post メソッドと同じです:</p>
 
 <code>$this->input->get('some_data', TRUE);</code>
+
+<p>To return an array of all GET items call without any parameters.</p>
+<p>To return all GET items and pass them through the XSS filter leave the first parameter blank while setting the second parameter to boolean;</p>
+<p>The function returns FALSE (boolean) if there are no items in the GET.</p>
+
+<code>
+	$this->input->get(); // returns all GET items with XSS filter
+	<br />
+	$this->input->get(NULL, FALSE); // returns all GET items without XSS filtering
+</code>
 
 <h2>$this->input->get_post()</h2>
 
@@ -210,12 +230,13 @@ $this->input->set_cookie($cookie);
 <p>どのようにリクエストを受け付けたかにかかわらず、サイト全体で使うクッキーには、次のように <strong>domain</strong> にピリオドから始まるURLを追加してください: .your-domain.com</p>
 <p>パスは、メソッドがルートパスをセットするので通常は必要ありません。</p>
 <p>プリフィックスは、同一のサーバによってセットされたクッキーにおける名前の衝突を回避したい場合にのみ必要です。</p>
+<p>The secure boolean is only needed if you want to make it a secure cookie by setting it to TRUE.</p>
 
 <h4>個々のパラメータを渡す方法</h4>
 
 <p>希望であれば、個別のパラメータを使ってデータを渡してクッキーをセットすることができます:</p>
 
-<code>$this->input->set_cookie($name, $value, $expire, $domain, $path, $prefix);</code>
+<code>$this->input->set_cookie($name, $value, $expire, $domain, $path, $prefix, $secure);</code>
 
 <h2>$this->input->get_cookie()</h2>
 

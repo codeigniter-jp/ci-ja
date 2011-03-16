@@ -66,7 +66,15 @@
 
 <h2>キャッシュの有効化</h2>
 
-<p>キャッシュを有効にするには、次のコードをコントローラのメソッド内のいずれかの場所に記述します:</p>
+<p>Caching can be enabled on a per-page basis, and you can set the length of time that a page should remain cached before being refreshed.
+When a page is loaded for the first time, the cache file will be written to your <dfn>application/cache</dfn> folder.  On subsequent page loads the cache file will be retrieved
+and sent to the requesting user's browser.  If it has expired, it will be deleted and refreshed before being sent to the browser.</p>
+
+<p>Note: The Benchmark tag is not cached so you can still view your page load speed when caching is enabled.</p>
+
+<h2>Enabling Caching</h2>
+
+<p>To enable caching, put the following tag in any of your controller functions:</p>
 
 <code>$this->output->cache(<var>n</var>);</code>
 

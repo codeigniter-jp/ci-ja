@@ -97,10 +97,10 @@
 &lt;?php
 class Blog extends CI_Controller {
 
-  function index()
-  {
-    echo 'Hello World!';
-  }
+	public function index()
+	{
+		echo 'Hello World!';
+	}
 }
 ?&gt;
 </textarea>
@@ -150,15 +150,15 @@ class <var>blog</var> extends CI_Controller {<br />
 &lt;?php
 class Blog extends CI_Controller {
 
-  function index()
-  {
-    echo 'Hello World!';
-  }
+	public function index()
+	{
+		echo 'Hello World!';
+	}
 
-  function comments()
-  {
-    echo 'Look at this!';
-  }
+	public function comments()
+	{
+		echo 'Look at this!';
+	}
 }
 ?&gt;
 </textarea>
@@ -183,7 +183,7 @@ class Blog extends CI_Controller {
 &lt;?php<br />
 class Products extends CI_Controller {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function shoes($sandals, $id)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;public function shoes($sandals, $id)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;{<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $sandals;<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $id;<br />
@@ -210,7 +210,7 @@ class Products extends CI_Controller {<br />
 
 <p>上記で述べたとおり、URIの第2セグメントは一般に、コントローラのどのメソッドが呼ばれるかを決めているところですが、CodeIgniter では <kbd>_remap()</kbd> メソッドを利用することで、この振る舞いをオーバーライド（再定義）することができます:</p>
 
-<code>function _remap()<br />
+<code>public function _remap()<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;// ここに何かのコード...<br />
 }</code>
@@ -219,7 +219,7 @@ class Products extends CI_Controller {<br />
 
 <p>オーバーライドされたメソッド呼び出し（通常はURIの第2セグメントの文字列）は <kbd>_remap()</kbd> メソッドの引数として渡されます:</p>
 
-<code>function _remap(<var>$method</var>)<br />
+<code>public function _remap(<var>$method</var>)<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;if ($method == 'some_method')<br />
 &nbsp;&nbsp;&nbsp;&nbsp;{<br />
@@ -233,10 +233,10 @@ class Products extends CI_Controller {<br />
 
 <p>メソッド名以降のセグメントは、オプションである第 2 引数として <kbd>_remap()</kbd> メソッドに渡されます。この配列は、 PHP の <a href="http://php.net/call_user_func_array">call_user_func_array</a> 関数と組み合わせることで、CodeIgniter のデフォルトの動作を指定するのに使うことができます。</p>
 
-<code>function _remap($method, $params = array())<br />
+<code>public function _remap($method, $params = array())<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;$method = 'process_'.$method;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;if (method_exists($this, $method)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if (method_exists($this, $method))<br />
 &nbsp;&nbsp;&nbsp;&nbsp;{<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return call_user_func_array(array($this, $method), $params);<br />
 &nbsp;&nbsp;&nbsp;&nbsp;}<br />
@@ -252,7 +252,7 @@ class Products extends CI_Controller {<br />
 <p>以下に例を示します:</p>
 
 <code>
-function _output($output)<br />
+public function _output($output)<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;echo $output;<br />
 }</code>
@@ -274,7 +274,7 @@ function _output($output)<br />
 <p>パブリックなアクセスに対して、あるメソッドを隠したい場合があります。メソッドをプライベートにするには、単にアンダースコアを名前の先頭に付加すれば、URLリクエストを経由して実行されなくなります。例えば、次のようなメソッドがあったとします:</p>
 
 <code>
-function _utility()<br />
+private function _utility()<br />
 {<br />
 &nbsp;&nbsp;// 何かのコード<br />
 }</code>
@@ -319,7 +319,7 @@ function _utility()<br />
 &lt;?php<br />
 class <kbd>Blog</kbd> extends CI_Controller {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function <kbd>__construct()</kbd><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public function <kbd>__construct()</kbd><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<var>parent:__construct();</var><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// これ以降にコードを書いていく<br />
