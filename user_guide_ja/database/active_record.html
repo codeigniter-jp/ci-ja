@@ -517,13 +517,13 @@ $this->db->insert('mytable', $object);
 <br /><br />
 // 生成されるSQL文: INSERT INTO mytable (title, content, date) VALUES ('My Title', 'My Content', 'My Date')</code>
 
-<p>第1引数はテーブル名で、第2引数はオブジェクトになります[ 訳注：原文では連想配列で…となっており誤りと思われる ].</p>
+<p>第1引数はテーブル名で、第2引数はオブジェクトになります [ 訳注: 原文では連想配列で…となっており誤りと思われる ]。</p>
 
 <p class="important"><strong>Note:</strong>すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
 
 <h2>$this->db->insert_batch();</h2>
-<p>Generates an insert string based on the data you supply, and runs the query. You can either pass an
-<strong>array</strong> or an <strong>object</strong> to the function.  Here is an example using an array:</p>
+<p>与えられたデータをもとに INSERT 文を生成し実行します。
+<strong>配列</strong> または <strong>オブジェクト</strong> のどちらかでメソッドにデータを渡せます。配列を使った例は次の通りです:</p>
 
 <code>
 $data = array(<br/>
@@ -541,11 +541,11 @@ $data = array(<br/>
 <br />
 $this->db->insert_batch('mytable', $data);
 <br /><br />
-// Produces: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date'),  ('Another title', 'Another name', 'Another date')</code>
+// 生成されるSQL文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date'),  ('Another title', 'Another name', 'Another date')</code>
 
-<p>The first parameter will contain the table name, the second is an associative array of values.</p>
+<p>第１引数はテーブル名で、第2引数は、値の連想配列で指定します。</p>
 
-<p class="important"><strong>Note:</strong> All values are escaped automatically producing safer queries.</p>
+<p class="important"><strong>Note:</strong> すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
 
 
 
