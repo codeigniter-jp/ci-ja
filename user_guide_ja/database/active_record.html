@@ -417,7 +417,7 @@ $this-&gt;db-&gt;having('user_id',  45);<br />
 <h2>$this-&gt;db-&gt;or_having();</h2>
 <p>複数の句を &quot;OR&quot; で分つ以外は、having()と同じです。</p>
 <h2>$this->db->order_by();</h2>
-<p>ORDER BY 句を指定できます。第１引数は、並べ替えたい列の名前を指定します。
+<p>ORDER BY 句を指定できます。第1引数は、並べ替えたい列の名前を指定します。
 第2引数は、並べ替え結果の順序を指定します。選択肢は <kbd>asc</kbd> または <kbd>desc</kbd> または <kbd>random</kbd> です。</p>
 
 <code>$this->db->order_by("title", "desc");
@@ -498,7 +498,7 @@ $this->db->insert('mytable', $data);
 <br /><br />
 // 生成されるSQL文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')</code>
 
-<p>第１引数はテーブル名で、第2引数は、値の連想配列で指定します。</p>
+<p>第1引数はテーブル名で、第2引数は、値の連想配列で指定します。</p>
 
 <p>オブジェクトを使った例は次の通りです:</p>
 
@@ -543,7 +543,7 @@ $this->db->insert_batch('mytable', $data);
 <br /><br />
 // 生成されるSQL文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date'),  ('Another title', 'Another name', 'Another date')</code>
 
-<p>第１引数はテーブル名で、第2引数は、値の連想配列で指定します。</p>
+<p>第1引数はテーブル名で、第2引数は、値の連想配列で指定します。</p>
 
 <p class="important"><strong>Note:</strong> すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
 
