@@ -60,45 +60,45 @@
 <p><img src="images/reactor-bullet.png" width="16" height="16" alt="Reactor Marker" /> 印は CodeIgniter Reactor から提供されたものです。</p>
 
 <h2>Version 2.0.1</h2>
-<p>Release Date: March, 15, 2011<br />
+<p>リリース日付: 2011年3月15日<br />
 Hg Tag: v2.0.1</p>
 
 <ul>
-	<li>General changes
+	<li>全体的な変更
 		<ul>
-			<li>Added <kbd>$config['cookie_secure']</kbd> to the config file to allow requiring a secure (HTTPS) in order to set cookies.</li>
-			<li class="reactor">Added the constant <kbd>CI_CORE</kbd> to help differentiate between Core: TRUE and Reactor: FALSE.</li>
-			<li class="reactor">Added an <kbd>ENVIRONMENT</kbd> constant in index.php, which affects PHP error reporting settings, and optionally, 
-                which configuration files are loaded (see below). Read more on the <a href="general/environments.html">Handling Environments</a> page.</li>
-			<li class="reactor">Added support for <a href="libraries/config.html#environments">environment-specific</a> configuration files.</li>
+			<li>セキュア(HTTPS)クッキーをセットするたの <kbd>$config['cookie_secure']</kbd> が設定ファイルに追加されました。</li>
+			<li class="reactor">Core と Reactor を区別するための定数 <kbd>CI_CORE</kbd> が追加されました。Core: TRUE、Reactor: FALSE。</li>
+			<li class="reactor">index.php に定数 <kbd>ENVIRONMENT</kbd> が追加され、PHP のエラー報告や、
+		オプションでロードされる設定ファイルに影響します(以下を参照)。<a href="general/environments.html">環境の取扱い</a> のページをご覧ください。</li>
+			<li class="reactor"><a href="libraries/config.html#environments">環境固有</a> の設定ファイルのサポートが追加されました。</li>
 		</ul>
 	</li>
-	<li>Libraries
+	<li>ライブラリ
 		<ul>
-			<li class="reactor">Added <kbd>decimal</kbd>, <kbd>less_than</kbd> and <kbd>greater_than</kbd> rules to the <a href="libraries/form_validation.html">Form validation Class</a>.</li>
-			<li class="reactor"><a href="libraries/input.html">Input Class</a> methods <kbd>post()</kbd> and <kbd>get()</kbd> will now return a full array if the first argument is not provided.</li>
-			<li class="reactor">Secure cookies can now be made with the <kbd>set_cookie()</kbd> helper and <a href="libraries/input.html">Input Class</a> method.</li>
-			<li class="reactor">Added <kbd>set_content_type()</kbd> to <a href="libraries/output.html">Output Class</a> to set the output <kbd>Content-Type</kbd> HTTP header based on a MIME Type or a config/mimes.php array key.</li>
-			<li class="reactor"><a href="libraries/output.html">Output Class</a> will now support method chaining.</li>
+			<li class="reactor"><kbd>decimal</kbd>, <kbd>less_than</kbd> and <kbd>greater_than</kbd> ルールが <a href="libraries/form_validation.html">Form バリデーションクラス</a> に追加されました。</li>
+			<li class="reactor"><a href="libraries/input.html">入力クラス</a> の <kbd>post()</kbd> と <kbd>get()</kbd> メソッドは第1引数が指定されない場合、配列全体を返すようになりました。</li>
+			<li class="reactor">セキュアクッキーが <kbd>set_cookie()</kbd> ヘルパと <a href="libraries/input.html">入力クラス</a> のメソッドで指定出きるようになりました。</li>
+			<li class="reactor"><a href="libraries/output.html">出力クラス</a> に <kbd>set_content_type()</kbd> が追加され、<kbd>Content-Type</kbd> HTTP ヘッダを MIME タイプまたは config/mimes.php の配列のキーに基づき出力します。</li>
+			<li class="reactor"><a href="libraries/output.html">出力クラス</a> がメソッドチェーンをサポートするようになりました。</li>
 		</ul>
 	</li>
-	<li>Helpers
+	<li>ヘルパ
 		<ul>
-			<li class="reactor">Changed the logic for <kbd>form_open()</kbd> in <a href="helpers/form_helper.html">Form helper</a>. If no value is passed it will submit to the current URL.</li>
+			<li class="reactor"><a href="helpers/form_helper.html">Form ヘルパ</a> の <kbd>form_open()</kbd> はロジックが変更され、値が渡されない場合、現在の URL に投稿するようになりました。</li>
 		</ul>
 	</li>
 </ul>
 
-<h3>Bug fixes for 2.0.1</h3>
+<h3>2.0.1 の不具合修正</h3>
 <ul>
-	<li class="reactor">CLI requests can now be run from any folder, not just when CD'ed next to index.php.</li>
-	<li class="reactor">Fixed issue #41: Added audio/mp3 mime type to mp3.</li>
-	<li class="reactor">Fixed a bug (Core #329) where the file caching driver referenced the incorrect cache directory.</li>
-	<li class="reactor">Fixed a bug (Reactor #69) where the SHA1 library was named incorrectly.</li>
+	<li class="reactor">CLI リクエストは、index.php のあるフォルダに移動した後でなく、どのフォルダからでも実行できるようになりました。</li>
+	<li class="reactor">issue #41 の修正: mp3 の MIME タイプとして audio/mp3 が追加されました。</li>
+	<li class="reactor">ファイルキャッシングドライバが誤ったキャッシュディレクトリを参照していた不具合 (Core #329) を修正しました。</li>
+	<li class="reactor">SHA1 ライブラリの名前が誤っていた不具合  (Reactor #69) を修正しました。</li>
 </ul>
 
 <h2>Version 2.0.0</h2>
-<p>リリース日付: 2011 年 1 月 28 日<br />
+<p>リリース日付: 2011年1月28日<br />
 Hg Tag: v2.0.0</p>
 
 <ul>
