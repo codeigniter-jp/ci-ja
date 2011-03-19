@@ -75,7 +75,7 @@
 
 <p>ロードすると、ライブラリを <kbd>$this->email-></kbd><samp><em>some_function</em>()</samp> などとして使う準備ができたことになります。各ライブラリは、それらの解説ページで説明していますので、使いたいそれぞれのクラスについての情報をお読みください。</p>
 
-<p>ライブラリファイルは、メインの"libraries"フォルダ内か、アプリケーション独自の <dfn>application/libraries</dfn> フォルダ内にサブディレクトリを設置し、そこに保存することが出来ます。サブディレクトリ内のファイルをロードするには、単純に"libraries"フォルダ内のパスを含めます。例えば、以下のようにファイルが配置されているなら:</p>
+<p>ライブラリファイルは、メインの"libraries"フォルダ内か、アプリケーション独自の <dfn>application/libraries</dfn> フォルダ内にサブディレクトリを設置し、そこに保存することが出来ます。サブディレクトリ内のファイルをロードするには、単純に"libraries"フォルダ内のパスを含めます。たとえば、以下のようにファイルが配置されているなら:</p>
 
 <code>libraries/flavors/chocolate.php</code>
 
@@ -104,7 +104,7 @@ $this->load->library('email', $config);</code>
 
 <h3>ライブラリに別名を割り当てる</h3>
 
-<p>第3引数(オプション)が指定されていなければ、ライブラリには通常、ライブラリと同じ名前がオブジェクト名として割り当てられます。例えば、ライブラリ名が <dfn>Session</dfn> であれば、<dfn>$this->session</dfn> という変数が割り当てられます。</p>
+<p>第3引数(オプション)が指定されていなければ、ライブラリには通常、ライブラリと同じ名前がオブジェクト名として割り当てられます。たとえば、ライブラリ名が <dfn>Session</dfn> であれば、<dfn>$this->session</dfn> という変数が割り当てられます。</p>
 
 <p>自分自身でクラス名を指定したいなら、第3引数でその値を渡す事が出来ます:</p>
 
@@ -130,7 +130,7 @@ $this->my_session
 
 <h2>$this-&gt;load-&gt;model('<var>Model_name</var>');</h2>
 <p><code>$this-&gt;load-&gt;model('<var>Model_name</var>');</code></p>
-<p>もし、モデルファイルがサブフォルダに置かれている場合、モデルフォルダからの相対バスで指定してください。例えば、モデルファイルが、application/models/blog/queries.php にある場合、以下のようにロードします:</p>
+<p>もし、モデルファイルがサブフォルダに置かれている場合、モデルフォルダからの相対バスで指定してください。たとえば、モデルファイルが、application/models/blog/queries.php にある場合、以下のようにロードします:</p>
 <p><code>$this-&gt;load-&gt;model('<var>blog/queries</var>');</code></p>
 <p>もし、モデルオブジェクトに別の名前を付けたい場合は、loadメソッドの第2引数で指定できます:</p>
 <code> $this-&gt;load-&gt;model('<var>Model_name</var>', '<kbd>fubar</kbd>');<br />
@@ -181,7 +181,7 @@ models/<br />
 
 <h3>$this->load->add_package_path()</h3>
 
-<p>Loaderクラスにパッケージパスを追加する処理は与えられたパッケージパスを 後で要求されるリソース名の先頭に追加します。例えば、上述の "Foo Bar" アプリケーションパッケージは <dfn>Foo_bar.php</dfn> という名前のライブラリを持っています。コントローラーでは以下のように記述します:</p>
+<p>Loaderクラスにパッケージパスを追加する処理は与えられたパッケージパスを 後で要求されるリソース名の先頭に追加します。たとえば、上述の "Foo Bar" アプリケーションパッケージは <dfn>Foo_bar.php</dfn> という名前のライブラリを持っています。コントローラーでは以下のように記述します:</p>
 
 <code>$this->load->add_package_path(<var>APPPATH</var>.'third_party/<var>foo_bar</var>/');<br />
 $this->load->library('foo_bar');</code>

@@ -293,7 +293,7 @@ function foo($bar = NULL)</code>
 	
 		<h2><a name="logical_operators"></a>論理演算子</h2>
 		<div class="guidelineDetails">
-			<p><strong>||</strong> は解像度の低いデバイスでは明瞭でない（例えば数字の11にとらえられてしまう）。
+			<p><strong>||</strong> は解像度の低いデバイスでは明瞭でない（たとえば数字の11にとらえられてしまう）。
 				どちらかと言うと<strong>&amp;&amp;</strong> が <strong>AND</strong> よりも好まれる。<strong>!</strong>の前後には空白を入れる。</p>
 <code><strong>間違い</strong>:
 if ($foo || $bar)
@@ -343,7 +343,7 @@ function build_string($str = "")
 	}
 }</code>
 
-		<p><a href="http://us3.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting">型キャスト</a>についての情報も非常に役立ちますのでご覧ください。型キャストには、好ましい若干異なる効果があります。例えば変数を文字列型にキャストすると、NULL やブール値の FALSE といった値は空の文字列になり、0(や他の数値)は数字を表す文字列になります。また、ブール値の TRUE は"1"になります。</p>
+		<p><a href="http://us3.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting">型キャスト</a>についての情報も非常に役立ちますのでご覧ください。型キャストには、好ましい若干異なる効果があります。たとえば変数を文字列型にキャストすると、NULL やブール値の FALSE といった値は空の文字列になり、0(や他の数値)は数字を表す文字列になります。また、ブール値の TRUE は"1"になります。</p>
 
 <code>$str = (string) $str;	// $str を文字列型にキャストします</code>
 
@@ -415,7 +415,7 @@ exp_email_addresses	// アドオンの開発者を特定できる独自のプレ
 exp_pre_email_addresses
 </code>
 
-			<p class="important"><strong>NOTE:</strong> MySQL はテーブル名に 64文字の制限があることに注意しましょう。テーブル名でこの制限が問題になることは、不合理な名前を付けない限り、滅多にありません。例えば、以下のテーブル名はこの制限を 1文字超えています。ばかばかしいでしょ？ <strong>exp_pre_email_addresses_of_registered_users_in_seattle_washington</strong>
+			<p class="important"><strong>NOTE:</strong> MySQL はテーブル名に 64文字の制限があることに注意しましょう。テーブル名でこの制限が問題になることは、不合理な名前を付けない限り、滅多にありません。たとえば、以下のテーブル名はこの制限を 1文字超えています。ばかばかしいでしょ？ <strong>exp_pre_email_addresses_of_registered_users_in_seattle_washington</strong>
 		</div>
 	
 
@@ -429,7 +429,7 @@ exp_pre_email_addresses
 	
 		<h2><a name="whitespace"></a>タブ／スペース</h2>
 		<div class="guidelineDetails">
-			<p>コード内の空白には、スペースでなくタブを用います。これは些細な事に思えるかもしれませんが、スペースの代わりにタブを使う事で、開発者がどのようなアプリケーションを利用していても、各自が見やすくカスタマイズしたインデントレベルでコードを見る事が可能になります。さらに副次的な効果として、例えば4つのスペースに対して1つのタブを用いる事で(わずかではありますが)ファイルがよりコンパクトになります。</p>
+			<p>コード内の空白には、スペースでなくタブを用います。これは些細な事に思えるかもしれませんが、スペースの代わりにタブを使う事で、開発者がどのようなアプリケーションを利用していても、各自が見やすくカスタマイズしたインデントレベルでコードを見る事が可能になります。さらに副次的な効果として、たとえば4つのスペースに対して1つのタブを用いる事で(わずかではありますが)ファイルがよりコンパクトになります。</p>
 		</div>
 	
 
@@ -555,7 +555,7 @@ _convert_text()		// プライベートメソッド</code>
 	
 		<h2><a name="php_errors"></a>PHPエラー</h2>
 		<div class="guidelineDetails">
-			<p>コードはエラーを起こさず、潜在的なWARNINGやNOTICEもなく動作するようにしましょう。例えば、最初にisset()で確かめずに（$_POST配列のキーのような）未定義の変数を使わないようにしてください。</p>
+			<p>コードはエラーを起こさず、潜在的なWARNINGやNOTICEもなく動作するようにしましょう。たとえば、最初にisset()で確かめずに（$_POST配列のキーのような）未定義の変数を使わないようにしてください。</p>
 			<p>アドオンの開発中は全てのユーザーに対してエラーの表示を許可し、PHPのdisplay_errorsオプションが許可に設定されていることを確認してください。設定は以下のようにすれば確認できます：</p>
 <code>if (ini_get('display_errors') == 1)
 {

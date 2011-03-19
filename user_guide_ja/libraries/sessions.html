@@ -135,7 +135,7 @@
 <code>$this-&gt;session-&gt;userdata('<samp>item</samp>');</code>
 
 <p>ここでの <samp>item</samp> は、読み取りたい項目を示す配列のインデックスになります。
-例えば、セッションIDを読み取りたいのであれば、次のようにします:</p>
+たとえば、セッションIDを読み取りたいのであれば、次のようにします:</p>
 
 <code>$session_id = $this-&gt;session-&gt;userdata('<samp>session_id</samp>');</code>
 
@@ -171,7 +171,7 @@ $this-&gt;session-&gt;set_userdata(<samp>$newdata</samp>);</code></p>
 ここの暗号化処理をすると、元の文字列より長い文字列になりますので、どの程度のデータを保存したのかを把握するよう注意してください。</p>
 
 <h2>セッションデータの削除</h2>
-<p>ちょうど set_userdata() がセッションに情報を追加できるように、unset_userdata() は、セッションキーを渡すことにより、情報を取り除くことができます。例えば、'some_name' を セッション情報から削除したいとすると、次のようになります: </p>
+<p>ちょうど set_userdata() がセッションに情報を追加できるように、unset_userdata() は、セッションキーを渡すことにより、情報を取り除くことができます。たとえば、'some_name' を セッション情報から削除したいとすると、次のようになります: </p>
 <p><code>$this-&gt;session-&gt;unset_userdata('some_name');</code></p>
 <p>このメソッドは、削除したい項目の連想配列を渡すこともできます。</p>
 <p><code>$array_items = array('username' => '', 'email' => '');<br />
