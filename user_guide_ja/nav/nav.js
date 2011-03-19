@@ -7,9 +7,9 @@ function create_menu(basepath)
 		'<td class="td" valign="top">' +
 
 		'<ul>' +
-		'<li><a href="'+base+'index.html">ユーザガイド Home</a></li>' +	
+		'<li><a href="'+base+'index.html">ユーザガイド Home</a></li>' +
 		'<li><a href="'+base+'toc.html">目次</a></li>' +
-		'</ul>' +	
+		'</ul>' +
 
 		'<h3>基本情報</h3>' +
 		'<ul>' +
@@ -17,7 +17,7 @@ function create_menu(basepath)
 			'<li><a href="'+base+'license.html">ライセンス契約書 (原文・参考訳)</a></li>' +
 			'<li><a href="'+base+'changelog.html">変更履歴</a></li>' +
 			'<li><a href="'+base+'general/credits.html">クレジット表示</a></li>' +
-		'</ul>' +	
+		'</ul>' +
 		
 		'<h3>インストール</h3>' +
 		'<ul>' +
@@ -26,7 +26,7 @@ function create_menu(basepath)
 			'<li><a href="'+base+'installation/upgrading.html">以前のバージョンからのアップグレード</a></li>' +
 			'<li><a href="'+base+'installation/troubleshooting.html">トラブルシューティング</a></li>' +
 		'</ul>' +
-		
+
 		'<h3>イントロダクション</h3>' +
 		'<ul>' +
 			'<li><a href="'+base+'overview/getting_started.html">はじめよう</a></li>' +
@@ -36,7 +36,7 @@ function create_menu(basepath)
 			'<li><a href="'+base+'overview/appflow.html">アプリケーションフローチャート</a></li>' +
 			'<li><a href="'+base+'overview/mvc.html">Model-View-Controller</a></li>' +
 			'<li><a href="'+base+'overview/goals.html">アーキテクチャのゴール</a></li>' +
-		'</ul>' +	
+		'</ul>' +
 
 		'</td><td class="td_sep" valign="top">' +
 
@@ -59,6 +59,7 @@ function create_menu(basepath)
 			'<li><a href="'+base+'general/caching.html">キャッシュ</a></li>' +
 			'<li><a href="'+base+'general/profiling.html">アプリケーションのプロファイリング</a></li>' +
 			'<li><a href="'+base+'general/managing_apps.html">アプリケーションの管理</a></li>' +
+			'<li><a href="'+base+'general/environments.html">複数環境のハンドリング</a></li>' +
 			'<li><a href="'+base+'general/alternative_php.html">代替の PHP 構文</a></li>' +
 			'<li><a href="'+base+'general/security.html">セキュリティ</a></li>' +
 			'<li><a href="'+base+'general/styleguide.html">PHP スタイルガイド</a></li>' +
@@ -73,7 +74,7 @@ function create_menu(basepath)
 		'</ul>' +
 
 		'</td><td class="td_sep" valign="top">' +
-		
+
 		'<h3>クラスリファレンス</h3>' +
 		'<ul>' +
 		'<li><a href="'+base+'libraries/benchmark.html">ベンチマーククラス</a></li>' +
@@ -137,7 +138,7 @@ function create_menu(basepath)
 		'<li><a href="'+base+'helpers/typography_helper.html">タイポグラフィーヘルパ</a></li>' +
 		'<li><a href="'+base+'helpers/url_helper.html">URL ヘルパ</a></li>' +
 		'<li><a href="'+base+'helpers/xml_helper.html">XML ヘルパ</a></li>' +
-		'</ul>' +	
+		'</ul>' +
 
 		'</td></tr></table>');
 }

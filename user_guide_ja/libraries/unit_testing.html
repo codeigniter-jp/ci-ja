@@ -42,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-ユニットテストクラス</td>
+ユニットテストクラス
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -57,9 +58,13 @@
 
 <h1>ユニットテストクラス</h1>
 
-<p>ユニットテストは、アプリケーションの各メソッド用のテストを書くというソフトウェア開発のアプローチです。このコンセプトにあまり慣れていないのであれば、このことについて少しwebで検索してみてください。</p>
+<p>ユニットテストは、アプリケーションの各メソッド用のテストを書くというソフトウェア開発のアプローチです。
+このコンセプトにあまり慣れていないのであれば、このことについて少しwebで検索してみてください。</p>
 
-<p>CodeIgniterのユニットテストクラスは、評価メソッドと2つの結果メソッドからなる非常にシンプルなものです。本格的なテストスイートを意図して作られたものではなく、コードを評価してコードが正しいデータ型と結果を生成するかを調べるシンプルなメカニズムになっています。</p>
+<p>CodeIgniterのユニットテストクラスは、評価メソッドと2つの結果メソッドからなる非常にシンプルなものです。
+本格的なテストスイートを意図して作られたものではなく、
+コードを評価してコードが正しいデータ型と結果を生成するかを調べるシンプルなメカニズムになっています。
+</p>
 
 
 <h2>クラスの初期化</h2>
@@ -76,7 +81,8 @@
 
 <h2>$this->unit->run( <var>test</var>, <var>expected result</var>, '<var>test name</var>', '<var>notes</var>');</h2>
 
-<p>ここでの <var>test</var> は、テストしたいコードの実行結果が入り、<var>expected result</var> には、期待するデータ型 [または期待する値] が入ります。それから、<var>test name</var> では、オプションで、テストに名前を付けることができます。例:</p>
+<p>ここでの <var>test</var> は、テストしたいコードの実行結果が入り、<var>expected result</var> には、
+期待するデータ型 [または期待する値] が入ります。それから、<var>test name</var> では、オプションで、テストに名前を付けることができます。例:</p>
 
 <code>$test = 1 + 1;<br />
 <br />
@@ -94,7 +100,8 @@ $this->unit->run($test, $expected_result, $test_name);</code>
 
 <code>$this->unit->run('Foo', 'is_string');</code>
 
-<p>"is_string" を第2引数に使っているのにお気づきでしょうか?  これは、テストが文字列型で結果を生成するということをこのメソッドに通知するものです。以下は、比較に使用できる型のリストです:</p>
+<p>"is_string" を第2引数に使っているのにお気づきでしょうか?
+これは、テストが文字列型で結果を生成するということをこのメソッドに通知するものです。以下は、比較に使用できる型のリストです:</p>
 
 <ul>
 <li>is_object</li>
@@ -113,7 +120,8 @@ $this->unit->run($test, $expected_result, $test_name);</code>
 
 <h2>レポートの生成</h2>
 
-<p>各テストの後に結果を表示するか、複数のテストを実行したときに最後にレポートを生成するかのどちらも可能です。レポートを直接表示させるには、<var>run</var> メソッドを単純に出力するか返すかします:</p>
+<p>各テストの後に結果を表示するか、複数のテストを実行したときに最後にレポートを生成するかのどちらも可能です。
+レポートを直接表示させるには、<var>run</var> メソッドを単純に出力するか返すかします:</p>
 
 <code>echo $this->unit->run($test, $expected_result);</code>
 
@@ -132,7 +140,8 @@ $this->unit->run($test, $expected_result, $test_name);</code>
 
 <code>$this->unit->run(1, TRUE);</code>
 
-<p>このテストでは、評価対象が整数で、期待する結果の値がブール値です。しかし、型付けが弱いPHPでは、上のコードを通常の等価テストとしてTRUEとして評価します:</p>
+<p>このテストでは、評価対象が整数で、期待する結果の値がブール値です。
+しかし、型付けが弱いPHPでは、上のコードを通常の等価テストとしてTRUEとして評価します:</p>
 
 <code>if (1 == TRUE) echo 'これは true として評価されます';</code>
 
@@ -146,24 +155,23 @@ $this->unit->run($test, $expected_result, $test_name);</code>
 
 <h2>ユニットテストの有効化/無効化</h2>
 
-<p>スクリプトの中にはテストコードを残しておきたいけれども、必要になるまでそれを実行しない場合、次のようにしてユニットテストを無効にできます:</p>
+<p>スクリプトの中にはテストコードを残しておきたいけれども、
+必要になるまでそれを実行しない場合、次のようにしてユニットテストを無効にできます:</p>
 
 <code>$this->unit->active(FALSE)</code>
-
-
 
 <h2>ユニットテストの結果表示</h2>
 
 <p>ユニットテストの結果では 以下の項目がデフォルトで表示されます: </p>
 
 <ul>
-        <li>テスト名 (test_name)</li>
-        <li>テストデータの型 (test_datatype)</li>
-        <li>ユーザーが期待するデータ型 (res_datatype)</li>
-        <li>結果 (result)</li>
-        <li>ファイル名 (file)</li>
-        <li>行番号 (line)</li>
-        <li>ユーザーがテスト用に入力したメモ書き (notes)</li>
+	<li>テスト名 (test_name)</li>
+	<li>テストデータの型 (test_datatype)</li>
+	<li>ユーザーが期待するデータ型 (res_datatype)</li>
+	<li>結果 (result)</li>
+	<li>ファイル名 (file)</li>
+	<li>行番号 (line)</li>
+	<li>ユーザーがテスト用に入力したメモ書き (notes)</li>
 </ul>
 
 <p><kbd>$this->unit->set_items()</kbd> を使うと これらの結果表示項目をカスタマイズすることができます。たとえば、テストの名前のみを結果表示しそれを result とするならば: </p>
@@ -171,11 +179,13 @@ $this->unit->run($test, $expected_result, $test_name);</code>
 <h3>テスト結果表示のカスタマイズ</h3>
 
 <code>
-        $this->unit->set_test_items(array('test_name', 'result'));
+	$this->unit->set_test_items(array('test_name', 'result'));
 </code>
 
 <h3>テンプレートの作成</h3>
-<p>テスト結果を初期状態のものとは違ったフォーマットにしたい場合、ユーザ定義のテンプレートをセットできます。以下は、シンプルなテンプレートの例です。必須の擬似変数に注意してください:</p>
+
+<p>テスト結果を初期状態のものとは違ったフォーマットにしたい場合、ユーザ定義のテンプレートをセットできます。
+以下は、シンプルなテンプレートの例です。必須の擬似変数に注意してください:</p>
 
 <code>
 $str = '<br />

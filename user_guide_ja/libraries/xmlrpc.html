@@ -59,14 +59,23 @@ XML-RPC および XML-RPC サーバクラス
 <h1>XML-RPC および XML-RPC サーバクラス</h1>
 
 
-<p>CodeIgniter の XML-RPC クラスを使うと、他のサーバにリクエストを送信したり、リクエストを受信するためにXML-RPCサーバをセットアップしたりできます。</p>
+<p>CodeIgniter の XML-RPC クラスを使うと、他のサーバにリクエストを送信したり、リクエストを受信するために
+XML-RPCサーバをセットアップしたりできます。</p>
 
 
 <h2>XML-RPCとは?</h2>
 
-<p>インターネット上の2つのコンピュータが対話する方法で非常にシンプルなのは、XMLを使うものです。<dfn>クライアント</dfn>と呼ばれる一方のコンピュータは、XML-RPC <strong>リクエスト</strong>を<dfn>サーバ</dfn>と呼ばれるもう一方のコンピュータに送信します。サーバがリクエストを受信し、処理すると、クライアントに<strong>レスポンス</strong>を返します。</p>
+<p>インターネット上の2つのコンピュータが対話する方法で非常にシンプルなのは、XMLを使うものです。
+<dfn>クライアント</dfn>と呼ばれる一方のコンピュータは、XML-RPC <strong>リクエスト</strong>を
+<dfn>サーバ</dfn>と呼ばれるもう一方のコンピュータに送信します。サーバがリクエストを受信し、処理すると、
+クライアントに<strong>レスポンス</strong>を返します。</p>
 
-<p>たとえば、MetaWeblog APIを使う場合、XML-RPC クライアント (大抵は、デスクトップの投稿ツール) は、サイトで実行されているXML-RPC サーバにリクエストを送ります。記事を公開するために、新しいブログの記事を作成するリクエストであったり、既存の記事を編集するためのリクエストであったりします。XML-RPCサーバはリクエストを受信すると、リクエストを処理するために、どのクラス/メソッドを呼び出せばいいのかを決定します。処理されると、サーバはレスポンスメッセージを送り返します。</p>
+<p>たとえば、MetaWeblog APIを使う場合、XML-RPC クライアント (大抵は、デスクトップの投稿ツール) は、
+サイトで実行されているXML-RPC サーバにリクエストを送ります。記事を公開するために、
+新しいブログの記事を作成するリクエストであったり、既存の記事を編集するためのリクエストであったりします。
+
+XML-RPCサーバはリクエストを受信すると、リクエストを処理するために、どのクラス/メソッドを呼び出せばいいのかを決定します。
+処理されると、サーバはレスポンスメッセージを送り返します。</p>
 
 <p>仕様の詳細については、<a href="http://www.xmlrpc.com/">XML-RPC</a> のサイトをみてください。</p>
 
@@ -118,21 +127,29 @@ if ( ! $this->xmlrpc->send_request())<br />
 
 <h3>解説</h3>
 
-<p>上のコードでは、XML-RPC クラスを初期化し、サーバのURLと呼び出すメソッド(weblogUpdates.ping)をセットしています。リクエスト (この場合は、タイトルと自分のサイトのURL) が送信用に配列に格納され、request() メソッドを使ってコンパイルされます。最後に、完全なリクエストが送信されます。<dfn>send_request()</dfn> メソッドがFALSEを返した場合は、XML-RPC サーバから返ってきたエラーメッセージを表示します。</p>
+<p>上のコードでは、XML-RPC クラスを初期化し、サーバのURLと呼び出すメソッド(weblogUpdates.ping)をセットしています。
+リクエスト (この場合は、タイトルと自分のサイトのURL) が送信用に配列に格納され、
+request() メソッドを使ってコンパイルされます。
+最後に、完全なリクエストが送信されます。<dfn>send_request()</dfn> メソッドがFALSEを返した場合は、
+XML-RPC サーバから返ってきたエラーメッセージを表示します。</p>
 
 <h2>リクエストの詳細</h2>
 
-<p><dfn>リクエスト</dfn>とは単純にXML-RPC サーバに送信するデータのことです。リクエストの中の各データは<dfn>リクエストパラメータ</dfn>として参照されます。上の例では、2つのパラメータをもっています:
+<p><dfn>リクエスト</dfn>とは単純にXML-RPC サーバに送信するデータのことです。
+リクエストの中の各データは<dfn>リクエストパラメータ</dfn>として参照されます。上の例では、2つのパラメータをもっています:
 自分のサイトのURL と タイトルです。XML-RPC サーバがリクエストを受信したとき、必要なパラメータを探します。</p>
 
-<p>リクエストパラメータは、送信のため、配列に格納する必要があり、各パラメータは7つのデータ型(文字列、数値、日付 など) のうちのどれかになります。パラメータが文字列型以外の場合は、データ型をリクエストの配列に含める必要があります。</p>
+<p>リクエストパラメータは、送信のため、配列に格納する必要があり、
+各パラメータは7つのデータ型(文字列、数値、日付 など) のうちのどれかになります。
+パラメータが文字列型以外の場合は、データ型をリクエストの配列に含める必要があります。</p>
 
 <p>下記は、3つのパラメータの単純な配列の例です:</p>
 
 <code>$request = array('John', 'Doe', 'www.some-site.com');<br />
 $this->xmlrpc->request($request);</code>
 
-<p>文字列でないデータ型のデータや何種類かの異なるデータ型のデータを指定するときは、各パラメータを配列にし、その配列の2番目でデータ型を指定します:</p>
+<p>文字列でないデータ型のデータや何種類かの異なるデータ型のデータを指定するときは、
+各パラメータを配列にし、その配列の2番目でデータ型を指定します:</p>
 
 <code>
 $request = array (<br />
@@ -150,9 +167,12 @@ $this->xmlrpc->request($request);</code>
 
 <h2>XML-RPC サーバの作成</h2>
 
-<p>XML-RPC サーバは交通整理役として動作し、送信されてくるリクエストを待ち受け、その処理を行う適切なメソッドへリダイレクトします。</p>
+<p>XML-RPC サーバは交通整理役として動作し、送信されてくるリクエストを待ち受け、
+その処理を行う適切なメソッドへリダイレクトします。</p>
 
-<p> XML-RPC サーバを作成するには、XML-RPC Server クラスを、送信されてくるリクエストを受け取るコントローラで初期化し、処理できる適切なクラス/メソッドに送信されてきたリクエストを送るためにマッピングを指示した配列をセットアップする必要があります。</p>
+<p> XML-RPC サーバを作成するには、XML-RPC Server クラスを、
+送信されてくるリクエストを受け取るコントローラで初期化し、
+処理できる適切なクラス/メソッドに送信されてきたリクエストを送るためにマッピングを指示した配列をセットアップする必要があります。</p>
 
 <p>次は、説明のための例です:</p>
 
@@ -167,22 +187,29 @@ $config['object'] = $this;<br />
 $this->xmlrpcs->initialize($config);<br />
 $this->xmlrpcs->serve();</code>
 
-<p>上のサンプルには、サーバが処理できる2つのメソッドが配列に指定されている箇所があります。処理できる公開メソッドは、配列の左側になります。メソッドのどちらかのリクエストが受信されると、右側で指定したクラスとメソッドにマッピングされます。</p>
+<p>上のサンプルには、サーバが処理できる2つのメソッドが配列に指定されている箇所があります。
+処理できる公開メソッドは、配列の左側になります。メソッドのどちらかのリクエストが受信されると、右側で指定したクラスとメソッドにマッピングされます。</p>
 
 <p>'<var>object</var>' キーは、インスタンス化されたクラスを渡すための特別なキーです。
 これは、あなたがマッピングするメソッドが CodeIgniter スーパーオブジェクトの一部でない場合に必要となります。</p> 
 
-<p>言い換えると、XML-RPC クライアントが<var>new_post</var> メソッドを呼び出すリクエストを送信した場合、サーバは<dfn>My_blog</dfn> クラスを読み込み、<dfn>new_entry</dfn> メソッドを呼び出します。<var>update_post</var> メソッドを呼び出すリクエストを送信した場合は、サーバは<dfn>My_blog</dfn> クラスを読み込み、<dfn>update_entry </dfn>メソッドを呼び出します。</p>
+<p>言い換えると、XML-RPC クライアントが<var>new_post</var> メソッドを呼び出すリクエストを送信した場合、
+サーバは<dfn>My_blog</dfn> クラスを読み込み、<dfn>new_entry</dfn> メソッドを呼び出します。
+<var>update_post</var> メソッドを呼び出すリクエストを送信した場合は、
+サーバは<dfn>My_blog</dfn> クラスを読み込み、<dfn>update_entry </dfn>メソッドを呼び出します。</p>
 
-<p>上のサンプルのメソッド名には、任意のものを指定できます。サーバで上でどのように呼ばれるべきかを決めるか、Blogger や MetaWeblog API などの標準のAPIを使う場合は、それらのメソッド名にします。</p>
+<p>上のサンプルのメソッド名には、任意のものを指定できます。サーバで上でどのように呼ばれるべきかを決めるか、
+Blogger や MetaWeblog API などの標準のAPIを使う場合は、それらのメソッド名にします。</p>
 
 <p>補足的な2つの設定キーがあり、それらは XML-RPC サーバクラスを初期化するときに使用するものとします: <var>debug</var> にTRUEをセットすることでデバッグ機能を有効にできます、そして <var>xss_clean</var> は、FALSEをセットすることで、Security ライブラリの xss_clean 関数を通さずにデータを送信します。</p>
 
 <h2>サーバリクエストの処理</h2>
 
-<p> XML-RPC サーバがリクエストを受信し、処理のためにクラス/メソッドを読み込んだとき、クライアントから送信されたデータを含むオブジェクトとして、そのメソッドにリクエストが渡されます。</p>
+<p> XML-RPC サーバがリクエストを受信し、処理のためにクラス/メソッドを読み込んだとき、
+クライアントから送信されたデータを含むオブジェクトとして、そのメソッドにリクエストが渡されます。</p>
 
-<p>上の例を使うと、<var>new_post</var> メソッドがリクエストされた場合、サーバは次のようなクラスがあることを期待します:</p>
+<p>上の例を使うと、<var>new_post</var> メソッドがリクエストされた場合、
+サーバは次のようなクラスがあることを期待します:</p>
 
 <code>class <kbd>My_blog</kbd> extends CI_Controller {<br />
 <br />
@@ -190,10 +217,19 @@ $this->xmlrpcs->serve();</code>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br />
 	<br />
 &nbsp;&nbsp;&nbsp;&nbsp;}<br />
-}</code>
+}
+</code>
 
-<p><var>$request</var> 変数は、サーバによってコンパイルされたオブジェクトで、XML-RPC クライアントによって送信されたデータが含まれます。このオブジェクトを使って、リクエストの処理を可能にする<em>リクエストパラメータ</em> にアクセスします。処理が終わったら <dfn>レスポンス</dfn> をクライアントに送り返します。</p>
-<p>下は、Blogger API を使った実際のサンプルです。Blogger API のメソッドには、<dfn>getUserInfo() </dfn>というものがあります。このメソッドを使うとXML-RPC クライアントはサーバにユーザ名とパスワードを送信し、特定ユーザの情報 (ニックネーム、ユーザID、emailアドレスなど) をサーバに送り返してもらうことができます。以下は、このメソッドを使った処理方法がどのようになるかを示した例です:</p>
+<p><var>$request</var> 変数は、サーバによってコンパイルされたオブジェクトで、XML-RPC クライアントによって送信されたデータが含まれます。
+このオブジェクトを使って、リクエストの処理を可能にする<em>リクエストパラメータ</em> にアクセスします。
+処理が終わったら <dfn>レスポンス</dfn> をクライアントに送り返します。</p>
+
+<p>下は、Blogger API を使った実際のサンプルです。Blogger API のメソッドには、<dfn>getUserInfo() </dfn>というものがあります。
+このメソッドを使うとXML-RPC クライアントはサーバにユーザ名とパスワードを送信し、
+特定ユーザの情報 (ニックネーム、ユーザID、emailアドレスなど) をサーバに送り返してもらうことができます。
+以下は、このメソッドを使った処理方法がどのようになるかを示した例です:</p>
+
+
 <code>class <kbd>My_blog</kbd> extends CI_Controller {<br />
 <br />
 &nbsp;&nbsp;&nbsp;&nbsp;function <kbd>getUserInfo</kbd>(<var>$request</var>)<br />
@@ -226,7 +262,8 @@ $this->xmlrpcs->serve();</code>
 </code>
 
 <h3>Notes:</h3>
-<p><dfn>output_parameters()</dfn> メソッドは、クライアントによって送信されたリクエストパラメータに対応する配列を取得します。上の例では、出力されたパラメータは、ユーザ名とパスワードになります。</p>
+<p><dfn>output_parameters()</dfn> メソッドは、クライアントによって送信されたリクエストパラメータに対応する配列を取得します。
+上の例では、出力されたパラメータは、ユーザ名とパスワードになります。</p>
 
 <p>クライアントから送信されたユーザ名とパスワードが正しくない場合、<dfn>send_error_message()</dfn>を使ってエラーメッセージを返します。</p>
 
@@ -235,11 +272,14 @@ $this->xmlrpcs->serve();</code>
 
 <h2>レスポンスのフォーマット</h2>
 
-<p><em>リクエスト</em> と同様、<em>レスポンス</em>も配列でフォーマットされる必要があります。しかし、リクエストと違って、レスポンスは<strong>項目を一つずつ格納した</strong>配列になります。配列を構成する項目は、複数の追加の配列からなる配列であってもかまいませんが、ルート（プライマリ）の配列は、1次元でなければなりません。言い換えると、基本的な例は次のようになります:</p>
+<p><em>リクエスト</em> と同様、<em>レスポンス</em>も配列でフォーマットされる必要があります。
+しかし、リクエストと違って、レスポンスは<strong>項目を一つずつ格納した</strong>配列になります。
+配列を構成する項目は、複数の追加の配列からなる配列であってもかまいませんが、ルート（プライマリ）の配列は、1次元でなければなりません。言い換えると、基本的な例は次のようになります:</p>
 
 <code>$response = array('Response data',  'array');</code>
 
-<p>しかし、レスポンスは、通常複数のデータをもっています。これを実現するためには、ルート（プライマリ）の配列は、1次元でなければならないので、レスポンスそのものを配列にする必要があります。以下は、どのようにして実現するかを示した例です:</p>
+<p>しかし、レスポンスは、通常複数のデータをもっています。これを実現するためには、ルート（プライマリ）の配列は、1次元でなければならないので、
+レスポンスそのものを配列にする必要があります。以下は、どのようにして実現するかを示した例です:</p>
 
 <code>
 $response = array (<br />
@@ -250,7 +290,8 @@ $response = array (<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'todo_list' => array(array('clean house', 'call mom', 'water plants'), 'array'),<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'struct'<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+</code>
 
 <p class="important">上の配列は <dfn>struct</dfn> としてフォーマットされているのを注意してください。これはレスポンスのもっとも一般的なデータ型になります。</p>
 
@@ -272,29 +313,31 @@ $response = array (<br />
 
 <h2>独自のクライアントとサーバの作成</h2>
 
-<p>ここまで見てきた全部を理解するのに役立てるため、XML-RPC クライアントとサーバとして動作する2つのコントローラを作成してみましょう。クライアントをサーバにリクエストを送信するのに使い、サーバでそのリクエストを受信します。</p>
+<p>ここまで見てきた全部を理解するのに役立てるため、XML-RPC クライアントとサーバとして動作する2つのコントローラを作成してみましょう。
+クライアントをサーバにリクエストを送信するのに使い、サーバでそのリクエストを受信します。</p>
 
 <h3>クライアント</h3>
 
-<p>テキストエディタを使って <dfn>xmlrpc_client.php</dfn> という名前のコントローラを作成します。その中に下記のコードを書いて、<samp>applications/controllers/</samp> フォルダに保存します:</p>
+<p>テキストエディタを使って <dfn>xmlrpc_client.php</dfn> という名前のコントローラを作成します。
+その中に下記のコードを書いて、<samp>applications/controllers/</samp> フォルダに保存します:</p>
 
 <textarea class="textarea" style="width:100%" cols="50" rows="32">&lt;?php
 
 class Xmlrpc_client extends CI_Controller {
-	
+
 	function index()
-	{	
+	{
 		$this->load->helper('url');
 		$server_url = site_url('xmlrpc_server');
-	
+
 		$this->load->library('xmlrpc');
-		
+
 		$this->xmlrpc->server($server_url, 80);
 		$this->xmlrpc->method('Greetings');
-		
+
 		$request = array('How is it going?');
 		$this->xmlrpc->request($request);	
-		
+
 		if ( ! $this->xmlrpc->send_request())
 		{
 			echo $this->xmlrpc->display_error();
@@ -313,7 +356,8 @@ class Xmlrpc_client extends CI_Controller {
 
 <h3>サーバ</h3>
 
-<p>テキストエディタを使って、<dfn>xmlrpc_server.php</dfn>.という名前のファイルを作成します。その中に、下記のコードを書いて<samp>applications/controllers/</samp> フォルダにそれを保存します:</p>
+<p>テキストエディタを使って、<dfn>xmlrpc_server.php</dfn>.という名前のファイルを作成します。
+その中に、下記のコードを書いて<samp>applications/controllers/</samp> フォルダにそれを保存します:</p>
 
 <textarea class="textarea" style="width:100%" cols="50" rows="30">&lt;?php
 
@@ -323,24 +367,24 @@ class Xmlrpc_server extends CI_Controller {
 	{
 		$this->load->library('xmlrpc');
 		$this->load->library('xmlrpcs');
-		
+
 		$config['functions']['Greetings'] = array('function' => 'Xmlrpc_server.process');
-		
+
 		$this->xmlrpcs->initialize($config);
 		$this->xmlrpcs->serve();
 	}
-	
-	
+
+
 	function process($request)
 	{
 		$parameters = $request->output_parameters();
-		
+
 		$response = array(
 							array(
 									'you_said'  => $parameters['0'],
 									'i_respond' => 'Not bad at all.'),
 							'struct');
-						
+
 		return $this->xmlrpc->send_response($response);
 	}
 }
@@ -353,7 +397,8 @@ class Xmlrpc_server extends CI_Controller {
 
 <p>サーバに送ったメッセージとその応答を見ることができるはずです。</p>
 
-<p>作成したクライアントでは、メッセージ ("How's is going?") を &quot;Greetings&quot; メソッドを使うリクエストとともにサーバに送信しました。サーバはそのリクエストを受信して、レスポンスが返送される "process" メソッドにリクエストをマッピングしました。</p>
+<p>作成したクライアントでは、メッセージ ("How's is going?") を &quot;Greetings&quot; メソッドを使うリクエストとともにサーバに送信しました。
+サーバはそのリクエストを受信して、レスポンスが返送される "process" メソッドにリクエストをマッピングしました。</p>
 
 <h2>リクエストパラメータに連想配列を使用する</h2>
 
@@ -422,7 +467,8 @@ $this->xmlrpc->request($request);</code>
 <code>$this->xmlrpc->display_response();</code>
 
 <h2>$this->xmlrpc->send_error_message()</h2>
-<p>このメソッドを使うと、サーバからクライアントにエラーメッセージを送信できます。第1引数にエラー番号を、第2引数にエラーメッセージを指定します。</p>
+<p>このメソッドを使うと、サーバからクライアントにエラーメッセージを送信できます。
+第1引数にエラー番号を、第2引数にエラーメッセージを指定します。</p>
 <code>return $this->xmlrpc->send_error_message('123', 'Requested data not available');</code>
 
 <h2>$this->xmlrpc->send_response()</h2>
@@ -439,7 +485,8 @@ return $this->xmlrpc->send_response($response);</code>
 <a name="datatypes"></a>
 <h2>データ型</h2>
 
-<p><a href="http://www.xmlrpc.com/spec">XML-RPC の仕様</a>によれば、XML-RPC経由で送信できるデータ型は7つあります:</p>
+<p><a href="http://www.xmlrpc.com/spec">XML-RPC の仕様</a>によれば、
+XML-RPC経由で送信できるデータ型は7つあります:</p>
 
 <ul>
 <li><em>int</em> または <em>i4</em></li>

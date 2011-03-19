@@ -42,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-ユーザエージェントクラス</td>
+ユーザエージェントクラス
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -57,7 +58,8 @@
 
 <h1>ユーザエージェントクラス</h1>
 
-<p>ユーザエージェントクラスには、サイトを訪問したブラウザ・携帯機器あるいは検索エンジンのロボットに関する情報を識別するのに役立つメソッドが備わっています。さらに、言語やサポートされる文字セットに関する情報も取得することができます。</p>
+<p>ユーザエージェントクラスには、サイトを訪問したブラウザ・携帯機器あるいは検索エンジンのロボットに関する情報を識別するのに役立つメソッドが備わっています。
+さらに、言語やサポートされる文字セットに関する情報も取得することができます。</p>
 
 <h2>クラスの初期化</h2>
 
@@ -68,11 +70,13 @@
 
 <h2>User Agent の定義</h2>
 
-<p>ユーザエージェントの名前の定義は、次の設定ファイルにあります: <dfn>application/config/user_agents.php</dfn>。必要であれば、様々なユーザエージェントの配列を項目に追加できます。</p>
+<p>ユーザエージェントの名前の定義は、次の設定ファイルにあります: <dfn>application/config/user_agents.php</dfn>。
+必要であれば、様々なユーザエージェントの配列を項目に追加できます。</p>
 
 <h2>例</h2>
 
-<p>ユーザエージェントクラスが初期化されるとき、サイトを閲覧しているブラウザ・携帯機器・あるいは検索エンジンのロボットの特定が行われます。また、取得可能であれば、プラットフォームの情報も収集します。</p>
+<p>ユーザエージェントクラスが初期化されるとき、サイトを閲覧しているブラウザ・携帯機器・あるいは検索エンジンのロボットの特定が行われます。
+また、取得可能であれば、プラットフォームの情報も収集します。</p>
 
 
 <code>
@@ -107,39 +111,41 @@ echo $this-&gt;agent-&gt;platform(); // プラットフォーム情報 (Windows�
 <h2>$this-&gt;agent-&gt;is_browser()</h2>
 <p>ユーザエージェントのブラウザが既知のものかどうかに応じてTRUE/FALSE (ブール値) を返します。</p>
 
-<code> if ($this-&gt;agent-&gt;is_browser('Safari'))<br>
-{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using Safari.';<br>
-}<br>
-
-else if ($this-&gt;agent-&gt;is_browser())<br>
-{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using a browser.';<br>
+<code> if ($this-&gt;agent-&gt;is_browser('Safari'))<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using Safari.';<br />
+}<br />
+else if ($this-&gt;agent-&gt;is_browser())<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using a browser.';<br />
 }</code>
 
-<p class="important"><strong>Note:</strong>&nbsp; この例での "Safari" という文字列は，ブラウザを定義するリストのキー値です。このリストは <dfn>application/config/user_agents.php</dfn> で定義されており，新しいブラウザを追加したり文字列を変更することができます。</p>
+<p class="important"><strong>Note:</strong>&nbsp; この例での "Safari" という文字列は，ブラウザを定義するリストのキー値です。
+このリストは <dfn>application/config/user_agents.php</dfn> で定義されており，新しいブラウザを追加したり文字列を変更することができます。</p>
 
 <h2>$this-&gt;agent-&gt;is_mobile()</h2>
 <p>ユーザエージェントの携帯機器が既知のものかどうかに応じてTRUE/FALSE (ブール値) を返します。</p>
 
-<code> if ($this-&gt;agent-&gt;is_mobile('iphone'))<br>
-{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('iphone/home');<br>
-}<br>
-else if ($this-&gt;agent-&gt;is_mobile())<br>
-{<br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('mobile/home');<br>
-}<br>
-else<br>
-{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('web/home');<br>
+<code> if ($this-&gt;agent-&gt;is_mobile('iphone'))<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('iphone/home');<br />
+}<br />
+else if ($this-&gt;agent-&gt;is_mobile())<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('mobile/home');<br />
+}<br/>
+else<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('web/home');<br />
 }</code>
 
 <h2>$this-&gt;agent-&gt;is_robot()</h2>
 <p>ユーザエージェントのロボット（クローラ）が既知のものかどうかに応じてTRUE/FALSE (ブール値) を返します。</p>
 
-<p class="important"><strong>Note:</strong>&nbsp; ユーザエージェントライブラリにはもっとも一般的なロボットしか定義されていません。完全なロボットのリストではありません。何百ものロボットがあるので、それぞれを調べるのは効率がよくありません。リストにないロボットがいつもサイトを訪問するのがわかった場合は、<dfn>application/config/user_agents.php</dfn> ファイルにそれを追加することができます。</p>
+<p class="important"><strong>Note:</strong>&nbsp; ユーザエージェントライブラリにはもっとも一般的なロボットしか定義されていません。
+完全なロボットのリストではありません。何百ものロボットがあるので、それぞれを調べるのは効率がよくありません。
+リストにないロボットがいつもサイトを訪問するのがわかった場合は、
+<dfn>application/config/user_agents.php</dfn> ファイルにそれを追加することができます。</p>
 
 <h2>$this-&gt;agent-&gt;is_referral()</h2>
 <p>ユーザエージェントが、他のサイトから参照してきたかどうかを TRUE/FALSE (ブール値) で返します。</p>
@@ -183,7 +189,8 @@ else<br>
 &nbsp;&nbsp;&nbsp;&nbsp;echo 'You accept English!';<br />
 }</code>
 
-<p class="important"><strong>Note:</strong> 平均的には、ブラウザは言語の情報を提供していますが、そうしないブラウザがいくつかあるので、このメソッドは、普通はそれほど信頼性がありません。常に正確であるとは限りません。 </p>
+<p class="important"><strong>Note:</strong> 平均的には、ブラウザは言語の情報を提供していますが、
+そうしないブラウザがいくつかあるので、このメソッドは、普通はそれほど信頼性がありません。常に正確であるとは限りません。</p>
 
 
 
@@ -195,7 +202,8 @@ else<br>
 &nbsp;&nbsp;&nbsp;&nbsp;echo 'お使いのブラウザは、UTF-8に対応しています!';<br />
 }</code>
 
-<p class="important"><strong>Note:</strong>平均的には、ブラウザは文字セットの情報を提供していますが、そうしないブラウザがいくつかあるので、このメソッドは、普通はそれほど信頼性がありません。常に正確であるとは限りません。 </p>
+<p class="important"><strong>Note:</strong>平均的には、ブラウザは文字セットの情報を提供していますが、
+そうしないブラウザがいくつかあるので、このメソッドは、普通はそれほど信頼性がありません。常に正確であるとは限りません。 </p>
 
 
 

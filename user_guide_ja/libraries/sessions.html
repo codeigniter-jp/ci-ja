@@ -5,10 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>セッションクラス : CodeIgniter ユーザガイド 日本語版</title>
 
-<style type='text/css' media='all'>
-@import url('../userguide.css');
-</style>
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
 <script type="text/javascript" src="../nav/nav.js"></script>
 <script type="text/javascript" src="../nav/prototype.lite.js"></script>
 <script type="text/javascript" src="../nav/moo.fx.js"></script>
@@ -69,7 +68,8 @@
 <p class="important"><strong>Note:</strong> セッションクラスは、PHPに組み込みのセッションを<strong>利用しません</strong>。
 このクラスは、独自のセッションデータを生成し、開発者にさらなる柔軟性を提供します。</p>
 
-<p class="important"><strong>Note:</strong> 暗号化セッションを使用しない場合でも，設定ファイルで <a href="./encryption.html">encryption key</a> を指定しなければいけません。第三者にセッションデータを操作されるのを防ぐためです。</p>
+<p class="important"><strong>Note:</strong> 暗号化セッションを使用しない場合でも，設定ファイルで <a href="./encryption.html">encryption key</a> を指定しなければいけません。
+第三者にセッションデータを操作されるのを防ぐためです。</p>
 
 <h2>セッションの初期化</h2>
 
@@ -159,12 +159,12 @@
 
 
 <p><code>$newdata = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'username'&nbsp; =&gt; 'johndoe',<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'username'&nbsp; =&gt; 'johndoe',<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'email'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 'johndoe@some-site.com',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'logged_in' =&gt; TRUE<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
-<br />
-$this-&gt;session-&gt;set_userdata(<samp>$newdata</samp>);</code></p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'logged_in' =&gt; TRUE<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+	<br />
+	$this-&gt;session-&gt;set_userdata(<samp>$newdata</samp>);</code></p>
 <p>一度に一つの値を追加したいのであれば、set_userdata() メソッドが次の構文で、サポートされています。 </p>
 <p><code>$this-&gt;session-&gt;set_userdata('some_name', 'some_value');</code></p>
 <p class="important"><strong>Note:</strong> クッキーは4KBのデータだけを保持できますので、許容量を超えないよう注意してください。
@@ -190,11 +190,13 @@ $this-&gt;session-&gt;unset_userdata(<samp>$array_items</samp>);</code></p>
 <h2>セッションデータをデータベースに保存する</h2>
 <p>ユーザのクッキーの中に保管されるセッションデータの配列にはセッションIDが含まれていますが、セッションデータをデータベースに保存しているのでないなら、セッションIDを検証する方法はありません。
 少しかあるいはまったくセキュリティを必要としなアプリケーション用には、セッションIDの検証は必要ありません。
-しかし、セキュリティが必要なアプリケーションであれば、検証は必須です。さもなければ，ユーザがクッキーを書き換えることにより，古いセッションをリストアできてしまいます。</p>
+しかし、セキュリティが必要なアプリケーションであれば、検証は必須です。
+さもなければ，ユーザがクッキーを書き換えることにより，古いセッションをリストアできてしまいます。</p>
 
 <p>セッションデータがデータベースで利用可能なとき、正しい形式のセッションがユーザのクッキーの中にあった場合は、データベースのクエリでそれを照合します。
 セッションIDが不一致の場合は、セッションが破棄されます。
 セッションIDは更新されることがなく、新しいセッションが作成されるときに生成されます。</p>
+
 
 <p>セッションを記録するには、セッション保存用のデータベーステーブルをまず作成しなければなりません。
 次は、セッションクラスが必要とする (MySQL用の) 基本的な例です。:</p>
@@ -238,22 +240,22 @@ config.php ファイルで次のようにデータベースオプションを有
 
 <table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
 <tr>
-     <th>設定項目</th>
-     <th>初期値</th>
-     <th>選択肢</th>
-     <th>説明</th>
+	<th>設定項目</th>
+	<th>初期値</th>
+	<th>選択肢</th>
+	<th>説明</th>
 </tr>
 <tr>
-     <td class="td"><strong>sess_cookie_name</strong></td>
-     <td class="td">ci_session</td>
-     <td class="td">なし</td>
-     <td class="td">セッションクッキーを保存するときの名前。</td>
+	<td class="td"><strong>sess_cookie_name</strong></td>
+	<td class="td">ci_session</td>
+	<td class="td">なし</td>
+	<td class="td">セッションクッキーを保存するときの名前。</td>
 </tr>
 <tr>
-     <td class="td"><strong>sess_expiration</strong></td>
-     <td class="td">7200</td>
-     <td class="td">なし</td>
-     <td class="td">セッションを終了させたい秒数。デフォルトでは 2 時間 (7200 秒)。有効期限がないセッションを使いたい場合は 0 に設定してください。</td>
+	<td class="td"><strong>sess_expiration</strong></td>
+	<td class="td">7200</td>
+	<td class="td">なし</td>
+	<td class="td">セッションを終了させたい秒数。デフォルトでは 2 時間 (7200 秒)。有効期限がないセッションを使いたい場合は 0 に設定してください。</td>
 </tr>
 <tr>
 	<td class="td"><strong>sess_expire_on_close</strong></td>
@@ -262,41 +264,41 @@ config.php ファイルで次のようにデータベースオプションを有
 	<td class="td">ブラウザが閉じられたときに自動でセッションを破棄するかどうか。</td>
 </tr>
 <tr>
-     <td class="td"><strong>sess_encrypt_cookie</strong></td>
-     <td class="td">FALSE</td>
-     <td class="td">TRUE/FALSE (ブール値)</td>
-     <td class="td">セッションデータを暗号化するかどうか。</td>
+	<td class="td"><strong>sess_encrypt_cookie</strong></td>
+	<td class="td">FALSE</td>
+	<td class="td">TRUE/FALSE (ブール値)</td>
+	<td class="td">セッションデータを暗号化するかどうか。</td>
 </tr>
 <tr>
-     <td class="td"><strong>sess_use_database</strong></td>
-     <td class="td">FALSE</td>
-     <td class="td">TRUE/FALSE (ブール値)</td>
-     <td class="td">セッションデータをデータベースに保存するかどうか。このオプションを有効にする前に、テーブルを作成する必要があります。</td>
+	<td class="td"><strong>sess_use_database</strong></td>
+	<td class="td">FALSE</td>
+	<td class="td">TRUE/FALSE (ブール値)</td>
+	<td class="td">セッションデータをデータベースに保存するかどうか。このオプションを有効にする前に、テーブルを作成する必要があります。</td>
 </tr>
 <tr>
-     <td class="td"><strong>sess_table_name</strong></td>
-     <td class="td">ci_sessions</td
->
-     <td class="td">正しいSQLテーブル名</td>
-     <td class="td">セッションデータベーステーブル名。</td>
+	<td class="td"><strong>sess_table_name</strong></td>
+	<td class="td">ci_sessions</td>
+	<td class="td">正しいSQLテーブル名</td>
+	<td class="td">セッションデータベーステーブル名。</td>
 </tr>
 <tr>
-    <td class="td"><strong>sess_time_to_update</strong></td>
-    <td class="td">300</td>
-    <td class="td">秒</td>
-    <td class="td">この項目は、セッションクラスが、どれくらい頻繁にセッションを再生成し新しいセッションIDを作成するかを設定します。</td>
+	<td class="td"><strong>sess_time_to_update</strong></td>
+	<td class="td">300</td>
+	<td class="td">秒</td>
+	<td class="td">この項目は、セッションクラスが、どれくらい頻繁にセッションを再生成し新しいセッションIDを作成するかを設定します。</td>
 </tr>
 <tr>
-     <td class="td"><strong>sess_match_ip</strong></td>
-     <td class="td">FALSE</td>
-     <td class="td">TRUE/FALSE (ブール値)</td>
-     <td class="td">セッションデータを読み取る時、ユーザのIPアドレスを照合するかどうか。ISPによっては、IPアドレスが動的に変わるのを注意してください。有効期限がないセッションを利用したい場合は、FALSEにしておいてください。</td>
+	<td class="td"><strong>sess_match_ip</strong></td>
+	<td class="td">FALSE</td>
+	<td class="td">TRUE/FALSE (ブール値)</td>
+	<td class="td">セッションデータを読み取る時、ユーザのIPアドレスを照合するかどうか。
+	ISPによっては、IPアドレスが動的に変わるのを注意してください。有効期限がないセッションを利用したい場合は、FALSEにしておいてください。</td>
 </tr>
 <tr>
-     <td class="td"><strong>sess_match_useragent</strong></td>
-     <td class="td">TRUE</td>
-     <td class="td">TRUE/FALSE (ブール値)</td>
-     <td class="td">セッションデータを読み取る際に、ユーザエージェントを照合するかどうか。</td>
+	<td class="td"><strong>sess_match_useragent</strong></td>
+	<td class="td">TRUE</td>
+	<td class="td">TRUE/FALSE (ブール値)</td>
+	<td class="td">セッションデータを読み取る際に、ユーザエージェントを照合するかどうか。</td>
 </tr>
 </table>
 
