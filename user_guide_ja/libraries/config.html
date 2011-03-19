@@ -136,51 +136,51 @@ $site_name = $blog_config['site_name'];</code>
 <p>ここでの <var>item_name</var> は、変更したい項目の $config 配列の添字で、 <var>item_value</var> はその値になります。</p>
 
 <a name="environments"></a>
-<h2>Environments</h2>
+<h2>複数の環境</h2>
 
 <p>
-    You may load different configuration files depending on the current environment.
-    The <kbd>ENVIRONMENT</kbd> constant is defined in index.php, and is described
-    in detail in the <a href="../general/environments.html">Handling Environments</a>
-    section.
+    現状の環境により異なった設定ファイルをロードすることができます。
+    定数 <kbd>ENVIRONMENT</kbd> が index.php で定義されており、
+    <a href="../general/environments.html">複数の環境の取扱い</a> のセクションに詳細が記述されて
+    います。
 </p>
 
 <p>
-    To create an environment-specific configuration file,
-    create or copy a configuration file in application/config/{ENVIRONMENT}/{FILENAME}.php
+    環境固有の設定ファイルを作成するには、
+    application/config/{ENVIRONMENT}/{FILENAME}.php に設定ファイルを作成またはコピーします。
 </p>
 
-<p>For example, to create a production-only config.php, you would:</p>
+<p>たとえば、本番環境での config.php を作成するには、以下のようにします:</p>
 
 <ol>
-    <li>Create the directory application/config/production/</li>
-    <li>Copy your existing config.php into the above directory</li>
-    <li>Edit application/config/production/config.php so it contains your production settings</li>
+    <li>ディレクトリ application/config/production/ を作成します</li>
+    <li>既存の config.php を上記のディレクトリにコピーします</li>
+    <li>application/config/production/config.php を編集し本番環境の設定を記述します</li>
 </ol>
 
 <p>
-    When you set the <kbd>ENVIRONMENT</kbd> constant to 'production', the settings
-    for your new production-only config.php will be loaded.
+    定数 <kbd>ENVIRONMENT</kbd> を 'production' に設定すると、, the settings
+    新しく作成した本番環境用の config.php がロードされます。
 </p>
 
-<p>You can place the following configuration files in environment-specific folders:</p>
+<p>環境固有のフォルダに以下の設定ファイルを置くことができます:</p>
 	
 <ul>
-<li>Default CodeIgniter configuration files</li>
-<li>Your own custom configuration files</li>
+<li>デフォルトの CodeIgniter の設定ファイル群</li>
+<li>あなた自身のカスタム設定ファイル群</li>
 </ul>
 
-<p><strong>Note:</strong> CodeIgniter always tries to load the configuration files for the current environment first. If the file does not exist, the global config file (i.e., the one in <samp>application/config/</samp>) is loaded. This means you are not obligated to place <strong>all</strong> of your configuration files in an environment folder &minus; only the files that change per environment.</p>
+<p><strong>Note:</strong> CodeIgniter は、現在の環境の設定ファイルを最初にロードしようと試みます。もし、ファイルが存在しなければ、グローバルの設定ファイル(すなわち、<samp>application/config/</samp> にあるファイル)をロードします。これは、あなたは <strong>すべての</strong> 設定ファイルを環境固有のフォルダに置く必要はないこと、環境により変更するファイルだけを置けばよいことを意味します</p>
 
-<h2>Helper Functions</h2>
+<h2>ヘルパメソッド</h2>
 
 <p>設定クラスには、次のヘルパメソッドがあります:</p>
 
 <h2>$this->config->site_url();</h2>
-<p>このメソッドは、設定ファイルで、"index" の値に指定した、サイトへのURLを取得します。</p>
+<p>このメソッドは、設定ファイルで、"index" の値に指定した、サイトへの URL を取得します。</p>
 
 <h2>$this->config->system_url();</h2>
-<p>このメソッドを使うと <dfn>system フォルダ</dfn> のURLを取得できます。</p>
+<p>このメソッドを使うと <dfn>system フォルダ</dfn> の URL を取得できます。</p>
 
 
 </div>
