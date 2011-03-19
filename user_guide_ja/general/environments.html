@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Creating Libraries : CodeIgniter User Guide</title>
+<title>複数の環境の取扱い : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,7 +17,7 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
@@ -28,8 +28,8 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.0</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.0</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
 Creating Libraries
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,20 +55,21 @@ Creating Libraries
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Handling Multiple Environments</h1>
+<h1>複数の環境の取扱い</h1>
 
 <p>
-    Developers often desire different system behavior depending on whether
-    an application is running in a development or production
-    environment. For example, verbose error output is something that would
-    be useful while developing an application, but it may also pose a security issue when "live".
+    開発者は、アプリケーションが開発環境か本番環境かによって
+    違ったシステムの振る舞いを
+    よく希望します。
+    例えば、詳細なエラーの出力は、開発中のアプリケーションでは役立ちますが、
+    "本番" サイトではセキュリティ上の問題をもたらす可能性があります。
 </p>
 
-<h2>The ENVIRONMENT Constant</h2>
+<h2>定数 ENVIRONMENT</h2>
 
 <p>
-    By default, CodeIgniter comes with the environment constant set to
-    '<kbd>development</kbd>'. At the top of index.php, you will see:
+    デフォルトでは CodeIgniter は、定数 ENVIRONMENT が
+    '<kbd>development</kbd>' に設定されています。index.php の先頭に以下が記述されています:
 </p>
 
 <code>
@@ -76,35 +77,35 @@ define('<var>ENVIRONMENT</var>', '<var>development</var>');
 </code>
 
 <p>
-    In addition to affecting some basic framework behavior (see the next section),
-    you may use this constant in your own development to differentiate
-    between which environment you are running in.
+    いくつかの基本的なフレームワークの振る舞いに影響すること(次のセクションを参照)に加えて、
+    この定数を利用し、開発中の稼働させている環境により
+    変えることができます。
 </p>
 
-<h2>Effects On Default Framework Behavior</h2>
+<h2>デフォルトのフレームワークの振る舞いへの影響</h2>
 
 <p>
-    There are some places in the CodeIgniter system where the <kbd>ENVIRONMENT</kbd>
-    constant is used. This section describes how default framework behavior is
-    affected.
+    CodeIgniter システムの中のいくつかの場所で定数 <kbd>ENVIRONMENT</kbd>
+    が使われます。このセクションでは、デフォルトのフレームワークの振る舞いがどう影響を受けるか
+    説明します。
 </p>
 
-<h3>Error Reporting</h3>
+<h3>エラー報告</h3>
 
 <p>
-    Setting the <kbd>ENVIRONMENT</kbd> constant to a value of '<kbd>development</kbd>' will
-    cause all PHP errors to be rendered to the browser when they occur. Conversely,
-    setting the constant to '<kbd>production</kbd>' will disable all error output. Disabling
-    error reporting in production is a <a href="security.html">good security practice</a>.
+    定数 <kbd>ENVIRONMENT</kbd> を '<kbd>development</kbd>' に設定すると、
+    すべての PHP エラーが発生時にブラウザに表示されます。反対に、
+    '<kbd>production</kbd>' に設定すると、すべてのエラー出力が停止します。本番環境で
+    エラー報告を停止することは1つの<a href="security.html">よいセキュリティ上の習慣</a>です。
 </p>
 
-<h3>Configuration Files</h3>
+<h3>設定ファイル</h3>
 
 <p>
-    Optionally, you can have CodeIgniter load environment-specific
-    configuration files. This may be useful for managing things like differing API keys
-    across multiple environments. This is described in more detail in the
-    environment section of the <a href="../libraries/config.html#environments">Config Class</a> documentation.
+    オプションで、CodeIgniter に環境固有の設定ファイルを読み込ませることが
+    できます。これは、環境により異なった API キーを使うような場合に便利です。
+    詳細は、
+    <a href="../libraries/config.html#environments">設定クラス</a> の環境のセクションに記述されています。
 </p>
 
 </div>
@@ -113,11 +114,11 @@ define('<var>ENVIRONMENT</var>', '<var>development</var>');
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="libraries.html">Using CodeIgniter Libraries</a>
+前のトピック:&nbsp;&nbsp;<a href="managing_apps.html">アプリケーションの管理</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="drivers.html">Using CodeIgniter Drivers</a>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="alternative_php.html">代替の PHP 構文</a>
 </p>
 <p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
