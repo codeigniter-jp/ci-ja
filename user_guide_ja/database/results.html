@@ -93,23 +93,22 @@
 	&nbsp;&nbsp;&nbsp;}<br />
 	}
 </code>
-	
-	<h2>result_array()</h2>
-	
-	<p>このメソッドは、結果を純粋な配列として、あるいは結果が生成されなかったときには空の配列を返します。典型的には、次のように、foreachループで使用されます:</p>
+		
+	<p>result() に各々の結果オブジェクトをインスタンス化するための文字列を渡すこともできます (note: このクラスはロードされなければなりません)</p>
+
 	<code>
 	$query = $this->db->query("SELECT * FROM users;");<br />
 	<br />
 	foreach ($query->result('User') as $user)<br />
 	{<br />
-	&nbsp;&nbsp;&nbsp;echo $row->name; // call attributes<br />
-	&nbsp;&nbsp;&nbsp;echo $row->reverse_name(); // or methods defined on the 'User' class<br />
+	&nbsp;&nbsp;&nbsp;echo $row->name; // 属性を呼び出す<br />
+	&nbsp;&nbsp;&nbsp;echo $row->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
 	}
 	</code>
 
 	<h2>result_array()</h2>
 
-	<p>This function returns the query result as a pure array, or an empty array when no result is produced.  Typically you'll use this in a foreach loop, like this:</p>
+	<p>このメソッドは、結果を純粋な配列として、あるいは結果が生成されなかったときには空の配列を返します。典型的には、次のように、foreach ループで使用されます:</p>
 	<code>
 	$query = $this->db->query("YOUR QUERY");<br />
 	<br />
@@ -141,14 +140,14 @@
 	
 	<code>$row = $query->row(<dfn>5</dfn>);</code>
 
-	<p>You can also add a second String parameter, which is the name of a class to instantiate the row with:</p>
+	<p>第2引数に文字列を渡すこともでき、その列をインスタンス化するためのクラス名を指定します:</p>
 
 	<code>
 	$query = $this->db->query("SELECT * FROM users LIMIT 1;");<br />
 	<br />
 	$query->row(0, 'User')<br />
-	echo $row->name; // call attributes<br />
-	echo $row->reverse_name(); // or methods defined on the 'User' class<br />
+	echo $row->name; // 属性を呼び出す<br />
+	echo $row->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
 	</code>
 
 	<h2>row_array()</h2>
