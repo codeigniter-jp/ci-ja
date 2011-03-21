@@ -60,8 +60,8 @@
 
 <h1>データベース設定</h1>
 
-<p>CodeIgniter has a config file that lets you store your database connection values (username, password, database name, etc.).
-The config file is located at <samp>application/config/database.php</samp>. You can also set database connection values for specific <a href="../libraries/config.html">environments</a> by placing <strong>database.php</strong> it the respective environment config folder.</p>
+<p>CodeIgniter には、データベース接続用のデータ(ユーザ名、パスワード、データベース名など)を保存できる設定ファイルがあります。
+設定ファイルは <samp>application/config/database.php</samp> にあります。また、特定の <a href="../libraries/config.html">環境</a> のためのデータベース接続のための設定をするために、それぞれの環境の設定フォルダの中に <strong>database.php</strong> を置くこともできます。</p>
 
 <p>設定は、次のひな形で、多次元配列で保存されています:</p>
 
@@ -134,7 +134,7 @@ $db['test']['stricton'] = FALSE;</code>
 <li><strong>char_set</strong> - データベースとの通信に使用される文字セット。</li>
 <li><strong>dbcollat</strong> - データベースとの通信に使用される照合順序。</li>
 <li><strong>swap_pre</strong> - デフォルトのテーブル接頭辞が <var>dbprefix</var> と置き換えられます。これは、配布されたアプリケーションに手動で記述された [訳注: 接頭辞を含む] クエリが含まれる場合でも、接頭辞をエンドユーザにカスタマイズ可能にする必要がある場合に役に立ちます。</li>
-<li><strong>autoinit</strong> - データベースを自動的に初期化するかどうか。</li>
+<li><strong>autoinit</strong> - ライブラリがロードされたときに、データベースに自動的に接続するかどうか。もし FALSE に設定された場合、最初のクエリの実行の前に接続されます。</li>
 <li><strong>stricton</strong> - TRUE/FALSE (boolean) - "Strict Mode" での接続を強制するかどうか、アプリケーションの開発中に SQL の厳密性を確保するのに良い方法です。</li>
 <li><strong>port</strong> - データベースのポート番号。この値を利用するには、データベース設定の配列に以下のような行を追加する必要があります。<code>$db['default']['port'] =  5432;</code></li>
 </ul>
