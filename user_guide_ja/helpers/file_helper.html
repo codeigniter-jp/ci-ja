@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ファイルヘルパ : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -17,7 +18,6 @@
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
 <meta name='description' content='CodeIgniter ユーザガイド' />
-
 </head>
 <body>
 
@@ -73,12 +73,13 @@
 
 <code>$string = read_file('./path/to/file.php');</code>
 
-<p>パスは、サーバの相対パスかフルパスで指定します。読み込みに失敗した場合はFALSE (ブール値)を返します。</p>
+<p>パスは、サーバの相対パスかフルパスで指定します。読み込みに失敗した場合は FALSE (ブール値)を返します。</p>
 
 <p class="important"><strong>Note:</strong> パスは、メインの index.php ファイルからの相対パスで、コントローラファイルやビューファイルからの相対パスではありません。
 CodeIgniter はフロントコントローラを使用するので、常にサイトのインデックスからの相対パスになります。</p>
 
-<p>サーバで open_basedir の制限が有効になっている場合、呼び出したスクリプトより上の階層にあるファイルにアクセスしようとするとき、このメソッドは動作しないかもしれません。</p>
+<p>サーバで open_basedir の制限が有効になっている場合、
+呼び出したスクリプトより上の階層にあるファイルにアクセスしようとするとき、このメソッドは動作しないかもしれません。</p>
 
 <h2>write_file('<var>path</var>', <kbd>$data</kbd>)</h2>
 
@@ -99,9 +100,11 @@ else<br />
 <p>第3引数に書き込みモードをオプションで指定できます:</p>
 
 <code>write_file('./path/to/file.php', $data, <var>'r+'</var>);</code>
+
 <p>デフォルトのモードは、<kbd>wb</kbd> です。指定できるモードについては、<a href="http://www.php.net/manual/ja/function.fopen.php">PHP ユーザガイド</a>をご覧ください。</p>
 
-<p>Note: この関数でファイルにデータを書き込めるようにするには、ファイルのパーミッションを書き込み可能なように (666、777、など)に設定しなければなりません。ファイルがまだ存在しない場合は、保存先のディレクトリが書き込み可能でなければなりません。</p>
+<p>Note: この関数でファイルにデータを書き込めるようにするには、ファイルのパーミッションを書き込み可能なように (666、777、など)に設定しなければなりません。
+ファイルがまだ存在しない場合は、保存先のディレクトリが書き込み可能でなければなりません。</p>
 
 <p class="important"><strong>Note:</strong>パスは、メインの index.php ファイルからの相対パスで、コントローラファイルやビューファイルからの相対パスではありません。
 CodeIgniter はフロントコントローラを使用するので、常にサイトのインデックスからの相対パスになります。</p>
@@ -119,43 +122,46 @@ CodeIgniter はフロントコントローラを使用するので、常にサ�
 
 <h2>get_filenames('<var>path/to/directory/</var>')</h2>
 
-<p>サーバパスを入力として、そのパスに含まれる全ファイル名の配列を返します。オプションで、第2引数をTRUEに設定すると、ファイルのパスがファイル名に付加されます。</p>
+<p>サーバパスを入力として、そのパスに含まれる全ファイル名の配列を返します。
+オプションで、第2引数を TRUE に設定すると、ファイルのパスがファイル名に付加されます。</p>
 
 <h2>get_dir_file_info('<var>path/to/directory/</var>', <kbd>$top_level_only</kbd> = TRUE)</h2>
-<p>指定されたディレクトリを読み、ファイル名、ファイルサイズ、日付、パーミッションから成る配列を作ります。指定ファイル以下のサブフォルダは、第2引数で <kbd>$top_level_only</kbd> を <samp>FALSE</samp> に指定した場合のみ全て同様に読まれます。</p>
+
+<p>指定されたディレクトリを読み、ファイル名、ファイルサイズ、日付、パーミッションから成る配列を作ります。
+指定ファイル以下のサブフォルダは、第2引数で <kbd>$top_level_only</kbd> を <samp>FALSE</samp> に指定した場合のみ全て同様に読まれます。</p>
 
 <h2>get_file_info('<var>path/to/file</var>', <kbd>$file_information</kbd>)</h2> 
 
 <p>ファイルとパスを元に、名前、パス、サイズと変更された日付を返します。2つ目の引数で以下のどれだけを返すか明示的に指定できます：name (名前)、server_path (サーバーパス)、size (サイズ)、date (日付)、readable (読み込み可)、writable (書き込み可)、executable (実行可)、fileperms (ファイルパーミッション)。ファイルがみつからない場合は FALSE を返します。</p>
 
 <p class="important"><strong>注意:</strong>&quot;writable&quot; は PHP の is_writable() 関数を使いますが、この関数は IIS web サーバで問題があることが知られています。PHP の fileperms() を使う fileperms を使うことを検討してください。</p>
+<h2>get_mime_by_extension('<var>file</var>')</h2>
 
-<h2>get_mime_by_extension('<var>file</var>')</h2> 
-
-<p>config/mimes.php にある設定を元にファイル拡張子を mime タイプに変換します。タイプが分からないときや mime 設定ファイルが開けなかったときは FALSE を返します。</p> 
-<p> 
-<code>$file = &quot;somefile.png&quot;;<br /> 
-echo $file . ' には以下のmimeタイプがついています ' . get_mime_by_extension($file);</code> 
-</p> 
+<p>config/mimes.php にある設定を元にファイル拡張子を mime タイプに変換します。タイプが分からないときや mime 設定ファイルが開けなかったときは FALSE を返します。</p>
+<p>
+<code>$file = &quot;somefile.png&quot;;<br />
+echo $file . ' には以下のmimeタイプがついています ' . get_mime_by_extension($file);</code>
+</p>
 <p class="critical"><strong>注意:</strong> この方法は正確にファイルのmimeタイプを判別するものではなく、あくまで簡単に取得するためだけのものです。セキュリティ用には使わないでください。</p>
 
-<h2>symbolic_permissions(<kbd>$perms</kbd>)</h2> 
+<h2>symbolic_permissions(<kbd>$perms</kbd>)</h2>
 
 <p>(<kbd>fileperms()</kbd> で返ってくるような) 数字のパーミッションを引数として渡すと、文字列のファイルパーミッションを返します。</p>
 
-<code>echo symbolic_permissions(fileperms('./index.php'));<br /> 
-<br /> 
-// -rw-r--r--</code> 
+<code>echo symbolic_permissions(fileperms('./index.php'));<br />
+<br />
+// -rw-r--r--</code>
 
-<h2>octal_permissions(<kbd>$perms</kbd>)</h2> 
+<h2>octal_permissions(<kbd>$perms</kbd>)</h2>
 
 <p>(<kbd>fileperms()</kbd> で返ってくるような) 数字のパーミッションを引数として渡すと、8進数3文字のファイルパーミッションを返します。</p>
 
-<code>echo octal_permissions(fileperms('./index.php'));<br /> 
-<br /> 
-// 644</code> 
+<code>echo octal_permissions(fileperms('./index.php'));<br />
+<br />
+// 644</code>
 
 </div>
+
 <!-- END CONTENT -->
 
 

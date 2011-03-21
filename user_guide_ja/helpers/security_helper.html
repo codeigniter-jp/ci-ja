@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>セキュリティヘルパ：CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -70,15 +71,20 @@
 
 <h2>xss_clean()</h2>
 
-<p> クロスサイトスクリプティングハッキングのフィルタリングを提供します。この関数は、<a href="../libraries/input.html">入力クラス</a>のメソッドのエイリアスです。詳しい情報はそちらを参照してください。</p>
+<p> クロスサイトスクリプティングハッキングのフィルタリングを提供します。
+この関数は、<a href="../libraries/input.html">入力クラス</a>のメソッドのエイリアスです。詳しい情報はそちらを参照してください。</p>
+
 
 <h2>sanitize_filename()</h2>
 
-<p>ディレクトリトラバーサルに対する保護を提供します。 この関数は、<a href="../libraries/security.html">セキュリティクラス</a>のメソッドのエイリアスです。詳しい情報はそちらを参照してください。</p>
+<p>ディレクトリトラバーサルに対する保護を提供します。
+この関数は、<a href="../libraries/security.html">セキュリティクラス</a>のメソッドのエイリアスです。詳しい情報はそちらを参照してください。</p>
+
 
 <h2>do_hash()</h2>
 
-<p>パスワードの暗号化に適した SHA1 または MD5 の一方向ハッシュ値を生成できます。初期状態ではSHA1ハッシュ値を生成します。例:</p>
+<p>パスワードの暗号化に適した SHA1 または MD5 の一方向ハッシュ値を生成できます。初期状態では SHA1 ハッシュ値を生成します。例:</p>
+
 <code>
 $str = do_hash($str); // SHA1<br />
 <br />
@@ -88,16 +94,17 @@ $str = do_hash($str, 'md5'); // MD5
 <p class="important"><strong>Note:</strong> この関数は、以前は <kbd>dohash()</kbd> という名前でした。現在は <kbd>do_hash()</kbd> の使用が推奨されます。</p>
 
 
+
 <h2>strip_image_tags()</h2>
 
-<p>文字列からイメージタグを除去するセキュリティ関数です。イメージへのURLはプレーンテキストとして残ります。</p>
+<p>文字列からイメージタグを除去するセキュリティ関数です。イメージへの URL はプレーンテキストとして残ります。</p>
 
 <code>$string = strip_image_tags($string);</code>
 
 
 <h2>encode_php_tags()</h2>
 
-<p>PHP タグをHTMLエンティティに変換するセキュリティ関数です。Note:  フィルタリング関数を使っても、PHPタグの変換は自動的に行われません。</p>
+<p>PHP タグを HTML エンティティに変換するセキュリティ関数です。Note:  フィルタリング関数を使っても、PHP タグの変換は自動的に行われません。</p>
 
 <code>$string = encode_php_tags($string);</code>
 

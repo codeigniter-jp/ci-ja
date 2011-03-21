@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>語形変換ヘルパ : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -41,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-語形変換ヘルパ</td>
+語形変換ヘルパ
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -73,7 +75,8 @@
 
 <code>
 $word = "dogs";<br />
-echo singular($word); // "dog" を返します</code>
+echo singular($word); // "dog" を返します
+</code>
 
 
 <h2>plural()</h2>
@@ -82,20 +85,21 @@ echo singular($word); // "dog" を返します</code>
 
 <code>
 $word = "dog";<br />
-echo plural($word); // "dogs" を返します</code>
+echo plural($word); // "dogs" を返します
+</code>
+
 
 <p>強制的に &quot;es&quot; で終わるようにするには、第2引数に &quot;true&quot; を指定します。 </p>
 <code> $word = &quot;pass&quot;;<br />
 echo plural($word, TRUE); // &quot;passes&quot; を返します</code>
 
-
 <h2>camelize()</h2>
-
 <p>スペースまたはアンダースコアで区切られた語句をキャメル記法に変換します。例:</p>
 
 <code>
 $word = "my_dog_spot";<br />
-echo camelize($word); // "myDogSpot" を返します</code>
+echo camelize($word); // "myDogSpot" を返します
+</code>
 
 
 <h2>underscore()</h2>
@@ -104,7 +108,8 @@ echo camelize($word); // "myDogSpot" を返します</code>
 
 <code>
 $word = "my dog spot";<br />
-echo underscore($word); // "my_dog_spot" を返します </code>
+echo underscore($word); // "my_dog_spot" を返します 
+</code>
 
 
 <h2>humanize()</h2>
@@ -113,7 +118,8 @@ echo underscore($word); // "my_dog_spot" を返します </code>
 
 <code>
 $word = "my_dog_spot";<br />
-echo humanize($word); // "My Dog Spot" を返します</code>
+echo humanize($word); // "My Dog Spot" を返します
+</code>
 
 
 

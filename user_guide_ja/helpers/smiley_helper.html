@@ -69,11 +69,11 @@
 <h2>概要</h2>
 
 <p>スマイリーヘルパは、  <dfn>:-)</dfn> [訳注:日本の顔文字の（＾＾）に相当] のようなプレーンテキストの顔文字をもとに、
- <img src="../images/smile.gif" width="19" height="19" border="0" alt="smile!" /> のような画像の表現に変換して描画します。</p>
+<img src="../images/smile.gif" width="19" height="19" border="0" alt="smile!" /> のような画像の表現に変換して描画します。</p>
 
 <p>また、クリックしたときにフォームフィールドに挿入できる顔文字画像のセットも表示できます。
 たとえば、ユーザがコメントをつけられるブログを作成しているとき、顔文字のセットをコメントフォームの下に表示させることができます。
-ユーザは、セットしたい顔文字をクリックでき、JavaScriptで、選択した顔文字がフォームフィールドに置かれます。</p>
+ユーザはセットしたい顔文字をクリックでき、JavaScript で選択した顔文字がフォームフィールドに置かれます。</p>
 
 
 
@@ -91,10 +91,10 @@
 
 <p><dfn>application/controllers/</dfn> フォルダの中に、<kbd>smileys.php</kbd> という名前のファイルを作成し、その中に下のコードを書いて下さい。</p>
 
-<p><strong>重要: </strong><dfn>get_clickable_smileys()</dfn> 関数で、URLを
+<p><strong>重要: </strong><dfn>get_clickable_smileys()</dfn> 関数で、URL を
 <dfn>smiley</dfn> フォルダの場所を指すように変更します。</p>
 
-<p>スマイリーヘルパーのほか、<a href="../libraries/table.html">HTMLテーブルクラス</a>を使っているのがわかると思います。</p>
+<p>スマイリーヘルパーのほか、<a href="../libraries/table.html">HTML テーブルクラス</a>を使っているのがわかると思います。</p>
 
 <textarea class="textarea" style="width:100%" cols="50" rows="25">
 &lt;?php
@@ -105,28 +105,28 @@ class Smileys extends CI_Controller {
 	{
 		parent::__construct();
 	}
-	
+
 	function index()
 	{
 		$this->load->helper('smiley');
 		$this->load->library('table');
-		
+
 		$image_array = get_clickable_smileys('http://example.com/images/smileys/', 'comments');
-		
+
 		$col_array = $this->table->make_columns($image_array, 8);
-		
+
 		$data['smiley_table'] = $this->table->generate($col_array);
-		
+
 		$this->load->view('smiley_view', $data);
 	}
-	
+
 }
 ?&gt;
 </textarea>
 
 <p><dfn>application/views/</dfn> フォルダの中に、<kbd>smiley_view.php</kbd> という名前のファイルを作成し、その中に下記のコードを書いてください:</p>
 
-<textarea class="textarea" style="width:99%" cols="50" rows="20">
+<textarea class="textarea" style="width:100%" cols="50" rows="20">
 &lt;html>
 &lt;head>
 &lt;title>Smileys&lt;/title>
@@ -149,16 +149,16 @@ class Smileys extends CI_Controller {
 </textarea>
 
 
-<p>上のコントローラとビューを作成したら、次のURLを訪問して読み込んでください <dfn>http://www.example.com/index.php/smileys/</dfn></p>
+<p>上のコントローラとビューを作成したら、次の URL を訪問して読み込んでください <dfn>http://www.example.com/index.php/smileys/</dfn></p>
 
 
 <h3>フィールドの別名</h3> 
 
-<p>ビューへの変更を行う際に、コントローラにフィールドIDを持たせていては扱いにくい場合があります。このような問題に対処するため、
-ビューの中の特定のIDに関連づけようとしているスマイリーリンクに、一般的な名前を付けることができます。</p>
+<p>ビューへの変更を行う際に、コントローラにフィールド ID を持たせていては扱いにくい場合があります。このような問題に対処するため、
+ビューの中の特定の ID に関連づけようとしているスマイリーリンクに、一般的な名前を付けることができます。</p>
 <code>$image_array = get_smiley_links("http://example.com/images/smileys/", "comment_textarea_alias");</code>
 
-<p>別名をフィールドIDにマッピングするには、smiley_js 関数に、それら両方を渡します：</p>
+<p>別名をフィールド ID にマッピングするには、smiley_js 関数に、それら両方を渡します：</p>
 <code>$image_array = smiley_js("comment_textarea_alias", "comments");</code>
 
 
@@ -166,28 +166,28 @@ class Smileys extends CI_Controller {
 
 <h2>get_clickable_smileys()</h2>
 
-<p>クッリク可能なリンクで囲まれた顔文字画像の配列を返します。顔文字画像のフォルダのURLと、
-フィールドのIDか別名を指定する必要があります:</p>
+<p>クッリク可能なリンクで囲まれた顔文字画像の配列を返します。顔文字画像のフォルダの URL と、
+フィールドの ID か別名を指定する必要があります:</p>
 
 <code>$image_array = get_smiley_links("http://example.com/images/smileys/", "comment");</code>
-<p class="important">Note: js_insert_smileyと組み合わせて使う、第二引数を用いないこの関数の利用方法は、非推奨になりました。</p>
+<p class="important">Note: js_insert_smiley と組み合わせて使う、第二引数を用いないこの関数の利用方法は、非推奨になりました。</p>
 
 
 <h2>smiley_js()</h2>
 
-<p>顔文字画像をクリックし、フォームフィールドに挿入可能にするJavaScriptを生成します。
-スマイリーリンクを生成する際に、IDの代わりに別名を指定する場合、
-関数に、別名とそれに関連するフォームIDを渡す必要があります。
-この関数は、webページの&lt;head&gt;領域に設置するように設計されています。</p>
+<p>顔文字画像をクリックし、フォームフィールドに挿入可能にする JavaScript を生成します。
+スマイリーリンクを生成する際に、ID の代わりに別名を指定する場合、
+関数に、別名とそれに関連するフォーム ID を渡す必要があります。
+この関数は、web ページの&lt;head&gt;領域に設置するように設計されています。</p>
 
 <code>&lt;?php echo smiley_js(); ?&gt;</code>
-<p class="important">Note: この関数は、非奨励となったjs_insert_smiley の代わりになります。</p>
+<p class="important">Note: この関数は、非奨励となった js_insert_smiley の代わりになります。</p>
 
 
 <h2>parse_smileys()</h2>
 
 <p>テキストを入力として、プレーンテキストの顔文字を同じ種類の画像の顔文字に変換します。
-第1引数には文字列を、第2引数には顔文字画像のフォルダのURLを指定する必要があります:</p>
+第1引数には文字列を、第2引数には顔文字画像のフォルダの URL を指定する必要があります:</p>
 
 <code>
 $str = 'Here are some simileys: :-)  ;-)';

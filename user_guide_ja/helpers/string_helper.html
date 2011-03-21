@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>文字列ヘルパ：CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -41,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-文字列ヘルパ</td>
+文字列ヘルパ
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -70,16 +72,17 @@
 
 <p>指定したタイプとサイズのランダムな文字列を生成します。パスワードを作成したり、ランダムなハッシュ値を生成したりするのに役立ちます。</p>
 
-<p>第1引数には、文字列のタイプを指定し、第2引数には、文字列のサイズ (文字数) を指定します。次の選択肢が使えます:</p>
+<p>第1引数には文字列のタイプを指定し、第2引数には文字列のサイズ (文字数) を指定します。次の選択肢が使えます:</p>
 
-alpha, alunum, numeric, nozero, unique, md5, encrypt and sha1
+ alpha, alunum, numeric, nozero, unique, md5, encrypt and sha1
 <ul>
-        <li><strong>alpha</strong>:&nbsp; 大文字小文字の文字列。</li>
-    <li><strong>alnum</strong>:&nbsp; 大文字小文字の英数字。</li>
-    <li><strong>numeric</strong>:&nbsp; 数字文字列。</li>
-    <li><strong>nozero</strong>:&nbsp; ゼロ以外の数字文字列。</li>
-    <li><strong>unique</strong>:&nbsp; MD5 と uniqid() での暗号化。Note: このタイプにはサイズのパラメータは存在しません。固定長の 32 文字の文字列を返します。</li>
-    <li><strong>sha1</strong>:&nbsp; <a href="security_helper.html">セキュリティヘルパ</a>の <kbd>do_hash()</kbd> に基づいた暗号化された乱数。</li>
+	<li><strong>alpha</strong>:&nbsp; 大文字小文字の文字列。</li>
+	<li><strong>alnum</strong>:&nbsp; 大文字小文字の英数字。</li>
+	<li><strong>numeric</strong>:&nbsp; 数字文字列。</li>
+	<li><strong>nozero</strong>:&nbsp; ゼロ以外の数字文字列。</li>
+	<li><strong>unique</strong>:&nbsp; MD5 と uniqid() での暗号化。
+	Note: このタイプにはサイズのパラメータは存在しません。固定長の 32 文字の文字列を返します。</li>
+	<li><strong>sha1</strong>:&nbsp; <a href="security_helper.html">セキュリティヘルパ</a>の <kbd>do_hash()</kbd> に基づいた暗号化された乱数。</li>
 </ul>
 
 <p>使用例です:</p>
@@ -96,6 +99,7 @@ alpha, alunum, numeric, nozero, unique, md5, encrypt and sha1
 &nbsp;&nbsp;&nbsp;&nbsp;echo alternator('string one', 'string two');<br />
 }<br />
 </code>
+
 <p>必要な数だけ追加でき、各ループで繰り返す度に次の項目が返ります。</p>
 
 <code>for ($i = 0; $i < 10; $i++)<br />
@@ -120,8 +124,8 @@ echo repeater($string, 30);</code>
 echo reduce_double_slashes($string); // &quot;http://example.com/index.php&quot; を返します</code>
 <h2>trim_slashes()</h2>
 <p>文字列から、先頭と末尾のスラッシュを除去します。例:<br />
-    <br />
-    <code>$string = &quot;/this/that/theother/&quot;;<br />
+	<br />
+	<code>$string = &quot;/this/that/theother/&quot;;<br />
 echo trim_slashes($string); // this/that/theother を返します</code></p>
 
 
@@ -132,10 +136,10 @@ $string="Fred, Bill,, Joe, Jimmy";<br />
 $string=reduce_multiples($string,","); // "Fred, Bill, Joe, Jimmy" を返します
 </code>
 <p>次の引数を指定することができます。
-
 <code>reduce_multiples(string: 対象文字列, string: 縮約文字, boolean: 先頭と末尾の縮約文字を削除するかどうか)</code>
 
-第 1 引数は縮約文字を含む文字列を指定します。第 2 引数は縮約文字を指定します。第 3 引数はデフォルトでは FALSE が指定されます。TRUE を指定した場合は先頭と末尾にある縮約文字が削除されます。例:
+第1引数は縮約文字を含む文字列を指定します。第2引数は縮約文字を指定します。第3引数はデフォルトでは FALSE が指定されます。
+TRUE を指定した場合は先頭と末尾にある縮約文字が削除されます。例:
 
 <code>
 $string=",Fred, Bill,, Joe, Jimmy,";<br />
