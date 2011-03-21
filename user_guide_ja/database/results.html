@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>クエリ結果の生成 : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -42,7 +43,8 @@
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
 <a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
-クエリ結果</td>
+クエリ結果
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -63,9 +65,11 @@
 <p>クエリ結果を生成する方法はいくつかあります:</p>
 
 	<h2>result()</h2>
-	
-	<p>このメソッドは、結果を<strong>オブジェクト</strong>の配列として、または失敗した場合には <strong>空の配列</strong> を返します。典型的には、次のように、これをforeach ループで使用します:</p>
-	
+
+	<p>このメソッドは、結果を<strong>オブジェクト</strong>の配列として、または失敗した場合には <strong>空の配列</strong> を返します。
+
+	典型的には、次のように、これをforeach ループで使用します:</p>
+
 	<code>
 	$query = $this->db->query("ここにクエリ");<br />
 	<br />
@@ -122,7 +126,8 @@
 
 	<h2>row()</h2>
 	
-	<p>このメソッドは単一行を返します。クエリの応答が一つ以上の行になる場合は、最初の行だけが返ります。結果は<strong>オブジェクト</strong>で返ります。使用方法の例です:</p>
+	<p>このメソッドは単一行を返します。クエリの応答が一つ以上の行になる場合は、最初の行だけが返ります。
+	結果は<strong>オブジェクト</strong>で返ります。使用方法の例です:</p>
 	<code>
 	$query = $this->db->query("ここにクエリ");<br />
 	<br />
@@ -134,10 +139,10 @@
 	&nbsp;&nbsp;&nbsp;echo $row->name;<br />
 	&nbsp;&nbsp;&nbsp;echo $row->body;<br />
 	}
-</code>
-	
+	</code>
+
 	<p>特定の行を返したいときは、第１引数に、行番号を数値として渡すことができます:</p>
-	
+
 	<code>$row = $query->row(<dfn>5</dfn>);</code>
 
 	<p>第2引数に文字列を渡すこともでき、その列をインスタンス化するためのクラス名を指定します:</p>
@@ -164,16 +169,16 @@
 	&nbsp;&nbsp;&nbsp;echo $row['title'];<br />
 	&nbsp;&nbsp;&nbsp;echo $row['name'];<br />
 	&nbsp;&nbsp;&nbsp;echo $row['body'];<br />
-	}	</code>
+	}
+	</code>
 
-	
+
 	<p>特定の行を返したいときは、第１引数に、行番号を数値として渡すことができます: </p>
-	
+
 	<code>$row = $query->row_array(<dfn>5</dfn>);</code>
-	
 
- 	<p>さらに、次のようなバリエーションで、結果を 進む/もどる/最初に移動/最後に移動 してデータを見ていくことができます:</p>
 
+	<p>さらに、次のようなバリエーションで、結果を 進む/もどる/最初に移動/最後に移動 してデータを見ていくことができます:</p>
 
 <p>
 	<strong>$row = $query->first_row()</strong><br />
@@ -190,6 +195,7 @@
 	<strong>$row = $query->next_row('array')</strong><br />
 	<strong>$row = $query->previous_row('array')</strong>
 </p>
+
 
 
 <h1>結果ヘルパメソッド</h1>
@@ -212,7 +218,10 @@ echo $query->num_fields();
 
 
 <h2>$query->free_result()</h2>
-<p>結果に関連付けられたメモリを解放し、結果のリソースIDを削除します。ふつうは、PHP は、スクリプトの実行を終えると、メモリを自動で解放します。しかし、特定のスクリプトで多くのクエリを実行しているとき、メモリの使用量を削減するために、各クエリの結果が生成されたあとにメモリを開放したい場合があります。例:</p>
+<p>結果に関連付けられたメモリを解放し、結果のリソースIDを削除します。ふつうは、PHP は、スクリプトの実行を終えると、メモリを自動で解放します。
+しかし、特定のスクリプトで多くのクエリを実行しているとき、
+メモリの使用量を削減するために、各クエリの結果が生成されたあとにメモリを開放したい場合があります。例:
+</p>
 
 <code>$query = $this->db->query('SELECT title FROM my_table');<br /><br />
 foreach ($query->result() as $row)<br />
@@ -224,11 +233,12 @@ $query->free_result();  // 結果オブジェクトの $query はもう利用で
 $query2 = $this->db->query('SELECT name FROM some_table');<br /><br />
 $row = $query2->row();<br />
 echo $row->name;<br />
-$query2->free_result();  // 結果オブジェクトの $query2 はもう利用できなくなります</code>
+$query2->free_result();  // 結果オブジェクトの $query2 はもう利用できなくなります
+</code>
 
 
 
-	
+
 
 </div>
 <!-- END CONTENT -->
