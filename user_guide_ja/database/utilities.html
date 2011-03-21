@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>データベースユーティリティクラス : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -42,7 +43,8 @@
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
 <a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
-データベースユーティリティクラス</td>
+データベースユーティリティクラス
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -77,7 +79,8 @@
 
 <h2><a name="init"></a>ユーティリティクラスの初期化</h2>
 
-<p class="important"><strong>Important:</strong>&nbsp;ユーティリティクラスは、データベースドライバに依存しているので、ユーティリティクラスを初期化するには、あらかじめデータベースドライバが実行されている必要があります。</p>
+<p class="important"><strong>Important:</strong>&nbsp;ユーティリティクラスは、データベースドライバに依存しているので、
+ユーティリティクラスを初期化するには、あらかじめデータベースドライバが実行されている必要があります。</p>
 
 <p>ユーティリティクラスは次のようにロードします:</p>
 
@@ -90,7 +93,6 @@
 <h2><a name="list"></a>$this->dbutil->list_databases()</h2>
 <p>データベース名の配列を返します:</p>
 
-
 <code>
 $dbs = $this->dbutil->list_databases();<br />
 <br />
@@ -102,7 +104,8 @@ foreach ($dbs as $db)<br />
 
 <h2><a name="exists"></a>$this->dbutil->database_exists();</h2>
 
-<p>特定のデータベースが存在するかどうかを知る場合に役立ちます。ブール値の TRUE/FALSE を返します。使用例:</p>
+<p>特定のデータベースが存在するかどうかを知る場合に役立ちます。
+ブール値の TRUE/FALSE を返します。使用例:</p>
 
 <code>
 if ($this->dbutil->database_exists('database_name'))<br />
@@ -143,7 +146,8 @@ if ($this->dbutil->optimize_table('table_name'))<br />
 if ($this->dbutil->repair_table('table_name'))<br />
 {<br />
 &nbsp;&nbsp;&nbsp; echo '成功!';<br />
-}</code>
+}
+</code>
 
 <p><strong>Note:</strong>すべてのデータベースプラットフォームがテーブルの修復をサポートしているわけではありません。</p>
 
@@ -160,14 +164,16 @@ $result = $this->dbutil->optimize_database();<br />
 if ($result !== FALSE)<br />
 {<br />
 &nbsp;&nbsp;&nbsp; print_r($result);<br />
-}</code>
+}
+</code>
 
 <p><strong>Note:</strong>すべてのデータベースプラットフォームがデータベースの最適化をサポートしているわけではありません。</p>
 
 
 <h2><a name="csv"></a>$this->dbutil->csv_from_result($db_result)</h2>
 
-<p>クエリの結果からCSVを生成することができます。第1引数に結果オブジェクトを指定する必要があります。例:</p>
+<p>クエリの結果からCSVを生成することができます。
+第1引数に結果オブジェクトを指定する必要があります。例:</p>
 
 <code>
 $this->load->dbutil();<br />
@@ -177,7 +183,8 @@ $query = $this->db->query("SELECT * FROM mytable");<br />
 echo $this->dbutil->csv_from_result($query);
 </code>
 
-<p>第2、第3引数で、区切り文字（デリミタ）と改行文字を指定できます。デフォルトでは、デリミタにタブを改行に "\n" (LF) を使います。例:</p>
+<p>第2、第3引数で、区切り文字（デリミタ）と改行文字を指定できます。
+デフォルトでは、デリミタにタブを改行に "\n" (LF) を使います。例:</p>
 
 <code>
 $delimiter = ",";<br />
@@ -186,12 +193,14 @@ $newline = "\r\n";<br />
 echo $this->dbutil->csv_from_result($query, $delimiter, $newline);
 </code>
 
-<p><strong>Important:</strong>&nbsp; このメソッドは、CSV を ファイルには書き出しません。単に、CSV に整形するだけです。ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパ</a> を利用します。</p>
+<p><strong>Important:</strong>&nbsp; このメソッドは、CSV を ファイルには書き出しません。単に、CSV に整形するだけです。
+ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパ</a> を利用します。</p>
 
 
 <h2><a name="xml"></a>$this->dbutil->xml_from_result($db_result)</h2>
 
-<p>クエリの結果からXMLを生成します。第一引数には、結果オブジェクトが入り、第2引数には、オプションで設定パラメータの配列が入ります。例:</p>
+<p>クエリの結果からXMLを生成します。第一引数には、結果オブジェクトが入り、
+第2引数には、オプションで設定パラメータの配列が入ります。例:</p>
 
 <code>
 $this->load->dbutil();<br />
@@ -205,18 +214,22 @@ $config = array (<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tab'&nbsp;&nbsp;&nbsp;&nbsp;=> "\t"<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
 <br />
-echo $this->dbutil->xml_from_result($query, $config);</code>
+echo $this->dbutil->xml_from_result($query, $config);
+</code>
 
-<p><strong>Important:</strong>&nbsp;このメソッドは、XML を ファイルには書き出しません。単に、XML に整形するだけです。ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパ</a> を利用します。</p>
+<p><strong>Important:</strong>&nbsp;このメソッドは、XML を ファイルには書き出しません。単に、XML に整形するだけです。
+ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパ</a> を利用します。</p>
 
 
 <h2><a name="backup"></a>$this->dbutil->backup()</h2>
 
-<p>データベース全体もしくは個別のテーブルをバックアップできます。バックアップデータはZip または Gzip フォーマットのどちらかの形式で圧縮できます[ 訳注: バックアップ結果をファイルに保存するには、ファイルヘルパを利用する必要があります。 ]。</p>
+<p>データベース全体もしくは個別のテーブルをバックアップできます。バックアップデータは Zip または Gzip フォーマットのどちらかの形式で圧縮できます [ 訳注: バックアップ結果をファイルに保存するには、ファイルヘルパを利用する必要があります ]。</p>
 
 <p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL データベースでのみ使用できます。</p>
 
-<p>Note: 実行制限時間とPHPが利用できる空きメモリ容量に注意してください。大規模なデータベースのバックアップはできないかもしれません。データベースが大規模な場合は、サーバで直接SQLを使ってバックアップする必要があるかしれません。ルート権限を持たない場合にはサーバ管理者がそれを行う必要があります。</p>
+<p>Note: 実行制限時間と PHP が利用できる空きメモリ容量に注意してください。
+大規模なデータベースのバックアップはできないかもしれません。データベースが大規模な場合は、
+サーバで直接 SQL を使ってバックアップする必要があるかしれません。ルート権限を持たない場合にはサーバ管理者がそれを行う必要があります。</p>
 
 <h3>使用例</h3>
 
@@ -246,7 +259,7 @@ force_download('mybackup.gz', $backup);
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tables'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array('table1', 'table2'),&nbsp;&nbsp;// バックアップするテーブルの配列。<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ignore'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array(),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップしないテーブルのリスト。<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'format'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'txt',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// gzip, zip, txt<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename'&nbsp;&nbsp;&nbsp;&nbsp;=> 'mybackup.sql',&nbsp;&nbsp;&nbsp;&nbsp;// ファイル名 - ZIPファイルのときだけ必要<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename'&nbsp;&nbsp;&nbsp;&nbsp;=> 'mybackup.sql',&nbsp;&nbsp;&nbsp;&nbsp;// ファイル名 - ZIP ファイルのときだけ必要<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_drop'&nbsp;&nbsp;&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップファイルにDROP TABLE 文を追加するかどうか<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_insert'&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップファイルにINSERT 文を追加するかどうか<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'newline'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> "\n"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップファイルで使う改行文字<br />
@@ -265,29 +278,19 @@ $this->dbutil->backup($prefs);
 <th>選択肢</th>
 <th>説明</th>
 </tr><tr>
-<td class="td"><strong>tables</strong></td>
-<td class="td">空の配列</td>
-<td class="td">なし</td>
-<td class="td">バックアップしたいテーブルの配列。空のままにしておけば、全テーブルがエクスポートされます。</td>
+<td class="td"><strong>tables</strong></td><td class="td">空の配列</td><td class="td">なし</td><td class="td">バックアップしたいテーブルの配列。空のままにしておけば、全テーブルがエクスポートされます。</td>
 </tr><tr>
-<td class="td"><strong>ignore</strong></td><td class="td">空の配列</td><td class="td">なし</td>
-<td class="td">バックアップ処理の対象外にするテーブルの配列。</td>
+<td class="td"><strong>ignore</strong></td><td class="td">空の配列</td><td class="td">なし</td><td class="td">バックアップ処理の対象外にするテーブルの配列。</td>
 </tr><tr>
-<td class="td"><strong>format</strong></td><td class="td">gzip</td><td class="td">gzip, zip, txt</td>
-<td class="td">エクスポートファイルのファイル形式。</td>
+<td class="td"><strong>format</strong></td><td class="td">gzip</td><td class="td">gzip, zip, txt</td><td class="td">エクスポートファイルのファイル形式。</td>
 </tr><tr>
-<td class="td"><strong>filename</strong></td>
-<td class="td">現在日時</td><td class="td">なし</td>
-<td class="td">バックアップファイルの名前。名前は、ZIP圧縮を使う場合のみ必要になります。</td>
+<td class="td"><strong>filename</strong></td><td class="td">現在日時</td><td class="td">なし</td><td class="td">バックアップファイルの名前。名前は、ZIP圧縮を使う場合のみ必要になります。</td>
 </tr><tr>
-<td class="td"><strong>add_drop</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td>
-<td class="td">SQLエクスポートファイルに、DROP TABLE 文を追加するかどうか。</td>
+<td class="td"><strong>add_drop</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td><td class="td">SQL エクスポートファイルに、DROP TABLE 文を追加するかどうか。</td>
 </tr><tr>
-<td class="td"><strong>add_insert</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td>
-<td class="td">SQLエクスポートファイルに、INSERT 文を追加するかどうか。</td>
+<td class="td"><strong>add_insert</strong></td><td class="td">TRUE</td><td class="td">TRUE/FALSE</td><td class="td">SQL エクスポートファイルに、INSERT 文を追加するかどうか。</td>
 </tr><tr>
-<td class="td"><strong>newline</strong></td><td class="td">"\n"</td><td class="td">"\n", "\r", "\r\n"</td>
-<td class="td">SQL エクスポートファイルで使う改行文字の種類。</td>
+<td class="td"><strong>newline</strong></td><td class="td">"\n"</td><td class="td">"\n", "\r", "\r\n"</td><td class="td">SQL エクスポートファイルで使う改行文字の種類。</td>
 
 </tr>
 </table>
@@ -299,7 +302,7 @@ $this->dbutil->backup($prefs);
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="forge.html">DBフォージクラス</a>
+前のトピック:&nbsp;&nbsp;<a href="forge.html">DB フォージクラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
