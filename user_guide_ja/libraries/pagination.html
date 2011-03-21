@@ -42,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-ページネーションクラス</td>
+ページネーションクラス
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -68,33 +69,40 @@
 <p>次は、<a href="../general/controllers.html">コントローラ</a> のメソッド内で、ページネーションを作成する方法を示した簡単なサンプルです:</p>
 
 <code>
-$this->load->library('pagination');<br />
-<br />	
+$this->load->library('pagination');<br /><br />
 $config['base_url'] = 'http://example.com/index.php/test/page/';<br />
 $config['total_rows'] = '200';<br />
 $config['per_page']  = '20';
 <br /><br />
 $this->pagination->initialize($config);
 
-<br />
-<br />
+<br /><br />
 echo  $this->pagination->create_links();</code>
 
 <h3>Notes:</h3>
 
-<p><var>$config</var> 配列は、ユーザ設定の変数を格納してます。この配列は、上で示すように<dfn> $this->pagination->initialize</dfn> メソッドに渡されます。20程度の項目を設定できますが、例のように、最低限3つの設定項目が必要です。上で示したそれらの設定項目についての説明です:</p>
+<p><var>$config</var> 配列は、ユーザ設定の変数を格納してます。この配列は、上で示すように<dfn> $this->pagination->initialize</dfn> メソッドに渡されます。
+20程度の項目を設定できますが、例のように、最低限3つの設定項目が必要です。上で示したそれらの設定項目についての説明です:</p>
 
 <ul>
-	<li><strong>base_url</strong> ページネーション処理が含まれるコントローラクラス/ メソッドへの完全なURL。上の例では、URLは、"Test"という名前のコントローラと "page" という名前のメソッドを指しています。  <a href="../general/routing.html">URIを再ルーティング</a> することが可能ですが、その場合は、URLに違った構造を指定する必要があることを忘れないようにしてください。</li>
-	<li><strong>total_rows</strong> この数字は、ページネーションで表示すべき結果セットの総行数をあらわします。典型的には、この数字は、データベースクエリが返した総行数になります。	</li>
+	<li><strong>base_url</strong> ページネーション処理が含まれるコントローラクラス/ メソッドへの完全なURL。
+	上の例では、URLは、"Test"という名前のコントローラと "page" という名前のメソッドを指しています。
+	<a href="../general/routing.html">URIを再ルーティング</a> することが可能ですが、その場合は、URLに違った構造を指定する必要があることを忘れないようにしてください。</li>
+	<li><strong>total_rows</strong> この数字は、ページネーションで表示すべき結果セットの総行数をあらわします。
+	典型的には、この数字は、データベースクエリが返した総行数になります。
+	</li>
 	<li><strong>per_page</strong> 1ページあたりに表示したい件数。上の例では、1ページあたり20件を表示します。</li>
 </ul>
 
 <p>表示するページがない場合、<var>create_links()</var> メソッドは、空を返します。</p>
+
+
 <h3>設定ファイルで設定する</h3>
 
-<p>上記の方法で設定をセットしたくない場合は、代わりに設定ファイルに設定項目をセットしておくことができます。単純に、<var>pagination.php</var> という名前の新規ファイルを作成し、<var>$config</var>
-配列をそのファイルに追加します。次に、<var>config/pagination.php</var> に保存すると、自動的にその設定が使われます。 設定ファイルに設定を保存した場合は、<dfn>$this->pagination->initialize</dfn> メソッドを使う必要はありません。</p>
+<p>上記の方法で設定をセットしたくない場合は、代わりに設定ファイルに設定項目をセットしておくことができます。
+単純に、<var>pagination.php</var> という名前の新規ファイルを作成し、<var>$config</var> 配列をそのファイルに追加します。
+次に、<var>config/pagination.php</var> に保存すると、自動的にその設定が使われます。
+設定ファイルに設定を保存した場合は、<dfn>$this->pagination->initialize</dfn> メソッドを使う必要はありません。</p>
 
 
 <h2>ページネーションのカスタマイズ</h2>
@@ -104,7 +112,8 @@ echo  $this->pagination->create_links();</code>
 
 <h4>$config['uri_segment'] = 3;</h4>
 
-<p>ページネーション 機能は、URIのどのセグメントにページ番号が含まれるかを自動的に決定します。もしこれを違うようにする場合は、指定することができます。</p>
+<p>ページネーション 機能は、URIのどのセグメントにページ番号が含まれるかを自動的に決定します。
+もしこれを違うようにする場合は、指定することができます。</p>
 
 <h4>$config['num_links'] = 2;</h4>
 
@@ -187,7 +196,7 @@ echo  $this->pagination->create_links();</code>
 
 <h4>$config['num_tag_close'] = '&lt;/div>';</h4>
 <p>各 &quot;数字&quot; のページリンクの終了タグ。</p>
-		
+
 <h2>ページ移動リンクを隠す</h2>
 
 <p>各ページへのリンクを出力したくない (たとえば "next" と "previous" のリンクのみ表示したい) 場合，次のようにします:</p>

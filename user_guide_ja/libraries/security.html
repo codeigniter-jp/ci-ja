@@ -42,10 +42,9 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-セキュリティクラス</td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />
-    ユーザガイドを検索&nbsp; 
-    <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+セキュリティクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp;<input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -63,9 +62,12 @@
 
 <h2>XSS フィルタリング</h2>
 
-<p>CodeIgniter はクロスサイトスクリプティング攻撃を防ぐために，すべての POST と COOKIE データをフィルタ処理できるようになりました。また，個別にフィルタすることもできます。デフォルトではこの機能は<strong>無効</strong>になっています。若干のオーバーヘッドが発生するのと，あなたがすべてのページでそれを必要としていないかもしれないからです。</p>
+<p>CodeIgniter はクロスサイトスクリプティング攻撃を防ぐために，すべての POST と COOKIE データをフィルタ処理できるようになりました。
+また，個別にフィルタすることもできます。デフォルトではこの機能は<strong>無効</strong>になっています。
+若干のオーバーヘッドが発生するのと，あなたがすべてのページでそれを必要としていないかもしれないからです。</p>
 
-<p>一般的に，XSS フィルタは，JavaScript などのコードを用いたクッキーの乗っ取りなどの攻撃を見つけます。もし禁止された文字等を見つけた場合は，データを HTML エンティティに変換して安全に表示します。</p>
+<p>一般的に，XSS フィルタは，JavaScript などのコードを用いたクッキーの乗っ取りなどの攻撃を見つけます。
+もし禁止された文字等を見つけた場合は，データを HTML エンティティに変換して安全に表示します。</p>
 
 <p>
 Note: この機能は，データの処理のみに使用してください。相当量のオーバーヘッド処理を必要とするため，一般的なランタイム処理に使用されるべきものではありません。</p>
@@ -79,7 +81,8 @@ Note: この機能は，データの処理のみに使用してください。�
 
 <code>$data = $this->security->xss_clean($data);</code>
 
-<p>常に自動で POST および COOKIE データをフィルタしたい場合は，<kbd>application/config/config.php</kbd> を開いて次のように設定してください。</p>
+<p>常に自動で POST および COOKIE データをフィルタしたい場合は，
+<kbd>application/config/config.php</kbd> を開いて次のように設定してください。</p>
 
 <code>$config['global_xss_filtering'] = TRUE;</code>
 

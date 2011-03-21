@@ -98,7 +98,7 @@
 <h1>概観</h1>
 
 
-<p>CodeIgniterのデータ検証アプローチの説明をする前に、想定するシナリオについて述べておきます:</p>
+<p>CodeIgniter のデータ検証アプローチの説明をする前に、想定するシナリオについて述べておきます:</p>
 
 <ol>
 <li>フォームが表示されます。</li>
@@ -244,15 +244,15 @@ class Form extends CI_Controller {
 
 <h2>動かしてみよう!</h2>
 
-<p>作ったフォームを動かすため、次のうようなURLでサイトを訪問してください:</p>
+<p>作ったフォームを動かすため、次のような URL でサイトを訪問してください:</p>
 
 <code>example.com/index.php/<var>form</var>/</code>
 
 <p><dfn>フォームに送信すると、単にフォームが更新されるだけに見えます。
 これは、まだ検証ルールを1つも設定していないからです。</dfn></p>
 
-<p><strong>ここでは、まだ Form バリデーションクラスになにも検証しないように設定しています。バリデーションクラスは、デフォルトでは、<kbd>FALSE</kbd> (ブール値の false)を返します。
-<samp>run()</samp>メソッドは、1つも失敗せずにユーザが指定したルールに適合する場合にのみ <kbd>TRUE</kbd> を返します。</strong></p>
+<p><strong>ここでは、まだ Form バリデーションクラスになにも検証しないように設定しています。バリデーションクラスは、デフォルトでは、<kbd>FALSE</kbd> (ブール値の false )を返します。
+<samp>run()</samp> メソッドは、1つも失敗せずにユーザが指定したルールに適合する場合にのみ <kbd>TRUE</kbd> を返します。</strong></p>
 
 
 <h2>解説</h2>
@@ -286,15 +286,15 @@ class Form extends CI_Controller {
 <h2>検証ルールを設定する</h2>
 
 <p>CodeIgniter では、指定したフィールドにどれだけ多くのルールを適用してもかまいません。ルールは順番に続けて適用することができ、同時にデータを整形したり前処理を行ったりすることもできます。
-<dfn>set_rules()</dfn>メソッドを使って検証ルールを設定してみましょう:</p>
+<dfn>set_rules()</dfn> メソッドを使って検証ルールを設定してみましょう:</p>
 
 <code>$this->form_validation->set_rules();</code>
 
 <p>上記のメソッドには<strong>3つの</strong>入力パラメータを指定します。:</p>
 
 <ol>
-	<li>フォーム名 - フォームのname属性に指定した値です</li>
-	<li>このフォームの表示名。これはエラーメッセージに挿入されます。 たとえば、フォームに「user」という名前を付けた場合、表示名としては「名前」とするでしょう。 <strong>Note:</strong> フィールド名を言語ファイルに設定して使いたい場合は<a href="#translatingfn">フィールド名の翻訳</a>を見てください。</li>
+	<li>フォーム名 - フォームの name 属性に指定した値です</li>
+	<li>このフォームの表示名。これはエラーメッセージに挿入されます。 たとえば、フォームに「 user 」という名前を付けた場合、表示名としては「名前」とするでしょう。 <strong>Note:</strong> フィールド名を言語ファイルに設定して使いたい場合は<a href="#translatingfn">フィールド名の翻訳</a>を見てください。</li>
 	<li>このフォームに設定する検証ルール</li>
 </ol>
 
@@ -313,18 +313,18 @@ $this->form_validation->set_rules('email', 'メールアドレス', 'required');
 <textarea class="textarea" style="width:100%" cols="50" rows="28"><?php
 
 class Form extends CI_Controller {
-	
+
 	function index()
 	{
 		$this->load->helper(array('form', 'url'));
-		
+
 		$this->load->library('form_validation');
-			
+
 		$this->form_validation->set_rules('username', 'ユーザ名', 'required');
 		$this->form_validation->set_rules('password', 'パスワード', 'required');
 		$this->form_validation->set_rules('passconf', 'パスワードの確認', 'required');
 		$this->form_validation->set_rules('email', 'メールアドレス', 'required');
-			
+
 		if ($this->form_validation->run() == FALSE)
 		{
 			$this->load->view('myform');
@@ -423,10 +423,10 @@ $this->form_validation->set_rules('email', 'メールアドレス', '<kbd>trim</
 </code>
 
 
-<p>上の例では、フィールドを "トリミング" し、パスワードをMD5に変換し、
+<p>上の例では、フィールドを "トリミング" し、パスワードを MD5 に変換し、
 悪意のあるデータを取り除く "xss_clean" 機能を通します。</p>
 
-<p><strong><dfn>htmlspecialchars</dfn>、<dfn>trim</dfn>、<dfn>MD5</dfn> などのような引数を1つだけとるPHPの組み込み関数は
+<p><strong><dfn>htmlspecialchars</dfn>、<dfn>trim</dfn>、<dfn>MD5</dfn> などのような引数を1つだけとる PHP の組み込み関数は
 どれでもルールとして使用することができます。</strong></p>
 
 <p><strong>Note:</strong> もしエラーがあった場合、もとのデータをフォームに表示させるため、
@@ -515,18 +515,18 @@ $this->form_validation->set_rules('email', 'メールアドレス', '<kbd>trim</
 <textarea class="textarea" style="width:100%" cols="50" rows="44"><?php
 
 class Form extends CI_Controller {
-	
+
 	function index()
 	{
 		$this->load->helper(array('form', 'url'));
-		
+
 		$this->load->library('form_validation');
-			
+
 		$this->form_validation->set_rules('username', 'ユーザ名', 'callback_username_check');
 		$this->form_validation->set_rules('password', 'パスワード', 'required');
 		$this->form_validation->set_rules('passconf', 'パスワードの確認', 'required');
 		$this->form_validation->set_rules('email', 'メールアドレス', 'required');
-					
+
 		if ($this->form_validation->run() == FALSE)
 		{
 			$this->load->view('myform');
@@ -536,7 +536,7 @@ class Form extends CI_Controller {
 			$this->load->view('formsuccess');
 		}
 	}
-	
+
 	function username_check($str)
 	{
 		if ($str == 'test')
@@ -549,7 +549,7 @@ class Form extends CI_Controller {
 			return TRUE;
 		}
 	}
-	
+
 }
 ?></textarea>
 
@@ -603,7 +603,7 @@ $this->form_validation->set_rules('first_name', '<kbd>lang:</kbd>first_name', 'r
 
 <code>$lang['first_name'] = 'First Name';</code>
 
-<p><strong>Note:</strong> CIによって自動でロードされていない言語ファイル内に、配列を格納しているなら、次の様にコントローラー内でロードする事を忘れないでください:</p>
+<p><strong>Note:</strong> CI によって自動でロードされていない言語ファイル内に、配列を格納しているなら、次の様にコントローラー内でロードする事を忘れないでください:</p>
 
 <code>$this->lang->load('file_name');</code>
 
@@ -689,7 +689,7 @@ $this->form_validation->set_rules('first_name', '<kbd>lang:</kbd>first_name', 'r
 <h1>検証ルールを設定ファイルに保存</h1>
 
 <p>フォーム検証クラスの素晴らしい特徴は、アプリケーション全体に適用する検証ルールを全て設定ファイル内に格納する事が出来る点です。
-ルールは”グループ"毎に整理することができます。
+ルールは"グループ"毎に整理することができます。
 この"グループ"は一致するコントローラーやメソッドが呼び出された時に自動的にロードさせる事も出来るし、必要な時に手動で呼び出す事も出来ます。</p>
 
 <h3>ルールの保存方法</h3>
@@ -722,14 +722,14 @@ $config = array(<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
 </code>
 
-<p><dfn>検証ルールのファイルは自動的に読み込まれ、run()メソッドが呼び出される時に使用されます。</dfn></p>
+<p><dfn>検証ルールのファイルは自動的に読み込まれ、run() メソッドが呼び出される時に使用されます。</dfn></p>
 
 <p class="important">必ず $config という名前の配列にしてください。</p>
 
 <h3>検証ルールのセットを作る</h3>
 
 <p>ルールを"セット"の中に整理するためには、配列の中に配列を配置する必要があります。
-次の例を考えます。２つのルールセットをお見せしますので、例として考えてみましょう。2つのルールとして、任意に"signup"と"email"と呼ぶことにします。付けたい名前を付ける事ができます:</p>
+次の例を考えます。２つのルールセットをお見せしますので、例として考えてみましょう。2つのルールとして、任意に "signup" と "email" と呼ぶことにします。付けたい名前を付ける事ができます:</p>
 
 
 <code>$config = array(<br />
@@ -852,7 +852,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
 </code>
 
-<p><dfn>ルールグループがコントローラー／メソッドの名前に一致する名前のとき、run()メソッドが呼び出された時に自動的に使用されます。</dfn></p>
+<p><dfn>ルールグループがコントローラー／メソッドの名前に一致する名前のとき、run() メソッドが呼び出された時に自動的に使用されます。</dfn></p>
 
 <p>&nbsp;</p>
 
@@ -892,7 +892,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 <code>&lt;?php echo form_error('<kbd>sports[nba][basketball]</kbd>'); ?></code>
 
 <p>複数の選択肢を持つチェックボックス（もしくは他のフォーム）を使う場合は、それぞれの名前には空白のカッコを付ける事を忘れないでください。
-そうしないとPOST時の配列に全ての選択が渡りません:</p>
+そうしないと POST 時の配列に全ての選択が渡りません:</p>
 
 <code>
 &lt;input type="checkbox" name="<kbd>options[]</kbd>" value="red" /><br />
@@ -924,123 +924,151 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 <p>次のリストは、使用可能なすべての組み込みのルールです:</p>
 
 
-
 <table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
-<tr>
-<th>ルール</th>
-<th>パラメータ</th>
-<th>説明</th>
-<th>例</th>
-</tr><tr>
+	<tr>
+		<th>ルール</th>
+		<th>パラメータ</th>
+		<th>説明</th>
+		<th>例</th>
+	</tr>
 
-<td class="td"><strong>required</strong></td>
-<td class="td">なし</td>
-<td class="td">フォームのデータが空のときに FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr><tr>
+	<tr>
+		<td class="td"><strong>required</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが空のときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
-<td class="td"><strong>matches</strong></td>
-<td class="td">あり</td>
-<td class="td">フォームのデータが他のフィールドの入力データと一致しないときに FALSE を返します。</td>
-<td class="td">matches[form_item]</td>
-</tr><tr>
+	<tr>
+		<td class="td"><strong>matches</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが他のフィールドの入力データと一致しないときに FALSE を返します。</td>
+		<td class="td">matches[form_item]</td>
+	</tr>
 
-<td class="td"><strong>min_length</strong></td>
-<td class="td">あり</td>
-<td class="td">フォームのデータが指定したサイズよりも文字数が短いときに FALSE を返します。</td>
-<td class="td">min_length[6]</td>
-</tr><tr>
+	<tr>
+		<td class="td"><strong>min_length</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが指定したサイズよりも文字数が短いときに FALSE を返します。</td>
+		<td class="td">min_length[6]</td>
+	</tr>
 
-<td class="td"><strong>max_length</strong></td>
-<td class="td">あり</td>
-<td class="td">フォームのデータが指定したサイズよりも文字数が長いときに FALSE を返します。</td>
-<td class="td">max_length[12]</td>
-</tr><tr>
+	<tr>
+		<td class="td"><strong>max_length</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが指定したサイズよりも文字数が長いときに FALSE を返します。</td>
+		<td class="td">max_length[12]</td>
+	</tr>
 
-<td class="td"><strong>exact_length</strong></td>
-<td class="td">あり</td>
-<td class="td">フォームのデータが特定の長さでないときに FALSE を返します。</td>
-<td class="td">exact_length[8]</td>
-</tr><tr>
+	<tr>
+		<td class="td"><strong>exact_length</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが特定の長さでないときに FALSE を返します。</td>
+		<td class="td">exact_length[8]</td>
+	</tr>
 
-<td class="td"><strong>alpha</strong></td>
-<td class="td">なし</td>
-<td class="td">フォームのデータがアルファベットでない文字を含むときに FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr><tr>
+	<tr>
+		<td class="td"><strong>greater_than</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが指定した値よりも小さいか、数値でないときに FALSE を返します。</td>
+		<td class="td">greater_than[8]</td>
+	</tr>
 
-<td class="td"><strong>alpha_numeric</strong></td>
-<td class="td">なし</td>
-<td class="td">フォームのデータが英数字でない文字を含むときに FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr><tr>
+	<tr>
+		<td class="td"><strong>less_than</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが指定した値よりも大きいか、数値でないときに FALSE を返します。</td>
+		<td class="td">less_than[8]</td>
+	</tr>
 
-<td class="td"><strong>alpha_dash</strong></td>
-<td class="td">なし</td>
-<td class="td">フォームのデータが英数字、アンダースコア(&quot;_&quot;)、ダッシュ(&quot;-&quot;) のいずれでないものを含むときに FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr>
+	<tr>
+		<td class="td"><strong>alpha</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータがアルファベットでない文字を含むときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
-<tr>
-<td class="td"><strong>numeric</strong></td>
-<td class="td">なし</td>
-<td class="td">フォームのデータが数字でないときに FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr>
+	<tr>
+		<td class="td"><strong>alpha_numeric</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが英数字でない文字を含むときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
-<tr>
-<td class="td"><strong>integer</strong></td>
-<td class="td">なし</td>
-<td class="td">フォームのデータが整数以外の場合 FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr>
+	<tr>
+		<td class="td"><strong>alpha_dash</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが英数字、アンダースコア(&quot;_&quot;)、ダッシュ(&quot;-&quot;) のいずれでないものを含むときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
-<tr>
-<td class="td"><strong>is_natural</strong></td>
-<td class="td">なし</td>
-<td class="td">フォームのデータが0,1,2,3,等の自然数以外の場合 FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr>
+	<tr>
+		<td class="td"><strong>numeric</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが数字でないときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
-<tr>
-<td class="td"><strong>is_natural_no_zero</strong></td>
-<td class="td">なし</td>
-<td class="td">フォームのデータが0を除く1,2,3,等の自然数以外の場合 FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr>
+	<tr>
+		<td class="td"><strong>integer</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが整数以外の場合 FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
-<tr>
-<td class="td"><strong>valid_email</strong></td>
-<td class="td">なし</td>
-<td class="td">フォームのデータが email アドレスとして正しくないとき FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr>
+	<tr>
+		<td class="td"><strong>decimal</strong></td>
+		<td class="td">あり</td>
+		<td class="td">Returns FALSE if the form element is not exactly the parameter value.</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
-<tr>
-<td class="td"><strong>valid_emails</strong></td>
-<td class="td">なし</td>
-<td class="td">コンマで区切られたリストのひとつでもメールアドレスとして正しくないとき FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr>
+	<tr>
+		<td class="td"><strong>is_natural</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが0, 1, 2, 3, 等の自然数以外の場合 FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
-<tr>
-<td class="td"><strong>valid_ip</strong></td>
-<td class="td">なし</td>
-<td class="td">渡された IP が正しい形式でないときに FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr>
+	<tr>
+		<td class="td"><strong>is_natural_no_zero</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが0を除く1, 2, 3, 等の自然数以外の場合 FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
-<tr>
-<td class="td"><strong>valid_base64</strong></td>
-<td class="td">なし</td>
-<td class="td">渡された文字列が正しい Base64 形式でないとき FALSE を返します。</td>
-<td class="td">&nbsp;</td>
-</tr>
+	<tr>
+		<td class="td"><strong>valid_email</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが email アドレスとして正しくないとき FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>valid_emails</strong></td>
+		<td class="td">なし</td>
+		<td class="td">コンマで区切られたリストのひとつでもメールアドレスとして正しくないとき FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>valid_ip</strong></td>
+		<td class="td">なし</td>
+		<td class="td">渡された IP が正しい形式でないときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>valid_base64</strong></td>
+		<td class="td">なし</td>
+		<td class="td">渡された文字列が正しい Base64 形式でないとき FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
 
 
 </table>
 
-<p><strong>Note:</strong> また、これらのルールは、ふつうのメソッドとしても呼び出すことができます。 例:</p>
+<p><strong>Note:</strong>また、これらのルールは普通のメソッドとしても呼び出すことができます。 例:</p>
 
 <code>$this->form_validation->required($string);</code>
 
@@ -1058,36 +1086,36 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 
 
 <table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
-<tr>
-<th>名前</th>
-<th>パラメータ</th>
-<th>説明</th>
-</tr><tr>
+	<tr>
+		<th>名前</th>
+		<th>パラメータ</th>
+		<th>説明</th>
+	</tr><tr>
 
-<td class="td"><strong>xss_clean</strong></td>
-<td class="td">なし</td>
-<td class="td">XSS フィルタリングメソッドを通過させます。XSS フィルタリングメソッドについては、<a href="input.html">入力クラス</a>のページをご覧ください。</td>
-</tr><tr>
+		<td class="td"><strong>xss_clean</strong></td>
+		<td class="td">なし</td>
+		<td class="td">XSS フィルタリングメソッドを通過させます。XSS フィルタリングメソッドについては、<a href="input.html">入力クラス</a>のページをご覧ください。</td>
+	</tr><tr>
 
-<td class="td"><strong>prep_for_form</strong></td>
-<td class="td">なし</td>
-<td class="td">HTML データをフォームフィールドで崩れずに表示させるよう、HTML 特殊文字を変換します。</td>
-</tr><tr>
+		<td class="td"><strong>prep_for_form</strong></td>
+		<td class="td">なし</td>
+		<td class="td">HTML データをフォームフィールドで崩れずに表示させるよう、HTML 特殊文字を変換します。</td>
+	</tr><tr>
 
-<td class="td"><strong>prep_url</strong></td>
-<td class="td">なし</td>
-<td class="td">もし、ない場合は、"http://" を URL に追加します。</td>
-</tr><tr>
+		<td class="td"><strong>prep_url</strong></td>
+		<td class="td">なし</td>
+		<td class="td">もし、ない場合は、"http://" を URL に追加します。</td>
+	</tr><tr>
 
-<td class="td"><strong>strip_image_tags</strong></td>
-<td class="td">なし</td>
-<td class="td">イメージへの URL をそのままにして、イメージタグから HTML を取り除きます。</td>
-</tr><tr>
+		<td class="td"><strong>strip_image_tags</strong></td>
+		<td class="td">なし</td>
+		<td class="td">イメージへの URL をそのままにして、イメージタグから HTML を取り除きます。</td>
+	</tr><tr>
 
-<td class="td"><strong>encode_php_tags</strong></td>
-<td class="td">なし</td>
-<td class="td">PHP タグを HTML エンティティに変換します。</td>
-</tr>
+		<td class="td"><strong>encode_php_tags</strong></td>
+		<td class="td">なし</td>
+		<td class="td">PHP タグを HTML エンティティに変換します。</td>
+	</tr>
 
 </table>
 
@@ -1119,7 +1147,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 
 <h2>$this->form_validation->run();</h2>
 
-<p>検証処理を実行する。成功時はTRUEを返し、失敗時はFALSEを返す。
+<p>検証処理を実行する。成功時は TRUE を返し、失敗時は FALSE を返す。
 このメソッドには <a href="#savingtoconfig">設定ファイルに検証ルールのグループを保存する</a> に書いてある様に、検証ルールグループの名前を渡せます。</p>
 
 
@@ -1184,7 +1212,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 <h2>set_checkbox()</h2>
 
 <p>送信されたチェックボックスの状態を表示できます。
-第1パラメーターにはチェックボックスの名前を指定します。第2パラメーターにはvalueに設定した値を指定します。第3パラメーター（オプション）にはデフォルト値（TRUE/FALSEのブール値）を指定します。例:</p>
+第1パラメーターにはチェックボックスの名前を指定します。第2パラメーターには value に設定した値を指定します。第3パラメーター（オプション）にはデフォルト値（TRUE/FALSEのブール値）を指定します。例:</p>
 
 <code>&lt;input type="checkbox" name="mycheck[]" value="1" <dfn>&lt;?php echo set_checkbox('mycheck[]', '1'); ?></dfn> /><br />
 &lt;input type="checkbox" name="mycheck[]" value="2" <dfn>&lt;?php echo set_checkbox('mycheck[]', '2'); ?></dfn> /></code>

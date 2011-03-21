@@ -58,21 +58,23 @@ FTP クラス
 
 <h1>FTP クラス</h1>
 
-<p>CodeIgniter のFTPクラスを使うと、リモートサーバにファイルを転送できます。リモートにあるファイルは、移動・リネーム・そして削除も可能です。また、FTP クラスには、FTP経由でローカルディレクトリをすべてリモートに再作成する "ミラーリング" 機能もあります。</p>
+<p>CodeIgniter の FTP クラスを使うと、リモートサーバにファイルを転送できます。リモートにあるファイルは、移動・リネーム・そして削除も可能です。
+また、FTP クラスには、FTP 経由でローカルディレクトリをすべてリモートに再作成する "ミラーリング" 機能もあります。</p>
 
-<p class="important"><strong>Note:</strong>&nbsp; SFTP と SSL FTP プロトコルはサポートされていません。通常のFTPのみサポートされます。</p>
+<p class="important"><strong>Note:</strong>&nbsp; SFTP と SSL FTP プロトコルはサポートされていません。通常の FTP のみサポートされます。</p>
 
 <h2>クラスの初期化</h2>
 
-<p>CodeIgniterの大部分のクラスと同様、FTPクラスは、コントローラの中で <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
+<p>CodeIgniter の大部分のクラスと同様、FTP クラスは、コントローラの中で <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
 
 <code>$this->load->library('ftp');</code>
-<p>一度読み込まれると、FTPオブジェクトは、次のようにして利用できます: <dfn>$this->ftp</dfn></p>
+<p>一度読み込まれると、FTP オブジェクトは、次のようにして利用できます: <dfn>$this->ftp</dfn></p>
 
 
 <h2>使用例</h2>
 
-<p>以下の例では、FTPサーバに対してコネクションが開かれ、ローカルファイルがASCIIモードで読み取られてアップロードされます。ファイルのパーミッションは755に設定します。Note: パーミッションを設定するには PHP 5 が必要です。</p>
+<p>以下の例では、FTP サーバに対してコネクションが開かれ、ローカルファイルが ASCII モードで読み取られてアップロードされます。
+ファイルのパーミッションは755に設定します。Note: パーミッションを設定するには PHP 5 が必要です。</p>
 
 <code>
 $this->load->library('ftp');<br />
@@ -80,7 +82,7 @@ $this->load->library('ftp');<br />
 $config['hostname'] = 'ftp.example.com';<br />
 $config['username'] = 'your-username';<br />
 $config['password'] = 'your-password';<br />
-$config['debug'] 	= TRUE;<br />
+$config['debug']	= TRUE;<br />
 <br />
 $this->ftp->connect($config);<br />
 <br />
@@ -119,7 +121,7 @@ $this->load->library('ftp');<br />
 $config['hostname'] = 'ftp.example.com';<br />
 $config['username'] = 'your-username';<br />
 $config['password'] = 'your-password';<br />
-$config['debug'] 	= TRUE;<br />
+$config['debug']	= TRUE;<br />
 <br />
 $this->ftp->connect($config);<br />
 <br />
@@ -133,7 +135,8 @@ $this->ftp->close();
 
 <h2>$this->ftp->connect()</h2>
 
-<p>FTP サーバに接続してログインします。接続の設定は、配列で渡すか、設定ファイルに保管しておくことができます。</p>
+<p>FTP サーバに接続してログインします。
+接続の設定は、配列で渡すか設定ファイルに保管しておくことができます。</p>
 
 
 <p>以下は、手動で設定をセットする方法を示した例です:</p>
@@ -151,10 +154,11 @@ $config['debug']&nbsp;&nbsp;&nbsp;&nbsp;= TRUE;<br />
 $this->ftp->connect($config);<br />
 </code>
 
-<h3>設定ファイルでのFTPの設定</h3>
+<h3>設定ファイルでの FTP の設定</h3>
 
-<p>必要であれば、FTP の設定を設定ファイルに保管することもできます。単純に、<var>ftp.php </var>という名前で新しいファイルを作成し、そのファイルに <var>$config</var>
-という名前の設定用配列を追加します。<var>config/ftp.php</var> ファイルに保存すると、自動的にそれが使われます。</p>
+<p>必要であれば、FTP の設定を設定ファイルに保管することもできます。
+単純に、<var>ftp.php</var> という名前で新しいファイルを作成し、そのファイルに <var>$config</var> という名前の設定用配列を追加します。
+<var>config/ftp.php</var> ファイルに保存すると、自動的にそれが使われます。</p>
 
 <h3>利用できる接続オプション:</h3>
 
@@ -165,21 +169,24 @@ $this->ftp->connect($config);<br />
 <li><strong>password</strong> -  FTP パスワード</li>
 <li><strong>port</strong> - ポート番号。初期値は<dfn>21</dfn>に設定されています。</li>
 <li><strong>debug</strong> - <kbd>TRUE/FALSE</kbd> (ブール値)。 デバッグ用にエラーメッセージを表示するかどうか。</li>
-<li><strong>passive</strong> - <kbd>TRUE/FALSE</kbd> (ブール値)。 PASSIVEモードを使用するかどうか。PASSIVEモードは、デフォルトでは自動設定されます。</li>
+<li><strong>passive</strong> - <kbd>TRUE/FALSE</kbd> (ブール値)。 PASSIVE モードを使用するかどうか。PASSIVE モードは、デフォルトでは自動設定されます。</li>
 </ul>
 
 
 
 <h2>$this->ftp->upload()</h2>
 
-<p>サーバにファイルをアップロードします。ローカルのパスとリモートのパス、オプションで、転送モードとパーミッションを設定します。例:</p>
+<p>サーバにファイルをアップロードします。ローカルのパスとリモートのパス、オプションで、転送モードとパーミッションを設定します。
+例:</p>
 
 
 <code>$this->ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775);</code>
 
-<p><strong>転送モードのオプション:</strong>&nbsp; <kbd>ascii、</kbd><kbd>binary、</kbd>および <kbd>auto</kbd> (初期値)。<kbd>auto</kbd> が使用されているときは、転送するファイルの拡張子によって転送モードが決められます。</p>
+<p><strong>転送モードのオプション:</strong>&nbsp; <kbd>ascii、</kbd><kbd>binary、</kbd>および <kbd>auto</kbd> (初期値)。
+<kbd>auto</kbd> が使用されているときは、転送するファイルの拡張子によって転送モードが決められます。</p>
 
-<p>パーミッションは、PHP5で実行しているときに指定可能で、第4引数に、<kbd>8進数</kbd>の値を渡します。</p>
+<p>パーミッションは PHP5 で実行しているときに指定可能で、第4引数に<kbd>8進数</kbd>の値を渡します。</p>
+
 
 <h2>$this-&gt;ftp-&gt;download()</h2>
 
@@ -189,9 +196,10 @@ $this->ftp->connect($config);<br />
 <code>$this-&gt;ftp-&gt;download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii');</code>
 
 <p><strong>モードオプション:</strong>&nbsp; <kbd>ascii</kbd>, <kbd>binary</kbd> および <kbd>auto</kbd> (デフォルト)。
-	<kbd>auto</kbd> を指定した場合はソースのファイル名から判別されます。</p>
+<kbd>auto</kbd> を指定した場合はソースのファイル名から判別されます。</p>
 
 <p>ダウンロードに成功しなかった場合は FALSE を返します。 (ローカルファイルに対するパーミッションがなかった場合も含む)</p>
+
 
 <h2>$this->ftp->rename()</h2>
 <p>ファイルをリネームします。変更するファイルの名前/パスと、新しいファイルの名前/パスを指定します。</p>
@@ -223,7 +231,9 @@ $this->ftp->delete_file('/public_html/joe/blog.html');
 <h2>$this->ftp->delete_dir()</h2>
 <p>ディレクトリとそのディレクトリに含まれるものをすべて削除します。削除するディレクトリへのパスを末尾にスラッシュをつけて指定します。</p>
 
-<p class="important"><strong>重要</strong>&nbsp; このメソッドを使うときは、「厳重に」注意してください。渡されたパス以下のサブフォルダと全ファイルの<b>すべてのもの</b>を再帰的に削除します。パスが完全に正しいかを確認するようにしてください。<kbd>list_files()</kbd> メソッドをまず使って、パスが正しいかを検証するようにしてください。</p>
+<p class="important"><strong>重要</strong>&nbsp; このメソッドを使うときは、「厳重に」注意してください。
+渡されたパス以下のサブフォルダと全ファイルの<b>すべてのもの</b>を再帰的に削除します。パスが完全に正しいかを確認するようにしてください。
+<kbd>list_files()</kbd> メソッドをまず使って、パスが正しいかを検証するようにしてください。</p>
 
 <code>
 $this->ftp->delete_dir('/public_html/path/to/folder/');
@@ -232,7 +242,8 @@ $this->ftp->delete_dir('/public_html/path/to/folder/');
 
 
 <h2>$this->ftp->list_files()</h2>
-<p>サーバにあるファイルのリストを取得して<dfn>配列</dfn>として返します。取得したいディレクトリへのパスを指定する必要があります。</p>
+<p>サーバにあるファイルのリストを取得して<dfn>配列</dfn>として返します。
+取得したいディレクトリへのパスを指定する必要があります。</p>
 
 <code>
 $list = $this->ftp->list_files('/public_html/');<br />
@@ -243,7 +254,9 @@ print_r($list);
 
 <h2>$this->ftp->mirror()</h2>
 
-<p>ローカルフォルダ内のすべて (サブフォルダ含む) を再帰的に読み取って、FTP経由で、読み取ったもののミラーを作成します。元のファイルパスのディレクトリ構造がサーバに再作成されます。作成元のパスと作成先のパスを指定する必要があります:</p>
+<p>ローカルフォルダ内のすべて(サブフォルダ含む)を再帰的に読み取って、FTP 経由で読み取ったもののミラーを作成します。
+元のファイルパスのディレクトリ構造がサーバに再作成されます。
+作成元のパスと作成先のパスを指定する必要があります:</p>
 
 <code>
 $this->ftp->mirror('/path/to/myfolder/', '/public_html/myfolder/');
@@ -253,7 +266,8 @@ $this->ftp->mirror('/path/to/myfolder/', '/public_html/myfolder/');
 
 <h2>$this->ftp->mkdir()</h2>
 
-<p>サーバにディレクトリを作成できます。作成したいフォルダ名を末尾にスラッシュをつけて指定します。パーミッションは、<kbd>8進数</kbd>の値で第2引数に指定できます(PHP 5で実行している場合)。</p>
+<p>サーバにディレクトリを作成できます。作成したいフォルダ名を末尾にスラッシュをつけて指定します。
+パーミッションは、<kbd>8進数</kbd>の値で第2引数に指定できます(PHP 5 で実行している場合)。</p>
 
 <code>
 // "bar"という名前のフォルダを作成します。<br />

@@ -45,9 +45,7 @@
 <a href="../general/drivers.html">Drivers</a> &nbsp;&#8250;&nbsp;
 JavaScript ドライバ
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />
-ユーザガイドを検索&nbsp; 
-<input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp;<input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -58,9 +56,8 @@ JavaScript ドライバ
 <!-- START CONTENT -->
 <div id="content">
 
-<p class="important"><strong>Note:</strong> このドライバは実験的なものです。機能や実装は将来のリリースで変更されるかもしれません。</p><br />
-<p class="important"><strong>訳注:</strong> 　現時点では，このページの記述は一部正しくない可能性があります。</p>
-<br />
+<p class="important"><strong>Note:</strong> このドライバは実験的なものです。機能や実装は将来のリリースで変更されるかもしれません。</p><p class="important"><strong>訳注:</strong> 　現時点では，このページの記述は一部正しくない可能性があります。</p><br>
+
 <h1>JavaScript クラス</h1>
 <p>CodeIgniter では一般的な JavaScript の機能を提供します。ここで注意していただきたいのは，CodeIgniter の動作に jQuery ライブラリは必須ではありません。ここでは単に，jQuery ライブラリが便利であるということを紹介します。</p>
 <h2>クラスの初期化</h2>
@@ -175,7 +172,8 @@ $this-&gt;jquery-&gt;click('#trigger', $this-&gt;jquery-&gt;animate('#note', $pa
 
 <h3>toggleClass()</h3>
 
-<p>ターゲットに対して CSS クラスを追加または削除します。<code>$this-&gt;jquery-&gt;toggleClass(target, class)</code></p>
+<p>ターゲットに対して CSS クラスを追加または削除します。</p>
+<p><code>$this-&gt;jquery-&gt;toggleClass(target, class)</code></p>
 <ul>
 	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>
 	<li>&quot;class&quot; は CSS のクラス名です。このクラス名は，ロード済みの CSS で定義されていて利用可能でなければならないことに注意してください。</li>
@@ -205,6 +203,8 @@ $this-&gt;jquery-&gt;slideToggle(target,  optional speed, optional extra informa
 </ul>
 
 <h2>プラグイン</h2>
+
+<p>
 
 <p>このライブラリによりいくつかの jQuery プラグインが使用可能です。</p>
 

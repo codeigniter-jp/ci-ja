@@ -42,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-画像操作クラス</td>
+画像操作クラス
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -69,13 +70,16 @@
 
 <p>次の3つのよく使われている画像ライブラリすべてに対応しています:  GD/GD2、NetPBM、および ImageMagick</p>
 
-<p class="important"><strong>Note:</strong> 画像の合成は、GD/GD2 ライブラリを使用した場合のみ利用可能です。加えて、他のライブラリを指定した場合でも、画像のプロパティを取得するためにはGDが必要になります。しかし、画像の処理に関しては、指定したライブラリだけで可能です。<br />
-</p>
+<p class="important"><strong>Note:</strong> 画像の合成は、GD/GD2 ライブラリを使用した場合のみ利用可能です。
+加えて、他のライブラリを指定した場合でも、
+画像のプロパティを取得するためにはGDが必要になります。
+しかし、画像の処理に関しては指定したライブラリだけで可能です。</p>
 
 
 <h2>クラスの初期化</h2>
 
-<p>CodeIgniterのほとんどのクラスと同様に、 画像クラスは <dfn>$this->load-&gt;library</dfn> メソッドを使ってコントローラの中で初期化します:</p>
+<p>CodeIgniter のほとんどのクラスと同様に、
+画像クラスは <dfn>$this->load-&gt;library</dfn> メソッドを使ってコントローラの中で初期化します:</p>
 <code>$this->load->library('image_lib');</code>
 
 <p>ライブラリが読み込まれると、使う準備ができます。すべてのメソッドを呼び出すには、次の画像ライブラリオブジェクトを使います: <dfn>$this->image_lib</dfn></p>
@@ -83,7 +87,10 @@
 
 <h2>画像の処理</h2>
 
-<p>処理の種類 (リサイズ、切り抜き、回転、または、合成)にかかわらず、基本的な手順は同じです。4つの利用可能な処理のうちひとつを呼び出すとき、その行いたい処理に対応した設定項目をセットすることができます。たとえば、画像のサムネイルを作成するには次のようにします:</p>
+<p>処理の種類(リサイズ、切り抜き、回転、または、合成)にかかわらず、基本的な手順は同じです。
+4つの利用可能な処理のうちひとつを呼び出すとき、その行いたい処理に対応した設定項目をセットすることができます。
+たとえば、画像のサムネイルを作成するには次のようにします:</p>
+
 <code>$config['image_library'] = 'gd2';<br />
 $config['source_image']	= '/path/to/image/mypic.jpg';<br />
 $config['create_thumb'] = TRUE;<br />
@@ -96,11 +103,14 @@ $this->load->library('image_lib', $config);
 <br />
 $this->image_lib->resize();</code>
 
-<p>上のコードでは、<dfn>source_image</dfn> に指定したフォルダの中から <em>mypic.jpg</em>
-を探し出して、GD2 <dfn>image_library</dfn>を使って75 X 50 ピクセルのサムネイルを作成するよう、<dfn>image_resize</dfn> メソッドに、設定しています。<dfn>maintain_ratio</dfn> オプションが有効になっているので、サムネイルは、もともとのアスペクト比を維持したまま、指定された <dfn>width</dfn>（幅） と
-<dfn>height</dfn>（高さ） にできるだけ近づけるようにします。サムネイルは<em> mypic_thumb.jpg</em>という名前になります。</p>
+<p>上のコードでは、<dfn>source_image</dfn> に指定したフォルダの中から <em>mypic.jpg</em> を探し出して、
+GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイルを作成するよう、<dfn>image_resize</dfn> メソッドに設定しています。
+<dfn>maintain_ratio</dfn> オプションが有効になっているので、サムネイルはもともとのアスペクト比を維持したまま、
+指定された <dfn>width</dfn>（幅） と <dfn>height</dfn>（高さ） にできるだけ近づけるようにします。
+サムネイルは<em> mypic_thumb.jpg</em>という名前になります。</p>
 
-<p class="important"><strong>Note:</strong> 画像クラスに全ての処理を許可するため、画像が含まれるフォルダと画像のパーミッションを書き込み可能に設定する必要があります。</p>
+<p class="important"><strong>Note:</strong> 画像クラスに全ての処理を許可するため、
+画像が含まれるフォルダと画像のパーミッションを書き込み可能に設定する必要があります。</p>
 
 <p class="important"><strong>Note:</strong> 画像処理はいくつかの操作において，かなりのサーバのメモリを必要とします。画像処理の最中に out of memory エラーに遭遇した場合は，最大サイズの制限や PHP の memory_limit の調整が必要かも知れません。</p>
 
@@ -116,7 +126,8 @@ $this->image_lib->resize();</code>
 <li>$this-&gt;image_lib-&gt;clear()</li>
 </ul>
 
-<p>これらのメソッドは、処理が成功したらTRUEを、失敗したらFALSEを返します。もし失敗した場合は、下記のメソッドを使って、エラーメッセージを取得できます:</p>
+<p>これらのメソッドは、処理が成功したら TRUE を、失敗したら FALSE を返します。
+もし失敗した場合は、下記のメソッドを使って、エラーメッセージを取得できます:</p>
 
 <code>echo $this->image_lib->display_errors();</code>
 
@@ -127,7 +138,8 @@ $this->image_lib->resize();</code>
 &nbsp;&nbsp;&nbsp;&nbsp;echo $this->image_lib->display_errors();<br />
 }</code>
 
-<p>Note:  オプションで、次のように、メソッドに開始/終了タグを渡して、エラーメッセージをHTMLで整形することもできます:</p>
+<p>Note:  オプションで、次のようにメソッドに開始/終了タグを渡して、
+エラーメッセージを HTML で整形することもできます:</p>
 
 <code>$this->image_lib->display_errors('<var>&lt;p></var>', '<var>&lt;/p></var>');</code>
 
@@ -136,8 +148,9 @@ $this->image_lib->resize();</code>
 
 <p>ニーズに合わせた処理に調整するため、下で説明している設定項目を利用できます。</p>
 
-<p>どのメソッドでも全ての設定項目が利用可能なわけではないのを注意してください。たとえば、x / y 軸の設定項目は、切り抜きのみ指定可能です。同じく、width と height
-の設定項目は、切り抜き処理では有効ではありません。"使用可能な操作" の列に、どのメソッドでその設定項目がサポートされているかが示されています。</p>
+<p>どのメソッドでも全ての設定項目が利用可能なわけではないのを注意してください。
+たとえば、x / y 軸の設定項目は、切り抜きのみ指定可能です。同じく、width と height の設定項目は、切り抜き処理では有効ではありません。
+"使用可能な操作" の列に、どのメソッドでその設定項目がサポートされているかが示されています。</p>
 
 <p>「可能な操作」欄の凡例:</p>
 
@@ -256,7 +269,7 @@ $this->image_lib->resize();</code>
 <tr>
 <td class="td"><strong>master_dim</strong></td>
 <td class="td">auto</td>
-<td class="td">auto、width、 height</td>
+<td class="td">auto、width、height</td>
 <td class="td">リサイズするか、またはサムネイルを作成するとき、基準軸としてどれを使用したらよいかを指定します。たとえば、イメージを100X75ピクセルにリサイズしたいとします。元の画像サイズが縦も横も両方ぴったりリサイズできないものであるとき[ 訳注:アスペクト比を固定している場合など ]、この設定により、どの軸を絶対の基準の値として使用すべきかが決まります。"auto" にすると、画像の高さが幅より長いか、あるいはその逆かにより、軸が自動的に決定されます。</td>
 <td class="td">R</td>
 </tr>
@@ -279,7 +292,6 @@ $this->image_lib->resize();</code>
 <td class="td">切り取る X 座標 をピクセルで指定します。たとえば、30に指定した場合、左から30ピクセルのところで切り取られます。</td>
 <td class="td">C</td>
 </tr>
-
 <tr>
 <td class="td"><strong>y_axis</strong></td>
 <td class="td">なし</td>
@@ -290,23 +302,28 @@ $this->image_lib->resize();</code>
 </table>
 
 
+
 <h2>設定ファイルによる設定</h2>
 
-<p>上の方法で設定したくない場合は、代わりに設定ファイルに記述することができます。単純に、<var>image_lib.php </var>という名前で新しいファイルを作成し、<var>$config</var>
-という名前の配列をそのファイルに書きます。<var>config/image_lib.php</var> にファイルを保存すると、自動的にそれが使用されます。設定ファイルに設定を保存した場合は、<dfn>$this->image_lib->initialize</dfn> メソッドを使用してはいけません。</p>
+<p>上の方法で設定したくない場合は、代わりに設定ファイルに記述することができます。
+単純に、<var>image_lib.php</var> という名前で新しいファイルを作成し、<var>$config</var> という名前の配列をそのファイルに書きます。
+<var>config/image_lib.php</var> にファイルを保存すると、自動的にそれが使用されます。
+設定ファイルに設定を保存した場合は、<dfn>$this->image_lib->initialize</dfn> メソッドを使用してはいけません。</p>
 
 
 <h2>$this->image_lib->resize()</h2>
 
-<p>画像リサイズメソッドを使うと、元の画像をリサイズすることができ、（リサイズするかどうかにかかわらず）コピーを作成したり、サムネイルを作成したりできます。</p>
+<p>画像リサイズメソッドを使うと、元の画像をリサイズすることができ、
+（リサイズするかどうかにかかわらず）コピーを作成したり、サムネイルを作成したりできます。</p>
 
-<p>実用的な目的では、サムネイルの場合、名前の一部にサムネイルのマークがつく（たとえば、mypic_thumb.jpg）以外は、コピーの作成とサムネイルの作成とに違いはありません。</p>
+<p>実用的な目的では、サムネイルの場合、名前の一部にサムネイルのマークがつく（たとえば、mypic_thumb.jpg）以外は、
+コピーの作成とサムネイルの作成とに違いはありません。</p>
 
 <p>このメソッドでは、上の表でリストアップした設定項目のうち次の3つを除いてすべてが利用可能です:  rotationa_angle, x_axis, y_axis。</p>
 
 <h3>サムネイルの作成</h3>
 
-<p>次の設定項目をTRUEにすると、リサイズメソッドではサムネイルファイルが作成されます（元画像はそのまま保存されます）:</p>
+<p>次の設定項目を TRUE にすると、リサイズメソッドではサムネイルファイルが作成されます（元画像はそのまま保存されます）:</p>
 
 <code>$config['create_thumb'] = TRUE;</code>
 
@@ -314,7 +331,8 @@ $this->image_lib->resize();</code>
 
 <h3>コピーの作成</h3>
 
-<p>次の設定項目にパスまたは新しいファイル名（あるいはその両方）を指定すると、リサイズメソッドでは画像ファイルのコピーが作成されます（元画像はそのまま保存されます）:</p>
+<p>次の設定項目にパスまたは新しいファイル名（あるいはその両方）を指定すると、
+リサイズメソッドでは画像ファイルのコピーが作成されます（元画像はそのまま保存されます）:</p>
 
 <code>$config['new_image'] = '/path/to/new_image.jpg';</code>
 
@@ -328,12 +346,14 @@ $this->image_lib->resize();</code>
 
 <h3>元画像のリサイズ</h3>
 
-<p>上で使われている2つの設定項目(create_thumb と new_image)を指定しない場合、 リサイズメソッドでは、代わりに、元画像が処理の対象になります。</p>
+<p>上で使われている2つの設定項目( create_thumb と new_image )を指定しない場合、
+リサイズメソッドでは代わりに元画像が処理の対象になります。</p>
 
 
 <h2>$this->image_lib->crop()</h2>
 
-<p>切り抜きメソッドは、次のように、切り取る場所を指定する X および Y 軸 (ピクセル) を設定する必要があるのを除いて、リサイズメソッドと大体同じように動作します:</p>
+<p>切り抜きメソッドは、次のように切り取る場所を指定する X および Y 軸 (ピクセル) を設定する必要があるのを除いて、
+リサイズメソッドと大体同じように動作します:</p>
 
 <code>$config['x_axis'] = '100';<br />
 $config['y_axis'] = '40';</code>
@@ -357,7 +377,10 @@ if ( ! $this->image_lib->crop())<br />
 }</code>
 
 
-<p>Note: ビジュアルインターフェースなしに画像の切り取りをするのは難しいので、このメソッドは、そういったインターフェースを構築しない場合には、あまり役に立たないかもしれません。そのインターフェースとは、ちょうど、私たちが開発したExpressionEngineのフォトギャラリーモジュールで使われているようなもののことです。私たちが追加したのは、切り取る範囲を選択可能なJavaScriptのUIでした。</p>
+<p>Note: ビジュアルインターフェースなしに画像の切り取りをするのは難しいので、
+このメソッドはそういったインターフェースを構築しない場合には、あまり役に立たないかもしれません。
+そのインターフェースとは、ちょうど、私たちが開発した ExpressionEngine のフォトギャラリーモジュールで使われているようなもののことです。
+私たちが追加したのは、切り取る範囲を選択可能な JavaScript の UI でした。</p>
 
 <h2>$this->image_lib->rotate()</h2>
 
@@ -406,15 +429,21 @@ if ( ! $this->image_lib->rotate())<br />
 <p>次の2つのタイプの合成が利用できます:</p>
 
 <ul>
-<li><strong>テキスト</strong>: メッセージの合成は指定したTrueTypeフォントか、GDライブラリで組み込みでサポートされている文字のどちらかでテキストをもとに生成されます。TrueTypeを使用する場合、GDのインストール時に、TrueTypeをサポートするようコンパイルれている必要があります（ほとんどはそうなっていますが、すべてそうだとは限りません）。</li>
+<li><strong>テキスト</strong>: メッセージの合成は指定した TrueType フォントか、GD ライブラリで組み込みでサポートされている文字のどちらかでテキストをもとに生成されます。
+TrueType を使用する場合、GD のインストール時に、TrueType をサポートするようコンパイルれている必要があります
+（ほとんどはそうなっていますが、すべてそうだとは限りません）。</li>
 
-<li><strong>オーバーレイ</strong>: 画像（たいていは透過PNGか透過GIF）のオーバーレイにより、元の画像に合成するイメージを重ねて、合成メッセージが生成されます。</li>
+<li><strong>オーバーレイ</strong>: 画像（たいていは透過 PNG か透過 GIF ）のオーバーレイにより、
+元の画像に合成するイメージを重ねて合成メッセージが生成されます。</li>
+
 </ul>
 
 
 <h2>画像の合成</h2>
 
-<p>他のメソッドのように (リサイズ、切り抜き、および、回転) 画像合成の一般的な処理は、処理したい内容に応じた設定を指定した後、画像合成メソッドを呼び出して行われます。次は、例です:</p>
+<p>他のメソッドのように(リサイズ、切り抜き、および、回転)画像合成の一般的な処理は、
+処理したい内容に応じた設定を指定した後、画像合成メソッドを呼び出して行われます。
+次は、例です:</p>
 
 <code>
 $config['source_image']	= '/path/to/image/mypic.jpg';<br />
@@ -433,14 +462,15 @@ $this->image_lib->initialize($config);
 $this->image_lib->watermark();</code>
 
 
-<p>上の例では、16 ピクセルのTrueType フォントを "Copyright 2006 - John Doe" というテキストを作成するのに使用しています。合成する画像は、下詰めの中央揃えで、画像の下から20ピクセルのところに配置されます。</p>
+<p>上の例では、16ピクセルの TrueType フォントを "Copyright 2006 - John Doe" というテキストを作成するのに使用しています。
+合成する画像は、下詰めの中央揃えで、画像の下から20ピクセルのところに配置されます。</p>
 
 <p class="important"><strong>Note:</strong> 画像クラスのどんな処理も利用できるようにするには、画像ファイルに&quot;書き込み&quot;のパーミッションがある必要があります。たとえば、パーミッションを 777 に設定してください。</p>
 
 
 <h2>画像合成の設定</h2>
 
-<p>この表は、両方のタイプの画像合成 (テキストまたはオーバレイ) で利用可能な設定項目を示したものです。</p>
+<p>この表は、両方のタイプの画像合成(テキストまたはオーバレイ)で利用可能な設定項目を示したものです。</p>
 
 <table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
 <tr>
@@ -461,7 +491,7 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>source_image</strong></td>
 <td class="td">なし</td>
 <td class="td">なし</td>
-<td class="td">画像ファイルの 名前/パス を指定します。パスは、URLではなく、サーバの相対または絶対パスで指定しなければなりません。</td>
+<td class="td">画像ファイルの 名前/パス を指定します。パスは、URL ではなくサーバの相対または絶対パスで指定しなければなりません。</td>
 </tr>
 
 <tr>
@@ -540,21 +570,21 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>wm_font_path</strong></td>
 <td class="td">なし</td>
 <td class="td">なし</td>
-<td class="td">使用したいTrueType フォントのサーバパスです。この項目を指定しなかった場合、GDの組み込みフォントが使用されます。</td>
+<td class="td">使用したい TrueType フォントのサーバパスです。この項目を指定しなかった場合、GD の組み込みフォントが使用されます。</td>
 </tr>
 
 <tr>
 <td class="td"><strong>wm_font_size</strong></td>
 <td class="td">16</td>
 <td class="td">なし</td>
-<td class="td">テキストのサイズ。Note:  上の True Type オプションを使わなかった場合、1-5で番号を指定します。逆にTrue Type オプションを使った場合は、使用するフォントにおいて正しいピクセルサイズであればどの値でも使えます。</td>
+<td class="td">テキストのサイズ。Note:  上の TrueType オプションを使わなかった場合、1-5で番号を指定します。逆に TrueType オプションを使った場合は、使用するフォントにおいて正しいピクセルサイズであればどの値でも使えます。</td>
 </tr>
 
 <tr>
 <td class="td"><strong>wm_font_color</strong></td>
 <td class="td">ffffff</td>
 <td class="td">なし</td>
-<td class="td">フォントの色を16進数で指定します。Note: 16進を、3文字の省略形 (たとえば fff)でなく、6桁 (たとえば 993300)で指定します。</td>
+<td class="td">フォントの色を16進数で指定します。Note: 16進を、3文字の省略形 (たとえば fff )でなく、6桁 (たとえば 993300)で指定します。</td>
 </tr>
 
 
@@ -562,7 +592,7 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>wm_shadow_color</strong></td>
 <td class="td">なし</td>
 <td class="td">なし</td>
-<td class="td">フォントのシャドウカラーを16進数で指定します。空にしておくと、ドロップシャドウは使用されません。Note: 16進を、3文字の省略形 (たとえば fff)でなく、6桁 (たとえば 993300)で指定します。</td>
+<td class="td">フォントのシャドウカラーを16進数で指定します。空にしておくと、ドロップシャドウは使用されません。Note: 16進を、3文字の省略形 (たとえば fff )でなく、6桁 (たとえば 993300)で指定します。</td>
 </tr>
 
 <tr>
@@ -571,6 +601,7 @@ $this->image_lib->watermark();</code>
 <td class="td">なし</td>
 <td class="td">ドロップシャドウを表示するフォントからの距離 (ピクセル)。</td>
 </tr>
+
 </table>
 
 
@@ -606,7 +637,7 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>wm_x_transp</strong></td>
 <td class="td">4</td>
 <td class="td">数字</td>
-<td class="td"> PNGまたはGIF画像が合成する画像の場合、イメージの "透過"する色を指定できます。下記の設定項目と同時に使用すると、この設定で、色を指定できます。透明にしたい色が表されている画素をイメージ上での(左上から測られる)  "X" および "Y" ピクセル座標の位置を指定することで動作します。</td>
+<td class="td">PNG または GIF 画像が合成する画像の場合、イメージの "透過"する色を指定できます。下記の設定項目と同時に使用すると、この設定で、色を指定できます。透明にしたい色が表されている画素をイメージ上での(左上から測られる)  "X" および "Y" ピクセル座標の位置を指定することで動作します。</td>
 </tr>
 
 <tr>
