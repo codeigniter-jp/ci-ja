@@ -56,7 +56,7 @@
 
 <h1>モデル</h1>
 
-<p>より慣例に沿ったMVCアプローチを利用したい人向けに、モデルは<strong>オプションで</strong>利用可能です。</p>
+<p>より慣例に沿った MVC アプローチを利用したい人向けに、モデルは<strong>オプションで</strong>利用可能です。</p>
 
 
 
@@ -72,7 +72,7 @@
 
 <h2><a name="what"></a>モデルとは?</h2>
 
-<p>モデルは、データベースに格納された情報を用いて機能するようデザインされたPHPのクラスです。たとえば、
+<p>モデルは、データベースに格納された情報を用いて機能するようデザインされた PHP のクラスです。たとえば、
 CodeIgniter を使ってブログを管理する場合について考えてみましょう。モデルクラスには、ブログのデータを作成・更新そして取得するためのメソッドが含まれます。
 そういったモデルクラスは、どのようになっているかを示した例です:</p>
 
@@ -130,7 +130,7 @@ class&nbsp;<var>Model_name</var>&nbsp;extends&nbsp;CI_Model&nbsp;{<br />
 <br />
 &nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;<var>__construct</var>()<br />
 &nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent:__construct();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
 &nbsp;&nbsp;&nbsp;&nbsp;}<br />
 }</code>
 
@@ -205,7 +205,7 @@ class&nbsp;Blog_controller&nbsp;extends&nbsp;CI_Controller&nbsp;{<br />
 
 <h2><a name="conn"></a>データベースへの接続</h2>
 
-<p>モデルが読み込まれても自動的にはデータベースに<strong>接続しません</strong>。DB接続については、次のオプションが選べます:</p>
+<p>モデルが読み込まれても自動的にはデータベースに<strong>接続しません</strong>。DB 接続については、次のオプションが選べます:</p>
 
 <ul>
 <li>コントローラまたはモデルのクラス内のどちらからも <a href="../database/connecting.html">こちらで述べている</a>標準のデータベース関連メソッドを利用して接続できます。</li>

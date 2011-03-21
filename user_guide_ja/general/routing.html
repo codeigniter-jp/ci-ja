@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>URI ルーティング : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -41,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-URI ルーティング</td>
+URI ルーティング
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -55,13 +57,15 @@ URI ルーティング</td>
 
 <h1>URI ルーティング</h1>
 
-<p>通常はURLの文字列と関連するコントローラのクラス/メソッドには一対一の関係があります。URIの中のセグメントは通常下記のようなパターンになっています:</p>
+<p>通常は URL の文字列と関連するコントローラのクラス/メソッドには一対一の関係があります。
+URI の中のセグメントは通常下記のようなパターンになっています:</p>
 
 <code>example.com/<dfn>class</dfn>/<samp>function</samp>/<var>id</var>/</code>
 
-<p>しかし、URLが表すものが呼ばれる代わりに、異なるクラス/メソッドが呼ばれるように関連付けを再マッピングしたい場合もあるかと思います。</p>
+<p>しかし、URL が表すものが呼ばれる代わりに、
+異なるクラス/メソッドが呼ばれるように関連付けを再マッピングしたい場合もあるかと思います。</p>
 
-<p>たとえば、次のような例のURLにしたい時:</p>
+<p>たとえば、次のような例の URL にしたい時:</p>
 
 <p>
 example.com/product/1/<br />
@@ -70,12 +74,14 @@ example.com/product/3/<br />
 example.com/product/4/
 </p>
 
-<p>通常は、URLの第2セグメントは、メソッド名として予約されていますが、上の例では、代わりに商品IDになっています。これに対応するため、CodeIgniter ではURIハンドラ [ 訳注： URIに関連付けられたコントローラ/メソッドのこと ] を再マッピングすることが可能です。</p>
+<p>通常は、URL の第2セグメントはメソッド名として予約されていますが、上の例では、代わりに商品 ID になっています。
+これに対応するため、CodeIgniter では URI ハンドラ [ 訳注： URI に関連付けられたコントローラ/メソッドのこと ] を再マッピングすることが可能です。</p>
 
 
 <h2>ユーザ定義のルーティングを設定する</h2>
 
-<p>ルーティング（経路制御）ルールは <var>application/config/routes.php</var> ファイルで定義されています。その中に <dfn>$route</dfn> という名前の配列があると思いますが、ここでユーザ定義のルーティング条件を指定することができます。ルート（経路）は、<dfn>ワイルドカード</dfn>または<dfn>正規表現</dfn>のどちらかを使って指定できます。</p>
+<p>ルーティング（経路制御）ルールは <var>application/config/routes.php</var> ファイルで定義されています。その中に <dfn>$route</dfn> という名前の配列があると思いますが、ここでユーザ定義のルーティング条件を指定することができます。
+ルート（経路）は、<dfn>ワイルドカード</dfn>または<dfn>正規表現</dfn>のどちらかを使って指定できます。</p>
 
 
 <h2>ワイルドカード</h2>
@@ -84,32 +90,34 @@ example.com/product/4/
 
 <code>$route['product/:num'] = "catalog/product_lookup";</code>
 
-<p>ルートの中で、配列のキーは、マッチさせるURIで、一方の配列の値は、再ルート先になります。上の例では、リテラルの"product"がURLの第1セグメントに、数字が第2セグメントにそれぞれ設定されていた場合、"catalog"クラスの"product_lookup"メソッドが通常のルールの代わりに使用されることになります。</p>
+<p>ルートの中で、配列のキーはマッチさせる URI で、一方の配列の値は再ルート先になります。
+上の例では、リテラルの"product"が URL の第1セグメントに、数字が第2セグメントにそれぞれ設定されていた場合、
+"catalog"クラスの"product_lookup"メソッドが通常のルールの代わりに使用されることになります。</p>
 
 <p>リテラル値または次の2種類のワイルドカードを使ってマッチさせることができます:</p>
 
 <p><strong>(:num)</strong> は、セグメントが数字のみを含む場合にマッチします。<br />
-<strong>(:any)</strong> は、セグメントの中身が、どのような文字列でもマッチします。</p>
+<strong>(:any)</strong> は、セグメントの中身が、どのような文字列でもマッチします。
+</p>
 
-<p class="important"><strong>Note:</strong> ルートは、定義されている順番にもとづいて実行されます。優先度が高いルートが、低いものより常に先に来るようにします。</p>
-
+<p class="important"><strong>Note:</strong> ルートは、定義されている順番にもとづいて実行されます。
+優先度が高いルートが、低いものより常に先に来るようにします。</p>
 
 <h2>例</h2>
 
 <p>ルーティングについて、いくつか例を挙げます:</p>
 
 <code>$route['journals'] = "blogs";</code>
-<p>URL の第1セグメントに "journals" という語を含むURLは、"blogs" クラスに再マッピングされます。</p>
+<p>URL の第1セグメントに "journals" という語を含む URL は、"blogs" クラスに再マッピングされます。</p>
 
 <code>$route['blog/joe'] = "blogs/users/34";</code>
-<p> blog/joe というセグメントが含まれるURLは、"blogs" クラスの "users" メソッドに再マッピングされます。ID は "34" にセットされます。</p>
-
+<p>blog/joe というセグメントが含まれる URL は、"blogs" クラスの "users" メソッドに再マッピングされます。ID は "34" にセットされます。</p>
 
 <code>$route['product/(:any)'] = "catalog/product_lookup";</code>
-<p>第1セグメントが "product" 第2セグメントに何かが設定されたURLであれば、"catalog" クラスの  "product_lookup" メソッドに再マッピングされます。</p>
+<p>第1セグメントが "product" 第2セグメントに何かが設定された URL であれば、"catalog" クラスの  "product_lookup" メソッドに再マッピングされます。</p>
 
 <code>$route['product/(:num)'] = "catalog/product_lookup_by_id/$1";</code>
-<p>第1セグメントが "product" 第2セグメントに数値が設定されたURLであれば、"catalog" クラスの  "product_lookup_by_id" メソッドにマッチした値を変数として再マッピングされます。</p>
+<p>第1セグメントが "product" 第2セグメントに数値が設定された URL であれば、"catalog" クラスの  "product_lookup_by_id" メソッドにマッチした値を変数として再マッピングされます。</p>
 
 <p class="important"><strong>重要:</strong> マッチさせるワードには、先頭および末尾にスラッシュ ( &quot;/&quot; ) をつけてはいけません。</p>
 
@@ -123,7 +131,7 @@ example.com/product/4/
 
 <code>$route['products/([a-z]+)/(\d+)'] = "$1/id_$2";</code>
 
-<p>上の例では、<dfn>products/shirts/123</dfn> のようなURIは、通常のルールの代わりに、<dfn>shirts</dfn> コントローラクラスの<dfn>id_123</dfn> メソッドが呼ばれます。</p>
+<p>上の例では、<dfn>products/shirts/123</dfn> のような URI は、通常のルールの代わりに、<dfn>shirts</dfn> コントローラクラスの <dfn>id_123</dfn> メソッドが呼ばれます。</p>
 
 <p>また、正規表現にワイルドカードを混在させてマッチさせることもできます。</p>
 
@@ -133,7 +141,9 @@ example.com/product/4/
 
 <code>$route['default_controller'] = 'welcome';</code>
 
-<p>このルートは URI がデータを含まない時に、どのコントローラを呼ぶべきかを指定するものです。上の例では、"welcome" クラスがロードされます。デフォルトルートは常に設定しておくことをおすすめします。そうしておかないと、デフォルトで404ページが表示されてしまいます。</p>
+<p>このルートは URI がデータを含まない時に、どのコントローラを呼ぶべきかを指定するものです。
+上の例では、"welcome" クラスがロードされます。デフォルトルートは常に設定しておくことをおすすめします。
+そうしておかないと、デフォルトで404ページが表示されてしまいます。</p>
 
 <p class="important"><strong>重要:</strong>&nbsp; 予約済みのルートは、ワイルドカードあるいは正規表現で定義したルートよりも前に来なければなりません。</p>
 

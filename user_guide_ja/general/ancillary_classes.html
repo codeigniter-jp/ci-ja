@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>補助的なクラスの作成 : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -41,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-補助的なクラスの作成</td>
+補助的なクラスの作成
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -55,16 +57,16 @@
 
 <h1>補助的なクラスの作成</h1>
 
-<p>コントローラの既存クラスから別クラスを開発するような場合でも、CodeIgniterのすべてのリソースを利用することが可能です。以下のように簡単にできます。</p>
+<p>コントローラの既存クラスから別クラスを開発するような場合でも、CodeIgniter のすべてのリソースを利用することが可能です。
+以下のように簡単にできます。</p>
 
 <h2>get_instance()</h2>
 
 
-<p><strong>コントローラ内部でインスタンスされたあらゆるクラスは、</strong><kbd>get_instance()</kbd>メソッドを用いることにより、
-<strong>簡単にCodeIgniterのネイティブリソースにアクセスすることができます。</strong>
-このメソッドは、CodeIgniterの主オブジェクトを返します。</p>
+<p><strong>コントローラ内部でインスタンス化されたあらゆるクラスは、</strong><kbd>get_instance()</kbd> メソッドを用いることにより、<strong>簡単に CodeIgniter のネイティブリソースにアクセスすることができます。</strong>
+このメソッドは、CodeIgniter の主オブジェクトを返します。</p>
 
-<p>通常、CodeIgniterの利用可能な機能を呼び出すには、<kbd>$this</kbd>変数の初期化メソッドを用います:</p>
+<p>通常、CodeIgniter の利用可能な機能を呼び出すには、<kbd>$this</kbd> 変数の初期化メソッドを用います:</p>
 
 <code>
 <strong>$this</strong>->load->helper('url');<br />
@@ -73,14 +75,15 @@
 など
 </code>
 
-<p>しかし、<kbd>$this</kbd>変数は、コントローラ、モデル、ビューの中で直接使うときだけ動作します。もし、自作クラスでCodeIgniterのクラスを使用したい場合は、以下のようにします。</p>
+<p>しかし、<kbd>$this</kbd> 変数は、コントローラ、モデル、ビューの中で直接使うときだけ動作します。
+もし、自作クラスで CodeIgniter のクラスを使用したい場合は、以下のようにします。</p>
 
 
-<p>まず、CodeIgniterオブジェクトを変数に代入します:</p>
+<p>まず、CodeIgniter オブジェクトを変数に代入します:</p>
 
 <code>$CI =& get_instance();</code>
 
-<p>オブジェクトを変数に代入したら、<kbd>$this</kbd>変数の代わりにその変数を用います:</p>
+<p>オブジェクトを変数に代入したら、<kbd>$this</kbd> 変数の代わりにその変数を用います:</p>
 
 <code>
 $CI =& get_instance();<br /><br />
@@ -90,11 +93,11 @@ $CI->config->item('base_url');<br />
 など
 </code>
 
-<p class="important"><strong>Note:</strong> 上でget_instance()メソッドが「参照渡し」されていることに注意してください:
+<p class="important"><strong>Note:</strong> 上で get_instance() メソッドが「参照渡し」されていることに注意してください:
 <br /><br />
 <var>$CI =& get_instance();</var>
 <br /><br />
-これは非常に重要です。「参照渡し」することで、コピーではなく、本来のCodeIgniterのオブジェクトを利用することができます。 </p>
+これは非常に重要です。「参照渡し」することで、コピーではなく、本来の CodeIgniter のオブジェクトを利用することができます。 </p>
 </div>
 <!-- END CONTENT -->
 

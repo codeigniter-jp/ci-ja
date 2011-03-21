@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ビュー : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -56,9 +57,13 @@
 
 <h1>ビュー</h1>
 
-<p><dfn>ビュー</dfn>は単純にはwebページで、ヘッダ・フッタ・サイドバーのようなページの部品のこともあります。実践では、ビューには、他のビューを柔軟に埋め込むことができます（埋め込むこのビューにはさらに他のビューが埋め込まれる、などなど…）。このような階層構造が必要であれば、そうすることができます。</p>
+<p><dfn>ビュー</dfn>は単純には web ページで、ヘッダ・フッタ・サイドバーのようなページの部品のこともあります。
+実践では、ビューには他のビューを柔軟に埋め込むことができます（埋め込むこのビューにはさらに他のビューが埋め込まれる、などなど…）。
+このような階層構造が必要であれば、そうすることができます。</p>
 
-<p>ビューは直接的に呼び出されることはなく、<a href="controllers.html">コントローラ</a>によって読み込まれる必要があります。  MVC フレームワークにおいては、コントローラが交通整理を行い、それぞれのビューを取り出す責任を持つことを覚えておいてください。<a href="controllers.html">コントローラ</a>のページをまだ読んでないのなら、続きを読む前に読んでおいてください。</p>
+<p>ビューは直接的に呼び出されることはなく、<a href="controllers.html">コントローラ</a>によって読み込まれる必要があります。
+MVC フレームワークにおいては、コントローラが交通整理を行い、それぞれのビューを取り出す責任を持つことを覚えておいてください。
+<a href="controllers.html">コントローラ</a>のページをまだ読んでないのなら、続きを読む前に読んでおいてください。</p>
 
 <p><a href="controllers.html">コントローラ</a> のページで作成したサンプルのコントローラを使って、ビューを追加してみましょう。</p>
 
@@ -66,7 +71,7 @@
 
 <p>テキストエディタを使って <dfn>blogview.php</dfn> という名前のファイルを作成し、その中に下記のように打ち込んでください:</p>
 
-<textarea name="textarea" cols="50" rows="10" class="textarea" style="width:100%">
+<textarea class="textarea" style="width:100%" cols="50" rows="10">
 &lt;html>
 &lt;head>
 &lt;title>My Blog&lt;/title>
@@ -76,6 +81,7 @@
 &lt;/body>
 &lt;/html>
 </textarea>
+
 <p>次に、<dfn>application/views/</dfn> フォルダにこのファイルを保存します。</p>
 
 <h2>ビューの読み込み</h2>
@@ -84,10 +90,10 @@
 
 <code>$this->load->view('<var>name</var>');</code>
 
-<p>上の<var>name</var> はビューファイルの名前になります。  Note: .php ファイルの拡張子は不要です。ファイルを指定するために、他のフレームワークなどで <kbd>.php</kbd> とするようなことは要りません。</p>
+<p>上の <var>name</var> はビューファイルの名前になります。  Note: .php ファイルの拡張子は不要です。ファイルを指定するために、他のフレームワークなどで <kbd>.php</kbd> とするようなことは要りません。</p>
 
 
-<p>ここで <dfn>blog.php</dfn>という名前で前のセクションで作ったコントローラを開き、 echo 文を次の読み込みメソッドに置き換えてください:</p>
+<p>ここで <dfn>blog.php</dfn> という名前で前のセクションで作ったコントローラを開き、 echo 文を次の読み込みメソッドに置き換えてください:</p>
 
 
 <textarea class="textarea" style="width:100%" cols="50" rows="10">
@@ -103,7 +109,7 @@ class Blog extends CI_Controller {
 </textarea>
 
 
-<p>前に使った URL でサイトを見ると、新しいビューが見えるはずです。URLは次に挙げるものと同じです:</p>
+<p>前に使った URL でサイトを見ると、新しいビューが見えるはずです。URL は次に挙げるものと同じです:</p>
 
 <code>example.com/index.php/<var>blog</var>/</code>
 
@@ -123,18 +129,19 @@ class Page extends CI_Controller {<br /><br />
 &nbsp;&nbsp;&nbsp;}<br />
 <br />
 }<br />
-       ?&gt;</code></p>
+	?&gt;</code></p>
 <p>上の例では、下の「ビューに動的データを追加する」で説明する動的データを使用しています。</p>
 <h2>ビューをサブフォルダに保存する</h2>
-
-<p>サブフォルダでビューを管理したい場合は、ビューのファイルをサブフォルダに分けて配置することもできます。そうした場合、ビューをロードするときにフォルダ名を含めて指定する必要があります。  例です:</p>
+<p>サブフォルダでビューを管理したい場合は、ビューのファイルをサブフォルダに分けて配置することもできます。
+そうした場合、ビューをロードするときにフォルダ名を含めて指定する必要があります。  例です:</p>
 
 <code>$this->load->view('<kbd>folder_name</kbd>/<var>file_name</var>');</code>
 
 
 <h2>ビューに動的データを追加する</h2>
 
-<p>ビュー読み込みメソッドの第2引数に <strong>配列</strong>または<strong>オブジェクト</strong>を渡すやり方で、ビューにデータを渡すことができます。配列を使った例は下記の通りです:</p>
+<p>ビュー読み込みメソッドの第2引数に<strong>配列</strong>または<strong>オブジェクト</strong>を渡すやり方で、
+ビューにデータを渡すことができます。配列を使った例は下記の通りです:</p>
 
 <code>$data = array(<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'My Title',<br />
@@ -162,7 +169,7 @@ class Blog extends CI_Controller {
 	{
 		$data['title'] = &quot;My Real Title&quot;;
 		$data['heading'] = &quot;My Real Heading&quot;;
-		
+
 		$this-&gt;load-&gt;view('blogview', $data);
 	}
 }
@@ -184,11 +191,13 @@ class Blog extends CI_Controller {
 &lt;/html>
 </textarea>
 
-<p>次に、前で使ったURLでページを読み込みます。変数が置き換えられているのが見えるはずです。</p>
+<p>次に、前で使った URL でページを読み込みます。変数が置き換えられているのが見えるはずです。</p>
 
 <h2>ループの作成</h2>
 
-<p>ビューファイルに渡したデータの配列は、単純な変数だけであるとは限りません。ループして複数の行を生成できるように、多次元配列を渡すこともできます。たとえば、データベースから持ってきたデータの場合、典型的には、多次元配列に整形されています。</p>
+<p>ビューファイルに渡したデータの配列は、単純な変数だけであるとは限りません。
+ループして複数の行を生成できるように、多次元配列を渡すこともできます。
+たとえば、データベースから持ってきたデータの場合、典型的には多次元配列に整形されています。</p>
 
 <p>以下に例を示します。 次のコードをコントローラに追加します:</p>
 
@@ -202,7 +211,7 @@ class Blog extends CI_Controller {
 
 		$data['title'] = &quot;My Real Title&quot;;
 		$data['heading'] = &quot;My Real Heading&quot;;
-		
+
 		$this-&gt;load-&gt;view('blogview', $data);
 	}
 }
@@ -230,21 +239,22 @@ class Blog extends CI_Controller {
 
 &lt;?php endforeach;?>
 &lt;/ul>
-	
+
 &lt;/body>
 &lt;/html>
 </textarea>
-<p><strong>Note:</strong> お気付きのように、上の例では、PHPの代替構文を使用しています。PHPの代替構文に慣れていない場合は、<a href="alternative_php.html">こちら</a>を御覧ください。</p>
+<p><strong>Note:</strong> お気付きのように、上の例では、PHP の代替構文を使用しています。
+PHPの 代替構文に慣れていない場合は、<a href="alternative_php.html">こちら</a>を御覧ください。</p>
 
-<h2>ビューをデータとして返す</h2> 
- 
+<h2>ビューをデータとして返す</h2>
+
 <p>3番目の <strong>任意</strong> パラメーターでメソッドの振る舞いを変更して、ブラウザにビューを送るのではなく文字列としてビューのデータを返します。
 このビューのデータをさらに使いたい時に有効です。
 パラメーターに <kbd>true</kbd> を指定するとビューをデータとして返します。デフォルトの動作は <kbd>false</kbd> で、ブラウザにデータを送ります。
-返ってきたデータを変数に格納するのを忘れないでください。</p> 
- 
-<code>$string = $this->load->view('<var>myfile</var>', '', <kbd>true</kbd>);</code> 
- 	
+返ってきたデータを変数に格納するのを忘れないでください。</p>
+
+<code>$string = $this->load->view('<var>myfile</var>', '', <kbd>true</kbd>);</code>
+
 </div>
 <!-- END CONTENT -->
 

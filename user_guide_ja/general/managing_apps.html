@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>アプリケーションの管理 : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -41,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-アプリケーションの管理</td>
+アプリケーションの管理
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -55,8 +57,9 @@
 
 <h1>アプリケーションの管理</h1>
 
-<p>デフォルトでは、<dfn>application/</dfn> ディレクトリに構築された一つだけのアプリケーションを管理するためにCodeIgniter を利用するのを前提としています。しかし、単一の
-CodeIgniter を複数セットのアプリケーションで共用することもできますし、<dfn>application</dfn> フォルダをリネームしたり再配置したりもできます。</p>
+<p>デフォルトでは、<dfn>application/</dfn> ディレクトリに構築された一つだけのアプリケーションを管理するために
+CodeIgniter を利用するのを前提としています。しかし、単一の CodeIgniter を複数セットのアプリケーションで共用することもできますし、
+<dfn>application</dfn> フォルダをリネームしたり再配置したりもできます。</p>
 
 <h2>Application フォルダのリネーム</h2>
 
@@ -73,26 +76,30 @@ CodeIgniter を複数セットのアプリケーションで共用すること�
 
 <code>$application_folder = "/Path/to/your/application";</code>
 
-<h2>単一のCodeIgniter で複数のアプリケーションを実行する </h2>
 
-<p>共通のCodeIgniterを複数の異なるアプリケーションを管理するために共有したい場合は、単純に、<kbd>application</kbd> フォルダ以下にあるすべてのディレクトリをサブフォルダを作ってその中に配置すれば可能になります。</p>
+<h2>単一の CodeIgniter で複数のアプリケーションを実行する </h2>
 
-<p>たとえば、"foo" と "bar" という2つのアプリケーションを作成したい場合、application フォルダを次のような構成にします:</p>
+<p>共通の CodeIgniter を複数の異なるアプリケーションを管理するために共有したい場合は、
+単純に、<kbd>application</kbd> フォルダ以下にあるすべてのディレクトリを、
+サブフォルダを作ってその中に配置すれば可能になります。</p>
 
-<code>application/<var>foo</var>/<br />
-application/<var>foo</var>/config/<br />
-application/<var>foo</var>/controllers/<br />
-application/<var>foo</var>/errors/<br />
-application/<var>foo</var>/libraries/<br />
-application/<var>foo</var>/models/<br />
-application/<var>foo</var>/views/<br />
-application/<samp>bar</samp>/<br />
-application/<samp>bar</samp>/config/<br />
-application/<samp>bar</samp>/controllers/<br />
-application/<samp>bar</samp>/errors/<br />
-application/<samp>bar</samp>/libraries/<br />
-application/<samp>bar</samp>/models/<br />
-application/<samp>bar</samp>/views/</code>
+<p>たとえば、"foo" と "bar" という2つのアプリケーションを作成したい場合、
+application フォルダを次のような構成にします:</p>
+
+<code>applications/<var>foo</var>/<br />
+applications/<var>foo</var>/config/<br />
+applications/<var>foo</var>/controllers/<br />
+applications/<var>foo</var>/errors/<br />
+applications/<var>foo</var>/libraries/<br />
+applications/<var>foo</var>/models/<br />
+applications/<var>foo</var>/views/<br />
+applications/<samp>bar</samp>/<br />
+applications/<samp>bar</samp>/config/<br />
+applications/<samp>bar</samp>/controllers/<br />
+applications/<samp>bar</samp>/errors/<br />
+applications/<samp>bar</samp>/libraries/<br />
+applications/<samp>bar</samp>/models/<br />
+applications/<samp>bar</samp>/views/</code>
 
 
 <p>利用する特定のアプリケーションを選ぶには、メインの <kbd>index.php</kbd> ファイルを開き、<dfn>$application_folder</dfn>
@@ -100,7 +107,8 @@ application/<samp>bar</samp>/views/</code>
 
 <code>$application_folder = "applications/foo";</code>
 
-<p class="important"><strong>Note:</strong>&nbsp; 各アプリケーションには、それぞれの <dfn>index.php</dfn> ファイルが必要になります。それぞれの <dfn>index.php</dfn> ファイルが呼び出すべきアプリケーションを呼び出します。index.php ファイルは、好きな名前を付けることもできます。</p>
+<p class="important"><strong>Note:</strong>&nbsp; 各アプリケーションには、それぞれの <dfn>index.php</dfn> ファイルが必要になります。
+それぞれの <dfn>index.php</dfn> ファイルが呼び出すべきアプリケーションを呼び出します。index.php ファイルは、好きな名前を付けることもできます。</p>
 
 
 

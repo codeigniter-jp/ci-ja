@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>共通関数 : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
@@ -12,7 +13,6 @@
 <script type="text/javascript" src="../nav/moo.fx.js"></script>
 <script type="text/javascript" src="../nav/user_guide_menu.js"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv='expires' content='-1' />
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
@@ -35,6 +35,7 @@
 </div>
 <!-- END NAVIGATION -->
 
+
 <!-- START BREADCRUMB -->
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
@@ -56,22 +57,23 @@
 
 <h1>共通関数</h1>
 
-<p>CodeIgniterにはグローバルで定義された関数がいくつか存在し、ライブラリやヘルパをロードすること無くどの場所でも使うことができます。</p>
+<p>CodeIgniter にはグローバルで定義された関数がいくつか存在し、ライブラリやヘルパをロードすること無くどの場所でも使うことができます。</p>
 
 <h2>is_php('<var>version_number</var>')</h2>
 
-<p>is_php() は、<var>version_number</var>で指定したバージョン以降のPHPが利用されているかを判定します。</p>
+<p>is_php() は、<var>version_number</var>で指定したバージョン以降の PHP が利用されているかを判定します。</p>
 
 <code>if (is_php('5.3.0'))<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;$str = quoted_printable_encode($str);<br />
 }</code>
 
-<p>指定したバージョンと同じかそれ以降のバージョンのPHPがインストールされていれば、ブール値の <kbd>TRUE</kbd> を返します。指定したバージョン未満のPHPがインストールされていれば、 <kbd>FALSE</kbd> を返します。</p>
+<p>指定したバージョンと同じかそれ以降のバージョンの PHP がインストールされていれば、ブール値の <kbd>TRUE</kbd> を返します。指定したバージョン未満の PHP がインストールされていれば、 <kbd>FALSE</kbd> を返します。</p>
+
 
 <h2>is_really_writable('<var>path/to/file</var>')</h2>
 
-<p>is_writable() は、Windowsサーバーの場合、OSが本当はファイルに書けないのだけれどもOSがPHPに書き込み可能と言ってきたときにTRUEを返し、read-only属性がマークされている場合だけFALSEを返します。この関数は本当にそのファイルに書き込みができるのかどうかを、実際にファイルに書き込みをしてみて判断します。この関数は書き込み情報が当てにならないOSの場合のみ使うようにしてください。</p>
+<p>is_writable() は、Windows サーバーの場合、OS が本当はファイルに書けないのだけれども OS が PHP に書き込み可能と言ってきたときに TRUE を返し、read-only 属性がマークされている場合だけ FALSE を返します。この関数は本当にそのファイルに書き込みができるのかどうかを、実際にファイルに書き込みをしてみて判断します。この関数は書き込み情報が当てにならない OS の場合のみ使うようにしてください。</p>
 
 <code>if (is_really_writable('file.txt'))<br />
 {<br />
@@ -90,18 +92,24 @@ else<br />
 
 <h2>set_status_header(<var>code</var>, '<var>text</var>');</h2>
 
-<p>サーバが返すHTTPレスポンスヘッダのステータスを手動でセットできます。例:</p>
+<p>サーバが返す HTTP レスポンスヘッダのステータスを手動でセットできます。例:</p>
 
 <code>set_status_header(401);<br />
 // ヘッダは Unauthorized に設定されます</code>
 
-<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">全てのHTTPレスポンスヘッダの一覧</a>をご覧ください。</p>
+<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">全ての HTTP レスポンスヘッダの一覧</a>をご覧ください。</p>
+
 
 <h2>remove_invisible_characters(<var>$str</var>)</h2>
 <p>Java\0script のように、文字列にヌル文字が混入されるのを防ぎます。</p>
 
+
+
 </div>
+
+
 <!-- END CONTENT -->
+
 
 <div id="footer">
 <p>
@@ -109,8 +117,7 @@ else<br />
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="routing.html">URIルーティング</a>
-</p>
+次のトピック:&nbsp;&nbsp;<a href="routing.html">URIルーティング</a></p>
 <p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
