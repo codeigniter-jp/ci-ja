@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>クエリヘルパメソッド : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -42,7 +43,8 @@
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
 <a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
-クエリヘルパ</td>
+クエリヘルパ
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -61,13 +63,16 @@
 
 
 <h2>$this->db->insert_id()</h2>
-<p>データベースに行を挿入したときに、挿入したID番号を取得します。</p>
+<p>データベースに行を挿入したときに、挿入した ID 番号を取得します。</p>
 
 <h2>$this->db->affected_rows()</h2>
 <p>「書き込み」タイプのクエリ (insert、update、など) が実行されたとき、処理された行の数を取得します。</p>
-<p>Note:  MySQLでは、"DELETE FROM TABLE" を実行すると0行と返します。データベースクラスには、処理した行を訂正して返せるよう、小さなHACKが用意されています。デフォルトでは、このHACKが有効になっていますが、データベースドライバファイルの中でオフにすることもできます。</p>
+<p>Note:  MySQLでは、"DELETE FROM TABLE" を実行すると0行と返します。データベースクラスには、処理した行を訂正して返せるよう、
+小さな HACK が用意されています。デフォルトではこの HACK が有効になっていますが、データベースドライバファイルの中でオフにすることもできます。</p>
+
+
 <h2>$this->db->count_all();</h2>
-<p>特定のテーブルの行数を数えられます。テーブル名を第１引数で渡します。例:</p>
+<p>特定のテーブルの行数を数えられます。テーブル名を第1引数で渡します。例:</p>
 <code>echo $this->db->count_all('<var>my_table</var>');<br />
 <br />
 // 25のような整数が返ります
@@ -89,21 +94,22 @@
 
 <code>$str = $this->db->last_query();<br />
 <br />
-// 次のように生成されます:  SELECT * FROM sometable....</code>
+// 次のように生成されます:  SELECT * FROM sometable....
+</code>
 
 
-<p>次の２つのメソッドは、INSERTとUPDATEでデータベースに書き込む処理を単純化するのに役立つものです。</p>
+<p>次の２つのメソッドは、INSERT と UPDATE でデータベースに書き込む処理を単純化するのに役立つものです。</p>
 
 
 <h2>$this->db->insert_string(); </h2>
-<p>このメソッドは、データベースにデータを新規追加するのを単純化します。これは、SQLのINSERTステートメントを正しくフォーマットして返します。例:</p>
+<p>このメソッドは、データベースにデータを新規追加するのを単純化します。これは、SQL の INSERT ステートメントを正しくフォーマットして返します。例:</p>
 
 <code>$data = array('name' => $name, 'email' => $email, 'url' => $url);<br />
 <br />
 $str = $this->db->insert_string('table_name', $data);
 </code>
 
-<p>第1引数は、テーブル名で、第2引数は、挿入するデータの連想配列です。上の例では、次のような文を生成します:</p>
+<p>第1引数はテーブル名で、第2引数は挿入するデータの連想配列です。上の例では、次のような文を生成します:</p>
 <code>INSERT INTO table_name (name, email, url) VALUES ('Rick', 'rick@example.com', 'example.com')</code>
 
 <p class="important">Note: 値は自動的にエスケープされ、安全なクエリが生成されます。</p>
@@ -111,7 +117,7 @@ $str = $this->db->insert_string('table_name', $data);
 
 
 <h2>$this->db->update_string(); </h2>
-<p>このメソッドは、データベースに更新書き込みをするのを単純化します。これは、SQLのUPDATEステートメントの文字列を正しくフォーマットして返します。例:</p>
+<p>このメソッドは、データベースに更新書き込みをするのを単純化します。これは、SQL の UPDATE ステートメントの文字列を正しくフォーマットして返します。例:</p>
 
 <code>$data = array('name' => $name, 'email' => $email, 'url' => $url);<br />
 <br />
@@ -120,7 +126,7 @@ $where = "author_id = 1 AND status = 'active'";
 $str = $this->db->update_string('table_name', $data, $where);
 </code>
 
-<p>第1引数はテーブル名で、第2引数は、更新するデータの連想配列で、第3引数は、&quot;WHERE&quot; 句になります。上の例は、次のような文を生成します:</p>
+<p>第1引数はテーブル名で、第2引数は更新するデータの連想配列で、第3引数は &quot;WHERE&quot; 句になります。上の例は次のような文を生成します:</p>
 <code> UPDATE table_name SET name = 'Rick', email = 'rick@example.com', url = 'example.com' WHERE author_id = 1 AND status = 'active'</code>
 
 <p class="important">Note: 値は自動的にエスケープされ、安全なクエリが生成されます。</p>

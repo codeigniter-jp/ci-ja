@@ -71,14 +71,15 @@
 <li><a href="#add_key">キーの追加</a></li>
 <li><a href="#create_table">テーブルの作成</a></li>
 <li><a href="#drop_table">テーブルの削除</a></li>
-<li><a href="#drop_table">テーブル名の変更</a></li>
+<li><a href="#rename_table">テーブル名の変更</a></li>
 <li><a href="#modifying_tables">テーブルの変更</a></li>
 </ul>
 
 
 <h2><a name="init"></a>フォージクラスの初期化</h2>
 
-<p class="important"><strong>Important:</strong>&nbsp; フォージクラスは、データベースドライバに依存しているので、フォージクラスを初期化するには、あらかじめデータベースドライバが実行されている必要があります。</p>
+<p class="important"><strong>Important:</strong>&nbsp; フォージクラスはデータベースドライバに依存しているので、
+フォージクラスを初期化するには、あらかじめデータベースドライバが実行されている必要があります。</p>
 
 <p>フォージクラスは次のようにロードします:</p>
 
@@ -110,32 +111,32 @@
 
 
 <h1>テーブルの作成と削除</h1>
-<p>テーブルを作成するためには、やらなければならないことがいくつかあります。フィールドを追加したり、キーをテーブルに追加したり、コラムを変更したりです。CodeIgniter はこのようなことに関してのメカニズムを提供しています。</p>
+<p>テーブルを作成するためには、やらなければならないことがいくつかあります。フィールドを追加したり、キーをテーブルに追加したり、カラムを変更したりです。CodeIgniter はこのようなことに関してのメカニズムを提供しています。</p>
 <h2><a name="add_field" id="add_field"></a>フィールドの追加</h2>
-<p>フィールドは連想配列を通して作成されます。配列の中には、フィールドのデータタイプを指定する 'type' キーが必要となります。たとえば、 INT、VARCHAR、TEXTなどです。多くのデータタイプ (たとえば VARCHAR など) は 'constraint' キーも必要です。</p>
+<p>フィールドは連想配列を通して作成されます。配列の中には、フィールドのデータタイプを指定する 'type' キーが必要となります。たとえば、 INT、VARCHAR、TEXT などです。多くのデータタイプ (たとえば VARCHAR など) は 'constraint' キーも必要です。</p>
 <p><code>$fields = array(<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'users' =&gt; array(<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'type' =&gt; VARCHAR,<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'constraint' =&gt; '100',<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
-    <br />
-//  &quot;users VARCHAR(100)&quot と解釈され、フィールドが追加されます。</code></p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'type' =&gt; 'VARCHAR',<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'constraint' =&gt; '100',<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+	<br />
+// &quot;users VARCHAR(100)&quot と解釈され、フィールドが追加されます。</code></p>
 <p>さらに、以下のキー/値が使えます:</p>
 <ul>
-    <li>unsigned/true : フィールド定義として &quot;UNSIGNED&quot; を生成します。</li>
-    <li>default/値 : フィールド定義としてデフォルト値を生成します。</li>
-    <li>null/true : フィールド定義として &quot;NULL&quot; を生成します。この指定がないと、フィールドは &quot;NOT NULL&quot; となります。</li>
-    <li>auto_increment/true : フィールドのフラグとして、auto_incrementを立てます。フィールドタイプは整数の様なタイプをサポートするものでないといけません。</li>
-    </ul>
+	<li>unsigned/true : フィールド定義として &quot;UNSIGNED&quot; を生成します。</li>
+	<li>default/値 : フィールド定義としてデフォルト値を生成します。</li>
+	<li>null/true : フィールド定義として &quot;NULL&quot; を生成します。この指定がないと、フィールドは &quot;NOT NULL&quot; となります。</li>
+	<li>auto_increment/true : フィールドのフラグとして、auto_increment を立てます。フィールドタイプは整数の様なタイプをサポートするものでないといけません。</li>
+	</ul>
 <p><code>$fields = array(<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_id' =&gt; array(<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'type' =&gt; 'INT',<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'constraint' =&gt; 5, <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'unsigned' =&gt; TRUE,<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto_increment' =&gt; TRUE<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_title' =&gt; array(<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_id' =&gt; array(<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'type' =&gt; 'INT',<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'constraint' =&gt; 5, <br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'unsigned' =&gt; TRUE,<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'auto_increment' =&gt; TRUE<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_title' =&gt; array(<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'type' =&gt; 'VARCHAR',<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'constraint' =&gt; '100',<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
@@ -152,30 +153,30 @@
 </code></p>
 <p>フィールドが定義された後で、<dfn>$this-&gt;dbforge-&gt;add_field($fields);</dfn> の後に呼ばれる <dfn>create_table()</dfn> メソッドでフィールドが追加されます。</p>
 <h3>$this-&gt;dbforge-&gt;add_field()</h3>
-<p>add_fieldsメソッドは上のような配列を受け入れます。</p>
+<p>add_fields メソッドは上のような配列を受け入れます。</p>
 <h3>フィールド定義を文字列として渡す</h3>
-<p>フィールド作成をどのようにしたらよいか正確にわかっている場合、add_field()メソッドを使って、フィールド定義を文字列として渡すこともできます。</p>
+<p>フィールド作成をどのようにしたらよいか正確にわかっている場合、add_field() メソッドを使って、フィールド定義を文字列として渡すこともできます。</p>
 <p><code>$this-&gt;dbforge-&gt;add_field(&quot;label varchar(100) NOT NULL DEFAULT 'default label'&quot;);</code></p>
 <p class="important">Note： <dfn>add_field()</dfn> を複数回呼ぶと、複数回の処理が累積されていきます。</p>
 <h3>id フィールドの作成</h3>
 <p>ひとつの特別な例外として、id フィールドの作成があります。type が id のフィールドは、自動的に INT(9) の auto_increment な主キーになります。</p>
 <p><code>$this-&gt;dbforge-&gt;add_field('id');<br />
-    // これで id は INT(9) NOT NULL AUTO_INCREMENT になります。</code></p>
+	// これで id は INT(9) NOT NULL AUTO_INCREMENT になります。</code></p>
 <h2><a name="add_key" id="add_key"></a>キーの追加</h2>
-<p>一般的にテーブルにはキーがあります。　キーは <dfn>$this-&gt;dbforge-&gt;add_key('field')</dfn> で設定できます。 オプションの 2つ目の引数は、TRUE を指定すると主キーになります。<dfn>add_key()</dfn> の後に <dfn>create_table()</dfn> を呼ぶ必要があることに注意してください。</p>
-<p>主キー（PRIMARY KEY）ではないコラムは配列で送信されます。以下はMySQL用のサンプルです。</p>
+<p>一般的にテーブルにはキーがあります。キーは <dfn>$this-&gt;dbforge-&gt;add_key('field')</dfn> で設定できます。オプションの2つ目の引数は、TRUE を指定すると主キーになります。<dfn>add_key()</dfn> の後に <dfn>create_table()</dfn> を呼ぶ必要があることに注意してください。</p>
+<p>主キー（PRIMARY KEY）ではないコラムは配列で送信されます。以下は MySQL 用のサンプルです。</p>
 <p><code>$this-&gt;dbforge-&gt;add_key('blog_id', TRUE);<br />
-    // PRIMARY KEY は `blog_id`(`blog_id`) になります。<br />
-    <br />
-    $this-&gt;dbforge-&gt;add_key('blog_id', TRUE);<br />
-    $this-&gt;dbforge-&gt;add_key('site_id', TRUE);<br />
-    // PRIMARY KEY は `blog_id_site_id` (`blog_id`, `site_id`) になります。<br />
+	// PRIMARY KEY は `blog_id`(`blog_id`) になります。<br />
 	<br />
-    $this-&gt;dbforge-&gt;add_key('blog_name');<br />
-    // KEY は `blog_name` (`blog_name`) になります。
-    <br />
-    $this-&gt;dbforge-&gt;add_key(array('blog_name', 'blog_label'));<br />
-    // KEY は `blog_name_blog_label` (`blog_name`, `blog_label`) になります。</code></p>
+	$this-&gt;dbforge-&gt;add_key('blog_id', TRUE);<br />
+	$this-&gt;dbforge-&gt;add_key('site_id', TRUE);<br />
+	// PRIMARY KEY は `blog_id_site_id` (`blog_id`, `site_id`) になります。<br />
+	<br />
+	$this-&gt;dbforge-&gt;add_key('blog_name');<br />
+	// KEY は `blog_name` (`blog_name`) になります。
+	<br />
+	$this-&gt;dbforge-&gt;add_key(array('blog_name', 'blog_label'));<br />
+	// KEY は `blog_name_blog_label` (`blog_name`, `blog_label`) になります。</code></p>
 <h2><a name="create_table" id="create_table"></a>テーブルの作成</h2>
 <p>フィールドとキーが宣言された後、新しいテーブルを次に紹介するメソッドを呼ぶことで作成することができます。</p>
 <p><code>$this-&gt;dbforge-&gt;create_table('table_name');<br />
@@ -186,25 +187,25 @@
 <h2><a name="drop_table" id="drop_table"></a>テーブルの削除</h2>
 <p> DROP TABLE sql を実行します。</p>
 <p><code>$this-&gt;dbforge-&gt;drop_table('table_name');<br />
-// DROP TABLE IF EXISTS  table_name になります</code></p>
+	// DROP TABLE IF EXISTS  table_name になります</code></p>
 <h2><a name="rename_table" id="rename_table"></a>テーブル名の変更</h2> 
 <p>TABLE rename を実行します。</p> 
 <p><code>$this-&gt;dbforge-&gt;rename_table('old_table_name', 'new_table_name');<br /> 
-// ALTER TABLE old_table_name RENAME TO new_table_name になります</code></p> 
-<h1><a name="modifying_tables" id="drop_table2"></a>テーブルの変更</h1>
+	// ALTER TABLE old_table_name RENAME TO new_table_name になります</code></p> 
+<h1><a name="modifying_tables" id="modifying_tables"></a>テーブルの変更</h1>
 <h2>$this-&gt;dbforge-&gt;add_column()</h2>
-<p> add_column() メソッドは既存のテーブルを変更するときに使います。 上記と同じフィールド定義の配列を採り、いくつでもフィールドを追加することができます。</p>
+<p>add_column() メソッドは既存のテーブルを変更するときに使います。上記と同じフィールド定義の配列を採り、いくつでもフィールドを追加することができます。</p>
 <p><code>$fields = array(<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'preferences' =&gt; array('type' =&gt; 'TEXT')<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'preferences' =&gt; array('type' =&gt; 'TEXT')<br />
 );<br />
 $this-&gt;dbforge-&gt;add_column('table_name', $fields);<br />
 <br />
 // ALTER TABLE table_name ADD   	preferences TEXT となります</code></p>
 <h2>$this-&gt;dbforge-&gt;drop_column()</h2>
-<p>テーブルのコラムを削除します。 </p>
+<p>テーブルのカラムを削除します。 </p>
 <p><code>$this-&gt;dbforge-&gt;drop_column('table_name', 'column_to_drop');</code></p>
 <h2>$this-&gt;dbforge-&gt;modify_column()</h2>
-<p>このメソッドの使用法は、add_column() と同じです。ただし、新しいカラムを追加するのではなく、既存のカラムを変更します。カラム名を変更するには、配列の &quot;name&quot; キーで指定します。</p>
+<p>このメソッドの使用法は、add_column() と同じです。ただし、新しいカラムを追加するのではなく、既存のカラムを変更します。カラム名を変更するには配列の &quot;name&quot; キーで指定します。</p>
 <p><code>$fields = array(<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'old_name' =&gt; array(<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' =&gt; 'new_name',<br />
@@ -212,8 +213,8 @@ $this-&gt;dbforge-&gt;add_column('table_name', $fields);<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
 );<br />
 $this-&gt;dbforge-&gt;modify_column('table_name', $fields);<br />
-    <br />
-    // ALTER TABLE table_name CHANGE   	old_name new_name TEXT になります</code></p>
+	<br />
+	// ALTER TABLE table_name CHANGE   	old_name new_name TEXT になります</code></p>
 <p>&nbsp;</p>
 </div>
 <!-- END CONTENT -->
