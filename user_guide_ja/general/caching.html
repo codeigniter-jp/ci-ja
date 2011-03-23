@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Webページのキャッシュ : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -41,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-ページのキャッシュ</td>
+ページのキャッシュ
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -54,41 +56,46 @@
 <div id="content">
 
 
-<h1>Webページのキャッシュ</h1>
+<h1>Web ページのキャッシュ</h1>
 
 <p>CodeIgniter では、最大限のパフォーマンスを得るため、ページをキャッシュすることが可能です。</p>
-<p>CodeIgniter は大変高速ですが、ページで大量の動的情報を表示させると、サーバリソース、メモリ、および、CPUの利用に直接関係するので、ページを読み込むスピードに影響が出ます。ページをキャッシュすることにより、ページは完全にレンダリングされた状態で保存されるので、静的webページに近いパフォーマンスを達成することができます。</p>
+
+<p>CodeIgniter は大変高速ですが、ページで大量の動的情報を表示させると、
+サーバリソース、メモリ、および、CPU の利用に直接関係するので、ページを読み込むスピードに影響が出ます。
+ページをキャッシュすることにより、ページは完全にレンダリングされた状態で保存されるので、静的 web ページに近いパフォーマンスを達成することができます。</p>
+
+
 <h2>キャッシュはどのように動作しますか？</h2>
 
-<p>キャッシュはページごとに有効化でき、キャッシュがリフレッシュされるまでキャッシュ状態を維持しておく時間を設定できます。まず、ページが読み込まれると、キャッシュは <dfn>system/cache</dfn> フォルダに書き出されます。次に続けてページが読み込まれると、キャッシュが読み取られリクエスト元のユーザのブラウザに送信されます。有効期限が切れたら、古いキャッシュは削除され、ブラウザに送信される前に更新されます。</p>
+<p>キャッシュはページごとに有効化でき、キャッシュがリフレッシュされるまでキャッシュ状態を維持しておく時間を設定できます。
+まず、ページが読み込まれると、キャッシュは <dfn>application/cache</dfn> フォルダに書き出されます。
+次に続けてページが読み込まれると、キャッシュが読み取られリクエスト元のユーザのブラウザに送信されます。有効期限が切れたら、古いキャッシュは削除され、ブラウザに送信される前に更新されます。</p>
 
 <p>Note: ベンチマークタグはキャッシュされませんので、キャッシュが有効な場合でもページをロードする速度を見ることができます。</p>
 
 <h2>キャッシュの有効化</h2>
 
-<p>Caching can be enabled on a per-page basis, and you can set the length of time that a page should remain cached before being refreshed.
-When a page is loaded for the first time, the cache file will be written to your <dfn>application/cache</dfn> folder.  On subsequent page loads the cache file will be retrieved
-and sent to the requesting user's browser.  If it has expired, it will be deleted and refreshed before being sent to the browser.</p>
-
-<p>Note: The Benchmark tag is not cached so you can still view your page load speed when caching is enabled.</p>
-
-<h2>Enabling Caching</h2>
-
-<p>To enable caching, put the following tag in any of your controller functions:</p>
+<p>キャッシュを有効にするには、次のコードをコントローラのメソッド内のいずれかの場所に記述します:</p>
 
 <code>$this->output->cache(<var>n</var>);</code>
 
 <p>ここでの <var>n</var> は、更新されるまでの間、ページを何分間キャッシュしておくかの分数になります。</p>
 
-<p>上のコードは、メソッドのどこに記述しても構いません。出現する順番は影響しませんので、もっとも論理的に相応しいと思われる場所であればどこにでも記述することができます。コードを記述すれば、そのページはキャッシュされるようになります。</p>
+<p>上のコードは、メソッドのどこに記述しても構いません。出現する順番は影響しませんので、もっとも論理的に相応しいと思われる場所であればどこにでも記述することができます。
+コードを記述すれば、そのページはキャッシュされるようになります。</p>
 
-<p class="important"><strong>Warning:</strong> CodeIgniterが出力するコンテンツを保存する必要があるため、キャッシュはコントローラで<a href="./views.html">ビュー</a>を使い画面表示をする場合にのみ有効になります。</p>
-<p class="important"><strong>Note:</strong> キャッシュファイルを書き込み可能にするには、<dfn>system/cache</dfn> フォルダのパーミッションを書き込み可能にセットする必要があります。</p>
+<p class="important"><strong>Warning:</strong> CodeIgniter が出力するコンテンツを保存する必要があるため、キャッシュはコントローラで<a href="./views.html">ビュー</a>を使い画面表示をする場合にのみ有効になります。</p>
+<p class="important"><strong>Note:</strong> キャッシュファイルを書き込み可能にするには、
+<dfn>application/cache</dfn> フォルダのパーミッションを書き込み可能にセットする必要があります。</p>
 
 <h2>キャッシュの削除</h2>
 
 <p>もうファイルをキャッシュしたくない場合は、キャッシュ用のコードを取り除いてください。そうすれば、そのファイルは有効期限が切れたときに更新されなくなります。Note:
-キャッシュ用のコードを取り除いてもすぐにはキャッシュは削除されません。通常は期限が切れなければ削除されません。有効期限前に削除したい場合は、キャッシュフォルダから手動で削除する必要があります。</p>
+キャッシュ用のコードを取り除いてもすぐにはキャッシュは削除されません。通常は期限が切れなければ削除されません。
+有効期限前に削除したい場合は、キャッシュフォルダから手動で削除する必要があります。</p>
+
+
+
 </div>
 <!-- END CONTENT -->
 
