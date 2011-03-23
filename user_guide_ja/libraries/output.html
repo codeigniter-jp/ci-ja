@@ -74,7 +74,7 @@
 
 <h2>$this->output->set_content_type();</h2>
 
-<p>Permits you to set the mime-type of your page so you can serve JSON data, JPEG's, XML, etc easily.</p>
+<p>JSON データや JPEG データ、XML などを簡単に提供できるように、ページの MIME タイプを設定できます。</p>
 
 <code>$this->output<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('application/json')<br/>
@@ -84,7 +84,7 @@ $this->output<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('jpeg') // You could also use ".jpeg" which will have the full stop removed before looking in config/mimes.php<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;->set_output(file_get_contents('files/something.jpg'));</code>
 
-<p><strong>Important:</strong> Make sure any non-mime string you pass to this method exists in config/mimes.php or it will have no effect.</p>
+<p><strong>重要:</strong> config.mimes.php に存在する MIME タイプをこのメソッドに渡していることを確認してください。そうでないと、効果はありません。</p>
 
 
 <h2>$this->output->get_output();</h2>
