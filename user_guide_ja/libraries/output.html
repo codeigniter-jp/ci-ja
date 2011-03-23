@@ -81,7 +81,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;->set_output(json_encode(array('foo' => 'bar')));<br/>
 <br/>
 $this->output<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('jpeg') // You could also use ".jpeg" which will have the full stop removed before looking in config/mimes.php<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('jpeg') // ".jpeg" とすることもでき、その場合、ピリオドは config/mimes.php を検索する前に削除されます<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;->set_output(file_get_contents('files/something.jpg'));</code>
 
 <p><strong>重要:</strong> config.mimes.php に存在する MIME タイプをこのメソッドに渡していることを確認してください。そうでないと、効果はありません。</p>
