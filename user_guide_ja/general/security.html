@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>セキュリティ : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -56,12 +57,15 @@
 
 <h1>セキュリティ</h1>
 
-<p>このページではwebセキュリティに関する "ベストプラクティス" と、CodeIgniter の内部のセキュリティ機能の詳細について説明します。</p>
+<p>このページではwebセキュリティに関する "ベストプラクティス" と、
+CodeIgniter の内部のセキュリティ機能の詳細について説明します。</p>
 
 
 <h2>URI セキュリティ</h2>
 
-<p>CodeIgniter では、悪意のあるデータがアプリケーションに渡される可能性を最小限にするため、URL文字列で使用できる文字列を厳しく制限しています。URI には次の文字だけを使用できます:</p>
+<p>CodeIgniter では、悪意のあるデータがアプリケーションに渡される可能性を最小限にするため、
+URL 文字列で使用できる文字列を厳しく制限しています。URI には次の文字だけを使用できます:
+</p>
 
 <ul>
 <li>英数字</li>
@@ -72,13 +76,16 @@
 <li>ダッシュ（ハイフン）: -</li>
 </ul>
 
-<h2>GET、POST、および クッキーデータ</h2>
+<h2>GET、POST、およびクッキーデータ</h2>
 
-<p>単純に、システムが通例のクエリ文字列ではなくURIセグメントを利用可能にしているので、CodeIgniter では、GETメソッドでのデータ（クエリ文字列）の使用は許可されません (設定ファイルでクエリ文字列オプションを有効にした場合はこの限りではありません)。システムが初期化される過程で、グローバルなGET配列($_GET)は入力クラスによって<strong>クリアされます</strong>。</p>
+<p>単純に、システムが通例のクエリ文字列ではなく URI セグメントを利用可能にしているので、CodeIgniter では、GET メソッドでのデータ（クエリ文字列）の使用は許可されません (設定ファイルで
+クエリ文字列オプションを有効にした場合はこの限りではありません)。システムが初期化される過程で、
+グローバルな GET 配列($_GET)は入力クラスによって<strong>クリアされます</strong>。</p>
 
 <h2>Register_globals</h2>
 
-<p>$_POST および $_COOKIE 配列 以外の全グローバル変数は、システムが初期化されるときにクリアされます。このクリア処理はregister_globals = off と同等の効果を発揮します。 </p>
+<p>$_POST および $_COOKIE 配列 以外の全グローバル変数は、システムが初期化されるときにクリアされます。
+このクリア処理は register_globals = off と同等の効果を発揮します。 </p>
 
 <a name="error_reporting"></a>
 <h2>エラー報告</h2>
@@ -100,15 +107,17 @@
 
 <h2>magic_quotes_runtime</h2>
 
-<p>magic_quotes_runtime ディレクティブは、データベースからデータを取得するときにスラッシュを除去する必要がないよう、システムが初期化されるときにOFFにされます。</p>
+<p>magic_quotes_runtime ディレクティブは、データベースからデータを取得するときにスラッシュを除去する必要がないよう、
+システムが初期化されるときに OFF にされます。</p>
 
 <h1>ベストプラクティス</h1>
 
-<p>送信された POST データ、COOKIEデータ、URIデータ、XML-RPCデータあるいは、SERVER 配列（$_SERVER）のデータでさえ、アプリケーションでデータを受け取る前に、次の３つのステップを実施することをおすすめします:</p>
+<p>送信された POST データ、COOKIE データ、URI データ、XML-RPC データあるいは、SERVER 配列（$_SERVER）のデータでさえ、
+アプリケーションでデータを受け取る前に、次の３つのステップを実施することをおすすめします:</p>
 
 <ol>
 <li>危険なデータをフィルタリングする。</li>
-<li>データが正しい型、長さ、サイズなどであることを確かめるため、検証を行う (ときどき、このステップはステップ１と置き換えられます)。</li>
+<li>データが正しい型、長さ、サイズなどであることを確かめるため、検証を行う (ときどき、このステップはステップ1と置き換えられます)。</li>
 <li>データベースにデータを送信する前にエスケープ処理を行う。</li>
 </ol>
 
@@ -119,20 +128,24 @@
 <li>
 <h2>XSS フィルタリング</h2>
 
-<p>CodeIgniter にはクロスサイトスクリプティングフィルタがあります。このフィルタは、悪意のあるJavaScriptを埋め込むのに使用される一般的な方法や、クッキーハイジャックや、その他の危害を及ぼすものと思われる他のタイプのコードがデータに利用されていないかどうかを探します。XSS フィルタについては、<a href="../libraries/security.html">こちら</a>で説明しています。</p>
+<p>CodeIgniter にはクロスサイトスクリプティングフィルタがあります。このフィルタは、
+悪意のある JavaScript を埋め込むのに使用される一般的な方法や、クッキーハイジャックや、
+その他の危害を及ぼすものと思われる他のタイプのコードがデータに利用されていないかどうかを探します。XSS フィルタについては、<a href="../libraries/security.html">こちら</a>で説明しています。</p>
 </li>
 
-<li>
-<h2>データのバリデーション(検証)</h2>
+<li><h2>データのバリデーション(検証)</h2>
 
-<p>CodeIgniter には、データの検証、フィルタリング、前処理を行うのを支援する<a href="../libraries/form_validation.html">フォーム・バリデーション(検証)クラス</a>があります。</p>
+<p>CodeIgniter には、データの検証、フィルタリング、前処理を行うのを支援する
+<a href="../libraries/form_validation.html">フォーム・バリデーション(検証)クラス</a>があります。</p>
 </li>
 
-<li>
-<h2>データベースへデータを追加する前に全データをエスケープする</h2>
+<li><h2>データベースへデータを追加する前に全データをエスケープする</h2>
 
-<p>エスケープ処理をしないでデータベースにデータを記録してはいけません。<a href="../database/queries.html">クエリ</a> の説明をしているセクションでさらに詳しい情報をご覧ください。</p>
+<p>エスケープ処理をしないでデータベースにデータを記録してはいけません。
+<a href="../database/queries.html">クエリ</a> の説明をしているセクションでさらに詳しい情報をご覧ください。</p>
+
 </li>
+
 </ul>
 
 
@@ -144,11 +157,11 @@
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="alternative_php.html">代替のPHP構文</a>
+前のトピック:&nbsp;&nbsp;<a href="alternative_php.html">代替の PHP 構文</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="styleguide.html">PHPコーディングスタイルガイド</a>
+次のトピック:&nbsp;&nbsp;<a href="styleguide.html">PHP コーディングスタイルガイド</a>
 </p>
 <p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
