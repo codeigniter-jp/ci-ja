@@ -1,6 +1,6 @@
-日本語言語パック All in One パッケージ (CodeIgniter 2.0.0)
+日本語言語パック All in One パッケージ (CodeIgniter 2.0.1)
 
-2011/02/25 日本 CodeIgniter ユーザ会 <http://codeigniter.jp/>
+2011/03/28 日本 CodeIgniter ユーザ会 <http://codeigniter.jp/>
 
 
 日本語言語パック All in One パッケージは、CodeIgniter と日本語言語パックを
