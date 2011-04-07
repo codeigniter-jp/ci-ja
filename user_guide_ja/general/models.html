@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>モデル : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+モデル
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>モデル</h1>
+
+<p>より慣例に沿った MVC アプローチを利用したい人向けに、モデルは<strong>オプションで</strong>利用可能です。</p>
+
+
+
+<ul>
+<li><a href="#what">モデルとは？</a></li>
+<li><a href="#anatomy">モデルの詳細</a></li>
+<li><a href="#loading">モデルの読み込み</a></li>
+<li><a href="#auto_load_model">モデルの自動読み込み</a></li>
+<li><a href="#conn">データベースへの接続</a></li>
+</ul>
+
+
+
+<h2><a name="what"></a>モデルとは?</h2>
+
+<p>モデルは、データベースに格納された情報を用いて機能するようデザインされた PHP のクラスです。たとえば、
+CodeIgniter を使ってブログを管理する場合について考えてみましょう。モデルクラスには、ブログのデータを作成・更新そして取得するためのメソッドが含まれます。
+そういったモデルクラスは、どのようになっているかを示した例です:</p>
+
+<code>
+class&nbsp;Blogmodel&nbsp;extends&nbsp;CI_Model&nbsp;{<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;var $title&nbsp;&nbsp; = '';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;var $content = '';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;var $date&nbsp;&nbsp;&nbsp; = '';<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;__construct()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Model クラスのコンストラクタを呼び出す<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;get_last_ten_entries()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$query = $this->db->get('entries', 10);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $query->result();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;insert_entry()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->title&nbsp;&nbsp; = $_POST['title']; // 下の Note を参照してください<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->content = $_POST['content'];<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->date&nbsp;&nbsp;&nbsp; = time();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->db->insert('entries',&nbsp;$this);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;update_entry()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->title&nbsp;&nbsp; = $_POST['title'];<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->content = $_POST['content'];<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->date&nbsp;&nbsp;&nbsp; = time();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->db->update('entries',&nbsp;$this, array('id' => $_POST['id']));<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+<br />
+}</code>
+
+<p>Note: 上の例で使用しているメソッドは、 <a href="../database/active_record.html">Active Record</a> のデータベース関連メソッドです。</p>
+<p class="important"><strong>Note:</strong> この例を簡単にするため、$_POST を直接利用しています。これは一般的に悪い方法です。一般的には、<a href="../libraries/input.html">入力クラス</a> の $this-&gt;input-&gt;post('title') を利用してください。</p> 
+<h2><a name="anatomy"></a>モデルの詳細</h2>
+
+<p>モデルクラスは <dfn>application/models/</dfn> フォルダに格納されます。  サブフォルダで構成したければ、
+サブフォルダ内に入れ子にして格納することができます。</p>
+
+<p>モデルクラスの基本的な原型はつぎのとおりです:</p>
+
+
+<code>
+class&nbsp;<var>Model_name</var>&nbsp;extends&nbsp;CI_Model&nbsp;{<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;<var>__construct</var>()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}</code>
+
+<p>ここでの <var>Model_name</var> はクラス名になります。クラス名は <strong>必ず</strong> 大文字で始め、他の文字は小文字にする必要があります。
+基底クラスの Model クラスを確実に継承してください。</p>
+
+<p>ファイル名は、クラス名を小文字にしたものになります。たとえばクラスがこんな感じの場合は:</p>
+
+<code>
+class&nbsp;<var>User_model</var>&nbsp;extends&nbsp;CI_Model&nbsp;{<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;<var>__construct</var>()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}</code>
+
+<p>ファイルは次のような感じになります:</p>
+
+<code>application/models/<var>user_model.php</var></code>
+
+
+
+<h2><a name="loading"></a>モデルの読み込み</h2>
+
+<p>モデルは、典型的には、<a href="controllers.html">コントローラ</a> のメソッドの中で読み込まれ、呼び出されます。
+モデルを読み込むには、次のようなメソッドを使用します:</p>
+
+<code>$this->load->model('<var>Model_name</var>');</code>
+
+<p>サブフォルダにモデルを格納している場合は、モデル格納用のフォルダからの相対パスを指定します。たとえば、
+<dfn>application/models/blog/queries.php</dfn> にモデルを保存している場合、それを使うには、下記のようにします:</p>
+
+<code>$this->load->model('<var>blog/queries</var>');</code>
+
+
+<p>いったん読み込まれると、モデルのメソッドは、クラス名と同じ名前のオブジェクトを使ってアクセスできます:</p>
+
+<code>
+$this->load->model('<var>Model_name</var>');<br />
+<br />
+$this-><var>Model_name</var>->function();
+</code>
+
+<p>モデルを違う名前に割り当てたいときは、読み込みメソッドの第2引数に渡すことで
+指定できます:</p>
+
+
+<code>
+$this->load->model('<var>Model_name</var>', '<kbd>fubar</kbd>');<br />
+<br />
+$this-><kbd>fubar</kbd>->function();
+</code>
+
+<p>下の例では、コントローラがモデルを読み込み、ビューを表示しています:</p>
+
+<code>
+class&nbsp;Blog_controller&nbsp;extends&nbsp;CI_Controller&nbsp;{<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;blog()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->model('Blog');<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data['query'] = $this->Blog->get_last_ten_entries();<br /><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('blog', $data);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}</code>
+
+<h2><a name="auto_load_model" id="auto_load_model"></a>モデルの自動読み込み</h2>
+<p>もし特定のモデルが、あなたのアプリケーションの中でグローバルに必要な場合、CodeIgniter の初期化時に自動的に読み込むように設定することができます。<var>application/config/autoload.php</var>ファイルを開き、そのモデルを autoload 配列に追加してください。</p>
+
+
+<h2><a name="conn"></a>データベースへの接続</h2>
+
+<p>モデルが読み込まれても自動的にはデータベースに<strong>接続しません</strong>。DB 接続については、次のオプションが選べます:</p>
+
+<ul>
+<li>コントローラまたはモデルのクラス内のどちらからも <a href="../database/connecting.html">こちらで述べている</a>標準のデータベース関連メソッドを利用して接続できます。</li>
+<li>あらかじめデータベース設定ファイルで接続情報に関して設定しておき、
+自動接続するかどうかについて <kbd>TRUE</kbd> (ブール値) をモデル読み込みメソッドの第3引数に渡すことで接続できます:
+
+	<code>$this->load->model('<var>Model_name</var>', '', <kbd>TRUE</kbd>);</code>
+	</li>
+
+
+<li>第3引数にデータベース接続に関する設定を渡して手動で行うことができます:
+
+
+		<code>$config['hostname'] = "localhost";<br />
+		$config['username'] = "myusername";<br />
+		$config['password'] = "mypassword";<br />
+		$config['database'] = "mydatabase";<br />
+		$config['dbdriver'] = "mysql";<br />
+		$config['dbprefix'] = "";<br />
+		$config['pconnect'] = FALSE;<br />
+		$config['db_debug'] = TRUE;<br />
+		<br />
+$this->load->model('<var>Model_name</var>', '', <kbd>$config</kbd>);</code></li>
+</ul>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="views.html">ビュー</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="helpers.html">ヘルパ関数</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

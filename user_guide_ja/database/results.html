@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>クエリ結果の生成 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+クエリ結果
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+
+<h1>クエリ結果の生成</h1>
+
+
+<p>クエリ結果を生成する方法はいくつかあります:</p>
+
+	<h2>result()</h2>
+
+	<p>このメソッドは、結果を<strong>オブジェクト</strong>の配列として、または失敗した場合には <strong>空の配列</strong> を返します。
+
+	典型的には、次のように、これをforeach ループで使用します:</p>
+
+	<code>
+	$query = $this->db->query("ここにクエリ");<br />
+	<br />
+	foreach ($query->result() as $row)<br />
+	{<br />
+	&nbsp;&nbsp;&nbsp;echo $row->title;<br />
+	&nbsp;&nbsp;&nbsp;echo $row->name;<br />
+	&nbsp;&nbsp;&nbsp;echo $row->body;<br />
+	}</code>
+	
+	<p>上の<dfn>メソッド</dfn>は<dfn>result_object()</dfn> の別名です。</p>
+
+	<p>実行したクエリでは、結果が<strong>生成されない</strong>可能性があるときは、最初に結果を調べるようにしてください:</p>
+	
+	<code>
+	$query = $this->db->query("ここにクエリ");<br />
+	<br />
+	if ($query->num_rows() > 0)<br />
+	{<br />
+	&nbsp;&nbsp;&nbsp;foreach ($query->result() as $row)<br />
+	&nbsp;&nbsp;&nbsp;{<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->title;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->name;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->body;<br />
+	&nbsp;&nbsp;&nbsp;}<br />
+	}
+</code>
+		
+	<p>result() に各々の結果オブジェクトをインスタンス化するための文字列を渡すこともできます (note: このクラスはロードされなければなりません)</p>
+
+	<code>
+	$query = $this->db->query("SELECT * FROM users;");<br />
+	<br />
+	foreach ($query->result('User') as $user)<br />
+	{<br />
+	&nbsp;&nbsp;&nbsp;echo $row->name; // 属性を呼び出す<br />
+	&nbsp;&nbsp;&nbsp;echo $row->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
+	}
+	</code>
+
+	<h2>result_array()</h2>
+
+	<p>このメソッドは、結果を純粋な配列として、あるいは結果が生成されなかったときには空の配列を返します。典型的には、次のように、foreach ループで使用されます:</p>
+	<code>
+	$query = $this->db->query("YOUR QUERY");<br />
+	<br />
+	foreach ($query->result_array() as $row)<br />
+	{<br />
+	&nbsp;&nbsp;&nbsp;echo $row['title'];<br />
+	&nbsp;&nbsp;&nbsp;echo $row['name'];<br />
+	&nbsp;&nbsp;&nbsp;echo $row['body'];<br />
+	}</code>
+
+
+	<h2>row()</h2>
+	
+	<p>このメソッドは単一行を返します。クエリの応答が一つ以上の行になる場合は、最初の行だけが返ります。
+	結果は<strong>オブジェクト</strong>で返ります。使用方法の例です:</p>
+	<code>
+	$query = $this->db->query("ここにクエリ");<br />
+	<br />
+	if ($query->num_rows() > 0)<br />
+	{<br />
+	&nbsp;&nbsp;&nbsp;$row = $query->row();
+	<br /><br />
+	&nbsp;&nbsp;&nbsp;echo $row->title;<br />
+	&nbsp;&nbsp;&nbsp;echo $row->name;<br />
+	&nbsp;&nbsp;&nbsp;echo $row->body;<br />
+	}
+	</code>
+
+	<p>特定の行を返したいときは、第１引数に、行番号を数値として渡すことができます:</p>
+
+	<code>$row = $query->row(<dfn>5</dfn>);</code>
+
+	<p>第2引数に文字列を渡すこともでき、その列をインスタンス化するためのクラス名を指定します:</p>
+
+	<code>
+	$query = $this->db->query("SELECT * FROM users LIMIT 1;");<br />
+	<br />
+	$query->row(0, 'User')<br />
+	echo $row->name; // 属性を呼び出す<br />
+	echo $row->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
+	</code>
+
+	<h2>row_array()</h2>
+
+	<p>配列を返すこと以外は、上の <var>row()</var> メソッドと同じです。例:</p>
+
+	<code>
+	$query = $this->db->query("ここにクエリ");<br />
+	<br />
+	if ($query->num_rows() > 0)<br />
+	{<br />
+	&nbsp;&nbsp;&nbsp;$row = $query->row_array();
+	<br /><br />
+	&nbsp;&nbsp;&nbsp;echo $row['title'];<br />
+	&nbsp;&nbsp;&nbsp;echo $row['name'];<br />
+	&nbsp;&nbsp;&nbsp;echo $row['body'];<br />
+	}
+	</code>
+
+
+	<p>特定の行を返したいときは、第１引数に、行番号を数値として渡すことができます: </p>
+
+	<code>$row = $query->row_array(<dfn>5</dfn>);</code>
+
+
+	<p>さらに、次のようなバリエーションで、結果を 進む/もどる/最初に移動/最後に移動 してデータを見ていくことができます:</p>
+
+<p>
+	<strong>$row = $query->first_row()</strong><br />
+	<strong>$row = $query->last_row()</strong><br />
+	<strong>$row = $query->next_row()</strong><br />
+	<strong>$row = $query->previous_row()</strong>
+</p>
+
+<p>引数に"array"と指定しなければ、デフォルトでは、これらのメソッドはオブジェクトを返します:</p>
+
+<p>
+	<strong>$row = $query->first_row('array')</strong><br />
+	<strong>$row = $query->last_row('array')</strong><br />
+	<strong>$row = $query->next_row('array')</strong><br />
+	<strong>$row = $query->previous_row('array')</strong>
+</p>
+
+
+
+<h1>結果ヘルパメソッド</h1>
+
+
+<h2>$query->num_rows()</h2>
+<p>クエリで返された行数を取得します。Note: 下記の例では <dfn>$query</dfn> は、クエリの結果オブジェクトを代入した変数です:</p>
+
+<code>$query = $this->db->query('SELECT * FROM my_table');<br /><br />
+echo $query->num_rows();
+</code>
+
+<h2>$query->num_fields()</h2>
+<p>問い合わせ結果のフィールド数 (列数) を返します。このメソッドは、クエリ結果オブジェクトを使っていることを確かめてから呼び出してください:</p>
+
+<code>$query = $this->db->query('SELECT * FROM my_table');<br /><br />
+echo $query->num_fields();
+</code>
+
+
+
+<h2>$query->free_result()</h2>
+<p>結果に関連付けられたメモリを解放し、結果のリソースIDを削除します。ふつうは、PHP は、スクリプトの実行を終えると、メモリを自動で解放します。
+しかし、特定のスクリプトで多くのクエリを実行しているとき、
+メモリの使用量を削減するために、各クエリの結果が生成されたあとにメモリを開放したい場合があります。例:
+</p>
+
+<code>$query = $this->db->query('SELECT title FROM my_table');<br /><br />
+foreach ($query->result() as $row)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;echo $row->title;<br />
+}<br />
+$query->free_result();  // 結果オブジェクトの $query はもう利用できなくなります<br />
+<br />
+$query2 = $this->db->query('SELECT name FROM some_table');<br /><br />
+$row = $query2->row();<br />
+echo $row->name;<br />
+$query2->free_result();  // 結果オブジェクトの $query2 はもう利用できなくなります
+</code>
+
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="queries.html">クエリ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="helpers.html">クエリヘルパメソッド</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

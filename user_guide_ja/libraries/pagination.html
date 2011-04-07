@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ページネーションクラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ページネーションクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>ページネーションクラス</h1>
+
+<p>CodeIgniter のページネーションクラスは、簡単に利用でき、動的にあるいは保存した設定情報にもとづいて、100% カスタマイズ可能です。</p>
+
+<p>"ページネーション" という言葉をあまり聞いたことがないでしょうか。次のようなページ間のナビゲーションを可能にするリンクのことを指します:</p>
+
+<code><a href="#">&laquo; 最初</a>&nbsp;&nbsp;<a href="#">&lt;</a>&nbsp;<a href="#">1</a>&nbsp;<a href="#">2</a>&nbsp;<b>3</b>&nbsp;<a href="#">4</a>&nbsp;<a href="#">5</a>&nbsp;<a href="#">&gt;</a>&nbsp;&nbsp;<a href="#">最後 &raquo;</a></code>
+
+<h2>例</h2>
+
+<p>次は、<a href="../general/controllers.html">コントローラ</a> のメソッド内で、ページネーションを作成する方法を示した簡単なサンプルです:</p>
+
+<code>
+$this->load->library('pagination');<br /><br />
+$config['base_url'] = 'http://example.com/index.php/test/page/';<br />
+$config['total_rows'] = '200';<br />
+$config['per_page']  = '20';
+<br /><br />
+$this->pagination->initialize($config);
+
+<br /><br />
+echo  $this->pagination->create_links();</code>
+
+<h3>Notes:</h3>
+
+<p><var>$config</var> 配列は、ユーザ設定の変数を格納してます。この配列は、上で示すように<dfn> $this->pagination->initialize</dfn> メソッドに渡されます。
+20程度の項目を設定できますが、例のように、最低限3つの設定項目が必要です。上で示したそれらの設定項目についての説明です:</p>
+
+<ul>
+	<li><strong>base_url</strong> ページネーション処理が含まれるコントローラクラス/ メソッドへの完全なURL。
+	上の例では、URLは、"Test"という名前のコントローラと "page" という名前のメソッドを指しています。
+	<a href="../general/routing.html">URIを再ルーティング</a> することが可能ですが、その場合は、URLに違った構造を指定する必要があることを忘れないようにしてください。</li>
+	<li><strong>total_rows</strong> この数字は、ページネーションで表示すべき結果セットの総行数をあらわします。
+	典型的には、この数字は、データベースクエリが返した総行数になります。
+	</li>
+	<li><strong>per_page</strong> 1ページあたりに表示したい件数。上の例では、1ページあたり20件を表示します。</li>
+</ul>
+
+<p>表示するページがない場合、<var>create_links()</var> メソッドは、空を返します。</p>
+
+
+<h3>設定ファイルで設定する</h3>
+
+<p>上記の方法で設定をセットしたくない場合は、代わりに設定ファイルに設定項目をセットしておくことができます。
+単純に、<var>pagination.php</var> という名前の新規ファイルを作成し、<var>$config</var> 配列をそのファイルに追加します。
+次に、<var>config/pagination.php</var> に保存すると、自動的にその設定が使われます。
+設定ファイルに設定を保存した場合は、<dfn>$this->pagination->initialize</dfn> メソッドを使う必要はありません。</p>
+
+
+<h2>ページネーションのカスタマイズ</h2>
+
+<p>下記は、表示をカスタマイズするために初期化メソッドで渡すことができる全設定のリストです。</p>
+
+
+<h4>$config['uri_segment'] = 3;</h4>
+
+<p>ページネーション 機能は、URIのどのセグメントにページ番号が含まれるかを自動的に決定します。
+もしこれを違うようにする場合は、指定することができます。</p>
+
+<h4>$config['num_links'] = 2;</h4>
+
+<p>選択中のページ番号の前後に表示したい &quot;数字&quot; リンクの数。たとえば、2
+を指定すると、このページの一番上の方のサンプルのリンクのように、現在のページのページ番号の両脇に2つの番号リンクが置かれます。</p>
+<h4>$config['page_query_string'] = TRUE</h4>
+<p>デフォルトでは、ページネーションライブラリは、<a href="../general/urls.html">URIセグメント</a> を使用しているものとして、以下のようなリンクを生成します。</p>
+<p><code>http://example.com/index.php/test/page/20</code></p>
+<p>もし、$config['enable_query_strings'] を TRUE に設定している場合は、リンクは自動的にクエリ文字列に書き換えられます。$config['page_query_string'] を TRUE に設定することで、クエリ文字列を明示的に指定できます。この場合、ページネーションリンクは、以下のようになります。</p>
+<p><code>http://example.com/index.php?c=test&amp;m=page&amp;per_page=20</code></p>
+<p>Note &quot;per_page&quot; はデフォルトのクエリ文字列ですが、$config['query_string_segment'] = 'your_string' で変更できます。</p>
+<h2>囲みのマークアップの追加</h2>
+
+<p>ページネーション全体を何らかのマークアップで囲みたい場合は、2つの設定項目で可能です:</p>
+
+<h4>$config['full_tag_open'] = '&lt;p>';</h4>
+<p>ページの表示結果全体の左側に置かれる開始タグ。</p>
+
+<h4>$config['full_tag_close'] = '&lt;/p>';</h4>
+<p>ページの表示結果全体の右側に置かれる終了タグ。</p>
+
+
+<h2>最初のページへのリンクのカスタマイズ</h2>
+
+<h4>$config['first_link'] = '最初';</h4>
+<p>左側に表示される "最初" のページへのリンクに指定したいテキスト。表示しない場合は FALSE にします。</p>
+
+<h4>$config['first_tag_open'] = '&lt;div>';</h4>
+<p>&quot;最初&quot; のページへのリンクの開始タグ。</p>
+
+<h4>$config['first_tag_close'] = '&lt;/div>';</h4>
+<p>&quot;最初&quot; のページへのリンクの終了タグ。</p>
+
+<h2>最後のページへのリンクのカスタマイズ</h2>
+
+<h4>$config['last_link'] = '最後';</h4>
+<p>右側に表示される &quot;最後&quot; のページへのリンクに指定したいテキスト。表示しない場合は FALSE にします。</p>
+
+<h4>$config['last_tag_open'] = '&lt;div>';</h4>
+<p>&quot;最初&quot; のページへのリンクの開始タグ。</p>
+
+<h4>$config['last_tag_close'] = '&lt;/div>';</h4>
+<p>&quot;最後&quot; のページへのリンクの終了タグ。</p>
+
+<h2>"次" のページへのリンクのカスタマイズ</h2>
+
+<h4>$config['next_link'] = '&amp;gt;';</h4>
+<p>&quot;次&quot; のページへのリンクに表示させたいテキスト。表示しない場合は FALSE にします。</p>
+
+<h4>$config['next_tag_open'] = '&lt;div>';</h4>
+<p>&quot;次&quot; のページへのリンクの開始タグ。</p>
+
+<h4>$config['next_tag_close'] = '&lt;/div>';</h4>
+<p>&quot;次&quot; のページへのリンクの終了タグ。</p>
+
+<h2>"前" のページへのリンクのカスタマイズ</h2>
+
+<h4>$config['prev_link'] = '&amp;lt;';</h4>
+<p>&quot;前&quot; のページへのリンクに表示させたいテキスト。表示しない場合は FALSE にします。</p>
+
+<h4>$config['prev_tag_open'] = '&lt;div>';</h4>
+<p>&quot;前&quot; のページへのリンクの開始タグ。</p>
+
+<h4>$config['prev_tag_close'] = '&lt;/div>';</h4>
+<p>&quot;前&quot; のページへのリンクの終了タグ。</p>
+
+<h2>"現在のページ" のページ番号のカスタマイズ</h2>
+
+<h4>$config['cur_tag_open'] = '&lt;b>';</h4>
+<p>"現在" のページの番号の開始タグ。</p>
+
+<h4>$config['cur_tag_close'] = '&lt;/b>';</h4>
+<p>&quot;現在&quot; のページの番号のの終了タグ。</p>
+
+
+<h2>"数字" のページリンクのカスタマイズ</h2>
+
+<h4>$config['num_tag_open'] = '&lt;div>';</h4>
+<p>各 "数字" のページリンクの開始タグ。</p>
+
+<h4>$config['num_tag_close'] = '&lt;/div>';</h4>
+<p>各 &quot;数字&quot; のページリンクの終了タグ。</p>
+
+<h2>ページ移動リンクを隠す</h2>
+
+<p>各ページへのリンクを出力したくない (たとえば "next" と "previous" のリンクのみ表示したい) 場合，次のようにします:</p>
+
+<code>
+$config['display_pages'] = FALSE;
+</code>
+
+
+<h2>class 属性の追加</h2>
+
+<p>ページネーションクラスで生成される各 a タグに class 属性を追加したい場合，config 配列の "anchor_class" により指定します。</p>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="output.html">出力クラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="sessions.html">セッションクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>トラックバッククラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+トラックバッククラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>トラックバッククラス</h1>
+
+<p>トラックバッククラスでは、トラックバックを送受信するのを可能にするメソッドが提供されています。</p>
+
+
+<p>トラックバックについてあまりご存じでない場合は、詳しい情報を<a href="http://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A9%E3%83%83%E3%82%AF%E3%83%90%E3%83%83%E3%82%AF">こちら</a>でご覧いただけます。</p>
+
+<h2>クラスの初期化</h2>
+
+<p> CodeIgniterの他の多くのクラスと同様、トラックバッククラスは、コントローラの中で、<dfn>$this->load->library</dfn> メソッドを使って初期化されます:</p>
+
+<code>$this->load->library('trackback');</code>
+<p>初期化されたら、トラックバックライブラリのオブジェクトは次のコードで利用できます: <dfn>$this->trackback</dfn></p>
+
+
+<h2>トラックバックの送信</h2>
+
+<p>次のサンプルのようなコードを使えば、コントローラのメソッド内であればどこからでもトラックバックを送信することができます:</p>
+
+<code>$this->load->library('trackback');<br />
+<br />
+$tb_data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ping_url'&nbsp;&nbsp;=> 'http://example.com/trackback/456',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'http://www.my-example.com/blog/entry/123',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '記事のタイトル',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'excerpt'&nbsp;&nbsp;&nbsp;=> '記事内容',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_name' => 'ブログの名前',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'charset'&nbsp;&nbsp;&nbsp;=> 'utf-8'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+if ( ! $this->trackback->send($tb_data))<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $this->trackback->display_errors();<br />
+}<br />
+else<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo 'トラックバックが送信されました!';<br />
+}</code>
+
+<p>配列データについての説明です:</p>
+
+<ul>
+<li><strong>ping_url</strong> - トラックバックを送信する相手のURL。各URLをカンマ ( &quot;,&quot; ) で区切れば、複数のURLに対してトラックバックを送信できます。</li>
+<li><strong>url</strong> - ブログのエントリ（記事）がある送信元サイトのURL。</li>
+<li><strong>title</strong> - ブログのエントリのタイトル。</li>
+<li><strong>excerpt</strong> - ブログの記事内容。Note: トラックバッククラスは、記事のはじめから500字を自動で送信します。また、記事のHTMLは取り除かれます。</li>
+<li><strong>blog_name</strong> - ブログの名前。</li>
+<li><strong>charset</strong> - ブログが書かれている文字コード。省略された場合は、UTF-8が使用されます。</li>
+</ul>
+
+<p>トラックバック送信メソッドは、成功したか失敗したかにより、TRUE/FALSE (ブール値) を返します。失敗したときは、次のようにしてエラーメッセージを取得できます:</p>
+
+<code>$this->trackback->display_errors();</code>
+
+
+<h2>トラックバックの受信</h2>
+
+<p>トラックバックを受信する前には、まずブログを作成する必要があります。もしブログをまだ作成していないのであれば、続けて読んでも意味がありません。</p>
+
+<p>トラックバックの受信は、保存するデータベーステーブルが必要になり、受信したトラックバックデータを検証する必要があるので、送信するよりもやや複雑になります。
+スパムや重複投稿を防止できるよう検証処理を実装することをおすすめします。
+また、スパム防止のため、一定時間内の同一IPアドレスからの投稿数を制限したいかもしれません。
+トラックバックを受信する処理は非常に単純です。
+検証処理こそが最大の努力を払うところになります。</p>
+
+<h2>トラックバックPing URL</h2>
+
+<p>トラックバックを受信するには、各ブログの記事の下に、トラックバック URL を表示しなければなりません。
+これは、他の人がトラックバックを送信するURLになります（これは &quot;トラックバック Ping URL&quot; として参照されます）。</p>
+
+<p>トラックバック Ping URL は、コントローラの中のトラックバックを受信させるコードがあるメソッドを指していなければならず、
+また、URLには個別の記事のID番号が含まれていなければなりません。
+そうすることで、トラックバックを個別の記事に関連づけて受信することができます。</p>
+
+<p>たとえば、コントローラクラスが <dfn>Trackback</dfn> という名前で、受信メソッドが <dfn>receive </dfn>という名前のとき、
+トラックバック Ping URL は、次のようになります:</p>
+
+<code>http://example.com/index.php/trackback/receive/<samp>entry_id</samp></code>
+
+<p>ここでの <samp>entry_id</samp> は、個別の記事の固有のID番号をあらわします。</p>
+
+
+<h2>トラックバック用のテーブルの作成</h2>
+
+<p>トラックバックを受信する前に、トラックバックを保存するテーブルを作成する必要があります。以下は、テーブルの基本的な例です:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="13">
+CREATE TABLE trackbacks (
+ tb_id int(10) unsigned NOT NULL auto_increment,
+ entry_id int(10) unsigned NOT NULL default 0,
+ url varchar(200) NOT NULL,
+ title varchar(100) NOT NULL,
+ excerpt text NOT NULL,
+ blog_name varchar(100) NOT NULL,
+ tb_date int(10) NOT NULL,
+ ip_address varchar(16) NOT NULL,
+ PRIMARY KEY `tb_id` (`tb_id`),
+ KEY `entry_id` (`entry_id`)
+);</textarea>
+
+
+<p>トラックバックの仕様では、トラックバックを送信するには4つの情報 (url、title、excerpt、blog_name)　だけが必要になりますが、
+データをより役立つものにするために、もう少し多くのフィールドをテーブルのスキーマに追加します (date、IP address、など)。</p>
+
+<h2>トラックバックの処理</h2>
+
+<p>以下は、トラックバックを受信し処理する方法を示した例です。
+次のコードは、コントローラの中のトラックバックを受信するメソッド内で使うことを意図しています。</p>
+
+<code>$this->load->library('trackback');<br />
+$this->load->database();<br />
+<br />
+if ($this->uri->segment(3) == FALSE)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this->trackback->send_error("記事IDを特定できません");<br />
+}<br />
+<br />
+if ( ! $this->trackback->receive())<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this->trackback->send_error("トラックバックデータに不正なデータが含まれます");<br />
+}<br />
+<br />
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tb_id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'entry_id'&nbsp;&nbsp;&nbsp;=> $this->uri->segment(3),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> $this->trackback->data('url'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> $this->trackback->data('title'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'excerpt'&nbsp;&nbsp;&nbsp;&nbsp;=> $this->trackback->data('excerpt'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_name'&nbsp;&nbsp;=> $this->trackback->data('blog_name'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tb_date'&nbsp;&nbsp;&nbsp;&nbsp;=> time(),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ip_address' => $this->input->ip_address()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$sql = $this->db->insert_string('trackbacks', $data);<br />
+$this->db->query($sql);<br />
+<br />
+$this->trackback->send_success();</code>
+
+<h4>Notes:</h4>
+
+<p>記事ID番号は、URLの第3セグメントにあると想定しています。上で挙げたサンプルのURLにもとづいています:</p>
+
+<code>http://example.com/index.php/trackback/receive/<samp>entry_id</samp></code>
+
+<p>第3 URI セグメントにある entry_id は、次のようにして取得可能ですので覚えておいてください:</p>
+
+<code>$this->uri->segment(3);</code>
+
+<p>上のトラックバックを受信するコードでは、もし第3セグメントがない場合、エラーを発行しています。
+[ 訳注:トラックバック送信元に対し、Pingのエラー応答メッセージを返します。 ]正しい記事IDがない場合、続行する理由はありません。</p>
+
+<p><dfn>this->trackback->receive()</dfn> メソッドは単に、受信したデータを検証し、
+受信したデータに必要な4つのデータ (url、title、excerpt、blog_name) が含まれるかを確かめるメソッドです。
+検証に成功した場合は TRUE を失敗した場合は FALSE を返します。失敗した場合にエラーメッセージを発行しています。</p>
+
+<p>受信したトラックバックデータは、次のメソッドで取得可能です:</p>
+
+<code>$this->trackback->data('<var>item</var>')</code>
+
+<p>ここでの <var>item</var> は、次のようなトラックバック情報の項目を表します: url、title、excerpt、あるいはblog_name</p>
+
+<p>トラックバックが正常に受信されたら、次のようにして成功メッセージを発行します [ 訳注:トラックバック送信元に対し、Pingの応答メッセージを返します。 ]:</p>
+
+<code>$this->trackback->send_success();</code>
+
+<p class="important"><strong>Note:</strong> 上のコードには、データの検証がありません。データの検証を追加することをおすすめします。</p>
+
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="sessions.html">セッションクラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="parser.html">テンプレートパーサクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

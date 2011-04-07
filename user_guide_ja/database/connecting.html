@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>データベースへの接続 : CodeIgniter ユーザガイド 日本語版</title>
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+接続
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>データベースへの接続</h1>
+
+<p>データベースへの接続方法は2つあります:</p>
+
+<h2>自動接続</h2>
+
+<p>"自動接続" 機能は、ページが読み込まれるたびにデータベースクラスをロードし、インスタンス化するというものです。 "自動接続"を有効にするには、次のファイルの中にあるライブラリ配列の中に、<var>database</var> と指定してください [ 訳注： $autoload['libraries'] = array(’database’); などとします。 ]:</p>
+
+<p><kbd>application/config/autoload.php</kbd></p>
+
+<h2>手動接続</h2>
+
+<p>ページの中で数ページだけがデータベース接続を必要とする場合は、手動でデータベースに接続することができます。手動でデータベースに接続するには、必要とするメソッド内で随時下記のコードを追加するか、そのクラスでグローバルに使用したい場合はコンストラクタに下記のコードを追加します。</p>
+
+<code>$this->load->database();</code>
+
+<p class="important">上のメソッドの第1引数に<strong>何も指定しない</strong>場合は、設定ファイルで指定されているグループ [訳注：デフォルトのグループ] に接続します。多くの人にとっては、この方法が使いやすいと思います。</p>
+
+<h3>使用可能なパラメータ</h3>
+<ol>
+<li>配列またはDSN文字列によるデータベース接続値</li>
+<li>TRUE/FALSE (ブール値)。 接続IDを返すかどうか(以下の複数のデータベースへの接続をご覧ください)。</li>
+<li>TRUE/FALSE (ブール値)。Active Record クラスを利用するかどうか。初期値は TRUE がセットされます。</li>
+</ol>
+<h3>データベースへの手動接続</h3>
+
+<p>メソッドの第1引数は、<strong>オプションで</strong>設定ファイルに定義した特定のデータベース接続グループを指定するのに使用します。また、設定ファイルで指定されていない接続用のデータを渡すこともできます。例としては:</p>
+
+<p>設定ファイルで定義したグループを選択するには次のようにします:</p>
+
+<code>$this->load->database('<samp>group_name</samp>');</code>
+
+<p>ここでの <samp>group_name</samp> が設定ファイルで定義した接続グループの名前になります。</p>
+
+
+<p>手動で任意のデータベースに接続するには、次のように配列でデータを渡します:</p>
+
+<code>$config['hostname'] = "localhost";<br />
+$config['username'] = "myusername";<br />
+$config['password'] = "mypassword";<br />
+$config['database'] = "mydatabase";<br />
+$config['dbdriver'] = "mysql";<br />
+$config['dbprefix'] = "";<br />
+$config['pconnect'] = FALSE;<br />
+$config['db_debug'] = TRUE;<br />
+$config['cache_on'] = FALSE;<br />
+$config['cachedir'] = "";<br />
+$config['char_set'] = "utf8";<br />
+$config['dbcollat'] = "utf8_general_ci";<br />
+<br />
+$this->load->database(<samp>$config</samp>);</code>
+
+<p>接続用の各データについての情報は、<a href="configuration.html">設定について</a>をご覧ください。</p>
+<p>あるいは、データベースの接続データをデータソースネーム(DSN)を使って渡すこともできます。DSNは次のような形になっている必要があります:</p>
+
+<code>$dsn = 'dbdriver://username:password@hostname/database';<br />
+<br />
+$this->load->database(<samp>$dsn</samp>);</code>
+
+<p>データソースネーム(DSN)で設定ファイルのデフォルト値を上書きする場合には、接続データをクエリで追加します。</p>
+
+<code>$dsn = 'dbdriver://username:password@hostname/database?char_set=utf8&amp;dbcollat=utf8_general_ci&amp;cache_on=true&amp;cachedir=/path/to/cache';<br /> 
+<br /> 
+$this->load->database(<samp>$dsn</samp>);</code>
+
+<h2>複数のデータベースへの接続</h2>
+
+<p>同時に 2つ以上のデータベースに接続する必要がある場合は次のようにすることで可能になります:</p>
+
+
+<code>$DB1 = $this->load->database('group_one', TRUE);<br />
+$DB2 = $this->load->database('group_two', TRUE);
+</code>
+
+<p>Note: "group_one" と "group_two" の部分は接続したいグループ名に変えてください(あるいは、上で説明したように接続用データを渡してください)。</p>
+
+<p>メソッドの第2引数にTRUE (ブール値) を指定すると、データベースオブジェクトを返すようになります。</p>
+
+<div class="important">
+<p>このガイドで一貫して使われている構文を使わずに、上記のような方法で接続すると、オブジェクト名を使ってコマンドを発行できます。つまり、以下のような方法でコマンドを発行するのではなく:</p>
+
+<p>$this->db->query();<br />$this->db->result();<br /> 
+など...</p>
+
+<p>かわりに次のような方法を利用できます:</p>
+
+<p>$DB1->query();<br />$DB1->result();<br /> 
+など...</p>
+
+</div>
+
+<h2>再接続 / 接続状態の維持</h2>
+
+<p>何らかの重いPHPの処理 (たとえば画像の処理など)を行っている間に、データベースサーバのアイドルタイムアウトを過ぎてしまった場合、追加のクエリを送信する前に<dfn>reconnect()</dfn>メソッドを使ってサーバーの応答確認(pinging)するのを検討すべきです。このメソッドは、適切に接続状態を維持したり、再接続したりできます。</p>
+
+<code>$this->db->reconnect();</code>
+
+<h2>手動切断</h2>
+
+<p>CodeIgniter がデータベースの切断を待っている間に，明確に接続を閉じることもできます。</p>
+
+<code>$this-&gt;db-&gt;close();</code>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="configuration.html">データベース設定</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="queries.html">クエリ</a>
+<p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

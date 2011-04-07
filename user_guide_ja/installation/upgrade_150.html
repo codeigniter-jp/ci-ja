@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CodeIgniter ユーザガイド 日本語版</title>
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+1.4.1 から 1.5.0 へのアップグレード
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>1.4.1 から 1.5.0 へのアップグレード</h1>
+
+<p class="important"><strong>Note:</strong> このページは、バージョン 1.4.1 向けです。それ以外のバージョンをお使いなら、まず最初にアップグレードしてください。</p>
+
+<p>アップグレードを行う前に、index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。</p>
+
+
+
+<h2>Step 1: CodeIgniter ファイルのアップグレード</h2>
+
+<p>"system" フォルダの以下のファイルとディレクトリを新しいバージョンのものに置き換えてください:
+
+<ul>
+
+<li><dfn>application/config/user_agents.php</dfn> (1.5 向けの新しいファイル)</li>
+<li><dfn>application/config/smileys.php</dfn> (1.5 向けの新しいファイル)</li>
+<li><dfn>codeigniter/</dfn></li>
+<li><dfn>database/</dfn> (1.5 向けの新しいファイル。"drivers"フォルダを置き換えます)</li>
+<li><dfn>helpers/</dfn></li>
+<li><dfn>language/</dfn></li>
+<li><dfn>libraries/</dfn></li>
+<li><dfn>scaffolding/</dfn></li>
+</ul>
+
+<p class="important"><strong>Note:</strong> ユーザバージョンのファイルがフォルダ内にある場合には、最初にそれらのコピーを取っておいてください。</p>
+
+
+<h2>Step 2: database.php ファイルのアップグレード</h2>
+
+<p><dfn>application/config/database.php</dfn> を開いて、以下の新しい要素を追加してください:</p>
+
+<pre>
+$db['default']['cache_on'] = FALSE;
+$db['default']['cachedir'] = '';
+</pre>
+
+
+
+<h2>Step 3: config.php ファイルのアップグレード</h2>
+
+<p><dfn>application/config/config.php</dfn> ファイルを開いて、以下の新しい要素を <kbd>追加</kbd> してください:</p>
+
+<pre>
+/*
+|--------------------------------------------------------------------------
+| Class Extension Prefix
+|--------------------------------------------------------------------------
+|
+| This item allows you to set the filename/classname prefix when extending
+| native libraries.  For more information please see the ユーザガイド:
+|
+| http://codeigniter.com/user_guide/general/core_classes.html
+| http://codeigniter.com/user_guide/general/creating_libraries.html
+|
+*/
+$config['subclass_prefix'] = 'MY_';
+
+/*
+|--------------------------------------------------------------------------
+| Rewrite PHP Short Tags
+|--------------------------------------------------------------------------
+|
+| If your PHP installation does not have short tag support enabled CI
+| can rewrite the tags on-the-fly, enabling you to utilize that syntax
+| in your view files.  Options are TRUE or FALSE (boolean)
+|
+*/
+$config['rewrite_short_tags'] = FALSE;
+</pre>
+
+<p>同じファイルにある、以下の要素を <kbd>削除</kbd> してください:</p>
+
+
+<pre>
+/*
+|--------------------------------------------------------------------------
+| Enable/Disable Error Logging
+|--------------------------------------------------------------------------
+|
+| If you would like errors or debug messages logged set this variable to
+| TRUE (boolean).  Note: You must set the file permissions on the "logs" folder
+| such that it is writable.
+|
+*/
+$config['log_errors'] = FALSE;
+</pre>
+
+<p>エラーのロギングは、現在しきい値をゼロに設定する事で無効になります。</p>
+
+
+
+<h2>Step 4: メインの index.php ファイルのアップグレード</h2>
+
+<p>元の <dfn>index.php</dfn> ファイルをそのまま利用しているなら、それを単に置き換えてください。</p>
+
+<p>もし <dfn>index.php</dfn> ファイル内部に変更を加えているなら、それらの変更を新しいファイルに追加して利用してください。</p>
+
+
+
+<h2>Step 5: ユーザガイドの更新</h2>
+
+<p>また、ユーザガイドのローカルコピーを新しいバージョンのものに置き換えてください。</p>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="index.html">インストールの解説</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="troubleshooting.html">トラブルシューティング</a>
+</p>
+
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>配列ヘルパ : CodeIgniter ユーザガイド 日本語版</title>
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+配列ヘルパ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>配列ヘルパ</h1>
+
+<p>配列ヘルパのファイルの中身は、配列を使って処理をするのに役立つ関数です。</p>
+
+
+<h2>ヘルパのロード</h2>
+
+<p>このヘルパは次のコードを使ってロードします:</p>
+<code>$this->load->helper('array');</code>
+
+<p>次の関数が利用できます:</p>
+
+<h2>element()</h2>
+
+<p>配列から要素を取り出すことができます。この関数は、配列に添字がセットされ、それが値を持つかどうかをテストします。値を持っている場合はその値が返されます。もし値がない場合は、FALSEまたは、第3引数で指定した値が返ります。例:</p>
+<code>
+$array = array('color' => 'red', 'shape' => 'round', 'size' => '');<br />
+<br />
+// "red" を返します。<br />
+echo element('color', $array);<br />
+<br />
+// NULLを返します。<br />
+echo element('size', $array, NULL);
+</code>
+
+
+<h2>random_element()</h2>
+
+<p>配列を入力として要素をランダムに選んで返します。使用例:</p>
+
+<code>$quotes = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I find that the harder I work, the more luck I seem to have. - Thomas Jefferson",<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Don't stay in bed, unless you can make money in bed. - George Burns",<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"We didn't lose the game; we just ran out of time. - Vince Lombardi",<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"If everything seems under control, you're not going fast enough. - Mario Andretti",<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Reality is merely an illusion, albeit a very persistent one. - Albert Einstein",<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Chance favors the prepared mind - Louis Pasteur"<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+echo random_element($quotes);</code>
+
+<h2>elements()</h2>
+
+<p>配列から一部の要素のみを取得します。このメソッドは，配列の指定されたキーに要素があるか確認し，なければ FALSE をセットします。第 3 引数でデフォルト値が指定されている場合は，その値をセットします。例:</p>
+
+<code>
+$array = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'color' => 'red',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'shape' => 'round',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'radius' => '10',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'diameter' => '20'<br />
+
+);<br />
+<br />
+$my_shape = elements(array('color', 'shape', 'height'), $array);<br />
+</code>
+
+<p>上記の例では，次の配列が返されます:</p>
+
+<code>
+array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'color' => 'red',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'shape' => 'round',<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;'height' => FALSE<br />
+);
+</code>
+
+<p>次のように，第 3 引数でデフォルト値を指定することもできます。</p>
+
+<code>
+$my_shape = elements(array('color', 'shape', 'height'), $array, NULL);<br />
+</code>
+
+<p>この場合，次の配列が返されます。</p>
+
+<code>
+
+array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'color' => 'red',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'shape' => 'round',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'height' => NULL<br />
+);
+</code>
+
+<p>このメソッドは，モデルにおいて <kbd>$_POST</kbd> 配列を使用するときに便利です。これにより，余計な POST データがテーブルに送られるのを防ぐことができます。</p>
+
+<code>
+$this->load->model('post_model');<br />
+<br />
+$this->post_model->update(elements(array('id', 'title', 'content'), $_POST));
+</code>
+
+<p>この例では，id, title および content フィールドだけがアップデートされます。</p>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp; <a href="../libraries/zip.html">Zip圧縮クラス</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="compatibility_helper.html">互換性ヘルパ</a></p> 
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

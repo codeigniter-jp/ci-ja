@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Caching Driver : CodeIgniter User Guide</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="../general/drivers.html">ドライバ</a> &nbsp;&#8250;&nbsp;
+キャッシングドライバ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>キャッシングドライバ</h1>
+
+<p>CodeIgniter は、いくつかのもっとも人気のある形式の高速な動的キャッシングへのラッパーを提供します。ファイルベースのキャッシング以外は特定のサーバ要件を必要とし、もし、サーバ要件が満たされない場合は致命的な例外が投げられます。</p>
+
+<h2>目次</h2>
+<ul>
+	<li><a href="#example_usage" title="Example Usage">使用例</a></li>
+	<li><a href="#function_reference" title="Function Reference">リファレンスガイド</a></li>
+</ul>
+
+<h3>利用可能なドライバ</h3>
+<ul>
+	<li><a href="#apc" title="APC Cache">Alternative PHP Cache (APC) キャッシング</a></li>
+	<li><a href="#file" title="File Caching">File-based キャッシング</a></li>
+	<li><a href="#memcached" title="Memcached">Memcached キャッシング</a></li>
+	<li><a href="#dummy" title="Dummy Caching">ダミーキャッシュ</a></li>
+</ul>
+
+<h2 id="example_usage">使用例</h2>
+
+<p>以下の例はキャッシュドライバをロードし、<a href="#apc" title="APC">APC</a> を使用するドライバに指定します。APC がホスト環境で利用できない場合、ファイルベースのキャッシングにフォールバックします。</p>
+
+<code>
+$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));<br />
+<br />
+if ( ! $foo = $this->cache->get('foo'))<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo 'Saving to the cache!&lt;br />';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$foo = 'foobarbaz!';<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Save into the cache for 5 minutes<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->cache->save('foo', $foo, 300);<br />
+}<br />
+<br />
+echo $foo;
+</code>
+
+<h1 id="function_reference">リファレンスガイド</h1>
+
+<h2>is_supported(<var>driver</var>['string'])</h2>
+
+<p>このメソッドは、<samp>$this->cache->get()</samp> 経由でドライバにアクセスする際に、自動的に呼び出されます。しかしながら、もし、個別のドライバを使用する場合、このメソッドを呼び出し、そのドライバがホスト環境でサポートされているか確かめてください。</p>
+
+<code>
+if ($this->cache->apc->is_supported())<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ($data = $this->cache->apc->get('my_cache'))<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do things.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}
+</code>
+
+<h2>get(<var>id</var>['string'])</h2>
+
+<p>このメソッドはキャッシュから 1つのアイテムを取得することを試みます。もしそのアイテムが存在しない場合、このメソッドは <samp>FALSE</samp> を返します。</p>
+<code>$foo = $this->cache->get('my_cached_item');</code>
+
+<h2>save(<var>id</var>['string'], <var>data</var>['mixed'], <var>ttl</var>['int'])</h2>
+
+<p>このメソッドはキャッシュに 1つのアイテムを保存します。もし、保存に失敗した場合、このメソッドは <samp>FALSE</samp> を返します。</p>
+<p>オプションの第3引数 (Time To Live) のデフォルトは 60 秒です。</p>
+<code>$this->cache->save('cache_item_id', 'data_to_cache');</code>
+
+<h2>delete(<var>id</var>['string'])</h2>
+
+<p>このメソッドは特定の 1つのアイテムをキャッシュから削除します。もし、削除に失敗した場合、このメソッドは <samp>FALSE</samp> を返します。</p>
+<code>$this->cache->delete('cache_item_id');</code>
+
+<h2>clean()</h2>
+
+<p>このメソッドはキャッシュ全体をクリアします。もしキャッシュファイルの削除に失敗した場合、このメソッドは <samp>FALSE</samp> を返します。</p>
+
+<code>$this->cache->clean();</code>
+
+<h2>cache_info()</h2>
+
+<p>このメソッドはキャッシュ全体の情報を返します。</p>
+
+<code>var_dump($this->cache->cache_info());</code>
+
+<h2>get_metadata(<var>id</var>['string'])</h2>
+
+<p>このメソッドは、キャッシュの中の特定の 1つのアイテムに関する詳細な情報を返します。</p>
+
+<code>var_dump($this->cache->get_metadata('my_cached_item'));</code>
+
+<h1>ドライバ</h1>
+
+<h2 id="apc">Alternative PHP Cache (APC) キャッシング</h2>
+
+<p>上記で記載されたすべてのメソッドは、以下のように特定のアダプタをドライバのローダーに渡すことなくアクセスできます:</p>
+<code>$this->load->driver('cache');<br />
+	$this->cache->apc->save('foo', 'bar', 10);</code>
+<p>APC に関するさらなる情報は、<a href="http://php.net/apc">http://php.net/apc</a> を参照してください。</p>
+
+<h2 id="file">File-based キャッシング</h2>
+
+<p>出力クラスのキャッシングとは異なり、ファイルベースのキャッシングドライバは、ビューファイルの一部分をキャッシュできます。アプリケーションをベンチマークしながら、キャッシングによる効果をディスク I/O が打ち消してしまうポイントに到達しないよう注意して使用してください。</p>
+
+<p>上記で記載されたすべてのメソッドは、以下のように特定のアダプタをドライバのローダーに渡すことなくアクセスできます:</p>
+<code>$this->load->driver('cache');<br />
+	$this->cache->file->save('foo', 'bar', 10);</code>
+
+<h2 id="memcached">Memcached キャッシング</h2>
+
+<p>複数の Memcached サーバは、<samp>application/config/</samp> ディレクトリに置いた memcached.php 設定ファイルで指定することができます。
+
+<p>上記で記載されたすべてのメソッドは、以下のように特定のアダプタをドライバのローダーに渡すことなくアクセスできます:</p>
+<code>$this->load->driver('cache');<br />
+	$this->cache->memcached->save('foo', 'bar', 10);</code>
+
+<p>Memcached に関するさらなる情報は、<a href="http://php.net/memcached">http://php.net/memcached</a> を参照してください。</p>
+
+<h2 id="dummy">ダミーキャッシュ</h2>
+
+<p>これは絶えず 'miss' するキャッシングバックエンドです。データをストアしませんが、指定したキャッシュをサポートしない環境で、キャッシュを使用するコードをそのままにできます。</p>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<strike><a href="errors.html">Error Handling</a></strike>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<strike><a href="profiling.html">Profiling Your Application</a></strike>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

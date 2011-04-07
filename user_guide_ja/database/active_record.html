@@ -1,0 +1,782 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Active Record クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+Active Record
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>Active Record クラス</h1>
+
+<p>CodeIgniter は Active Record データベースパターンの改変版を採用しています。
+このパターンを利用すると、情報の取得・挿入、そして更新が最小限のスクリプティングで可能になります。
+データベース処理をするのに、たった1、2行しか必要でない場合さえあります。
+CodeIgniter ではデータベースごとに専用のクラスを必要としたりはしません。そのおかげで、より単純化されたインターフェースが提供されています。</p>
+
+<p>Active Record 機能を使う大きな利点は、単に単純であるからだけでなく、Active Record 機能を使えば、クエリの構文は各種のデータベースアダプタが生成してくれるので、
+データベースから独立したアプリケーションを作成できるということです。また、システムにより自動的に値のエスケープ処理が行われるので、より安全なクエリが利用可能になります。</p>
+
+<p class="important"><strong>Note: </strong>クエリを自分で書きたい場合は、データベース設定ファイルでこのクラスを使用できないようにすることもできます。そうすることで、コアのデータベースライブラリとアダプタに、少ないリソースを有効活用させることができます。<br /></p>
+
+<ul>
+<li><a href="#select">データの選択</a></li>
+<li><a href="#insert">データの挿入</a></li>
+<li><a href="#update">データの更新</a></li>
+<li><a href="#delete">データの削除</a></li>
+<li><a href="#chaining">メソッドの連結</a></li>
+<li><a href="#caching">Active Record キャッシング</a></li>
+</ul>
+
+<h1><a name="select">&nbsp;</a>データの選択</h1>
+
+<p>次のメソッドを使えば、SQLの<strong>SELECT</strong>文を組み立てられます。</p>
+
+<p><strong>Note: PHP 5 を使用している場合、よりコンパクトな構文にするためメソッドの連結（method chaining）を使用することができます。これについては、ページの最後で述べています。</strong></p>
+
+
+<h2>$this->db->get();</h2>
+
+<p>SELECT クエリを実行し、結果を返します。次のように、単独で使うと、テーブルの全レコードを取得するのに使えます:</p>
+
+<code>$query = $this->db->get('mytable');<br />
+<br />
+// 次の文を生成します: SELECT * FROM mytable</code>
+
+<p>第2、第3引数で、limit句とoffset句をセットできます:</p>
+
+<code>$query = $this->db->get('mytable', 10, 20);<br />
+<br />
+// 生成する文: SELECT * FROM mytable LIMIT 20, 10 (MySQLでの例。他のデータベースでは、若干違う構文になります。)</code>
+
+<p>上の例ではメソッドは <kbd>$query</kbd> という名前の変数にアサインされていますが、この変数は、結果を表示させるのに使用できます:</p>
+
+<code>$query = $this->db->get('mytable');<br />
+<br />
+foreach ($query->result() as $row)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $row->title;<br />
+}</code>
+
+<p>結果の生成について完全に論じている <a href="results.html">結果メソッド</a>ページを見てみてください。</p>
+
+
+<h2>$this->db->get_where();</h2>
+
+<p>db-&gt;where() メソッドを使用する代わりに、
+"where" 句を第2引数で追加できること以外は上のメソッドと同じです:</p>
+
+<code>$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);</code>
+
+<p>where メソッドについては、詳しくは下をご覧ください。</p>
+<p class="important">Note: get_where() は、以前は getwhere() という名前でした。getwhere() は 2.0.0 で廃止されました。<br /></p>
+
+<h2>$this->db->select();</h2>
+<p>次のようにすると、クエリのSELECT の部分を指定できます [ 訳注： 選択したい列を指定できるということ ]:</p>
+<p><code>
+$this->db->select('title, content, date');<br />
+<br />
+$query = $this->db->get('mytable');<br />
+<br />
+// 生成されるSQL文: SELECT title, content, date FROM mytable</code></p>
+<p class="important"><strong>Note:</strong> テーブルからすべての列(*)を取得する場合は、このメソッドは不要です。このメソッドが省略されると、CodeIgniter はすべての列を選択する（SELECT * ... ）ものとします。</p>
+
+<p>$this-&gt;db-&gt;select() は追加で第二引数をセットできます。第２引数にFALSEをセットすると、CodeIgniter はバッククォート（バックチック）でフィールド名やテーブル名を保護しないようになります。 [訳注：識別子（テーブル名や列名など）が予約語の場合や、特殊文字が含まれる場合、たとえばMySQLでは、バッククォート「`」でそれらを囲む必要があります。第２引数にFALSEをセットするとこれを自動では行いません。]これは、複合的なSELECT文が必要な場合に有用です。</p>
+<p><code>$this-&gt;db-&gt;select('(SELECT SUM(payments.amount) FROM payments WHERE payments.invoice_id=4') AS amount_paid', FALSE); <br />
+$query = $this-&gt;db-&gt;get('mytable');<br />
+</code></p>
+<h2>$this->db->select_max();</h2>
+<p>クエリの "SELECT MAX(field)" の部分を書き出します。 結果フィールドをリネームするために、追加で第二引数を指定できます。</p>
+<p><code>
+$this->db->select_max('age');<br />
+$query = $this->db->get('members');<br />
+
+// 次を生成: SELECT MAX(age) as age FROM members<br />
+<br />
+$this-&gt;db-&gt;select_max('age', 'member_age');<br />
+$query = $this-&gt;db-&gt;get('members');<br />
+// 次を生成: SELECT MAX(age) as member_age FROM members</code></p>
+
+<h2>$this->db->select_min();</h2>
+<p>クエリの "SELECT MIN(field)" の部分を書き出します。<dfn>select_max()</dfn> と同様に、結果フィールドをリネームするために、追加で第二引数を指定できます。</p>
+<p><code>
+$this->db->select_min('age');<br />
+$query = $this->db->get('members');<br />
+// 次を生成: SELECT MIN(age) as age FROM members</code></p>
+
+<h2>$this->db->select_avg();</h2>
+<p>クエリの"SELECT AVG(field)" の部分を書き出します。 <dfn>select_max()</dfn> と同様に、結果フィールドをリネームするために、追加で第二引数を指定できます。</p>
+<p><code>
+$this->db->select_avg('age');<br />
+$query = $this->db->get('members');<br />
+// 次を生成: SELECT AVG(age) as age FROM members</code></p>
+
+<h2>$this->db->select_sum();</h2>
+<p>クエリの"SELECT SUM(field)"の部分を書き出します。<dfn>select_max()</dfn> と同様に、結果フィールドをリネームするために、追加で第二引数を指定できます。</p>
+<p><code>
+$this->db->select_sum('age');<br />
+$query = $this->db->get('members');<br />
+// 次を生成: SELECT SUM(age) as age FROM members</code></p>
+
+<h2>$this->db->from();</h2>
+
+<p>次のようにすると、クエリの FROM  の部分を指定できます:</p>
+
+<code>
+$this->db->select('title, content, date');<br />
+$this->db->from('mytable');<br />
+<br />
+$query = $this->db->get();<br />
+<br />
+// 生成されるSQL文: SELECT title, content, date FROM mytable</code>
+
+<p class="important">Note: 先に示したとおり、クエリの FROM の部分は、 <dfn>$this->db->get()</dfn> メソッドの中で指定できます。
+どちらを使うかは好みです。</p>
+
+<h2>$this->db->join();</h2>
+
+<p>次のようにすると、クエリの JOIN の部分を指定できます:</p>
+
+<code>
+$this->db->select('*');<br />
+$this->db->from('blogs');<br />
+$this->db->join('comments', 'comments.id = blogs.id');<br />
+<br />
+$query = $this->db->get();<br />
+<br />
+// 生成されるSQL文: <br />
+// SELECT * FROM blogs<br />
+// JOIN comments ON comments.id = blogs.id<br />
+</code>
+
+<p>一回のクエリで複数のJOINが必要な場合は、メソッドを複数回呼んでください。</p>
+
+<p>特定の種類の結合が必要な場合は、第3引数でその種類を指定できます。
+指定可能なのは: left、right、outer、inner、left outer、および right outer。</p>
+
+<code>
+$this->db->join('comments', 'comments.id = blogs.id', <strong>'left'</strong>);<br />
+<br />
+// 生成されるSQL文: LEFT JOIN comments ON comments.id = blogs.id</code>
+
+
+
+
+
+<h2>$this->db->where();</h2>
+<p>このメソッドを使うと <strong>WHERE</strong> 句を４つの方法で指定することができます:</p>
+
+<p class="important"><strong>Note:</strong> このメソッドに渡されるすべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
+
+<ol>
+	<li><strong>単に キー/値 を指定する方法:</strong>
+
+	<code>$this->db->where('name', $name);
+	<br /><br />// 生成されるSQL文: WHERE name = 'Joe'	</code>
+
+	<p>等号 (=) が付加されることに注意してください。</p>
+
+	<p>複数回このメソッドを呼ぶと、それらは <var>AND</var> で連結されます:</p>
+
+	<code>$this->db->where('name', $name);<br />
+	$this->db->where('title', $title);<br />
+	$this->db->where('status', $status);
+	<br /><br />// WHERE name = 'Joe' AND title = 'boss' AND status = 'active'	</code>	</li>
+
+	<li><strong>演算子を指定しながら キー/値 を指定する方法:</strong>
+
+	<p>比較方法を指定するために、第一引数に演算子を含めることができます:</p>
+
+	<code>$this->db->where('name !=', $name);<br />
+	$this->db->where('id <', $id);
+	<br /><br />// 生成されるSQL文: WHERE name != 'Joe' AND id < 45	</code>	</li>
+	<li><strong>連想配列を使用する方法:</strong>
+
+
+	<code>
+	$array = array('name' => $name, 'title' => $title, 'status' => $status);<br /><br />
+
+	$this->db->where($array);
+	<br /><br />// 生成されるSQL文: WHERE name = 'Joe' AND title = 'boss' AND status = 'active'	</code>
+
+	<p>またこの方法を使う場合も、次のように、演算子を含めて指定することができます:</p>
+
+	<code>
+	$array = array('name !=' => $name, 'id <' => $id, 'date >' => $date);<br /><br />
+
+	$this->db->where($array);</code>	</li>
+		<li><strong>自由に指定できる文字列を使用する方法:</strong>
+
+		<p>WHERE句の中身を自分で書くこともできます:</p>
+
+		<code>
+		$where = "name='Joe' AND status='boss' OR status='active'";<br /><br />
+		$this->db->where($where);</code></li>
+	</ol>
+
+
+<p>$this-&gt;db-&gt;where() にはオプションで第3の引数を渡すこともできます。FALSEを渡した場合、CodeIgniterはフィールド名やテーブル名をバックチック(`)を使って守りません。</p>
+<p><code>		$this-&gt;db-&gt;where('MATCH (field) AGAINST (&quot;value&quot;)', NULL, FALSE);<br /> 
+</code></p> 
+<h2>$this->db->or_where();</h2>
+<p>他の句とORで連結される以外は、上のメソッドと同じものです:</p>
+
+<code>
+$this->db->where('name !=', $name);<br />
+$this->db->or_where('id >', $id);
+<br />
+<br />// 生成されるSQL文: WHERE name != 'Joe' OR id > 50</code>
+
+<p class="important">Note: or_where() は、以前は orwhere() という名前でした。 orwhere() は 2.0.0 で廃止されました。</p>
+
+
+<h2>$this->db->where_in();</h2>
+<p>適切な場合には、AND で連結して、「WHERE field IN ('item', 'item') 」 SQLクエリを生成します</p>
+<p><code>
+	$names = array('Frank', 'Todd', 'James');<br />
+	$this->db->where_in('username', $names);<br />
+	// 次を生成: AND WHERE username IN ('Frank', 'Todd', 'James')</code></p>
+
+<h2>$this->db->or_where_in();</h2>
+<p>適切な場合には、OR で連結して、「WHERE field IN ('item', 'item')」 SQLクエリを生成します</p>
+<p><code>
+	$names = array('Frank', 'Todd', 'James');<br />
+	$this->db->or_where_in('username', $names);<br />
+	// 次を生成: OR WHERE username IN ('Frank', 'Todd', 'James')</code></p>
+
+<h2>$this->db->where_not_in();</h2>
+<p>適切な場合には、AND で連結して、 「WHERE field NOT IN ('item', 'item') 」 SQLクエリを生成します</p>
+<p><code>
+	$names = array('Frank', 'Todd', 'James');<br />
+	$this->db->where_not_in('username', $names);<br />
+	// 次を生成: AND WHERE username NOT IN ('Frank', 'Todd', 'James')</code></p>
+
+<h2>$this->db->or_where_not_in();</h2>
+<p>適切な場合には、NOT で連結して、「WHERE field NOT IN ('item', 'item')」 SQLクエリを生成します</p>
+<p><code>
+	$names = array('Frank', 'Todd', 'James');<br />
+	$this->db->or_where_not_in('username', $names);<br />
+	// 次を生成: OR WHERE username NOT IN ('Frank', 'Todd', 'James')</code></p>
+
+<h2>$this->db->like();</h2>
+<p>このメソッドを使うと、検索でよく使う <strong>LIKE</strong> 句を生成できます。</p>
+
+<p class="important"><strong>Note:</strong> このメソッドに渡されるすべての値は自動でエスケープされます。</p>
+
+
+<ol>
+	<li><strong>単に キー/値 を指定する方法:</strong>
+
+	<code>$this->db->like('title', 'match');
+	<br /><br />// 生成されるSQL文: WHERE title LIKE '%match%'	</code>
+
+	<p>複数回このメソッドを呼ぶと、それらは <var>AND </var>で連結されます:</p>
+
+	<code>$this->db->like('title', 'match');<br />
+	$this->db->like('body', 'match');
+	<br /><br />
+	// WHERE title LIKE '%match%' AND  body LIKE '%match%'</code>
+	 ワイルドカード (%) が付加される場所を制御したい場合は、追加の第三引数を利用できます。'before'、'after' そして 'both' (規定値) が指定できる選択肢になります。 
+	<code>$this->db->like('title', 'match', 'before');
+	<br />
+		// 次を生成: WHERE title LIKE '%match'	<br />
+		<br />
+	$this-&gt;db-&gt;like('title', 'match', 'after'); <br />
+// 次を生成: WHERE title LIKE 'match%' <br />
+<br />
+	$this-&gt;db-&gt;like('title', 'match', 'both'); <br />
+// 次を生成: WHERE title LIKE '%match%' </code>	</li>
+
+	<li><strong>連想配列を使用する方法:</strong>
+
+	<code>
+	$array = array('title' => $match, 'page1' => $match, 'page2' => $match);<br /><br />
+
+	$this->db->like($array);
+	<br /><br />// WHERE title LIKE '%match%' AND  page1 LIKE '%match%' AND  page2 LIKE '%match%'</code></li>
+	</ol>
+
+
+<h2>$this->db->or_like();</h2>
+<p>他の句とORで連結される以外は、上のメソッドと同じものです:</p>
+
+<code>
+$this->db->like('title', 'match');<br />
+$this->db->or_like('body', $match);
+<br />
+<br />// WHERE title LIKE '%match%' OR  body LIKE '%match%'</code>
+
+
+
+
+<p class="important">Note: or_like() は、以前は orlike()という名前でした。 orlike() は 2.0.0 で廃止されました。</p>
+<h2>$this-&gt;db-&gt;not_like();</h2>
+<p>この関数は、NOT LIKE 文を生成する事を除き、 <strong>like()</strong> と同じです:</p>
+<code> $this-&gt;db-&gt;not_like('title', 'match');<br />
+<br />
+// WHERE title NOT LIKE '%match%</code>
+<h2>$this-&gt;db-&gt;or_not_like();</h2>
+<p>この関数は、複数のものが、ORで連結されるということ以外は、<strong>not_like()</strong> と同じです:</p>
+<code> $this-&gt;db-&gt;like('title', 'match');<br />
+$this-&gt;db-&gt;or_not_like('body', 'match'); <br />
+<br />
+// WHERE title  LIKE '%match% OR body NOT LIKE '%match%'</code>
+<h2>$this->db->group_by();</h2>
+<p>クエリの GROUP BY の部分を指定できます:</p>
+
+<code>$this->db->group_by("title");
+<br /><br />// 生成されるSQL文: GROUP BY title
+</code>
+
+<p>また、次のように、複数の値を配列で渡すこともできます:</p>
+
+<code>$this->db->group_by(array("title", "date");
+<br />
+<br />// 生成されるSQL文: GROUP BY title, date</code>
+
+<p class="important">Note: group_by() は、以前は groupby() という名前でした。groupby()は 2.0.0 で廃止されました。 </p>
+
+<h2> $this-&gt;db-&gt;distinct();<br />
+</h2>
+<p>&quot;DISTINCT&quot; キーワードをクエリに追加します</p>
+<p><code>$this-&gt;db-&gt;distinct();<br />
+	$this-&gt;db-&gt;get('table');<br />
+		<br />
+	// 次を生成: SELECT DISTINCT * FROM table</code></p>
+<h2>$this->db->having();</h2>
+<p>クエリの HAVING の部分を指定できます。1つだけか2つ引数を渡す2種類の文法があります。</p>
+	
+<code>$this->db->having('user_id = 45');
+<br />
+// 生成されるSQL文 : HAVING user_id = 45<br />
+<br /><br /> 
+$this-&gt;db-&gt;having('user_id',  45);<br />
+// 生成されるSQL文 : HAVING user_id = 45<br /> 
+<br />
+</code>
+
+<p>また、次のように、複数の値を配列で渡すこともできます:</p>
+
+
+<p><code>$this->db->having(array('title =' => 'My Title', 'id <' => $id)); <br />
+		<br />
+	// 生成されるSQL文: HAVING title = 'My Title', id < 45</code></p> 
+<p>CodeIgniterがクエリをエスケープすることのできるデータベースを使っている場合は、第3引数をFALSEにして、エスケープを無効にすることができます。</p>
+<p><code>$this-&gt;db-&gt;having('user_id',  45); <br /> 
+// 生成されるSQL文: HAVING `user_id` = 45 in some databases such as MySQL 
+		<br /> 
+		$this-&gt;db-&gt;having('user_id',  45, FALSE); <br /> 
+// 生成されるSQL文: HAVING user_id = 45</code></p> 
+<h2>$this-&gt;db-&gt;or_having();</h2>
+<p>複数の句を &quot;OR&quot; で分つ以外は、having()と同じです。</p>
+<h2>$this->db->order_by();</h2>
+<p>ORDER BY 句を指定できます。第1引数は、並べ替えたい列の名前を指定します。
+第2引数は、並べ替え結果の順序を指定します。選択肢は <kbd>asc</kbd> または <kbd>desc</kbd> または <kbd>random</kbd> です。</p>
+
+<code>$this->db->order_by("title", "desc");
+<br />
+<br />// 生成されるSQL文: ORDER BY title DESC
+</code>
+
+<p>第一引数で、自由に文字列で指定することもできます:</p>
+
+<code>$this->db->order_by('title desc, name asc');
+<br />
+<br />// 生成されるSQL文: ORDER BY title DESC, name ASC
+</code>
+
+<p>あるいは、複数のフィールドが必要な場合は、複数回のメソッド呼び出しもできます</p>
+  
+<p><code>$this->db->order_by("title", "desc");<br />
+    $this->db->order_by("name", "asc"); <br />
+    <br />
+    // 次を生成: ORDER BY title DESC, name ASC
+    </code></p>
+<p class="important">Note: order_by() は、以前は orderby() という名前でした。orderby() は 2.0.0 で廃止されました。</p>
+<p class="important">Note: 現在のところ Oracle または MSSQL ドライバでは、ランダムな並べ替えはサポートされていません。これらは、'ASC' が規定値に設定されます。</p>
+<h2>$this->db->limit();</h2>
+<p>クエリで返す結果の行数の上限を指定できます:</p>
+
+<code>
+$this->db->limit(10);<br />
+<br />
+// 生成されるSQL文: LIMIT 10</code>
+
+
+<p>第2引数でオフセットを指定できます.</p>
+
+<code>
+$this->db->limit(10, 20);<br />
+<br />
+// 生成されるSQL文: LIMIT 20, 10 (MySQLでの例。他のデータベースでは、若干違う構文になります。)</code>
+
+
+<h2>$this->db->count_all_results();</h2>
+
+<p>特定のActive Record クエリの行数を調べることができます。 クエリは、where()、  or_where()、like()、or_like()などのActive Record の絞り込みが利用できます。例:</p>
+<code>echo $this->db->count_all_results('<var>my_table</var>');<br />
+
+// 25のような整数が出力されます<br />
+<br />
+$this-&gt;db-&gt;like('title', 'match');<br />
+$this-&gt;db-&gt;from('<var>my_table</var>');<br />
+echo $this-&gt;db-&gt;count_all_results();<br />
+// 17 のような整数が出力されます</code>
+
+<h2>$this->db->count_all();</h2>
+
+<p>特定のテーブルのデータ件数（行数）をカウントします。第一引数にテーブル名を指定します。例:</p>
+
+<code>echo $this->db->count_all('<var>my_table</var>');<br />
+<br />
+//  「25」のような整数が生成されます。</code>
+
+
+
+<a name="insert">&nbsp;</a>
+<h1>データの挿入</h1>
+
+<h2>$this->db->insert();</h2>
+<p>与えられたデータをもとに INSERT 文を生成し実行します。
+<strong>配列</strong> または <strong>オブジェクト</strong> のどちらかでメソッドにデータを渡せます。配列を使った例は次の通りです:</p>
+
+<code>
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;'title' => 'My title' ,<br />
+&nbsp;&nbsp;&nbsp;'name' => 'My Name' ,<br />
+&nbsp;&nbsp;&nbsp;'date' => 'My date'<br />
+);<br />
+<br />
+$this->db->insert('mytable', $data);
+<br /><br />
+// 生成されるSQL文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')</code>
+
+<p>第1引数はテーブル名で、第2引数は、値の連想配列で指定します。</p>
+
+<p>オブジェクトを使った例は次の通りです:</p>
+
+<code>
+/*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;class Myclass {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $title = 'My Title';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $content = 'My Content';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $date = 'My Date';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+*/<br />
+<br />
+$object = new Myclass;<br />
+<br />
+$this->db->insert('mytable', $object);
+<br /><br />
+// 生成されるSQL文: INSERT INTO mytable (title, content, date) VALUES ('My Title', 'My Content', 'My Date')</code>
+
+<p>第1引数はテーブル名で、第2引数はオブジェクトになります。</p>
+
+<p class="important"><strong>Note:</strong>すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
+
+<h2>$this->db->insert_batch();</h2>
+<p>与えられたデータをもとに INSERT 文を生成し実行します。
+<strong>配列</strong> または <strong>オブジェクト</strong> のどちらかでメソッドにデータを渡せます。配列を使った例は次の通りです:</p>
+
+<code>
+$data = array(<br/>
+&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'My title' ,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'My Name' ,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'My date'<br />
+&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'Another title' ,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'Another Name' ,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'Another date'<br />
+&nbsp;&nbsp;&nbsp;)<br/>
+);<br />
+<br />
+$this->db->insert_batch('mytable', $data);
+<br /><br />
+// 生成されるSQL文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date'),  ('Another title', 'Another name', 'Another date')</code>
+
+<p>第1引数はテーブル名で、第2引数は、値の連想配列で指定します。</p>
+
+<p class="important"><strong>Note:</strong> すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
+
+
+
+<h2>$this->db->set();</h2>
+<p><dfn>inserts</dfn> または <dfn>updates</dfn> で値をセットするのに使います。</p>
+
+<p><strong>これは次のように、 insert または update メソッドに直接データの配列を渡す代わりに使用できます:</strong> </p>
+
+<code>$this->db->set('name', $name);
+<br />
+$this->db->insert('mytable');
+<br /><br />
+// 生成されるSQL文: INSERT INTO mytable (name) VALUES ('{$name}')</code>
+
+<p>もし複数のメソッドをコールした場合、それらは insert か update かに基づき適切に組み立てられます:</p>
+
+<code>$this-&gt;db-&gt;set('name', $name);<br />
+$this-&gt;db-&gt;set('title', $title);<br />
+$this-&gt;db-&gt;set('status', $status);<br />
+$this-&gt;db-&gt;insert('mytable'); </code>
+<p>また、<strong>set()</strong> は、FALSE をセットするとデータをエスケープするのを回避する、第三引数 ($escape) をセットできます。違いを示すため、escape パラメータを利用する場合と利用しない場合、両方の set() の使用の説明を挙げます。</p>
+<p><code>$this-&gt;db-&gt;set('field', 'field+1', FALSE);<br />
+	$this-&gt;db-&gt;insert('mytable'); <br />
+	//  INSERT INTO mytable (field) VALUES (field+1) を生成<br />
+	<br />
+	$this-&gt;db-&gt;set('field', 'field+1');<br />
+	$this-&gt;db-&gt;insert('mytable'); <br />
+	// INSERT INTO mytable (field) VALUES ('field+1') を生成</code></p>
+<p>このメソッドに連想配列を渡すこともできます:</p>
+<code>
+$array = array('name' => $name, 'title' => $title, 'status' => $status);<br /><br />
+
+$this->db->set($array);<br />
+$this->db->insert('mytable');
+</code>
+
+<p>あるいはオブジェクトを渡すこともできます:</p>
+
+
+<code>
+/*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;class Myclass {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $title = 'My Title';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $content = 'My Content';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $date = 'My Date';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+*/<br />
+<br />
+$object = new Myclass;<br />
+<br />
+$this->db->set($object);<br />
+$this->db->insert('mytable');
+</code>
+
+
+
+<a name="update">&nbsp;</a>
+<h1>データの更新</h1>
+
+<h2>$this->db->update();</h2>
+<p>指定されたデータをもとにUPDATE文を生成してクエリを実行します。
+<strong>配列</strong> または <strong>オブジェクト</strong> をメソッドに渡すことができます。
+配列を使った例は次の通りです:</p>
+
+<code>
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => $title,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => $name,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => $date<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->db->where('id', $id);<br />
+$this->db->update('mytable', $data);
+<br /><br />
+// 生成されるSQL文:<br />
+// UPDATE mytable <br />
+// SET title = '{$title}', name = '{$name}', date = '{$date}'<br />
+// WHERE id = $id</code>
+
+<p>あるいは、次のようにオブジェクトを渡すこともできます:</p>
+
+<code>
+/*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;class Myclass {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $title = 'My Title';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $content = 'My Content';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $date = 'My Date';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+*/<br />
+<br />
+$object = new Myclass;<br />
+<br />
+$this->db->where('id', $id);<br />
+$this->db->update('mytable', $object);
+<br />
+<br />
+// 生成されるSQL文:<br />
+// UPDATE mytable <br />
+// SET title = '{$title}', name = '{$name}', date = '{$date}'<br />
+// WHERE id = $id</code>
+
+
+
+<p class="important"><strong>Note:</strong>すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
+	
+<p><dfn>$this->db->where()</dfn> メソッドを使えば WHERE 句をセットできます。
+次のように、オプションで、更新メソッドに直接文字列で情報を渡すこともできます:</p>
+
+<code>$this->db->update('mytable', $data, "id = 4");</code>
+
+<p>あるいは、配列でも渡せます:</p>
+
+<code>$this->db->update('mytable', $data, array('id' => $id));</code>
+
+<p>先に述べた、 <dfn>$this->db->set()</dfn> メソッドを更新に利用することもできます。</p>
+
+
+<a name="delete">&nbsp;</a>
+<h1>データの削除</h1>
+
+
+
+<h2>$this->db->delete();</h2>
+<p>SQL の DELETE 文を生成して実行します。</p>
+
+<code>
+$this->db->delete('mytable', array('id' => $id));
+<br /><br />
+// 生成されるSQL文:<br />
+// DELETE FROM mytable <br />
+// WHERE id = $id</code>
+
+<p>第1引数はテーブル名で、第2引数は、WHERE句です。次のように、メソッドの第2引数にデータを渡す代わりに、 
+<dfn>where()</dfn> または <dfn>or_where()</dfn> メソッドを使うこともできます:</p>
+
+<p><code> $this->db->where('id', $id);<br />
+	$this->db->delete('mytable'); <br />
+	<br />
+	// 生成されるSQL文:<br />
+	// DELETE FROM mytable <br />
+	// WHERE id = $id</code></p>
+<p>1つよりも多いテーブルを削除したい場合は、delete() にテーブル名の配列を渡すことができます</p>
+<p><code>$tables = array('table1', 'table2', 'table3');<br />
+$this-&gt;db-&gt;where('id', '5');<br />
+$this-&gt;db-&gt;delete($tables);</code></p>
+<p>テーブルの全データを削除したい場合は、 <dfn>truncate()</dfn> メソッドか <dfn>empty_table() </dfn>が利用できます。</p>
+<h2>$this-&gt;db-&gt;empty_table();</h2>
+<p>「delete」 SQL 文字列 を生成し、クエリを実行します。<code>    $this-&gt;db-&gt;empty_table('mytable'); <br />
+	<br />
+// 次を生成<br />
+// DELETE FROM mytable</code></p>
+<h2>$this-&gt;db-&gt;truncate();</h2>
+<p>「truncate」 SQL 文字列を生成し、クエリを実行します。</p>
+<code> $this-&gt;db-&gt;from('mytable'); <br />
+$this-&gt;db-&gt;truncate(); <br />
+// または <br />
+$this-&gt;db-&gt;truncate('mytable'); <br />
+<br />
+// 次を生成:<br />
+// TRUNCATE mytable <br />
+</code>
+<p class="important"><strong>Note:</strong> TRUNCATE コマンドが使えない場合は、truncate() メソッドは &quot;DELETE FROM table&quot; として実行します。</p>
+
+<h1><a name="chaining">&nbsp;</a>メソッドの連結</h1>
+
+<p>メソッドの連結を使えば、複数のメソッドをつなぐのがシンプルになります。次のような例が挙げられます:</p>
+
+<code>
+<dfn>$this->db</dfn><kbd>-></kbd><var>select</var>('title')<kbd>-></kbd><var>from</var>('mytable')<kbd>-></kbd><var>where</var>('id', $id)<kbd>-></kbd><var>limit</var>(10, 20);<br />
+<br />
+$query = $this->db->get();</code>
+
+<p class="important"><strong>Note:</strong> メソッドの連結は PHP 5 でのみ動作します。</p>
+
+<p>&nbsp;</p>
+
+<h1><a name="caching">&nbsp;</a>Active Record キャッシング</h1>
+
+<p>&quot;本当の&quot; キャッシングではないのですが、Active Record では、後で再利用するためにクエリの特定の部分を保存（あるいは、&quot;キャッシュ&quot;）することができます。 通常は、Active Record の呼び出しが完了したときには、保存された全情報は、次の呼び出しのためにリセットされます。キャッシングを利用すると、このリセットを回避することができ、情報を簡単に再利用できます。</p>
+
+<p>キャッシュされた呼び出しは、累積されます。2 回のキャッシュされた select() を呼び出し、その後に 2回キャッシュされていないselect() を呼び出した場合、4回 select() を呼び出したことになります。3つのキャッシュ関連メソッドが利用できます:</p>
+
+<h2>$this-&gt;db-&gt;start_cache()</h2>
+
+<p>このメソッドは、キャッシュを開始する際にコールされる必要があります。適合するタイプ(サポートされるクエリについては下記をご覧ください) のすべての Active Record クエリが、後の使用のために保管されます。</p>
+
+<h2>$this-&gt;db-&gt;stop_cache()</h2>
+
+<p>このメソッドは、キャッシュを停止するときに呼ぶことができます。</p>
+
+<h2>$this-&gt;db-&gt;flush_cache()</h2>
+
+<p>このメソッドは、Active Record キャッシュからすべてのアイテムを削除します。</p>
+
+<p>次は使用例です:</p>
+
+<p><code>$this-&gt;db-&gt;start_cache();<br />
+$this-&gt;db-&gt;select('field1');<br />
+$this-&gt;db-&gt;stop_cache();<br />
+$this-&gt;db-&gt;get('tablename');<br />
+<br />
+// 次のようになります: SELECT `field1` FROM (`tablename`)<br />
+<br />
+$this-&gt;db-&gt;select('field2');<br />
+$this-&gt;db-&gt;get('tablename');<br />
+<br />
+// 次のようになります: SELECT `field1`, `field2` FROM (`tablename`)<br />
+<br />
+$this-&gt;db-&gt;flush_cache();<br />
+<br />
+$this-&gt;db-&gt;select('field2');<br />
+$this-&gt;db-&gt;get('tablename');<br />
+<br />
+// 次のようになります: SELECT `field2` FROM (`tablename`)</code></p>
+
+<p class="important"> <strong>Note:</strong> 次のフィールドがキャッシュ可能です: ‘select’, ‘from’, ‘join’, ‘where’, ‘like’, ‘groupby’, ‘having’, ‘orderby’, ‘set’</p>
+<p>&nbsp;</p>
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="helpers.html">クエリヘルパメソッド</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="transactions.html">トランザクション</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+CodeIgniter User Guide Japanese Edition
+
+CodeIgniter Users Group in Japan, Japanese Translation Team
+
+Version 2.0.1
+  * Kenji Suzuki <kenji@codeigniter.jp>
+  * Yuya Terajima
+  * panther-king
+  * nekoget
+
+Version 2.0.0
+  * Sho Akagi <akagisho@users.sourceforge.jp>
+  * Kenji Suzuki <kenji@codeigniter.jp>
+  * mokokomi 
+  * panther-king 
+
+Version 1.7.2
+  * cilab
+  * kenh
+  * Kenji Suzuki <kenji@codeigniter.jp>
+  * panther-king
+
+Version 1.6.3
+  * Kenji Suzuki <kenji@codeigniter.jp>
+  * Kenichi Ando <ando@codeigniter.jp>
+

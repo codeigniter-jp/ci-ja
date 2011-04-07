@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>アプリケーションの管理 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+アプリケーションの管理
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>アプリケーションの管理</h1>
+
+<p>デフォルトでは、<dfn>application/</dfn> ディレクトリに構築された一つだけのアプリケーションを管理するために
+CodeIgniter を利用するのを前提としています。しかし、単一の CodeIgniter を複数セットのアプリケーションで共用することもできますし、
+<dfn>application</dfn> フォルダをリネームしたり再配置したりもできます。</p>
+
+<h2>Application フォルダのリネーム</h2>
+
+<p>もし <dfn>application</dfn> フォルダをリネームしたいのであれば、メインの <kbd>index.php</kbd>
+ファイルを開き、<samp>$application_folder</samp> 変数に変更後の名前をセットしさえすれば、リネームすることができます:</p>
+
+<code>$application_folder = "application";</code>
+
+<h2>Application フォルダの再配置</h2>
+
+<p><dfn>application</dfn> フォルダを <kbd>system</kbd> フォルダ以外のサーバの場所に移動させることもできます。
+メインの <kbd>index.php</kbd> を開き、<samp>$application_folder</samp> 変数にサーバのフルパスをセットすれば、移動することができます。</p>
+
+
+<code>$application_folder = "/Path/to/your/application";</code>
+
+
+<h2>単一の CodeIgniter で複数のアプリケーションを実行する </h2>
+
+<p>共通の CodeIgniter を複数の異なるアプリケーションを管理するために共有したい場合は、
+単純に、<kbd>application</kbd> フォルダ以下にあるすべてのディレクトリを、
+サブフォルダを作ってその中に配置すれば可能になります。</p>
+
+<p>たとえば、"foo" と "bar" という2つのアプリケーションを作成したい場合、
+application フォルダを次のような構成にします:</p>
+
+<code>applications/<var>foo</var>/<br />
+applications/<var>foo</var>/config/<br />
+applications/<var>foo</var>/controllers/<br />
+applications/<var>foo</var>/errors/<br />
+applications/<var>foo</var>/libraries/<br />
+applications/<var>foo</var>/models/<br />
+applications/<var>foo</var>/views/<br />
+applications/<samp>bar</samp>/<br />
+applications/<samp>bar</samp>/config/<br />
+applications/<samp>bar</samp>/controllers/<br />
+applications/<samp>bar</samp>/errors/<br />
+applications/<samp>bar</samp>/libraries/<br />
+applications/<samp>bar</samp>/models/<br />
+applications/<samp>bar</samp>/views/</code>
+
+
+<p>利用する特定のアプリケーションを選ぶには、メインの <kbd>index.php</kbd> ファイルを開き、<dfn>$application_folder</dfn>
+変数を設定する必要があります。たとえば、"foo" アプリケーションを利用するよう選ぶには、次のようにします:</p>
+
+<code>$application_folder = "applications/foo";</code>
+
+<p class="important"><strong>Note:</strong>&nbsp; 各アプリケーションには、それぞれの <dfn>index.php</dfn> ファイルが必要になります。
+それぞれの <dfn>index.php</dfn> ファイルが呼び出すべきアプリケーションを呼び出します。index.php ファイルは、好きな名前を付けることもできます。</p>
+
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="profiling.html">アプリケーションのプロファイリング</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="alternative_php.html">代替のPHP構文</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

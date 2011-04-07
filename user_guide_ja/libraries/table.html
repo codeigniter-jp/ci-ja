@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<title>HTML テーブルクラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+HTML テーブルクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>HTML テーブルクラス</h1>
+
+<p>テーブルクラスは、配列またはデータベースの結果セットからHTMLテーブルを自動生成するメソッドを提供します。</p>
+
+<h2>クラスの初期化</h2>
+
+<p>CodeIgniter の他の大部分のクラスと同様に、テーブルクラスは、コントローラの中で<dfn> $this->load->library</dfn> メソッドを使用することで初期化できます:</p>
+
+<code>$this->load->library('table');</code>
+<p>ロードされれば、HTMLテーブルクラスのオブジェクトは、次のようにして利用できます: <dfn>$this->table</dfn></p>
+
+
+<h2>例</h2>
+
+<p>次は、多次元配列からテーブルを作成する方法を示した例です。
+配列の最初の要素は、テーブルのヘッダになるのを覚えておいてください (または、後述のメソッドリファレンスに書いてある
+<dfn>set_heading()</dfn> メソッドを使って、ユーザ定義のヘッダをセットすることもできます)。</p>
+
+<code>
+$this->load->library('table');<br />
+<br />
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('Name', 'Color', 'Size'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('Fred', 'Blue', 'Small'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('Mary', 'Red', 'Large'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('John', 'Green', 'Medium')	<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+echo $this->table->generate($data);
+</code>
+
+<p>次は、データベースのクエリ結果からテーブルを作成する方法を示した例です。
+テーブルクラスは、テーブルに設定された名前をもとにヘッダを自動的に生成します(または、後述のメソッドリファレンスに書いてある
+<dfn>set_heading()</dfn> メソッドを使って、ユーザ定義のヘッダをセットすることもできます)。</p>
+
+<code>
+$this->load->library('table');<br />
+<br />
+$query = $this->db->query("SELECT * FROM my_table");<br />
+<br />
+echo $this->table->generate($query);
+</code>
+
+
+<p>次は、個別のパラメータを使ってテーブルを作成したい場合のその方法を示した例です:</p>
+
+<code>
+$this->load->library('table');<br />
+<br />
+$this->table->set_heading('Name', 'Color', 'Size');<br />
+<br />
+$this->table->add_row('Fred', 'Blue', 'Small');<br />
+$this->table->add_row('Mary', 'Red', 'Large');<br />
+$this->table->add_row('John', 'Green', 'Medium');<br />
+<br />
+echo $this->table->generate();
+</code>
+
+<p>次は、個別のパラメータを使う代わりに、配列を使っている同様の例です:</p>
+
+<code>
+$this->load->library('table');<br />
+<br />
+$this->table->set_heading(array('Name', 'Color', 'Size'));<br />
+<br />
+$this->table->add_row(array('Fred', 'Blue', 'Small'));<br />
+$this->table->add_row(array('Mary', 'Red', 'Large'));<br />
+$this->table->add_row(array('John', 'Green', 'Medium'));<br />
+<br />
+echo $this->table->generate();
+</code>
+
+
+<h2>テーブルの見かけを変更する</h2>
+
+<p>テーブルクラスでは、レイアウトのデザインを指定可能なテーブルテンプレートをセットすることができます。
+下記は、テンプレートの見本です:</p>
+
+<code>
+$tmpl =  array (<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'table_open'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;table border="0" cellpadding="4" cellspacing="0">',<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'heading_row_start'&nbsp;&nbsp;&nbsp;=> '&lt;tr>',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'heading_row_end'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;/tr>',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'heading_cell_start'&nbsp;&nbsp;=> '&lt;th>',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'heading_cell_end'&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;/th>',<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'row_start'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;tr>',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'row_end'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;/tr>',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'cell_start'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;td>',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'cell_end'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;/td>',<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'row_alt_start'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;tr>',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'row_alt_end'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;/tr>',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'cell_alt_start'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;td>',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'cell_alt_end'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;/td>',<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'table_close'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '&lt;/table>'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+
+<br />
+$this->table->set_template($tmpl);
+</code>
+
+<p class="important"><strong>Note:</strong> テンプレートに2セットの"row" ブロックがあるのがわかると思います。
+これにより、繰り返すたびに交互に変わる行の色やデザイン要素のパターンを作成することができます。</p>
+
+<p>完全なテンプレートを指定しなくても構いません。レイアウトの一部分だけを変更したい場合、単にその部分だけを指定することができます。
+次の例では、テーブルの開始タグだけが変更されます:</p>
+
+<code>
+$tmpl =  array ( 'table_open'&nbsp;&nbsp;=> '&lt;table border="1" cellpadding="2" cellspacing="1" class="mytable">' );<br />
+
+<br />
+$this->table->set_template($tmpl);
+</code>
+
+<br />
+<h1>メソッドリファレンス</h1>
+
+<h2>$this->table->generate()</h2>
+<p>生成されたテーブルを文字列で返します。オプションで、配列かデータベースの結果オブジェクトを引数にとります。</p>
+
+<h2>$this->table->set_caption()</h2>
+
+<p>テーブルのキャプションを追加できます。</p>
+
+<code>$this->table->set_caption('Colors');</code>
+
+<h2>$this->table->set_heading()</h2>
+
+<p>テーブルのヘッダを追加できます。配列か個別のパラメータが指定できます:</p>
+
+<code>$this->table->set_heading('Name', 'Color', 'Size');</code>
+<code>$this->table->set_heading(array('Name', 'Color', 'Size'));</code>
+
+<h2>$this->table->add_row()</h2>
+
+<p>テーブルに行を追加できます。配列か個別のパラメータが指定できます:</p>
+
+<code>$this->table->add_row('Blue', 'Red', 'Green');</code>
+<code>$this->table->add_row(array('Blue', 'Red', 'Green'));</code>
+
+<p>個別のセルのタグ属性を設定したい場合は連想配列を用いることができます。その連想配列の <dfn>'data'</dfn>  キーはセルのデータを定義します。その他のキーは key =&gt; val の組がタグの属性 <dfn>key='val'</dfn> として追加されます。</p>
+
+<code>$cell = array('data' => 'Blue', 'class' => 'highlight', 'colspan' => 2);<br />
+$this->table->add_row($cell, 'Red', 'Green');<br />
+<br />
+// 生成<br />
+// &lt;td class='highlight' colspan='2'&gt;Blue&lt;/td&gt;&lt;td&gt;Red&lt;/td&gt;&lt;td&gt;Green&lt;/td&gt;
+</code>
+
+<h2>$this->table->make_columns()</h2>
+
+<p>このメソッドは、一次元配列を入力として、指定した列数になるような深さの多次元配列を生成します。
+これを使うと、たくさんのデータが入った1次元配列を、
+固定の行数のテーブルに表示させることができます。
+次のような例が挙げられます:</p>
+
+<code>
+$list = array('one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve');<br />
+<br />
+$new_list = $this->table->make_columns($list, 3);<br />
+<br />
+$this->table->generate($new_list);<br />
+<br />
+// 次のような例のテーブルを生成します<br />
+<br />
+&lt;table border="0" cellpadding="4" cellspacing="0"&gt;<br />
+&lt;tr&gt;<br />
+&lt;td&gt;one&lt;/td&gt;&lt;td&gt;two&lt;/td&gt;&lt;td&gt;three&lt;/td&gt;<br />
+&lt;/tr&gt;&lt;tr&gt;<br />
+&lt;td&gt;four&lt;/td&gt;&lt;td&gt;five&lt;/td&gt;&lt;td&gt;six&lt;/td&gt;<br />
+&lt;/tr&gt;&lt;tr&gt;<br />
+&lt;td&gt;seven&lt;/td&gt;&lt;td&gt;eight&lt;/td&gt;&lt;td&gt;nine&lt;/td&gt;<br />
+&lt;/tr&gt;&lt;tr&gt;<br />
+&lt;td&gt;ten&lt;/td&gt;&lt;td&gt;eleven&lt;/td&gt;&lt;td&gt;twelve&lt;/td&gt;&lt;/tr&gt;<br />
+&lt;/table&gt;</code>
+
+
+
+<h2>$this->table->set_template()</h2>
+
+<p>テンプレートを設定できます。完全なテンプレートか部分的なテンプレートを指定できます。</p>
+
+<code>
+$tmpl =  array ( 'table_open'&nbsp;&nbsp;=> '&lt;table border="1" cellpadding="2" cellspacing="1" class="mytable">' );<br />
+
+<br />
+$this->table->set_template($tmpl);
+</code>
+
+
+<h2>$this->table->set_empty()</h2>
+
+<p>テーブルのセルが空だった場合に使用される初期値をセットできます。たとえば、改行なしスペースを指定したいときは次のようにします:</p>
+
+<code>
+$this->table->set_empty("&amp;nbsp;");
+</code>
+
+<h2>$this->table->clear()</h2>
+
+<p>テーブルのヘッダとテーブルの行データをクリアします。もとになるデータが異なる複数のテーブルを表示する必要がある場合、
+各テーブルが作成されたあとに、以前のテーブルの情報を空にするため、このメソッドを呼び出さなくてはなりません。例:</p>
+
+<code>
+$this->load->library('table');<br />
+<br />
+$this->table->set_heading('Name', 'Color', 'Size');<br />
+$this->table->add_row('Fred', 'Blue', 'Small');<br />
+$this->table->add_row('Mary', 'Red', 'Large');<br />
+$this->table->add_row('John', 'Green', 'Medium');<br />
+<br />
+echo $this->table->generate();<br />
+<br />
+<kbd>$this->table->clear();</kbd><br />
+<br />
+$this->table->set_heading('Name', 'Day', 'Delivery');<br />
+$this->table->add_row('Fred', 'Wednesday', 'Express');<br />
+$this->table->add_row('Mary', 'Monday', 'Air');<br />
+$this->table->add_row('John', 'Saturday', 'Overnight');<br />
+<br />
+echo $this->table->generate();
+</code>
+
+<h2>$this->table->function</h2>
+
+<p>ネイティブのPHP関数や適切な関数を指定することで配列オブジェクトの全セルデータに適用することができます。</p>
+
+<code>$this->load->library('table');<br />
+<br />
+$this->table->set_heading('Name', 'Color', 'Size');<br />
+$this->table->add_row('Fred', '&lt;strong&gt;Blue&lt;/strong&gt;', 'Small');<br />
+<br />
+$this->table->function = 'htmlspecialchars';<br />
+echo $this->table->generate();<br />
+</code>
+
+<p>上記の例では、全てのセルデータはPHPの <dfn>htmlspecialchars()</dfn> 関数を通過することになり、結果は以下の通りです:</p>
+
+<code>&lt;td&gt;Fred&lt;/td&gt;&lt;td&gt;&amp;lt;strong&amp;gt;Blue&amp;lt;/strong&amp;gt;&lt;/td&gt;&lt;td&gt;Small&lt;/td&gt;</code>
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;<a href="ftp.html">&nbsp;FTP クラス</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="image_lib.html">画像操作クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

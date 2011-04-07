@@ -1,0 +1,519 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XML-RPC および XML-RPC サーバクラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+XML-RPC および XML-RPC サーバクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>XML-RPC および XML-RPC サーバクラス</h1>
+
+
+<p>CodeIgniter の XML-RPC クラスを使うと、他のサーバにリクエストを送信したり、リクエストを受信するために
+XML-RPCサーバをセットアップしたりできます。</p>
+
+
+<h2>XML-RPCとは?</h2>
+
+<p>インターネット上の2つのコンピュータが対話する方法で非常にシンプルなのは、XMLを使うものです。
+<dfn>クライアント</dfn>と呼ばれる一方のコンピュータは、XML-RPC <strong>リクエスト</strong>を
+<dfn>サーバ</dfn>と呼ばれるもう一方のコンピュータに送信します。サーバがリクエストを受信し、処理すると、
+クライアントに<strong>レスポンス</strong>を返します。</p>
+
+<p>たとえば、MetaWeblog APIを使う場合、XML-RPC クライアント (大抵は、デスクトップの投稿ツール) は、
+サイトで実行されているXML-RPC サーバにリクエストを送ります。記事を公開するために、
+新しいブログの記事を作成するリクエストであったり、既存の記事を編集するためのリクエストであったりします。
+
+XML-RPCサーバはリクエストを受信すると、リクエストを処理するために、どのクラス/メソッドを呼び出せばいいのかを決定します。
+処理されると、サーバはレスポンスメッセージを送り返します。</p>
+
+<p>仕様の詳細については、<a href="http://www.xmlrpc.com/">XML-RPC</a> のサイトをみてください。</p>
+
+<h2>クラスの初期化</h2>
+
+<p>CodeIgniterのほとんどのクラスと同様、XML-RPC および XML-RPCS クラスは、コントローラの中で <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
+
+<p>XML-RPC クラスを読み込むには次のようにします:</p>
+<code>$this->load->library('xmlrpc');</code>
+<p>一旦読み込まれると、xml-rpc ライブラリのオブジェクトは、次のようにして利用できます: <dfn>$this->xmlrpc</dfn></p>
+
+<p>XML-RPC Server クラスを読み込むには次のようにします:</p>
+<code>
+$this->load->library('xmlrpc');<br />
+$this->load->library('xmlrpcs');
+</code>
+<p>読み込まれると、xml-rpcs ライブラリのオブジェクトは次のようにして利用できます: <dfn>$this->xmlrpcs</dfn></p>
+
+<p class="important"><strong>Note:</strong> XML-RPC Sever クラスを使うときは、XML-RPC クラスと XML-RPC Server クラスの「両方」を読み込む必要があります。</p>
+
+
+
+<h2> XML-RPC リクエストの送信</h2>
+
+<p>XML-RPC サーバにリクエストを送信するには、次の情報を指定する必要があります:</p>
+
+<ul>
+<li>サーバのURL</li>
+<li>呼び出したいサーバ上のメソッド</li>
+<li><em>リクエスト</em> データ (後述)</li>
+</ul>
+
+<p>以下は、<a href="http://pingomatic.com/">Ping-o-Matic</a> で、単純にWeblogs.comにPingを送信する基本的な例です。</p>
+
+
+<code>$this->load->library('xmlrpc');<br />
+<br />
+$this->xmlrpc->server('http://rpc.pingomatic.com/', 80);<br />
+$this->xmlrpc->method('weblogUpdates.ping');<br />
+
+<br />
+$request = array('My Photoblog', 'http://www.my-site.com/photoblog/');<br />
+$this->xmlrpc->request($request);<br />
+<br />
+if ( ! $this->xmlrpc->send_request())<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $this-&gt;xmlrpc->display_error();<br />
+}</code>
+
+<h3>解説</h3>
+
+<p>上のコードでは、XML-RPC クラスを初期化し、サーバのURLと呼び出すメソッド(weblogUpdates.ping)をセットしています。
+リクエスト (この場合は、タイトルと自分のサイトのURL) が送信用に配列に格納され、
+request() メソッドを使ってコンパイルされます。
+最後に、完全なリクエストが送信されます。<dfn>send_request()</dfn> メソッドがFALSEを返した場合は、
+XML-RPC サーバから返ってきたエラーメッセージを表示します。</p>
+
+<h2>リクエストの詳細</h2>
+
+<p><dfn>リクエスト</dfn>とは単純にXML-RPC サーバに送信するデータのことです。
+リクエストの中の各データは<dfn>リクエストパラメータ</dfn>として参照されます。上の例では、2つのパラメータをもっています:
+自分のサイトのURL と タイトルです。XML-RPC サーバがリクエストを受信したとき、必要なパラメータを探します。</p>
+
+<p>リクエストパラメータは、送信のため、配列に格納する必要があり、
+各パラメータは7つのデータ型(文字列、数値、日付 など) のうちのどれかになります。
+パラメータが文字列型以外の場合は、データ型をリクエストの配列に含める必要があります。</p>
+
+<p>下記は、3つのパラメータの単純な配列の例です:</p>
+
+<code>$request = array('John', 'Doe', 'www.some-site.com');<br />
+$this->xmlrpc->request($request);</code>
+
+<p>文字列でないデータ型のデータや何種類かの異なるデータ型のデータを指定するときは、
+各パラメータを配列にし、その配列の2番目でデータ型を指定します:</p>
+
+<code>
+$request = array (<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('John', 'string'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('Doe', 'string'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(FALSE, 'boolean'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(12345, 'int')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+<br />
+$this->xmlrpc->request($request);</code>
+
+下の<a href="#datatypes">データ型</a>のセクションにデータ型の全リストがあります。
+
+
+
+<h2>XML-RPC サーバの作成</h2>
+
+<p>XML-RPC サーバは交通整理役として動作し、送信されてくるリクエストを待ち受け、
+その処理を行う適切なメソッドへリダイレクトします。</p>
+
+<p> XML-RPC サーバを作成するには、XML-RPC Server クラスを、
+送信されてくるリクエストを受け取るコントローラで初期化し、
+処理できる適切なクラス/メソッドに送信されてきたリクエストを送るためにマッピングを指示した配列をセットアップする必要があります。</p>
+
+<p>次は、説明のための例です:</p>
+
+<code>
+$this->load->library('xmlrpc');<br />
+$this->load->library('xmlrpcs');<br />
+<br />
+$config['functions']['<var>new_post</var>'] = array('function' => '<dfn>My_blog.new_entry</dfn>'),<br />
+$config['functions']['<var>update_post</var>'] = array('function' => '<dfn>My_blog.update_entry</dfn>');<br />
+$config['object'] = $this;<br />
+<br />
+$this->xmlrpcs->initialize($config);<br />
+$this->xmlrpcs->serve();</code>
+
+<p>上のサンプルには、サーバが処理できる2つのメソッドが配列に指定されている箇所があります。
+処理できる公開メソッドは、配列の左側になります。メソッドのどちらかのリクエストが受信されると、右側で指定したクラスとメソッドにマッピングされます。</p>
+
+<p>'<var>object</var>' キーは、インスタンス化されたクラスを渡すための特別なキーです。
+これは、あなたがマッピングするメソッドが CodeIgniter スーパーオブジェクトの一部でない場合に必要となります。</p> 
+
+<p>言い換えると、XML-RPC クライアントが<var>new_post</var> メソッドを呼び出すリクエストを送信した場合、
+サーバは<dfn>My_blog</dfn> クラスを読み込み、<dfn>new_entry</dfn> メソッドを呼び出します。
+<var>update_post</var> メソッドを呼び出すリクエストを送信した場合は、
+サーバは<dfn>My_blog</dfn> クラスを読み込み、<dfn>update_entry </dfn>メソッドを呼び出します。</p>
+
+<p>上のサンプルのメソッド名には、任意のものを指定できます。サーバで上でどのように呼ばれるべきかを決めるか、
+Blogger や MetaWeblog API などの標準のAPIを使う場合は、それらのメソッド名にします。</p>
+
+<p>補足的な2つの設定キーがあり、それらは XML-RPC サーバクラスを初期化するときに使用するものとします: <var>debug</var> にTRUEをセットすることでデバッグ機能を有効にできます、そして <var>xss_clean</var> は、FALSEをセットすることで、Security ライブラリの xss_clean 関数を通さずにデータを送信します。</p>
+
+<h2>サーバリクエストの処理</h2>
+
+<p> XML-RPC サーバがリクエストを受信し、処理のためにクラス/メソッドを読み込んだとき、
+クライアントから送信されたデータを含むオブジェクトとして、そのメソッドにリクエストが渡されます。</p>
+
+<p>上の例を使うと、<var>new_post</var> メソッドがリクエストされた場合、
+サーバは次のようなクラスがあることを期待します:</p>
+
+<code>class <kbd>My_blog</kbd> extends CI_Controller {<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function <kbd>new_post</kbd>(<var>$request</var>)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+	<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}
+</code>
+
+<p><var>$request</var> 変数は、サーバによってコンパイルされたオブジェクトで、XML-RPC クライアントによって送信されたデータが含まれます。
+このオブジェクトを使って、リクエストの処理を可能にする<em>リクエストパラメータ</em> にアクセスします。
+処理が終わったら <dfn>レスポンス</dfn> をクライアントに送り返します。</p>
+
+<p>下は、Blogger API を使った実際のサンプルです。Blogger API のメソッドには、<dfn>getUserInfo() </dfn>というものがあります。
+このメソッドを使うとXML-RPC クライアントはサーバにユーザ名とパスワードを送信し、
+特定ユーザの情報 (ニックネーム、ユーザID、emailアドレスなど) をサーバに送り返してもらうことができます。
+以下は、このメソッドを使った処理方法がどのようになるかを示した例です:</p>
+
+
+<code>class <kbd>My_blog</kbd> extends CI_Controller {<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function <kbd>getUserInfo</kbd>(<var>$request</var>)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$username = 'smitty';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$password = 'secretsmittypass';<br /><br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->library('xmlrpc');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$parameters&nbsp;=&nbsp;$request->output_parameters();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($parameters['1'] != $username AND $parameters['2'] != $password)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this->xmlrpc->send_error_message('100',&nbsp;'Invalid&nbsp;Access');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$response&nbsp;=&nbsp;array(array('nickname'&nbsp;&nbsp;=>&nbsp;array('Smitty','string'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'userid'&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;array('99','string'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;array('http://yoursite.com','string'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'email'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;array('jsmith@yoursite.com','string'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'lastname'&nbsp;&nbsp;=>&nbsp;array('Smith','string'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'firstname'&nbsp;=>&nbsp;array('John','string')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'struct');<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $this->xmlrpc->send_response($response);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}
+</code>
+
+<h3>Notes:</h3>
+<p><dfn>output_parameters()</dfn> メソッドは、クライアントによって送信されたリクエストパラメータに対応する配列を取得します。
+上の例では、出力されたパラメータは、ユーザ名とパスワードになります。</p>
+
+<p>クライアントから送信されたユーザ名とパスワードが正しくない場合、<dfn>send_error_message()</dfn>を使ってエラーメッセージを返します。</p>
+
+<p>操作が成功した場合、ユーザ情報が格納された配列がクライアントに返送されます。</p>
+
+
+<h2>レスポンスのフォーマット</h2>
+
+<p><em>リクエスト</em> と同様、<em>レスポンス</em>も配列でフォーマットされる必要があります。
+しかし、リクエストと違って、レスポンスは<strong>項目を一つずつ格納した</strong>配列になります。
+配列を構成する項目は、複数の追加の配列からなる配列であってもかまいませんが、ルート（プライマリ）の配列は、1次元でなければなりません。言い換えると、基本的な例は次のようになります:</p>
+
+<code>$response = array('Response data',  'array');</code>
+
+<p>しかし、レスポンスは、通常複数のデータをもっています。これを実現するためには、ルート（プライマリ）の配列は、1次元でなければならないので、
+レスポンスそのものを配列にする必要があります。以下は、どのようにして実現するかを示した例です:</p>
+
+<code>
+$response = array (<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'first_name' => array('John', 'string'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'last_name' => array('Doe', 'string'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'member_id' => array(123435, 'int'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'todo_list' => array(array('clean house', 'call mom', 'water plants'), 'array'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'struct'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+</code>
+
+<p class="important">上の配列は <dfn>struct</dfn> としてフォーマットされているのを注意してください。これはレスポンスのもっとも一般的なデータ型になります。</p>
+
+<p>リクエストと同様、レスポンスも<a href="#datatypes">データ型</a>のセクションでリストアップされている7つのデータ型のどれかになります。</p>
+
+
+<h2>エラー応答の送信</h2>
+
+<p>クライアントにエラー応答を送信する必要があるときは、次のようなコードを使います:</p>
+
+<code>return $this->xmlrpc->send_error_message('123', 'Requested data not available');</code>
+
+<p>第1引数には、エラー番号を、第2引数には、エラーメッセージを指定します。</p>
+
+
+
+
+
+
+<h2>独自のクライアントとサーバの作成</h2>
+
+<p>ここまで見てきた全部を理解するのに役立てるため、XML-RPC クライアントとサーバとして動作する2つのコントローラを作成してみましょう。
+クライアントをサーバにリクエストを送信するのに使い、サーバでそのリクエストを受信します。</p>
+
+<h3>クライアント</h3>
+
+<p>テキストエディタを使って <dfn>xmlrpc_client.php</dfn> という名前のコントローラを作成します。
+その中に下記のコードを書いて、<samp>applications/controllers/</samp> フォルダに保存します:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="32">&lt;?php
+
+class Xmlrpc_client extends CI_Controller {
+
+	function index()
+	{
+		$this->load->helper('url');
+		$server_url = site_url('xmlrpc_server');
+
+		$this->load->library('xmlrpc');
+
+		$this->xmlrpc->server($server_url, 80);
+		$this->xmlrpc->method('Greetings');
+
+		$request = array('How is it going?');
+		$this->xmlrpc->request($request);	
+
+		if ( ! $this->xmlrpc->send_request())
+		{
+			echo $this->xmlrpc->display_error();
+		}
+		else
+		{
+			echo '<pre>';
+			print_r($this->xmlrpc->display_response());
+			echo '</pre>';
+		}
+	}
+}
+?></textarea>
+
+<p>Note: 上のコードでは、"url helper" を使っています。<a href="../general/helpers.html">ヘルパ関数</a> のページでより詳しい情報を閲覧できます。</p>
+
+<h3>サーバ</h3>
+
+<p>テキストエディタを使って、<dfn>xmlrpc_server.php</dfn>.という名前のファイルを作成します。
+その中に、下記のコードを書いて<samp>applications/controllers/</samp> フォルダにそれを保存します:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="30">&lt;?php
+
+class Xmlrpc_server extends CI_Controller {
+
+	function index()
+	{
+		$this->load->library('xmlrpc');
+		$this->load->library('xmlrpcs');
+
+		$config['functions']['Greetings'] = array('function' => 'Xmlrpc_server.process');
+
+		$this->xmlrpcs->initialize($config);
+		$this->xmlrpcs->serve();
+	}
+
+
+	function process($request)
+	{
+		$parameters = $request->output_parameters();
+
+		$response = array(
+							array(
+									'you_said'  => $parameters['0'],
+									'i_respond' => 'Not bad at all.'),
+							'struct');
+
+		return $this->xmlrpc->send_response($response);
+	}
+}
+?></textarea>
+
+<h3>やってみよう!</h3>
+
+<p>では、次のURLを使ってサイトを表示させてみます:</p>
+<code>example.com/index.php/<var>xmlrpc_client</var>/</code>
+
+<p>サーバに送ったメッセージとその応答を見ることができるはずです。</p>
+
+<p>作成したクライアントでは、メッセージ ("How's is going?") を &quot;Greetings&quot; メソッドを使うリクエストとともにサーバに送信しました。
+サーバはそのリクエストを受信して、レスポンスが返送される "process" メソッドにリクエストをマッピングしました。</p>
+
+<h2>リクエストパラメータに連想配列を使用する</h2>
+
+<p>メソッドパラメータに連想配列を使用したい場合は、structデータタイプを使用する必要があります:</p>
+
+<code>$request = array(<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Param 0<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'=&gt;'John'<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	),<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'struct'<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Param 1<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	'size'=&gt;'large',<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'shape'=&gt;'round'<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	),<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'struct'<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+	$this-&gt;xmlrpc-&gt;request($request);</code>
+	
+<p>サーバでリクエストを処理する際、以下の連想配列を取得できます。</p>
+
+<code>$parameters = $request-&gt;output_parameters();<br />
+	$name = $parameters['0']['name'];<br />
+	$size = $parameters['1']['size'];<br />
+	$size = $parameters['1']['shape']; </code>
+
+<h1>XML-RPC メソッドリファレンス</h1>
+
+<h2>$this->xmlrpc->server()</h2>
+<p>リクエストが送信されるサーバのURLとポート番号をセットします:</p>
+<code>$this->xmlrpc->server('http://www.sometimes.com/pings.php', 80);</code>
+
+<h2>$this->xmlrpc->timeout()</h2>
+<p>リクエストをキャンセルするタイムアウトの時間 (秒) を設定します:</p>
+<code>$this->xmlrpc->timeout(6);</code>
+
+<h2>$this->xmlrpc->method()</h2>
+<p>XML-RPC サーバのリクエスト先メソッドを設定します:</p>
+<code>$this->xmlrpc->method('<var>method</var>');</code>
+
+<p>ここでの <var>method</var> はメソッドの名前になります。</p>
+
+<h2>$this->xmlrpc->request()</h2>
+<p>データの配列をもとに、XML-RPC サーバに送信するリクエストを構築します:</p>
+<code>$request = array(array('My Photoblog', 'string'), 'http://www.yoursite.com/photoblog/');<br />
+$this->xmlrpc->request($request);</code>
+
+<h2>$this->xmlrpc->send_request()</h2>
+<p>リクエスト送信メソッド。条件判断ができるように、成功か失敗かに応じてブール値のTRUEかFALSEを返します。</p>
+
+<h2>$this->xmlrpc->set_debug(TRUE);</h2>
+<p>開発中に役立つ、様々な情報とエラーを表示させるデバッグ機能を有効化します。</p>
+
+
+<h2>$this->xmlrpc->display_error()</h2>
+<p>何らかの理由でリクエストが失敗したときにエラーメッセージを文字列として返します。</p>
+<code>echo $this->xmlrpc->display_error();</code>
+
+<h2>$this->xmlrpc->display_response()</h2>
+<p>リクエストが受信された後にサーバから返送されるレスポンスを返します。レスポンスは、通常は連想配列になります。</p>
+<code>$this->xmlrpc->display_response();</code>
+
+<h2>$this->xmlrpc->send_error_message()</h2>
+<p>このメソッドを使うと、サーバからクライアントにエラーメッセージを送信できます。
+第1引数にエラー番号を、第2引数にエラーメッセージを指定します。</p>
+<code>return $this->xmlrpc->send_error_message('123', 'Requested data not available');</code>
+
+<h2>$this->xmlrpc->send_response()</h2>
+<p>サーバからクライアントにレスポンスを送信できます。正しいデータは、このメソッドで送信される必要があります。</p>
+<code>$response = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'flerror' => array(FALSE, 'boolean'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'message' => "Thanks for the ping!"<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'struct');<br />
+return $this->xmlrpc->send_response($response);</code>
+
+
+<a name="datatypes"></a>
+<h2>データ型</h2>
+
+<p><a href="http://www.xmlrpc.com/spec">XML-RPC の仕様</a>によれば、
+XML-RPC経由で送信できるデータ型は7つあります:</p>
+
+<ul>
+<li><em>int</em> または <em>i4</em></li>
+<li><em>boolean</em></li>
+<li><em>string</em></li>
+<li><em>double</em></li>
+<li><em>dateTime.iso8601</em></li>
+<li><em>base64</em></li>
+<li><em>struct</em> (値の配列を含む)</li>
+<li><em>array</em> (値の配列を含む)</li>
+</ul>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="user_agent.html">ユーザエージェントクラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="zip.html">Zip 圧縮クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

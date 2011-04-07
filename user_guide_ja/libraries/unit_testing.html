@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ユニットテストクラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ユニットテストクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>ユニットテストクラス</h1>
+
+<p>ユニットテストは、アプリケーションの各メソッド用のテストを書くというソフトウェア開発のアプローチです。
+このコンセプトにあまり慣れていないのであれば、このことについて少しwebで検索してみてください。</p>
+
+<p>CodeIgniterのユニットテストクラスは、評価メソッドと2つの結果メソッドからなる非常にシンプルなものです。
+本格的なテストスイートを意図して作られたものではなく、
+コードを評価してコードが正しいデータ型と結果を生成するかを調べるシンプルなメカニズムになっています。
+</p>
+
+
+<h2>クラスの初期化</h2>
+
+<p>CodeIgniterの大部分のクラスと同様、ユニットテストクラスはコントローラの中で<dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
+
+<code>$this->load->library('unit_test');</code>
+<p>いったん読み込まれると、ユニットテストオブジェクトは、次のようにして利用可能です: <dfn>$this->unit</dfn></p>
+
+
+<h2>テストの実行</h2>
+
+<p>テストの実行には、次のメソッドに、テストと期待される結果を渡す必要があります:</p>
+
+<h2>$this->unit->run( <var>test</var>, <var>expected result</var>, '<var>test name</var>', '<var>notes</var>');</h2>
+
+<p>ここでの <var>test</var> は、テストしたいコードの実行結果が入り、<var>expected result</var> には、
+期待するデータ型 [または期待する値] が入ります。それから、<var>test name</var> では、オプションで、テストに名前を付けることができます。例:</p>
+
+<code>$test = 1 + 1;<br />
+<br />
+$expected_result = 2;<br />
+<br />
+$test_name = 'Adds one plus one';<br />
+<br />
+$this->unit->run($test, $expected_result, $test_name);</code>
+
+<p>期待する結果には、リテラルでの一致か、データ型での一致かどちらかを指定できます。次は、リテラルの場合の例です:</p>
+
+<code>$this->unit->run('Foo', 'Foo');</code>
+
+<p>次は、型の一致の例です:</p>
+
+<code>$this->unit->run('Foo', 'is_string');</code>
+
+<p>"is_string" を第2引数に使っているのにお気づきでしょうか?
+これは、テストが文字列型で結果を生成するということをこのメソッドに通知するものです。以下は、比較に使用できる型のリストです:</p>
+
+<ul>
+<li>is_object</li>
+<li>is_string</li>
+<li>is_bool</li>
+<li>is_true</li>
+<li>is_false</li>
+<li>is_int</li>
+<li>is_numeric</li>
+<li>is_float</li>
+<li>is_double</li>
+<li>is_array</li>
+<li>is_null</li>
+</ul>
+
+
+<h2>レポートの生成</h2>
+
+<p>各テストの後に結果を表示するか、複数のテストを実行したときに最後にレポートを生成するかのどちらも可能です。
+レポートを直接表示させるには、<var>run</var> メソッドを単純に出力するか返すかします:</p>
+
+<code>echo $this->unit->run($test, $expected_result);</code>
+
+<p>全テストの全レポートを見るには、次のようにします:</p>
+
+<code>echo $this->unit->report();</code>
+
+<p>レポートは、表示用にHTMLテーブルでフォーマットされています。生データがほしい場合は、次のように配列で取得することもできます:</p>
+
+<code>echo $this->unit->result();</code>
+
+
+<h2>Strictモード</h2>
+
+<p>初期状態では、ユニットテストクラスは、リテラルの一致をルーズに評価します。次のような例が挙げられます:</p>
+
+<code>$this->unit->run(1, TRUE);</code>
+
+<p>このテストでは、評価対象が整数で、期待する結果の値がブール値です。
+しかし、型付けが弱いPHPでは、上のコードを通常の等価テストとしてTRUEとして評価します:</p>
+
+<code>if (1 == TRUE) echo 'これは true として評価されます';</code>
+
+<p>必要な場合は、下記のように、値だけでなく型の比較も行うStrictモードでユニットテストクラスを動作させることもできます:</p>
+
+<code>if (1 === TRUE) echo 'This evaluates as FALSE';</code>
+
+<p>Strictモードを有効にするには次のようにします:</p>
+
+<code>$this->unit->use_strict(TRUE);</code>
+
+<h2>ユニットテストの有効化/無効化</h2>
+
+<p>スクリプトの中にはテストコードを残しておきたいけれども、
+必要になるまでそれを実行しない場合、次のようにしてユニットテストを無効にできます:</p>
+
+<code>$this->unit->active(FALSE)</code>
+
+<h2>ユニットテストの結果表示</h2>
+
+<p>ユニットテストの結果では 以下の項目がデフォルトで表示されます: </p>
+
+<ul>
+	<li>テスト名 (test_name)</li>
+	<li>テストデータの型 (test_datatype)</li>
+	<li>ユーザーが期待するデータ型 (res_datatype)</li>
+	<li>結果 (result)</li>
+	<li>ファイル名 (file)</li>
+	<li>行番号 (line)</li>
+	<li>ユーザーがテスト用に入力したメモ書き (notes)</li>
+</ul>
+
+<p><kbd>$this->unit->set_items()</kbd> を使うと これらの結果表示項目をカスタマイズすることができます。たとえば、テストの名前のみを結果表示しそれを result とするならば: </p>
+
+<h3>テスト結果表示のカスタマイズ</h3>
+
+<code>
+	$this->unit->set_test_items(array('test_name', 'result'));
+</code>
+
+<h3>テンプレートの作成</h3>
+
+<p>テスト結果を初期状態のものとは違ったフォーマットにしたい場合、ユーザ定義のテンプレートをセットできます。
+以下は、シンプルなテンプレートの例です。必須の擬似変数に注意してください:</p>
+
+<code>
+$str = '<br />
+&lt;table border="0" cellpadding="4" cellspacing="1"><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<kbd>{rows}</kbd><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td><kbd>{item}</kbd>&lt;/td><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td><kbd>{result}</kbd>&lt;/td><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<kbd>{/rows}</kbd><br />
+&lt;/table>';<br />
+<br />
+$this->unit->set_template($str);
+</code>
+
+<p class="important"><strong>Note:</strong> テンプレートは、ユニットテストの処理を実行する<strong>前に</strong>定義する必要がります。</p>
+
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="typography.html">タイポグラフィークラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="uri.html">URI クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

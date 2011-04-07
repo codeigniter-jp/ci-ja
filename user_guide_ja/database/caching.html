@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>データベースキャッシュクラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+データベースキャッシュクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>データベースキャッシュクラス</h1>
+
+<p>データベースキャッシュクラスを利用すれば、データベース読み込みの負荷を軽減するために、問合せ結果をテキストファイルとしてキャッシュすることが可能になります。</p>
+
+<p class="important"><strong>重要:</strong>&nbsp;このクラスは、キャッシュが有効な場合、データベースドライバにより自動的に初期化されます。手動でロードしてはいけません。<br />
+<br />
+
+<strong>Also note:</strong>&nbsp; キャッシュを使った場合、クエリ結果のメソッドの一部が利用できません。このページを注意して読んでください。</p>
+
+<h2>キャッシュの有効化</h2>
+
+<p>次の3つのステップで、キャッシュを有効にするにできます:</p>
+
+<ul>
+<li>キャッシュファイルを保存できる書き込み可能なディレクトリをサーバに作成します。</li>
+<li><dfn>application/config/database.php</dfn> ファイルに作成したキャッシュフォルダのパスをセットします。</li>
+<li><dfn>application/config/database.php</dfn> ファイルで設定してグローバルにキャッシュを有効化するか、後述するように手動で有効化します。</li>
+</ul>
+
+<p>有効化されると、データベースクエリを含むページが読み込まれると自動的にキャッシュが作成されます。</p>
+
+
+<h2>キャッシュ機能はどのように動作しますか?</h2>
+
+<p>CodeIgniter のクエリキャッシュシステムは、ページが閲覧されるときに動的に動作します。
+キャッシュが有効な時、初回アクセス時には、web ページが読み込まれ、
+クエリ結果オブジェクトがサーバのテキストファイルにシリアライズされて保管されます。次回アクセスしたときには、ページはデータベースにアクセスするかわりに
+キャッシュファイルを読み込みます。キャッシュされているページでは、データベースの使用率が0まで効果的に下がります。</p>
+
+<p>結果を生成するのは <dfn>読み込みタイプ</dfn> (SELECT) のクエリだけなので、このタイプだけがキャッシュ可能です。
+<dfn>書き込みタイプ</dfn> (INSERT、UPDATE、など) のクエリは、結果を生成しないので、システムではキャッシュされません。</p>
+
+<p>キャッシュファイルは期限切れになりません。キャッシュ済みのクエリはみな、それを消すまでキャッシュされたままです。システムでは、
+個別のページに関連付けられたキャッシュをそれぞれ消すことができますし、キャッシュファイル全体を削除することもできます。
+通常は、データベースに新しい情報を追加したときなど、何らかのイベントが発生した後に、
+後述する清掃メソッドを使ってキャッシュファイルを削除します。</p>
+
+<h2>キャッシュ機能によりサイトのパフォーマンスは改善しますか?</h2>
+
+<p>キャッシュを利用することによってどれだけパフォーマンスを得られるかは、さまざまな要因に依存します。データベースの読み込みが非常に少なく、高度に最適化されている場合は、パフォーマンスが高まったのがおそらくわからないと思います。
+データベースが高負荷で利用されている場合は、ファイルシステムが高負荷の状態でないなら、
+応答速度が改善されるのがわかると思います。キャッシュ機能は、データの取得方法を単に変更し、
+データベースの操作をファイルシステムの操作にシフトさせるだけだということを
+覚えておいてください。</p>
+
+<p>たとえば、あるクラスタサーバ環境では、ファイルシステムのオペレーションが高負荷になるので、キャッシュ機能はパフォーマンスの弊害になるかもしれません。
+単一サーバの共有環境であれば、キャッシュ機能はおそらく有益です。不幸なことに、
+データベースをキャッシュすべきかどうかということに対する一つの答えはありません。本当に、状況に依存しているのです。</p>
+
+<h2>キャッシュファイルはどのように保存されますか?</h2>
+
+<p>CodeIgniter では、各クエリが別々のキャッシュファイルに保存されます。
+コントローラのメソッドの名前がついたサブフォルダの中にキャッシュファイルが保管されます。正確にいうと、
+URIの最初の2セグメントと同じ名前のサブフォルダ (コントローラの名前とメソッドの名前)になります。</p>
+
+<p>たとえば、3つのクエリが実行される <dfn>comments</dfn> というメソッドがある <dfn>blog</dfn> という名前のコントローラを作成していたとします。
+キャッシュシステムは<kbd>、blog+comments </kbd>という名前のキャッシュフォルダを作成し、
+その中に3つのキャッシュファイルを書き込みます。</p>
+
+<p>動的なクエリを使用している場合 (たとえば、ページネーションを使用しているとき) は、クエリの結果がURIの情報により変わりますが、
+異なる各クエリは、それぞれ別のキャッシュファイルを生成します。ですので、
+クエリの数よりも多くのキャッシュファイルが生成されることになります。</p>
+
+
+<h2>キャッシュファイルの管理</h2>
+
+<p>キャッシュには有効期限がないので、アプリケーションにキャッシュの削除処理を構築しなければなりません。たとえば、ユーザがコメントできるブログを
+作成していたとします。新しいコメントが送信されるたびに、
+コントローラのコメントを表示するメソッドに関連付けられたキャッシュファイルを削除したいと思うはずです。
+後述する2つの削除メソッドを使って、データをクリアできます。</p>
+
+
+<h2>キャッシュ利用中には全データベース機能が使えるわけではありません</h2>
+
+<p>最後に、キャッシュされた結果オブジェクトは、完全な結果オブジェクトを単純化したバージョンだという点を知っておく必要があります。
+このため、結果オブジェクトのメソッドはいくつか利用できません。</p>
+
+<p>キャッシュされた結果オブジェクトでは、次のメソッドが、<kbd>利用できません</kbd>:</p>
+
+<ul>
+<li>num_fields()</li>
+<li>field_names()</li>
+<li>field_data()</li>
+<li>free_result()</li>
+</ul>
+
+<p>また、結果リソースは実行時の操作のみに付随するものなので、キャッシュしたときには、
+2つのデータベースリソース (result_id と conn_id) が利用できなくなります。</p>
+
+
+<br />
+
+<h1>メソッドリファレンス</h1>
+
+
+
+<h2>$this->db->cache_on()&nbsp; / &nbsp; $this->db->cache_off()</h2>
+
+<p>手動でキャッシュ機能を有効化/無効化します。特定のクエリを
+キャッシュさせないようにするときに役立ちます。例:</p>
+
+<code>
+// キャッシュ機能をON<br />
+$this->db->cache_on();<br />
+$query = $this->db->query("SELECT * FROM mytable");<br />
+<br />
+// このクエリは、キャッシュ機能をOFF<br />
+$this->db->cache_off();<br />
+$query = $this->db->query("SELECT * FROM members WHERE member_id = '$current_user'");<br />
+<br />
+// キャッシュ機能をONに戻す<br />
+$this->db->cache_on();<br />
+$query = $this->db->query("SELECT * FROM another_table");
+</code>
+
+
+<h2>$this->db->cache_delete()</h2>
+
+<p>特定のページに関連付けられたキャッシュファイルを削除します。データベースを更新したときにキャッシュを更新する必要がある場合に役立ちます。</p>
+
+<p>キャッシュシステムは、閲覧中のページの URI に関連したフォルダにキャッシュファイルを保存します。
+たとえば、<dfn>example.com/index.php/blog/comments</dfn> というページを見ているとき、キャッシュシステムは、その URI に関連するすべてのキャッシュファイルを <dfn>blog+comments</dfn> という名前のフォルダに保存します。
+それらの特定のキャッシュファイルを削除するには次のようなコードを使います:</p>
+
+<code>$this->db->cache_delete('blog', 'comments');</code>
+
+<p>パラメータを指定していないときは、指定されたURIをもとにどのキャッシュを消すべきかが決められます。</p>
+
+
+<h2>$this->db->cache_delete_all()</h2>
+
+<p>すべてのキャッシュファイルを削除します。例:</p>
+
+<code>$this->db->cache_delete_all();</code>
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="call_function.html">ネイティブでない関数の呼び出し</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="forge.html">データベースフォージクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

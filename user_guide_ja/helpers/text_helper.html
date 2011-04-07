@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>テキストヘルパ : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+テキストヘルパ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>テキストヘルパ</h1>
+
+<p>テキストヘルパのファイルは、テキストを処理するのに役立つ関数で構成されています。</p>
+
+
+<h2>ヘルパのロード</h2>
+
+<p>このヘルパは次のコードを使ってロードします:</p>
+<code>$this->load->helper('text');</code>
+
+<p>次の関数が利用できます:</p>
+
+
+<h2>word_limiter()</h2>
+
+<p>指定した<strong>単語数</strong>の位置で、文字列を切り取ります [ 訳注:英語のように単語の間がスペースで区切られている言語でだけ有効です。日本語では通常、正常に動作しません。] 。例:</p>
+
+<code>
+$string = "Here is a nice text string consisting of eleven words.";<br />
+<br />
+$string = word_limiter($string, 4);<br /><br />
+
+// 戻り値:  Here is a nice&#8230;
+</code>
+
+<p>第3引数はオプションで、文字列に付加するサフィックスを指定します。デフォルトでは、省略記号(...) が付加されます。</p>
+
+
+<h2>character_limiter()</h2>
+
+<p>指定した<strong>文字数</strong>の位置で文字列を切り取ります。
+単語の途中で切り取られないようになっていますので、文字数は指定したもより少し増えたり減ったりします[ 訳注:英語のように単語の間がスペースで区切られている言語でだけ有効です。日本語では通常、正常に動作しません。 ]。例:</p>
+
+<code>
+$string = "Here is a nice text string consisting of eleven words.";<br />
+<br />
+$string = character_limiter($string, 20);<br /><br />
+
+// 戻り値:  Here is a nice text string&#8230;
+</code>
+
+<p>第3引数はオプションで、文字列に付加するサフィックスを指定します。デフォルトでは、省略記号(...) が付加されます。</p>
+
+
+
+<h2>ascii_to_entities()</h2>
+
+<p>Web ページで使用されると問題を起こす拡張 ASCII 文字コードや MS ワードの文字を含む、ASCII の値を HTML の文字列エンティティに変換します。
+こうすることで、ブラウザ設定にかかわらずいつも表示させることができ、あるいは、データベースに確かな状態で [値を変更して元の情報を失ってしまうことなく] 保存することができます。
+サーバでサポートされる文字セットにいくらか依存しているので、すべてのケースで100%の信頼性はありません。
+しかし、多くは、通常の範囲の外にある文字（たとえばアクセント記号）も正しく認識できます。例:</p>
+
+<code>$string = ascii_to_entities($string);</code>
+
+
+<h2>entities_to_ascii()</h2>
+
+<p>この関数は前述の関数と反対になります。つまり、文字列エンティティを ASCII に戻します。</p>
+
+<h2>convert_accented_characters()</h2>
+
+<p>アクセント記号のついた ASCII 文字列を同等の ASCII 文字列に変換します。スタンダードな ASCII 文字列を使用しなければならないところ (例: URL) で役立ちます。</p>
+
+<code>$string = convert_accented_characters($string);</code>
+
+<p>このメソッドは変換の際に，設定ファイル <dfn>application/config/foreign_chars.php</dfn> で定義されている配列を使用します。</p>
+
+<h2>word_censor()</h2>
+
+<p>テキストの文字を検閲できます。第1引数は、元の文字列になります。
+第2引数は、許可しない単語の配列を指定します。第3引数（オプション）は、単語を置き換える文字列を指定します。
+指定されない場合は、許可されない文字は、ナンバーサインで置き換えられます: ####。例:</p>
+
+<code>
+$disallowed = array('darn', 'shucks', 'golly', 'phooey');<br />
+<br />
+$string = word_censor($string, $disallowed, 'Beep!');</code>
+
+
+<h2>highlight_code()</h2>
+
+<p>コード (PHP、HTML など)の文字列を色分けします。例:</p>
+
+<code>$string = highlight_code($string);</code>
+
+<p>この関数は、PHP の highlight_string() 関数を使いますので、php.ini ファイルで指定されている色が使用されます。</p>
+
+
+<h2>highlight_phrase()</h2>
+
+<p>テキスト中のフレーズをハイライトします。
+第1引数は対象の文字列で、第2引数にハイライトしたいフレーズを指定します。
+第3、第4引数は、フレーズを囲みたい開始/終了タグを指定します。例:</p>
+
+<code>
+$string = "Here is a nice text string about nothing in particular.";<br />
+<br />
+$string = highlight_phrase($string, "nice text", '&lt;span style="color:#990000">', '&lt;/span>');
+</code>
+
+<p>上のテキストは下記のように返されます:</p>
+
+<p>Here is a <span style="color:#990000">nice text</span> string about nothing in particular.</p>
+
+
+
+<h2>word_wrap()</h2>
+
+<p>指定した <strong>文字数</strong> の位置で、テキストを折り返します。単語の途中で折り返されません。[ 訳注:英語のように単語の間がスペースで区切られている言語でだけ有効です。日本語では通常、正常に動作しません。 ]。例:</p>
+
+<code>$string = "Here is a simple string of text that will help us demonstrate this function.";<br />
+<br />
+echo word_wrap($string, 25);<br />
+<br />
+// 次のように生成:<br />
+<br />
+Here is a simple string<br />
+of text that will help<br />
+us demonstrate this<br />
+function</code>
+
+<h2>ellipsize()</h2>
+
+<p>この関数は文字列からタグを取り除き、指定された最大長に分割して省略記号を挿入します。</p>
+<p>第1引数は省略する文字列、第2引数は省略語の文字列の長さ、第3引数は後半の文字列の開始位置を指定します。第3引数は、省略記号が現れる位置を 0 (左端) から 1 (右端) までの数値で指定します。  たとえば、1 を指定すると省略記号は文字列の右端、5 なら真ん中，0 なら左端になります。</p>
+<p>オプションの第4引数では、省略記号を指定できます。デフォルトでは <samp>&amp;hellip;</samp> が使用されます。</p>
+
+<code>$str = 'this_string_is_entirely_too_long_and_might_break_my_design.jpg';<br />
+<br />
+echo ellipsize($str, 32, .5);</code>
+
+Produces:
+
+<code>this_string_is_e&hellip;ak_my_design.jpg</code>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="string_helper.html">文字列ヘルパ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="typography_helper.html">タイポグラフィーヘルパ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

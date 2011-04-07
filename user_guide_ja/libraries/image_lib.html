@@ -1,0 +1,667 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>画像操作クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+画像操作クラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>画像操作クラス</h1>
+
+<p>CodeIgniterの画像操作クラスを使うと、次のことが行えます:</p>
+
+<ul>
+<li>画像のリサイズ</li>
+<li>サムネイルの作成</li>
+<li>画像の切り抜き</li>
+<li>画像の回転</li>
+<li>画像の合成</li>
+</ul>
+
+<p>次の3つのよく使われている画像ライブラリすべてに対応しています:  GD/GD2、NetPBM、および ImageMagick</p>
+
+<p class="important"><strong>Note:</strong> 画像の合成は、GD/GD2 ライブラリを使用した場合のみ利用可能です。
+加えて、他のライブラリを指定した場合でも、
+画像のプロパティを取得するためにはGDが必要になります。
+しかし、画像の処理に関しては指定したライブラリだけで可能です。</p>
+
+
+<h2>クラスの初期化</h2>
+
+<p>CodeIgniter のほとんどのクラスと同様に、
+画像クラスは <dfn>$this->load-&gt;library</dfn> メソッドを使ってコントローラの中で初期化します:</p>
+<code>$this->load->library('image_lib');</code>
+
+<p>ライブラリが読み込まれると、使う準備ができます。すべてのメソッドを呼び出すには、次の画像ライブラリオブジェクトを使います: <dfn>$this->image_lib</dfn></p>
+
+
+<h2>画像の処理</h2>
+
+<p>処理の種類(リサイズ、切り抜き、回転、または、合成)にかかわらず、基本的な手順は同じです。
+4つの利用可能な処理のうちひとつを呼び出すとき、その行いたい処理に対応した設定項目をセットすることができます。
+たとえば、画像のサムネイルを作成するには次のようにします:</p>
+
+<code>$config['image_library'] = 'gd2';<br />
+$config['source_image']	= '/path/to/image/mypic.jpg';<br />
+$config['create_thumb'] = TRUE;<br />
+$config['maintain_ratio'] = TRUE;<br />
+$config['width']		= 75;<br />
+$config['height']	= 50;<br />
+<br />
+$this->load->library('image_lib', $config);
+<br />
+<br />
+$this->image_lib->resize();</code>
+
+<p>上のコードでは、<dfn>source_image</dfn> に指定したフォルダの中から <em>mypic.jpg</em> を探し出して、
+GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイルを作成するよう、<dfn>image_resize</dfn> メソッドに設定しています。
+<dfn>maintain_ratio</dfn> オプションが有効になっているので、サムネイルはもともとのアスペクト比を維持したまま、
+指定された <dfn>width</dfn>（幅） と <dfn>height</dfn>（高さ） にできるだけ近づけるようにします。
+サムネイルは<em> mypic_thumb.jpg</em>という名前になります。</p>
+
+<p class="important"><strong>Note:</strong> 画像クラスに全ての処理を許可するため、
+画像が含まれるフォルダと画像のパーミッションを書き込み可能に設定する必要があります。</p>
+
+<p class="important"><strong>Note:</strong> 画像処理はいくつかの操作において，かなりのサーバのメモリを必要とします。画像処理の最中に out of memory エラーに遭遇した場合は，最大サイズの制限や PHP の memory_limit の調整が必要かも知れません。</p>
+
+<h2>処理メソッド</h2>
+
+<p>利用可能な処理メソッドは4つあります:</p>
+
+<ul>
+<li>$this->image_lib->resize()</li>
+<li>$this->image_lib->crop()</li>
+<li>$this->image_lib->rotate()</li>
+<li>$this->image_lib->watermark()</li>
+<li>$this-&gt;image_lib-&gt;clear()</li>
+</ul>
+
+<p>これらのメソッドは、処理が成功したら TRUE を、失敗したら FALSE を返します。
+もし失敗した場合は、下記のメソッドを使って、エラーメッセージを取得できます:</p>
+
+<code>echo $this->image_lib->display_errors();</code>
+
+<p>よいプラクティスは、次のように、処理メソッドを呼び出す時はいつも、失敗した時にエラーを表示することです:</p>
+
+<code>if ( ! $this->image_lib->resize())<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $this->image_lib->display_errors();<br />
+}</code>
+
+<p>Note:  オプションで、次のようにメソッドに開始/終了タグを渡して、
+エラーメッセージを HTML で整形することもできます:</p>
+
+<code>$this->image_lib->display_errors('<var>&lt;p></var>', '<var>&lt;/p></var>');</code>
+
+
+<h2>設定</h2>
+
+<p>ニーズに合わせた処理に調整するため、下で説明している設定項目を利用できます。</p>
+
+<p>どのメソッドでも全ての設定項目が利用可能なわけではないのを注意してください。
+たとえば、x / y 軸の設定項目は、切り抜きのみ指定可能です。同じく、width と height の設定項目は、切り抜き処理では有効ではありません。
+"使用可能な操作" の列に、どのメソッドでその設定項目がサポートされているかが示されています。</p>
+
+<p>「可能な操作」欄の凡例:</p>
+
+<ul>
+<li><var>R</var> - 画像のリサイズ</li>
+<li><var>C</var> - 画像の切り抜き</li>
+<li><var>X</var> - 画像の回転</li>
+<li><var>W</var> - 画像の合成</li>
+
+</ul>
+
+
+
+
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+<tr>
+<th>設定項目</th>
+<th>初期値</th>
+<th>選択肢</th>
+<th>説明</th>
+<th>可能な操作</th>
+</tr>
+
+<tr>
+<td class="td"><strong>image_library</strong></td>
+<td class="td">GD2</td>
+<td class="td">GD、GD2, ImageMagick、NetPBM</td>
+<td class="td">使用するイメージライブラリを設定します。</td>
+<td class="td">R, C, X, W</td>
+</tr>
+
+<tr>
+<td class="td"><strong>library_path</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td"> ImageMagick または NetPBM libraryへのサーバパスを指定してください。どちらかのライブラリを使う場合は、パスを指定する必要があります。</td>
+<td class="td">R, C, X</td>
+</tr>
+
+<tr>
+<td class="td"><strong>source_image</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">処理を施すもとになる画像の ファイル名/パス を指定します。パスは、URLではなく、サーバの相対、または、絶対パスを指定する必要があります。</td>
+<td class="td">R, C, S, W</td>
+</tr>
+
+<tr>
+<td class="td"><strong>dynamic_output</strong></td>
+<td class="td">FALSE</td>
+<td class="td">TRUE/FALSE  (ブール値)</td>
+<td class="td">新しい画像ファイルをディスクに書き込むか、動的に生成するかを決めます。Note: 動的に生成する設定を選んだ場合、画像は一度にひとつだけしか表示できず、ページ上に配置することもできません。単に、イメージヘッダに続いて、画像の生データを動的にブラウザに出力します。</td>
+<td class="td">R, C, X, W</td>
+</tr>
+
+
+<tr>
+<td class="td"><strong>quality</strong></td>
+<td class="td">90%</td>
+<td class="td">1 - 100%</td>
+<td class="td">画質を指定します。画質が高ければ、ファイルサイズも大きくなります。</td>
+<td class="td">R, C, X, W</td>
+</tr>
+
+
+<tr>
+<td class="td"><strong>new_image</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">出力対象の画像ファイル名/パスをセットします。この設定項目は、画像のコピーを作成するときに使います。パスは、URLではなく、サーバの相対、または、絶対パスを指定する必要があります。</td>
+<td class="td">R, C, X, W</td>
+</tr>
+
+<tr>
+<td class="td"><strong>width</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">画像に設定したい幅をセットします。</td>
+<td class="td">R, C</td>
+</tr>
+
+<tr>
+<td class="td"><strong>height</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">画像に設定したい高さをセットします。</td>
+<td class="td">R, C</td>
+</tr>
+
+<tr>
+<td class="td"><strong>create_thumb</strong></td>
+<td class="td">FALSE</td>
+<td class="td">TRUE/FALSE (ブール値)</td>
+<td class="td">画像処理メソッドに、サムネイルを作成するかどうかを設定します。</td>
+<td class="td">R</td>
+</tr>
+
+<tr>
+<td class="td"><strong>thumb_marker</strong></td>
+<td class="td">_thumb</td>
+<td class="td">なし</td>
+<td class="td">サムネイルの識別子を指定します。ここで指定したものが拡張子の直前に挿入されます。mypic.jpg の場合はmypic_thumb.jpg になります。</td>
+<td class="td">R</td>
+</tr>
+
+<tr>
+<td class="td"><strong>maintain_ratio</strong></td>
+<td class="td">TRUE</td>
+<td class="td">TRUE/FALSE (ブール値)</td>
+<td class="td">リサイズされるときや、固定の値を指定したとき、もとの画像のアスペクト比を維持するかどうかを指定します。</td>
+<td class="td">R, C</td>
+</tr>
+
+
+<tr>
+<td class="td"><strong>master_dim</strong></td>
+<td class="td">auto</td>
+<td class="td">auto、width、height</td>
+<td class="td">リサイズするか、またはサムネイルを作成するとき、基準軸としてどれを使用したらよいかを指定します。たとえば、イメージを100X75ピクセルにリサイズしたいとします。元の画像サイズが縦も横も両方ぴったりリサイズできないものであるとき[ 訳注:アスペクト比を固定している場合など ]、この設定により、どの軸を絶対の基準の値として使用すべきかが決まります。"auto" にすると、画像の高さが幅より長いか、あるいはその逆かにより、軸が自動的に決定されます。</td>
+<td class="td">R</td>
+</tr>
+
+
+
+
+<tr>
+<td class="td"><strong>rotation_angle</strong></td>
+<td class="td">なし</td>
+<td class="td">90、180、270、vrt、hor</td>
+<td class="td">画像を回転するときの角度を指定します。PHP では反時計回りに回転するのを注意してください。ですので、右に90度回転させるには、270を指定しなければなりません。</td>
+<td class="td">X</td>
+</tr>
+
+<tr>
+<td class="td"><strong>x_axis</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">切り取る X 座標 をピクセルで指定します。たとえば、30に指定した場合、左から30ピクセルのところで切り取られます。</td>
+<td class="td">C</td>
+</tr>
+<tr>
+<td class="td"><strong>y_axis</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">切り取る Y 座標 をピクセルで指定します。たとえば、30に指定した場合、上から30ピクセルのところで切り取られます。</td>
+<td class="td">C</td>
+</tr>
+</table>
+
+
+
+<h2>設定ファイルによる設定</h2>
+
+<p>上の方法で設定したくない場合は、代わりに設定ファイルに記述することができます。
+単純に、<var>image_lib.php</var> という名前で新しいファイルを作成し、<var>$config</var> という名前の配列をそのファイルに書きます。
+<var>config/image_lib.php</var> にファイルを保存すると、自動的にそれが使用されます。
+設定ファイルに設定を保存した場合は、<dfn>$this->image_lib->initialize</dfn> メソッドを使用してはいけません。</p>
+
+
+<h2>$this->image_lib->resize()</h2>
+
+<p>画像リサイズメソッドを使うと、元の画像をリサイズすることができ、
+（リサイズするかどうかにかかわらず）コピーを作成したり、サムネイルを作成したりできます。</p>
+
+<p>実用的な目的では、サムネイルの場合、名前の一部にサムネイルのマークがつく（たとえば、mypic_thumb.jpg）以外は、
+コピーの作成とサムネイルの作成とに違いはありません。</p>
+
+<p>このメソッドでは、上の表でリストアップした設定項目のうち次の3つを除いてすべてが利用可能です:  rotationa_angle, x_axis, y_axis。</p>
+
+<h3>サムネイルの作成</h3>
+
+<p>次の設定項目を TRUE にすると、リサイズメソッドではサムネイルファイルが作成されます（元画像はそのまま保存されます）:</p>
+
+<code>$config['create_thumb'] = TRUE;</code>
+
+<p>この一つの設定項目で、サムネイルが作成されるかどうかが決まります。</p>
+
+<h3>コピーの作成</h3>
+
+<p>次の設定項目にパスまたは新しいファイル名（あるいはその両方）を指定すると、
+リサイズメソッドでは画像ファイルのコピーが作成されます（元画像はそのまま保存されます）:</p>
+
+<code>$config['new_image'] = '/path/to/new_image.jpg';</code>
+
+<p>この設定項目についての注意事項です:</p>
+<ul>
+<li>新しい画像の名前だけが指定されている場合は、元画像と同じフォルダにコピーが置かれます。</li>
+<li>パスだけが指定されている場合、新しい画像ファイルは、その保存先に、元画像と同じ名前で保存されます。</li>
+<li>パスと画像の名前の両方が指定されている場合は、指定された保存先と名前で画像が保存されます。</li>
+</ul>
+
+
+<h3>元画像のリサイズ</h3>
+
+<p>上で使われている2つの設定項目( create_thumb と new_image )を指定しない場合、
+リサイズメソッドでは代わりに元画像が処理の対象になります。</p>
+
+
+<h2>$this->image_lib->crop()</h2>
+
+<p>切り抜きメソッドは、次のように切り取る場所を指定する X および Y 軸 (ピクセル) を設定する必要があるのを除いて、
+リサイズメソッドと大体同じように動作します:</p>
+
+<code>$config['x_axis'] = '100';<br />
+$config['y_axis'] = '40';</code>
+
+<p>このメソッドでは、上の表でリストアップした設定項目のうち次のものを除いてすべてが利用可能です:  rotation、width、height、create_thumb、new_image。</p>
+
+<p>次は、画像の切り抜きの方法を示したサンプルです:</p>
+
+<code>$config['image_library'] = 'imagemagick';<br />
+$config['library_path'] = '/usr/X11R6/bin/';<br />
+$config['source_image']	= '/path/to/image/mypic.jpg';<br />
+$config['x_axis'] = '100';<br />
+$config['y_axis'] = '60';<br />
+<br />
+$this->image_lib->initialize($config);
+<br />
+<br />
+if ( ! $this->image_lib->crop())<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $this->image_lib->display_errors();<br />
+}</code>
+
+
+<p>Note: ビジュアルインターフェースなしに画像の切り取りをするのは難しいので、
+このメソッドはそういったインターフェースを構築しない場合には、あまり役に立たないかもしれません。
+そのインターフェースとは、ちょうど、私たちが開発した ExpressionEngine のフォトギャラリーモジュールで使われているようなもののことです。
+私たちが追加したのは、切り取る範囲を選択可能な JavaScript の UI でした。</p>
+
+<h2>$this->image_lib->rotate()</h2>
+
+<p>画像回転メソッドは、設定で回転する角度を指定する必要があります:</p>
+
+<code>$config['rotation_angle'] = '90';</code>
+
+<p>回転には5つのオプションがあります:</p>
+
+<ol>
+<li>90 - 反時計回りに90度回転します。</li>
+<li>180 - 反時計回りに180度回転します。</li>
+<li>270 - 反時計回りに270度回転します。</li>
+<li>hor - 水平方向に反転します[訳注:左右を反転します]。</li>
+<li>vrt - 垂直方向に反転します[訳注:上下を反転します]。</li>
+</ol>
+
+<p>下記は、画像を回転させる方法の例です:</p>
+
+<code>$config['image_library'] = 'netpbm';<br />
+$config['library_path'] = '/usr/bin/';<br />
+$config['source_image']	= '/path/to/image/mypic.jpg';<br />
+$config['rotation_angle'] = 'hor';<br />
+<br />
+$this->image_lib->initialize($config);
+<br />
+<br />
+if ( ! $this->image_lib->rotate())<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $this->image_lib->display_errors();<br />
+}</code>
+
+
+
+<h2>$this-&gt;image_lib-&gt;clear()</h2>
+<p>clearメソッドは、画像処理に使われたすべての値をリセットします。ループの中で画像処理をするときに使います。</p>
+<p><code>$this-&gt;image_lib-&gt;clear();</code></p>
+<p>&nbsp;</p>
+<h1>画像の合成</h1>
+
+<p>画像の合成機能は、GD/GD2 ライブラリが必要になります。</p>
+
+
+<h2>2種類の合成</h2>
+
+<p>次の2つのタイプの合成が利用できます:</p>
+
+<ul>
+<li><strong>テキスト</strong>: メッセージの合成は指定した TrueType フォントか、GD ライブラリで組み込みでサポートされている文字のどちらかでテキストをもとに生成されます。
+TrueType を使用する場合、GD のインストール時に、TrueType をサポートするようコンパイルれている必要があります
+（ほとんどはそうなっていますが、すべてそうだとは限りません）。</li>
+
+<li><strong>オーバーレイ</strong>: 画像（たいていは透過 PNG か透過 GIF ）のオーバーレイにより、
+元の画像に合成するイメージを重ねて合成メッセージが生成されます。</li>
+
+</ul>
+
+
+<h2>画像の合成</h2>
+
+<p>他のメソッドのように(リサイズ、切り抜き、および、回転)画像合成の一般的な処理は、
+処理したい内容に応じた設定を指定した後、画像合成メソッドを呼び出して行われます。
+次は、例です:</p>
+
+<code>
+$config['source_image']	= '/path/to/image/mypic.jpg';<br />
+$config['wm_text'] = 'Copyright 2006 - John Doe';<br />
+$config['wm_type'] = 'text';<br />
+$config['wm_font_path'] = './system/fonts/texb.ttf';<br />
+$config['wm_font_size']	= '16';<br />
+$config['wm_font_color'] = 'ffffff';<br />
+$config['wm_vrt_alignment']  = 'bottom';<br />
+$config['wm_hor_alignment']  = 'center';<br />
+$config['wm_padding']  = '20';<br />
+<br />
+$this->image_lib->initialize($config);
+<br />
+<br />
+$this->image_lib->watermark();</code>
+
+
+<p>上の例では、16ピクセルの TrueType フォントを "Copyright 2006 - John Doe" というテキストを作成するのに使用しています。
+合成する画像は、下詰めの中央揃えで、画像の下から20ピクセルのところに配置されます。</p>
+
+<p class="important"><strong>Note:</strong> 画像クラスのどんな処理も利用できるようにするには、画像ファイルに&quot;書き込み&quot;のパーミッションがある必要があります。たとえば、パーミッションを 777 に設定してください。</p>
+
+
+<h2>画像合成の設定</h2>
+
+<p>この表は、両方のタイプの画像合成(テキストまたはオーバレイ)で利用可能な設定項目を示したものです。</p>
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+<tr>
+<th>設定項目</th>
+<th>初期値</th>
+<th>選択肢</th>
+<th>説明</th>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_type</strong></td>
+<td class="td">text</td>
+<td class="td">text、overlay</td>
+<td class="td">画像合成のタイプを指定します。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>source_image</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">画像ファイルの 名前/パス を指定します。パスは、URL ではなくサーバの相対または絶対パスで指定しなければなりません。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>dynamic_output</strong></td>
+<td class="td">FALSE</td>
+<td class="td">TRUE/FALSE (ブール値)</td>
+<td class="td">新しい画像ファイルをディスクに書き込むか、動的に生成するかを決めます。Note: 動的に生成する設定を選んだ場合、画像は一度にひとつだけしか表示できず、ページ上に配置することもできません。単に、イメージヘッダに続いて、画像の生データを動的にブラウザに出力します。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>quality</strong></td>
+<td class="td">90%</td>
+<td class="td">1 - 100%</td>
+<td class="td">画質を指定します。画質が高ければ、ファイルサイズも大きくなります。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>padding</strong></td>
+<td class="td">なし</td>
+<td class="td">数字</td>
+<td class="td">余白の量をピクセルで指定します。余白は、画像の端からどのくらい離れるかを指定できます。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_vrt_alignment</strong></td>
+<td class="td">bottom</td>
+<td class="td">top、middle、bottom</td>
+<td class="td">合成画像の縦方向の整列を指定します。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_hor_alignment</strong></td>
+<td class="td">center</td>
+<td class="td">left、center、 right</td>
+<td class="td">合成画像の横方向の整列を指定します。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_hor_offset</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">合成画像に適用する 水平方向のオフセット(ピクセル) を指定できます。このオフセットは、通常、合成画像を右へずらすものですが、横方向の整列を &quot;右&quot; に設定している場合、左方向に向かってずれます。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_vrt_offset</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">合成画像に適用する 垂直方向のオフセット(ピクセル) を指定できます。このオフセットは、通常、合成画像を下へずらすものですが、縦方向の整列を &quot;下&quot; に設定している場合、上方向に向かってずれます。</td>
+</tr>
+
+</table>
+
+
+
+<h3>テキストの設定</h3>
+<p>この表は、テキストタイプの画像合成で利用可能な設定項目を示したものです。</p>
+
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+<tr>
+<th>設定項目</th>
+<th>初期値</th>
+<th>選択肢</th>
+<th>説明</th>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_text</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">合成画像として表示したいテキストです。著作権の表示がよくあるケースです。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_font_path</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">使用したい TrueType フォントのサーバパスです。この項目を指定しなかった場合、GD の組み込みフォントが使用されます。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_font_size</strong></td>
+<td class="td">16</td>
+<td class="td">なし</td>
+<td class="td">テキストのサイズ。Note:  上の TrueType オプションを使わなかった場合、1-5で番号を指定します。逆に TrueType オプションを使った場合は、使用するフォントにおいて正しいピクセルサイズであればどの値でも使えます。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_font_color</strong></td>
+<td class="td">ffffff</td>
+<td class="td">なし</td>
+<td class="td">フォントの色を16進数で指定します。Note: 16進を、3文字の省略形 (たとえば fff )でなく、6桁 (たとえば 993300)で指定します。</td>
+</tr>
+
+
+<tr>
+<td class="td"><strong>wm_shadow_color</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">フォントのシャドウカラーを16進数で指定します。空にしておくと、ドロップシャドウは使用されません。Note: 16進を、3文字の省略形 (たとえば fff )でなく、6桁 (たとえば 993300)で指定します。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_shadow_distance</strong></td>
+<td class="td">3</td>
+<td class="td">なし</td>
+<td class="td">ドロップシャドウを表示するフォントからの距離 (ピクセル)。</td>
+</tr>
+
+</table>
+
+
+
+
+<h3>オーバーレイの設定</h3>
+<p>この表は、オーバーレイタイプの画像合成で利用可能な設定項目を示したものです。</p>
+
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+<tr>
+<th>設定項目</th>
+<th>初期値</th>
+<th>選択肢</th>
+<th>説明</th>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_overlay_path</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">合成に使用したい画像のサーバパス。オーバーレイで合成する場合のみの必須項目です。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_opacity</strong></td>
+<td class="td">50</td>
+<td class="td">1 - 100</td>
+<td class="td">画像の不透明度。 合成画像の不透明度 (透明度) を指定できます。これにより、合成する画像は、薄くなって、背後にある元の画像の詳細を完全には隠しません。50% の不透明度が典型的です。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_x_transp</strong></td>
+<td class="td">4</td>
+<td class="td">数字</td>
+<td class="td">PNG または GIF 画像が合成する画像の場合、イメージの "透過"する色を指定できます。下記の設定項目と同時に使用すると、この設定で、色を指定できます。透明にしたい色が表されている画素をイメージ上での(左上から測られる)  "X" および "Y" ピクセル座標の位置を指定することで動作します。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>wm_y_transp</strong></td>
+<td class="td">4</td>
+<td class="td">数字</td>
+<td class="td">上の設定項目と同時に使用します。この設定項目で、透明にしたい色の画素がある座標を指定します。</td>
+</tr>
+</table>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="table.html">HTML テーブルクラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="input.html">入力クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

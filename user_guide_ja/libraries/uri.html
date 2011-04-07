@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>URI クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+URI クラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>URI クラス</h1>
+
+<p>URI クラスは、URI文字列から情報を取り出すのに役立つメソッドを提供しています。
+また、URI ルーティングを利用している場合、再ルーティングされたあとのセグメントについての情報を取り出すことができます。</p>
+
+<p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
+
+<h2>$this->uri->segment(<var>n</var>)</h2>
+
+<p>特定のセグメントを取り出すことができます。ここでの <var>n</var> は取り出したいセグメント番号になります。
+セグメントは左から順に番号がつけられています。たとえば、完全なURLが次のようなものだった場合:</p>
+
+<code>http://example.com/index.php/news/local/metro/crime_is_up</code>
+
+<p>セグメント番号は次のようになります:</p>
+
+<ol>
+<li>news</li>
+<li>local</li>
+<li>metro</li>
+<li>crime_is_up</li>
+</ol>
+
+<p>このメソッドは、初期状態では、セグメントが存在しない場合にFALSE (ブール値) を返します。
+第2引数はオプションで、セグメントが存在しなかった場合のデフォルト値をセットすることができます。
+たとえば、以下では、失敗したときに0を返すよう、このメソッドに通知しています:</p>
+
+<code>$product_id = $this->uri->segment(3, 0);</code>
+
+<p>このようにすれば、次のようなコードを書かなくて済みます:</p>
+
+<code>if ($this->uri->segment(3) === FALSE)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$product_id = 0;<br />
+}<br />
+else<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$product_id = $this->uri->segment(3);<br />
+}<br />
+</code>
+
+<h2>$this->uri->rsegment(<var>n</var>)</h2>
+
+<p>このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
+機能を使っている場合にできる再ルートされた後のURIの特定のセグメントを取得することを除いて、先のメソッドと同じものです。</p>
+
+
+<h2>$this->uri->slash_segment(<var>n</var>)</h2>
+
+<p>このメソッドはまた、第2引数で指定した方法に従って、セグメントの末尾/先頭にスラッシュを追加すること以外は、
+<dfn>$this->uri->segment()</dfn> メソッドと同じものです。第2引数が指定されなかった場合、末尾にスラッシュを付加します。例:</p>
+
+<code>$this->uri->slash_segment(<var>3</var>);<br />
+$this->uri->slash_segment(<var>3</var>, 'leading');<br />
+$this->uri->slash_segment(<var>3</var>, 'both');</code>
+
+<p>それぞれ次の値を返します:</p>
+
+<ol>
+<li>segment/</li>
+<li>/segment</li>
+<li>/segment/</li>
+</ol>
+
+
+<h2>$this->uri->slash_rsegment(<var>n</var>)</h2>
+
+<p>このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
+機能を使っている場合にできる再ルートされた後のURIの特定のセグメントにスラッシュを追加することを除いて、先のメソッドと同じものです。</p>
+
+
+
+<h2>$this->uri->uri_to_assoc(<var>n</var>)</h2>
+
+<p>このメソッドは、URIセグメントを キー/値 ペアの連想配列に変換します。次のようなURIがあるとします:</p>
+
+<code>index.php/user/search/name/joe/location/UK/gender/male</code>
+
+<p>このメソッドを使うと、次の例のように、URIが連想配列に変換されます:</p>
+
+<code>[array]<br />
+(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'joe'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'location'	=> 'UK'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'gender'	=> 'male'<br />
+)</code>
+
+<p>メソッドの第1引数で、オフセットを設定できます。通常は第1、第2セグメントは、コントローラ/メソッドになっているので、
+デフォルトでは <kbd>3</kbd> に設定されています。例:</p>
+
+<code>
+$array = $this->uri->uri_to_assoc(3);<br />
+<br />
+echo $array['name'];
+</code>
+
+
+<p>第2引数では、デフォルトのキー名をセットできます。こうすることで、URIに存在しない場合でも、返される配列には、常に期待される添字が含まれることになります。例:</p>
+
+<code>
+$default = array('name', 'gender', 'location', 'type', 'sort');<br />
+<br />
+$array = $this->uri->uri_to_assoc(3, $default);</code>
+
+<p>もともとURIに値が含まれない場合、配列の添字はその名前にセットされ、値には、FALSEがセットされます。</p>
+
+<p>最後に、キーが指定されているにもかかわらず、対応する値が見つからなかった場合 (URIセグメント数が奇数だった場合)、値はFALSE (ブール値) にセットされます。</p>
+
+
+<h2>$this->uri->ruri_to_assoc(<var>n</var>)</h2>
+
+<p>このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
+機能を使っている場合にできる再ルートされた後のURIを使って連想配列に変換することを除いて、先のメソッドと同じものです。</p>
+
+
+<h2>$this->uri->assoc_to_uri()</h2>
+
+<p>連想配列を入力とし、URI文字列をそこから生成します。配列のキーがURL文字列に含まれます。例:</p>
+
+<code>$array = array('product' => 'shoes', 'size' => 'large', 'color' => 'red');<br />
+<br />
+$str = $this->uri->assoc_to_uri($array);<br />
+<br />
+// 次の文字列を生成します:  product/shoes/size/large/color/red
+</code>
+
+
+<h2>$this->uri->uri_string()</h2>
+
+<p>完全なURIをもとにして、URL文字列を返します。たとえば、次のような完全URLだった場合:</p>
+
+<code>http://example.com/index.php/news/local/345</code>
+
+<p>このメソッドは次の文字列を返します:</p>
+
+<code>/news/local/345</code>
+
+
+<h2>$this->uri->ruri_string()</h2>
+
+<p> このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
+機能を使っている場合にできる再ルートされた後のURIを返すことを除いて、先のメソッドと同じものです。</p>
+
+
+
+<h2>$this->uri->total_segments()</h2>
+
+<p>合計のセグメント数を返します。</p>
+
+
+<h2>$this->uri->total_rsegments()</h2>
+
+<p>このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
+機能を使っている場合にできる再ルートされた後のURIのセグメント総数を返すことを除いて、先のメソッドと同じものです。</p>
+
+
+
+<h2>$this->uri->segment_array()</h2>
+
+<p>URIセグメントからなる配列を返します。例:</p>
+
+<code>
+$segs = $this->uri->segment_array();<br />
+<br />
+foreach ($segs as $segment)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $segment;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo '&lt;br />';<br />
+}</code>
+
+<h2>$this->uri->rsegment_array()</h2>
+
+<p> このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
+機能を使っている場合にできる再ルートされた後のURIセグメントからなる配列を返すことを除いて、先のメソッドと同じものです。</p>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="unit_testing.html">ユニットテストクラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="user_agent.html">ユーザエージェントクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

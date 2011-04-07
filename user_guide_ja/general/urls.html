@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CodeIgniter の URL : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+URL
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>CodeIgniter の URL</h1>
+
+<p>CodeIgniter のデフォルトの URL は、検索エンジンにも人間にもわかりやすいように設計されています。
+動的システムの代名詞といえる一般的な"クエリ文字列"アプローチを採用する代わりに、CodeIgniter では次のような <strong>セグメントベースアプローチ</strong>を採用しています:</p>
+
+<code>example.com/<var>news</var>/<dfn>article</dfn>/<samp>my_article</samp></code>
+
+<p class="important"><strong>Note:</strong> 後述するように、クエリ文字列をURLで使用することもできます。</p>
+
+<h2>URI セグメント</h2>
+
+<p>Model-View-Controller アプローチに従うと、URL の中では、セグメントは大抵次のように表現されます:</p>
+
+<code>example.com/<var>class</var>/<dfn>function</dfn>/<samp>ID</samp></code>
+
+<ol>
+<li>最初のセグメントは呼び出すべきコントローラ<strong>クラス</strong> をあらわします。</li>
+<li>2番目のセグメントは、クラスの呼び出されるべき<strong>関数</strong>またはメソッドをあらわします。</li>
+<li>３番目以降のセグメントは、コントローラに渡される ID などの値をあらわします。</li>
+</ol>
+
+<p><a href="../libraries/uri.html">URI クラス</a> と <a href="../helpers/url_helper.html">URL ヘルパ</a>
+には URI データを簡単に扱うためのメソッドが用意されています。
+さらに、<a href="routing.html">URI ルーティング</a> 機能を用いれば、より柔軟に URL を再マッピングすることができます。</p>
+
+
+
+<h2>index.php ファイルをURLから除去する</h2>
+
+<p>初期状態では、<strong>index.php</strong> ファイルが URL の中に含まれる格好になっています:</p>
+
+<code>example.com/<var>index.php</var>/news/article/my_article</code>
+
+<p>単純なルールを記述した .htaccess ファイルを使えば、簡単にこれを取り除くことができます。
+特定の項目を除くすべてがリダイレクトされるという、「除外」ルールを用いた方法を使ったファイルの例です:</p>
+
+<code>RewriteEngine on<br />
+RewriteCond $1 !^(index\.php|images|robots\.txt)<br />
+RewriteRule ^(.*)$ /index.php/$1 [L]</code>
+
+<p>上の例では、index.php、images、および robots.txt 以外のあらゆる HTTP リクエストは、
+index.php ファイルへのリクエストとして取り扱われます。</p>
+
+
+<h2>URL サフィックス（接尾辞）の追加</h2>
+
+<p><dfn>config/config.php</dfn> ファイルの中で、CodeIgniter で生成されるすべての URL に付加されるサフィックス（接尾辞）を指定することができます。
+たとえば、URL が次のようなものだったとき:</p>
+
+<code>example.com/index.php/products/view/shoes</code>
+
+<p>ページを何かの種類に見せかけるために、オプションで <kbd>.html</kbd> などのサフィックスを追加することができます:</p>
+
+<code>example.com/index.php/products/view/shoes.html</code>
+
+
+<h2>クエリ文字列の有効化</h2>
+
+<p>URL に次のようなクエリ文字列を使用したい場面もあると思います:</p>
+
+<code>index.php?c=products&amp;m=view&amp;id=345</code>
+
+<p>CodeIgniter ではオプションでこのようなことにも対応しています。
+この機能は、<dfn>application/config.php</dfn> ファイルで有効にすることができます。設定ファイルを開くと次のような項目があると思います:</p>
+
+<code>$config['enable_query_strings'] = FALSE;<br />
+$config['controller_trigger'] = 'c';<br />
+$config['function_trigger'] = 'm';</code>
+
+<p>"enable_query_strings" を TRUE に変更すると、この機能が有効になります。
+次の例のように、コントローラとメソッドを呼び出すために "トリガ（trigger）"に指定した語句[ 訳注：この例では、「c」と「m」。上の設定の $config['controller_trigger'] などのところで指定している語句 ]を使ってコントローラとメソッドにアクセスします:</p>
+
+<code>index.php?c=controller&amp;m=method</code>
+
+<p class="important"><strong>Please note:</strong> クエリ文字列を使用している場合は、
+セグメントベースの URL で機能するように設計されている URL ヘルパ（それと、Form ヘルパなどの URL を生成するヘルパ）で便利に利用できる機能が使えないので、
+かわりに URL を自分で組み立てる必要があります。</p>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="controllers.html">コントローラー</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

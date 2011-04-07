@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ヘルパ関数 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ヘルパ関数
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>ヘルパ関数</h1>
+
+<p>ヘルパは、その名前のとおり、タスクの実行に役立つものです。各ヘルパのファイルは、特定分野についての関数のコレクションです。
+リンクを作成するのを支援する <dfn>URL ヘルパ</dfn>、フォームの要素を作成するのに役立つ <dfn>Form ヘルパ</dfn>、
+様々なテキスト整形処理を行う <dfn>Text ヘルパ</dfn>、
+クッキーを読み書きする <dfn>Cookie ヘルパ</dfn>、ファイルを取り扱うのに役立つ <dfn>File ヘルパ</dfn> などがあります。
+</p>
+
+<p>CodeIgniter の中の大部分のシステムとは違い、ヘルパはオブジェクト指向の形式で書かれていません。シンプルな手続き型の関数です。
+各ヘルパ関数は、他の関数に依存することなく、特定のひとつのタスクを行います。</p>
+
+<p>CodeIgniter はデフォルトでは、ヘルパを読み込みません。ヘルパを利用する最初のステップは、
+それを読み込むことです。一旦読み込まれると、 <a href="../general/controllers.html">コントローラ </a>と <a href="../general/views.html">ビュー </a>の中でどこでも利用できます。</p>
+
+<p>ヘルパは通常は、 <dfn>system/helpers</dfn> ディレクトリまたは、<dfn>application/helpers</dfn> に格納されています。CodeIgniter は <dfn>application/helpers</dfn>
+ディレクトリを最初に認識します。このディレクトリが存在しない時や、読み込もうとするヘルパがこのディレクトリの中にない場合、CodeIgniter は代わりにグローバルな 
+<dfn>system/helpers</dfn> フォルダを探します。</p>
+
+
+<h2>ヘルパの読み込み</h2>
+
+<p>ヘルパファイルを読み込むのは、次のようなメソッドを使う、非常に単純なものです:</p>
+
+<code>$this->load->helper('<var>name</var>');</code>
+
+<p>ここでの <var>name</var> は、ヘルパの名前になります。 .php ファイルの拡張子やファイル名についている"helper" をあらわす部分 [ 訳注:ヘルパの物理ファイル名の末尾には「_helper」というサフィックスがついています ] は不要です。</p>
+
+<p>たとえば、<var>url_helper.php</var> というファイル名の <dfn>URL ヘルパ</dfn> のファイルを読み込むには、次のようにします:</p>
+
+<code>$this->load->helper('<var>url</var>');</code>
+
+<p>ヘルパは、利用する前にロードしさえすれば、コントローラのメソッドの中の(良いやり方ではありませんが、
+あるいはビューファイルの）どこでロードしてもかまいません。コントローラのコンストラクタでロードすれば、
+どのメソッドでも利用できるようになりますし、特定のメソッド内で必要な時だけ読み込むこともできます。</p>
+
+<p class="important">Note: ヘルパの読み込みメソッドは、値を返さないので、変数に返り値を代入しようとしないでください。例示したように使用するにとどめてください。</p>
+
+
+<h2>複数のヘルパを読み込む</h2>
+
+<p>一つ以上のヘルパを読み込む必要がある場合は、次のように、配列の中で指定することができます:</p>
+
+<code>$this->load->helper( <samp>array(</samp>'<var>helper1</var>', '<var>helper2</var>', '<var>helper3</var>'<samp>)</samp> );</code>
+
+<h2>ヘルパの自動読み込み</h2>
+
+<p>あるヘルパがアプリケーションでグローバルに必要とされることがわかった時には、システムを初期化するときに自動読み込みするよう、CodeIgniter に対して通知しておくことができます。
+<var>application/config/autoload.php</var> ファイルを開き、そこにある配列の autoload にヘルパを追加することで、そうすることが可能です。</p>
+
+
+<h2>ヘルパの使用</h2>
+
+<p>使いたい関数が含まれるヘルパファイルをまず読み込んだ後、通常の PHP の関数を利用するように呼び出します。</p>
+
+<p>たとえば、ビューのファイルで <dfn>anchor()</dfn> 関数を使ってリンクを生成するには、次のようにします:</p>
+
+<code>&lt;?php　echo anchor('blog/comments', 'ここをクリック');?&gt;</code>
+
+<p>ここでの "ここをクリック" はリンクの名前になり、"blog/comments" は、リンク先のコントローラ/メソッドの URI になります。</p>
+
+<h2>ヘルパ の "拡張"</h2>
+
+<p>ヘルパを "拡張" するには、<kbd>MY_</kbd> (この項目は、変更可能です。下記をご覧ください。) とプリフィックスを付加し、それ以外は既存のヘルパと全く同じ名前をつけて、<dfn>application/helpers/</dfn> フォルダにファイルを作成してください。</p>
+
+<p>既存のヘルパにいくつかの機能を追加する - 恐らくひとつかふたつの関数を追加するか、特定のヘルパ関数が
+	どのように動作するかを変更する - だけだとすると、ヘルパ全体をユーザバージョンに置き換えてしまうのは、やり過ぎです。こういう場合には、ヘルパを単に
+	"拡張"する方がベターです。ヘルパ関数は、手続き型で、それぞれ独立しており、
+	通例のプログラミング上の意味では、拡張（継承）できません。ですので、ここでの"拡張"という言葉は、広い意味で使っています。  
+	こういった意味で、ヘルパが提供する関数を追加したり、もともとのヘルパ関数がどのように動作するかを変更することができます。</p>
+
+<p>たとえば、もともとの <kbd>Array Helper</kbd> を拡張するには、<dfn>application/helpers/</dfn><kbd>MY_array_helper.php</kbd> という名前のファイルを作成し、関数を追加または上書き（オーバーライド）します:</p>
+
+<code>
+// any_in_array() は、Array Helperの中にはありません。つまり、新しい関数を定義しています。<br />
+function any_in_array($needle, $haystack)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$needle = (is_array($needle)) ? $needle : array($needle);<br />
+	<br />
+&nbsp;&nbsp;&nbsp;&nbsp;foreach ($needle as $item)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (in_array($item, $haystack))<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return TRUE;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+	<br />
+&nbsp;&nbsp;&nbsp;&nbsp;return FALSE;<br />
+}<br />
+<br />
+// random_element() は、Array Helper に含まれています。つまり、もともとの関数を上書き（オーバーライド）しています<br />
+function random_element($array)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;shuffle($array);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;return array_pop($array);<br />
+}<br />
+</code>
+
+<h3>独自のプリフィックスの設定</h3>
+
+<p>ヘルパを "拡張する" ためのファイル名のプリフィックスは、ライブラリやコアクラスを拡張するときに使用するものと同じになります。独自のプリフィックスをセットするには、<dfn>application/config/config.php</dfn> ファイルを開き、次の項目を探してください:</p>
+
+<code>$config['subclass_prefix'] = 'MY_';</code>
+
+<p>CodeIgniter に組み込みの全ライブラリは、 <kbd>CI_</kbd> というプリフィックスがつけられているので、これをユーザ指定のプリフィックスとして使用してはいけないという事を覚えておいてください。</p>
+
+
+<h2>この後は、何をすればよいですか?</h2>
+
+<p>目次の中に、利用可能な全ヘルパファイルのリストが書いてあるのがわかると思います。それぞれを閲覧して、何をするものなのかを見てみてください。</p>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="models.html">モデル</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="libraries.html">ライブラリの使用</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>クエリ : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+クエリ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>クエリ</h1>
+
+<h2>$this->db->query();</h2>
+
+<p>クエリを実行するには、次のメソッドを使います:</p>
+
+<code>$this->db->query('ここにクエリを記述');</code>
+
+<p><dfn>query()</dfn> メソッドは、「読み取り」タイプのクエリが実行されたときには、
+<a href="results.html">結果を表示する</a>ために使用するデータベースの結果<strong>オブジェクト</strong>を返します。
+「書き込み」タイプの問い合わせを実行したときには、単純にクエリが成功したかどうかによって TRUE か FALSE が返ります。データを取得するときには、通常は query メソッドの結果を受け取る変数を次のように用意します:</p>
+
+<code><var>$query</var> = $this->db->query('ここにクエリを記述');</code>
+
+<h2>$this->db->simple_query();</h2>
+
+<p>これは、<dfn>$this->db->query()</dfn> メソッドが単純化されたものです。成功か失敗かを TRUE/FALSE で返します。
+結果セットは「返しません」。クエリ時間の計測や、データのバインディングをコンパイルしたり、デバッグ用にクエリを保存することもありません。
+これを使うと、クエリの単純な送信ができます。ほとんどのユーザは、このメソッドをまれにしか使用しないでしょう。</p>
+
+
+<h1>データベースプリフィックス(接頭辞)の手動追加</h1>
+<p>データベースプリフィックス(接頭辞)が設定済みの場合で、手動でプリフィックスを追加したいときは、以下のようにします。</p>
+<p><code>$this-&gt;db-&gt;dbprefix('tablename');<br />
+// 出力: prefix_tablename</code></p>
+
+
+<h1>識別子の保護</h1>
+<p>多くのデータベースでは、テーブル名やフィールド名を保護すること - たとえば MySQL では、バッククォート（バックチック）を使います - が推奨されます。<strong>Active Record のクエリは自動的に保護されます</strong>が、識別子を手動で保護する必要がある場合は、次を利用できます [訳注：識別子（テーブル名や列名など）が予約語の場合や、特殊文字が含まれる場合、たとえば MySQL では、バッククォート「`」でそれらを囲む必要があります。こういった場合にこのメソッドを利用できます。]:</p>
+<p><code>$this-&gt;db-&gt;protect_identifiers('table_name');</code></p>
+
+<p>このメソッドは、データベース設定ファイルで指定したデータベースプリフィックス(接頭辞)をテーブル名に追加できます。これを利用するには、第2引数に <kbd>TRUE</kbd> (ブール値)を指定します:</p>
+<p><code>$this-&gt;db-&gt;protect_identifiers('table_name', <kbd>TRUE</kbd>);</code></p>
+
+
+<h1>クエリのエスケープ処理</h1>
+<p>データベースにデータを送信する前にデータをエスケープ処理するのは、大変優れたセキュリティ上のプラクティスです。
+CodeIgniter には、これを支援するメソッドが3つあります:</p>
+
+<ol>
+<li><strong>$this->db->escape()</strong> このメソッドは、データの型を決定し、
+文字列データだけをエスケープ処理します。また、自動でデータをシングルクォーテーションで囲むので、自分でそれをしないでください:
+
+<code>$sql = "INSERT INTO table (title) VALUES(".$this->db->escape($title).")";</code></li>
+
+<li><strong>$this->db->escape_str()</strong>  このメソッドは、型を無視して渡されたデータをエスケープします。
+ほとんどの場合はこれを使わず、上のメソッドを利用することになると思います。このメソッドは、次のように使用します:
+
+<code>$sql = "INSERT INTO table (title) VALUES('".$this->db->escape_str($title)."')";</code></li>
+
+<li><strong>$this->db->escape_like_str()</strong> 文字列の中の LIKE 句で使用されるワイルドカード('%', '_')についても適切にエスケープされるように、
+文字列が LIKE 条件で使用されるときには、このメソッドを使用するべきです。
+
+<code>$search = '20% raise';<br />
+$sql = "SELECT id FROM table WHERE column LIKE '%".$this->db->escape_like_str($search)."%'";</code></li>
+
+</ol>
+
+
+<h1>クエリのバインディング</h1>
+
+
+<p>バインディングを使うと、システムにクエリを組み立てさせることで、クエリの構文を単純化することができます。次のような例があげられます:</p>
+
+<code>
+$sql = "SELECT * FROM some_table WHERE id = <var>?</var> AND status = <var>?</var> AND author = <var>?</var>";
+<br /><br />
+$this->db->query($sql, array(3, 'live', 'Rick'));
+</code>
+
+<p>クエリの中のクエスチョンマークは、query メソッドの第2引数で指定した配列のデータに自動的に置き換わります。</p>
+<p class="important">バインディングを利用する第2の利点は、値が自動的にエスケープされ、安全なクエリが生成されるということです。手動をデータをエスケープするのを気に留める必要がなく、あなたに代わってエンジンが自動でそれを行ってくれます。</p>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="connecting.html">データベースへの接続</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="results.html">クエリ結果</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

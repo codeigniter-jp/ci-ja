@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ドライバの使用 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ドライバの使用
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>ドライバの使用</h1>
+
+
+<p>ドライバは1つの親クラスといくらでも子クラスを持てる特別な種類のライブラリです。子クラスは親クラスにアクセスできますが、他の子クラスにはアクセスできません。ドライバは別々のクラスに分割される必要があったり、そうすることで恩恵を受けるライブラリのための <a href="controllers.html">コントローラ</a> にエレガントな構文を提供します</p>
+
+<p>ドライバは <dfn>system/libraries</dfn> フォルダに配置し、各々のフォルダ名は親ライブラリクラスの名前と同一にします。フォルダの中には <kbd>drivers</kbd> という名前のサブフォルダを置き、すべての子クラスのファイルをその中に配置します。</p>
+
+<p>ドライバを使用するためには、以下の初期化メソッドを使い、コントローラの中で初期化します:</p>
+
+<code>$this->load->driver('<var>class name</var>'); </code>
+
+<p>ここで <var>class name</var> は、呼び出したいドライバクラスの名前です。たとえば、"Some Parent" という名前のドライバをロードするには、以下のようにします:</p>
+
+<code>$this->load->driver('<var>some_parent</var>');</code>
+
+<p>そのクラスのメソッドは以下のように呼び出します:</p>
+
+<code>$this->some_parent->some_method();</code>
+
+<p>子クラス、ドライバそれ自身は、初期化せずに親クラスを通して直接呼び出すことができます:</p>
+
+<code>$this->some_parent->child_one->some_method();<br />
+$this->some_parent->child_two->another_method();</code>
+
+<h2>ドライバの作成</h2>
+
+<p>ユーザガイドの<a href="creating_drivers.html">ドライバを作成する</a>をお読みください。</p>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="creating_libraries.html">ライブラリの作成</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="creating_drivers.html">ドライバの作成</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

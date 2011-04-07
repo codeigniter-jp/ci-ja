@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>出力クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+出力クラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>出力クラス</h1>
+
+<p>出力クラスはリクエストを発信したブラウザに処理済みの web ページを送信するという一つの主要機能をもった小さなクラスです。また、このクラスは、
+キャッシュ機能を利用する場合にページを<a href="../general/caching.html">キャッシュ</a>する責任も持っています。</p>
+
+<p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
+
+<p>出力クラスは、ユーザの介入なしに隠れて動作するので、通常の環境では、出力クラスを意識することはありません。
+たとえばビューファイルを読み込むために<a href="../libraries/loader.html">ローダ（読み込み処理）</a>クラスを使用した場合、
+ビューファイルは出力クラスに自動的に渡され、CodeIgniter のシステムによって実行の最後で呼ばれます。
+しかし、必要があれば、次のいずれかのメソッドを使って、手動で出力に介入することもできます:</p>
+
+<h2>$this->output->set_output();</h2>
+
+<p>最終出力の文字列を手動でセットできます。使用例:</p>
+
+<code>$this->output->set_output($data);</code>
+
+<p><strong>Important:</strong> 手動で出力をセットしたとき、呼ばれているメソッドの処理がそこで終わります。
+たとえば、コントローラのメソッドの中で、ページを構築した場合、処理の最後になるまで、出力をセットしてはいけません。</p>
+
+
+<h2>$this->output->set_content_type();</h2>
+
+<p>JSON データや JPEG データ、XML などを簡単に提供できるように、ページの MIME タイプを設定できます。</p>
+
+<code>$this->output<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('application/json')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;->set_output(json_encode(array('foo' => 'bar')));<br/>
+<br/>
+$this->output<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('jpeg') // ".jpeg" とすることもでき、その場合、ピリオドは config/mimes.php を検索する前に削除されます<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;->set_output(file_get_contents('files/something.jpg'));</code>
+
+<p><strong>重要:</strong> config.mimes.php に存在する MIME タイプをこのメソッドに渡していることを確認してください。そうでないと、効果はありません。</p>
+
+
+<h2>$this->output->get_output();</h2>
+
+<p>出力クラスに保存するために送られた出力を手動で読み取ることができます。使用例:</p>
+<code>$string = $this->output->get_output();</code>
+
+<p><var>$this->load->view()</var> などの CodeIgniter の機能を使って、すでに出力クラスに送られたデータの場合、このメソッドを使ってのみ、
+そのデータを取得できるということに注意しておいてください。</p>
+
+
+<h2>$this->output->append_output();</h2> 
+
+<p>出力文字列にデータを追加する。使用例:</p>
+
+<code>$this->output->append_output($data);</code> 
+
+
+
+<h2>$this->output->set_header();</h2>
+
+<p>最終レンダリングされた表示を出力クラスが出力する際に、サーバが返すHTTPレスポンスのヘッダを手動でセットできます。例:</p>
+
+<code>
+$this->output->set_header("HTTP/1.0 200 OK");<br />
+$this->output->set_header("HTTP/1.1 200 OK");<br />
+$this->output->set_header('Last-Modified: '.gmdate('D, d M Y H:i:s', $last_update).' GMT');<br />
+$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");<br />
+$this->output->set_header("Cache-Control: post-check=0, pre-check=0");<br />
+$this->output->set_header("Pragma: no-cache");	</code>
+
+
+<h2>$this->output->set_status_header(<var>code</var>, '<var>text</var>');</h2>
+
+<p>サーバが返すHTTPレスポンスヘッダのステータスを手動でセットできます。例:</p>
+
+<code>$this->output->set_status_header('401');<br />
+// ヘッダは Unauthorized に設定されます</code>
+
+<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">全てのHTTPレスポンスヘッダの一覧</a>をご覧ください。</p>
+
+<h2>$this->output->enable_profiler();</h2>
+
+<p>デバッグあるいは最適化のためにベンチマークなどのデータをページの末尾に表示する
+<a href="../general/profiling.html">プロファイラ</a>を有効/無効にします。</p>
+
+<p>プロファイラを有効にするには、<a href="../general/controllers.html">コントローラ</a> のメソッド内のいずれかの場所に、次のメソッドを設置してください:</p>
+<code>$this->output->enable_profiler(TRUE);</code>
+
+<p>有効化されると、レポートが生成され、ページの最下部に挿入されます。</p>
+
+<p>プロファイラを無効にするには、次のコードを使います:</p>
+<code>$this->output->enable_profiler(FALSE);</code>
+
+<h2>$this->output->set_profiler_sections();</h2> 
+
+<p>プロファイラが有効な場合に各セクションの有効／無効を指定することができます。より詳しい情報は <a href="../general/profiling.html">プロファイラ</a> をご覧下さい。</p>
+
+<h2>$this->output->cache()</h2>
+<p>CodeIgniterの出力クラスはキャッシュ操作も可能です。より詳しい情報は、<a href="../general/caching.html">Webページのキャッシュ</a>をご覧下さい。</p>
+
+<h2>実行変数の解析</h2> 
+
+	<p>初期状態において CodeIgniter は出力中に擬似変数 <var>{elapsed_time}</var> と <var>{memory_usage}</var> を解析します。これを無効にするには、コントローラー内でクラスプロパティの <var>$parse_exec_vars</var> を <var>FALSE</var> に設定します。</p>
+
+	<code>$this->output->parse_exec_vars = FALSE;</code> 
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="language.html">言語クラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="pagination.html">ページネーションクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

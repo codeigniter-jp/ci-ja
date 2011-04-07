@@ -1,0 +1,1246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>フォーム・バリデーション(検証) : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+フォーム・バリデーション(検証)
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>フォーム・バリデーション(検証)</h1>
+
+<p>CodeIgniter は、最小限のコードで総合的なフォームバリデーションとデータの準備をするクラスを提供します。</p>
+
+<ul>
+<li><a href="#overview">概要</a></li>
+<li><a href="#tutorial">フォーム・バリデーション(検証)チュートリアル</a>
+
+	<ul>
+		<li><a href="#theform">入力フォーム</a></li>
+		<li><a href="#thesuccesspage">成功ページ</a></li>
+		<li><a href="#thecontroller">コントローラ</a></li>
+		<li><a href="#validationrules">検証ルールを設定する</a></li>
+		<li><a href="#validationrulesasarray">配列を使って検証ルールを設定する</a></li>
+		<li><a href="#cascadingrules">ルールの連結（カスケード）</a></li>
+		<li><a href="#preppingdata">データの整形</a></li>
+		<li><a href="#repopulatingform">フォームの再表示</a></li>
+		<li><a href="#callbacks">コールバック</a></li>
+		<li><a href="#settingerrors">エラーメッセージを設定する</a></li>
+		<li><a href="#errordelimiters">エラーメッセージを囲む文字の変更</a></li>
+		<li><a href="#translatingfn">フィールド名の変換</a></li>
+		<li><a href="#individualerrors">個別にエラーを表示する</a></li>
+		<li><a href="#savingtoconfig">検証ルールを設定ファイルに保存</a></li>
+		<li><a href="#arraysasfields">フィールド名の指定に配列を使う</a></li>
+	</ul>
+</li>
+<li><a href="#rulereference">ルールリファレンス</a></li>
+<li><a href="#preppingreference">整形処理のリファレンス</a></li>
+<li><a href="#functionreference">関数リファレンス</a></li>
+<li><a href="#helperreference">ヘルパー関数リファレンス</a></li>
+
+</ul>
+
+
+
+
+
+
+<p>&nbsp;</p>
+
+<a name="overview"></a>
+<h1>概観</h1>
+
+
+<p>CodeIgniter のデータ検証アプローチの説明をする前に、想定するシナリオについて述べておきます:</p>
+
+<ol>
+<li>フォームが表示されます。</li>
+<li>入力して送信します。</li>
+<li>間違ったデータが送信された場合、あるいは、必要項目が入力されていない場合、それらの問題についてのエラーメッセージを、
+入力したデータと一緒にフォームで再表示します。</li>
+<li>送信データが正しい形式になるまで、上記の処理を繰り返します。</li>
+</ol>
+
+<p>最後にデータを受け取るところで、そのスクリプトでは次のようなことが必要になります:</p>
+
+<ol>
+<li>必須入力のデータをチェックする。</li>
+<li>データが正しいデータ型か、また、データが条件に合致するかをチェックする。たとえば、ユーザ名が送信された場合、許可した文字だけになっているかを検証する必要があります。
+また、最小文字数以上で、最大文字数以下になっているかの検証もします。
+ユーザ名は、すでに存在しているユーザ名と同じでなく、予約語と同じであってはならない。など</li>
+<li>セキュリティのためにデータをサニタイズする。</li>
+<li>必要であれば、前もってデータをフォーマットします (前後のスペースをとる？  HTML にするか?  など)</li>
+<li>データベースに追加するため、データを準備します。</li>
+</ol>
+
+
+<p>上で挙げたプロセスには何ら複雑なものはありませんが、たいてい大量のコードが必要になり、
+エラーメッセージを表示させるために、フォーム HTML の中に、さまざまな制御構造が書かれることになります。
+フォームの検証は、難しくなくつくれますが、実装するのはいつも面倒で退屈です。</p>
+
+<p>&nbsp;</p>
+
+
+<a name="tutorial"></a>
+<h1>フォーム・バリデーション(検証)チュートリアル</h1>
+
+<p>以下は CodeIgniter のフォームバリデーションを実装する"ハンズオン"チュートリアルです。</p>
+
+
+<p>フォームバリデーション(検証)を実装するには、次の3つが必要になります:</p>
+
+<ol>
+<li>フォームを設置した<a href="../general/views.html">ビュー</a>ファイルを用意します。</li>
+<li>送信が成功したときに、&quot;成功&quot; メッセージを表示する ビューファイルを用意します。</li>
+<li><a href="../general/controllers.html">コントローラ</a>内のメソッドをデータを受け取れるようにし、送信されたデータを処理できるようにします。</li>
+</ol>
+
+<p>例としてメンバー登録フォームを使って、これら3つを作成してみましょう。</p>
+
+
+
+<a name="theform"></a>
+
+<h2>入力フォーム</h2>
+
+<p>テキストエディタを使って、<dfn>myform.php</dfn> という名前のフォームを作ってください。
+その中に、次のコードを書いて <samp>applications/views/</samp> フォルダの中に保存します:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="30">&lt;html>
+&lt;head>
+&lt;title>マイフォーム&lt;/title>
+&lt;/head>
+&lt;body>
+
+&lt;?php echo validation_errors(); ?>
+
+&lt;?php echo form_open('form'); ?>
+
+&lt;h5>ユーザ名&lt;/h5>
+&lt;input type="text" name="username" value="" size="50" />
+
+&lt;h5>パスワード&lt;/h5>
+&lt;input type="text" name="password" value="" size="50" />
+
+&lt;h5>パスワードの確認&lt;/h5>
+&lt;input type="text" name="passconf" value="" size="50" />
+
+&lt;h5>メールアドレス&lt;/h5>
+&lt;input type="text" name="email" value="" size="50" />
+
+&lt;div>&lt;input type="submit" value="送信" />&lt;/div>
+
+&lt;/form>
+
+&lt;/body>
+&lt;/html>
+</textarea>
+
+
+
+
+<a name="thesuccesspage"></a>
+<h2>成功ページ</h2>
+
+
+<p>テキストエディタを使って、<dfn>formsuccess.php</dfn> という名前のフォームを作ってください。
+その中に、次のコードを書いて <samp>applications/views/</samp> フォルダの中に保存します。:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="14">
+&lt;html>
+&lt;head>
+&lt;title>マイフォーム&lt;/title>
+&lt;/head>
+&lt;body>
+
+&lt;h3>フォームは正しく送信されました!&lt;/h3>
+
+&lt;p>&lt;?php echo anchor('form', 'もう一度!'); ?>&lt;/p>
+
+&lt;/body>
+&lt;/html>
+</textarea>
+
+
+
+<a name="thecontroller"></a>
+<h2>コントローラ</h2>
+
+<p>テキストエディタを使って、 <dfn>form.php</dfn> という名前のコントローラを作ってください。
+その中に、次のコードを書いて <samp>applications/controllers/</samp> フォルダの中に保存します:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="21">&lt;?php
+
+class Form extends CI_Controller {
+	
+	function index()
+	{
+		$this->load->helper(array('form', 'url'));
+		
+		$this->load->library('form_validation');
+				
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('myform');
+		}
+		else
+		{
+			$this->load->view('formsuccess');
+		}
+	}
+}
+?></textarea>
+
+
+<h2>動かしてみよう!</h2>
+
+<p>作ったフォームを動かすため、次のような URL でサイトを訪問してください:</p>
+
+<code>example.com/index.php/<var>form</var>/</code>
+
+<p><dfn>フォームに送信すると、単にフォームが更新されるだけに見えます。
+これは、まだ検証ルールを1つも設定していないからです。</dfn></p>
+
+<p><strong>ここでは、まだ Form バリデーションクラスになにも検証しないように設定しています。バリデーションクラスは、デフォルトでは、<kbd>FALSE</kbd> (ブール値の false )を返します。
+<samp>run()</samp> メソッドは、1つも失敗せずにユーザが指定したルールに適合する場合にのみ <kbd>TRUE</kbd> を返します。</strong></p>
+
+
+<h2>解説</h2>
+
+<p>上の例のページについていくつか気づいたことがあると思います:</p>
+
+<p><dfn>フォーム</dfn> (myform.php) は、次の2つの例外を除いて、スタンダードな web フォームだといえます:</p>
+
+<ol>
+<li>form タグを開始するのに <dfn>Form ヘルパ</dfn> を使っています。
+技術的には、これは必ずしも必要ではありません。通常の HTML を使って form を作成することもできます。しかし、このヘルパを使うと、 form タグの action 属性に指定する URL を設定ファイルの URL にもとづいて生成してくれるという利点があります。
+これにより、URL を変更した時のアプリケーションの移植性と柔軟性が高まります。</li>
+
+<li>フォームの先頭に、次のような変数があるのに気がついたと思います:
+<code>&lt;?php echo validation_errors(); ?&gt;</code>
+
+<p>この変数はバリデータが返すエラーメッセージを表示します。メッセージがなければ、何も表示しません。</p>
+</li>
+</ol>
+
+<p><dfn>コントローラ</dfn> (form.php) には index() というメソッドがあります。
+このメソッドは、バリデーションクラスを初期化しビューファイルで使えるように <var>Form ヘルパ</var> と <var>URL ヘルパ</var> をロードします。
+また、検証処理も<samp>実行します</samp>。
+検証が成功したかどうかにより、フォームのページか成功ページかどちらかを表示します。</p>
+
+
+
+
+<a name="validationrules"></a>
+
+<h2>検証ルールを設定する</h2>
+
+<p>CodeIgniter では、指定したフィールドにどれだけ多くのルールを適用してもかまいません。ルールは順番に続けて適用することができ、同時にデータを整形したり前処理を行ったりすることもできます。
+<dfn>set_rules()</dfn> メソッドを使って検証ルールを設定してみましょう:</p>
+
+<code>$this->form_validation->set_rules();</code>
+
+<p>上記のメソッドには<strong>3つの</strong>入力パラメータを指定します。:</p>
+
+<ol>
+	<li>フォーム名 - フォームの name 属性に指定した値です</li>
+	<li>このフォームの表示名。これはエラーメッセージに挿入されます。 たとえば、フォームに「 user 」という名前を付けた場合、表示名としては「名前」とするでしょう。 <strong>Note:</strong> フィールド名を言語ファイルに設定して使いたい場合は<a href="#translatingfn">フィールド名の翻訳</a>を見てください。</li>
+	<li>このフォームに設定する検証ルール</li>
+</ol>
+
+
+<p><br />例を示します。 <dfn>コントローラ</dfn> (form.php) の中のバリデーションクラスを初期化（ロード）したすぐ下のところに、このコードを追加してください:</p>
+
+<code>
+$this->form_validation->set_rules('username', 'ユーザ名', 'required');<br />
+$this->form_validation->set_rules('password', 'パスワード', 'required');<br />
+$this->form_validation->set_rules('passconf', 'パスワードの確認', 'required');<br />
+$this->form_validation->set_rules('email', 'メールアドレス', 'required');<br />
+</code>
+
+<p>コントローラは次のようになっているはずです:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="28"><?php
+
+class Form extends CI_Controller {
+
+	function index()
+	{
+		$this->load->helper(array('form', 'url'));
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('username', 'ユーザ名', 'required');
+		$this->form_validation->set_rules('password', 'パスワード', 'required');
+		$this->form_validation->set_rules('passconf', 'パスワードの確認', 'required');
+		$this->form_validation->set_rules('email', 'メールアドレス', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('myform');
+		}
+		else
+		{
+			$this->load->view('formsuccess');
+		}
+	}
+}
+?></textarea>
+
+<p><dfn>ここでフォームを空欄にしフォームを送信すると、エラーメッセージが表示されます。
+すべてのフィールドを埋めて送信すると、成功ページが表示されます。</dfn></p>
+
+<p class="important"><strong>Note:</strong> フォームのフィールドは、エラーの時に入力したデータが復元されません。
+あともうちょっと必要です。</p>
+
+
+
+
+<a name="validationrulesasarray"></a>
+<h2>配列を使った検証ルールの指定</h2>
+
+<p>一回で全ての検証ルールを設定したい場合は、検証ルール設定メソッドを通る配列の形式で記述しなければいけません。
+このアプローチを使う場合、配列のキーをここに示した通りの名前にしなければいけません。:</p>
+
+<code>
+$config = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field'&nbsp;&nbsp;&nbsp;=> 'username', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label'&nbsp;&nbsp;&nbsp;=> 'ユーザ名', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules'&nbsp;&nbsp;&nbsp;=> 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field'&nbsp;&nbsp;&nbsp;=> 'password', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label'&nbsp;&nbsp;&nbsp;=> 'パスワード', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules'&nbsp;&nbsp;&nbsp;=> 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field'&nbsp;&nbsp;&nbsp;=> 'passconf', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label'&nbsp;&nbsp;&nbsp;=> 'パスワードの確認', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules'&nbsp;&nbsp;&nbsp;=> 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field'&nbsp;&nbsp;&nbsp;=> 'email', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label'&nbsp;&nbsp;&nbsp;=> 'メールアドレス', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules'&nbsp;&nbsp;&nbsp;=> 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->form_validation->set_rules($config);
+</code>
+
+
+
+
+
+
+<a name="cascadingrules"></a>
+<h2>ルールの連結（カスケード）</h2>
+
+<p>CodeIgniter では、複数のルールを互いにパイプすることができます。ではやってみましょう。ルール設定メソッドの第3パラメーターを次のように変更してみてください。:</p>
+
+<code>
+$this->form_validation->set_rules('username', 'ユーザ名', 'required|min_length[5]|max_length[12]');<br />
+$this->form_validation->set_rules('password', 'パスワード', 'required|matches[passconf]');<br />
+$this->form_validation->set_rules('passconf', 'パスワードの確認', 'required');<br />
+$this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email');<br />
+</code>
+
+<p>上のコードでは次のことが要求されます:</p>
+
+<ol>
+<li>username フィールドは、5文字より小さくてはだめで、12文字を超えてはいけません。</li>
+<li>password フィールドは、パスワード確認フィールドと入力が一致しなければなりません。</li>
+<li>email フィールドは、正しいメールアドレスの形式でなければなりません。</li>
+</ol>
+
+<p>データを入力して、やってみてください! 新しく設定したルールに対応するエラーメッセージを見てみましょう。
+ルールリファレンスにあるように、多くの検証ルールがあります。</p>
+
+
+
+<a name="preppingdata"></a>
+<h2>データの整形</h2>
+
+<p>バリデーションの機能は、上で使ったようなものに加え、様々な方法で、データの整形をすることもできます。
+たとえば、以下のように、ルールをセットすることができます。:</p>
+
+<code>
+$this->form_validation->set_rules('username', 'ユーザ名', '<kbd>trim</kbd>|required|min_length[5]|max_length[12]|<kbd>xss_clean</kbd>');<br />
+$this->form_validation->set_rules('password', 'パスワード', '<kbd>trim</kbd>|required|matches[passconf]|<kbd>md5</kbd>');<br />
+$this->form_validation->set_rules('passconf', 'パスワードの確認', '<kbd>trim</kbd>|required');<br />
+$this->form_validation->set_rules('email', 'メールアドレス', '<kbd>trim</kbd>|required|valid_email');<br />
+</code>
+
+
+<p>上の例では、フィールドを "トリミング" し、パスワードを MD5 に変換し、
+悪意のあるデータを取り除く "xss_clean" 機能を通します。</p>
+
+<p><strong><dfn>htmlspecialchars</dfn>、<dfn>trim</dfn>、<dfn>MD5</dfn> などのような引数を1つだけとる PHP の組み込み関数は
+どれでもルールとして使用することができます。</strong></p>
+
+<p><strong>Note:</strong> もしエラーがあった場合、もとのデータをフォームに表示させるため、
+検証ルールの<strong>後に</strong>整形機能を使いたいのが通常のケースだと思います。</p>
+
+
+
+
+<a name="repopulatingform"></a>
+<h2>フォームの再表示</h2>
+
+<p>これまでのところ、エラーに対処してきただけでしたが、送信されたデータをフォームで再表示する時がやってきました。CodeIgniter ではこれを補うヘルパー関数が用意されています。
+よく使われるものとしては次の様なコードです:</p>
+
+<code>set_value('field name')</code>
+
+
+<p>ビューファイル <dfn>myform.php</dfn> を開き、それぞれのフォームの <strong>value</strong> に <dfn>set_value()</dfn> 関数を入れてください:</p>
+
+<p><strong><dfn>set_value()</dfn> のパラメータには、それぞれのフォームの name を入れる事を忘れないでください。</strong></p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="30">
+&lt;html>
+&lt;head>
+&lt;title>マイフォーム&lt;/title>
+&lt;/head>
+&lt;body>
+
+&lt;?php echo validation_errors(); ?>
+
+&lt;?php echo form_open('form'); ?>
+
+&lt;h5>ユーザ名&lt;/h5>
+&lt;input type="text" name="username" value="&lt;?php echo set_value('username'); ?>" size="50" />
+
+&lt;h5>パスワード&lt;/h5>
+&lt;input type="text" name="password" value="&lt;?php echo set_value('password'); ?>" size="50" />
+
+&lt;h5>パスワードの確認&lt;/h5>
+&lt;input type="text" name="passconf" value="&lt;?php echo set_value('passconf'); ?>" size="50" />
+
+&lt;h5>メールアドレス&lt;/h5>
+&lt;input type="text" name="email" value="&lt;?php echo set_value('email'); ?>" size="50" />
+
+&lt;div>&lt;input type="submit" value="送信" />&lt;/div>
+
+&lt;/form>
+
+&lt;/body>
+&lt;/html>
+</textarea>
+
+
+<p><dfn>ここで、フォームを再読み込みし、エラーになるようなデータを送信します。  フォームには値が再設定されます。</dfn></p>
+
+<p class="important"><strong>Note:</strong> <a href="#functionreference">関数リファレンス</a>セクションでは
+&lt;select&gt;メニュー、ラジオボタン、チェックボックスに値を再設定する関数の記載があります。</p>
+
+
+<p><strong>重要:</strong> フォームの名前に配列を使う場合、パラメーターには配列の形で指定します。例:</p>
+
+<code>&lt;input type="text" name="<kbd>colors[]</kbd>" value="&lt;?php echo set_value('<kbd>colors[]</kbd>'); ?>" size="50" /></code>
+
+<p>詳しくは<a href="#arraysasfields">フィールド名の指定に配列を使う</a>を見てください。</p>
+
+
+
+
+
+<a name="callbacks"></a>
+<h2>コールバック: ユーザ定義の検証メソッド</h2>
+
+<p>ユーザ定義の検証メソッドへのコールバックがシステムでサポートされています。これを使えば、それぞれのニーズに合わせるため検証クラスを拡張することができます。
+たとえば、選択したユーザが固有の名前かどうかを調べるためデータベースクエリを実行する必要があるとき、それを行うコールバックメソッドを作成できます。
+次に示す例のように作ってみましょう。</p>
+
+<p>コントローラで、"username" ルールを次のように変更します:</p>
+
+<code>$this->form_validation->set_rules('username', 'ユーザ名', '<kbd>callback_username_check</kbd>');</code>
+
+
+<p>次に <dfn>username_check</dfn> という名前の新しいメソッドをコントローラに追加します。  コントローラは以下のようになっているはずです:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="44"><?php
+
+class Form extends CI_Controller {
+
+	function index()
+	{
+		$this->load->helper(array('form', 'url'));
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('username', 'ユーザ名', 'callback_username_check');
+		$this->form_validation->set_rules('password', 'パスワード', 'required');
+		$this->form_validation->set_rules('passconf', 'パスワードの確認', 'required');
+		$this->form_validation->set_rules('email', 'メールアドレス', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('myform');
+		}
+		else
+		{
+			$this->load->view('formsuccess');
+		}
+	}
+
+	function username_check($str)
+	{
+		if ($str == 'test')
+		{
+			$this->form_validation->set_message('username_check', 'フィールド %s に、&quot;test&quot;は使えません');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+
+}
+?></textarea>
+
+<p><dfn>フォームを再読み込みして、ユーザ名に "test" と入力して送信します。
+フォームフィールドのデータがコールバックメソッドに渡され処理されたのがわかります。</dfn></p>
+
+<p><strong>コールバックを呼び出すには、あるルールに従ってメソッド名を指定します。そのルールとは、"callback_" というプリフィックスをメソッド名に付け加えるというものです。</strong></p>
+
+<p>また、コールバックに渡されたフォームデータを処理し、結果を返すことができます。
+コールバックが bool 型の TRUE / FALSE 以外の値を返す場合、そのデータはフォームデータが処理された新しいものである事が想定されます。</p>
+
+
+
+
+<a name="settingerrors"></a>
+<h2>エラーメッセージを設定する</h2>
+
+
+<p>もともとのエラーメッセージは、次の言語ファイルの中にあります: <dfn>language/english/form_validation_lang.php</dfn></p>
+
+<p>ユーザ定義のメッセージを表示するには、このファイルを編集するか、または、次のメソッドを利用します:</p>
+
+<code>$this->form_validation->set_message('<var>ルール名</var>', '<var>エラーメッセージ</var>');</code>
+
+<p>ここでの <var>rule</var> は特定のルール名になり、<var>Error Message</var> は表示したいテキストになります。</p>
+
+<p>エラーメッセージに <dfn>%s</dfn> を含めると、ルールに指定した項目を使って、表示用の項目名に置き換えられます。</p>
+
+<p>上記のコールバックの例では、エラーメッセージはメソッド名で指定したルールを通る様に設定されています:</p>
+
+<code>$this->form_validation->set_message('username_check')</code>
+
+<p>また、言語ファイル内にエラーメッセージが見つかれば上書きすることができます。たとえば、"required" ルールのメッセージを変更するには、次のようにします:</p>
+
+<code>$this->form_validation->set_message('required', 'ここにカスタムメッセージ');</code>
+
+
+
+<a name="translatingfn"></a>
+<h2>フィールド名の変換</h2>
+
+<p>言語ファイル内において、<dfn>set_rules()</dfn>メソッドに渡す"表示名"を格納したければ、ここに示す様にすれば、フィールド名が変換される様にすることができます:</p>
+
+<p>まず、以下の例の様に表示名にプレフィックスとして <dfn>lang:</dfn> を付けます:</p>
+
+<code>
+$this->form_validation->set_rules('first_name', '<kbd>lang:</kbd>first_name', 'required');<br />
+</code>
+
+<p>次に言語ファイル内に配列を1つ格納します。（添字にはプレフィックスは付けません）:</p>
+
+<code>$lang['first_name'] = 'First Name';</code>
+
+<p><strong>Note:</strong> CI によって自動でロードされていない言語ファイル内に、配列を格納しているなら、次の様にコントローラー内でロードする事を忘れないでください:</p>
+
+<code>$this->lang->load('file_name');</code>
+
+<p>言語ファイルのより詳細な情報は <a href="language.html">言語クラス</a> をご覧ください。</p>
+
+
+<a name="errordelimiters"></a>
+<h2>エラーメッセージを囲む文字の変更</h2>
+
+<p>初期状態では、システムは、段落タグ (&lt;p&gt;) で表示される各メッセージを囲みます。
+この囲み文字は全体的にも変更できるし、部分的にも変更できます。</p>
+
+<ol>
+
+<li><strong>全体的に囲み文字を変更する</strong>
+
+<p>エラーメッセージの囲み文字を全体的に変更するには、コントローラーのメソッド内でフォームバリデーションクラスの読み込み後に、以下の行を追加します:</p>
+
+<code>$this->form_validation->set_error_delimiters('<kbd>&lt;div class="error"></kbd>', '<kbd>&lt;/div></kbd>');</code>
+
+<p>この例では、div タグを使うよう切り替えています。</p>
+
+</li>
+
+<li><strong>部分的に囲み文字を変更する</strong>
+
+<p>以下の2つの例では、エラーを生成するメソッドは独自の区切り文字が追加されるようにしている。:</p>
+
+<code>&lt;?php echo form_error('field name', '<kbd>&lt;div class="error"></kbd>', '<kbd>&lt;/div></kbd>'); ?></code>
+
+<p>または:</p>
+
+<code>&lt;?php echo validation_errors('<kbd>&lt;div class="error"></kbd>', '<kbd>&lt;/div></kbd>'); ?></code>
+
+</li>
+</ol>
+
+
+
+
+<a name="individualerrors"></a>
+<h2>個別にエラーを表示する</h2>
+
+<p>エラーメッセージを一覧として表示するのではなく、各フォームの下に表示したい場合は、 <dfn>form_error()</dfn> メソッドを使います。</p>
+
+<p>動かしてみよう ! この様にフォームを変更してください:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="18">
+&lt;h5>ユーザ名&lt;/h5>
+&lt;?php echo form_error('username'); ?>
+&lt;input type="text" name="username" value="&lt;?php echo set_value('username'); ?>" size="50" />
+
+&lt;h5>パスワード&lt;/h5>
+&lt;?php echo form_error('password'); ?>
+&lt;input type="text" name="password" value="&lt;?php echo set_value('password'); ?>" size="50" />
+
+&lt;h5>パスワードの確認&lt;/h5>
+&lt;?php echo form_error('passconf'); ?>
+&lt;input type="text" name="passconf" value="&lt;?php echo set_value('passconf'); ?>" size="50" />
+
+&lt;h5>メールアドレス&lt;/h5>
+&lt;?php echo form_error('email'); ?>
+&lt;input type="text" name="email" value="&lt;?php echo set_value('email'); ?>" size="50" />
+</textarea>
+
+<p>エラーがない場合は、何も表示されません。エラーがある場合に、メッセージが表示されます。</p>
+
+<p><strong>重要:</strong> フォームの名前に配列を使う場合、パラメーターには配列の形で指定します。例:</p>
+
+<code>&lt;?php echo form_error('<kbd>options[size]</kbd>'); ?><br />
+&lt;input type="text" name="<kbd>options[size]</kbd>" value="&lt;?php echo set_value("<kbd>options[size]</kbd>"); ?>" size="50" />
+</code>
+
+<p>詳しくは<a href="#arraysasfields">フィールド名の指定に配列を使う</a>を見てください。</p>
+
+
+
+
+<p>&nbsp;</p>
+
+
+<a name="savingtoconfig"></a>
+<h1>検証ルールを設定ファイルに保存</h1>
+
+<p>フォーム検証クラスの素晴らしい特徴は、アプリケーション全体に適用する検証ルールを全て設定ファイル内に格納する事が出来る点です。
+ルールは"グループ"毎に整理することができます。
+この"グループ"は一致するコントローラーやメソッドが呼び出された時に自動的にロードさせる事も出来るし、必要な時に手動で呼び出す事も出来ます。</p>
+
+<h3>ルールの保存方法</h3>
+
+<p>検証ルールを保存するには、単純に、 <kbd>form_validation.php</kbd> というファイルを <dfn>application/config/</dfn> フォルダ内に作成します。
+このファイル内では、検証ルールは <kbd>$config</kbd> という名前の配列を格納してください。前述した様に、この検証ルールの配列は以下の様なプロトタイプになります:</p>
+
+<code>
+$config = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field'&nbsp;&nbsp;&nbsp;=> 'username', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label'&nbsp;&nbsp;&nbsp;=> 'ユーザ名', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules'&nbsp;&nbsp;&nbsp;=> 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field'&nbsp;&nbsp;&nbsp;=> 'password', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label'&nbsp;&nbsp;&nbsp;=> 'パスワード', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules'&nbsp;&nbsp;&nbsp;=> 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field'&nbsp;&nbsp;&nbsp;=> 'passconf', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label'&nbsp;&nbsp;&nbsp;=> 'パスワードの確認', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules'&nbsp;&nbsp;&nbsp;=> 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field'&nbsp;&nbsp;&nbsp;=> 'email', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label'&nbsp;&nbsp;&nbsp;=> 'メールアドレス', <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules'&nbsp;&nbsp;&nbsp;=> 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+</code>
+
+<p><dfn>検証ルールのファイルは自動的に読み込まれ、run() メソッドが呼び出される時に使用されます。</dfn></p>
+
+<p class="important">必ず $config という名前の配列にしてください。</p>
+
+<h3>検証ルールのセットを作る</h3>
+
+<p>ルールを"セット"の中に整理するためには、配列の中に配列を配置する必要があります。
+次の例を考えます。２つのルールセットをお見せしますので、例として考えてみましょう。2つのルールとして、任意に "signup" と "email" と呼ぶことにします。付けたい名前を付ける事ができます:</p>
+
+
+<code>$config = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'<kbd>signup</kbd>' => array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'username',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'ユーザ名',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'password',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'パスワード',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'passconf',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'パスワードの確認',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'email',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'メールアドレス',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'<kbd>email</kbd>' => array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'emailaddress',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'メールアドレス',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required|valid_email'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'name',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => '名前',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required|alpha'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'title',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'タイトル',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'message',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'メッセージ本文',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+</code>
+
+
+<h3>特定のルールグループを呼び出す</h3>
+
+<p>特定のグループを呼び出すには <kbd>run()</kbd> メソッドにその名前を渡します。たとえば、 <kbd>signup</kbd> ルールを呼び出すにはこのようにします:</p>
+
+<code>
+if ($this->form_validation->run('<kbd>signup</kbd>') == FALSE)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;$this->load->view('myform');<br />
+}<br />
+else<br />
+{<br />
+&nbsp;&nbsp;&nbsp;$this->load->view('formsuccess');<br />
+}<br />
+</code>
+
+
+
+<h3>コントローラー内のメソッドにルールグループを関連づける</h3>
+
+<p>ルールグループを呼び出す別の方法（自動的な方法）としては、コントローラーやメソッドの名称に沿って名前を付けます。
+たとえば、コントローラーを <kbd>Member</kbd> という名前に、メソッドを <kbd>signup</kbd> という名前にしてみましょう。クラスは次の様になります:</p>
+
+<code>
+&lt;?php<br /><br />
+class <kbd>Member</kbd> extends CI_Controller {<br />
+<br />
+&nbsp;&nbsp;&nbsp;function <kbd>signup</kbd>()<br />
+&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->library('form_validation');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ($this->form_validation->run() == FALSE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('myform');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('formsuccess');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;}<br />
+}<br />
+?></code>
+
+<p>検証ルールの設定ファイル内で、ルールグループの名前として <kbd>member/signup</kbd> と名付けます:</p>
+
+
+<code>$config = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'<kbd>member/signup</kbd>' => array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'username',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'ユーザ名',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'password',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'パスワード',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'passconf',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'パスワードの確認',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'field' => 'email',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'メールアドレス',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rules' => 'required'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+</code>
+
+<p><dfn>ルールグループがコントローラー／メソッドの名前に一致する名前のとき、run() メソッドが呼び出された時に自動的に使用されます。</dfn></p>
+
+<p>&nbsp;</p>
+
+
+<a name="arraysasfields"></a>
+<h1>フィールド名の指定に配列を使う</h1>
+
+<p>フォーム検証クラスはフィールド名として配列の形式を使う事も出来ます。この例をよく見てください:</p>
+
+<code>&lt;input type="text" name="<kbd>options[]</kbd>" value="" size="50" /></code>
+
+<p>フィールド名に配列を使う場合、 <a href="#helperreference">ヘルパー</a> の中ではフォームのフィールド名やバリデーションルールのフィールド名には
+正確な名前を使う様にしてください。</p>
+
+<p>たとえば、上記のフィールド用のルールを設定するにはこの様にしてください:</p>
+
+<code>$this->form_validation->set_rules('<kbd>options[]</kbd>', 'オプション', 'required');</code>
+
+<p>または、エラーを表示させるにはこのようにしてください:</p>
+
+<code>&lt;?php echo form_error('<kbd>options[]</kbd>'); ?></code>
+
+<p>フォームの再表示の時はこうです:</p>
+
+<code>&lt;input type="text" name="<kbd>options[]</kbd>" value="<kbd>&lt;?php echo set_value('<kbd>options[]</kbd>'); ?></kbd>" size="50" /></code>
+
+<p>フィールド名として多次元配列を使う事も出来ます:例:</p>
+
+<code>&lt;input type="text" name="<kbd>options[size]</kbd>" value="" size="50" /></code>
+
+<p>またはこの様にもできます:</p>
+
+<code>&lt;input type="text" name="<kbd>sports[nba][basketball]</kbd>" value="" size="50" /></code>
+
+<p>最初の例と同様に、ヘルパー関数には正確な名前を用いてください:</p>
+
+<code>&lt;?php echo form_error('<kbd>sports[nba][basketball]</kbd>'); ?></code>
+
+<p>複数の選択肢を持つチェックボックス（もしくは他のフォーム）を使う場合は、それぞれの名前には空白のカッコを付ける事を忘れないでください。
+そうしないと POST 時の配列に全ての選択が渡りません:</p>
+
+<code>
+&lt;input type="checkbox" name="<kbd>options[]</kbd>" value="red" /><br />
+&lt;input type="checkbox" name="<kbd>options[]</kbd>" value="blue" /><br />
+&lt;input type="checkbox" name="<kbd>options[]</kbd>" value="green" />
+</code>
+
+<p>または多次元配列を使う場合はこうなります:</p>
+
+<code>
+&lt;input type="checkbox" name="<kbd>options[color][]</kbd>" value="red" /><br />
+&lt;input type="checkbox" name="<kbd>options[color][]</kbd>" value="blue" /><br />
+&lt;input type="checkbox" name="<kbd>options[color][]</kbd>" value="green" />
+</code>
+
+<p>ヘルパー関数を使う時は以下の様にカッコを付けてください:</p>
+
+<code>&lt;?php echo form_error('<kbd>options[color][]</kbd>'); ?></code>
+
+
+
+
+<p>&nbsp;</p>
+
+
+<a name="rulereference"></a>
+<h1>ルールリファレンス</h1>
+
+<p>次のリストは、使用可能なすべての組み込みのルールです:</p>
+
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+	<tr>
+		<th>ルール</th>
+		<th>パラメータ</th>
+		<th>説明</th>
+		<th>例</th>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>required</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが空のときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>matches</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが他のフィールドの入力データと一致しないときに FALSE を返します。</td>
+		<td class="td">matches[form_item]</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>min_length</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが指定したサイズよりも文字数が短いときに FALSE を返します。</td>
+		<td class="td">min_length[6]</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>max_length</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが指定したサイズよりも文字数が長いときに FALSE を返します。</td>
+		<td class="td">max_length[12]</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>exact_length</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが特定の長さでないときに FALSE を返します。</td>
+		<td class="td">exact_length[8]</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>greater_than</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが指定した値よりも小さいか、数値でないときに FALSE を返します。</td>
+		<td class="td">greater_than[8]</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>less_than</strong></td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが指定した値よりも大きいか、数値でないときに FALSE を返します。</td>
+		<td class="td">less_than[8]</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>alpha</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータがアルファベットでない文字を含むときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>alpha_numeric</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが英数字でない文字を含むときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>alpha_dash</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが英数字、アンダースコア(&quot;_&quot;)、ダッシュ(&quot;-&quot;) のいずれでないものを含むときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>numeric</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが数字でないときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>integer</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが整数以外の場合 FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>decimal</strong></td>
+		<td class="td">あり</td>
+		<td class="td">Returns FALSE if the form element is not exactly the parameter value.</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>is_natural</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが0, 1, 2, 3, 等の自然数以外の場合 FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>is_natural_no_zero</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが0を除く1, 2, 3, 等の自然数以外の場合 FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>valid_email</strong></td>
+		<td class="td">なし</td>
+		<td class="td">フォームのデータが email アドレスとして正しくないとき FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>valid_emails</strong></td>
+		<td class="td">なし</td>
+		<td class="td">コンマで区切られたリストのひとつでもメールアドレスとして正しくないとき FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>valid_ip</strong></td>
+		<td class="td">なし</td>
+		<td class="td">渡された IP が正しい形式でないときに FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>valid_base64</strong></td>
+		<td class="td">なし</td>
+		<td class="td">渡された文字列が正しい Base64 形式でないとき FALSE を返します。</td>
+		<td class="td">&nbsp;</td>
+	</tr>
+
+
+</table>
+
+<p><strong>Note:</strong>また、これらのルールは普通のメソッドとしても呼び出すことができます。 例:</p>
+
+<code>$this->form_validation->required($string);</code>
+
+<p class="important"><strong>Note:</strong> 引数を1つだけとる PHP の組み込み関数も使用できます。</p>
+
+
+
+<p>&nbsp;</p>
+
+<a name="preppingreference"></a>
+<h1>整形処理のリファレンス</h1>
+
+<p>次のリストは、使用可能な整形メソッドのリストです:</p>
+
+
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+	<tr>
+		<th>名前</th>
+		<th>パラメータ</th>
+		<th>説明</th>
+	</tr><tr>
+
+		<td class="td"><strong>xss_clean</strong></td>
+		<td class="td">なし</td>
+		<td class="td">XSS フィルタリングメソッドを通過させます。XSS フィルタリングメソッドについては、<a href="input.html">入力クラス</a>のページをご覧ください。</td>
+	</tr><tr>
+
+		<td class="td"><strong>prep_for_form</strong></td>
+		<td class="td">なし</td>
+		<td class="td">HTML データをフォームフィールドで崩れずに表示させるよう、HTML 特殊文字を変換します。</td>
+	</tr><tr>
+
+		<td class="td"><strong>prep_url</strong></td>
+		<td class="td">なし</td>
+		<td class="td">もし、ない場合は、"http://" を URL に追加します。</td>
+	</tr><tr>
+
+		<td class="td"><strong>strip_image_tags</strong></td>
+		<td class="td">なし</td>
+		<td class="td">イメージへの URL をそのままにして、イメージタグから HTML を取り除きます。</td>
+	</tr><tr>
+
+		<td class="td"><strong>encode_php_tags</strong></td>
+		<td class="td">なし</td>
+		<td class="td">PHP タグを HTML エンティティに変換します。</td>
+	</tr>
+
+</table>
+
+<p class="important"><strong>Note:</strong> また、 <kbd>trim</kbd>、<kbd>htmlspecialchars</kbd>、<kbd>urldecode</kbd> などの
+引数を1つだけとる PHP の組み込み関数をどれでも使用することができます。</p>
+
+
+
+
+
+
+
+<p>&nbsp;</p>
+
+<a name="functionreference"></a>
+<h1>関数リファレンス</h1>
+
+<p>以下の関数はコントローラーのメソッド内で使われる事を意図しています。</p>
+
+<h2>$this->form_validation->set_rule();</h2>
+
+<p>上記のチュートリアルの説明の様に、検証ルールを設定することができます。</p>
+
+<ul>
+<li><a href="#validationrules">検証ルールを設定する</a></li>
+<li><a href="#savingtoconfig">設定ファイルに検証ルールのグループを保存する</a></li>
+</ul>
+
+
+<h2>$this->form_validation->run();</h2>
+
+<p>検証処理を実行する。成功時は TRUE を返し、失敗時は FALSE を返す。
+このメソッドには <a href="#savingtoconfig">設定ファイルに検証ルールのグループを保存する</a> に書いてある様に、検証ルールグループの名前を渡せます。</p>
+
+
+<h2>$this->form_validation->set_message();</h2>
+
+<p>エラーメッセージをカスタマイズして指定できます。<a href="#settingerrors">エラーメッセージを設定する</a>をご覧ください。</p>
+
+
+<p>&nbsp;</p>
+
+<a name="helperreference"></a>
+<h1>ヘルパー関数リファレンス</h1>
+
+<p>次のヘルパー関数はフォームを含むビューファイルの中で使うことができます。
+これは単独の関数なので、直前に $this->form_validation をいれる必要は<strong>ありません</strong>。</p>
+
+<h2>form_error()</h2>
+
+<p>メソッドに渡すフィールド名に関連づけられた、個々のエラーメッセージを表示する。例:</p>
+
+<code>&lt;?php echo form_error('username'); ?></code>
+
+<p>エラー区切り文字は自由に指定できます。前述の <a href="#errordelimiters">エラーメッセージを囲む文字の変更</a> セクションをご覧ください。</p>
+
+
+
+<h2>validation_errors()</h2>
+<p>文字列として全てのエラーメッセージを表示する:例:</p>
+
+<code>&lt;?php echo validation_errors(); ?></code>
+
+<p>エラー区切り文字は自由に指定できます。前述の <a href="#errordelimiters">エラーメッセージを囲む文字の変更</a> セクションをご覧ください。</p>
+
+
+
+<h2>set_value()</h2>
+
+<p>input フォームや textarea の value に値を入れることができます。メソッドの第1パラメータにフィールド名を指定します。
+第2パラメーター（オプション）はフォームのデフォルト値を指定します。例:</p>
+
+<code>&lt;input type="text" name="quantity" value="<dfn>&lt;?php echo set_value('quantity', '0'); ?></dfn>" size="50" /></code>
+
+<p>上記のフォームは最初に読み込まれた時に"0"が入ります。</p>
+
+<h2>set_select()</h2>
+
+<p><dfn>&lt;select></dfn> メニューを使うとき、この関数は選択されたメニュー項目を表示できます。
+第1パラーメーターは SELECT フォームの名前を指定します。
+第2パラメーター（オプション）にはデフォルト値（TRUE/FALSE のブール値）を指定します。</p>
+
+<p>例:</p>
+
+<code>
+&lt;select name="myselect"><br />
+&lt;option value="one" <dfn>&lt;?php echo  set_select('myselect', 'one', TRUE); ?></dfn> >1&lt;/option><br />
+&lt;option value="two" <dfn>&lt;?php echo  set_select('myselect', 'two'); ?></dfn> >2&lt;/option><br />
+&lt;option value="three" <dfn>&lt;?php echo  set_select('myselect', 'three'); ?></dfn> >3&lt;/option><br />
+&lt;/select>
+</code>
+
+
+<h2>set_checkbox()</h2>
+
+<p>送信されたチェックボックスの状態を表示できます。
+第1パラメーターにはチェックボックスの名前を指定します。第2パラメーターには value に設定した値を指定します。第3パラメーター（オプション）にはデフォルト値（TRUE/FALSEのブール値）を指定します。例:</p>
+
+<code>&lt;input type="checkbox" name="mycheck[]" value="1" <dfn>&lt;?php echo set_checkbox('mycheck[]', '1'); ?></dfn> /><br />
+&lt;input type="checkbox" name="mycheck[]" value="2" <dfn>&lt;?php echo set_checkbox('mycheck[]', '2'); ?></dfn> /></code>
+
+
+<h2>set_radio()</h2>
+
+<p>送信されたラジオボタンの状態を表示できますこの関数は前述の <strong>set_checkbox()</strong> 関数と同じです。</p>
+
+<code>&lt;input type="radio" name="myradio" value="1" <dfn>&lt;?php echo  set_radio('myradio', '1', TRUE); ?></dfn> /><br />
+&lt;input type="radio" name="myradio" value="2" <dfn>&lt;?php echo  set_radio('myradio', '2'); ?></dfn> /></code>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="file_uploading.html">ファイルアップロードクラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+Next Topic:&nbsp;&nbsp;<a href="ftp.html">FTP クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

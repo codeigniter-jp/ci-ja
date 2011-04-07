@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ビュー : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ビュー
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>ビュー</h1>
+
+<p><dfn>ビュー</dfn>は単純には web ページで、ヘッダ・フッタ・サイドバーのようなページの部品のこともあります。
+実践では、ビューには他のビューを柔軟に埋め込むことができます（埋め込むこのビューにはさらに他のビューが埋め込まれる、などなど…）。
+このような階層構造が必要であれば、そうすることができます。</p>
+
+<p>ビューは直接的に呼び出されることはなく、<a href="controllers.html">コントローラ</a>によって読み込まれる必要があります。
+MVC フレームワークにおいては、コントローラが交通整理を行い、それぞれのビューを取り出す責任を持つことを覚えておいてください。
+<a href="controllers.html">コントローラ</a>のページをまだ読んでないのなら、続きを読む前に読んでおいてください。</p>
+
+<p><a href="controllers.html">コントローラ</a> のページで作成したサンプルのコントローラを使って、ビューを追加してみましょう。</p>
+
+<h2>ビューの作成</h2>
+
+<p>テキストエディタを使って <dfn>blogview.php</dfn> という名前のファイルを作成し、その中に下記のように打ち込んでください:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="10">
+&lt;html>
+&lt;head>
+&lt;title>My Blog&lt;/title>
+&lt;/head>
+&lt;body>
+	&lt;h1>Welcome to my Blog!&lt;/h1>
+&lt;/body>
+&lt;/html>
+</textarea>
+
+<p>次に、<dfn>application/views/</dfn> フォルダにこのファイルを保存します。</p>
+
+<h2>ビューの読み込み</h2>
+
+<p>それぞれのビューファイルを読み込むには、次のメソッドを使います:</p>
+
+<code>$this->load->view('<var>name</var>');</code>
+
+<p>上の <var>name</var> はビューファイルの名前になります。  Note: .php ファイルの拡張子は不要です。ファイルを指定するために、他のフレームワークなどで <kbd>.php</kbd> とするようなことは要りません。</p>
+
+
+<p>ここで <dfn>blog.php</dfn> という名前で前のセクションで作ったコントローラを開き、 echo 文を次の読み込みメソッドに置き換えてください:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="10">
+&lt;?php
+class Blog extends CI_Controller {
+
+	function index()
+	{
+		$this-&gt;load-&gt;view('blogview');
+	}
+}
+?&gt;
+</textarea>
+
+
+<p>前に使った URL でサイトを見ると、新しいビューが見えるはずです。URL は次に挙げるものと同じです:</p>
+
+<code>example.com/index.php/<var>blog</var>/</code>
+
+<h2>複数のビューの読み込み</h2>
+<p>CodeIgniter は、ひとつのコントローラ内での複数の $this-&gt;load-&gt;view の呼び出しをかしこく処理します。もし、ひとつ以上の呼び出しがあれば、順に追加されます。たとえば、ヘッダビュー、メニュービュー、コンテントビューそしてフッタビューを使いたい場合、以下のようになります:</p>
+<p><code>&lt;?php<br />
+<br />
+class Page extends CI_Controller {<br /><br />
+
+ &nbsp;&nbsp;&nbsp;function index()<br />
+&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data['page_title'] =  'Your title';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('header');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('menu');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('content', $data);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;view('footer');<br />
+&nbsp;&nbsp;&nbsp;}<br />
+<br />
+}<br />
+	?&gt;</code></p>
+<p>上の例では、下の「ビューに動的データを追加する」で説明する動的データを使用しています。</p>
+<h2>ビューをサブフォルダに保存する</h2>
+<p>サブフォルダでビューを管理したい場合は、ビューのファイルをサブフォルダに分けて配置することもできます。
+そうした場合、ビューをロードするときにフォルダ名を含めて指定する必要があります。  例です:</p>
+
+<code>$this->load->view('<kbd>folder_name</kbd>/<var>file_name</var>');</code>
+
+
+<h2>ビューに動的データを追加する</h2>
+
+<p>ビュー読み込みメソッドの第2引数に<strong>配列</strong>または<strong>オブジェクト</strong>を渡すやり方で、
+ビューにデータを渡すことができます。配列を使った例は下記の通りです:</p>
+
+<code>$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'My Title',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'heading' => 'My Heading',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'message' => 'My Message'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->load->view('blogview', <var>$data</var>);</code>
+
+<p>オブジェクトを使った例は下記の通りです:</p>
+
+<code>$data = new Someclass();<br />
+$this->load->view('blogview', <var>$data</var>);</code>
+
+<p>Note: オブジェクトを使う場合クラスの変数が配列の要素に変換されます。</p>
+
+
+<p>コントローラのファイルでやってみましょう。コントローラを開いて次のコードを追加してください:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="14">
+&lt;?php
+class Blog extends CI_Controller {
+
+	function index()
+	{
+		$data['title'] = &quot;My Real Title&quot;;
+		$data['heading'] = &quot;My Real Heading&quot;;
+
+		$this-&gt;load-&gt;view('blogview', $data);
+	}
+}
+?&gt;
+</textarea>
+
+
+<p>では、ビューを開き、テキストの部分を渡したデータの配列のキーと同じ名前の変数に変えます:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="10">
+&lt;html>
+&lt;head>
+&lt;title>&lt;?php echo $title;?>&lt;/title>
+&lt;/head>
+&lt;body>
+	&lt;h1>&lt;?php echo $heading;?>&lt;/h1>
+&lt;/body>
+&lt;/html>
+</textarea>
+
+<p>次に、前で使った URL でページを読み込みます。変数が置き換えられているのが見えるはずです。</p>
+
+<h2>ループの作成</h2>
+
+<p>ビューファイルに渡したデータの配列は、単純な変数だけであるとは限りません。
+ループして複数の行を生成できるように、多次元配列を渡すこともできます。
+たとえば、データベースから持ってきたデータの場合、典型的には多次元配列に整形されています。</p>
+
+<p>以下に例を示します。 次のコードをコントローラに追加します:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="17">
+&lt;?php
+class Blog extends CI_Controller {
+
+	function index()
+	{
+		$data['todo_list'] = array('Clean House', 'Call Mom', 'Run Errands');
+
+		$data['title'] = &quot;My Real Title&quot;;
+		$data['heading'] = &quot;My Real Heading&quot;;
+
+		$this-&gt;load-&gt;view('blogview', $data);
+	}
+}
+?&gt;
+</textarea>
+
+
+<p>ここでビューのファイルを開き、下記のようにループを作成します:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="24">
+&lt;html>
+&lt;head>
+&lt;title>&lt;?php echo $title;?>&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;h1>&lt;?php echo $heading;?>&lt;/h1>
+
+&lt;h3>My Todo List&lt;/h3>
+
+&lt;ul>
+&lt;?php foreach ($todo_list as $item):?>
+
+&lt;li>&lt;?php echo $item;?>&lt;/li>
+
+&lt;?php endforeach;?>
+&lt;/ul>
+
+&lt;/body>
+&lt;/html>
+</textarea>
+<p><strong>Note:</strong> お気付きのように、上の例では、PHP の代替構文を使用しています。
+PHPの 代替構文に慣れていない場合は、<a href="alternative_php.html">こちら</a>を御覧ください。</p>
+
+<h2>ビューをデータとして返す</h2>
+
+<p>3番目の <strong>任意</strong> パラメーターでメソッドの振る舞いを変更して、ブラウザにビューを送るのではなく文字列としてビューのデータを返します。
+このビューのデータをさらに使いたい時に有効です。
+パラメーターに <kbd>true</kbd> を指定するとビューをデータとして返します。デフォルトの動作は <kbd>false</kbd> で、ブラウザにデータを送ります。
+返ってきたデータを変数に格納するのを忘れないでください。</p>
+
+<code>$string = $this->load->view('<var>myfile</var>', '', <kbd>true</kbd>);</code>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="reserved_names.html">予約語一覧</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="models.html">モデル</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

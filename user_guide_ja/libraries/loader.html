@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ローダ(読み込み処理)クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ローダ(読み込み処理)クラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>ローダ(読み込み処理)クラス</h1>
+
+<p>ローダは、その名のとおり要素をロードするために使用されます。
+要素とは、ライブラリ (クラス) <a href="../general/views.html">ビューファイル</a>、<a href="../general/helpers.html">ヘルパ</a>、<a href="../general/models.html">モデル</a>、あるいは、ユーザファイルになります。</p>
+
+<p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
+
+<p>このクラスでは下記のメソッドが利用できます:</p>
+
+
+<h2>$this->load->library('<var>class_name</var>', <samp>$config</samp>, <kbd>'object name'</kbd>)</h2>
+
+
+<p>このメソッドはコアのクラスを読み込むために使われます。ここでの <var>class_name</var> は読み込みたいクラスの名前になります。
+Note: "クラス" と "ライブラリ"は同じ意味として使っています。</p>
+
+<p>たとえば、CodeIgniterでメールを送信したいとしたら、最初のステップは、次のようにemailクラスをコントローラで読み込むことです:</p>
+
+<code>$this->load->library('email');</code>
+
+<p>ロードすると、ライブラリを <kbd>$this->email-></kbd><samp><em>some_function</em>()</samp> などとして使う準備ができたことになります。各ライブラリは、それらの解説ページで説明していますので、使いたいそれぞれのクラスについての情報をお読みください。</p>
+
+<p>ライブラリファイルは、メインの"libraries"フォルダ内か、アプリケーション独自の <dfn>application/libraries</dfn> フォルダ内にサブディレクトリを設置し、
+そこに保存することが出来ます。サブディレクトリ内のファイルをロードするには、単純に"libraries"フォルダ内のパスを含めます。
+たとえば、以下のようにファイルが配置されているなら:</p>
+
+<code>libraries/flavors/chocolate.php</code>
+
+<p>利用するには以下のようにロードします:</p>
+
+<code>$this->load->library('flavors/chocolate');</code>
+
+<p>ファイルを置けるサブディレクトリの階層の数と深さに制限はありません。</p>
+
+<h3>オプション設定</h3>
+
+<p>第2引数(オプション)で、任意の設定情報を渡す事が出来ます。通常これらは配列として渡されます:</p>
+
+<code>
+$config = array (<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mailtype' => 'html',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'charset'&nbsp; => 'utf-8,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'priority' => '1'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->load->library('email', $config);</code>
+
+<p>設定ファイルで設定情報を定義する事も出来ます。各ライブラリのページで説明されていますので、利用したいライブラリのページをご覧ください。</p>
+
+<h3>ライブラリに別名を割り当てる</h3>
+
+<p>第3引数(オプション)が指定されていなければ、ライブラリには通常、ライブラリと同じ名前がオブジェクト名として割り当てられます。
+たとえば、ライブラリ名が <dfn>Session</dfn> であれば、<dfn>$this->session</dfn> という変数が割り当てられます。</p>
+
+<p>自分自身でクラス名を指定したいなら、第3引数でその値を渡す事が出来ます:</p>
+
+<code>$this->load->library('session', '', 'my_session');<br /><br />
+
+// Session クラスにアクセスするには、以下のようになります:<br /><br />
+
+$this->my_session
+
+</code>
+
+
+
+<h2>$this->load->view('<var>file_name</var>', <samp>$data</samp>, <kbd>true/false</kbd>)</h2>
+
+<p>このメソッドは、ビューファイルをロードするために使用します。
+ユーザガイドの<a href="../general/views.html">ビュー</a>のセクションをまだ読んでいない場合は、このメソッドの典型的な使い方を説明しているので、読んでみることをおすすめします。</p>
+
+<p>第1引数は必須です。第1引数は読み込みたいビューファイルの名前になります。Note:php ファイルの拡張子は不要で、指定する名前は<kbd>.php</kbd>を除いたものになります。</p>
+
+<p><strong>オプションの</strong>第2引数は、連想配列またはオブジェクトを入力とします。
+指定した連想配列またはオブジェクトは、ビューファイルの中で使用するために、
+PHPの <a href="http://www.php.net/extract">extract</a> 関数を使用して変数に変換されます。
+再度いいますが、使い方を説明した<a href="../general/views.html">ビュー</a>の解説ページをお読みください。</p>
+
+<p><strong>オプションの</strong>第3引数はブラウザにデータを送信するのではなく、文字列としてデータを返すようメソッドの振る舞いを変えるものです。
+これは、何らかの方法でデータを処理したいときに役立ちます。パラメータを <kbd>true</kbd> (ブール値) にセットしたとき、データを返します。
+デフォルトの動作は、ブラウザにデータを送信する設定の <kbd>false</kbd> になっています。
+データを返すようにしたときは、変数に代入するのを忘れないでください:</p>
+
+<code>$string = $this->load->view('<var>myfile</var>', '', <kbd>true</kbd>);</code>
+
+
+<h2>$this-&gt;load-&gt;model('<var>Model_name</var>');</h2>
+<p><code>$this-&gt;load-&gt;model('<var>Model_name</var>');</code></p>
+<p>もし、モデルファイルがサブフォルダに置かれている場合、モデルフォルダからの相対バスで指定してください。たとえば、モデルファイルが、application/models/blog/queries.php にある場合、以下のようにロードします:</p>
+<p><code>$this-&gt;load-&gt;model('<var>blog/queries</var>');</code></p>
+<p>もし、モデルオブジェクトに別の名前を付けたい場合は、
+load メソッドの第2引数で指定できます:</p>
+<code> $this-&gt;load-&gt;model('<var>Model_name</var>', '<kbd>fubar</kbd>');<br />
+<br />
+$this-&gt;<kbd>fubar</kbd>-&gt;function();</code>
+<h2>$this->load->database('<var>options</var>', <kbd>true/false</kbd>)</h2>
+<p>このメソッドで、データベースクラスをロードできます。第2引数は、<strong>オプション</strong>です。
+詳細は、<a href="../database/index.html">データベース</a>のセクションをご覧ください。</p>
+
+
+
+
+<h2>$this->load->vars(<samp>$array</samp>)</h2>
+
+<p>このメソッドは、連想配列を入力として、PHPの <a href="http://www.php.net/extract">extract</a> 関数を使って変数を生成します。
+上の <dfn>$this->load->view()</dfn> メソッドの第2引数を使った場合と同じ結果が生成されます。
+このメソッドを上とは独立に使う理由は、コントローラのコンストラクタでグローバル変数をセットし、
+それらをどんなビューファイルのどんなメソッドからも利用できるようにするためです。
+このメソッドは複数回呼び出すことができます。データは変数に変換するために一つの配列にキャッシュされマージされます。
+</p>
+
+
+<h2>$this->load->helper('<var>file_name</var>')</h2>
+<p>このメソッドで、ヘルパファイルをロードします。ここでの <var>file_name</var> は<kbd>_helper.php</kbd> の拡張子[ 訳注:およびサフィックス ] を除外したファイルの名前です。</p>
+
+
+<h2>$this->load->file('<var>filepath/filename</var>', <kbd>true/false</kbd>)</h2>
+<p>これは、汎用のファイルロードメソッドです。
+ファイルのパスと名前を第1引数で指定すると、そのファイルが開かれ、読み込まれます。
+デフォルトでは、ちょうどビューファイルのように、データはブラウザに送信されますが、第2引数に <kbd>true</kbd> (ブール値)をセットすると、代わりにデータを文字列として返すようになります。</p>
+
+
+<h2>$this->load->lang('<var>file_name</var>')</h2>
+<p>このメソッドは、<a href="language.html">言語の読み込みメソッド</a>へのエイリアス（別名）です: $this->lang->load()</p>
+
+<h2>$this->load->config('<var>file_name</var>')</h2>
+<p>このメソッドは、<a href="config.html">設定ファイルの読み込みメソッド</a><a href="config.html"></a>のエイリアス(別名) です: $this->config->load()</p>
+
+
+<h2>アプリケーションパッケージ</h2>
+
+<p>アプリケーションパッケージとは 配布を容易にするために それ自身の単一ディレクトリ内にライブラリ、モデル、ヘルパー、コンフィグ、そして言語ファイルを全て備えたリソースの集合です。これらパッケージは <dfn>application/third_party</dfn> フォルダに配置することを推奨します。以下はパッケージのディレクトリ構成例です。</p>
+
+
+<h2>サンプルパッケージ "Foo Bar" のディレクトリ構成</h2>
+
+<p>以下は "Foo Bar" アプリケーションパッケージのディレクトリ構成例です。</p>
+
+<code>/application/third_party/foo_bar<br />
+<br />
+config/<br />
+helpers/<br />
+language/<br />
+libraries/<br />
+models/<br />
+</code>
+
+<p>サンプルアプリケーションパッケージである "Foo Bar" のここでの目的は 設定ファイル、ヘルパー、言語ファイル、ライブラリ、そしてモデルを配置することです。これらのリソースをあなたのコントローラで使用するには、まず初めにLoaderに対して パッケージパスを追加して、読み込みたいリソースを伝える必要があります。</p>
+
+<h3>$this->load->add_package_path()</h3>
+
+<p>Loaderクラスにパッケージパスを追加する処理は与えられたパッケージパスを 後で要求されるリソース名の先頭に追加します。たとえば、上述の "Foo Bar" アプリケーションパッケージは <dfn>Foo_bar.php</dfn> という名前のライブラリを持っています。コントローラーでは以下のように記述します:</p>
+
+<code>$this->load->add_package_path(<var>APPPATH</var>.'third_party/<var>foo_bar</var>/');<br />
+$this->load->library('foo_bar');</code>
+
+<h3>$this->load->remove_package_path()</h3>
+
+<p>あなたのコントローラーが あるアプリケーションパッケージのリソースを使い終えたときに、あなたが他のアプリケーションパッケージを持っていて それを使いたいならば、あなたは使い終えた方のパッケージパスを取り除きたいかもしれません、そうすればLoaderは そのリソースのフォルダを見ることはなくなります。最後に追加されたパスを除去するには、このメソッドを引数無しで呼ぶだけです。</p>
+
+<h3>$this->load->remove_package_path()</h3>
+
+<p>または特定のパッケージパスを取り除くには、<kbd>add_package_path() で追加したパッケージ</kbd> と同じパスを引数で指定します:</p>
+
+<code>$this->load->remove_package_path(<var>APPPATH</var>.'third_party/<var>foo_bar</var>/');</code>
+
+<h3>パッケージのビューファイル</h3>
+
+<p>@todo - パッケージビューファイルのインターフェースは完成していません。実験的に、最初に保存されているLoaderのオリジナルのビューパスが使われ、パッケージのビューパスをセットして、使い終わると、オリジナルのビューパスに戻しています。</p>
+
+<code>// ... オリジナルのビューパスを保存し、Foo Bar パッケージのビューフォルダーをセットする。
+$orig_view_path = $this->load->_ci_view_path;<br />
+$this->load->_ci_view_path = <var>APPPATH</var>.'third_party/<var>foo_bar</var>/views/';<br />
+<br />
+// ... パッケージのビューファイルのコード<br />
+<br />
+// ... そしてアプリケーションのオリジナルのビューパスに戻す<br />
+$this->load->_ci_view_path = $orig_view_path;</code>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="input.html">入力クラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="language.html">言語クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

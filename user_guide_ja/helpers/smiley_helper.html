@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>スマイリーヘルパ : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+スマイリーヘルパ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>スマイリーヘルパ</h1>
+
+<p>スマイリーヘルパのファイルは、スマイリー (顔文字) を管理できる関数で構成されています。</p>
+
+
+<h2>ヘルパのロード</h2>
+
+<p>このヘルパは次のコードを使ってロードします:</p>
+<code>$this->load->helper('smiley');</code>
+
+<h2>概要</h2>
+
+<p>スマイリーヘルパは、  <dfn>:-)</dfn> [訳注:日本の顔文字の（＾＾）に相当] のようなプレーンテキストの顔文字をもとに、
+<img src="../images/smile.gif" width="19" height="19" border="0" alt="smile!" /> のような画像の表現に変換して描画します。</p>
+
+<p>また、クリックしたときにフォームフィールドに挿入できる顔文字画像のセットも表示できます。
+たとえば、ユーザがコメントをつけられるブログを作成しているとき、顔文字のセットをコメントフォームの下に表示させることができます。
+ユーザはセットしたい顔文字をクリックでき、JavaScript で選択した顔文字がフォームフィールドに置かれます。</p>
+
+
+
+<h2>クリッカブルスマイリーのチュートリアル</h2>
+
+<p>以下は、フォームフィールドの下にクッリクできる顔文字を作成する方法を説明した例です。このサンプルでは、
+まず、顔文字の画像をダウンロードしてインストールする必要があります。そのあと、説明通りにコントローラとビューを作成します。</p>
+
+<p class="important"><strong>重要:</strong> 始める前に、<a href="http://codeigniter.com/download_files/smileys.zip">顔文字をダウンロード</a>して、
+サーバのパブリックにアクセスできる場所に設置してください。また、このヘルパは、
+<dfn>application/config/smileys.php</dfn> にある顔文字置き換え設定の配列が必要になります</p>
+
+
+<h3>コントローラ</h3>
+
+<p><dfn>application/controllers/</dfn> フォルダの中に、<kbd>smileys.php</kbd> という名前のファイルを作成し、その中に下のコードを書いて下さい。</p>
+
+<p><strong>重要: </strong><dfn>get_clickable_smileys()</dfn> 関数で、URL を
+<dfn>smiley</dfn> フォルダの場所を指すように変更します。</p>
+
+<p>スマイリーヘルパーのほか、<a href="../libraries/table.html">HTML テーブルクラス</a>を使っているのがわかると思います。</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="25">
+&lt;?php
+
+class Smileys extends CI_Controller {
+
+	function __construct()
+	{
+		parent::__construct();
+	}
+
+	function index()
+	{
+		$this->load->helper('smiley');
+		$this->load->library('table');
+
+		$image_array = get_clickable_smileys('http://example.com/images/smileys/', 'comments');
+
+		$col_array = $this->table->make_columns($image_array, 8);
+
+		$data['smiley_table'] = $this->table->generate($col_array);
+
+		$this->load->view('smiley_view', $data);
+	}
+
+}
+?&gt;
+</textarea>
+
+<p><dfn>application/views/</dfn> フォルダの中に、<kbd>smiley_view.php</kbd> という名前のファイルを作成し、その中に下記のコードを書いてください:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="20">
+&lt;html>
+&lt;head>
+&lt;title>Smileys&lt;/title>
+
+&lt;?php echo smiley_js(); ?>
+
+&lt;/head>
+&lt;body>
+
+&lt;form name="blog">
+&lt;textarea name="comments" id="comments" cols="40" rows="4">&lt;/textarea>
+&lt;/form>
+
+&lt;p>Click to insert a smiley!&lt;/p>
+
+&lt;?php echo $smiley_table; ?>
+
+&lt;/body>
+&lt;/html>
+</textarea>
+
+
+<p>上のコントローラとビューを作成したら、次の URL を訪問して読み込んでください <dfn>http://www.example.com/index.php/smileys/</dfn></p>
+
+
+<h3>フィールドの別名</h3> 
+
+<p>ビューへの変更を行う際に、コントローラにフィールド ID を持たせていては扱いにくい場合があります。このような問題に対処するため、
+ビューの中の特定の ID に関連づけようとしているスマイリーリンクに、一般的な名前を付けることができます。</p>
+<code>$image_array = get_smiley_links("http://example.com/images/smileys/", "comment_textarea_alias");</code>
+
+<p>別名をフィールド ID にマッピングするには、smiley_js 関数に、それら両方を渡します：</p>
+<code>$image_array = smiley_js("comment_textarea_alias", "comments");</code>
+
+
+<h1>関数リファレンス</h1>
+
+<h2>get_clickable_smileys()</h2>
+
+<p>クッリク可能なリンクで囲まれた顔文字画像の配列を返します。顔文字画像のフォルダの URL と、
+フィールドの ID か別名を指定する必要があります:</p>
+
+<code>$image_array = get_smiley_links("http://example.com/images/smileys/", "comment");</code>
+<p class="important">Note: js_insert_smiley と組み合わせて使う、第二引数を用いないこの関数の利用方法は、非推奨になりました。</p>
+
+
+<h2>smiley_js()</h2>
+
+<p>顔文字画像をクリックし、フォームフィールドに挿入可能にする JavaScript を生成します。
+スマイリーリンクを生成する際に、ID の代わりに別名を指定する場合、
+関数に、別名とそれに関連するフォーム ID を渡す必要があります。
+この関数は、web ページの&lt;head&gt;領域に設置するように設計されています。</p>
+
+<code>&lt;?php echo smiley_js(); ?&gt;</code>
+<p class="important">Note: この関数は、非奨励となった js_insert_smiley の代わりになります。</p>
+
+
+<h2>parse_smileys()</h2>
+
+<p>テキストを入力として、プレーンテキストの顔文字を同じ種類の画像の顔文字に変換します。
+第1引数には文字列を、第2引数には顔文字画像のフォルダの URL を指定する必要があります:</p>
+
+<code>
+$str = 'Here are some simileys: :-)  ;-)';
+
+$str = parse_smileys($str, "http://example.com/images/smileys/");
+
+echo $str;
+</code>
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+Previous Topic:&nbsp;&nbsp;<a href="security_helper.html">セキュリティヘルパ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+Next Topic:&nbsp;&nbsp;<a href="string_helper.html">文字列ヘルパ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

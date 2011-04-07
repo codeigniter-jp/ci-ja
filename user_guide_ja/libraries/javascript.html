@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<title>CodeIgniter User Guide : JavaScript クラス</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="153" height="44" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="../general/drivers.html">Drivers</a> &nbsp;&#8250;&nbsp;
+JavaScript ドライバ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp;<input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<p class="important"><strong>Note:</strong> このドライバは実験的なものです。機能や実装は将来のリリースで変更されるかもしれません。</p><p class="important"><strong>訳注:</strong> 　現時点では，このページの記述は一部正しくない可能性があります。</p><br>
+
+<h1>JavaScript クラス</h1>
+<p>CodeIgniter では一般的な JavaScript の機能を提供します。ここで注意していただきたいのは，CodeIgniter の動作に jQuery ライブラリは必須ではありません。ここでは単に，jQuery ライブラリが便利であるということを紹介します。</p>
+<h2>クラスの初期化</h2>
+<p>JavaScript クラスをコントローラのコンストラクタで手動で初期化するには，<dfn>$this-&gt;load-&gt;library</dfn> メソッドを使います。 現在のところ，使用できるライブラリは jQuery のみで，これは次のようにすると自動的にロードされます。</p>
+
+<code>$this-&gt;load-&gt;library('javascript');</code>
+
+<p>また，JavaScript クラスでは <dfn>js_library_driver (文字列型) 初期値 'jquery'</dfn> と <dfn>autoload (ブール型) 初期値 TRUE</dfn> というパラメータを指定することができます。 次のように連想配列を渡すことで，初期値が上書きされます:</p>
+
+<code>$this-&gt;load-&gt;library('javascript', array('js_library_driver' =&gt; 'scripto', 'autoload' =&gt; FALSE));</code>
+
+<p>繰り返しになりますが，現在は 'jquery' のみ使用できます。もっとも，出力される script タグに jQuery のファイルを含めたくない場合は，<dfn>autoload</dfn> を FALSE とします。これは，CodeIgniter の外部でロードしている場合や，すでにビューなどに直接記述している場合に有効です。</p>
+
+<p>一度ロードすれば，jQuery ライブラリのオブジェクトは次のようにして使用できます: <dfn>$this-&gt;javascript</dfn></p>
+<h2>準備と設定</h2>
+<h3>ビューに変数をセットする</h3>
+<p>アプリケーションから JavaScript ライブラリを読み込めるようにする必要があります。</p>
+<p>JavaScript はクライアントサイドの言語なので，ライブラリは最終的な出力 (つまりビュー) に含まれなければいけません。次の変数をビューの &lt;head&gt; タグ内に挿入します。</p>
+<p><code>&lt;?php echo $library_src;?&gt;<br />
+&lt;?php echo $script_head;?&gt;
+</code></p>
+<p>$library_src は，実際のライブラリやその後呼び出されるプラグインのスクリプトファイルが読み込まれる場所です。$script_head はイベントや関数，その他のコマンドが表示される場所です。</p>
+<h3>設定ファイルでライブラリのパスを指定する</h3>
+<p>JavaScript ライブラリにはいくつかの設定項目があります。これらは，設定ファイル config/javascript.php または application/config.php 内に記述するか，任意のコントローラ内で set_item() メソッドにより指定します。</p>
+<p>&quot;ajax loader&quot; や進捗表示で使用される画像が指定されていない場合，単に &quot;loading&quot; というテキストが表示されます。</p>
+<p><code>$config['javascript_location'] = 'http://localhost/codeigniter/themes/js/jquery/';<br />
+		$config['javascript_ajax_img'] = 'images/ajax-loader.gif';</code></p>
+<p>ダウンロードしてからディレクトリを変更していない場合，設定する必要はありません</p>
+
+<h2>jQuery クラス</h2>
+
+<p>jQuery クラスをコントローラのコンストラクタで手動で初期化するには，次のように <dfn>$this-&gt;load-&gt;library</dfn> メソッドを使います:</p>
+
+<code>$this-&gt;load-&gt;library('jquery');</code>
+
+<p>オプションのパラメータにより，ライブラリをロードする際に jQuery の script タグを自動的に読み込むかどうか指定できます。デフォルトでは生成されますが，これをやめるには次のようにライブラリをロードします:</p>
+
+<code>$this-&gt;load-&gt;library('jquery', FALSE);</code>
+
+<p>一度ロードすれば，jQuery ライブラリのオブジェクトは次のようにして使用できます: <dfn>$this-&gt;jquery</dfn></p>
+
+<h2>jQuery イベント</h2>
+
+<p>イベントは以下の構文を使用してセットされます。</p>
+
+<p><code>$this-&gt;jquery-&gt;event('element_path', code_to_run());</code></p>
+
+<p>上記の例: </p>
+
+<ul>
+	<li>&quot;event&quot; は次のどれかです: blur, change, click, dblclick, error, focus, hover, keydown, keyup, load, mousedown, mouseup, mouseover, mouseup, resize, scroll または unload</li>
+	<li>&quot;element_path&quot; は有効な <a href="http://docs.jquery.com/Selectors">jQuery のセレクタ</a>です。jQuery 固有のセレクタの構文により，これはたいてい element id か CSS セレクタになります。たとえば，&quot;#notice_area&quot; は &lt;div id=&quot;notice_area&quot;&gt; に，&quot;#content a.notice&quot; は  id が &quot;content&quot; の div の中にあるすべてのアンカーに効果があります。</li>
+	<li>&quot;code_to_run()&quot; はあなた自信が書くスクリプトか，以下の  jQuery ライブラリにある効果のようなアクションです。</li>
+	</ul>
+
+<h2>効果</h2>
+
+<p>Jquery ライブラリには，強力な<a href="http://docs.jquery.com/Effects">効果</a>のレパートリーがあります。効果を利用する前に，まず次のようにしてロードします。</p>
+
+<p><code>$this->jquery->effect([オプションのパス名] プラグイン名);
+// 例: 
+$this->jquery->effect('bounce');
+</code></p>
+
+<h3>hide() / show()</h3>
+
+<p>ページ上のアイテムの可視性 (表示・非表示) に作用します。hide() はアイテムを非表示にし，show() はそれを表示します。</p>
+<p><code>$this-&gt;jquery-&gt;hide(target,  optional speed, optional extra information);<br />
+	$this-&gt;jquery-&gt;show(target,  optional speed, optional extra information);</code></p>
+
+<ul>
+	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>
+	<li>&quot;speed&quot; はオプションで，slow (ゆっくり), normal (普通), fast (速い) のどれか，またはミリ秒単位の数値を指定します。</li>
+	<li>&quot;extra information&quot; はオプションで，コールバック関数他の追加情報を指定できます。</li>
+</ul>
+
+<h3>toggle()</h3>
+
+<p>アイテムの表示・非表示を切り替えます。見えている場合は隠し，隠れている場合は表示します。</p>
+<p><code>$this-&gt;jquery-&gt;toggle(target);</code></p>
+<ul>
+	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>
+</ul>
+
+<h3>animate()</h3>
+
+<p><code> $this-&gt;jquery-&gt;animate(target, parameters, optional speed, optional extra information);</code></p>
+<ul>
+	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>
+	<li>&quot;paramters&quot; 変化させたい CSS のプロパティです。</li>
+	<li>&quot;speed&quot; はオプションで，slow (ゆっくり), normal (普通), fast (速い) のどれか，またはミリ秒単位の数値を指定します。</li>
+	<li>&quot;extra information&quot; はオプションで，コールバック関数他の追加情報を指定できます。</li>
+</ul>
+<p>詳細は次のページを参照してください: <a href="http://docs.jquery.com/Effects/animate">http://docs.jquery.com/Effects/animate</a></p>
+<p>以下は，id が &quot;note&quot; の div に animate() を使用したときの例で， jQuery ライブラリの click() イベントを使用してクリックをトリガにしています。</p>
+<p><code> $params = array(<br />
+	'height' =&gt; 80,<br />
+	'width' =&gt; '50%',<br />
+	'marginLeft' =&gt; 125<br />
+);<br />
+$this-&gt;jquery-&gt;click('#trigger', $this-&gt;jquery-&gt;animate('#note', $params, normal));</code></p>
+
+<h3>fadeIn() / fadeOut()</h3>
+
+<p><code>$this-&gt;jquery-&gt;fadeIn(target,  optional speed, optional extra information);<br />
+	$this-&gt;jquery-&gt;fadeOut(target,  optional speed, optional extra information);</code></p>
+<ul>
+	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>
+	<li>&quot;speed&quot; はオプションで，slow (ゆっくり), normal (普通), fast (速い) のどれか，またはミリ秒単位の数値を指定します。</li>
+	<li>&quot;extra information&quot; はオプションで，コールバック関数他の追加情報を指定できます。</li>
+</ul>
+
+<h3>toggleClass()</h3>
+
+<p>ターゲットに対して CSS クラスを追加または削除します。</p>
+<p><code>$this-&gt;jquery-&gt;toggleClass(target, class)</code></p>
+<ul>
+	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>
+	<li>&quot;class&quot; は CSS のクラス名です。このクラス名は，ロード済みの CSS で定義されていて利用可能でなければならないことに注意してください。</li>
+	</ul>
+
+<h3>fadeIn() / fadeOut()</h3>
+
+<p>一定時間後に要素を非表示化または再表示します。</p>
+<p><code>$this-&gt;jquery-&gt;fadeIn(target,  optional speed, optional extra information);<br />
+	$this-&gt;jquery-&gt;fadeOut(target,  optional speed, optional extra information);</code></p>
+<ul>
+	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>
+	<li>&quot;speed&quot; はオプションで，slow (ゆっくり), normal (普通), fast (速い) のどれか，またはミリ秒単位の数値を指定します。</li>
+	<li>&quot;extra information&quot; はオプションで，コールバック関数他の追加情報を指定できます。</li>
+</ul>
+
+<h3>slideUp() / slideDown() / slideToggle()</h3>
+
+<p>要素をスライドします。</p>
+<p><code>$this-&gt;jquery-&gt;slideUp(target,  optional speed, optional extra information);<br />
+	$this-&gt;jquery-&gt;slideDown(target,  optional speed, optional extra information);<br />
+$this-&gt;jquery-&gt;slideToggle(target,  optional speed, optional extra information);</code></p>
+<ul>
+	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>
+	<li>&quot;speed&quot; はオプションで，slow (ゆっくり), normal (普通), fast (速い) のどれか，またはミリ秒単位の数値を指定します。</li>
+	<li>&quot;extra information&quot; はオプションで，コールバック関数他の追加情報を指定できます。</li>
+</ul>
+
+<h2>プラグイン</h2>
+
+<p>
+
+<p>このライブラリによりいくつかの jQuery プラグインが使用可能です。</p>
+
+<h3>corner()</h3>
+<p>ページの要素の角を特徴的 (訳注: 角丸など) にします。詳細は次のページを参照してください: <a href="http://www.malsup.com/jquery/corner/">http://www.malsup.com/jquery/corner/</a></p>
+<p><code>$this-&gt;jquery-&gt;corner(target, corner_style);</code></p>
+<ul>
+	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>
+	<li>&quot;corner_style&quot; はオプションで，round, sharp, bevel, bite, dog などの有効なスタイルを指定できます。個々の角を指定することもできます。スタイル名の後，スペースに続けて次のように指定します: &quot;tl&quot; (左上), &quot;tr&quot; (右上), &quot;bl&quot; (左下),  &quot;br&quot; (右下)</li>
+</ul>
+<p><code>$this-&gt;jquery-&gt;corner(&quot;#note&quot;, &quot;cool tl br&quot;);</code></p>
+
+<h3>tablesorter()</h3>
+
+<p>description to come (執筆中)</p>
+
+<h3>modal()</h3>
+
+<p>description to come (執筆中)</p>
+
+<h3>calendar()</h3>
+
+<p>description to come (執筆中)</p>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="input.html">入力クラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+Next Topic:&nbsp;&nbsp;<a href="language.html">言語クラス</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

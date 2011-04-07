@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>入力クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+入力クラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>入力クラス</h1>
+
+<p>入力クラスには2つの目的があります:</p>
+
+<ol>
+<li>グローバルな入力データをセキュリティのために前処理します。</li>
+<li>入力データを取り出し、前処理するためのヘルパメソッドを提供します。</li>
+</ol>
+
+<p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
+
+
+<h2>セキュリティフィルタリング</h2>
+
+<p>セキュリティフィルタ機能は、新しい<a href="../general/controllers.html">コントローラ</a> が起動されると自動的に呼び出されます。フィルタ機能は、次のことを行います:</p>
+
+<ul>
+<li>グローバルな GET 配列($_GET) のデータを消去します。CodeIgniterではGET文字列（クエリ文字列）を使わないので、それを許可する理由はありません。</li>
+<li>register_globals がONに設定されているときにセットされるグローバル変数は消去されます。</li>
+<li>英数字 (と少数の他の文字) だけを許可するよう POST/COOKIE 配列のキーがフィルタリングされます。</li>
+<li>XSS (クロスサイトスクリプティング攻撃) フィルタリングを提供します。この機能は、グローバルまたは、リクエストごとに有効化できます。</li>
+<li>改行文字を \n に統一します。 </li>
+</ul>
+
+
+<h2>XSS フィルタリング</h2>
+
+<p>入力クラスではクロスサイトスクリプティング攻撃を防ぐ為、自動的に入力値をフィルタする機能が備わっています。<kbd>application/config/config.php</kbd> 
+ファイルを次のように設定することで POST または COOKIE データを扱う際、自動的にフィルタを実行することができます :</p>
+
+<code>$config['global_xss_filtering'] = TRUE;</code>
+
+<p>アプリケーション内でXSSフィルタリングを利用する方法については <a href="security.html">セキュリティクラス</a> を参照してください。</p>
+
+
+<h2>POST、COOKIE、あるいはSERVERデータの使用</h2>
+
+<p>CodeIgniterには、POST、COOKIEあるいはSERVERのデータを取得するための3つのヘルパメソッドが備わっています。
+直接項目を取得する(例：$_POST['something'] ) のでなく、このクラスが提供するメソッドを使う主な利点は、メソッドにより値がセットされているかチェックされ、セットされていない場合は、false (ブール値) を返すということです。
+このメソッドを利用すれば、項目が存在するかどうかをまずテストすることなく、便利にデータを使えます。
+つまり、通常は、次のようなコードになりますが:</p>
+
+<code>
+if ( ! isset($_POST['something']))<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$something = FALSE;<br />
+}<br />
+else<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$something = $_POST['something'];<br />
+}</code>
+
+<p>CodeIgniter の組み込みメソッドを使うと、単純に次のようになります:</p>
+
+<code>$something = $this->input->post('something');</code>
+
+<p>3つのメソッドは次の通りです:</p>
+
+<ul>
+<li>$this->input->post()</li>
+<li>$this->input->cookie()</li>
+<li>$this->input->server()</li>
+</ul>
+
+<h2>$this->input->post()</h2>
+
+<p>第1引数は、コレクションの中から探し出すPOSTされた項目の名前になります:</p>
+
+<code>$this->input->post('some_data');</code>
+
+<p>このメソッドは、取り出そうとして見つからなかった場合、FALSE (ブール値) を返します。</p>
+
+<p>第2引数は、オプションで、データをXSSフィルタに通すかどうかを指定します。XSSフィルタは、第2引数をブール値のTRUEに設定することで有効になります:</p>
+
+<code>$this->input->post('some_data', TRUE);</code>
+
+<p>引数を指定せずに呼び出すことで、POSTされたすべての値を連想配列で返します。</p>
+<p>第1引数をブランク、第2引数にブール値を指定することで、POSTされたすべての値をXSSフィルタに通すことができます。</p>
+<p>このメソッドは、取り出そうとして見つからなかった場合、FALSE (ブール値) を返します。</p>
+
+<code>
+	$this->input->post(); // POSTされた値をXSSフィルタを通して返します
+	<br />
+	$this->input->post(NULL, FALSE); // POSTされた値をXSSフィルタを通さずに返します
+</code>
+
+<h2>$this->input->get()</h2>
+
+<p>このメソッドは、get データを取り出すということ以外は、post メソッドと同じです:</p>
+
+<code>$this->input->get('some_data', TRUE);</code>
+
+<p>引数を指定せずに呼び出すことで、GETされたすべての値を連想配列で返します。</p>
+<p>第1引数をブランク、第2引数にブール値を指定することで、GETされたすべての値をXSSフィルタに通すことができます。</p>
+<p>このメソッドは、取り出そうとして見つからなかった場合、FALSE (ブール値) を返します。</p>
+
+<code>
+	$this->input->get(); // GETされた値をXSSフィルタを通して返します
+	<br />
+	$this->input->get(NULL, FALSE); // GETされた値をXSSフィルタを通さずに返します
+</code>
+
+<h2>$this->input->get_post()</h2>
+
+<p>このメソッドは、get と post 両方のデータを取得対象としています、まず最初に post を対象にし、それから get を対象にします:
+
+<code>$this->input->get_post('some_data', TRUE);</code>
+
+<h2>$this->input->cookie()</h2>
+
+<p>このメソッドは、クッキーデータを取り出すということ以外は、post メソッドと同じです:</p>
+
+<code>$this->input->cookie('some_data', TRUE);</code>
+
+<h2>$this->input->server()</h2>
+
+<p>このメソッドは、SERVERデータを取り出すということ以外は、上のメソッドと同じです:</p>
+
+<code>$this->input->server('some_data');</code>
+
+
+<h2>$this->input->set_cookie()</h2>
+
+<p>指定した値を含むクッキーをセットします。クッキーをセットする為にこのメソッドに情報を渡すには、2つの方法があります:
+配列で渡す方法と個々のパラメータを渡す方法です:</p>
+
+<h4>配列で渡す方法</h4>
+
+<p>この方法では、第1引数に連想配列が渡されます:</p>
+
+<code>$cookie = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp;=> 'クッキー名',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'value'&nbsp;&nbsp;=> '値',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'expire' => '86500',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'domain' => '.some-domain.com',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'path'&nbsp;&nbsp;&nbsp;=> '/',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'prefix' => 'myprefix_',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'secure' => TRUE<br />
+);<br />
+<br />
+$this->input->set_cookie($cookie);
+</code>
+
+<p><strong>Notes:</strong></p>
+
+<p>name と value のみが必須属性となります。クッキーを削除するには有効期限に空白をセットします。</p>
+
+<p>有効期限は現在時刻から数えた<strong>秒数</strong>で指定します。時刻を指定するのではなく、クッキーを<em>現在時刻</em>から
+何秒間有効かを秒数だけで指定します。
+有効期限を 0 にセットすると、ブラウザが開いている間だけ、クッキーが有効になります。</p>
+<p>どのようにリクエストを受け付けたかにかかわらず、サイト全体で使うクッキーには、次のように <strong>domain</strong> にピリオドから始まるURLを追加してください: .your-domain.com</p>
+<p>パスは、メソッドがルートパスをセットするので通常は必要ありません。</p>
+<p>プリフィックスは、同一のサーバによってセットされたクッキーにおける名前の衝突を回避したい場合にのみ必要です。</p>
+<p>セキュアのブール値は、セキュアなクッキーを使用したい場合のみTRUEにする必要があります。</p>
+
+<h4>個々のパラメータを渡す方法</h4>
+
+<p>希望であれば、個別のパラメータを使ってデータを渡してクッキーをセットすることができます:</p>
+
+<code>$this->input->set_cookie($name, $value, $expire, $domain, $path, $prefix, $secure);</code>
+
+<h2>$this->input->get_cookie()</h2>
+
+<p>クッキーを読み取ることができます。第1引数は、読み取るクッキーの名前になります (プリフィックスがある場合はそれも):</p>
+
+<code>get_cookie('some_cookie');</code>
+
+<p>この関数は、読み取ろうとするクッキーが存在しない場合にFALSE (ブール値) を返します。</p>
+
+<p>オプションの第2引数で、データをXSSフィルタに通すことができます。この機能は、第2引数にブール値のTRUEをセットすることで有効になります;</p>
+
+<p><code>get_cookie('some_cookie', TRUE);</code></p>
+
+
+<h2>$this->input->ip_address()</h2>
+<p>現在のユーザのIP アドレスを返します。IPアドレスが正しくない場合、このメソッドは、次のIPアドレスを返します: 0.0.0.0</p>
+<code>echo $this->input->ip_address();</code>
+
+
+<h2>$this->input->valid_ip(<var>$ip</var>)</h2>
+
+<p>IP アドレスを入力としてとり、IPアドレスとして妥当かどうかに応じて TRUE か FALSE (ブール値) を返します。Note:   上の$this->input->ip_address() メソッドは、
+IPの検証を自動的に行います。</p>
+
+<code>if ( ! $this-&gt;input-&gt;valid_ip($ip))<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp; echo 'Not Valid';<br />
+}<br />
+else<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp; echo 'Valid';<br />
+}</code>
+
+
+<h2>$this-&gt;input-&gt;user_agent()</h2>
+<p>現在のユーザが使用しているユーザエージェント(webブラウザ)を返します。利用できないときはFALSEを返します。</p>
+<code>echo $this->input->user_agent();</code>
+<p>ユーザーエージェントの文字列から情報を抽出する方法は<a href="user_agent.html">ユーザーエージェントクラス</a>を参照してください。</p>
+
+<h2>$this-&gt;input-&gt;request_headers()</h2>
+<p>Apache 以外 (<a href="http://php.net/apache_request_headers">apache_request_headers()</a> をサポートしない) 環境で有効です。ヘッダの配列を返します。</p>
+
+<code>$headers = $this-&gt;input-&gt;request_headers();</code>
+
+<h2>$this-&gt;input-&gt;get_request_header();</h2>
+<p>リクエストヘッダの配列から指定した要素を返します。</p>
+
+<code>$this-&gt;input-&gt;get_request_header('some-header', TRUE);</code>
+
+
+<h2>$this-&gt;input-&gt;is_ajax_request()</h2>
+<p>サーバのヘッダに <var>HTTP_X_REQUESTED_WITH</var> がセットされているかチェックし, boolean で返します。</p>
+
+<code>$this-&gt;input-&gt;is_ajax_request()</code>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="image_lib.html">画像操作クラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="loader.html">ローダ(読み込み処理)クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

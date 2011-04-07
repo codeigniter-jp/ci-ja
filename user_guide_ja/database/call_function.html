@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PHPネイティブ関数の呼び出し : CodeIgniter ユーザガイド 日本語版</title>
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;PHPネイティブ関数の呼び出し</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>PHPネイティブ関数の呼び出し</h1>
+
+<h2>$this->db->call_function();</h2>
+
+<p>このメソッドを使えば、プラットフォームに依存しないという設計思想のために CodeIgniter でネイティブにサポートされていない PHP のデータベース関数を呼び出すのが可能になります。たとえば、CodeIgniterでネイティブに<strong>サポートされていない</strong> <dfn>mysql_get_client_info()</dfn> 関数を呼び出したいとしたら、次のようにして呼び出すことができます:</p>
+
+<code>$this->db->call_function('<var>get_client_info</var>');</code>
+
+<p>第1引数で、プリフィックスの <var>mysql_</var> <strong>を付けずに</strong>、関数名を渡す必要があります。プリフィックスは、利用中のデータベースドライバに応じて自動で付加されます。こうすることで、異なるデータベースプラットフォームであっても同じ名前で実行できるようになります。言うまでもなく、すべての関数の呼出しがプラットフォーム間で一致するわけではありませんので、このメソッドが移植性にどれほど役立つかは限られています。</p>
+
+<p>呼び出そうとする関数において必要なパラメータは、第2引数で指定することができます。</p>
+
+<code>$this->db->call_function('<var>some_function</var>', $param1, $param2, etc..);</code>
+
+
+<p>データベースの接続ID や データベースの結果IDを渡すのが必要になる時がよくあります。接続IDは次のようにしてアクセスできます:</p>
+
+<code>$this->db->conn_id;</code>
+
+<p>次のようにして、結果オブジェクトで、結果IDにアクセスできます:</p>
+
+<code>$query = $this->db->query("SOME QUERY");<br />
+<br />
+<var>$query->result_id;</var></code>
+
+
+
+
+
+
+
+
+
+
+
+	
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="fields.html">フィールドのメタデータ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="caching.html">クエリのキャッシュ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

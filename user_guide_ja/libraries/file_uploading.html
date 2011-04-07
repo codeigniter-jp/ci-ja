@@ -1,0 +1,451 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ファイルアップロードクラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ファイルアップロードクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>ファイルアップロードクラス</h1>
+
+<p>CodeIgniter のファイルアップロードクラスを使うとファイルのアップロードが可能になります。
+ファイルの形式、サイズを規定するために、各種の設定項目をセットできます。</p>
+
+
+<h2>手順</h2>
+
+<p>ファイルをアップロードするには、一般的には次のような手順になります:</p>
+
+
+<ul>
+<li>アップロードフォームが表示されます。アップロードフォームでは、ユーザがアップロードするファイルを選べます。</li>
+<li>フォームが送信されたとき、指定した場所にファイルがアップロードされます。</li>
+<li>アップロードの過程で、ファイルは指定した設定情報に従って、アップロード可能かどうかが検証されます。</li>
+<li>アップロードされたあと、ユーザに成功メッセージが表示されます。</li>
+</ul>
+
+<p>この手順を説明するため、以下で短いチュートリアルを用意しました。チュートリアルの後に、リファレンス情報を掲載しています。</p>
+
+<h2>アップロードフォームの作成</h2>
+
+
+
+<p>テキストエディタを使って、<dfn>upload_form.php</dfn>  という名前のファイルを作ります。その中に、下記のコードを記述し <samp>applications/views/</samp>
+フォルダに保存します:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="23">
+&lt;html>
+&lt;head>
+&lt;title>アップロードフォーム&lt;/title>
+&lt;/head>
+&lt;body>
+
+&lt;?php echo $error;?>
+
+&lt;?php echo form_open_multipart('upload/do_upload');?>
+
+&lt;input type="file" name="userfile" size="20" />
+
+&lt;br />&lt;br />
+
+&lt;input type="submit" value="upload" />
+
+&lt;/form>
+
+&lt;/body>
+&lt;/html></textarea>
+
+<p>form タグを開始するのに form ヘルパ関数を利用しているのがわかると思います。
+ファイルアップロードではマルチパートフォームが必要になり、ヘルパはその正しい構文を生成してくれます。
+また、$error 変数があるのがわかると思います。これは、ユーザが誤操作した場合にエラーメッセージを表示するのに使います。</p>
+
+
+<h2>成功ページ</h2>
+
+<p>テキストエディタを使って、 <dfn>upload_success.php</dfn> という名前のフォームファイルを作ります。
+その中に下記のコードを記述して <samp>applications/views/</samp> フォルダに保存してください:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="20">&lt;html>
+&lt;head>
+&lt;title>アップロードフォーム&lt;/title>
+&lt;/head>
+&lt;body>
+
+&lt;h3>ファイルのアップロードに成功しました!&lt;/h3>
+
+&lt;ul>
+&lt;?php foreach ($upload_data as $item => $value):?>
+&lt;li>&lt;?php echo $item;?>: &lt;?php echo $value;?>&lt;/li>
+&lt;?php endforeach; ?>
+&lt;/ul>
+
+&lt;p>&lt;?php echo anchor('upload', 'Upload Another File!'); ?>&lt;/p>
+
+&lt;/body>
+&lt;/html></textarea>
+
+
+<h2>コントローラ</h2>
+
+<p>テキストエディタを使って <dfn>upload.php</dfn>　という名前のコントローラを作ります。その中に、下記のコードを記述して、<samp>applications/controllers/</samp>
+フォルダに保存してください:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="43">&lt;?php
+
+class Upload extends CI_Controller {
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->helper(array('form', 'url'));
+	}
+
+	function index()
+	{
+		$this->load->view('upload_form', array('error' => ' ' ));
+	}
+
+	function do_upload()
+	{
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+
+			$this->load->view('upload_form', $error);
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+
+			$this->load->view('upload_success', $data);
+		}
+	}
+}
+?&gt;</textarea>
+
+
+<h2>アップロードフォルダ</h2>
+
+<p>アップロードする画像用のアップロード先フォルダが必要です。  CodeIgniter をインストールした場所のルートに
+<dfn>uploads</dfn> という名前のフォルダを作り、パーミッションを777にセットしてください。</p>
+
+
+<h2>動かして試してみよう！</h2>
+
+<p>フォームを動かすには、下記のURLを使ってサイトに移動します:</p>
+
+<code>exmaple.com/index.php/<var>upload</var>/</code>
+
+<p>アップロードフォームが表示されるはずです。イメージファイル (jpg、gif、または png のいずれか)をアップロードしてみてください。
+動作させるには、コントローラに書いてあるパスが正しくなければなりません。</p>
+
+
+<p>&nbsp;</p>
+
+<h1>リファレンスガイド</h1>
+
+
+<h2>アップロードクラスの初期化</h2>
+
+<p>CodeIgniter のほとんどのクラスと同じく、アップロードクラスは、コントローラの中で <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
+
+<code>$this->load->library('upload');</code>
+<p>アップロードクラスがロードされると、オブジェクトは次のように利用可能です: <dfn>$this->upload</dfn></p>
+
+
+<h2>オプションの設定</h2>
+
+<p>他のライブラリ同様、設定項目に基づいて、どんなファイルがアップロード可能かをコントロールできます。
+上で作成したコントローラでは、次のような設定をセットしました:</p>
+
+<code>$config['upload_path'] = './uploads/';<br />
+$config['allowed_types'] = 'gif|jpg|png';<br />
+$config['max_size']	= '100';<br />
+$config['max_width']  = '1024';<br />
+$config['max_height']  = '768';<br />
+<br />
+$this->load->library('upload', $config);<br /><br />
+
+//  initialize メソッドを呼んで設定することもできます。このクラスを自動読み込みするときに使えます:<br />
+$this->upload->initialize($config);</code>
+
+<p>上のような設定項目を使って、アップロードされるファイルについて完全に定義する必要があります。下記は、全設定項目を説明した表です。</p>
+
+
+<h2>設定項目</h2>
+
+<p>次の設定項目を指定可能です。初期値のところは、設定項目を指定しなかった時に使われる値になります。</p>
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+<tr>
+<th>設定項目</th>
+<th>初期値</th>
+<th>選択肢</th>
+<th>説明</th>
+</tr>
+
+<tr>
+<td class="td"><strong>upload_path</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">アップロードされたファイルが置かれるフォルダへのパス。フォルダは書き込み可能でなければなりません。また、絶対パス あるいは 相対パスで指定できます。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>allowed_types</strong></td>
+<td class="td">なし</td>
+<td class="td">なし</td>
+<td class="td">アップロードできるファイルの MIME タイプ。通常は、MIME タイプを示すのに拡張子で指定することができます。&quot;|&quot; で区切って複数指定します。</td>
+</tr>
+
+
+<tr>
+<td class="td"><strong>file_name</strong></td>
+<td class="td">なし</td>
+<td class="td">目的のファイル名</td>
+<td class="td">
+	<p>設定すると、CodeIgniterはアップロードされたファイルをこのファイル名にリネームします。ファイル名の拡張子は許可されたファイルタイプのものでなければなりません。</p>
+</td>
+</tr>
+
+<tr>
+<td class="td"><strong>overwrite</strong></td>
+<td class="td">FALSE</td>
+<td class="td">TRUE/FALSE (ブール値)</td>
+<td class="td">TRUE に設定すると、アップロードしたものと同じ名前のファイルがすでに存在する場合に上書きされます。FALSE にセットすると、同名のファイルがすでに存在する場合に、ファイル名に番号が追加されます。</td>
+</tr>
+
+
+<tr>
+<td class="td"><strong>max_size</strong></td>
+<td class="td">0</td>
+<td class="td">なし</td>
+<td class="td">アップロードできるファイルの最大サイズ (KB) 。無制限にする場合には0を設定します。Note:  php.ini ファイルで、各 PHP 実行環境そのものの制限が指定されています。デフォルトの 2 MB (または 2048 KB) がたいていの場合セットされています。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>max_width</strong></td>
+<td class="td">0</td>
+<td class="td">なし</td>
+<td class="td">ファイル [ 訳注: ファイルが画像の場合の ] の幅の最大値 (ピクセル) 。無制限にするには、0を指定します。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>max_height</strong></td>
+<td class="td">0</td>
+<td class="td">なし</td>
+<td class="td">ファイル [ 訳注: ファイルが画像の場合の ] の高さの最大値 (ピクセル) 。無制限にするには、0を指定します。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>max_filename</strong></td>
+<td class="td">0</td>
+<td class="td">なし</td>
+<td class="td">ファイル名の最大文字数。無制限にするには、0を指定します。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>encrypt_name</strong></td>
+<td class="td">FALSE</td>
+<td class="td">TRUE/FALSE (ブール値)</td>
+<td class="td">TRUE を設定すると、ファイル名がランダムな暗号文字列に変換されます。アップロードした人が指定した名前と違う名前で保存したい場合に役立ちます。</td>
+</tr>
+
+<tr>
+<td class="td"><strong>remove_spaces</strong></td>
+<td class="td">TRUE</td>
+<td class="td">TRUE/FALSE (ブール値)</td>
+<td class="td">TUREに設定した場合、ファイルネーム中のスペースがアンダースコア ”_&quot; に変換されます。TRUE に設定することをおすすめします。</td>
+</tr>
+</table>
+
+
+<h2>設定ファイルに設定を記述する</h2>
+
+<p>上記の方法でオプションを設定したくない場合、代わりに設定ファイルに記述することもできます。
+<var>upload.php</var> という名前のファイルをつくり <var>$config</var> という名前で設定項目の配列をそのファイルを書きます。
+次に <var>config/upload.php</var> に保存すると、自動的にそれが使われるようになります。
+設定項目を設定ファイルに記述した場合は、<dfn>$this->upload->initialize</dfn> メソッドを呼ぶ必要はありません。</p>
+
+
+<h2>メソッドリファレンス</h2>
+
+<p>次のメソッドが利用可能です。</p>
+
+
+<h2>$this->upload->do_upload()</h2>
+
+<p>セットした設定項目に従って、ファイルのアップロードが実行されます。
+Note: デフォルトでは、フォームで <dfn>userfile</dfn> という名前のフォームフィールドにファイルのデータが設定されるものとしてアップロード処理が実行されます。また、フォームは multipart タイプである必要があります:</p>
+
+<code>&lt;form method="post" action="some_action" enctype="multipart/form-data" /></code>
+
+<p>アップロードされるファイルのフィールド名を設定したい場合は、<dfn>do_upload</dfn> メソッドにその値を渡してください:</p>
+
+<code>
+$field_name = "some_field_name";<br />
+$this->upload->do_upload($field_name)</code>
+
+
+<h2>$this->upload->display_errors()</h2>
+
+<p><dfn>do_upload()</dfn> メソッドが FALSE を返したときのすべてのエラーを取得します。
+このメソッドは、自動では出力（echo）しません。変数に代入することができるように、このメソッドはデータを返します。</p>
+
+<h3>エラーメッセージを整形する</h3>
+<p>デフォルトでは、このメソッドは、各エラーを&lt;p>タグで囲みます。次のように、エラーを囲むのに使う文字列を自分でセットすることもできます:</p>
+
+<code>$this->upload->display_errors('<var>&lt;p></var>', '<var>&lt;/p></var>');</code>
+
+<h2>$this->upload->data()</h2>
+
+<p>アップロードしたファイルについての情報を配列で返すメソッドです。
+下記は、配列の例です:</p>
+
+<code>Array<br />
+(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[file_name]&nbsp;&nbsp;&nbsp;&nbsp;=&gt; mypic.jpg<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[file_type]&nbsp;&nbsp;&nbsp;&nbsp;=&gt; image/jpeg<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[file_path]&nbsp;&nbsp;&nbsp;&nbsp;=&gt; /path/to/your/upload/<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[full_path]&nbsp;&nbsp;&nbsp;&nbsp;=&gt; /path/to/your/upload/jpg.jpg<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[raw_name]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; mypic<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[orig_name]&nbsp;&nbsp;&nbsp;&nbsp;=&gt; mypic.jpg<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[client_name]&nbsp;&nbsp;=> mypic.jpg<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[file_ext]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; .jpg<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[file_size]&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 22.2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[is_image]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 1<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[image_width]&nbsp;&nbsp;=&gt; 800<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[image_height] =&gt; 600<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[image_type]&nbsp;&nbsp;&nbsp;=> jpeg<br />
+&nbsp;&nbsp;&nbsp;&nbsp;[image_size_str] =&gt; width="800" height="200"<br />
+)</code>
+
+<h3>配列の項目の意味について</h3>
+
+<p>下記は、上の配列の項目の説明です。</p>
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+<tr><th>項目</th><th>説明</th></tr>
+
+<tr><td class="td"><strong>file_name</strong></td>
+<td class="td">アップロードされたファイルの拡張子を含むファイル名。</td></tr>
+
+<tr><td class="td"><strong>file_type</strong></td>
+<td class="td">ファイルの MIME タイプ</td></tr>
+
+<tr><td class="td"><strong>file_path</strong></td>
+<td class="td">サーバ上のファイルへの絶対パス</td></tr>
+
+<tr><td class="td"><strong>full_path</strong></td>
+<td class="td">ファイル名を含むサーバ上のファイルへの絶対パス</td></tr>
+
+<tr><td class="td"><strong>raw_name</strong></td>
+<td class="td">拡張子を除くファイル名</td></tr>
+
+<tr><td class="td"><strong>orig_name</strong></td>
+<td class="td">オリジナルのファイル名。この項目は暗号化された名前を使うとき [ 訳注: 設定項目の <strong>encrypt_name</strong> をTRUEにした場合 ] だけ意味があります。</td></tr>
+
+<tr><td class="td"><strong>client_name</strong></td>
+<td class="td">インクリメント処理やファイル名を調整する前の、クライアントユーザエージェントから与えられたファイル名。</td></tr>
+
+<tr><td class="td"><strong>file_ext</strong></td>
+<td class="td">ピリオドを含むファイル拡張子</td></tr>
+
+<tr><td class="td"><strong>file_size</strong></td>
+<td class="td">ファイルサイズ (KB)</td></tr>
+
+<tr><td class="td"><strong>is_image</strong></td>
+<td class="td">ファイルが画像であるかどうか。  1 = 画像。 0 = 画像以外。</td></tr>
+
+<tr><td class="td"><strong>image_width</strong></td>
+<td class="td">画像の幅。</td></tr>
+
+<tr><td class="td"><strong>image_height</strong></td>
+<td class="td">画像の高さ。</td></tr>
+
+<tr><td class="td"><strong>image_type</strong></td>
+<td class="td">画像の種類。典型的には、拡張子からピリオドをとったものになります。</td></tr>
+
+<tr><td class="td"><strong>image_size_str</strong></td>
+<td class="td"> width と height を含む文字列。img タグに指定するのに使います。</td></tr>
+
+
+</table>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="encryption.html">暗号化クラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="form_validation.html">Formバリデーション(検証)クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

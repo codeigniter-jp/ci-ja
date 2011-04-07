@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Formヘルパ：CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+Form ヘルパ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>Form ヘルパ</h1>
+
+<p>Form ヘルパのファイルには、HTML フォームを使って作業するのを支援する関数が含まれています。</p>
+
+
+<h2>ヘルパのロード</h2>
+
+<p>このヘルパは次のコードを使ってロードします:</p>
+<code>$this->load->helper('form');</code>
+
+<p>次の関数が利用できます:</p>
+
+
+
+<h2>form_open()</h2>
+
+<p><strong>設定ファイルに基づいて構築した</strong>ベース URL を設定して form の開始タグを作成します。
+オプションで、form タグの属性と隠しフィールドを追加する事が出来、設定ファイルの文字コードの値に基づき、常に <kbd>accept-charset</kbd> 属性が付与されます。</p>
+
+<p>HTML をハードコーディングせずにこのコードを使う主なメリットは、URL が変更になった時に、
+移植性が高まることです。</p>
+
+<p>シンプルな例です:</p>
+
+<code>echo form_open('email/send');</code>
+
+<p>上の例では、次のように、ベースの URL に "email/send" URI セグメントを追加したところを参照する form タグを生成します:</p>
+
+<code>&lt;form method="post" accept-charset="utf-8" action="http:/example.com/index.php/email/send" /></code>
+
+<h4>属性の追加</h4>
+
+<p>次のように、第2パラメータに連想配列で渡すことで、属性を追加できます:</p>
+
+<code>
+$attributes = array('class' => 'email', 'id' => 'myform');<br />
+<br />
+echo form_open('email/send', $attributes);</code>
+
+<p>上の例は、次のようなフォームを生成します:</p>
+
+<code>&lt;form method="post" accept-charset="utf-8" action="http:/example.com/index.php/email/send" &nbsp;class="email" &nbsp;id="myform" /></code>
+
+<h4>隠しフィールドの追加</h4>
+
+<p>次のように、第3パラメータに連想配列で渡すことで、隠しフィールドを追加できます:</p>
+
+<code>
+$hidden = array('username' => 'Joe', 'member_id' => '234');<br />
+<br />
+echo form_open('email/send', '', $hidden);</code>
+
+<p>上の例は、次のようなフォームを生成します:</p>
+
+<code>&lt;form method="post" accept-charset="utf-8" action="http:/example.com/index.php/email/send"><br />
+&lt;input type="hidden" name="username" value="Joe" /><br />
+&lt;input type="hidden" name="member_id" value="234" /></code>
+
+
+<h2>form_open_multipart()</h2>
+
+<p>ファイルをアップロードする際に使うマルチパート (multipart) の指定を属性に追加する以外は、
+この関数は上の <dfn>form_open()</dfn> とまったく同じです。</p>
+
+<h2>form_hidden()</h2>
+
+<p>隠しフィールドを生成します。一つのフィールドの 名前 / 値 の両方の文字列を渡すことができます:</p>
+
+<code>form_hidden('username', 'johndoe');<br />
+<br />
+// 下記のようなタグを生成します:<br /><br />
+&lt;input type="hidden" name="username" value="johndoe" /></code>
+
+<p>あるいは、複数のフィールドを作成するために、連想配列を渡すこともできます:</p>
+
+<code>$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;=> 'John Doe',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'email' => 'john@example.com',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;=> 'http://example.com'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+echo form_hidden($data);<br />
+<br />
+// 下記のようなタグを生成します:<br /><br />
+&lt;input type="hidden" name="name" value="John Doe" /><br />
+&lt;input type="hidden" name="email" value="john@example.com" /><br />
+&lt;input type="hidden" name="url" value="http://example.com" /></code>
+
+
+
+
+<h2>form_input()</h2>
+
+<p>通常のテキストフィールドを生成します。
+最低限、第1、第2引数に、名前(name 属性)、値(value 属性)をそれぞれ渡します:</p>
+
+<code>echo form_input('username', 'johndoe');</code>
+
+<p>あるいは、フォームに設定すべきデータを含んだ連想配列を渡すこともできます:</p>
+
+<code>$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'username',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'username',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'value'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'johndoe',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'maxlength'&nbsp;&nbsp;&nbsp;=> '100',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'size'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '50',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'style'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => 'width:50%',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+echo form_input($data);<br />
+<br />
+// 下記のようなタグを生成します:<br /><br />
+&lt;input type="text" name="username" id="username" value="johndoe" maxlength="100" size="50" style="width:50%" /></code>
+
+<p>Javascript のような追加のデータをフォームに設定したい場合、
+第3引数に文字列として渡すことができます:</p>
+
+<code>$js = 'onClick="some_function()"';<br />
+<br />
+echo form_input('username', 'johndoe', $js);</code>
+
+<h2>form_password()</h2>
+
+<p>この関数は、"password" タイプのフィールドをセットする以外は、
+上の <dfn>form_input()</dfn> 関数とあらゆる点で同じです。</p>
+
+<h2>form_upload()</h2>
+
+<p>この関数は、ファイルのアップロード時に使用できる &quot;file&quot; タイプのフィールドをセットする以外は、
+上の <dfn>form_input()</dfn> 関数とあらゆる点で同じです。</p>
+
+<h2>form_textarea()</h2>
+
+<p>この関数は、&quot;textarea&quot; のフィールドをセットする以外は、
+上の <dfn>form_input()</dfn> 関数とあらゆる点で同じです。
+Note: 上の例で "maxlength" と "size" 属性を指定する代わりに、"rows" と "cols" 属性を指定します。</p>
+
+
+<h2>form_dropdown()</h2>
+
+<p>ドロップダウンフィールドを生成します。第1引数にフィールド名を、
+第2引数に選択肢 (option) の連想配列を、そして第3引数には、選択済み状態にしたい項目の値を
+設定します。 第3引数に複数の項目の配列を渡すことで、複数選択を生成することができます。 例:</p>
+
+<code>$options = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'small'&nbsp;&nbsp;=> 'Small Shirt',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'med'&nbsp;&nbsp;&nbsp;&nbsp;=> 'Medium Shirt',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'large'&nbsp;&nbsp; => 'Large Shirt',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'xlarge' => 'Extra Large Shirt',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$shirts_on_sale = array('small', 'large');<br />
+<br />
+echo form_dropdown('shirts', $options, 'large');<br />
+<br />
+// 下記のようなタグを生成します:<br />
+<br />
+&lt;select name=&quot;shirts&quot;&gt;<br />
+&lt;option value=&quot;small&quot;&gt;Small Shirt&lt;/option&gt;<br />
+&lt;option value=&quot;med&quot;&gt;Medium  Shirt&lt;/option&gt;<br />
+&lt;option value=&quot;large&quot; selected=&quot;selected&quot;&gt;Large Shirt&lt;/option&gt;<br />
+&lt;option value=&quot;xlarge&quot;&gt;Extra Large Shirt&lt;/option&gt;<br />
+&lt;/select&gt;<br />
+<br />
+echo form_dropdown('shirts', $options, $shirts_on_sale);<br />
+<br />
+// 下記のようなタグを生成します:<br />
+<br />
+&lt;select name=&quot;shirts&quot; multiple=&quot;multiple&quot;&gt;<br />
+&lt;option value=&quot;small&quot; selected=&quot;selected&quot;&gt;Small Shirt&lt;/option&gt;<br />
+&lt;option value=&quot;med&quot;&gt;Medium  Shirt&lt;/option&gt;<br />
+&lt;option value=&quot;large&quot; selected=&quot;selected&quot;&gt;Large Shirt&lt;/option&gt;<br />
+&lt;option value=&quot;xlarge&quot;&gt;Extra Large Shirt&lt;/option&gt;<br />
+&lt;/select&gt;</code>
+
+
+<p>&lt;select> の開始タグで、<kdd>id </kdd>属性や JavaScript などの追加データを設定したい場合は、
+第4引数にそれを文字列として渡すことができます:</p>
+
+<code>$js = 'id="shirts" onChange="some_function();"';<br />
+<br />
+echo form_dropdown('shirts', $options, 'large', $js);</code>
+
+<p>$options に渡される配列が多次元配列である場合、form_dropdown() は配列のキーをラベルとした &lt;optgroup&gt; を生成します。</p>
+
+<h2>form_multiselect()</h2>
+
+<p>標準的な複数選択フィールドを生成します。第1引数はフィールド名、
+第2引数はオプションの連想配列、第3引数は選択状態にしたい値です。
+フィールド名に <samp>foo[]</samp> のようなPOSTの配列構文を利用する必要がある、という点を除けば、
+引数の使い方は上記の <kbd>form_dropdown()</kbd> と同じです。</p>
+
+
+<h2>form_fieldset()</h2>
+
+<p>fieldset/legend フィールドを生成します。</p>
+<code>echo form_fieldset('Address Information');<br />
+echo &quot;&lt;p&gt;fieldset content here&lt;/p&gt;\n&quot;;<br />
+echo form_fieldset_close();
+<br />
+<br />
+// 下記のようなタグを生成します<br />
+&lt;fieldset&gt;
+<br />
+&lt;legend&gt;Address Information&lt;/legend&gt;  
+<br />
+&lt;p&gt;form content here&lt;/p&gt;  
+<br />
+&lt;/fieldset&gt;</code>
+<p>他の関数同様、各属性に値を設定したい場合は、第2引数に連想配列を渡すことができます。</p>
+<p><code>$attributes = array('id' =&gt; 'address_info', 'class' =&gt; 'address_info');<br />
+    echo form_fieldset('Address Information', $attributes);<br />
+echo &quot;&lt;p&gt;fieldset content here&lt;/p&gt;\n&quot;;<br />
+echo form_fieldset_close(); <br />
+<br />
+// 下記のようなタグを生成します:<br />
+&lt;fieldset id=&quot;address_info&quot; class=&quot;address_info&quot;&gt; <br />
+&lt;legend&gt;Address Information&lt;/legend&gt; <br />
+&lt;p&gt;form content here&lt;/p&gt; <br />
+&lt;/fieldset&gt;</code></p>
+<h2>form_fieldset_close()</h2>
+<p>&lt;/fieldset&gt; の閉じタグを生成します。 タグの下に追加するデータを渡せるというのがこの関数を使う
+    唯一の利点になります。</p>
+<code>$string = &quot;&lt;/div&gt;&lt;/div&gt;&quot;;<br />
+<br />
+echo fieldset_close($string);<br />
+<br />
+// 下記のようなタグを生成します:<br />
+&lt;/fieldset&gt;<br />
+&lt;/div&gt;&lt;/div&gt;</code>
+<h2>form_checkbox()</h2>
+<p>チェックボックスフィールドを生成します。簡単な例です:</p>
+<code>echo form_checkbox('newsletter', 'accept', TRUE);<br />
+<br />
+// 下記のようなタグを生成します:<br />
+<br />
+&lt;input type="checkbox" name="newsletter" value="accept" checked="checked" /></code>
+<p>第3引数には、チェックボックスがチェック済みかそうでないかを決めるブール値の TRUE/FALSE を設定できます。</p>
+<p>このヘルパも他の関数と同様に属性を連想配列で渡すことができます:</p>
+
+<code>$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'newsletter',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'newsletter',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'value'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'accept',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'checked'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> TRUE,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'style'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => 'margin:10px',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+echo form_checkbox($data);<br />
+<br />
+// 下記のようなタグを生成します:<br /><br />
+&lt;input type="checkbox" name="newsletter" id="newsletter" value="accept" checked="checked" style="margin:10px" /></code>
+
+<p>他の関数のように、このタグに JavaScript などの追加データを設定したい場合は、
+第4引数にそれを文字列として渡すことができます:</p>
+
+<code>$js = 'onClick="some_function()"';<br />
+<br />
+ echo form_checkbox('newsletter', 'accept', TRUE, $js)</code>
+
+
+<h2>form_radio()</h2>
+<p>この関数は、"radio" タイプのフィールドをセットする以外は、上の <dfn>form_checkbox()</dfn> 関数とあらゆる点で同じです。</p>
+
+
+<h2>form_submit()</h2>
+
+<p>通常の送信ボタンを生成します。簡単な例です:</p>
+<code>echo form_submit('mysubmit', 'Submit Post!');<br />
+<br />
+// 下記のようなタグを生成します:<br />
+<br />
+&lt;input type=&quot;submit&quot; name=&quot;mysubmit&quot; value=&quot;Submit Post!&quot; /&gt;</code>
+<p>他の関数同様、各属性に値を設定したい場合は、第1引数に、連想配列を渡すことができます。
+    第3引数で、JavaScript のような追加データをフォームに設定できます。</p>
+<h2>form_label()</h2>
+<p>&lt;label&gt; を生成します。 簡単な例です:</p>
+<code>echo form_label('What is your Name', 'username');<br />
+<br />
+// 下記のようなタグを生成します:
+<br />
+&lt;label for=&quot;username&quot;&gt;What is your Name&lt;/label&gt;</code>
+<p>他の関数同様、各属性に値を設定したい場合は、第3引数に連想配列を渡すことができます。</p>
+<p><code>$attributes = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'class' =&gt; 'mycustomclass',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'style' =&gt; 'color: #000;',<br />
+);<br />
+    echo form_label('What is your Name', 'username', $attributes);<br />
+        <br />
+// 下記のようなタグを生成します: <br />
+&lt;label for=&quot;username&quot; class=&quot;mycustomclass&quot; style=&quot;color: #000;&quot;&gt;What is your Name&lt;/label&gt;</code></p>
+<h2>form_reset()</h2>
+
+<p>通常のリセットボタンを生成します。 使い方は <dfn>form_submit()</dfn> と同様です。</p>
+
+<h2>form_button()</h2>
+
+<p>通常のボタンを作成します。1つ目と2つ目の引数にボタンの名前とコンテンツを渡すだけでもボタンを作ることができます</p>
+<code>
+echo form_button('name','content');<br />
+<br />
+// 生成されるボタン<br />
+&lt;button name="name" type="button"&gt;Content&lt;/button&gt;
+</code>
+
+フォーム内に持たせたいデータを連想配列で渡すことができます：
+<code>
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'button',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'id' => 'button',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'value' => 'true',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'type' => 'reset',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'content' => 'Reset'<br />
+);<br />
+<br />
+echo form_button($data);<br />
+<br />
+// この結果できるボタン：<br />
+&lt;button name="button" id="button" value="true" type="reset"&gt;Reset&lt;/button&gt;
+</code>
+
+フォームに追加のデータを持たせたい場合、JavaScript の様に3番目の引数に文字列で渡すことができます。
+<code> 
+$js = 'onClick="some_function()"';<br /><br />
+echo form_button('mybutton', 'Click Me', $js);
+</code>
+
+
+<h2>form_close()</h2>
+
+<p>&lt;/form> の閉じタグを生成します。タグの下に追加するデータを渡せるというのがこの関数を使う唯一の利点になります。
+たとえば次のような感じです:</p>
+
+<code>$string = "&lt;/div>&lt;/div>";<br />
+<br />
+echo form_close($string);<br />
+<br />
+// 下記のようなタグを生成します:<br />
+<br />
+&lt;/form><br />
+&lt;/div>&lt;/div></code>
+
+
+
+
+
+<h2>form_prep()</h2>
+
+<p>フォームを崩れさせないように、HTML 要素の中のクォーテーションなどの文字列を HTML で安全に使えるようにします。次のような例が挙げられます:</p>
+
+<code>$string = 'これは <strong>"クォーテーションで囲まれた"</strong> テキストがある文字列です。';<br />
+<br />
+&lt;input type="text" name="myform" value="<var>$string</var>" /></code>
+
+<p>上の文字列には、フォームを崩れさせる原因になる、ダブルクォーテーションのセットが含まれています。
+form_prep 関数はこれを安全に使えるよう、HTML を変換します:</p>
+
+<code>&lt;input type="text" name="myform" value="<var>&lt;?php echo form_prep($string); ?></var>" /></code>
+
+<p class="important"><strong>Note:</strong> このページにリストアップされたいずれの Form ヘルパ関数を使うときも、
+値は自動的に整形処理されるので、この関数を呼び出す必要はありません。
+自分で書いた Form 要素の中でだけ、この関数を使用してください。</p>
+
+
+<h2>set_value()</h2>
+
+<p>入力フォームやテキストエリアの値を設定します。
+関数の第1引数でフィールド名を指定します。第2引数(オプション)では、フォームの初期値を指定できます。例:</p>
+
+<code>&lt;input type="text" name="quantity" value="<dfn>&lt;?php echo set_value('quantity', '0'); ?></dfn>" size="50" /></code>
+
+<p>上記のフォームは、最初に読み込まれた時には"0"を表示します。</p>
+
+<h2>set_select()</h2>
+
+<p><dfn>&lt;select></dfn> メニューを利用している場合、この関数はメニューで選択された項目を表示します。
+第1引数には選択メニューの名前を指定します。第2引数ではそれぞれの項目の値を指定します。
+第3引数(オプション)では、ブール値の TRUE/FALSE で項目の初期状態を指定できます。</p>
+
+<p>例:</p>
+
+<code>
+&lt;select name="myselect"><br />
+&lt;option value="one" <dfn>&lt;?php echo  set_select('myselect', 'one', TRUE); ?></dfn> >One&lt;/option><br />
+&lt;option value="two" <dfn>&lt;?php echo  set_select('myselect', 'two'); ?></dfn> >Two&lt;/option><br />
+&lt;option value="three" <dfn>&lt;?php echo  set_select('myselect', 'three'); ?></dfn> >Three&lt;/option><br />
+&lt;/select>
+</code>
+
+
+<h2>set_checkbox()</h2>
+
+<p>送信された状態のチェックボックスを表示します。第1引数にはチェックボックスの名前を指定し、第2引数では値を指定します。
+第3引数(オプション)では、ブール値の TRUE/FALSE を使って項目の初期状態を指定出来ます。例:</p>
+
+<code>&lt;input type="checkbox" name="mycheck" value="1" <dfn>&lt;?php echo set_checkbox('mycheck', '1'); ?></dfn> /><br />
+&lt;input type="checkbox" name="mycheck" value="2" <dfn>&lt;?php echo set_checkbox('mycheck', '2'); ?></dfn> /></code>
+
+
+<h2>set_radio()</h2>
+
+<p>送信された状態のラジオボタンを表示します。それ以外は、この関数は上の set_checkbox() と同じ挙動です。</p>
+
+<code>&lt;input type="radio" name="myradio" value="1" <dfn>&lt;?php echo  set_radio('myradio', '1', TRUE); ?></dfn> /><br />
+&lt;input type="radio" name="myradio" value="2" <dfn>&lt;?php echo  set_radio('myradio', '2'); ?></dfn> /></code>
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="file_helper.html">ファイルヘルパ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="html_helper.html">HTMLヘルパ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

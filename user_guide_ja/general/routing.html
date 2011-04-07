@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>URI ルーティング : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+URI ルーティング
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>URI ルーティング</h1>
+
+<p>通常は URL の文字列と関連するコントローラのクラス/メソッドには一対一の関係があります。
+URI の中のセグメントは通常下記のようなパターンになっています:</p>
+
+<code>example.com/<dfn>class</dfn>/<samp>function</samp>/<var>id</var>/</code>
+
+<p>しかし、URL が表すものが呼ばれる代わりに、
+異なるクラス/メソッドが呼ばれるように関連付けを再マッピングしたい場合もあるかと思います。</p>
+
+<p>たとえば、次のような例の URL にしたい時:</p>
+
+<p>
+example.com/product/1/<br />
+example.com/product/2/<br />
+example.com/product/3/<br />
+example.com/product/4/
+</p>
+
+<p>通常は、URL の第2セグメントはメソッド名として予約されていますが、上の例では、代わりに商品 ID になっています。
+これに対応するため、CodeIgniter では URI ハンドラ [ 訳注： URI に関連付けられたコントローラ/メソッドのこと ] を再マッピングすることが可能です。</p>
+
+
+<h2>ユーザ定義のルーティングを設定する</h2>
+
+<p>ルーティング（経路制御）ルールは <var>application/config/routes.php</var> ファイルで定義されています。その中に <dfn>$route</dfn> という名前の配列があると思いますが、ここでユーザ定義のルーティング条件を指定することができます。
+ルート（経路）は、<dfn>ワイルドカード</dfn>または<dfn>正規表現</dfn>のどちらかを使って指定できます。</p>
+
+
+<h2>ワイルドカード</h2>
+
+<p>ワイルドカードを使った典型的なルート（経路）指定は次のような感じになります:</p>
+
+<code>$route['product/:num'] = "catalog/product_lookup";</code>
+
+<p>ルートの中で、配列のキーはマッチさせる URI で、一方の配列の値は再ルート先になります。
+上の例では、リテラルの"product"が URL の第1セグメントに、数字が第2セグメントにそれぞれ設定されていた場合、
+"catalog"クラスの"product_lookup"メソッドが通常のルールの代わりに使用されることになります。</p>
+
+<p>リテラル値または次の2種類のワイルドカードを使ってマッチさせることができます:</p>
+
+<p><strong>(:num)</strong> は、セグメントが数字のみを含む場合にマッチします。<br />
+<strong>(:any)</strong> は、セグメントの中身が、どのような文字列でもマッチします。
+</p>
+
+<p class="important"><strong>Note:</strong> ルートは、定義されている順番にもとづいて実行されます。
+優先度が高いルートが、低いものより常に先に来るようにします。</p>
+
+<h2>例</h2>
+
+<p>ルーティングについて、いくつか例を挙げます:</p>
+
+<code>$route['journals'] = "blogs";</code>
+<p>URL の第1セグメントに "journals" という語を含む URL は、"blogs" クラスに再マッピングされます。</p>
+
+<code>$route['blog/joe'] = "blogs/users/34";</code>
+<p>blog/joe というセグメントが含まれる URL は、"blogs" クラスの "users" メソッドに再マッピングされます。ID は "34" にセットされます。</p>
+
+<code>$route['product/(:any)'] = "catalog/product_lookup";</code>
+<p>第1セグメントが "product" 第2セグメントに何かが設定された URL であれば、"catalog" クラスの  "product_lookup" メソッドに再マッピングされます。</p>
+
+<code>$route['product/(:num)'] = "catalog/product_lookup_by_id/$1";</code>
+<p>第1セグメントが "product" 第2セグメントに数値が設定された URL であれば、"catalog" クラスの  "product_lookup_by_id" メソッドにマッチした値を変数として再マッピングされます。</p>
+
+<p class="important"><strong>重要:</strong> マッチさせるワードには、先頭および末尾にスラッシュ ( &quot;/&quot; ) をつけてはいけません。</p>
+
+<h2>正規表現</h2>
+
+<p>ルーティングルールに正規表現を使うこともできます。正しい正規表現であれば後方参照(戻り参照) のようなものであっても、どんなものも使用できます。</p>
+
+<p class="important"><strong>Note:</strong>&nbsp; 後方参照(戻り参照)を使うときは、ダブルバックスラッシュ ( &quot;\\&quot; ) を使った構文ではなく、ドル記号 ( &quot;$&quot; ) を使う構文で指定してください。</p>
+
+<p>正規表現を使った典型的なルート指定は次のような感じになります:</p>
+
+<code>$route['products/([a-z]+)/(\d+)'] = "$1/id_$2";</code>
+
+<p>上の例では、<dfn>products/shirts/123</dfn> のような URI は、通常のルールの代わりに、<dfn>shirts</dfn> コントローラクラスの <dfn>id_123</dfn> メソッドが呼ばれます。</p>
+
+<p>また、正規表現にワイルドカードを混在させてマッチさせることもできます。</p>
+
+<h2>予約済みのルート</h2>
+
+<p>予約済みのルートが2つあります:</p>
+
+<code>$route['default_controller'] = 'welcome';</code>
+
+<p>このルートは URI がデータを含まない時に、どのコントローラを呼ぶべきかを指定するものです。
+上の例では、"welcome" クラスがロードされます。デフォルトルートは常に設定しておくことをおすすめします。
+そうしておかないと、デフォルトで404ページが表示されてしまいます。</p>
+
+<p class="important"><strong>重要:</strong>&nbsp; 予約済みのルートは、ワイルドカードあるいは正規表現で定義したルートよりも前に来なければなりません。</p>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp; <a href="common_functions.html">共通関数</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="errors.html">エラーの処理</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

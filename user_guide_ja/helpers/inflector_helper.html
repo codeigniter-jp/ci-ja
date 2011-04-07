@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>語形変換ヘルパ : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+語形変換ヘルパ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>語形変換ヘルパ</h1>
+
+<p>語形変換ヘルパのファイルには、語句を複数形、単数形、キャメル記法などに変換できる関数が含まれます。</p>
+
+
+<h2>ヘルパのロード</h2>
+
+<p>このヘルパは次のコードを使ってロードします:</p>
+<code>$this->load->helper('inflector');</code>
+
+<p>次の関数が利用できます:</p>
+
+
+<h2>singular()</h2>
+
+<p>複数形の単語を単数形に変換します。例:</p>
+
+<code>
+$word = "dogs";<br />
+echo singular($word); // "dog" を返します
+</code>
+
+
+<h2>plural()</h2>
+
+<p>単数形の単語を複数形に変換します。例:</p>
+
+<code>
+$word = "dog";<br />
+echo plural($word); // "dogs" を返します
+</code>
+
+
+<p>強制的に &quot;es&quot; で終わるようにするには、第2引数に &quot;true&quot; を指定します。 </p>
+<code> $word = &quot;pass&quot;;<br />
+echo plural($word, TRUE); // &quot;passes&quot; を返します</code>
+
+<h2>camelize()</h2>
+<p>スペースまたはアンダースコアで区切られた語句をキャメル記法に変換します。例:</p>
+
+<code>
+$word = "my_dog_spot";<br />
+echo camelize($word); // "myDogSpot" を返します
+</code>
+
+
+<h2>underscore()</h2>
+
+<p>スペースで区切られた複数の単語を取り出して、アンダースコアでつなぎます。例:</p>
+
+<code>
+$word = "my dog spot";<br />
+echo underscore($word); // "my_dog_spot" を返します 
+</code>
+
+
+<h2>humanize()</h2>
+
+<p>アンダースコアで区切られた複数の単語を取り出して、スペースでつなぎます。各単語は大文字ではじめられます。例:</p>
+
+<code>
+$word = "my_dog_spot";<br />
+echo humanize($word); // "My Dog Spot" を返します
+</code>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="html_helper.html"> HTMLヘルパ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="language_helper.html">言語ヘルパ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

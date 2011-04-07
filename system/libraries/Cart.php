@@ -11,6 +11,9 @@
  * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
+ * 
+ * Modified by Kenji Suzuki, 2009/10/31
+ * - Fix $product_name_rules which does not allow Japanese charactors (Thanks to Hajimesawa)
  */
 
 // ------------------------------------------------------------------------
@@ -28,7 +31,7 @@ class CI_Cart {
 
 	// These are the regular expression rules that we use to validate the product ID and product name
 	var $product_id_rules	= '\.a-z0-9_-'; // alpha-numeric, dashes, underscores, or periods
-	var $product_name_rules	= '\.\:\-_ a-z0-9'; // alpha-numeric, dashes, underscores, colons or periods
+	var $product_name_rules	= '一-龠ぁ-んァ-ヴーａ-ｚＡ-Ｚ０-９\.\:\-_ a-z0-9'; // Japanese, alpha-numeric, dashes, underscores, colons or periods
 
 	// Private variables.  Do not change!
 	var $CI;

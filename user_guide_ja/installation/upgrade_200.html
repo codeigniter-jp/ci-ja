@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>1.7.2 から 2.0.0 へのアップグレード : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザーガイド Home</a> &nbsp;&#8250;&nbsp;
+1.7.2 から 2.0.0 へのアップグレード
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザーガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>1.7.2 から 2.0.0 へのアップグレード</h1>
+
+<p>アップグレードの前には index.php を静的ページと置き換えてサイトを停止してください。</p>
+
+
+
+<h2>ステップ 1: CodeIgniter ファイルの更新</h2>
+
+<p>"system" フォルダ内の <kbd>application</kbd> フォルダを<strong>除く</strong>全てのファイルとディレクトリを置き換えます。</p>
+
+<p class="important"><strong>Note:</strong> これらのディレクトリの中のファイルを更新している場合は、必ず最初にコピーを残しておいてください。</p>
+
+<h2>ステップ 2: 必要に応じて get_dir_file_info() の調整</h2>
+
+<p>バージョン2.0.0では、<a href="../helpers/file_helper.html">ファイルヘルパ</a>の <kbd>get_dir_file_info()</kbd> に後方非互換の変更があります。CodeIgniter では後方互換性の無い変更は非常にまれですが、
+これは簡単に深刻なサーバのパフォーマンスの問題を生じさせることから、この変更は正当化できる気がします。もし、このヘルパ関数で再帰的な処理 <em>必要</em>なら、
+第2引数 <kbd>$top_level_only</kbd> を FALSE に設定してください。</p>
+
+<code>get_dir_file_info('/path/to/directory', <kbd>FALSE</kbd>);</code>
+
+</p>
+
+<h2>ステップ 3: プラグインをヘルパに変換</h2>
+
+<p>2.0.0 では、機能的にはヘルパと同じでありながら拡張性の無い"プラグイン"は排除されます。プラグインファイルを <var>filename_pi.php</var> から <var>filename_helper.php</var> にリネームし、それらを <kbd>helpers</kbd> フォルダに移動して、以下のような場合を:
+	
+	<code>$this->load->plugin('foo');</code>
+	
+から下記に変更します。
+
+	<code>$this->load->helper('foo');</code>
+
+</p>
+
+<h2>Step 4: 暗号化保存されているデータの更新</h2>
+
+<p class="important"><strong>Note:</strong> もし、アプリケーションが暗号化ライブラリを使用していなかったり、暗号化されたデータを永続的に保存していなかったり、または、Mcrypt をサポートしていない環境の場合は、このステップをスキップしてください。</p>
+
+<p>暗号化ライブラリは、暗号化強度やパフォーマンスなど多くの点で改良されました。
+その結果、以前の暗号化ライブラリで暗号化されたデータを復号化することが不可能になっています。
+一連の処理を助けるために、以前のアルゴリズムで復号化し新たに改良されたメソッドで暗号化しなおす新しいメソッド <kbd>encode_from_legacy()</kbd> が追加されています。
+このメソッドは、その場であるいはまとめて、以前の暗号化データを新しい暗号化データに簡単に置き換えることができます。</p>
+
+<p>暗号化ライブラリのドキュメントの <a href="../libraries/encryption.html#legacy">このメソッドの使い方</a> を読んでください。</p>
+
+<h2>Step 5: 互換性ヘルパの読み込みの削除</h2>
+<p>互換性ヘルパは CodeIgniter のコアから削除されました。すべてのメソッドは動作環境の PHP バージョンではネイティブに含まれています。</p>
+
+<h2>Step 6: クラスの継承の更新</h2>
+<p>すべてのコアクラスは現在 <kbd>CI_</kbd> という接頭辞を付けられています。モデルとコントローラは、おのおの CI_Model と CI_Controller を継承するよう更新してください。</p> 
+
+<h2>Step 7: 親クラスのコンストラクタの呼び出しの更新</h2>
+<p>すべてのネイティブの CodeIgniter のクラスは PHP 5 の規約 <kbd>__construct()</kbd> を使用します。継承されたライブラリは  <kbd>parent::__construct()</kbd> を呼び出すように更新してください。</p>
+
+<h2>ステップ 8: ユーザーガイドの更新</h2>
+<p>ローカルにあるユーザーガイドも、画像ファイルを含めて新しいバージョンのもので置き換えてください。</p>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="index.html">インストール方法</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページ先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザーガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="troubleshooting.html">トラブルシューティング</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>
