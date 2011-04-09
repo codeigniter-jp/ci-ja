@@ -90,7 +90,7 @@ Note: "クラス" と "ライブラリ"は同じ意味として使っていま�
 
 <p>ファイルを置けるサブディレクトリの階層の数と深さに制限はありません。</p>
 
-<p>Additionally, multiple libraries can be loaded at the same time by passing an array of libraries to the load function.</p>
+<p>さらに、複数のライブラリをロード関数へ配列で渡すことによって、同時にロードすることができます。</p>
 
 <code>$this->load->library(array('<var>email</var>', '<var>table</var>'));</code>
 
@@ -109,7 +109,7 @@ $this->load->library('email', $config);</code>
 
 <p>設定ファイルで設定情報を定義する事も出来ます。各ライブラリのページで説明されていますので、利用したいライブラリのページをご覧ください。</p>
 
-<p>Please take note, when multiple libraries are supplied in an array for the first parameter, each will receive the same parameter information.</p>
+<p>複数のライブラリは最初のパラメータの配列で提供されているのと同じパラメータ情報として表示されることに注意してください。</p>
 
 <h3>ライブラリに別名を割り当てる</h3>
 
@@ -126,7 +126,7 @@ $this->my_session
 
 </code>
 
-<p>Please take note, when multiple libraries are supplied in an array for the first parameter, this parameter is discarded.</p>
+<p>最初のパラメータ配列でロードされた複数のライブラリは破棄されることに注意してください。</p>
 
 
 <h2>$this->load->view('<var>file_name</var>', <samp>$data</samp>, <kbd>true/false</kbd>)</h2>
