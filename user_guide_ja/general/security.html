@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>セキュリティ : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+セキュリティ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>セキュリティ</h1>
+
+<p>このページではwebセキュリティに関する "ベストプラクティス" と、
+CodeIgniter の内部のセキュリティ機能の詳細について説明します。</p>
+
+
+<h2>URI セキュリティ</h2>
+
+<p>CodeIgniter では、悪意のあるデータがアプリケーションに渡される可能性を最小限にするため、
+URL 文字列で使用できる文字列を厳しく制限しています。URI には次の文字だけを使用できます:
+</p>
+
+<ul>
+<li>英数字</li>
+<li>チルダ: ~ </li>
+<li>ピリオド: .</li>
+<li>コロン: :</li>
+<li>アンダースコア: _</li>
+<li>ダッシュ（ハイフン）: -</li>
+</ul>
+
+<h2>GET、POST、およびクッキーデータ</h2>
+
+<p>単純に、システムが通例のクエリ文字列ではなく URI セグメントを利用可能にしているので、CodeIgniter では、GET メソッドでのデータ（クエリ文字列）の使用は許可されません (設定ファイルで
+クエリ文字列オプションを有効にした場合はこの限りではありません)。システムが初期化される過程で、
+グローバルな GET 配列($_GET)は入力クラスによって<strong>クリアされます</strong>。</p>
+
+<h2>Register_globals</h2>
+
+<p>$_POST および $_COOKIE 配列 以外の全グローバル変数は、システムが初期化されるときにクリアされます。
+このクリア処理は register_globals = off と同等の効果を発揮します。 </p>
+
+<a name="error_reporting"></a>
+<h2>エラー報告</h2>
+
+<p>
+    本番環境では、内部のエラー報告フラグの値を 0 に設定し
+    PHP のエラー報告を無効にすることが通常は望ましいです。
+    これは、慎重に扱うべき情報が含まれる可能性のある PHP によるエラーが
+    出力としてレンダリングされないようにします。
+</p>
+
+<p>
+    index.php に含まれる CodeIgniter の定数 <kbd>ENVIRONMENT</kbd> の値を
+    '<kbd>production</kbd>' に設定するとこれらのエラーはオフになります。
+    開発モードでは、
+    '<kbd>development</kbd>' を使うことが推奨されます。
+    <a href="environments.html">複数の環境の取扱い</a> ページに、環境による違いについてのさらなる情報があります。
+</p>
+
+<h2>magic_quotes_runtime</h2>
+
+<p>magic_quotes_runtime ディレクティブは、データベースからデータを取得するときにスラッシュを除去する必要がないよう、
+システムが初期化されるときに OFF にされます。</p>
+
+<h1>ベストプラクティス</h1>
+
+<p>送信された POST データ、COOKIE データ、URI データ、XML-RPC データあるいは、SERVER 配列（$_SERVER）のデータでさえ、
+アプリケーションでデータを受け取る前に、次の３つのステップを実施することをおすすめします:</p>
+
+<ol>
+<li>危険なデータをフィルタリングする。</li>
+<li>データが正しい型、長さ、サイズなどであることを確かめるため、検証を行う (ときどき、このステップはステップ1と置き換えられます)。</li>
+<li>データベースにデータを送信する前にエスケープ処理を行う。</li>
+</ol>
+
+<p>CodeIgniter では、この処理を支援するため次の機能が利用できます:</p>
+
+<ul>
+
+<li>
+<h2>XSS フィルタリング</h2>
+
+<p>CodeIgniter にはクロスサイトスクリプティングフィルタがあります。このフィルタは、
+悪意のある JavaScript を埋め込むのに使用される一般的な方法や、クッキーハイジャックや、
+その他の危害を及ぼすものと思われる他のタイプのコードがデータに利用されていないかどうかを探します。XSS フィルタについては、<a href="../libraries/security.html">こちら</a>で説明しています。</p>
+</li>
+
+<li><h2>データのバリデーション(検証)</h2>
+
+<p>CodeIgniter には、データの検証、フィルタリング、前処理を行うのを支援する
+<a href="../libraries/form_validation.html">フォーム・バリデーション(検証)クラス</a>があります。</p>
+</li>
+
+<li><h2>データベースへデータを追加する前に全データをエスケープする</h2>
+
+<p>エスケープ処理をしないでデータベースにデータを記録してはいけません。
+<a href="../database/queries.html">クエリ</a> の説明をしているセクションでさらに詳しい情報をご覧ください。</p>
+
+</li>
+
+</ul>
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="alternative_php.html">代替の PHP 構文</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="styleguide.html">PHP コーディングスタイルガイド</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

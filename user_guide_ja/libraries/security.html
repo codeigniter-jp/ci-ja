@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>セキュリティクラス : CodeIgniter User Guide</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+セキュリティクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp;<input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>セキュリティクラス</h1>
+
+<p>セキュリティクラスは，入力データの処理によりセキュアなアプリケーションの開発を手助けします。</p>
+
+<h2>XSS フィルタリング</h2>
+
+<p>CodeIgniter はクロスサイトスクリプティング攻撃を防ぐために，すべての POST と COOKIE データをフィルタ処理できるようになりました。
+また，個別にフィルタすることもできます。デフォルトではこの機能は<strong>無効</strong>になっています。
+若干のオーバーヘッドが発生するのと，あなたがすべてのページでそれを必要としていないかもしれないからです。</p>
+
+<p>一般的に，XSS フィルタは，JavaScript などのコードを用いたクッキーの乗っ取りなどの攻撃を見つけます。
+もし禁止された文字等を見つけた場合は，データを HTML エンティティに変換して安全に表示します。</p>
+
+<p>
+Note: この機能は，データの処理のみに使用してください。相当量のオーバーヘッド処理を必要とするため，一般的なランタイム処理に使用されるべきものではありません。</p>
+
+
+<p>XSS フィルタを通してデータをフィルタにかけるには，この機能を使用してください:</p>
+
+<h2>$this->security->xss_clean()</h2>
+
+<p>使用例: </p>
+
+<code>$data = $this->security->xss_clean($data);</code>
+
+<p>常に自動で POST および COOKIE データをフィルタしたい場合は，
+<kbd>application/config/config.php</kbd> を開いて次のように設定してください。</p>
+
+<code>$config['global_xss_filtering'] = TRUE;</code>
+
+<p>Note: form validation クラスにも，同様の XSS フィルタリング機能があります。</p>
+
+<p>オプションの第 2 引数 <dfn>is_image</dfn> は，このメソッドが画像に対して潜在的な XSS 攻撃がないか検証することを許可します。これはファイルアップロードのセキュリティのために役立ちます。  この第 2 引数を <dfn>TRUE</dfn> にすると，処理済の文字列を返す代わりに，画像が安全な場合は TRUE を，悪意のある情報が含まれる場合は FALSE を返します。</p>
+
+<code>if ($this->security->xss_clean($file, TRUE) === FALSE)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;// file failed the XSS test<br />
+}</code>
+
+
+<h2>$this->security->sanitize_filename()</h2>
+
+<p>ユーザ入力からファイル名を受け付けるときは，ディレクトリトラバーサル他のセキュリティ上問題がある部分を削除するのがベストです。そのためには，セキュリティクラスの <dfn>sanitize_filename()</dfn> メソッドを使用します。 例: </p>
+
+<code>$filename = $this->security->sanitize_filename($this->input->post('filename'));</code>
+
+<p>ユーザが相対パス (例: <kbd>file/in/some/approved/folder.txt</kbd>) を入力するのを許可する場合は，オプションの第 2 引数 
+	<samp>$relative_path</samp> を TRUE にします。</p>
+
+<code>$filename = $this-&gt;security-&gt;sanitize_filename($this-&gt;input-&gt;post('filename'), TRUE);</code>
+
+<!-- @todo write docs for CSRF methods -->
+
+<h2>クロスサイトリクエストフォージェリ (CSRF)</h2>
+
+<p>CSRF 保護を有効にするには，<kbd>application/config/config.php</kbd> を開いて次のように設定します:</p>
+<code>$config['csrf_protection'] = TRUE;</code>
+
+<p><a href="../helpers/form_helper.html">フォームヘルパ</a> の <var>form_open()</var> 関数を使用すると，フォームに対して CSRF 保護用の hidden フィールドが自動的に挿入されます。</p>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+Previous Topic:&nbsp;&nbsp;<a href="pagination.html">ページネーションクラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+Next Topic:&nbsp;&nbsp;<a href="sessions.html">セッションクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

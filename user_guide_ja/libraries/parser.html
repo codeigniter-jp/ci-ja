@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>テンプレートパーサクラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+テンプレートパーサクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+
+
+<h1>テンプレートパーサクラス</h1>
+
+<p>テンプレートパーサクラスを使うと、ビューファイルに含まれる擬似変数を解析できます。
+単一の擬似変数と擬似変数のペアを解析できます。テンプレートエンジンを一度も使ったことがないでしょうか？擬似変数とは次のようなものです:</p>
+
+<code>&lt;html&gt;<br />
+&lt;head&gt;<br />
+&lt;title&gt;<kbd>{blog_title}</kbd>&lt;/title&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+<br />
+&lt;h3&gt;<kbd>{blog_heading}</kbd>&lt;/h3&gt;<br />
+<br />
+<kbd>{blog_entries}</kbd><br />
+&lt;h5&gt;<kbd>{title}</kbd>&lt;/h5&gt;<br />
+&lt;p&gt;<kbd>{body}</kbd>&lt;/p&gt;<br />
+<kbd>{/blog_entries}</kbd><br />
+
+&lt;/body&gt;<br />
+&lt;/html&gt;</code>
+
+<p>これらの疑似変数は、本当の PHP 変数ではなく、テンプレート (ビューファイル) からPHPを取り除くための、
+普通のテキストです。</p>
+
+<p class="important"><strong>Note:</strong> ビューページで純粋なPHPを使う方が少し早いので、CodeIgniterでは、
+このクラスを必ずしも <strong>必要としません</strong>。しかし、PHPのコードで混乱してしまうデザイナーと一緒に仕事をしている場合、
+開発者の中には、テンプレートエンジンを使用したい人もいると思います。</p>
+
+<p><strong>Also Note:</strong> テンプレートパーサクラスは、本格的なテンプレート解析ソリューションでは<strong>ありません</strong>。
+私達は、パフォーマンス最大化のために、これを非常にスマートにしています。</p>
+
+
+<h2>クラスの初期化</h2>
+
+<p>CodeIgniter の大抵のクラスのように、パーサクラスは、コントローラの中で <dfn>$this->load->library</dfn> メソッドを使用することで初期化できます:</p>
+
+<code>$this->load->library('parser');</code>
+<p>ロードしたら、パーサライブラリのオブジェクトは次のように使うことができます: <dfn>$this->parser</dfn></p>
+
+
+<p>次のメソッドがこのライブラリで利用できます:</p>
+
+<h2>$this->parser->parse()</h2>
+
+<p>このメソッドは、テンプレート名とデータの配列を入力とし、構文解析したものを生成します。例:</p>
+
+<code>$this->load->library('parser');<br />
+<br />
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_title' => 'My Blog Title',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_heading' => 'My Blog Heading'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->parser->parse('blog_template', $data);</code>
+
+<p>第1引数は、<a href="../general/views.html">ビューファイル</a>の名前(この例では、ファイルは、blog_template.phpという名前です)になり、
+第2引数は、テンプレートに渡すデータの連想配列になります。
+上の例では、テンプレートには、次の2つの擬似変数が含まれています: {blog_title} と {blog_heading}</p>
+
+<p><dfn>$this->parser->parse()</dfn> メソッドが返す値は、"echo" で出力したりする必要はありません。
+ブラウザに送信するために、出力クラスに自動的に渡されます。しかし、出力クラスにデータを渡す代わりに、
+データを返すようにするために、第3引数にTRUEを設定することができます:</p>
+
+<code>$string = $this->parser->parse('blog_template', $data, TRUE);</code>
+
+<h2>$this->parser->parse_string()</h2> 
+
+<p>このメソッドは parse() と全く同じ働きを持ちますが、ビューファイルの代わりに文字列だけを第1引数で受け付けます。</p>
+
+
+<h2>ペアの擬似変数</h2>
+
+<p>上のサンプルコードは、単一の擬似変数が置き換えられるものです。
+全部の変数ブロックを毎回新しい値を使って繰り返させたい場合は、どのようなものになるのでしょうか。ページの先頭で示したサンプルのテンプレートで考えてみます:</p>
+
+<code>&lt;html&gt;<br />
+&lt;head&gt;<br />
+&lt;title&gt;<kbd>{blog_title}</kbd>&lt;/title&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+<br />
+&lt;h3&gt;<kbd>{blog_heading}</kbd>&lt;/h3&gt;<br />
+<br />
+<kbd>{blog_entries}</kbd><br />
+&lt;h5&gt;<kbd>{title}</kbd>&lt;/h5&gt;<br />
+&lt;p&gt;<kbd>{body}</kbd>&lt;/p&gt;<br />
+<kbd>{/blog_entries}</kbd><br />
+
+&lt;/body&gt;<br />
+&lt;/html&gt;</code>
+
+<p>上のコードでは、ペアの擬似変数があるのに気がついたかもしれません: <kbd>{blog_entries}</kbd> データ... <kbd>{/blog_entries}</kbd>。
+このようなケースでは、ペアの間に書かれた各データは、
+結果の行数に対応して複数回繰り返されて全体が表示されます。</p>
+
+<p>上で示した単一の擬似変数を解析したのと同じコードを使って、ペアの擬似変数を解析するのが途中まで終わりました。
+残りは、ペアの擬似変数の中にあるデータに対応する、多次元配列を追加することです。
+次のような例が挙げられます:</p>
+
+
+<code>$this->load->library('parser');<br />
+<br />
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_title'&nbsp;&nbsp; => 'My Blog Title',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_heading' => 'My Blog Heading',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_entries' => array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('title' => 'Title 1', 'body' => 'Body 1'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('title' => 'Title 2', 'body' => 'Body 2'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('title' => 'Title 3', 'body' => 'Body 3'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('title' => 'Title 4', 'body' => 'Body 4'),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('title' => 'Title 5', 'body' => 'Body 5')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->parser->parse('blog_template', $data);</code>
+
+<p>すでに多次元配列になっているデータベースの結果オブジェクトから&quot;組&quot;のデータが取り出される場合、
+result_array() メソッドを利用することができます:</p>
+
+<code>
+$query = $this->db->query("SELECT * FROM blog");<br />
+<br />
+$this->load->library('parser');<br />
+<br />
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_title'&nbsp;&nbsp; => 'My Blog Title',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_heading' => 'My Blog Heading',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_entries' => $query->result_array()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->parser->parse('blog_template', $data);</code>
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="trackback.html">トラックバッククラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="typography.html">タイポグラフィークラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

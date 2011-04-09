@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>暗号化クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+暗号化クラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>暗号化クラス</h1>
+
+<p>暗号化クラスでは、2 種類のデータ暗号化方式が提供されています。
+一つは，ランダムなハッシュ値でメッセージの排他的ビット和 (bitwise XOR) をプリコンパイルする方法、
+もう一つは Mcrypt ライブラリを使って暗号化する方式です。サーバで Mcrypt が有効になっていない場合、
+符号化されるメッセージは、セッションの暗号化などの "気軽な" 目的に適合する程度のセキュリティになります。
+Mcrypt が有効な場合は、保管に適した高いレベルのセキュリティを提供します。</p>
+
+
+<h2>キーの設定</h2>
+
+<p><em>キー</em> は、暗号化処理をコントロールし、暗号化された文字列を復号できる小さな情報です。
+実際には、選んだキーは、そのキーで暗号化されたデータを復号する<strong>唯一の</strong>手段になります。
+ですので、注意してキーを選ぶだけでなく、保存用データに使用するつもりならキーは決して変更してはいけません。</p>
+
+<p>言うまでもなく、キーは厳重に保管されるべきです。
+誰かがキーを取得できてしまえば、データは簡単に復号されてしまいます。
+サーバが完全に管理できない場合は、クレジットカード番号を保管する場合などの高いセキュリティが必要とされるものに暗号化を適用する場合は、
+常にキーの安全性を注意して考えるのを忘れないでください。</p>
+
+<p>暗号アルゴリズムを最大限利用するには、キーは 32 文字の長さ (128 ビット) にする必要があります。
+キーは、大文字小文字や数字をできる限りランダムに混合させる必要があります。
+キーは単純な文字列に<strong>してはいけません</strong>。
+暗号化を安全にするためには、可能な限りランダムにする必要があります。</p>
+
+<p>キーは<dfn> application/config/config.php</dfn> の中に保存するか、あるいは独自の保存方法を設計して、
+暗号化/復号のときに動的にキーを渡すかのどちらかになります。</p>
+
+<p>キーを <dfn>application/config/config.php</dfn> に保存するには、ファイルを開き、下記のようにセットします:</p>
+<code>$config['encryption_key'] = "あなたのキー";</code>
+
+
+<h2>メッセージの長さ</h2>
+
+<p>暗号化メソッドで生成されたメッセージは元のメッセージより約 2.6 倍長くなるということを知っておくのは重要です。
+たとえば、21 文字の "my super secret data" という文字列を暗号化した場合は、暗号化された文字列は、およそ55文字になります
+(暗号化された文字列は、64 ビットのクラスタごとに長さが増加し、正確にはリニアに増加しないので、「およそ」になります)。
+データの保管方式を選ぶ際に、このことを考慮するようにしてください。
+たとえば、クッキーは 4KB のデータしか保持できません。</p>
+
+
+<h2>クラスの初期化</h2>
+
+<p>CodeIgniter の大部分のクラスと同じく、暗号化クラスは、コントローラの中で <dfn>$this->load->library</dfn> メソッドを使用することで初期化できます:</p>
+
+<code>$this->load->library('encrypt');</code>
+<p>いったん読み込まれると、暗号化ライブラリオブジェクトは、次のようにして利用可能です: <dfn>$this->encrypt</dfn></p>
+
+
+<h2>$this->encrypt->encode()</h2>
+
+<p>データを暗号化し、文字列として返します。例:</p>
+<code>
+$msg = 'My secret message';<br />
+<br />
+$encrypted_string = $this->encrypt->encode($msg);</code>
+
+<p>設定ファイルに指定してあるキーを使用したくない場合は、オプションで、第2引数に暗号化キーを指定することができます:</p>
+
+<code>
+$msg = '秘密のメッセージ';<br />
+$key = '最高機密のキー';<br />
+<br />
+$encrypted_string = $this->encrypt->encode($msg, $key);</code>
+
+
+<h2>$this->encrypt->decode()</h2>
+
+<p>暗号化された文字列を復号します。例:</p>
+
+<code>
+$encrypted_string = 'APANtByIGI1BpVXZTJgcsAG8GZl8pdwwa84';<br />
+<br />
+$plaintext_string = $this->encrypt->decode($encrypted_string);</code>
+
+<p>設定ファイルのキーを利用したくない場合は、第2引数で暗号化キーを渡す事が出来ます。</p>
+
+<code>
+$msg = 'My secret message';<br />
+$key = 'super-secret-key';<br />
+<br />
+$encrypted_string = $this->encrypt->decode($msg, $key);</code>
+
+
+<h2>$this->encrypt->set_cipher();</h2>
+
+<p>Mcryptの暗号アルゴリズムをセットできます。デフォルトでは、<samp>MCRYPT_RIJNDAEL_256</samp> を使用します。例:</p>
+<code>$this->encrypt->set_cipher(MCRYPT_BLOWFISH);</code>
+<p><a href="http://jp.php.net/mcrypt">利用できる暗号アルゴリズム</a>のリストを見るには、php.net を訪問してください。</p>
+
+<p>サーバで Mcrypt がサポートされているかどうかを手動でテストしたい場合は、以下のようにします:</p>
+<code>echo ( ! function_exists('mcrypt_encrypt')) ? 'NG' : 'OK';</code>
+
+
+<h2>$this->encrypt->set_mode();</h2>
+
+<p>Mcrypt のブロック暗号モードをセットできます。デフォルトでは、<samp>MCRYPT_MODE_CBC</samp> を使います。例:</p>
+<code>$this->encrypt->set_mode(MCRYPT_MODE_CFB);</code>
+<p><a href="http://jp.php.net/mcrypt">利用できるモード</a>の一覧を見るには php.net を訪問してください。 </p>
+
+
+<h2>$this->encrypt->sha1();</h2>
+<p>SHA1 エンコードメソッド。文字列を渡すと160ビットの一方向ハッシュを返します。Note:  SHA1 はちょうど MD5 のように、復号できません。例:</p>
+<code>$hash = $this->encrypt->sha1('何かの文字列');</code>
+
+<p>多くの PHP 環境では、SHA1 がデフォルトでサポートされていますので、
+単にエンコードすればよいだけであれば、組み込みの関数を利用すれば単純になります:</p>
+
+<code>$hash = sha1('何かの文字列');</code>
+
+<p>もしサーバが SHA1 をサポートしていなければ、このクラスのメソッドを使用できます。</p>
+
+<h2 id="legacy">$this->encrypt->encode_from_legacy(<kbd>$orig_data</kbd>, <kbd>$legacy_mode</kbd> = MCRYPT_MODE_ECB, <kbd>$key</kbd> = '');</h2>
+<p>CodeIgniter 1.x で暗号化したデータを，CodeIgniter 2.x の暗号化クラスと互換性を持つように再エンコードできます。
+	データをファイルやデータベースに保存しており，サーバが Mcrypt に対応していれば，このメソッドを使用できます。
+	セッションや一時的なデータの暗号化程度の軽い利用なら，あなたの介入は必要ありません。
+	しかし，2.x 以前で暗号化されたデータは復号されないため，既存の暗号化セッションは破棄されます。</p>
+
+<p class="important"><strong>なぜ古いメソッドのエンコードとデコードを維持せず，データの再エンコードだけを?</strong>
+	暗号化クラスのアルゴリズムは，CodeIgniter 2.x でパフォーマンスと安全性の両方が改善されました。
+	そして古いメソッドを引き続き使用することを推奨したくありません。
+	もちろん，あなたは暗号化ライブラリを編集して新しいメソッドを古いものに置き換えることで，CodeIgniter 1.x で暗号化されたデータと互換性をもたせることはできますが，それは開発者が慎重に決定してください。</p>
+
+<code>$new_data = $this->encrypt->encode_from_legacy(<kbd>$old_encrypted_string</kbd>);</code>
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+<tr>
+	<th>パラメータ</th>
+	<th>デフォルト</th>
+	<th>説明</th>
+</tr>
+<tr>
+	<td class="td"><strong>$orig_data</strong></td>
+	<td class="td">なし</td>
+	<td class="td">CodeIgniter 1.x の暗号化クラスで暗号化されたデータ</td>
+</tr>
+<tr>
+	<td class="td"><strong>$legacy_mode</strong></td>
+	<td class="td">MCRYPT_MODE_ECB</td>
+	<td class="td">元のデータを暗号化する際に使用された Mcrypt のモード。CodeIgniter 1.x のデフォルトは MCRYPT_MODE_ECB でした。
+		指定されなければそうみなします。</td>
+</tr>
+<tr>
+	<td class="td"><strong>$key</strong></td>
+	<td class="td">なし</td>
+	<td class="td">暗号化キー。先に示したように，通常は設定ファイルで指定したもの。</td>
+</tr>
+</table>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="email.html">Emailクラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="file_uploading.html">ファイルアップロードクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>エラーの処理 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+エラーの処理
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>エラーの処理</h1>
+
+<p>CodeIgniter では、下で説明しているメソッドを使って、アプリケーション内でのエラー通知を組み立てることができます。
+さらに、エラーログ記録クラスを使って、テキストファイルとしてエラーおよびデバッグメッセージを保存できます。</p>
+
+<p class="important"><strong>Note:</strong> 初期状態では、CodeIgniter はすべての PHP エラーを表示するようになっています。開発が終わったら、この振る舞いを変更したいかもしれません。
+メインの index.php ファイルの先頭に <dfn>error_reporting()</dfn>
+メソッドがあるのがわかると思います。
+エラー報告を無効にしても、エラーが起こった時にログファイルに記録するのは無効になりません。</p>
+
+<p>CodeIgniter の大部分のシステムとは違い、エラー機能は、アプリケーションの全体でグローバルに利用できる、
+シンプルな手続き型のインターフェースになっています。このアプローチにより、クラス / メソッド のスコープを気にすることなく
+エラーメッセージを呼び出すことができます。</p>
+
+<p>次の関数を使って、エラーを生成できます:</p>
+
+<h2>show_error('<var>message</var>' [, int <var>$status_code</var>= 500 ] )</h2>
+<p>この関数は、次のエラー画面テンプレートを使って、渡されたエラーメッセージを表示します:</p>
+<p><dfn>application/errors/</dfn><kbd>error_general.php</kbd></p>
+<p>オプションの引数である $status_code は、エラー時に送られるべき HTTP ステータスコードを決定します。</p>
+
+<h2>show_404('<var>page</var>' [, '<var>log_error</var>'])</h2>
+<p>この関数は、次のエラー画面テンプレートを使って、渡された404エラーメッセージを表示します:</p>
+<p><dfn>application/errors/</dfn><kbd>error_404.php</kbd></p>
+
+<p>この関数では、ページへのパスが見つからない時に渡される文字列を想定しています。
+CodeIgniter ではコントローラが見つからなかった場合に、404 メッセージが自動的に表示されるのを知っておいてください。</p>
+
+<p>show_404() が呼び出されると、CodeIgniter は自動的にログに記録します。第 2 引数を FALSE とすることで、これを回避できます。</p>
+
+
+<h2>log_message('<var>level</var>', '<samp>message</samp>')</h2>
+
+<p>この関数を使うと、ログファイルにメッセージを書き込むことができます。
+第1引数で、どのタイプのメッセージかを示す3つの"レベル" (debug、error、info) のうちのどれかを指定しなければなりません。
+メッセージそのものは、第2引数に指定する必要があります。例:</p>
+
+<code>
+if ($some_var == "")<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;log_message('error', '変数に値が含まれていませんでした');<br />
+}<br />
+else<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;log_message('debug', '変数に値が正しくセットされました');<br />
+}<br />
+<br />
+log_message('info', '変数の目的は、●●の値を提供することです');<br />
+</code>
+
+<p>3つのメッセージタイプがあります:</p>
+
+<ol>
+<li>エラーメッセージ。PHP のエラーやユーザのエラーなど、実際のエラーになります。</li>
+<li>デバッグメッセージ。デバッグ用のメッセージ。たとえば、あるクラスが初期化されたとき、デバッグ情報としてログをとることができます。</li>
+<li>情報メッセージ。優先度が最も低いメッセージで、単に何かの処理についての情報になります。CodeIgniter では、ネイティブには情報メッセージが生成されることはありませんが、アプリケーションの中で必要な時に記録することができます。</li>
+</ol>
+
+
+<p class="important"><strong>Note:</strong> ログファイルに実際に書き込むには "logs" フォルダが書き込み可能でなければなりません。
+さらに、ログをとる "しきい値" を <dfn>application/config/config.php</dfn> 内で設定する必要があります[ 訳注: 設定ファイル（config.php）の $config['log_threshold'] で指定します。 ]。
+たとえば、エラーメッセージだけを記録し、他の2種類のメッセージを記録したくない場合などです。
+0 を設定すると、ログ記録が無効になります。</p>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="routing.html">URI ルーティング</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="caching.html">ページのキャッシュ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

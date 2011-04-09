@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>設定クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+設定クラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>設定クラス</h1>
+
+<p>設定クラスは、設定情報を取得する手段を提供します。設定情報は、
+デフォルトの設定ファイル (<samp>application/config/config.php</samp>) または、ユーザ定義の設定ファイルから取得できます。</p>
+
+<p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
+
+
+<h2>設定ファイルの詳細</h2>
+
+<p>初期状態では、CodeIgniter には、<samp>application/config/config.php</samp> にある一個のメイン設定ファイルがあります。
+テキストエディタを使ってファイルを開くと、<var>$config</var> という名前の配列に、設定項目がセットされているのがわかると思います。</p>
+
+<p>このファイルにユーザ定義の設定項目を追加することもできますし、
+設定項目を分けておきたい場合は (ユーザ定義の設定項目が必要だと仮定した場合の話です)、
+単に、ユーザ用のファイルを作成し、<dfn>config</dfn> フォルダに保存するだけです。</p>
+
+<p><strong>Note:</strong> ユーザ用の設定ファイルを作成する場合は、メインのものと同じフォーマットを使って、
+<var>$config</var> という名前の配列に設定項目をセットしてください。
+CodeIgniter では(配列の添字が他と同じ名前でないとすれば)配列の名前が同じであったとしても衝突がないように、設定ファイルが賢く管理されます。</p>
+
+<h2>設定ファイルの読み込み</h2>
+
+<p><strong>Note:</strong> CodeIgniter では、メインの設定ファイル (<samp>application/config/config.php</samp>) は自動で読み込まれますので、
+ユーザ定義の設定ファイルだけをロードする必要があります。</p>
+
+<p>設定ファイルをロードするには2つの方法があります:</p>
+
+<ol><li><strong>手動での読み込み</strong>
+
+<p>ユーザ定義の設定ファイルをロードするには、その設定ファイルが必要になる<a href="../general/controllers.html">コントローラ</a>の中で次のメソッドを使います:</p>
+
+<code>$this->config->load('<var>filename</var>');</code>
+
+<p>ここでの <var>filename</var> は、ファイル拡張子の .php を除いたユーザ定義設定ファイルの名前になります。</p>
+
+<p>複数の設定ファイルを読み込む必要がある場合、通常は一つのマスタ設定配列に設定項目が展開されます。しかし、
+別々の設定ファイルで、同じ名前の添字を使っていた場合は、名前の衝突が起こる可能性があります。衝突を避けるには、第2引数を <kbd>TRUE</kbd> 
+に設定し、格納先の配列の添字でをそれぞれの設定ファイルを設定ファイルの名前にして、その中に設定を格納させます。例:</p>
+
+<code>
+// 次のような形で配列に保管されます:  $this->config['blog_settings'] = $config<br />
+$this->config->load('<var>blog_settings</var>', <kbd>TRUE</kbd>);</code>
+
+<p>上記の方法でセットした設定項目を読み取る方法については、下の <dfn>設定項目の取り出し</dfn> というタイトルのセクションを見てください。</p>
+
+<p>第3引数で、設定ファイルが存在しなかった時に発生するエラーを出さないようにすることができます[ 訳注: TRUEに設定するとエラーがでなくなります。 ]:</p>
+
+<code>$this->config->load('<var>blog_settings</var>', <dfn>FALSE</dfn>, <kbd>TRUE</kbd>);</code>
+
+</li>
+<li><strong>自動読み込み</strong></li>
+
+<p>特定の設定ファイルをグローバルに利用すべきことが分かった場合、システムでその設定を自動読み込みすることができます。これを実施するには、
+<samp>application/config/autoload.php</samp> にある <strong>autoload.php</strong> ファイルを開き、そこに書いてある方法に従って、
+設定ファイルを追加してください。</p>
+</li>
+</ol>
+
+
+<h2>設定項目の取り出し</h2>
+
+<p>設定ファイルから設定項目を読み取るには、次のメソッドを使います:</p>
+
+<code>$this->config->item('<var>item name</var>');</code>
+
+<p>ここでの <var>item name</var> は、読み取りたい $config 配列の添字です。たとえば、選択した言語を取得するには次のようにします:</p>
+
+<code>$lang = $this->config->item('language');</code>
+
+<p>このメソッドは、読み取ろうとする項目が存在しない場合、FALSE (ブール値) を返します。</p>
+
+<p>指定の添字に設定項目を代入するために、<kbd>$this->config->load</kbd> メソッドの第2引数を使った場合、
+<kbd>$this->config->item()</kbd> メソッドの第2引数でも指定した添字の名前を設定することで、それを読み取ることができます。例:</p>
+
+<code>
+//  blog_settings.php というファイル名の設定ファイルをロードし、"blog_settings" というインデックスに代入します<br />
+$this->config->load('<var>blog_settings</var>', <kbd>TRUE</kbd>);<br /><br />
+
+// blog_settings 配列にある site_name という設定項目を取得します<br />
+$site_name = $this->config->item('<dfn>site_name</dfn>', '<var>blog_settings</var>');<br /><br />
+
+// 同じ項目を指定する別の方法です:<br />
+$blog_config = $this->config->item('<var>blog_settings</var>');<br />
+$site_name = $blog_config['site_name'];</code>
+
+<h2>設定項目をセットする</h2>
+
+<p>動的に設定項目をセットしたり既存の設定を変更したりするには、下記のようなコードを使います:</p>
+
+<code>$this->config->set_item('<var>item_name</var>', '<var>item_value</var>');</code>
+
+<p>ここでの <var>item_name</var> は、変更したい項目の $config 配列の添字で、 <var>item_value</var> はその値になります。</p>
+
+<a name="environments"></a>
+<h2>複数の環境</h2>
+
+<p>
+    現状の環境により異なった設定ファイルをロードすることができます。
+    定数 <kbd>ENVIRONMENT</kbd> が index.php で定義されており、
+    <a href="../general/environments.html">複数の環境の取扱い</a> のセクションに詳細が記述されて
+    います。
+</p>
+
+<p>
+    環境固有の設定ファイルを作成するには、
+    application/config/{ENVIRONMENT}/{FILENAME}.php に設定ファイルを作成またはコピーします。
+</p>
+
+<p>たとえば、本番環境での config.php を作成するには、以下のようにします:</p>
+
+<ol>
+    <li>ディレクトリ application/config/production/ を作成します</li>
+    <li>既存の config.php を上記のディレクトリにコピーします</li>
+    <li>application/config/production/config.php を編集し本番環境の設定を記述します</li>
+</ol>
+
+<p>
+    定数 <kbd>ENVIRONMENT</kbd> を 'production' に設定すると、, the settings
+    新しく作成した本番環境用の config.php がロードされます。
+</p>
+
+<p>環境固有のフォルダに以下の設定ファイルを置くことができます:</p>
+	
+<ul>
+<li>デフォルトの CodeIgniter の設定ファイル群</li>
+<li>あなた自身のカスタム設定ファイル群</li>
+</ul>
+
+<p><strong>Note:</strong> CodeIgniter は、現在の環境の設定ファイルを最初にロードしようと試みます。もし、ファイルが存在しなければ、グローバルの設定ファイル(すなわち、<samp>application/config/</samp> にあるファイル)をロードします。これは、あなたは <strong>すべての</strong> 設定ファイルを環境固有のフォルダに置く必要はないこと、環境により変更するファイルだけを置けばよいことを意味します</p>
+
+<h2>ヘルパメソッド</h2>
+
+<p>設定クラスには、次のヘルパメソッドがあります:</p>
+
+<h2>$this->config->site_url();</h2>
+<p>このメソッドは、設定ファイルで、"index" の値に指定した、サイトへの URL を取得します。</p>
+
+<h2>$this->config->system_url();</h2>
+<p>このメソッドを使うと <dfn>system フォルダ</dfn> の URL を取得できます。</p>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="calendar.html">カレンダークラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="../database/index.html">データベースクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

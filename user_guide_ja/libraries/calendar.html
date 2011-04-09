@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>カレンダークラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+カレンダークラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+
+
+<h1>カレンダークラス</h1>
+
+<p>カレンダークラスを使うと動的にカレンダーを生成できます。
+カレンダーはデザインのどんな側面も100%コントロール可能なカレンダーテンプレートをもとに整形されます。</p>
+
+<h2>クラスの初期化</h2>
+
+<p>CodeIgniter の大半のクラスと同様に、カレンダークラスはコントローラの中で、 <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
+
+<code>$this->load->library('calendar');</code>
+<p>一旦呼び出せば、カレンダーオブジェクトは <dfn>$this->calendar</dfn> を使用することで利用できます。</p>
+
+
+<h2>カレンダーの表示</h2>
+
+<p>カレンダーの表示方法の非常に簡単な例です:</p>
+
+<code>$this->load->library('calendar');<br />
+<br />
+echo $this->calendar->generate();</code>
+
+<p>上のコードは、サーバ時間の年月のカレンダーを生成します。
+特定の年月のカレンダーを表示させるには、カレンダー生成関数に次のように情報を渡します:</p>
+
+<code>$this->load->library('calendar');<br />
+<br />
+echo $this->calendar->generate(<kbd>2006</kbd>, <kbd>6</kbd>);</code>
+
+<p>上のコードは、2006年6月を表示するカレンダーを生成します。最初の引数は年を、2番目の引数は月を指定します。</p>
+
+<h2>カレンダーのセルへのデータ引き渡し</h2>
+
+<p>カレンダーのセルにデータを追加するには、埋め込みたい日をキーにし、それに対応する値に埋め込むデータを入れた連想配列を作成します。
+作成した配列は、カレンダー生成関数の第３引数に渡します。
+次のような例が考えられます:</p>
+
+<code>$this->load->library('calendar');<br />
+<br />
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp; => 'http://example.com/news/article/2006/03/',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp; => 'http://example.com/news/article/2006/07/',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13 => 'http://example.com/news/article/2006/13/',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;26 => 'http://example.com/news/article/2006/26/'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+echo $this->calendar->generate(<kbd>2006</kbd>, <kbd>6</kbd>, <var>$data</var>);</code>
+
+<p>上の例を使用すると、3,7,13および26日が渡された URL を指すリンクになります。</p>
+
+<p class="important"><strong>Note:</strong> 初期状態では、配列にはリンクが含まれるものとされています。
+下のカレンダーテンプレートを説明した箇所では、セルに渡されたデータがどのように扱われるかが示されています。
+そこで、違う情報のタイプを指定することができ、どのようにしてカスタマイズ可能かを知ることができます。</p>
+
+
+<h2>表示設定の変更</h2>
+
+<p>7つの設定項目でカレンダーの様々な面をコントロールできます。
+設定項目は呼び出し関数の第二引数に配列として渡して設定します。例です:</p>
+
+
+<code>
+$prefs = array (<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'start_day'&nbsp;&nbsp;&nbsp; => 'saturday',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'month_type'&nbsp;&nbsp; => 'long',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'day_type'&nbsp;&nbsp;&nbsp;&nbsp; => 'short'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->load->library('calendar', $prefs);<br />
+<br />
+echo $this->calendar->generate();</code>
+
+<p>上のコードは、土曜日から始まり、「長い」形式の月名と「短い」形式の曜日名をヘッダに使用します。
+設定項目についての詳しい情報は下記のとおりです。</p>
+
+
+
+
+<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+<tr>
+<th>設定項目</th>
+<th>初期値</th>
+<th>オプション</th>
+<th>説明</th>
+</tr><tr>
+<td class="td"><strong>template</strong></td><td class="td">なし</td><td class="td">なし</td><td class="td">カレンダーテンプレートの文字列。テンプレートのセクションを参照。</td>
+</tr><tr>
+<td class="td"><strong>local_time</strong></td><td class="td">time()</td><td class="td">なし</td><td class="td">現在時刻として関連づける UNIX タイムスタンプ。</td>
+</tr><tr>
+<td class="td"><strong>start_day</strong></td><td class="td">sunday</td><td class="td"> すべての曜日(sunday, monday, tuesday, など)</td><td class="td">カレンダーの開始曜日。</td>
+</tr><tr>
+<td class="td"><strong>month_type</strong></td><td class="td">long</td><td class="td">long, short</td><td class="td">ヘッダの月名をどの形式にするか。 long = January, short = Jan.</td>
+</tr><tr>
+<td class="td"><strong>day_type</strong></td><td class="td">abr</td><td class="td">long, short, abr</td><td class="td">ヘッダのカラムの曜日名の形式にどの形式を用いるか。 long = Sunday, short = Sun, abr = Su.</td>
+</tr><tr>
+<td class="td"><strong>show_next_prev</strong></td><td class="td">FALSE</td><td class="td">TRUE/FALSE (boolean)</td><td class="td">次/ 前 の 月に移動できる URL を表示するかどうか。この機能については下記参照。</td>
+</tr><tr>
+<td class="td"><strong>next_prev_url</strong></td><td class="td">None</td><td class="td">URL</td><td class="td">次の月/ 前の月 のリンクを利用する場合の基準パス。</td>
+</tr>
+</table>
+
+
+
+<h2>次の月 / 前の月 リンクの表示</h2>
+
+<p>次へ / 前へ のリンクを経由してカレンダーを動的に進める / 戻る ようにするには、
+次の例のようなコードをカレンダーのコードに設定する必要があります:</p>
+
+
+<code>$prefs = array (<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'show_next_prev'&nbsp;&nbsp;=> TRUE,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'next_prev_url'&nbsp;&nbsp; => 'http://example.com/index.php/calendar/show/'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this-&gt;load-&gt;library('calendar', $prefs);<br />
+<br />
+echo $this->calendar->generate(<var>$this->uri->segment(3)</var>, <var>$this->uri->segment(4)</var>);</code>
+
+<p>上のサンプルで、何点か気づいた点があるはずです:</p>
+
+<ul>
+<li>&quot;show_next_prev&quot; を TRUE にする必要があります。</li>
+<li>&quot;next_prev_url&quot; の設定項目でカレンダーが設置されているコントローラへの URL を指定しなければなりません。</li>
+<li>カレンダー生成関数に指定する「年」と「月」には、URI セグメントに出現するものを指定します（Note: カレンダークラスは基準の URL に対して年・月を自動的に追加します）</li>
+</ul>
+
+
+
+<h2>カレンダーテンプレートの作成</h2>
+
+<p>カレンダーテンプレートを作成することで、カレンダーのデザインを100%コントロールできます。
+カレンダーの各部品は次に示す擬似変数のペアの間に配置されます:</p>
+
+
+<code>
+$prefs['template'] = '<br /><br />
+&nbsp;&nbsp;&nbsp;<dfn>{table_open}</dfn><var>&lt;table border="0" cellpadding="0" cellspacing="0"></var><dfn>{/table_open}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{heading_row_start}</dfn><var>&lt;tr></var><dfn>{/heading_row_start}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{heading_previous_cell}</dfn><var>&lt;th>&lt;a href="</var><kbd>{previous_url}</kbd><var>">&amp;lt;&amp;lt;&lt;/a>&lt;/th></var><dfn>{/heading_previous_cell}</dfn><br />
+&nbsp;&nbsp;&nbsp;<dfn>{heading_title_cell}</dfn><var>&lt;th colspan="</var><kbd>{colspan}</kbd><var>"></var><kbd>{heading}</kbd><var>&lt;/th></var><dfn>{/heading_title_cell}</dfn><br />
+&nbsp;&nbsp;&nbsp;<dfn>{heading_next_cell}</dfn><var>&lt;th>&lt;a href="</var><kbd>{next_url}</kbd><var>">&amp;gt;&amp;gt;&lt;/a>&lt;/th></var><dfn>{/heading_next_cell}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{heading_row_end}</dfn><var>&lt;/tr></var><dfn>{/heading_row_end}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{week_row_start}</dfn><var>&lt;tr></var><dfn>{/week_row_start}</dfn><br />
+&nbsp;&nbsp;&nbsp;<dfn>{week_day_cell}</dfn><var>&lt;td></var><dfn>{week_day}</dfn><var>&lt;/td></var><dfn>{/week_day_cell}</dfn><br />
+&nbsp;&nbsp;&nbsp;<dfn>{week_row_end}</dfn><var>&lt;/tr></var><dfn>{/week_row_end}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{cal_row_start}</dfn><var>&lt;tr></var><dfn>{/cal_row_start}</dfn><br />
+&nbsp;&nbsp;&nbsp;<dfn>{cal_cell_start}</dfn><var>&lt;td></var><dfn>{/cal_cell_start}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{cal_cell_content}</dfn><var>&lt;a href="</var><kbd>{content}</kbd><var>"></var><kbd>{day}</kbd><var>&lt;/a></var><dfn>{/cal_cell_content}</dfn><br />
+&nbsp;&nbsp;&nbsp;<dfn>{cal_cell_content_today}</dfn><var>&lt;div class="highlight">&lt;a href="</var><kbd>{content}</kbd><var>"></var><kbd>{day}</kbd><var>&lt;/a>&lt;/div></var><dfn>{/cal_cell_content_today}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{cal_cell_no_content}</dfn><var></var><kbd>{day}</kbd><var></var><dfn>{/cal_cell_no_content}</dfn><br />
+&nbsp;&nbsp;&nbsp;<dfn>{cal_cell_no_content_today}</dfn><var>&lt;div class="highlight"></var><kbd>{day}</kbd><var>&lt;/div></var><dfn>{/cal_cell_no_content_today}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{cal_cell_blank}</dfn><var>&amp;nbsp;</var><dfn>{/cal_cell_blank}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{cal_cell_end}</dfn><var>&lt;/td></var><dfn>{/cal_cell_end}</dfn><br />
+&nbsp;&nbsp;&nbsp;<dfn>{cal_row_end}</dfn><var>&lt;/tr></var><dfn>{/cal_row_end}</dfn><br />
+<br />
+&nbsp;&nbsp;&nbsp;<dfn>{table_close}</dfn><var>&lt;/table></var><dfn>{/table_close}</dfn><br />
+';<br />
+<br />
+$this->load->library('calendar', $prefs);<br />
+<br />
+echo $this->calendar->generate();</code>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="benchmark.html">ベンチマーククラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="cart.html">カートクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

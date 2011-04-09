@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>文字列ヘルパ：CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+文字列ヘルパ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>文字列ヘルパ</h1>
+
+<p>文字列ヘルパの中身は、文字列を処理するのに役立つ関数です。</p>
+
+
+<h2>ヘルパのロード</h2>
+
+<p>このヘルパは次のコードを使ってロードします:</p>
+<code>$this->load->helper('string');</code>
+
+<p>次の関数が利用できます:</p>
+
+<h2>random_string()</h2>
+
+<p>指定したタイプとサイズのランダムな文字列を生成します。パスワードを作成したり、ランダムなハッシュ値を生成したりするのに役立ちます。</p>
+
+<p>第1引数には文字列のタイプを指定し、第2引数には文字列のサイズ (文字数) を指定します。次の選択肢が使えます:</p>
+
+ alpha, alunum, numeric, nozero, unique, md5, encrypt and sha1
+<ul>
+	<li><strong>alpha</strong>:&nbsp; 大文字小文字の文字列。</li>
+	<li><strong>alnum</strong>:&nbsp; 大文字小文字の英数字。</li>
+	<li><strong>numeric</strong>:&nbsp; 数字文字列。</li>
+	<li><strong>nozero</strong>:&nbsp; ゼロ以外の数字文字列。</li>
+	<li><strong>unique</strong>:&nbsp; MD5 と uniqid() での暗号化。
+	Note: このタイプにはサイズのパラメータは存在しません。固定長の 32 文字の文字列を返します。</li>
+	<li><strong>sha1</strong>:&nbsp; <a href="security_helper.html">セキュリティヘルパ</a>の <kbd>do_hash()</kbd> に基づいた暗号化された乱数。</li>
+</ul>
+
+<p>使用例です:</p>
+
+<code>echo random_string('alnum', 16);</code>
+
+
+<h2>alternator()</h2>
+
+<p>ループの中でローテーションで使うように、2 つ以上の文字列を入れ替え可能にします。例:</p>
+
+<code>for ($i = 0; $i < 10; $i++)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo alternator('string one', 'string two');<br />
+}<br />
+</code>
+
+<p>必要な数だけ追加でき、各ループで繰り返す度に次の項目が返ります。</p>
+
+<code>for ($i = 0; $i < 10; $i++)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo alternator('one', 'two', 'three', 'four', 'five');<br />
+}<br />
+</code>
+
+<p><strong>Note:</strong> この関数を複数回に分けて呼び出すとき、再度初期化するために、一度、引数なしでこの関数を呼び出してください。</p>
+
+
+
+<h2>repeater()</h2>
+<p>渡したデータのコピーを繰り返し生成します。例:</p>
+<code>$string = "\n";<br />
+echo repeater($string, 30);</code>
+
+<p>上の例では、30の新しい行が生成されます。</p>
+<h2>reduce_double_slashes()</h2>
+<p>http:// のダブルスラッシュを除いて、文字列中のダブルスラッシュをシングルスラッシュに変換します。例: </p>
+<code>$string = &quot;http://example.com//index.php&quot;;<br />
+echo reduce_double_slashes($string); // &quot;http://example.com/index.php&quot; を返します</code>
+<h2>trim_slashes()</h2>
+<p>文字列から、先頭と末尾のスラッシュを除去します。例:<br />
+	<br />
+	<code>$string = &quot;/this/that/theother/&quot;;<br />
+echo trim_slashes($string); // this/that/theother を返します</code></p>
+
+
+<h2>reduce_multiples()</h2>
+<p>連続した文字を縮約します。例:</p>
+<code>
+$string="Fred, Bill,, Joe, Jimmy";<br />
+$string=reduce_multiples($string,","); // "Fred, Bill, Joe, Jimmy" を返します
+</code>
+<p>次の引数を指定することができます。
+<code>reduce_multiples(string: 対象文字列, string: 縮約文字, boolean: 先頭と末尾の縮約文字を削除するかどうか)</code>
+
+第1引数は縮約文字を含む文字列を指定します。第2引数は縮約文字を指定します。第3引数はデフォルトでは FALSE が指定されます。
+TRUE を指定した場合は先頭と末尾にある縮約文字が削除されます。例:
+
+<code>
+$string=",Fred, Bill,, Joe, Jimmy,";<br />
+$string=reduce_multiples($string,",",TRUE); // "Fred, Bill, Joe, Jimmy" を返します
+</code>
+</p> 
+
+<h2>quotes_to_entities()</h2>
+<p>文字列の中のシングルおよびダブルクオートを HTML 文字参照に変換します。 例:</p>
+<code>$string="Joe's \"dinner\"";<br />
+$string=quotes_to_entities($string); // "Joe&amp;#39;s &amp;quot;dinner&amp;quot;" を返します
+</code>
+
+<h2>strip_quotes()</h2>
+<p>文字列からシングルおよびダブルクオートを除去します。例:</p>
+<code>$string="Joe's \"dinner\"";<br />
+$string=strip_quotes($string); // "Joes dinner" を返します
+</code>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="smiley_helper.html">スマイリーヘルパ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="text_helper.html">テキストヘルパ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

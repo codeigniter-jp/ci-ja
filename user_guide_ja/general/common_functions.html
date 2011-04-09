@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>共通関数 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+共通関数
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>共通関数</h1>
+
+<p>CodeIgniter にはグローバルで定義された関数がいくつか存在し、ライブラリやヘルパをロードすること無くどの場所でも使うことができます。</p>
+
+<h2>is_php('<var>version_number</var>')</h2>
+
+<p>is_php() は、<var>version_number</var>で指定したバージョン以降の PHP が利用されているかを判定します。</p>
+
+<code>if (is_php('5.3.0'))<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$str = quoted_printable_encode($str);<br />
+}</code>
+
+<p>指定したバージョンと同じかそれ以降のバージョンの PHP がインストールされていれば、ブール値の <kbd>TRUE</kbd> を返します。指定したバージョン未満の PHP がインストールされていれば、 <kbd>FALSE</kbd> を返します。</p>
+
+
+<h2>is_really_writable('<var>path/to/file</var>')</h2>
+
+<p>is_writable() は、Windows サーバーの場合、OS が本当はファイルに書けないのだけれども OS が PHP に書き込み可能と言ってきたときに TRUE を返し、read-only 属性がマークされている場合だけ FALSE を返します。この関数は本当にそのファイルに書き込みができるのかどうかを、実際にファイルに書き込みをしてみて判断します。この関数は書き込み情報が当てにならない OS の場合のみ使うようにしてください。</p>
+
+<code>if (is_really_writable('file.txt'))<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo &quot;書きたい時に書き込みができます&quot;;<br />
+}<br />
+else<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo &quot;ファイルに書き込みはできません&quot;;<br />
+}</code>
+
+<h2>config_item('<var>item_key</var>')</h2>
+<p><a href="../libraries/config.html">設定(Config)ライブラリ</a> に設定情報を入れておくことが推奨されていますが、config_item() を使って 1つだけのキーを使って取得することも可能です。設定ライブラリに詳細があります。
+
+<h2>show_error('<var>message</var>'), show_404('<var>page</var>'), log_message('<var>level</var>', '<samp>message</samp>')</h2>
+<p>これらの詳細は<a href="errors.html">エラーの処理</a>ページにあります。</p>
+
+<h2>set_status_header(<var>code</var>, '<var>text</var>');</h2>
+
+<p>サーバが返す HTTP レスポンスヘッダのステータスを手動でセットできます。例:</p>
+
+<code>set_status_header(401);<br />
+// ヘッダは Unauthorized に設定されます</code>
+
+<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">全ての HTTP レスポンスヘッダの一覧</a>をご覧ください。</p>
+
+
+<h2>remove_invisible_characters(<var>$str</var>)</h2>
+<p>Java\0script のように、文字列にヌル文字が混入されるのを防ぎます。</p>
+
+
+
+</div>
+
+
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="autoloader.html">リソースの自動読み込み</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="routing.html">URIルーティング</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

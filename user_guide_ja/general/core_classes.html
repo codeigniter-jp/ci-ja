@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>コアシステムクラスの作成 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+コアシステムクラスの作成
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>コアシステムクラスの作成</h1>
+
+<p>CodeIgniter が実行されるたびに、フレームワークの一部として自動的に初期化される基本クラスがいくつかあります。
+しかし、コアシステムのクラスをユーザバージョンのクラスと置き換えたり、コアシステムのクラスを拡張したりすることもできます。</p>
+
+<p><strong>ほとんどのユーザにとっては、そうすることは、まず必要ないでしょう。
+しかし、CodeIgniter のコアを大きく変えたい人のために、置き換えたり拡張したりできる選択肢が用意されています。</strong>
+</p>
+
+<p class="important"><strong>Note:</strong>&nbsp; コアのシステムクラスを扱うと様々な影響が出てきますので、コアクラスを変更する前には、必ず、
+変更することで何が起こるかを調べるようにしてください。</p>
+
+
+<h2>システムクラスのリスト</h2>
+
+<p>下記は、CodeIgniter を実行する度にいつも読み出されるコアシステムファイルのリストです:</p>
+
+<ul>
+<li>Benchmark</li>
+<li>Config</li>
+<li>Controller</li>
+<li>Exceptions</li>
+<li>Hooks</li>
+<li>Input</li>
+<li>Language</li>
+<li>Loader</li>
+<li>Log</li>
+<li>Output</li>
+<li>Router</li>
+<li>URI</li>
+<li>Utf8</li>
+</ul>
+
+<h2>コアクラスの置き換え</h2>
+
+<p>デフォルトのクラスの代わりにユーザ定義のシステムクラスを使うには、単に、ユーザが作成したバージョンのものを <dfn>application/core</dfn> ディレクトリの中に配置するだけです:</p>
+
+<code>application/core/<dfn>some-class.php</dfn></code>
+
+<p>このディレクトリが存在しない場合は、自分で作成することもできます。</p>
+
+<p>ファイル名は、上のリストの中にある通常のものと置き換えるものの名前と同じ名前にします。</p>
+
+<p>ユーザクラスには、 <kbd>CI</kbd> をプリフィックスとして使わなければならないことを注意してください。たとえば、ファイルが <kbd>Input.php</kbd> という名前ならクラスは次のように名付けます:</p>
+
+<code>
+class CI_Input {<br /><br />
+
+}
+</code>
+
+
+
+<h2>コアクラスの拡張(継承)</h2>
+
+<p>既存の関数に何かの機能を追加する - おそらく1つか2つのメソッド追加 - だけでよいのであれば、
+ライブラリの全部をユーザ定義のものに置き換えてしまうのはやり過ぎです。このようなケースでは、クラスを単に拡張(継承)するのが適しています。
+クラスの拡張はクラスの置き換えと次の2点を除いてよく似ています:</p>
+
+<ul>
+<li>クラス宣言では親クラスを継承する必要があります。</li>
+<li>新しいクラスの名前とファイル名には、<kbd>MY_</kbd> というプリフィックス(この項目は変更できます。このページの下の方をご覧ください)を付ける必要があります。</li>
+</ul>
+
+<p>たとえば、ネイティブの <kbd>Input</kbd> クラスを拡張するには、<dfn>application/core/</dfn><kbd>MY_Input.php</kbd> という名前のファイルを作成し、次のようにクラス宣言をします:</p>
+
+<code>
+class MY_Input extends CI_Input {<br /><br />
+
+}</code>
+
+<p>Note: ユーザクラスでコンストラクタを使う場合は親クラスのコンストラクタを呼ぶのを忘れないでください:</p>
+
+<code>
+class MY_Input extends CI_Input {<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function __construct()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}</code>
+
+<p class="important"><strong>Tip:</strong>&nbsp; 親クラスのメソッドと同じ名前のユーザクラスのメソッドはみな、ネイティブのものと置き換えられて使用されます
+("メソッドのオーバーライド" として知られています ).
+これにより、実質的に、CodeIgniter のコアを置き換えることができます。</p>
+
+<p>もしコントローラのコアクラスを拡張したいなら、コントローラのコンストラクタに新しいクラスを継承させます。</p>
+
+<code>class Welcome extends MY_Controller {<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function __construct()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;function index()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('welcome_message');<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}</code>
+
+<h3>ユーザクラスのプリフィックス(接頭辞)の設定</h3>
+
+<p>ユーザ作成のサブクラスにつけるプリフィックスを設定するには、<dfn>application/config/config.php</dfn> ファイルを開き、次の項目を探して設定してください:</p>
+
+<code>$config['subclass_prefix'] = 'MY_';</code>
+
+<p>CodeIgniter の全ネイティブライブラリには <kbd>CI_</kbd> というプリフィックスがついているのを注意してください。ユーザ作成クラスのプリフィックスには、この <kbd>CI_</kbd> を使用してはいけません。</p>
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="creating_libraries.html">ユーザライブラリの作成</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="hooks.html">フック - コアの拡張</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

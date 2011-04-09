@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>アプリケーションのプロファイリング : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+アプリケーションのプロファイリング
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>アプリケーションのプロファイリング</h1>
+
+<p>プロファイラクラスを使うと、ベンチマーク結果、実行したクエリ、$_POST データをページの一番下に表示させることができます。
+この情報は、開発中にデバッグや最適化を支援するものとして役立つものです。</p>
+
+
+<h2>クラスを初期化する</h2>
+
+<p class="important"><strong>重要:</strong>&nbsp; このクラスは初期化<kbd>する必要がありません</kbd>。
+下記に示すようにプロファイリングが有効になっている場合は、<a href="../libraries/output.html">出力クラス</a>で自動的にロードされます。</p>
+
+<h2>プロファイラを有効化する</h2>
+
+	<p><a href="controllers.html">コントローラ</a> のメソッド内のいずれかの場所で次のメソッドを含むコードを記述すれば、プロファイラが有効になります:</p>
+	<code>$this->output->enable_profiler(TRUE);</code>
+
+	<p>有効化されると、レポートが生成され、ページの一番下に差し込まれます。</p>
+
+	<p>プロファイラを無効にするには、次の文を使います:</p>
+	<code>$this->output->enable_profiler(FALSE);</code>
+
+
+<h2>ベンチマークの観測点をセットする</h2>
+
+	<p>ベンチマークのデータをプロファイラを使ってコンパイルし表示するには、特定の構文を使って観測点の名前を付ける必要があります。</p>
+
+	<p>ベンチマークの観測点設定についての情報は、<a href="../libraries/benchmark.html">ベンチマーククラス</a> の解説ページをお読みください。</p>
+
+
+<h2>プロファイラセクションの有効化と無効化</h2>
+
+	<p>プロファイラデータの各セクションは、対応する設定変数に <var>TRUE</var> または <var>FALSE</var> を指定する事で、有効または無効に出来ます。これには 2 つの方法があります。1 つめは、設定ファイルの <dfn>application/config/profiler.php</dfn> でアプリケーション全体のデフォルトを指定する方法です。</p>
+
+	<code>$config['config']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= FALSE;<br />
+	$config['queries']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= FALSE;<br /></code>
+
+	<p>コントローラ内で<a href="../libraries/output.html">出力クラス</a>の <kbd>set_profiler_sections()</kbd> メソッドをコールすることで、既定値や設定ファイルの値を上書きする事も出来ます:</p>
+
+	<code>$sections = array(<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;'config' &nbsp;=> TRUE,<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;'queries' => TRUE<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+	<br />
+	$this->output->set_profiler_sections($sections);</code>
+
+	<p>利用可能なセクションとそれにアクセスする為の配列のキーは以下の表のとおりです。</p>
+
+	<table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
+		<tr>
+		<th>キー</th>
+		<th>説明</th>
+		<th>既定値</th>
+		</tr><tr>
+
+		<td class="td"><strong>benchmarks</strong></td>
+		<td class="td">ベンチマーク観測点での経過時間と総実行時間</td>
+		<td class="td">TRUE</td>
+		</tr><tr>
+
+		<td class="td"><strong>config</strong></td>
+		<td class="td">CodeIgniter の設定変数</td>
+		<td class="td">TRUE</td>
+		</tr><tr>
+
+		<td class="td"><strong>controller_info</strong></td>
+		<td class="td">リクエストされたコントローラのクラスとメソッド</td>
+		<td class="td">TRUE</td>
+		</tr><tr>
+
+		<td class="td"><strong>get</strong></td>
+		<td class="td">リクエストに渡された全ての GET データ</td>
+		<td class="td">TRUE</td>
+		</tr><tr>
+
+		<td class="td"><strong>http_headers</strong></td>
+		<td class="td">現在のリクエストの HTTP ヘッダ</td>
+		<td class="td">TRUE</td>
+		</tr><tr>
+
+		<td class="td"><strong>memory_usage</strong></td>
+		<td class="td">現在のリクエストで消費されたバイト単位のメモリ容量</td>
+		<td class="td">TRUE</td>
+		</tr><tr>
+
+		<td class="td"><strong>post</strong></td>
+		<td class="td">リクエストに渡された全ての POST データ</td>
+		<td class="td">TRUE</td>
+		</tr><tr>
+
+		<td class="td"><strong>queries</strong></td>
+		<td class="td">実行時間を含む、実行された全てのデータベースクエリの一覧</td>
+		<td class="td">TRUE</td>
+		</tr><tr>
+
+		<td class="td"><strong>uri_string</strong></td>
+		<td class="td">現在のリクエスト URI</td>
+		<td class="td">TRUE</td>
+		</tr><tr>
+	</table>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="caching.html">キャッシュ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="managing_apps.html">アプリケーションの管理</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

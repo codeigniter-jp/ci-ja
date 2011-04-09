@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>クエリヘルパメソッド : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+クエリヘルパ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>クエリヘルパメソッド</h1>
+
+
+<h2>$this->db->insert_id()</h2>
+<p>データベースに行を挿入したときに、挿入した ID 番号を取得します。</p>
+
+<h2>$this->db->affected_rows()</h2>
+<p>「書き込み」タイプのクエリ (insert、update、など) が実行されたとき、処理された行の数を取得します。</p>
+<p>Note:  MySQLでは、"DELETE FROM TABLE" を実行すると0行と返します。データベースクラスには、処理した行を訂正して返せるよう、
+小さな HACK が用意されています。デフォルトではこの HACK が有効になっていますが、データベースドライバファイルの中でオフにすることもできます。</p>
+
+
+<h2>$this->db->count_all();</h2>
+<p>特定のテーブルの行数を数えられます。テーブル名を第1引数で渡します。例:</p>
+<code>echo $this->db->count_all('<var>my_table</var>');<br />
+<br />
+// 25のような整数が返ります
+</code>
+
+
+<h2>$this->db->platform()</h2>
+<p>実行しているデータベースプラットフォーム(MySQL、MS SQL、Postgres など…)を出力します:</p>
+<code>echo $this->db->platform();</code>
+
+
+<h2>$this->db->version()</h2>
+<p>実行しているデータベースのバージョンを出力します:</p>
+<code>echo $this->db->version();</code>
+
+
+<h2>$this->db->last_query();</h2>
+<p>最後に実行されたクエリを返します (クエリの文字列で、結果ではありません)。例:</p>
+
+<code>$str = $this->db->last_query();<br />
+<br />
+// 次のように生成されます:  SELECT * FROM sometable....
+</code>
+
+
+<p>次の２つのメソッドは、INSERT と UPDATE でデータベースに書き込む処理を単純化するのに役立つものです。</p>
+
+
+<h2>$this->db->insert_string(); </h2>
+<p>このメソッドは、データベースにデータを新規追加するのを単純化します。これは、SQL の INSERT ステートメントを正しくフォーマットして返します。例:</p>
+
+<code>$data = array('name' => $name, 'email' => $email, 'url' => $url);<br />
+<br />
+$str = $this->db->insert_string('table_name', $data);
+</code>
+
+<p>第1引数はテーブル名で、第2引数は挿入するデータの連想配列です。上の例では、次のような文を生成します:</p>
+<code>INSERT INTO table_name (name, email, url) VALUES ('Rick', 'rick@example.com', 'example.com')</code>
+
+<p class="important">Note: 値は自動的にエスケープされ、安全なクエリが生成されます。</p>
+
+
+
+<h2>$this->db->update_string(); </h2>
+<p>このメソッドは、データベースに更新書き込みをするのを単純化します。これは、SQL の UPDATE ステートメントの文字列を正しくフォーマットして返します。例:</p>
+
+<code>$data = array('name' => $name, 'email' => $email, 'url' => $url);<br />
+<br />
+$where = "author_id = 1 AND status = 'active'";
+<br /><br />
+$str = $this->db->update_string('table_name', $data, $where);
+</code>
+
+<p>第1引数はテーブル名で、第2引数は更新するデータの連想配列で、第3引数は &quot;WHERE&quot; 句になります。上の例は次のような文を生成します:</p>
+<code> UPDATE table_name SET name = 'Rick', email = 'rick@example.com', url = 'example.com' WHERE author_id = 1 AND status = 'active'</code>
+
+<p class="important">Note: 値は自動的にエスケープされ、安全なクエリが生成されます。</p>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="results.html">クエリ結果</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="active_record.html">Active Record パターン</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

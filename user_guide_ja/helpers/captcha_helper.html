@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CAPTCHA ヘルパ : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+CAPTCHA ヘルパ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>CAPTCHA ヘルパ</h1>
+
+<p>CAPTCHA ヘルパのファイルは、CAPTCHA 画像を作成するのに役立つ関数で構成されています。</p>
+
+
+<h2>ヘルパのロード</h2>
+
+<p>このヘルパは次のコードを使ってロードします:</p>
+<code>$this->load->helper('captcha');</code>
+
+<p>次の関数が利用できます:</p>
+
+<h2>create_captcha(<var>$data</var>)</h2>
+
+<p>入力として引数に CAPTCHA 生成のための情報を配列で受け取り、指定された画像を生成し、生成された画像に関するデータの連想配列を返します。</p>
+
+<code>[array]<br />
+(<br />
+&nbsp;&nbsp;'image' => IMAGE TAG<br />
+&nbsp;&nbsp;'time'	=> TIMESTAMP (マイクロ秒まで含む)<br />
+&nbsp;&nbsp;'word'	=> CAPTCHA WORD<br />
+)</code>
+
+	<p>"image" は実際の image タグです:
+<code>&lt;img src=&quot;http://example.com/captcha/12345.jpg&quot; width=&quot;140&quot; height=&quot;50&quot; /&gt;</code></p>
+
+	<p>"time" はマイクロ秒でのタイプスタンプで、拡張子を除いた部分の画像のファイル名として使われます。
+	このような数字になります:  1139612155.3422</p>
+
+	<p>"word" はキャプチャ画像に表示される単語で、指定されない場合は
+	ランダムな文字列になります。</p>
+	
+	<h3>CAPTCHA ヘルパの使用</h3>
+	
+	<p>一旦ロードすれば、このようなキャプチャを生成できます:</p>
+
+<code>$vals = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'word'		 => 'Random word',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'img_path'	 => './captcha/',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'img_url'	 => 'http://example.com/captcha/',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'font_path'	 => './path/to/fonts/texb.ttf',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'img_width'	 => '150',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'img_height' => 30,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'expiration' => 7200<br />
+&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$cap = create_captcha($vals);<br />
+echo $cap['image'];</code>
+
+	<ul>
+		<li>captcha 関数は GD 画像ライブラリを必要とします。</li>
+		<li>img_path と img_url は必須です。</li>
+		<li>"word" が指定されない場合，ランダムな
+		ASCII 文字列が生成されます。
+		自前の辞書を使用しても良いでしょう。</li>
+		<li>TRUE TYPE フォントのパスが指定されない場合，標準の見苦しい GD
+		フォントが使用されます。</li>
+		<li>"captcha" ディレクトリは書込可能でなければなりません。 (666 または 777)</li>
+		<li>"expiration" (単位: 秒) は有効期限で，
+		captcha ディレクトリから削除されるまでの時間です。
+		デフォルトでは 2 時間です。</li>
+	</ul>
+
+	<h3>データベースの追加</h3>
+	
+	<p>第三者に送信されるのを防ぐために，<kbd>create_captcha()</kbd> 関数が返す情報をデータベースに格納します。
+	そして，利用者によりフォームからデータが送信されると，
+	データが存在することと，
+	期限が切れていないことを検証します。</p>
+	
+	<p>テーブルの定義:</p>
+	
+<code>CREATE TABLE captcha (<br />
+&nbsp;captcha_id bigint(13) unsigned NOT NULL auto_increment,<br />
+&nbsp;captcha_time int(10) unsigned NOT NULL,<br />
+&nbsp;ip_address varchar(16) default '0' NOT NULL,<br />
+&nbsp;word varchar(20) NOT NULL,<br />
+&nbsp;PRIMARY KEY `captcha_id` (`captcha_id`),<br />
+&nbsp;KEY `word` (`word`)<br />
+);</code>
+
+	<p>データベースと組み合わせた際の例です。キャプチャを表示するページの例: </p>
+	
+<code>$this-&gt;load-&gt;helper(&#x27;captcha&#x27;);<br />
+$vals = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#x27;img_path&#x27;	 =&gt; &#x27;./captcha/&#x27;,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#x27;img_url&#x27;	 =&gt; &#x27;http://example.com/captcha/&#x27;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$cap = create_captcha($vals);<br />
+<br />
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#x27;captcha_time&#x27;	=&gt; $cap[&#x27;time&#x27;],<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#x27;ip_address&#x27;	=&gt; $this-&gt;input-&gt;ip_address(),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#x27;word&#x27;			=&gt; $cap[&#x27;word&#x27;]<br />
+&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$query = $this-&gt;db-&gt;insert_string(&#x27;captcha&#x27;, $data);<br />
+$this-&gt;db-&gt;query($query);<br />
+<br />
+echo &#x27;Submit the word you see below:&#x27;;<br />
+echo $cap[&#x27;image&#x27;];<br />
+echo &#x27;&lt;input type=&quot;text&quot; name=&quot;captcha&quot; value=&quot;&quot; /&gt;&#x27;;</code>
+
+	<p>送信を受け付けるページの例: </p>
+	
+<code>// 期限切れのキャプチャを削除<br />
+$expiration = time()-7200; // 有効期限: 2時間<br />
+$this-&gt;db-&gt;query(&quot;DELETE FROM captcha WHERE captcha_time &lt; &quot;.$expiration);	<br />	
+<br />
+// キャプチャが存在するか確認<br />
+$sql = &quot;SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND date &gt; ?&quot;;<br />
+$binds = array($_POST[&#x27;captcha&#x27;], $this-&gt;input-&gt;ip_address(), $expiration);<br />
+$query = $this-&gt;db-&gt;query($sql, $binds);<br />
+$row = $query-&gt;row();<br />
+<br />
+if ($row-&gt;count == 0)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo &quot;You must submit the word that appears in the image&quot;;<br />
+}</code>
+	
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="url_helper.html">URL ヘルパ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>データベース設定 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+設定
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>データベース設定</h1>
+
+<p>CodeIgniter には、データベース接続用のデータ(ユーザ名、パスワード、データベース名など)を保存できる設定ファイルがあります。
+設定ファイルは <samp>application/config/database.php</samp> にあります。また、特定の <a href="../libraries/config.html">環境</a> のためのデータベース接続のための設定をするために、それぞれの環境の設定フォルダの中に <strong>database.php</strong> を置くこともできます。</p>
+
+<p>設定は、次のひな形で、多次元配列で保存されています:</p>
+
+<code>$db['default']['hostname'] = "localhost";<br />
+$db['default']['username'] = "root";<br />
+$db['default']['password'] = "";<br />
+$db['default']['database'] = "database_name";<br />
+$db['default']['dbdriver'] = "mysql";<br />
+$db['default']['dbprefix'] = "";<br />
+$db['default']['pconnect'] = TRUE;<br />
+$db['default']['db_debug'] = FALSE;<br />
+$db['default']['cache_on'] = FALSE;<br />
+$db['default']['cachedir'] =  &quot;&quot;;<br />
+$db['default']['char_set'] = "utf8";<br />
+$db['default']['dbcollat'] = "utf8_general_ci";<br />
+$db['default']['swap_pre'] = "";<br />
+$db['default']['autoinit'] = TRUE;<br />
+$db['default']['stricton'] = FALSE;</code>
+
+<p>単純な１次元配列を使わずに、多次元配列を使う理由は、オプションで、接続用のデータを複数セット利用できるようにするためです。
+たとえば、ひとつのインストール方法で、複数の環境（開発用、製品用、テスト用など）で実行するような場合に、
+各環境ごとに接続設定をグループ化しておき、動かす環境に必要なグループに切り替えるといったことが可能です。
+たとえば、"test" 用の環境をセットアップするには次のようにします:</p>
+
+<code>$db['test']['hostname'] = "localhost";<br />
+$db['test']['username'] = "root";<br />
+$db['test']['password'] = "";<br />
+$db['test']['database'] = "database_name";<br />
+$db['test']['dbdriver'] = "mysql";<br />
+$db['test']['dbprefix'] = "";<br />
+$db['test']['pconnect'] = TRUE;<br />
+$db['test']['db_debug'] = FALSE;<br />
+$db['test']['cache_on'] = FALSE;<br />
+$db['test']['cachedir'] =  &quot;&quot;;<br />
+$db['test']['char_set'] = "utf8";<br />
+$db['test']['dbcollat'] = "utf8_general_ci";<br />
+$db['test']['swap_pre'] = "";<br />
+$db['test']['autoinit'] = TRUE;<br />
+$db['test']['stricton'] = FALSE;</code>
+
+
+<p>次に、システムに対して全体でそのグループを使うことを通知するため、設定ファイルにある下記の変数にグループ名をセットします:</p>
+
+<code>$active_group = "test";</code>
+
+<p>Note: 名前の "test" は任意です。好きなように設定できます。初期状態では、"default"
+を優先（プライマリ）接続として使っていますが、この名前もプロジェクトにふさわしい名前にリネームすることができます。 </p>
+
+<h3>Active Record</h3>
+
+<p><a href="active_record.html">Active Record クラス</a> はデータベース設定ファイルの $active_record 変数に TRUE/FALSE（ブール値）をセットすることによりグローバルに有効または無効にできます。active record クラスを使用しない場合は、FALSEをセットするとデータベースクラスを初期化したときに、少ないリソースを有効活用できます。</p>
+
+<code>$active_record = TRUE;</code>
+
+<p class="important"><strong>Note:</strong> Sessionなど、いくつかのCodeIgniterのクラスは特定の機能にアクセスするために Active Record を有効にする必要があります。</p>
+
+<h3>設定データの説明:</h3>
+
+<ul>
+<li><strong>hostname</strong> - データベースサーバのホスト名。"localhost" になることがよくあります。</li>
+<li><strong>username</strong> - データベースに接続するために使用するユーザ名。</li>
+<li><strong>password</strong> - データベースに接続するために使用するパスワード。</li>
+<li><strong>database</strong> - 接続したいデータベース名。</li>
+<li><strong>dbdriver</strong> - データベースの種類。例: mysql、postgres、odbc など。小文字で指定しなければなりません。</li>
+<li><strong>dbprefix</strong> - オプションのテーブル名プリフィックス（接頭辞）。これは、<a href="active_record.html">Active Record</a> を使った問い合わせを実行するときに、テーブル名に付加される接頭辞になります。これを指定すると、単一のデータベースを共有して CodeIgniter を複数インストールすることが可能になります。</li>
+<li><strong>pconnect</strong> - TRUE/FALSE (boolean) - 永続的な接続を使うかどうか。</li>
+<li><strong>db_debug</strong> - TRUE/FALSE (boolean) - データベースエラーを表示するかどうか。</li>
+<li><strong>cache_on</strong> - TRUE/FALSE (boolean) - データベースクエリのキャッシュを有効にするかどうか。<a href="caching.html">データベースキャッシュクラス</a>を参照してください。</li>
+<li><strong>cachedir</strong> - データベースクエリのキャッシュディレクトリへの絶対サーバパス。</li>
+<li><strong>char_set</strong> - データベースとの通信に使用される文字セット。</li>
+<li><strong>dbcollat</strong> - データベースとの通信に使用される照合順序。</li>
+<li><strong>swap_pre</strong> - デフォルトのテーブル接頭辞が <var>dbprefix</var> と置き換えられます。これは、配布されたアプリケーションに手動で記述された [訳注: 接頭辞を含む] クエリが含まれる場合でも、接頭辞をエンドユーザにカスタマイズ可能にする必要がある場合に役に立ちます。</li>
+<li><strong>autoinit</strong> - ライブラリがロードされたときに、データベースに自動的に接続するかどうか。もし FALSE に設定された場合、最初のクエリの実行の前に接続されます。</li>
+<li><strong>stricton</strong> - TRUE/FALSE (boolean) - "Strict Mode" での接続を強制するかどうか、アプリケーションの開発中に SQL の厳密性を確保するのに良い方法です。</li>
+<li><strong>port</strong> - データベースのポート番号。この値を利用するには、データベース設定の配列に以下のような行を追加する必要があります。<code>$db['default']['port'] =  5432;</code></li>
+</ul>
+
+<p class="important"><strong>Note:</strong> 使用しているデータベースプラットフォーム (MySQL、Postgres など) 
+によっては、すべての設定データが必要になるとは限りません。たとえば、SQLiteを使うときは、ユーザ名やパスワードは不要で、
+データベース名はデータベースファイルへのパスになります。上の情報は、MySQLを利用していると仮定しています。</p>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="examples.html">Quick Start: 使用例</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="connecting.html">データベースへの接続</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

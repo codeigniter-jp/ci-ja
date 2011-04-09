@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ショッピングカートクラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ショッピングカートクラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>ショッピングカートクラス</h1>
+
+<p>カートクラスを使うと、ユーザがサイトを閲覧中に有効なセッションに、商品を追加できます。
+これらの商品は、カートから読みだすことができ、ユーザが数量を変更したり、カートから商品を削除したりできる、よくある "ショッピングカート" の体裁に表示させることができます。</p>
+
+<p>カートクラスは、"カート"のコアの機能「だけ」を提供するものであることに注意してください。出荷、クレジットカードの有効性確認やその他の処理コンポーネントは提供しません。</p>
+
+
+<h2>ショッピングカートクラスを初期化する</h2>
+
+<p><strong>重要:</strong> カートクラスは、データベースに情報を保存するために CodeIgniter の
+<a href="sessions.html">セッションクラス</a> を利用しますので、カートクラスを利用する前に、<a href="sessions.html">セッションの説明</a>で示しているように、データベーステーブルをセットアップする必要があります。
+また、データベースを利用するために、<kbd>application/config/config.php</kbd> ファイルのセッションの設定項目を設定してください。</p>
+
+<p>ショッピングカートクラスをコントローラのコンストラクタで初期化するには、<dfn>$this->load->library</dfn> メソッドを利用します:</p>
+
+<code>$this->load->library('cart');</code>
+<p>ロードされると、カートオブジェクトが利用可能になります: <dfn>$this->cart</dfn></p>
+
+<p class="important"><strong>Note:</strong> カートクラスは、セッションクラスを自動的に読み込んで初期化します。アプリケーションの中で、セッションをまだどこでも使っていなかったとしても、セッションクラスをロードする必要はありません。</p>
+
+<h2>カートに商品を追加する</h2>
+
+<p>ショッピングカートに商品を追加するには、下記のように <dfn>$this->cart->insert()</dfn> メソッドに、商品情報の配列を渡すだけです:</p>
+
+<code>
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => 'sku_123ABC',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'qty'&nbsp;&nbsp;&nbsp;&nbsp; => 1,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'price'&nbsp;&nbsp; => 39.95,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp; => 'T-Shirt',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'options' => array('Size' => 'L', 'Color' => 'Red')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+
+$this->cart->insert($data);
+
+</code>
+
+<p class="important"><strong>重要:</strong> 上記の最初の4つのインデックス(<dfn>id</dfn>, <dfn>qty</dfn>, <dfn>price</dfn>, および <dfn>name</dfn>) は <strong>必須</strong>です.
+ひとつでも省略した場合は、データはカートに保存されません。5番目のインデックス (<dfn>options</dfn>) は、任意の項目です。
+この項目は、その商品に関連するオプションがある場合に使われるのを想定しています。上で示されているように、options には、配列を使用してください。</p>
+
+<p>5つの既定のインデックスは次のとおりです:</p>
+
+<ul>
+<li><strong>id</strong> - 店舗の各商品は、一意識別子を持っている必要があります。一般的には、"sku" や、その他の識別子になります。</li>
+<li><strong>qty</strong> - 購入する数量。
+<li><strong>price</strong> - 商品の価格。
+<li><strong>name</strong> - 商品の名前。
+<li><strong>options</strong> - 商品を識別するために必要なその他のすべての属性。これらは、配列として渡す必要があります。
+</ul>
+
+<p>上の5つのインデックスに加え、２つの予約語: <dfn>rowid</dfn> と <dfn>subtotal</dfn> があります。これらは、カートクラスの内部で使用されます。 
+それらの語をカートにデータを追加する際のインデックス名には使用しないでください。</p>
+
+<p>配列には、追加のデータを含むことができます。配列に追加したどんなデータも、セッションに保存されます。とはいえ、
+表にしたときに情報を表示しやすいよう、すべての商品で使われるデータを標準化するのが、一番良い方法です。</p>
+
+
+<h2>カートに複数の商品を追加する</h2>
+
+<p>下記に示したように、多次元配列を使うことによって、一度のアクションで複数の商品をカートに追加することができます。
+これは、同じページの中で、複数の商品を選ばせたいときなどに有用です。</p>
+
+
+<code>
+$data = array(<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => 'sku_123ABC',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'qty'&nbsp;&nbsp;&nbsp;&nbsp; => 1,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'price'&nbsp;&nbsp; => 39.95,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp; => 'T-Shirt',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'options' => array('Size' => 'L', 'Color' => 'Red')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => 'sku_567ZYX',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'qty'&nbsp;&nbsp;&nbsp;&nbsp; => 1,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'price'&nbsp;&nbsp; => 9.95,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp; => 'Coffee Mug'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => 'sku_965QRS',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'qty'&nbsp;&nbsp;&nbsp;&nbsp; => 1,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'price'&nbsp;&nbsp; => 29.95,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp; => 'Shot Glass'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+
+$this->cart->insert($data);
+
+</code>
+
+
+
+
+<h2>カートを表示する</h2>
+
+<p>カートを表示するには、下のようなコードの <a href="../general/views.html">ビューファイル</a> を作成します。</p>
+
+<p>この例では、<a href="../helpers/form_helper.html">form ヘルパ</a> を利用しているのを注意してください。</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="55">
+&lt;?php echo form_open('path/to/controller/update/function'); ?>
+
+&lt;table cellpadding="6" cellspacing="1" style="width:100%" border="0">
+
+&lt;tr>
+  &lt;th>数量&lt;/th>
+  &lt;th>商品説明&lt;/th>
+  &lt;th style="text-align:right">価格&lt;/th>
+  &lt;th style="text-align:right">小計&lt;/th>
+&lt;/tr>
+
+&lt;?php $i = 1; ?>
+
+&lt;?php foreach ($this->cart->contents() as $items): ?>
+
+	&lt;?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
+
+	&lt;tr>
+	  &lt;td>&lt;?php echo form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?>&lt;/td>
+	  &lt;td>
+		&lt;?php echo $items['name']; ?>
+
+			&lt;?php if ($this->cart->has_options($items['rowid']) == TRUE): ?>
+
+				&lt;p>
+					&lt;?php foreach ($this->cart->product_options($items['rowid']) as $option_name => $option_value): ?>
+
+						&lt;strong>&lt;?php echo $option_name; ?>:&lt;/strong> &lt;?php echo $option_value; ?>&lt;br />
+
+					&lt;?php endforeach; ?>
+				&lt;/p>
+
+			&lt;?php endif; ?>
+
+	  &lt;/td>
+	  &lt;td style="text-align:right">&lt;?php echo $this->cart->format_number($items['price']); ?>&lt;/td>
+	  &lt;td style="text-align:right">$&lt;?php echo $this->cart->format_number($items['subtotal']); ?>&lt;/td>
+	&lt;/tr>
+
+&lt;?php $i++; ?>
+
+&lt;?php endforeach; ?>
+
+&lt;tr>
+  &lt;td colspan="2">&nbsp;&lt;/td>
+  &lt;td class="right">&lt;strong>Total&lt;/strong>&lt;/td>
+  &lt;td class="right">$&lt;?php echo $this->cart->format_number($this->cart->total()); ?>&lt;/td>
+&lt;/tr>
+
+&lt;/table>
+
+&lt;p>&lt;?php echo form_submit('', 'カートを更新する'); ?>&lt;/p>
+</textarea>
+
+
+
+
+<h2>カートを更新する</h2>
+
+<p>カートの情報を更新するには、<kbd>Row ID</kbd> と数量を含む配列を <dfn>$this->cart->update()</dfn> メソッドに渡す必要があります:</p>
+
+<p class="important"><strong>Note:</strong> 数量をゼロにセットした場合、その商品は、カートから削除されます。</p>
+
+<code>
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rowid' => 'b99ccdf16028f015540f341130b6d8ec',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'qty'&nbsp;&nbsp; => 3<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+
+$this->cart->update($data);
+<br /><br />
+// または、多次元配列<br /><br />
+$data = array(<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rowid'&nbsp;&nbsp; => 'b99ccdf16028f015540f341130b6d8ec',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'qty'&nbsp;&nbsp;&nbsp;&nbsp; => 3<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rowid'&nbsp;&nbsp; => 'xw82g9q3r495893iajdh473990rikw23',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'qty'&nbsp;&nbsp;&nbsp;&nbsp; => 4<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'rowid'&nbsp;&nbsp; => 'fh4kdkkkaoe30njgoe92rkdkkobec333',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'qty'&nbsp;&nbsp;&nbsp;&nbsp; => 2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+
+$this->cart->update($data);
+
+
+
+
+</code>
+
+<p><strong>Row ID とは?</strong>&nbsp; <kbd>row ID</kbd> は、商品がカートに追加される際に、カートのコードで生成される一意識別子です。
+一意識別子が生成される理由は、異なるオプションを持つ同一の商品をカートで管理できるようにするためです。</p>
+
+<p>たとえば、ある人が、サイズが異なる以外は同じ、2つのTシャツ（同じ商品 ID ）を購入するとするとします。
+商品 ID （およびその他の属性）は、同一のシャツなので、２つのサイズのシャツは同じものです。違うのはサイズだけです。
+2つのサイズのシャツを別々に取り扱うことができるよう、カートは、この違いを識別する方法を持っていなければなりません。カートは、一意の "row ID" を商品 ID と関連するオプションを元に生成することで、違いを識別します。</p>
+
+<p>ほとんどの場合、カートが更新されるのは、"カートの中身" のようなページでユーザが操作する事によってなされますので、
+開発者のように、 "row ID" の事をいつも考慮しなければならないというようなことは、考えられません。ですので、"カートの中身" のページにこの情報を隠しフォームフィールドで確実に保管させ、
+更新フォームが送信されたときに、それを確実に update メソッドに渡すようにしてください。より多くの情報を得るために、上の"カートの中身" のページの作成を試してみてください。</p>
+
+
+
+<p>&nbsp;<br /></p>
+
+
+<h1>メソッドリファレンス</h1>
+
+<h2>$this->cart->insert();</h2>
+
+<p>上で概要を述べたように、ショッピングカートに商品を追加します。</p>
+
+
+<h2>$this->cart->update();</h2>
+
+<p>上で概要を述べたように、ショッピングカートの商品を更新します。</p>
+
+
+<h2>$this->cart->total();</h2>
+
+<p>カートの合計数量を表示します。</p>
+
+
+<h2>$this->cart->total_items();</h2>
+
+<p>カートの商品の品目数の合計を表示します。</p>
+
+
+<h2>$this->cart->contents();</h2>
+
+<p>カート内のすべてを含む配列を返します。</p>
+
+
+
+<h2>$this->cart->has_options(rowid);</h2>
+
+<p>カートの特定の行がオプションを含んでいる場合に TRUE (ブール値) を返します。このメソッドは、<kbd>rowid</kbd> を渡す必要があるので、<dfn>カートを表示する</dfn> の例で示すように、ループの中で、<dfn>$this->cart->contents()</dfn> と一緒に使われるのを想定しています。</p>
+
+
+<h2>$this->cart->product_options(rowid);</h2>
+
+<p>特定の商品のオプションの配列を返します。このメソッドは、<kbd>rowid</kbd> を渡す必要があるので、<dfn>カートを表示する</dfn> の例で示すように、ループの中で、<dfn>$this->cart->contents()</dfn> と一緒に使われるのを想定しています。</p>
+
+
+
+<h2>$this->cart->destroy();</h2>
+
+<p>カートを破棄します。このメソッドは、顧客の注文が完了した際などに呼ばれます。</p>
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="calendar.html">カレンダークラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページ先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="config.html">設定クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

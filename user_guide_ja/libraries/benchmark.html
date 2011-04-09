@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ベンチマーククラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+ベンチマーククラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>ベンチマーククラス</h1>
+
+<p>CodeIgniter には、常時アクティブなベンチマーククラスがあります。
+ベンチマーククラスは、あらかじめマークしておいた複数の観測点のうちの任意の２つの時点の時間差を計算できます。</p>
+
+<p class="important"><strong>Note:</strong> このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
+
+
+<p>さらに、ベンチマークは、フレームワークが呼び出される瞬間に必ず開始され、
+出力クラスがブラウザに最後のビューを送信する直前に終わるので、
+非常に正確なタイミングで全システムの実行について示すことができます。</p>
+
+
+<h3>目次</h3>
+
+<ul>
+<li><a href="#using">ベンチマーククラスを使用する</a></li>
+<li><a href="#profiler">プロファイラ用の観測点</a></li>
+<li><a href="#execution">総計実行時間の表示</a></li>
+<li><a href="#memory">メモリ使用量の表示</a></li>
+</ul>
+
+
+
+<a name="using"></a>
+<h2>ベンチマーククラスを使用する</h2>
+
+<p>ベンチマーククラスは<a href="../general/controllers.html">コントローラ</a>、<a href="../general/views.html">ビュー</a>または<a href="../general/models.html">モデル</a> の中で使用できます。使う手順は次のとおりです:</p>
+
+<ol>
+<li>観測開始点をマークします。</li>
+<li>観測終了点をマークします。</li>
+<li>結果を見るため「経過時間（&quot;elapsed time&quot;）」メソッドを実行します。</li>
+</ol>
+
+<p>実際のコードでの使用例です:</p>
+
+<code>$this->benchmark->mark('code_start');<br />
+<br />
+// ここに何かのコードを記述<br />
+<br />
+$this->benchmark->mark('code_end');<br />
+<br />
+echo $this->benchmark->elapsed_time('code_start', 'code_end');</code>
+
+<p class="important"><strong>Note:</strong> &quot;code_start&quot; と &quot;code_end&quot; のところの語は、任意の語が使えます。
+これら２つの言葉は、単に観測点を２つ設定するために使われたに過ぎません。好きな言葉を使えますし、重複させて観測点の組み合わせを設定することもできます。次のような例が考えられます:</p>
+
+<code>$this->benchmark->mark('dog');<br />
+<br />
+// ここに何かのコードを記述<br />
+<br />
+$this->benchmark->mark('cat');<br />
+<br />
+// さらに、ここに何かのコードを記述<br />
+<br />
+$this->benchmark->mark('bird');<br />
+<br />
+echo $this->benchmark->elapsed_time('dog', 'cat');<br />
+echo $this->benchmark->elapsed_time('cat', 'bird');<br />
+echo $this->benchmark->elapsed_time('dog', 'bird');</code>
+
+
+<a name="profiler"></a>
+<h2>プロファイラ用の観測点</h2>
+
+<p><a href="../general/profiling.html">プロファイラ</a> でベンチマークデータを使用するには、
+観測点はペアにする必要があり、各々の観測点の名前の末尾を <kbd>_start</kbd> と <kbd>_end</kbd> にしなければなりません。
+さらに、ペアになる観測点の名前は、元が同じ（identicaly）である必要があります
+[ 訳注： ペアになっている開始点と終了点の名前は、末尾の<kbd>_start </kbd><kbd>_end</kbd> を除いた部分が同じものでなければなりません ]。 例:</p>
+
+<code>
+$this->benchmark->mark('my_mark<kbd>_start</kbd>');<br />
+<br />
+// ここに何かのコードを記述...<br />
+<br />
+$this->benchmark->mark('my_mark<kbd>_end</kbd>');
+<br /><br />
+
+$this->benchmark->mark('another_mark<kbd>_start</kbd>');<br />
+<br />
+// さらに、ここに何かのコードを記述...<br />
+<br />
+$this->benchmark->mark('another_mark<kbd>_end</kbd>');
+</code>
+
+<p>詳しくは、<a href="../general/profiling.html">プロファイラのページ</a>をご覧ください。</p>
+
+
+<a name="execution"></a>
+<h2>総計実行時間の表示</h2>
+
+<p>CodeIgniter がスタートした瞬間から、出力がブラウザに送信された瞬間までの総計の経過時間を表示したいときには、
+ビューのテンプレートに次のコードを設置するだけです:</p>
+
+<code>&lt;?php echo $this->benchmark->elapsed_time();?&gt;</code>
+
+<p>上の２つの観測点の計算で、使った関数と<strong>引数がない</strong>ということ以外同じものを使用していることに気づいたと思います。
+CodeIgniter では、引数が省略されたとき、最終出力がブラウザに送信されるまでベンチマークは停止しません。
+どこで関数を使用したかには関係なく、タイマーは最後の最後まで継続されます。</p>
+
+<p>PHP をそのまま使用したくないときは、ビューのファイル内で次の擬似変数を用いれば、総計経過時間を見る代替手段になります:</p>
+<code>{elapsed_time}</code>
+
+<p class="important"><strong>Note:</strong> ベンチマークをコントローラの関数内で使用する場合は、
+必ず開始と終了の観測点をセットする必要があります。</p>
+
+<a name="memory"></a>
+<h2>メモリ使用量の表示</h2>
+
+<p>PHP の設定が --enable-memory-limit になっている場合、ビューのファイル内に次のコードを配置することで、
+システム全体のメモリの使用量を表示させることができます:</p>
+
+<code>&lt;?php echo $this->benchmark->memory_usage();?&gt;</code>
+<p>Note: この関数は、ビューのファイル内でのみ使用できます。この使用量は、アプリケーション全体で使っているメモリの使用量です。</p>
+
+<p>PHP をそのまま使用したくないときは、ビューのファイル内で次の擬似変数を用いれば、メモリ消費量を見る代替手段になります:</p>
+<code>{memory_usage}</code>
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="../doc_style/index.html">ドキュメントを書く</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="calendar.html">カレンダークラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ビューファイル向けの代替のPHP構文 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+代替のPHP構文
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>ビューファイル向けの代替のPHP構文</h1>
+
+<p>CodeIgniter の <a href="../libraries/parser.html">テンプレートエンジン</a>を利用したくない場合は、ビューファイルで純粋な PHP を利用することができます。
+PHP のコードを最低限にし、コードブロックを簡単に識別できるようにするため、制御構文用の代替の PHP 構文とショートタグを使った出力を利用することをおすすめします。
+この構文をあまり使ったことがないでしょうか？これを使えば、
+コードから余計な括弧や余計な &quot;echo&quot; 文をなくすことができます。</p>
+
+<h2>自動でのショートタグサポート</h2>
+
+<p><strong>Note:</strong> もし、このページで説明している構文がサーバで利用できないようでしたら "ショートタグ" が php.ini ファイルで無効になっているかもしれません。
+CodeIgniter では、オプションで、その都度ショートタグ機能の設定を上書きして、サーバでサポートされていない場合でも、
+その構文を利用できるようにすることができます。この機能は、
+<dfn>config/config.php</dfn> ファイルで有効化することができます。</p>
+
+<p class="important">この機能を利用する場合、<strong>ビューファイル</strong>でPHP エラーが起こったとき、
+エラーメッセージと行番号が正しく表示されないのに注意してください。
+すべてのエラーは、<kbd>eval()</kbd> を実行したときのエラーとして表示されます。</p>
+
+
+<h2>Echo による出力の代替</h2>
+
+<p>通常、何かを出力したり、変数を出力したりするには次のようにします:</p>
+
+<code>&lt;?php echo $variable; ?></code>
+
+<p>代替の構文を用いると代わりに次のようにすることができます:</p>
+
+<code>&lt;?=$variable?></code>
+
+
+
+<h2>制御構造の代替</h2>
+
+<p><var>if</var>、<var>for</var>、<var>foreach</var>、それから <var>while</var> のような制御構造は、
+次のような単純化されたフォーマットで書くことができます。foreach を使った例は次の通りです:</p>
+
+<code>
+&lt;ul><br />
+<br />
+<var>&lt;?php foreach ($todo as $item): ?></var><br />
+<br />
+&lt;li><var>&lt;?=$item?></var>&lt;/li><br />
+<br />
+<var>&lt;?php endforeach; ?></var><br />
+<br />
+&lt;/ul></code>
+
+<p>中括弧がいらないのを注意してください。終わりの中括弧が代わりに <var>endforeach</var> に置きかわっています。
+各制御構造は、次にリストアップされるように、上記と似た終了の構文になります:
+<var>endif</var>、<var>endfor</var>、<var>endforeach</var>、および <var>endwhile</var></p>
+
+<p>また、各制御構造は（最後のものを除き）、各文の末尾にセミコロン ( &quot;;&quot; ) を使う代わりに、コロン ( &quot;:&quot; ) を置くことを注意してください。
+これは重要です!</p>
+
+<p>下記は、if/elseif/else を使ったもう一つの例です。コロンのところを注意してみてください:</p>
+
+
+<code><var>&lt;?php if ($username == 'sally'): ?></var><br />
+<br />
+&nbsp;&nbsp;&nbsp;&lt;h3>Sally さん、こんにちは&lt;/h3><br />
+<br />
+<var>&lt;?php elseif ($username == 'joe'): ?></var><br />
+<br />
+&nbsp;&nbsp;&nbsp;&lt;h3>Joe さん、こんにちは&lt;/h3><br />
+<br />
+<var>&lt;?php else: ?></var><br />
+<br />
+&nbsp;&nbsp;&nbsp;&lt;h3>誰かさん、こんにちは&lt;/h3><br />
+<br />
+<var>&lt;?php endif; ?></var></code>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="managing_apps.html">アプリケーションの管理</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="security.html">セキュリティ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

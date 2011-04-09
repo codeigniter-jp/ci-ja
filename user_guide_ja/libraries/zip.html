@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Zip 圧縮クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+Zip 圧縮クラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>Zip圧縮クラス</h1>
+<p>CodeIgniter のZip圧縮クラスを使うと、Zipアーカイブが作成できます。アーカイブは、
+デスクトップにダウンロードさせたり、ディレクトリに保存したりできます。</p>
+
+
+<h2>クラスの初期化</h2>
+<p>CodeIgniterの大部分のクラスと同様に、Zip クラスはコントローラの中で <dfn>$this->load->library</dfn> メソッドを使って初期化できます:</p>
+
+<code>$this->load->library('zip');</code>
+<p>いったん読み込まれれば、Zipライブラリのオブジェクトは次のようにして利用できます: <dfn>$this->zip</dfn></p>
+
+
+<h2>使用例</h2>
+
+<p>以下は、ファイルを圧縮し、サーバ上のフォルダに保存し、デスクトップにダウンロードさせる方法を示した例です。</p>
+
+<code>
+$name = 'mydata1.txt';<br />
+$data = 'A Data String!';<br />
+<br />
+$this->zip->add_data($name, $data);<br />
+<br />
+// Zipファイルをサーバのフォルダに書き込みます。"my_backup.zip" という名前にします。<br />
+$this->zip->archive('/path/to/directory/my_backup.zip');
+<br /><br />
+ // "my_backup.zip"という名前で、デスクトップにファイルをダウンロードします。<br />
+$this->zip->download('my_backup.zip');
+</code>
+
+<h1>メソッドリファレンス</h1>
+
+<h2>$this->zip->add_data()</h2>
+
+<p>Zip アーカイブにデータを追加できます。第1引数は、ファイルに付けたい名前を指定し、
+第2引数には、ファイルのデータを文字列で指定します:</p>
+
+<code>
+$name = 'my_bio.txt';<br />
+$data = 'I was born in an elevator...';<br />
+<br />
+$this->zip->add_data($name, $data);
+</code>
+
+<p>アーカイブに複数のファイルを追加するために、
+複数回呼び出すこともできます。例:</p>
+
+<code>
+$name = 'mydata1.txt';<br />
+$data = 'A Data String!';<br />
+$this->zip->add_data($name, $data);<br />
+<br />
+$name = 'mydata2.txt';<br />
+$data = 'Another Data String!';<br />
+$this->zip->add_data($name, $data);<br />
+</code>
+
+<p>あるいは、複数ファイルを配列として渡すこともできます:</p>
+
+<code>
+$data = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mydata1.txt' => 'A Data String!',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mydata2.txt' => 'Another Data String!'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$this->zip->add_data($data);<br />
+<br />
+$this->zip->download('my_backup.zip');
+</code>
+
+<p>圧縮データをサブフォルダの中に配置したい場合は、下記のようにファイル名の一部にパスを含めてください:</p>
+
+<code>
+$name = '<kbd>personal/</kbd>my_bio.txt';<br />
+$data = 'I was born in an elevator...';<br />
+<br />
+$this->zip->add_data($name, $data);
+</code>
+
+<p>上の例では、 <kbd>personal </kbd>というフォルダの中に <dfn>my_bio.txt</dfn> が配置されます。 </p>
+
+
+<h2>$this->zip->add_dir()</h2>
+
+<p>ディレクトリを追加できます。<dfn>$this->zip->add_data() </dfn>を使った時にデータをフォルダに追加できるので、
+通常はこのメソッドは必要ないですが、空のフォルダを作成したい場合は、そうすることもできます。例:</p>
+
+<code>$this->zip->add_dir('myfolder'); // "myfolder"というフォルダを作成します</code>
+
+
+
+<h2>$this->zip->read_file()</h2>
+
+<p>サーバ上のどこかに、すでにあるファイルを圧縮できます。
+ファイルのパスを指定するとZipクラスはそれを読み取ってアーカイブに追加します:</p>
+
+<code>
+$path = '/path/to/photo.jpg';<br /><br />
+$this->zip->read_file($path);
+<br /><br />
+ // "my_backup.zip"という名前でデスクトップにダウンロードさせます。<br />
+$this->zip->download('my_backup.zip');
+</code>
+
+<p>Zip アーカイブで、そのファイルが含まれるディレクトリ構造を維持したい場合は、
+第2引数に <kbd>TRUE</kbd> (ブール値) を指定します。例:</p>
+
+
+<code>
+$path = '/path/to/photo.jpg';<br /><br />
+$this->zip->read_file($path, <kbd>TRUE</kbd>);
+<br /><br />
+ // &quot;my_backup.zip&quot;という名前でデスクトップにダウンロードさせます。<br />
+$this->zip->download('my_backup.zip');
+</code>
+
+<p>上の例では、<dfn>photo.jpg</dfn> が次の2つのフォルダの配下に置かれます。:  <kbd>path/to/</kbd></p>
+
+
+
+<h2>$this->zip->read_dir()</h2>
+
+<p>サーバ上にすでに存在しているフォルダ (およびその中身) を圧縮できます。
+ディレクトリまでのパスを指定すると、Zipクラスは、再帰的にそのフォルダを読み込み、Zipファイルとして再作成します。
+指定されたパスに含まれるサブフォルダの配下にあるものも含めてすべてのファイルが圧縮されます。例:</p>
+
+<code>
+$path = '/path/to/your/directory/';<br /><br />
+$this->zip->read_dir($path);
+<br /><br />
+ // &quot;my_backup.zip&quot;という名前でデスクトップにダウンロードさせます。<br />
+$this->zip->download('my_backup.zip');
+</code>
+
+<p>デフォルトでは Zip アーカイブには第1引数に指定された全てのディレクトリが含まれます。もし、指定フォルダまでのパスを無視したい場合は、
+第2引数に <kbd>FALSE</kbd> (ブール値) を指定してください。 例:</p>
+
+<code>
+$path = '/path/to/your/directory/';<br><br>
+$this-&gt;zip-&gt;read_dir($path, FALSE);
+</code>
+
+<p>これは、"directory" フォルダの中身を含んだ ZIP を作成します。すべてのサブフォルダは正しく保存されますが、<samp>/path/to/your</samp> は含まれません。</p>
+
+
+
+
+<h2>$this->zip->archive()</h2>
+
+<p>Zip圧縮ファイルをサーバ上のディレクトリに書き込みます。ファイル名で終わる正しいサーバのパスを渡します。
+ディレクトリが書き込み可能 (666 か 777 であれば通常は大丈夫です) かどうかを確かめてください。例:</p>
+
+<code>$this->zip->archive('/path/to/folder/myarchive.zip'); // myarchive.zip という名前のファイルを作成します。</code>
+
+
+<h2>$this->zip->download()</h2>
+
+<p>サーバから Zipファイルをダウンロードさせます。このメソッドは、Zipファイルにつけたい名前を指定する必要があります。
+例:</p>
+
+<code>$this->zip->download('latest_stuff.zip'); // "latest_stuff.zip" という名前になります。</code>
+
+<p class="important"><strong>Note:</strong>&nbsp; このメソッドを使用するときは、ダウンロードさせ、バイナリとしてデータを取り扱わせるための様々なヘッダを送信する必要があるので、
+コントローラでどんなデータも表示させないで下さい。</p>
+
+
+<h2>$this->zip->get_zip()</h2>
+
+<p>Zip圧縮データを返します。データを使って何か特別な事をしない限りは、通常はこのメソッドは必要ではありません。
+例:</p>
+
+<code>
+$name = 'my_bio.txt';<br />
+$data = 'I was born in an elevator...';<br />
+<br />
+$this->zip->add_data($name, $data);<br /><br />
+
+$zip_file = $this->zip->get_zip();
+</code>
+
+
+<h2>$this->zip->clear_data()</h2>
+
+<p>Zip クラスは、上のメソッドを使うたびにZipアーカイブを再圧縮しなくて済むように、Zipデータをキャッシュします。
+しかし、それぞれ異なるデータの複数のZipを作成する場合、それらのメソッドを呼び出す間で、キャッシュをクリアすることができます。例:</p>
+
+<code>
+$name = 'my_bio.txt';<br />
+$data = 'I was born in an elevator...';<br />
+<br />
+$this->zip->add_data($name, $data);<br />
+$zip_file = $this->zip->get_zip();<br />
+<br />
+<kbd>$this->zip->clear_data();</kbd>
+<br /><br />
+
+$name = 'photo.jpg';<br />
+$this->zip->read_file("/path/to/photo.jpg"); // ファイルを読み込みます<br />
+<br /><br />
+$this->zip->download('myphotos.zip');
+</code>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="xmlrpc.html"> XML-RPC クラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="../helpers/array_helper.html">配列ヘルパ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

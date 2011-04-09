@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>フック : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+フック - フレームワークコアの拡張
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>フック - フレームワークコアの拡張</h1>
+
+<p>CodeIgniter のフック機能は、コアのファイルをハックすることなく、フレームワークの内部動作に関連付けて、その動作を変更する手段を提供します。
+CodeIgniter は、<a href="../overview/appflow.html">アプリケーションフローチャート</a> のページで図示したような特定の実行プロセスに従って動きます。
+しかし、この実行プロセスのどこかの段階で、何かの処理を行いたい場合があるかもしれません。
+たとえば、コントローラがロードされる直前あるいは直後に、あるスクリプトを実行したい場合、
+あるいは、他のどこかの段階でユーザ作成のスクリプトを起動したい場合などです。
+</p>
+
+<h2>フックの有効化</h2>
+
+<p><kbd>application/config/config.php</kbd> ファイルの次の設定項目をセットして、フック機能をアプリケーション全体で有効/無効に設定できます:</p>
+
+<code>$config['enable_hooks'] = TRUE;</code>
+
+
+<h2>フックの定義</h2>
+
+<p>フックは <dfn>application/config/hooks.php</dfn> ファイルで定義します。各フックは次の例のような配列として指定されます:</p>
+
+<code>
+$hook['pre_controller'] = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'class'&nbsp;&nbsp;&nbsp;&nbsp;=> 'MyClass',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'function' => 'Myfunction',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename' => 'Myclass.php',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filepath' => 'hooks',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'params'&nbsp;&nbsp;&nbsp;=> array('beer', 'wine', 'snacks')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</code>
+
+<p><strong>Notes:</strong><br />
+配列の添字は、利用したいフックポイントの名前になります。上の例では、フックポイントは <kbd>pre_controller</kbd> になります。フックポイントのリストは下の方をご覧ください。
+フックを定義する連想配列で、次の項目を定義する必要があります:</p>
+
+<ul>
+<li><strong>class</strong>&nbsp; 呼び出したいクラスの名前。クラスの代わりに手続き型の関数を使いたい場合は、空のままにしておきます。</li>
+<li><strong>function</strong>&nbsp; 呼び出したいメソッド名 (関数名)。</li>
+<li><strong>filename</strong>&nbsp; クラス/メソッド(関数)が含まれるファイル名。</li>
+<li><strong>filepath</strong>&nbsp; スクリプトが含まれるディレクトリ名。Note: スクリプトは、<kbd>application</kbd> フォルダの中にあるディレクトリに置く必要があり、パスは、<kbd>application</kbd> フォルダからの相対パスになります。たとえばスクリプトが <dfn>application/hooks</dfn> にあるとき、単に <samp>hooks</samp> が指定すべきファイルパスになります。スクリプトが <dfn>application/hooks/utilities</dfn> にあるときは、<samp>hooks/utilities</samp> をファイルパスとして用います。末尾にスラッシュをつけないようにしてください。</li>
+<li><strong>params</strong>&nbsp; スクリプトに渡したい全パラメータ。この項目はオプションです。</li>
+</ul>
+
+
+<h2>同一フックでの複数呼び出し</h2>
+
+<p>ひとつ以上のスクリプトを同じフックポイントで使いたい場合は、次のように、単純に、配列の宣言を多次元にします:</p>
+
+<code>
+$hook['pre_controller']<kbd>[]</kbd> = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'class'&nbsp;&nbsp;&nbsp;&nbsp;=> 'MyClass',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'function' => 'Myfunction',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename' => 'Myclass.php',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filepath' => 'hooks',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'params'&nbsp;&nbsp;&nbsp;=> array('beer', 'wine', 'snacks')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+<br />
+$hook['pre_controller']<kbd>[]</kbd> = array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'class'&nbsp;&nbsp;&nbsp;&nbsp;=> 'MyOtherClass',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'function' => 'MyOtherfunction',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename' => 'Myotherclass.php',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filepath' => 'hooks',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'params'&nbsp;&nbsp;&nbsp;=> array('red', 'yellow', 'blue')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</code>
+
+<p>各配列の後ろにブラケットを忘れないよう留意してください:</p>
+
+<code>$hook['pre_controller']<kbd>[]</kbd></code>
+
+<p>このようにすると、複数スクリプトを同一フックで利用できます。配列を定義した順が実行の順序になります。</p>
+
+
+<h2>フックポイント</h2>
+
+<p>以下は、利用できるフックポイントのリストです。</p>
+
+<ul>
+		<li><strong>pre_system</strong><br />
+			システムの実行の最初に呼ばれます。この時点では、ベンチマークとフッククラスだけがロードされます。他の処理へのルーティングはまだ発生しません。</li>
+		<li><strong>pre_controller</strong><br />
+			コントローラが呼ばれる直前に呼ばれます。すべて基本クラスのロード、ルーティング、そしてセキュリティチェックが終わっています。</li>
+		<li><strong>post_controller_constructor</strong><br />
+			コントローラがインスタンス化された直後で、メソッドの呼び出しが起こる前に呼ばれます。</li>
+		<li><strong>post_controller</strong><br />
+			コントローラが完全に実行された直後に呼ばれます。</li>
+		<li><strong>display_override</strong><br />
+			システムが実行の最後で、処理が終わったページをブラウザに送信するのに使う <dfn>_display()</dfn> メソッドをオーバーライドします。
+			これにより、独自の表示方法が利用できます。処理済みのデータは、<dfn>$this->output->get_output()</dfn> を呼べば利用可能ですので、留意しておいてください。 </li>
+		<li><strong>cache_override</strong><br />
+			出力クラスの <dfn>_display_cache()</dfn> メソッドの代わりに、独自のメソッドを呼び出すことができます。これにより、独自のキャッシュメカニズムを利用することができます。</li>
+		<li><strong>post_system</strong><br />
+			最終のレンダリング後のページがブラウザに送信された後、つまり、ブラウザに処理済みデータが送信されたあとで、システムの実行が終わる時に呼ばれます。</li>
+</ul>
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="core_classes.html">コアクラスの作成</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="autoloader.html">リソースの自動読み込み</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

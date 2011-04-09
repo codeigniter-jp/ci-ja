@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>タイポグラフィークラス : CodeIgniter User Guide</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter User Guide' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+タイポグラフィークラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>タイポグラフィークラス</h1>
+
+<p>タイポグラフィークラスは、文字列のフォーマットに役立つメソッドを提供します。</p>
+
+
+<h2>クラスの初期化</h2>
+
+<p>CodeIgniterの大部分のクラスと同様、タイポグラフィークラスはコントローラの中で <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p> 
+
+<code>$this->load->library('typography');</code>
+<p>いったん読み込まれると、タイポグラフィーオブジェクトは、次のようにして利用可能です: <dfn>$this->typography</dfn></p>
+
+
+<h2>auto_typography()</h2>
+
+<p>テキストを、意味論的にも体裁的にも正しいHTMLにフォーマットします。
+入力した文字列を、以下のような体裁に整形して返します:</p>
+
+<ul>
+<li>段落を &lt;p&gt;&lt;/p&gt; タグで囲みます(2つの連続する改行を段落の区切りと認識します)。</li>
+<li>&lt;pre&gt; タグ内にあるものを除いて、改行を &lt;br /&gt; タグに変換します。</li>
+<li>&lt;div&gt; タグのようなブロックレベル要素は、段落として囲まれませんが、そのブロックレベル要素が含んでいる段落は、段落として変換されます。</li>
+<li>引用符は、タグ内にあるものを除いて、見栄えのよい引用符の実体参照に変換されます。</li>
+<li>アポストロフィは、見栄えのよいアポストロフィの実体参照に変換されます。</li>
+<li>(「 -- 」や「--」のような)2つのダッシュは、長いダッシュ「&#8212;」に変換されます。</li>
+<li>単語の前後にある3つの連続するピリオドは、省略形の「&#8230;」に変換されます。</li>
+<li>文章に続く二重の半角スペースは、二重スペースに見せかけるため、改行無しスペースに変換されます。</li>
+</ul>
+
+<p>使用例:</p>
+
+<code>$string = $this->typography->auto_typography($string);</code>
+
+<h3>パラメータ</h3>
+
+<p>オプションでパーサが2つ以上の連続した改行を2つに減らすべきかどうかを指定します。ブール値の <kbd>TRUE</kbd> か <kbd>FALSE</kbd> で指定します。</p>
+
+<p>デフォルトでは、パーサは JS のイベントハンドラを無効にし、改行は減らしません。言い換えると、引数を何も指定しなければこのように指定するのと同じです:</p>
+
+<code>$string = $this->typography->auto_typography($string, <kbd>TRUE</kbd>, <kbd>FALSE</kbd>);</code>
+
+
+<p class="important"><strong>Note:</strong> この処理は、文章が大量である場合は特に、プロセッサーに負荷をかけます。
+このメソッドを使う場合、
+ページを<a href="../general/caching.html">キャッシュする</a>事も検討した方が良いかもしれません。</p>
+
+
+
+<h2>format_characters()</h2>
+
+<p>このメソッドは、文字列変換のみを行うという点を除けば、上記の <dfn>auto_typography</dfn> メソッドと似ています:</p>
+
+<ul>
+<li>引用符は、タグ内にあるものを除いて、見栄えのよい引用符の実体参照に変換されます。</li>
+<li>アポストロフィは、見栄えのよいアポストロフィの実体参照に変換されます。</li>
+<li>(「 -- 」や「--」のような)2つのダッシュは、長いダッシュ「&#8212;」に変換されます。</li>
+<li>単語の前後にある3つの連続するピリオドは、省略形の「&#8230;」に変換されます。</li>
+<li>文章に続く二重の半角スペースは、二重スペースに見せかけるため、改行無しスペースに変換されます。</li>
+</ul>
+
+<p>使用例:</p>
+
+<code>$string = $this->typography->format_characters($string);</code>
+
+
+<h2>nl2br_except_pre()</h2>
+
+<p>&lt;pre&gt; タグ内にある場合を除き、改行を &lt;br /&gt; タグに変換します。
+このメソッドは、&lt;pre&gt; タグ内を無視するという点を除けば、PHPのネイティブ関数 <dfn>nl2br()</dfn> と同じです。</p>
+
+<p>使用例:</p>
+
+<code>$string = $this->typography->nl2br_except_pre($string);</code>
+
+<h2>protect_braced_quotes</h2>
+
+<p>タイポグラフィークラスをテンプレートパーサクラスと一緒に利用している場合、括弧({})内のシングルクォートやダブルクォートをそのまま利用したい、というケースがよくあります。
+そういう場合は、クラスのプロパティ <kbd>protect_braced_quotes</kbd> を <samp>TRUE</samp> に指定してください。</p>
+
+<p>使用例:</p>
+
+<code>$this->load->library('typography');<br />
+$this->typography->protect_braced_quotes = TRUE;
+</code>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="parser.html">テンプレートパーサクラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザーガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="unit_testing.html">ユニットテストクラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> PHPコーディングスタイル : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<style type="text/css" media="screen">
+	code {
+		white-space: pre;
+	}
+</style>
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+PHP コーディングスタイル
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>一般的なスタイルとシンタックス</h1>
+
+<p>以下のページでは CodeIgniter を開発する際に守っているコーディングルールについて記述します。</p>
+
+
+<h2>目次</h2>
+<ul class="minitoc">
+	<li><a href="#file_format">ファイルフォーマット</a></li>
+	<li><a href="#php_closing_tag">PHP の囲みタグ</a></li>
+	<li><a href="#class_and_method_naming">クラス名、メソッド名</a></li>
+	<li><a href="#variable_names">変数名</a></li>
+	<li><a href="#commenting">コメント</a></li>
+	<li><a href="#constants">定数</a></li>
+	<li><a href="#true_false_and_null">TRUE、FALSE、NULL</a></li>
+	<li><a href="#logical_operators">論理演算子</a></li>
+	<li><a href="#comparing_return_values_and_typecasting">返り値の比較、型のキャスト</a></li>
+	<li><a href="#debugging_code">デバッグコード</a></li>
+	<li><a href="#whitespace_in_files">タブ／スペース</a></li>
+	<li><a href="#compatibility">互換性</a></li>
+	<li><a href="#class_and_file_names_using_common_words">クラス名とファイル名を共通にする</a></li>
+	<li><a href="#database_table_names">データベーステーブル名</a></li>
+	<li><a href="#one_file_per_class">1ファイル1クラス</a></li>
+	<li><a href="#whitespace">タブ／スペース</a></li>
+	<li><a href="#line_breaks">改行コード</a></li>
+	<li><a href="#code_indenting">インデント</a></li>
+	<li><a href="#bracket_spacing">カッコの前後のスペース</li>
+	<li><a href="#localized_text">コントロールパネル内のローカライズされたテキスト</a></li>
+	<li><a href="#private_methods_and_variables">プライベートメソッド、プライベート変数</a></li>
+	<li><a href="#php_errors">PHP エラー</a></li>
+	<li><a href="#short_open_tags">PHP 短縮開始タグ</a></li>
+	<li><a href="#one_statement_per_line">1行1ステートメント</a></li>
+	<li><a href="#strings">文字列</a></li>
+	<li><a href="#sql_queries">SQL 文</a></li>
+	<li><a href="#default_function_arguments">メソッド (関数) の引数のデフォルト値</a></li>
+</ul>
+
+<li>
+
+		<h2><a name="file_format"></a>ファイルフォーマット</h2>
+		<div class="guidelineDetails">
+			<p>ファイルは Unicode (UTF-8) エンコーディングで保存します。<abbr title="Byte Order Mark">BOM</abbr>
+				<em>なし</em> とします。UTF-16 や UTF-32 と異なり、UTF-8 でエンコードされたファイルには BOM はありません。
+				そして、<abbr title="Byte Order Mark">BOM</abbr> は、ネガティブな副作用を PHP の出力にもたらし、
+				アプリケーションが独自のヘッダを指定するのを邪魔します。 Unix での改行コード (LF) を
+				使います。</p>
+
+			<p>有名なテキストエディタでの、これらの設定方法を以下に示します。設定方法はお使いのテキストエディタにより
+				異なります。お使いのテキストエディタのドキュメントを参照してください。</p>
+
+			<h5>TextMateエディタの場合</h5>
+
+			<ol>
+				<li>アプリケーションの環境設定を開きます。</li>
+				<li>"Advanced" をクリックし、"Saving" タブをクリックします。</li>
+				<li>"File Encoding" から "UTF-8 (recommended)" を選択します。</li>
+				<li>"Line Endings" から "LF (recommended)" を選択します。</li>
+				<li><em>オプション:</em>ファイルを開いた際に新しい設定を反映する場合は、
+					"Use for existing files as well" をチェックします。</li>
+			</ol>
+
+			<h5>BBEdit</h5>
+
+			<ol>
+				<li>アプリケーションの環境設定を開きます。</li>
+				<li>左のリストから "Text Encodings" を選択します。</li>
+				<li>"Default text encoding for new documents" から "Unicode (UTF-8, no BOM)" を選択します。</li>
+				<li><em>オプション:</em> "If file's encoding can't be guessed, use" から 
+					"Unicode (UTF-8, no BOM)" を選択します。</li>
+				<li>左のリストから "Text Files" を選択します。</li>
+				<li>"Default line breaks" から "Mac OS X and Unix (LF)" を選択します。</li>
+			</ol>
+		</div>
+
+		<h2><a name="php_closing_tag"></a>PHP の終了タグ</h2>
+		<div class="guidelineDetails">
+			<p>PHP ファイルにおける PHP の終了タグ <strong>?&gt;</strong> は付けなくても PHP パーサーには問題ありません。
+			しかしながら、開発者やユーザー、もしくは FTP ソフトによって終了タグ以降にホワイトスペースが挿入される事が考えられ、この結果、好ましくない出力や PHP エラー、もしくは後半部分が出力されなかったり、真っ白なページが表示されたりします。この理由のため、全ての PHP ファイルで終了タグを<strong>除外</strong>します。
+			代わりにファイルの最後には、コメントブロックを使用しアプリケーションルートからの位置を記述しています。
+				さらには、ファイルが途中で切れていない事が確認できます。</p>
+<code><strong>間違い</strong>:
+&lt;?php
+
+echo "コードがあります!";
+
+?&gt;
+
+<strong>正しい</strong>:
+&lt;?php
+
+echo "コードがあります!";
+
+/* End of file myfile.php */
+/* Location: ./system/modules/mymodule/myfile.php */
+</code>
+		</div>
+
+
+		<h2><a name="class_and_method_naming"></a>クラス名、メソッド名</h2>
+		<div class="guidelineDetails">
+			<p>クラス名は常に最初の文字を大文字にしなければいけません。複数の単語はアンダースコアで区切ります。キャメルケースにはしないでください。クラスメソッドは全て小文字にし、機能が分りやすい名前にします。できれば動詞が含まれる様にします。あまり長い名前や冗長な名前は避ける様にしましょう。</p>
+
+	<code><strong>間違い</strong>:
+class superclass
+class SuperClass
+
+<strong>正しい</strong>:
+class Super_class</code>
+
+
+	<code>class Super_class {
+
+	function __construct()
+	{
+
+	}
+}</code>
+
+			<p>間違ったメソッド名と正しいメソッド名:</p>
+
+	<code><strong>間違い</strong>:
+function fileproperties()		// 表現がわかりにくく、アンダースコアが抜けている
+function fileProperties()		// 表現がわかりにくく、キャメルケースが使われている
+function getfileproperties()		// ベター! しかしながらアンダースコアが抜けている
+function getFileProperties()		// キャメルケースが使われている
+function get_the_file_properties_from_the_file()	// 長過ぎる
+
+<strong>正しい</strong>:
+function get_file_properties()	// 説明的、アンダースコア、全て小文字</code>
+
+		</div>
+
+
+		<h2><a name="variable_names"></a>変数名</h2>
+		<div class="guidelineDetails">
+			<p>変数名のガイドラインはクラス名ととても似ています。変数名は小文字だけで構成して、アンダースコアで区切り、目的や内容を表すようにします。 極端に短かったり、単語になっていない変数は for() 文のループ変数にのみ使用します。</p>
+<code><strong>間違い</strong>:
+$j = &apos;foo&apos;;		// 1文字の変数は for() 文でのみ使う
+$Str			// 大文字が含まれている
+$bufferedText		// キャメルケースが使われており、意味を失う事無くもっと短縮できる
+$groupid		// 複数単語、アンダースコアが必要
+$name_of_last_city_used	// 長過ぎ
+
+<strong>正しい</strong>:
+for ($j = 0; $j &lt; 10; $j++)
+$str
+$buffer
+$group_id
+$last_city
+</code>
+		</div>
+
+
+		<h2><a name="commenting"></a>コメント</h2>
+		<div class="guidelineDetails">
+			<p>一般に、コードにはたくさんのコメントを入れるべきです。  経験の浅いプログラマー向けにはプログラムコードの処理フローや意図が説明されていないだけでなく、自分で書いたコードに一ヶ月後に再び戻った時、それがとても重要だという事を示すこともできません。  コメントのフォーマットは必須ではありませんが、下記の内容はおすすめします。</p>
+
+			<p>クラスやメソッドの宣言の前にある<a href="http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_phpDocumentor.howto.pkg.html#basics.docblock">DocBlock</a> スタイルのコメントはIDEによって抽出されます。</p>
+
+<code>/**
+ * Super Class
+ *
+ * @package	パッケージ名
+ * @subpackage	サブパッケージ名
+ * @category	カテゴリ
+ * @author	作成者
+ * @link	http://example.com
+ */
+class Super_class {</code>
+
+<code>/**
+ * XML 内で使用する文字列のエンコード
+ *
+ * @access	public
+ * @param	string
+ * @return	string
+ */
+function xml_encode($str)</code>
+
+			<p>コード中に一行コメントを使うとき、長いコメントブロックとコードの間に空行を残します。</p>
+
+<code>// 改行で文字列を分割する
+$parts = explode("\n", $str);
+
+// 何が起きるのかをとても詳細に記述する必要がある場合は、
+// 複数行に渡る一行コメントを使います。  
+// 適度な長さを維持してみてください。読みやすいのは70文字前後です。
+// ためらわずに外部のリソースへのリンクを使います。
+// とても詳細な情報を与えてくれるかもしれません。
+//
+// http://example.com/information_about_something/in_particular/
+
+$parts = $this->foo($parts);
+</code>
+		</div>
+
+
+		<h2><a name="constants"></a>定数</h2>
+		<div class="guidelineDetails">
+			<p>定数は変数と同じガイドラインに従います。例外として定数には大文字のみを使用します。  <em>CodeIgniter の定数は常にそうなっています。 SLASH, LD, RD, PATH_CACHE, etc.</em></p>
+<code><strong>間違い</strong>:
+myConstant	// アンダースコアが抜けており大文字でない
+N		// 1文字の定数はだめ
+S_C_VER		// 説明的でない
+$str = str_replace('{foo}', 'bar', $str);	// LD や RD といった定数を使うべき
+
+<strong>正しい</strong>:
+MY_CONSTANT
+NEWLINE
+SUPER_CLASS_VERSION
+$str = str_replace(LD.'foo'.RD, 'bar', $str);
+</code>
+		</div>
+
+
+		<h2><a name="true_false_and_null"></a>TRUE、FALSE、NULL</h2>
+		<div class="guidelineDetails">
+			<p><strong>TRUE</strong>, <strong>FALSE</strong>, <strong>NULL</strong> は、常に大文字を使います。</p>
+<code><strong>間違い</strong>:
+if ($foo == true)
+$bar = false;
+function foo($bar = null)
+
+<strong>正しい</strong>:
+if ($foo == TRUE)
+$bar = FALSE;
+function foo($bar = NULL)</code>
+		</div>
+
+
+
+		<h2><a name="logical_operators"></a>論理演算子</h2>
+		<div class="guidelineDetails">
+			<p><strong>||</strong> は解像度の低いデバイスでは明瞭でない（たとえば数字の11にとらえられてしまう）。
+				どちらかと言うと<strong>&amp;&amp;</strong> が <strong>AND</strong> よりも好まれる。<strong>!</strong>の前後には空白を入れる。</p>
+<code><strong>間違い</strong>:
+if ($foo || $bar)
+if ($foo AND $bar)  // これでもよいがアプリケーションのシンタックスハイライト機能にはおすすめできない。
+if (!$foo)
+if (! is_array($foo))
+
+<strong>正しい</strong>:
+if ($foo OR $bar)
+if ($foo && $bar) // 推奨
+if ( ! $foo)
+if ( ! is_array($foo))
+</code>
+		</div>
+
+
+
+		<h2><a name="comparing_return_values_and_typecasting"></a>返り値の比較、型のキャスト</h2>
+		<div class="guidelineDetails">
+			<p>いくつかの PHP の関数は、失敗した場合 FALSE を返します。しかし、緩やかな比較では FALSE と評価される "" や 0 を返す場合もあります。戻り値が実際に望む値であるか、緩やかな比較で FALSE と判定される値でないか確かめるため、厳密に比較をしましょう。</p>
+			<p>戻り値や変数の値をチェックする場合は、同じ厳密な比較を使います。 <strong>===</strong> や <strong>!==</strong> を必要に応じて使います。
+
+<code><strong>間違い</strong>:
+// 文字列の初めが 'foo' であれば、 strpos は 0 を返します
+// 結果として、この条件式は TRUE になります
+if (strpos($str, 'foo') == FALSE)
+
+<strong>正しい</strong>:
+if (strpos($str, 'foo') === FALSE)
+</code>
+
+<code><strong>間違い</strong>:
+function build_string($str = "")
+{
+	if ($str == "")	// おっと! FALSE や整数値の 0 が引数に渡されるとどうなるでしょう?
+	{
+
+	}
+}
+
+<strong>正しい</strong>:
+function build_string($str = "")
+{
+	if ($str === "")
+	{
+
+	}
+}</code>
+
+		<p><a href="http://us3.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting">型キャスト</a>についての情報も非常に役立ちますのでご覧ください。型キャストには、好ましい若干異なる効果があります。たとえば変数を文字列型にキャストすると、NULL やブール値の FALSE といった値は空の文字列になり、0(や他の数値)は数字を表す文字列になります。また、ブール値の TRUE は"1"になります。</p>
+
+<code>$str = (string) $str;	// $str を文字列型にキャストします</code>
+
+		</div>
+
+
+		<h2><a name="debugging_code"></a>デバッグコード</h2>
+		<div class="guidelineDetails">
+			<p>コメントアウトしていないデバッグコードを投稿されたアドオンに含めないでください。つまり、var_dump()、print_r()、die() や exit() が、コメントアウトされずに含まれていないということです。</p>
+
+<code>// print_r($foo);</code>
+		</div>
+
+
+
+		<h2><a name="whitespace_in_files"></a>タブ/スペース</h2>
+		<div class="guidelineDetails">
+			<p>PHP 開始タグの前や、終了タグの後ろに空白があってはいけません。出力はバッファリングされますので、そのような空白がファイル内にあると、CodeIgniter のバッファ出力より前に出力が開始され、エラーが発生すると CodeIgniter が適切なヘッダを送信出来ない原因になります。以下の例では、誤った空白がある事を確認するために、マウスでテキストを選択してみてください。</p>
+
+			<p><strong>間違い</strong>:</p>
+<code>     
+&lt;?php
+	// ...PHP の開始タグの上に、空白文字と改行があります
+	// 同様に、PHP の終了タグの後に空白文字があります
+?&gt;    
+</code>
+			<p><strong>正しい</strong>:</p>
+<code>&lt;?php
+	// このサンプルでは、PHP 開始タグの前にも終了タグの前にも空白文字はありません
+?&gt;</code>
+
+		</div>
+
+
+		<h2><a name="compatibility"></a>互換性</h2>
+		<div class="guidelineDetails">
+			<p>あなたのアドオンが特に言及しない限り、全てのコードは PHP 4.3+との互換性を維持し、非標準のライブラリを必要とする PHP 関数を使用するのは止めてください。もし、非標準のライブラリを必要とするのであれば、その事を明記するか、非対応環境での別の手段を用意してください。</p>
+		</div>
+
+
+
+		<h2><a name="class_and_file_names_using_common_words"></a>クラス名とファイル名を共通にする</h2>
+		<div class="guidelineDetails">
+			<p>あなたの作成したクラス名やファイル名がよくある名前の場合、あるいは、他の PHP スクリプトでよく見かける名前の場合、衝突を避けるためにユニークなプレフィックスを付けましょう。エンドユーザは他のアドオンや、サードパーティー製の PHP スクリプトを走らせるかもしれないことを、常に意識してください。プレフィクスには、開発者や会社としてのあなたを特定できるようなユニークなものを選択しましょう。</p>
+
+<code><strong>間違い</strong>:
+class Email		pi.email.php
+class Xml		ext.xml.php
+class Import		mod.import.php
+
+<strong>正しい</strong>:
+class Pre_email		pi.pre_email.php
+class Pre_xml		ext.pre_xml.php
+class Pre_import	mod.pre_import.php
+</code>
+		</div>
+
+
+		<h2><a name="database_table_names"></a>データベーステーブル名</h2>
+		<div class="guidelineDetails">
+			<p>あなたのアドオンが使用するテーブル名には、'exp_'というプレフィックスを必ず使用し、そのあとに開発者や会社としてのあなたを特定できる独自のプレフィックスを付け、それから短く説明的なテーブル名を続けてください。CodeIgniter のデータベースクラスは、'exp_'を自動的に実際使用されるものに変換するので、あなたはインストールの際にユーザーが使用するプレフィックスについて考える必要はありません。</p>
+
+<code><strong>間違い</strong>:
+email_addresses		// exp_ というプレフィックスも、アドオンの開発者を特定できる独自のプレフィックスも抜けています
+pre_email_addresses	// exp_ というプレフィックスが抜けています
+exp_email_addresses	// アドオンの開発者を特定できる独自のプレフィックスが抜けています
+
+<strong>正しい</strong>:
+exp_pre_email_addresses
+</code>
+
+			<p class="important"><strong>NOTE:</strong> MySQL はテーブル名に 64文字の制限があることに注意しましょう。テーブル名でこの制限が問題になることは、不合理な名前を付けない限り滅多にありません。たとえば、以下のテーブル名はこの制限を 1文字超えています。ばかばかしいでしょ？ <strong>exp_pre_email_addresses_of_registered_users_in_seattle_washington</strong>
+		</div>
+
+
+
+		<h2><a name="one_file_per_class"></a>1ファイル1クラス</h2>
+		<div class="guidelineDetails">
+			<p>アドオンで使うクラスは、クラス同士が<em>非常に密接に関連</em>していない限り、クラスごとに違うファイルを使いましょう。 一例として、CodeIgniter で1つのファイルに複数のクラスが入っているのは、データベースクラスのファイル（ DB クラスと DB_Cache クラスが一緒に入っています）と、Magpie プラグインのファイル（ Magpie クラスと Snoopy クラスが一緒に入っています）です。</p>
+		</div>
+
+
+
+		<h2><a name="whitespace"></a>タブ／スペース</h2>
+		<div class="guidelineDetails">
+			<p>コード内の空白には、スペースでなくタブを用います。これは些細な事に思えるかもしれませんが、スペースの代わりにタブを使う事で、開発者がどのようなアプリケーションを利用していても、各自が見やすくカスタマイズしたインデントレベルでコードを見る事が可能になります。さらに副次的な効果として、たとえば4つのスペースに対して1つのタブを用いる事で(わずかではありますが)ファイルがよりコンパクトになります。</p>
+		</div>
+
+
+
+		<h2><a name="line_breaks"></a>改行コード</h2>
+		<div class="guidelineDetails">
+			<p>ファイルの改行コードは Unix スタイルに統一しましょう。これは Windows で開発を行う開発者にとって大きな問題です<!--意訳：手間かもしれません-->が、どんなときでもテキストエディタのファイル保存設定が Unix スタイルの改行コードになっていることを確認してください。</p>
+		</div>
+
+
+
+		<h2><a name="code_indenting"></a>インデント</h2>
+		<div class="guidelineDetails">
+			<p>Allman スタイルのインデントを利用します。クラス宣言を除いて、括弧は常に1行に単独で配置し、その制御ステートメントと同じ深さにインデントします。</p>
+
+<code><strong>間違い</strong>:
+function foo($bar) {
+	// ...
+}
+
+foreach ($arr as $key => $val) {
+	// ...
+}
+
+if ($foo == $bar) {
+	// ...
+} else {
+	// ...
+}
+
+for ($i = 0; $i &lt; 10; $i++)
+	{
+	for ($j = 0; $j &lt; 10; $j++)
+		{
+		// ...
+		}
+	}
+
+<strong>正しい</strong>:
+function foo($bar)
+{
+	// ...
+}
+
+foreach ($arr as $key => $val)
+{
+	// ...
+}
+
+if ($foo == $bar)
+{
+	// ...
+}
+else
+{
+	// ...
+}
+
+for ($i = 0; $i &lt; 10; $i++)
+{
+	for ($j = 0; $j &lt; 10; $j++)
+	{
+		// ...
+	}
+}</code>
+		</div>
+
+
+	<h2><a name="bracket_spacing"></a>括弧の前後のスペース</h2>
+		<div class="guidelineDetails">
+			<p>一般的に、括弧の前後にはスペースを追加すべきではありません。例外として、括弧内に引数を記述する PHP 制御構造(declare, do-while, elseif, for, foreach, if, switch, while)では、関数と区別しやすくしたり可読性を高めるために、常にスペースを配置すべきです。</p>
+
+<code>間違い:
+$arr[ $foo ] = 'foo';
+
+正しい:
+$arr[$foo] = 'foo'; // 配列のキーの前後には空白を入れません
+
+
+間違い:
+function foo ( $bar )
+{
+
+}
+
+正しい:
+function foo($bar) // 関数定義の括弧の前後には空白を入れません
+{
+
+}
+
+
+間違い:
+foreach( $query->result() as $row )
+
+正しい:
+foreach ($query->result() as $row) // PHP の制御構造の後ろには空白を1つ入れますが、中の括弧には入れません
+</code>
+		</div>
+
+
+
+		<h2><a name="localized_text"></a>コントロールパネルのローカライズされたテキスト</h2>
+		<div class="guidelineDetails">
+			<p>コントロールパネルに出力するテキストは全て、モジュールの言語ファイルを使ってローカライズできるように（生のテキストではなく）言語ファイルの変数を使いましょう。</p>
+
+<code>間違い:
+return "Invalid Selection";
+
+正しい:
+return $this->lang->line('invalid_selection');</code>
+		</div>
+
+
+
+		<h2><a name="private_methods_and_variables"></a>プライベートメソッド、プライベート変数</h2>
+		<div class="guidelineDetails">
+			<p>ユーティリティやヘルパのような、コードの抽象化の為に公開メソッドが使うクラス内部からのみアクセスされるメソッドや変数は、アンダースコアでプリフィクスを付けるべきです。</p>
+
+<code>convert_text()		// 公開メソッド
+_convert_text()		// プライベートメソッド</code>
+		</div>
+
+
+
+		<h2><a name="php_errors"></a>PHP エラー</h2>
+		<div class="guidelineDetails">
+			<p>コードはエラーを起こさず、潜在的な WARNING や NOTICE もなく動作するようにしましょう。たとえば、最初に isset() で確かめずに（$_POST 配列のキーのような）未定義の変数を使わないようにしてください。</p>
+
+			<p>アドオンの開発中は全てのユーザーに対してエラーの表示を許可し、PHP の display_errors オプションが許可に設定されていることを確認してください。設定は以下のようにすれば確認できます：</p>
+
+<code>if (ini_get('display_errors') == 1)
+{
+	exit "Enabled";
+}</code>
+
+			<p>サーバ上で display_errors が無効であり、php.ini の編集権限が無い場合、以下のようにして有効に出来ます:</p>
+
+<code>ini_set('display_errors', 1);</code>
+
+			<p class="important"><strong>注意:</strong> <a href="http://us.php.net/manual/en/ref.errorfunc.php#ini.display-errors">display_errors</a> を実行時に ini_set() で設定することと、php.ini で display_errors を「許可」に設定することは全く同じではないことに注意してください。すなわち、もしコード自体が致命的なエラー（FATAL）を含んでいる場合は（display_errors を許可に設定しても）意味が無いのです（エラーは表示されません）。</p>
+		</div>
+
+
+
+		<h2><a name="short_open_tags"></a>PHP 短縮開始タグ</h2>
+		<div class="guidelineDetails">
+			<p>サーバーで short_open_tag が有効でないケースもあるので、常に完全な PHP 開始タグを用います。</p>
+
+<code><strong>間違い</strong>:
+&lt;? echo $foo; ?&gt;
+
+&lt;?=$foo?&gt;
+
+<strong>正しい</strong>:
+&lt;?php echo $foo; ?&gt;</code>
+		</div>
+
+
+
+		<h2><a name="one_statement_per_line"></a>1行1ステートメント</h2>
+		<div class="guidelineDetails">
+			<p>1行に複数のステートメントを記述してはいけません。</p>
+
+<code><strong>間違い</strong>:
+$foo = 'this'; $bar = 'that'; $bat = str_replace($foo, $bar, $bag);
+
+<strong>正しい</strong>:
+$foo = 'this';
+$bar = 'that';
+$bat = str_replace($foo, $bar, $bag);
+</code>
+		</div>
+
+
+
+		<h2><a name="strings"></a>文字列</h2>
+		<div class="guidelineDetails">
+			<p>文字列内で変数を展開させる必要がある場合を除いて、文字列は常にシングルクォートで囲み、変数を展開させたい場合は過剰な構文解析を防ぐために括弧"{}"で囲みます。文字列内にシングルクォートが含まれる場合は、ダブルクォートを利用する事もできます。エスケープ文字を利用してはいけません。
+
+<code><strong>間違い</strong>:
+"My String"					// 展開される変数が無いので、ダブルクォーテーションは使いません
+"My string $foo"				// 括弧"{}"が必要です
+'SELECT foo FROM bar WHERE baz = \'bag\''	// 見にくいです
+
+<strong>正しい</strong>:
+'My String'
+"My string {$foo}"
+"SELECT foo FROM bar WHERE baz = 'bag'"</code>
+		</div>
+
+
+
+		<h2><a name="sql_queries"></a>SQL 文</h2>
+		<div class="guidelineDetails">
+			<p>MySQL の予約語は常に大文字で記述します: SELECT, INSERT, UPDATE, WHERE, AS, JOIN, ON, IN, などです。</p>
+
+			<p>読みやすさを考慮して長いクエリ文は複数行に分け、それぞれの区切りで改行するのが望ましいでしょう。</p>
+
+<code><strong>間違い</strong>:
+// 予約語が小文字で、クエリ文が1行に記述するには長すぎます
+// (「...」は改行せずにそのまま続いている事を意味します)
+$query = $this->db->query("select foo, bar, baz, foofoo, foobar as raboof, foobaz from exp_pre_email_addresses
+...where foo != 'oof' and baz != 'zab' order by foobaz limit 5, 100");
+
+<strong>正しい</strong>:
+$query = $this->db->query("SELECT foo, bar, baz, foofoo, foobar AS raboof, foobaz
+				FROM exp_pre_email_addresses
+				WHERE foo != 'oof'
+				AND baz != 'zab'
+				ORDER BY foobaz
+				LIMIT 5, 100");</code>
+		</div>
+
+
+
+		<h2><a name="default_function_arguments"></a>メソッド（関数）の引数のデフォルト値</h2>
+		<div class="guidelineDetails">
+			<p>その時々に適切なメソッド（関数）のデフォルト値を設定しましょう。そうすることで、間違ったメソッド（関数）呼び出しによるPHPエラーを回避することができ、コードを数行節約できるような適切な代替値を用意することができます。例:</p>
+
+<code>function foo($bar = '', $baz = FALSE)</code>
+		</div>
+
+
+
+</div>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="security.html">セキュリティ</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザーガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="../doc_style/index.html">ドキュメントを書く</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

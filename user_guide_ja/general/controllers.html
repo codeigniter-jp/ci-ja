@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>コントローラ : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+コントローラ
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>コントローラ</h1>
+
+<p>コントローラは、HTTP リクエストがどのように扱われるかを決定するので、アプリケーションの心臓部だといえます。</p>
+
+
+<ul>
+<li><a href="#what">コントローラとは？</a></li>
+<li><a href="#hello">Hello World</a></li>
+<li><a href="#functions">メソッド</a></li>
+<li><a href="#passinguri">URI セグメントの</a><a href="#functions">メソッド</a><a href="#passinguri">への引渡し</a></li>
+<li><a href="#default">デフォルトコントローラの定義</a></li>
+<li><a href="#functions">メソッド</a><a href="#remapping">呼び出しの再マッピング</a></li>
+<li><a href="#output">出力データのコントロール</a></li>
+<li><a href="#private">Private な</a><a href="#functions">メソッド</a></li>
+<li><a href="#subfolders">サブフォルダへのコントローラの配置</a></li>
+<li><a href="#constructors">クラスのコンストラクタ</a></li>
+<li><a href="#reserved">予約済みの</a><a href="#functions">メソッド</a><a href="#reserved">名</a></li>
+</ul>
+
+
+<a name="what"></a>
+<h2>コントローラとは？</h2>
+
+<p><dfn>コントローラは、名前が URI に関連付けられたクラスファイルです。</dfn></p>
+
+<p>次のような URI があったとします:</p>
+
+<code>example.com/index.php/<var>blog</var>/</code>
+
+<p>上の例では、CodeIgniter は <dfn>blog.php</dfn> という名前のコントローラを探して読み込もうとします。</p>
+
+<p><strong>コントローラの名前がURIの最初のセグメントに一致した場合、それが読み込まれます。</strong></p>
+
+<a name="hello"></a>
+<h2>やってみよう:&nbsp; Hello World!</h2>
+
+<p>簡単なコントローラを作って、実際に動作を見てみましょう。  テキストエディタを使って、<dfn>blog.php</dfn> というファイルを作成し、次のコードを中に書きます:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="10">
+&lt;?php
+class Blog extends CI_Controller {
+
+	public function index()
+	{
+		echo 'Hello World!';
+	}
+}
+?&gt;
+</textarea>
+
+
+
+<p>そして、<dfn>application/controllers/</dfn> フォルダにファイルを保存します。</p>
+
+<p>保存し終わったら、次のような URL を使ってサイトを訪問してみましょう:</p>
+
+<code>example.com/index.php/<var>blog</var>/</code>
+
+<p>正しく行えば、 <samp>Hello World!</samp> と見えているはずです。</p>
+
+<p>Note: クラス名は、必ず大文字から始めなくてはいけません。つまり、以下は正しい例になります:</p>
+
+<code>&lt;?php<br />
+class <var>Blog</var> extends CI_Controller {<br />
+<br />
+}<br />
+?&gt;</code>
+
+<p>次の例は<strong>正しくありません</strong>:</p>
+
+<code>&lt;?php<br />
+class <var>blog</var> extends CI_Controller {<br />
+<br />
+}<br />
+?&gt;</code>
+
+<p>また、コントローラは、親のコントローラクラスを継承（<dfn>extends</dfn>）するのを忘れないでください。そうすることで親クラスのメソッドがすべて継承されます。</p>
+
+
+
+<a name="functions"></a>
+<h2>メソッド</h2>
+
+<p>上の例では、メソッド名は <dfn>index()</dfn>  になっています。"index"メソッドは、デフォルトでは、第2セグメントが空のときに常に呼ばれるメソッドになります。
+下で例示している方法は、"Hello World" メッセージを表示させるもうひとつの方法になります:</p>
+
+<code>example.com/index.php/<var>blog</var>/<samp>index</samp>/</code>
+
+<p><strong>URI の第2セグメントは、コントローラ内のどのメソッドが呼ばれるかを決めます。</strong></p>
+
+<p>コントローラに新しいメソッドを追加してみましょう。:</p>
+
+
+<textarea class="textarea" style="width:100%" cols="50" rows="15">
+&lt;?php
+class Blog extends CI_Controller {
+
+	public function index()
+	{
+		echo 'Hello World!';
+	}
+
+	public function comments()
+	{
+		echo 'Look at this!';
+	}
+}
+?&gt;
+</textarea>
+
+<p>さて、 <dfn>comment</dfn> メソッドを見るため、次の URL を読み込んでみます:</p>
+
+<code>example.com/index.php/<var>blog</var>/<samp>comments</samp>/</code>
+
+<p>新しいメッセージを見ることができるはずです。</p>
+
+<a name="passinguri"></a>
+<h2>URI セグメントのメソッドへの引渡し</h2>
+
+<p>URL に３つ以上のセグメントが含まれる場合、3番目以降のセグメントは、メソッドに引数として渡されます。</p>
+
+<p>例として、次のような URI だったとします:</p>
+
+<code>example.com/index.php/<var>products</var>/<samp>shoes</samp>/<kbd>sandals</kbd>/<dfn>123</dfn></code>
+
+<p> URI の 3番目と４番目のセグメント ("sandals" と "123")がメソッドに渡されます:</p>
+
+<code>
+&lt;?php<br />
+class Products extends CI_Controller {<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;public function shoes($sandals, $id)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $sandals;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $id;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}<br />
+?&gt;
+</code>
+
+<p class="important"><strong>重要:</strong>&nbsp;<a href="routing.html">URI ルーティング</a> 機能を使う場合、メソッドに渡されるセグメントは、再ルーティングされた後のものになります。</p>
+
+
+
+<a name="default"></a>
+<h2>デフォルトコントローラを定義する</h2>
+
+<p>CodeIgniter には、サイトのルート URL がリクエストされる場合のように、通常のコントローラとメソッドを指定するような URI が表されていないときに、
+ロードすべきデフォルトコントローラを設定できます。デフォルトコントローラを指定するには、<dfn>application/config/routes.php</dfn> ファイルを開き、
+次の値をセットしてください:</p>
+
+<code>$route['default_controller'] = '<var>Blog</var>';</code>
+
+<p>この <var>Blog</var> は利用したいコントローラクラスの名前です。
+URI セグメントを指定せず、メインの index.php をロードしたときデフォルトでは、Hello World メッセージが表示されます。</p>
+
+
+
+<a name="remapping"></a>
+<h2>メソッド呼び出しの再マッピング</h2>
+
+<p>上記で述べたとおり、URI の第2セグメントは一般に、コントローラのどのメソッドが呼ばれるかを決めているところですが、
+CodeIgniter では <kbd>_remap()</kbd> メソッドを利用することで、この振る舞いをオーバーライド（再定義）することができます:</p>
+
+<code>public function _remap()<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;// ここに何かのコード...<br />
+}</code>
+
+<p class="important"><strong>重要:</strong>&nbsp; コントローラに <kbd>_remap()</kbd> という名前のメソッドが含まれる場合、
+それは、URI に何がかかれていようが <strong>常に</strong>呼び出されます。
+それは、どのメソッドを呼ぶかを決めるという標準の振る舞いをオーバーライドするもので、独自のメソッドルーティングルールを定義することができます。</p>
+
+<p>オーバーライドされたメソッド呼び出し（通常は URI の第2セグメントの文字列）は <kbd>_remap()</kbd> メソッドの引数として渡されます:</p>
+
+<code>public function _remap(<var>$method</var>)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if ($method == 'some_method')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->$method();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->default_method();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}</code>
+
+<p>メソッド名以降のセグメントは、オプションである第 2 引数として <kbd>_remap()</kbd> メソッドに渡されます。この配列は、 PHP の <a href="http://php.net/call_user_func_array">call_user_func_array</a> 関数と組み合わせることで、CodeIgniter のデフォルトの動作を指定するのに使うことができます。</p>
+
+<code>public function _remap($method, $params = array())<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$method = 'process_'.$method;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if (method_exists($this, $method))<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return call_user_func_array(array($this, $method), $params);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;show_404();<br />
+}</code>
+
+
+<a name="output"></a>
+<h2>出力を処理する</h2>
+
+<p>CodeIgniter には、最終的にレンダリングされたデータを web ブラウザへ送信するのを自動的に取り扱う、出力 (Output) クラスがあります。
+<a href="views.html">ビュー</a>と <a href="../libraries/output.html">出力（Output）クラス</a> の解説ページにより詳しい情報があります。
+処理が終わったデータを何らかの方法で事後処理し、自分でブラウザに送信したいときがあります。
+CodeIgniter では、最終処理された出力データを受け取ることができる <dfn>_output()</dfn> という名前のメソッドをコントローラに追加することができます。</p>
+
+<p><strong>重要:</strong>&nbsp; コントローラに <kbd>_output()</kbd> という名前のメソッドが含まれるとき、それは、処理済のデータが直接送出されるかわりに、<strong>常に</strong>出力（Output)クラスから呼ばれることになります。
+メソッドの第1引数には、処理済データが入ります。</p>
+
+<p>以下に例を示します:</p>
+
+<code>
+public function _output($output)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $output;<br />
+}</code>
+
+<p class="important"><dfn>_output()</dfn> メソッドではデータが処理済の状態で受け取られるということを注意してください。
+データを_output() メソッドで使う前に、ベンチマークやメモリ使用量のデータはレンダリング済みで、
+（キャッシュが有効な場合は）キャッシュファイルも書き込まれています。ヘッダも送信済みです (<a href="../libraries/output.html">該当機能</a>を利用する場合）。<br />
+<br />
+コントローラの出力を適切にキャッシュさせるために，<dfn>_output()</dfn> メソッドを使用できます:<br />
+
+<code>if ($this-&gt;output-&gt;cache_expiration &gt; 0)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;output-&gt;_write_cache($output);<br />
+}</code>
+
+ページ実行タイマー機能やメモリ使用量の統計機能を使う場合、実行した追加の処理は考慮されないので、完全に正確にはなりません。
+他に <em>最終処理の前に </em>出力をコントロールする方法については、
+<a href="../libraries/output.html">出力(Output)クラス</a>で利用可能なメソッドをご覧ください。</p>
+
+<a name="private"></a>
+<h2>Private なメソッド</h2>
+
+
+<p>パブリックなアクセスに対して、あるメソッドを隠したい場合があります。
+メソッドをプライベートにするには、単にアンダースコアを名前の先頭に付加すれば、URL リクエストを経由して実行されなくなります。たとえば、次のようなメソッドがあったとします:</p>
+
+<code>
+private function _utility()<br />
+{<br />
+&nbsp;&nbsp;// 何かのコード<br />
+}</code>
+
+<p>次のような URL でアクセスしてみてください。これは機能しません:</p>
+
+<code>example.com/index.php/<var>blog</var>/<samp>_utility</samp>/</code>
+
+
+
+<a name="subfolders"></a>
+<h2>サブフォルダへのコントローラの配置</h2>
+
+<p>規模が大きいアプリケーションを構築するとき、探しやすいように、コントローラをサブフォルダに配置したいことがあります。CodeIgniter ではこういったこともできます。</p>
+
+<p><dfn>application/controllers</dfn> ディレクトリの中に単純にフォルダを作成し、コントローラクラスをその中に配置します。</p>
+
+<p><strong>Note:</strong>&nbsp; この機能を使うと、URI の第1セグメントはフォルダを指すものになります。
+たとえば、コントローラを次の場所に置いたとします:</p>
+
+<code>application/controllers/<kbd>products</kbd>/shoes.php</code>
+
+<p>このコントローラを呼び出す URI は次のようになります:</p>
+
+<code>example.com/index.php/products/shoes/show/123</code>
+
+<p>サブフォルダには、サブフォルダだけを指定した URL のときに呼び出される、
+デフォルトコントローラをそれぞれ置くことができます。
+デフォルトコントローラの名前は、<dfn>application/config/routes.php</dfn> ファイルで指定した名前です。</p>
+
+
+<p>また、CodeIgniter では、<a href="routing.html">URI ルーティング</a> 機能を利用して、URI の再マッピングをすることができます。</p>
+
+
+<h2><a name="constructors"></a>クラスのコンストラクタ</h2>
+
+
+<p>コンストラクタを使用する場合は、どのようなコントローラであるかにかかわらず  <strong>必ず</strong> 次の行をコードに配置する必要があります:</p>
+
+<code>parent::__construct();</code>
+
+<p>ローカルなコンストラクタは、親コントローラクラスのコンストラクタを上書きしてしまうので、手動で親コントローラクラスのコンストラクタを呼び出す必要があるというのが、この行が必要な理由です。</p>
+
+<code>
+&lt;?php<br />
+class <kbd>Blog</kbd> extends CI_Controller {<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public function <kbd>__construct()</kbd><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<var>parent::__construct();</var><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// これ以降にコードを書いていく<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}<br />
+?&gt;</code>
+
+<p>コンストラクタは、インスタンス化されるときに初期値をセットする必要がある場合や、既定の処理を実行する場合に便利です。
+コンストラクタは値を返すことができませんが、既定の処理を実行することができます。</p>
+
+<a name="reserved"></a>
+<h2>予約済みのメソッド名</h2>
+
+<p>コントローラは、メインのアプリケーションコントローラから拡張されるので、オーバーライドする場合を除き、
+アプリケーションコントローラクラスで使われているメソッドと同じ名前にしないよう注意してください。
+詳細は、<a href="reserved_names.html">予約語一覧</a>を参照してください。</p>
+
+<h2>以上です!</h2>
+
+<p>簡単ですが、これでコントローラについてすべてお知らせしました。</p>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="urls.html">CodeIgniter の URL</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="reserved_names.html">予約語一覧</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

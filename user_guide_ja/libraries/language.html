@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>言語クラス : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+言語クラス
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>言語クラス</h1>
+
+<p>言語クラスには、国際化の目的のため、言語ファイルとその中の行を読み取るメソッドが用意されています。</p>
+
+<p>CodeIgniter のシステムフォルダのなかに、言語ファイルが入っている <dfn>language</dfn> という名前のフォルダがあるのがわかると思います。
+他の言語で、エラーメッセージやその他のメッセージを表示させるために、必要なユーザ定義の言語ファイルを作成することができます。</p>
+
+<p>言語ファイルは通常は、<dfn>system/language</dfn> ディレクトリに保管されています。
+かわりに <kbd>application</kbd> フォルダの中に <kbd>language</kbd> という名前のフォルダを作って保管することもできます。
+CodeIgniter では、<dfn>application/language</dfn> ディレクトリの中が最初に認識されます。
+もしディレクトリが存在しないか、指定の言語がその中にない場合は、かわりにグローバルな <dfn>system/language</dfn> フォルダの中を探します。</p>
+
+<p class="important"><strong>Note:</strong>&nbsp; 各言語はそれぞれ各言語ごとのフォルダに保管される必要があります。たとえば、英語(English)のファイルは次の場所にあります:
+<dfn>system/language/english</dfn></p>
+
+
+
+<h2>言語ファイルの作成</h2>
+
+<p>言語ファイルは、<kbd>_lang.php</kbd> という拡張子 [訳注：およびサフィックス] をつけて名前を付ける必要があります。
+たとえば、エラーメッセージ用のファイルを作りたいのなら、それを次のような名前にします: <kbd>error_lang.php</kbd></p>
+
+<p>ファイルの中で、次の例のように <var>$lang</var> という名前の配列にテキストの各行を代入します:</p>
+
+<code>$lang['language_key'] = "実際に表示されるメッセージ";</code>
+
+<p><strong>Note:</strong> 他のファイルで使われている同じ名前の項目と衝突しないように、同じファイル中では、共通のプリフィックス(接頭辞)を使うというのは、良いプラクティスです。
+たとえば、エラーメッセージを作成しているなら <var>error_</var> というプリフィックスを付けます。</p>
+
+<code>$lang['<var>error</var>_email_missing'] = "メールアドレスを入力してください";<br />
+$lang['<var>error</var>_url_missing'] = "URLを入力してください";<br />
+$lang['<var>error</var>_username_missing'] = "ユーザ名を入力してください";</code>
+
+
+<h2>言語ファイルの読み込み</h2>
+
+<p>特定のファイルから文字（ライン）を読み取るには、まずファイルを読み込む必要があります。次のコードを使って言語を読み込むことができます:</p>
+
+<code>$this->lang->load('<samp>filename</samp>', '<dfn>language</dfn>');</code>
+
+<p>ここでの <samp>filename</samp> は、読み込みたいファイルの名前(拡張子は除く)になります。
+<dfn>language</dfn> のところは、そのファイルの言語(たとえば english )になります。
+第2引数が指定されていない場合、<kbd>application/config/config.php</kbd> ファイルでセットされているデフォルトの言語が使用されます。</p>
+
+
+<h2>テキストの行を読み取る</h2>
+
+<p>使いたい言語ファイルが読み込まれたら、次のメソッドを使って、どのテキストにもアクセスできます:</p>
+
+<code>$this->lang->line('<samp>language_key</samp>');</code>
+
+<p>ここでの <samp>language_key</samp> は、表示したい行に関連付けられた配列のキーになります。</p>
+
+<p>Note: このメソッドは、単純にテキストを返します。出力( echo )はしません。</p>
+
+<h3>フォームのラベルを出力</h3>
+
+<p class="important">この機能は重複していたため<a href="../helpers/language_helper.html">言語ヘルパ</a>の <kbd>lang()</kbd> 関数に統一されました。</p>
+
+<h2>言語の自動読み込み</h2>
+<p>特定の言語がアプリケーション全体でグローバルに必要になったら、システムの初期化のときに <a href="../general/autoloader.html">自動読み込み</a> させるように CodeIgniter に知らせることができます。application/config/autoload.php ファイルを開き、自動読み込み配列に言語を追加することで、そうすることができます。</p>
+<p>&nbsp;</p>
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="loader.html">ローダ（読み込み処理）クラス</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="output.html">出力クラス</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>トランザクション : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+トランザクション
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+
+<h1>トランザクション</h1>
+
+<p>CodeIgniter の抽象データベースでは、トランザクション・セーフなテーブルタイプ [ 訳注：テーブルの管理方式がトランザクションをサポートするものという意味 ] をサポートしているデータベースで <dfn>トランザクション</dfn> を利用することができます。
+MySQL では、より一般的な MyISAM ではなく InnoDB か BDB のテーブルタイプで実行されている必要があります。他のほとんどのデータベースでは、トランザクションはネイティブにサポートされています。</p>
+
+<p>トランザクションについてあまり知らない場合は、
+利用中のデータベースのトランザクションについて学習するために、
+良いオンラインリソースを探すことをおすすめします。
+</p>
+
+<h2>CodeIgniter のトランザクションに対するアプローチ</h2>
+
+<p>CodeIgniter のトランザクションに対するアプローチでは、ポピュラーなデータベースクラスである ADODB で使われている手順と大変よく似たものが採用されています。
+トランザクションの実行プロセスが非常に単純になるので、このアプローチを採用しています。ほとんどの場合、それは2行のコードが必要になるだけです。</p>
+
+<p>従来は、クエリを絶えず追跡し、クエリの成否にもとづいて、<dfn>コミット</dfn> するか <dfn>ロールバック</dfn> するかを決めなければならないため、
+トランザクションの実装には多くの作業を必要としてきました。
+これは、入れ子になったクエリでは特に邪魔になります。
+対照的に、私たちは自動的にそれら全部を実行するスマートなトランザクションシステムを実装しました
+(実際のところ利点はないですが、やりたければ手動でトランザクションを管理することもできます)。</p>
+
+<h2>トランザクションの実行</h2>
+
+<p>トランザクションを使ってクエリを実行するには、次のように <dfn>$this->db->trans_start()</dfn> メソッドと <dfn>$this->db->trans_complete()</dfn> メソッドを使います:</p>
+
+<code>
+<kbd>$this->db->trans_start();</kbd><br />
+$this->db->query('SQL クエリ...');<br />
+$this->db->query('もう一つのクエリ...');<br />
+$this->db->query('さらにもう一つのクエリ...');<br />
+<kbd>$this->db->trans_complete();</kbd>
+</code>
+
+<p>start メソッドと complete メソッドの間に、どれだけ多くのクエリを実行しても構いません。
+各クエリの成否により、それら全体がコミットまたはロールバックされます。</p>
+
+
+<h2>厳密な(Strict)モード</h2>
+
+<p>デフォルトでは CodeIgniter は全てのトランザクションを <dfn>Strict モード</dfn>で実行します。
+Strict モードが有効な場合、複数のトランザクションのグループを実行している場合、ひとつのグループの実行が失敗すると他の全てのグループのトランザクションもロールバックされます。
+Strict モードが無効の場合、各グループは独立したものとして扱われ、ひとつのグループのトランザクションが失敗しても他のグループに影響を与えません。</p>
+
+<p>Strict モードは以下のようにして無効にします:</p>
+
+<code>$this->db->trans_strict(FALSE);</code>
+
+
+<h2>エラーの管理</h2>
+
+<p>コミットが失敗した場合に、標準のエラーメッセージを見たい場合は、<dfn>config/database.php</dfn> ファイルでエラー報告機能を有効化できます。
+デバッグ機能が OFF の場合は、次のように自分でエラーを管理することもできます:</p>
+
+<code>
+$this->db->trans_start();<br />
+$this->db->query('SQL クエリ...');<br />
+$this->db->query('もう1つのクエリ...');<br />
+$this->db->trans_complete();<br />
+<br />
+if (<kbd>$this->db->trans_status()</kbd> === FALSE)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;// エラーを生成... または log_message() メソッドを使ってエラーをログに記録します<br />
+}
+</code>
+
+
+<h2>トランザクションの有効化</h2>
+
+<p><dfn>$this->db->trans_start()</dfn> を使った瞬間にトランザクションが自動的に有効になります。
+トランザクションを無効にしたい場合は <dfn>$this->db->trans_off()</dfn> を実行することで無効化できます:</p>
+
+<code>
+<kbd>$this->db->trans_off()</kbd><br /><br />
+
+$this->db->trans_start();<br />
+$this->db->query('SQL クエリ...');<br />
+$this->db->trans_complete();
+</code>
+
+<p class="important">トランザクション機能が無効になっている場合、トランザクションなしにクエリが実行されたときのように、クエリは自動的にコミットされます。</p>
+
+
+<h2>テストモード</h2>
+
+<p>オプションで、クエリが正しい結果になった場合でもロールバックされる "テストモード" のトランザクションを実行することができます。
+テストモードを使うには、<dfn>$this->db->trans_start()</dfn> メソッドの第1引数に <samp>TRUE</samp> を設定するだけです:</p>
+
+<code>
+$this->db->trans_start(<samp>TRUE</samp>); // クエリはロールバックされます<br />
+$this->db->query('SQL クエリ...');<br />
+$this->db->trans_complete();
+</code>
+
+
+<h2>トランザクションを手動で実行する</h2>
+
+<p>手動でトランザクションを実行したい場合は、次のようにすれば、手動で実行することができます:</p>
+
+<code>
+$this->db->trans_begin();<br /><br />
+
+$this->db->query('SQL クエリ...');<br />
+$this->db->query('もう1つのクエリ...');<br />
+$this->db->query('さらにもう1つのクエリ...');<br />
+
+<br />
+
+if ($this->db->trans_status() === FALSE)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this->db->trans_rollback();<br />
+}<br />
+else<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$this->db->trans_commit();<br />
+}<br />
+</code>
+
+<p class="important"><strong>Note:</strong> 手動でトランザクションを実行するときは、<dfn>$this-&gt;db-&gt;trans_start()</dfn> <strong>ではなく</strong>
+<kbd>$this->db->trans_begin()</kbd> を必ず使用してください。</p>
+
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp; <a href="active_record.html">Active Record</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="table_data.html">テーブルのメタデータ</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

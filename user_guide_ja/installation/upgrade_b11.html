@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CodeIgniter ユーザガイド 日本語版</title>
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.1</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+1.0(ベータ) から 1.1(ベータ) へのアップグレード
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>1.0(ベータ) から 1.1(ベータ) へのアップグレード</h1>
+
+<p>1.1(ベータ) にアップグレードするには、以下のステップを実行してください:</p>
+
+<h2>Step 1: index ファイルの置き換え</h2>
+
+<p>メインの <kbd>index.php</kbd> ファイルを新しい index.php ファイルに置き換えてください。 Note: "system"フォルダの名前を変更している場合は、その情報を新しいファイルに書き込んでください。</p>
+
+<h2>Step 2: config フォルダの移動</h2>
+
+<p>このバージョンの CodeIgniter は、複数の"applications"が1つのバックエンドファイルを共有する事を許可しています。各アプリケーションは自身の設定情報を持っており、その <kbd>config</kbd> ディレクトリが <dfn>application</dfn> フォルダ内になくてはいけませんので、それらをそこへ移動してください。</p>
+
+
+
+<h2>Step 3: ディレクトリの置き換え</h2>
+
+<p>以下のディレクトリを新しいバージョンのものに置き換えてください:</p>
+
+<ul>
+<li>drivers</li>
+<li>helpers</li>
+<li>init</li>
+<li>libraries</li>
+<li>scaffolding</li>
+</ul>
+
+
+<h2>Step 4: calendar 言語ファイルの追加</h2>
+
+<p>language フォルダに、新しい calendaring クラスに対応した新たな言語ファイルを追加する必要があります。以下のファイルを追加してください: <dfn>language/english/calendar_lang.php</dfn></p>
+
+
+<h2>Step 5: config ファイルの編集</h2>
+
+<p>オリジナルの <kbd>application/config/config.php</kbd> には記述ミスがありますので、ファイル内のcookieに関連する項目を探してください:</p>
+
+<code>$conf['cookie_prefix']	= "";<br />
+$conf['cookie_domain']	= "";<br />
+$conf['cookie_path']	= "/";</code>
+
+<p>以下のように、配列の変数名を <kbd>$conf</kbd> から <kbd>$config</kbd> に変更してください:</p>
+
+<code>$config['cookie_prefix']	= "";<br />
+$config['cookie_domain']	= "";<br />
+$config['cookie_path']	= "/";</code>
+
+<p>最後に、 config ファイルに以下の新しい要素を追加してください (必要であればオプションを編集してください):</p>
+
+<code><br />
+/*<br />
+|------------------------------------------------<br />
+| URI PROTOCOL<br />
+|------------------------------------------------<br />
+|<br />
+| This item determines which server global <br />
+| should be used to retrieve the URI string.  The <br />
+| default setting of "auto" works for most servers.<br />
+| If your links do not seem to work, try one of <br />
+| the other delicious flavors:<br />
+| <br />
+| 'auto'			Default - auto detects<br />
+| 'path_info'		Uses the PATH_INFO <br />
+| 'query_string'	Uses the QUERY_STRING<br />
+*/<br />
+<br />
+$config['uri_protocol']	= "auto";</code>
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="index.html">インストールの解説</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="troubleshooting.html">トラブルシューティング</a>
+<p>
+
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>
