@@ -58,7 +58,7 @@ function create_menu(basepath)
 			'<li><a href="'+base+'general/errors.html">エラー処理</a></li>' +
 			'<li><a href="'+base+'general/caching.html">キャッシュ</a></li>' +
 			'<li><a href="'+base+'general/profiling.html">アプリケーションのプロファイリング</a></li>' +
-			'<li><a href="'+base+'general/cli.html">CLI 経由での実行</a></li>' +
+			'<li><a href="'+base+'general/cli.html">CLI からの実行</a></li>' +
 			'<li><a href="'+base+'general/managing_apps.html">アプリケーションの管理</a></li>' +
 			'<li><a href="'+base+'general/environments.html">複数環境のハンドリング</a></li>' +
 			'<li><a href="'+base+'general/alternative_php.html">代替の PHP 構文</a></li>' +
