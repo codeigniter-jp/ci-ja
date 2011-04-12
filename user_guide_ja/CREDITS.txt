@@ -6,7 +6,7 @@ Version 2.0.2
   * Kenji Suzuki <kenji@codeigniter.jp>
   * Yuya Terajima
   * Kenta Fujiwara <fk2000@kurimon.com>
-  * Yoko Tamada
+  * Yoko Tamada <tmd45@users.sourceforge.jp>
 
 Version 2.0.1
   * Kenji Suzuki <kenji@codeigniter.jp>
