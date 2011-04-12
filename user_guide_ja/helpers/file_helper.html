@@ -134,7 +134,7 @@ CodeIgniter はフロントコントローラを使用するので、常にサ�
 
 <p>ファイルとパスを元に、名前、パス、サイズと変更された日付を返します。2つ目の引数で以下のどれだけを返すか明示的に指定できます：name (名前)、server_path (サーバーパス)、size (サイズ)、date (日付)、readable (読み込み可)、writable (書き込み可)、executable (実行可)、fileperms (ファイルパーミッション)。ファイルがみつからない場合は FALSE を返します。</p>
 
-<p class="important"><strong>注意:</strong>&quot;writable&quot; は PHP の is_writable() 関数を使いますが、この関数は IIS web サーバで問題があることが知られています。PHP の fileperms() を使う fileperms を使うことを検討してください。</p>
+<p class="important"><strong>注意:</strong>&quot;writable&quot; は PHP の is_writable() 関数を使いますが、この関数は IIS Web サーバで問題があることが知られています。PHP の fileperms() を使う fileperms を使うことを検討してください。</p>
 <h2>get_mime_by_extension('<var>file</var>')</h2>
 
 <p>config/mimes.php にある設定を元にファイル拡張子を mime タイプに変換します。タイプが分からないときや mime 設定ファイルが開けなかったときは FALSE を返します。</p>
