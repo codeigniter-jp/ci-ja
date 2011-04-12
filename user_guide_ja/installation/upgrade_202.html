@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Upgrading from 2.0.1 to 2.0.2 : CodeIgniter User Guide</title>
+<title>2.0.1 から 2.0.2 へのアップグレード: CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -28,8 +28,8 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.2</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Upgrading from 2.0.1 to 2.0.2
+<a href="../index.html">ユーザーガイド Home</a> &nbsp;&#8250;&nbsp;
+2.0.1 から 2.0.2 へのアップグレード
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザーガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,26 +55,26 @@ Upgrading from 2.0.1 to 2.0.2
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Upgrading from 2.0.1 to 2.0.2</h1>
+<h1>2.0.1 から 2.0.2 へのアップグレード</h1>
 
-<p>Before performing an update you should take your site offline by replacing the index.php file with a static one.</p>
-
-
-<h2>Step 1: Update your CodeIgniter files</h2>
-
-<p>Replace all files and directories in your "system" folder and replace your index.php file. If any modifications were made to your index.php they will need to be made fresh in this new one.</p>
-
-<p class="important"><strong>Note:</strong> If you have any custom developed files in these folders please make copies of them first.</p>
+<p>アップグレードの前には index.php を静的ページと置き換えてサイトを停止してください。</p>
 
 
-<h2>Step 2: Remove loading calls for the Security Library</h2>
+<h2>ステップ 1: CodeIgniter ファイルの更新</h2>
 
-<p>Security has been moved to the core and is now always loaded automatically. Make sure you remove any loading calls as they will result in PHP errors.</p>
+<p>"system" フォルダ内の全てのファイルとディレクトリを置き換え、そして index.php ファイルを置き換えます。もし、index.php に変更を加えている場合、新しい index.php に再度変更を加える必要があります。</p>
+
+<p class="important"><strong>Note:</strong> もし、これらのフォルダの中のファイルを更新している場合は、必ず最初にコピーを残しておいてください。</p>
 
 
-<h2>Step 3: Move MY_Security</h2>
+<h2>ステップ 2: セキュリティライブラリの読み込みを削除</h2>
 
-<p>If you are overriding or extending the Security library, you will need to move it to <kbd>application/core</kbd>.</p>
+<p>セキュリティは core に移動し、常に自動で読み込まれるようになりました。PHP エラーが発生した場合は、任意の読み込みが削除されていることを確認してください。</p>
+
+
+<h2>ステップ 3: MY_Security の移動</h2>
+
+<p>もし、セキュリティライブラリをオーバーライド、または拡張している場合は、それを <kbd>application/core</kbd> へ移動する必要があります。</p>
 
 </div>
 <!-- END CONTENT -->
@@ -82,11 +82,11 @@ Upgrading from 2.0.1 to 2.0.2
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="index.html">Installation Instructions</a>
+前のトピック:&nbsp;&nbsp;<a href="index.html">インストール方法</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="troubleshooting.html">Troubleshooting</a>
+<a href="#top">ページ先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザーガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="troubleshooting.html">トラブルシューティング</a>
 </p>
 <p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
