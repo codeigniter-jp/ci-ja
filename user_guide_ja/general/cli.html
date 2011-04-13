@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="ja">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Running via the CLI : CodeIgniter User Guide</title>
+<title>CLI からの実行 : CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -17,19 +17,19 @@
 <meta http-equiv= 'pragma' content='no-cache' />
 <meta name='robots' content='all' />
 <meta name='author' content='ExpressionEngine Dev Team' />
-<meta name='description' content='CodeIgniter User Guide' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
 
 </head>
 <body>
 
 <!-- START NAVIGATION -->
 <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
-<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.2</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Running via the CLI
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+CLI からの実行
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,7 +55,7 @@ Running via the CLI
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Running via the CLI</h1>
+<h1>CLI からの実行</h1>
 
 <p>
 	As well as calling an applications <a href="./controllers.html">Controllers</a> via the URL in a browser they can also be loaded via the command-line interface (CLI).
@@ -70,13 +70,13 @@ Running via the CLI
 
 
 <a name="what"></a>
-<h2>What is the CLI?</h2>
+<h2>CLI とは？</h2>
 
 <p><dfn>The command-line interface is a text-based method of interacting with computers that looks like what most people remember as DOS.</dfn></p>
 
 <a name="why"></a>
 
-<h2>Why run via the command-line?</h2>
+<h2>何故コマンドラインから実行するの？</h2>
 
 <p>
 	There are many reasons for running CodeIgniter from the command-line, but they are not always obvious.</p>
@@ -89,7 +89,7 @@ Running via the CLI
 </ul>
 
 <a name="how"></a>
-<h2>Let's try it:&nbsp; Hello World!</h2>
+<h2>トライしてみよう:&nbsp; Hello World!</h2>
 
 <p>Let's create a simple controller so you can see it in action. Using your text editor, create a file called <dfn>tools.php</dfn>, and put the following code in it:</p>
 
@@ -126,7 +126,7 @@ class Tools extends CI_Controller {
 
 <p>Here we are passing it a argument in the same way that URL parameters work. "John Smith" is passed as a argument and output is: <samp>Hello John Smith!</samp>.</p>
 
-<h2>That's it!</h2>
+<h2>これだけ！</h2>
 
 <p>That, in a nutshell, is all there is to know about controllers on the command line. Remember that this is just a normal controller, so routing and _remap works fine.</p>
 
@@ -138,11 +138,11 @@ class Tools extends CI_Controller {
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="urls.html">CodeIgniter URLs</a>
+前のトピック:&nbsp;&nbsp;<a href="urls.html">CodeIgniter の URL</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="reserved_names.html">Reserved Names</a></p>
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="reserved_names.html">予約語一覧</a></p>
 <p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
