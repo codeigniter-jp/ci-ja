@@ -60,43 +60,45 @@
 <p><img src="images/reactor-bullet.png" width="16" height="16" alt="Reactor Marker" /> 印は CodeIgniter Reactor から提供されたものです。</p>
 
 <h2>Version 2.0.2</h2>
-<p>Release Date: April 7, 2011<br />
+<p>リリース日付: 2011年4月7日<br />
 Hg Tag: v2.0.2</p>
 
 <ul>
-	<li>General changes
+	<li>全体的な変更
 		<ul>
-			<li>The <a href="./libraries/security.html">Security library</a> was moved to the core and is now loaded automatically. Please remove your loading calls.</li>
-			<li>The CI_SHA class is now deprecated. All supported versions of PHP provide a <kbd>sha1()</kbd> function.</li>
-			<li class="reactor"><kbd>constants.php</kbd> will now be loaded from the environment folder if available.</li>
-			<li class="reactor">Added language key error logging</li>
-			<li class="reactor">Made Environment Support optional. Comment out or delete the constant to stop environment checks.</li>
-			<li class="reactor">Added Environment Support for Hooks.</li>
-			<li class="reactor">Added CI_ Prefix to the <a href="libraries/caching.html">Cache driver</a>.</li>
+			<li><a href="./libraries/security.html">セキュリティクラス</a> は core ディレクトリに移動し自動的に呼び出されるようになりました。手動で呼び出している場合にはそれを削除してください。</li>
+			<li>CI_SHA クラスは非推奨になりました。PHP の全てのバージョンで <kbd>sha1()</kbd> 関数が提供されています。</li>
+			<li class="reactor"> <kbd>constants.php</kbd> は、環境設定毎のフォルダにファイルが存在すれば呼び出されるようになりました。</li>
+			<li class="reactor">言語ファイルの key エラーをログに記録するようになりました。</li>
+			<li class="reactor">複数環境サポートはオプションになりました。使用しない場合、環境設定をコメントアウトまたは削除してください。</li>
+			<li class="reactor">フックが複数環境サポートに対応しました。</li>
+			<li class="reactor"><a href="libraries/caching.html">キャッシングドライバ</a> に CI_ プリフィックスが追加されました。</li>
+			<li class="reactor"><a href="./general/cli.html">CLIの使い方</a> がドキュメントに追加されました。</li>
+
 		</ul>
 	</li>
-	<li>Helpers
+	<li>ヘルパ
 		<ul>
-			<li>Removed the previously deprecated <kbd>dohash()</kbd> from the <a href="./helpers/security_helper.html">Security helper</a>; use <kbd>do_hash()</kbd> instead.</li>
-			<li class="reactor">Changed the 'plural' function so that it doesn't ruin the captalization of your string. It also take into consideration acronyms which are all caps.</li>
+			<li>以前から非推奨となっていた <kbd>dohash()</kbd> が <a href="./helpers/security_helper.html">セキュリティヘルパ</a> から削除されました。代わりに <kbd>do_hash()</kbd> を使用してください。</li>
+			<li class="reactor">渡した文字列のキャピタライゼーションを損なわないように plural 関数が変更されました。全て大文字の場合も考慮されています。</li>
 		</ul>
 	</li>
-	<li>Database
+	<li>データベース
 		<ul>
-			<li class="reactor"><kbd>$this->db->count_all_results()</kbd> will now return an integer instead of a string.</li>
+			<li class="reactor"><kbd>$this->db->count_all_results()</kbd> が文字列の代わりに数値を返すようになりました。</li>
 		</ul>
 	</li>
 </ul>
 
-<h3>Bug fixes for 2.0.2</h3>
+<h3>2.0.2の不具合修正</h3>
 <ul>
-	<li class="reactor">Fixed a bug (Reactor #145) where the Output Library had parse_exec_vars set to protected.</li>
-	<li class="reactor">Fixed a bug (Reactor #80) where is_really_writable would create an empty file when on Windows or with safe_mode enabled.</li>
-	<li class="reactor">Fixed various bugs with User Guide.</li>
-	<li class="reactor">Added is_cli_request() method to documentation for <a href="libraries/input.html">Input class</a>.</li>
-	<li class="reactor">Added form_validation_lang entries for <kbd>decimal</kbd>, <kbd>less_than</kbd> and <kbd>greater_than</kbd>.</li>
-	<li class="reactor"><a href="https://bitbucket.org/ellislab/codeigniter-reactor/issue/153/escape-str-bug-in-mssql-driver">Fixed issue #153</a> Escape Str Bug in MSSQL driver.</li>
-	<li class="reactor"><a href="https://bitbucket.org/ellislab/codeigniter-reactor/issue/172/bug-in-chrome-and-form_open-in-201">Fixed issue #172</a> Google Chrome 11 posts incorrectly when action is empty.</li>
+	<li class="reactor">出力クラスの parse_exec_vars が protected に修正されました。(Reactor #145)</li>
+	<li class="reactor">Windowsまたはセーフモードが有効な状態で、 is_really_writable が空ファイルを作る不具合(Reactor #80)が修正されました。</li>
+	<li class="reactor">ユーザガイドのさまざまな不具合が修正されました。</li>
+	<li class="reactor">is_cli_request() メソッドが <a href="libraries/input.html">入力クラス</a> のドキュメントに追加されました。</li>
+	<li class="reactor">form_validation クラスのルールに <kbd>decimal</kbd> 、 <kbd>less_than</kbd> と <kbd>greater_than</kbd> が追加されました。</li>
+	<li class="reactor"><a href="https://bitbucket.org/ellislab/codeigniter-reactor/issue/153/escape-str-bug-in-mssql-driver">issue #153</a> MSSQLドライバの文字列エスケープの不具合が修正されました。</li>
+	<li class="reactor"><a href="https://bitbucket.org/ellislab/codeigniter-reactor/issue/172/bug-in-chrome-and-form_open-in-201">issue #172</a> Google Chrome 11でURLにアクションを指定しない場合、誤ったアクションに移動する不具合が修正されました。</li>
 
 </ul>
 
@@ -199,6 +201,7 @@ Hg Tag: v2.0.0</p>
 			<li>Email クラスで “メソッドの連結” ができるようになりました。</li>
 			<li>入力クラスに <kbd>request_headers()</kbd>, <kbd>get_request_header()</kbd> および <kbd>is_ajax_request()</kbd> メソッドを追加しました。</li>
 			<li class="reactor"><a href="libraries/user_agent.html">ユーザエージェントクラス</a> の <kbd>is_browser()</kbd>, <kbd>is_mobile()</kbd> および <kbd>is_robot()</kbd> メソッドで，特定のブラウザおよび携帯デバイスをチェックできるようになりました。</li>
+			<li class="reactor"><a href="libraries/input.html">入力クラス</a> の <kbd>post()</kbd> と <kbd>get()</kbd> が、引数を与えなかった場合にPOSTとGETそれぞれの値をすべて返すようになりました。</li>
 		</ul>
 	</li>
 	<li>データベース
