@@ -58,40 +58,40 @@ CLI からの実行
 <h1>CLI からの実行</h1>
 
 <p>
-	ブラウザにURLを入力してアプリケーションとして呼び出すコントローラと同様にコマンドラインのインターフェイス （CLI）を介してロードすることもできます。
+ブラウザにURLを入力してアプリケーションを呼び出すように、コマンドライン・インターフェイス （CLI）から <a href="./controllers.html">コントローラ</a> を呼び出ことができます。
 </p>
 
 
 <ul>
-<li><a href="#what">CLI とは？</a></li>
-<li><a href="#why">何故コマンドラインから実行するの？</a></li>
-<li><a href="#how">トライしてみよう:&nbsp; Hello World!</a></li>
+<li><a href="#what">CLI とは何か？</a></li>
+<li><a href="#why">なぜコマンドラインから実行するのか？</a></li>
+<li><a href="#how">やってみましょう:&nbsp; Hello World!</a></li>
 </ul>
 
 
 <a name="what"></a>
 <h2>CLI とは？</h2>
 
-<p><dfn>CLIはDOSのようにコンピューターとテキストベースの対話式でアプリケーションを操作する方法です。</dfn></p>
+<p><dfn>CLI は、DOS のようにコンピュータをテキストベースの対話形式で操作する方法です。</dfn></p>
 
 <a name="why"></a>
 
-<h2>何故コマンドラインから実行するの？</h2>
+<h2>なぜコマンドラインから実行するのか？</h2>
 
 <p>
-	コマンドラインからCodeIgniterのを実行するための多くの理由がありますが、必ずしも明確な理由ではありません。</p>
+	コマンドラインから CodeIgniter を実行する理由はいくつもありますが、必ずしも明確な理由ではありません。</p>
 
 <ul>
-	<li>wget、またはcurlを使用しなくてもcronジョブを実行することができます。</li>
-	<li><kbd>IS_CLI</kbd>がないかどうかチェックすることで、cronジョブにURLでアクセスできなくすることができます。</li>
-	<li>対話式に"タスク"を作成することで、キャッシュフォルダや実行バックアップなどアクセス許可の設定を行うことができます。</li>
-	<li>他の言語によるアプリケーションと統合します。 たとえば、ランダムC++のスクリプトを1つのコマンドとして呼び出したり、モデル内のコードを実行することができます！</li>
+	<li>wget や curl を使用しなくても cron ジョブを実行することができます。</li>
+	<li><kbd>IS_CLI</kbd> をチェックすることで cron ジョブにURLからアクセスできないようにできます。</li>
+	<li>パーミッションの設定、キャッシュフォルダのファイル削除、バックアップの作成などの "タスク" が対話形式に実行できます。</li>
+	<li>他の言語によるアプリケーションと統合します。 例えばC++のスクリプトをランダムに1つのコマンドとして呼び出したり、モデル内でそのコードを実行することができます！</li>
 </ul>
 
 <a name="how"></a>
-<h2>トライしてみよう:&nbsp; Hello World!</h2>
+<h2>やってみましょう:&nbsp; Hello World!</h2>
 
-<p>実際の動作を確認するために簡単なコントローラーを作成しましょう。 テキストエディタで以下のコードを<dfn>tools.php</dfn>というファイルを作成し、次のようにコードを入力します。:</p>
+<p>実際の動作を確認するために簡単なコントローラーを作成しましょう。 テキストエディタで、 <dfn>tools.php</dfn> を作成し、以下のコードを入力してください。:</p>
 
 <textarea class="textarea" style="width:100%" cols="50" rows="10">
 &lt;?php
@@ -105,30 +105,30 @@ class Tools extends CI_Controller {
 ?&gt;
 </textarea>
 
-<p>次にファイルを<dfn>application/controllers/</dfn>フォルダに保存します。</p>
+<p>次に、このファイルを <dfn>application/controllers/</dfn> フォルダに保存します。</p>
 
-<p>通常では次のURLにアクセスします。:</p>
+<p>通常では次のURLにアクセスすることでサイトを閲覧することができます。:</p>
 
 <code>example.com/index.php/<var>tools</var>/<var>message</var>/<var>to</var></code>
 
-<p>CLIでアクセスするにはMac/Lunixのターミナル、または、Windowsでコマンドプロンプトを起動してCodeIgniterプロジェクトのカレントディレクトリに移動します。</p>
+<p>CodeIgniter プロジェクトを操作するために Mac/Linux ではターミナルを開き、Windows では "cmd" を実行します。</p>
 
 <blockquote>
 	$ cd /path/to/project;<br/>
 	$ php index.php tools message
 </blockquote>
 
-<p><samp>Hello World!</samp>と表示されるはずです。</p>
+<p>正しく操作すれば <samp>Hello World!</samp> と表示されるはずです。</p>
 
 <blockquote>
 	$ php index.php tools message "John Smith"
 </blockquote>
 
-<p>URLの後ろに入力することでパラメータとして引数を渡すことができます。上の例では"John Smith"が引数として渡され表示されます。<samp>Hello John Smith!</samp>.</p>
+<p>URL の引数と同じように引数を渡すことができます。"John Smith" を引数として渡すことで、次のように表示されます。: <samp>Hello John Smith!</samp>.</p>
 
-<h2>これだけ！</h2>
+<h2>これだけです！</h2>
 
-<p>それは、一言で言えばすべてのコマンドライン上のコントローラの使い方を示しています。そのため、ルーティングと_remapは正常に動作し、普通のコントローラとして扱えることを覚えておいて損は無いでしょう。</p>
+<p>コマンドラインでコントローラを使う方法をとても簡単に説明しました。ルーティングと _remap は正常に動作し、通常のコントローラと同じように扱えることを覚えておいてください。</p>
 
 
 
