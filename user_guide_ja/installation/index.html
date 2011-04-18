@@ -65,13 +65,13 @@
   <dfn>application/config/database.php</dfn> ファイルをテキストエディタで開き、データベースの設定を記入します。</li>
 </ol>
 
-<p>CodeIgniter のファイルの設置場所を隠すことでセキュリティを高めたい場合は、<dfn>system</dfn> および <dfn>application</dfn> フォルダを別の名前に変更することができます。これらのフォルダ名を変更した場合は，<kbd>index.php</kbd> を開き <samp>$system_folder</samp> 変数と <samp>$application_folder</samp>
+<p>CodeIgniter のファイルの設置場所を隠すことでセキュリティを高めたい場合は、<dfn>system</dfn> および <dfn>application</dfn> フォルダを別の名前に変更することができます。これらのフォルダ名を変更した場合は、<kbd>index.php</kbd> を開き <samp>$system_folder</samp> 変数と <samp>$application_folder</samp>
 
 変数の値を新しいフォルダ名に書き換えてください。</p>
 
-<p>セキュリティ的に一番ベストなのは，<dfn>system</dfn> および <dfn>application</dfn> フォルダをブラウザから直接アクセスできない位置に移すことです。デフォルトでは，ぞれぞれのフォルダに置かれた .htaccess ファイルにより，直接アクセスすることができないようになっています。しかし，Web サーバの設定変更や .htaccess に対応しない場合に備えて，これらは公開ディレクトリには置かないのがベストです。</p>
+<p>セキュリティ的に一番ベストなのは、<dfn>system</dfn> および <dfn>application</dfn> フォルダをブラウザから直接アクセスできない位置に移すことです。デフォルトでは、ぞれぞれのフォルダに置かれた .htaccess ファイルにより、直接アクセスすることができないようになっています。しかし、Web サーバの設定変更や .htaccess に対応しない場合に備えて、これらは公開ディレクトリには置かないのがベストです。</p>
 
-<p>各フォルダを移動した場合は，
+<p>各フォルダを移動した場合は、
   <kdb>index.php を開き <samp>$system_folder</samp> 変数と <samp>$application_folder</samp> 変数の値をフルパスで指定するのが好ましいでしょう。 例) '<dfn>/www/MyUser/system</dfn>'.</kdb>
 </p>
 

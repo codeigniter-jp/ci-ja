@@ -98,7 +98,7 @@ echo random_element($quotes);</code>
 
 <h2>elements()</h2>
 
-<p>配列から一部の要素のみを取得します。このメソッドは，配列の指定されたキーに要素があるか確認し，なければ FALSE をセットします。第 3 引数でデフォルト値が指定されている場合は，その値をセットします。例:</p>
+<p>配列から一部の要素のみを取得します。このメソッドは、配列の指定されたキーに要素があるか確認し、なければ FALSE をセットします。第 3 引数でデフォルト値が指定されている場合は、その値をセットします。例:</p>
 
 <code>
 $array = array(<br />
@@ -112,7 +112,7 @@ $array = array(<br />
 $my_shape = elements(array('color', 'shape', 'height'), $array);<br />
 </code>
 
-<p>上記の例では，次の配列が返されます:</p>
+<p>上記の例では、次の配列が返されます:</p>
 
 <code>
 array(<br />
@@ -123,13 +123,13 @@ array(<br />
 );
 </code>
 
-<p>次のように，第 3 引数でデフォルト値を指定することもできます。</p>
+<p>次のように、第 3 引数でデフォルト値を指定することもできます。</p>
 
 <code>
 $my_shape = elements(array('color', 'shape', 'height'), $array, NULL);<br />
 </code>
 
-<p>この場合，次の配列が返されます。</p>
+<p>この場合、次の配列が返されます。</p>
 
 <code>
 
@@ -140,7 +140,7 @@ array(<br />
 );
 </code>
 
-<p>このメソッドは，モデルにおいて <kbd>$_POST</kbd> 配列を使用するときに便利です。これにより，余計な POST データがテーブルに送られるのを防ぐことができます。</p>
+<p>このメソッドは、モデルにおいて <kbd>$_POST</kbd> 配列を使用するときに便利です。これにより、余計な POST データがテーブルに送られるのを防ぐことができます。</p>
 
 <code>
 $this->load->model('post_model');<br />
@@ -148,7 +148,7 @@ $this->load->model('post_model');<br />
 $this->post_model->update(elements(array('id', 'title', 'content'), $_POST));
 </code>
 
-<p>この例では，id, title および content フィールドだけがアップデートされます。</p>
+<p>この例では、id, title および content フィールドだけがアップデートされます。</p>
 
 </div>
 <!-- END CONTENT -->

@@ -148,58 +148,58 @@ Hg Tag: v2.0.0</p>
 		<ul>
 			<li>PHP 4 への対応は打ち切られました。動作には PHP 5.1.6 以上が必要です。</li>
 			<li>以前から非推奨であった Scaffolding 機能は削除されました。</li>
-			<li>プラグイン機能は削除されました。代わりにヘルパを使用してください。CAPTCHA プラグインはヘルパに変更されました (<a href="./helpers/captcha_helper.html">ドキュメント</a>)。JavaScript カレンダープラグインは，jQuery 等に有用なものがあるため，削除されました。</li>
+			<li>プラグイン機能は削除されました。代わりにヘルパを使用してください。CAPTCHA プラグインはヘルパに変更されました (<a href="./helpers/captcha_helper.html">ドキュメント</a>)。JavaScript カレンダープラグインは、jQuery 等に有用なものがあるため、削除されました。</li>
 			<li><a href="./general/drivers.html">ドライバ</a>機能が追加されました。</li>
 			<li class="reactor">完全な QUERY STRING に対応しました。詳細は設定ファイルを参照してください。</li>
 			<li>application フォルダを system の外に移動しました。</li>
 			<li>system/cache ディレクトリと system/logs ディレクトリを application ディレクトリの中に移動しました。</li>
 			<li>index.php 内でルーティングをオーバーライドできるようになりました。 &quot;index&quot; ファイル毎にルーティングの上書きが可能です。</li>
-			<li>index.php 内のデータセットから，設定値を直接設定 (または上書き) できるようになりました。これにより，それぞれ独自の設定値を持つ複数のコントローラからひとつのアプリケーションを使用できます。</li>
-			<li>設定ファイルに <kbd>$config['directory_trigger']</kbd> を追加しました。URI セグメントの代わりに $_GET 文字列で動かしているときでも，コントローラのサブディレクトリを指定できます。</li>
-			<li>パッケージのパスを指定できるようになりました。ローダーと設定クラスは要求があると，指定されたパスを最初に探しにいこうとします。これにより，サブアプリケーションの配布において，ひとつのパッケージディレクトリで独自のライブラリやモデル，設定ファイルを使用することができます。詳細は<a href="libraries/loader.html">ローダ (読み込み処理) クラス</a>のドキュメントを参照してください。</li>
+			<li>index.php 内のデータセットから、設定値を直接設定 (または上書き) できるようになりました。これにより、それぞれ独自の設定値を持つ複数のコントローラからひとつのアプリケーションを使用できます。</li>
+			<li>設定ファイルに <kbd>$config['directory_trigger']</kbd> を追加しました。URI セグメントの代わりに $_GET 文字列で動かしているときでも、コントローラのサブディレクトリを指定できます。</li>
+			<li>パッケージのパスを指定できるようになりました。ローダーと設定クラスは要求があると、指定されたパスを最初に探しにいこうとします。これにより、サブアプリケーションの配布において、ひとつのパッケージディレクトリで独自のライブラリやモデル、設定ファイルを使用することができます。詳細は<a href="libraries/loader.html">ローダ (読み込み処理) クラス</a>のドキュメントを参照してください。</li>
 			<li>開発中のコードは現在 <a href="http://bitbucket.org/ellislab/codeigniter-reactor/">BitBucket</a> でホスティングされています。</li>
 			<li>非推奨となっていた Validation クラスは削除されました。[ 訳注: 代わりに Form_validation クラスを使用してください ]</li>
 			<li>すべてのコアクラスに CI_ というプレフィックスを追加しました。</li>
 			<li class="reactor">パッケージのパスは application/config/autoload.php で設定できます。</li>
-			<li class="reactor"><a href="libraries/file_uploading.html">アップロードクラス</a>で拡張子なしのファイル名を指定できるようになりました。拡張子は，ファイル名の代わりにアップロードされたファイルから与えられます。</li>
-			<li class="reactor"><a href="database/forge.html">データベースフォージクラス</a> において，テーブル名を変更していない場合は名前を省略できるようになりました。</li>
-			<li class="reactor"><kbd>$config['base_url']</kbd> はデフォルトで空になり，自動的に推測されるようになりました。</li>
-			<li class="reactor"><kbd>config['uri_protocol'] = 'CLI'</kbd> とすることで，コマンドラインインターフェイス互換が利用できるようになりました。</li>
+			<li class="reactor"><a href="libraries/file_uploading.html">アップロードクラス</a>で拡張子なしのファイル名を指定できるようになりました。拡張子は、ファイル名の代わりにアップロードされたファイルから与えられます。</li>
+			<li class="reactor"><a href="database/forge.html">データベースフォージクラス</a> において、テーブル名を変更していない場合は名前を省略できるようになりました。</li>
+			<li class="reactor"><kbd>$config['base_url']</kbd> はデフォルトで空になり、自動的に推測されるようになりました。</li>
+			<li class="reactor"><kbd>config['uri_protocol'] = 'CLI'</kbd> とすることで、コマンドラインインターフェイス互換が利用できるようになりました。</li>
 		</ul>
 	<li>ライブラリ
 		<ul>
-			<li class="reactor"><a href="libraries/caching.html">キャッシュドライバ</a> を追加しました。APC，memcached およびファイルベースをサポートします。</li>
+			<li class="reactor"><a href="libraries/caching.html">キャッシュドライバ</a> を追加しました。APC、memcached およびファイルベースをサポートします。</li>
 			<li><a href="./libraries/pagination.html">ページネーションクラス</a>で <var>$prefix</var>, <var>$suffix</var> および <var>$first_url</var> を指定できるようになりました。</li>
-			<li><a href="./libraries/pagination.html">ページネーションクラス</a>で first，previous，next，last および各ページへのリンクを FALSE とすることで，それぞれ非表示にできるようになりました。</li>
-			<li><a href="./libraries/security.html">セキュリティクラス</a>を追加しました。現在のところ，<dfn>xss_clean</dfn> メソッド，<dfn>filename_security</dfn> メソッド他のセキュリティに関する機能が使用できます。</li>
+			<li><a href="./libraries/pagination.html">ページネーションクラス</a>で first、previous、next、last および各ページへのリンクを FALSE とすることで、それぞれ非表示にできるようになりました。</li>
+			<li><a href="./libraries/security.html">セキュリティクラス</a>を追加しました。現在のところ、<dfn>xss_clean</dfn> メソッド、<dfn>filename_security</dfn> メソッド他のセキュリティに関する機能が使用できます。</li>
 			<li><a href="./libraries/security.html">セキュリティクラス</a>に CSRF (クロスサイトリクエストフォージェリ) 保護を追加しました。</li>
 			<li>出力クラスに <var>$parse_exec_vars</var> プロパティを追加しました。</li>
-			<li><a href="general/profiling.html">プロファイラクラス</a>において，個々のプロファイラセクションの有効化・無効化を指定できるようになりました。</li>
+			<li><a href="general/profiling.html">プロファイラクラス</a>において、個々のプロファイラセクションの有効化・無効化を指定できるようになりました。</li>
 			<li><a href="./libraries/file_uploading.html">ファイルアップロードクラス</a>にワイルドカードオプション  <kbd>$config['allowed_types'] = '*'</kbd> を追加しました。</li>
-			<li>XML-RPC クラスに設定値 'object' を追加しました。これにより，要求されたメソッドを探すために，$CI スーパーオブジェクトにある assuming の代わりにオブジェクトを指定できます。</li>
+			<li>XML-RPC クラスに設定値 'object' を追加しました。これにより、要求されたメソッドを探すために、$CI スーパーオブジェクトにある assuming の代わりにオブジェクトを指定できます。</li>
 			<li>ユニットテストクラスで使用できるリストに "is_object" を追加しました。</li>
 			<li>HTML テーブルクラスは空もしくは NULL でもセルを出力します。</li>
 			<li>HTML テーブルクラスで個々のセルのタグの属性を指定できるようになりました。</li>
 			<li><a href="libraries/parser.html">テンプレートパーサクラス</a>に <kbd>parse_string()</kbd> メソッドを追加しました。</li>
 			<li><a href="general/profiling.html">プロファイラクラス</a>の出力に HTTP ヘッダおよび設定情報を追加しました。</li>
 			<li><a href="libraries/user_agent.html">ユーザエージェントクラス</a>の <kbd>browser()</kbd> メソッドで判別できるリストに Chrome と Flock を追加しました。</li>
-			<li><a href="libraries/unit_testing.html">ユニットテストクラス</a>において，オプションで "notes" フィールドが使えるようになりました。また， <kbd>$this-&gt;unit-&gt;set_test_items()</kbd> を使用して，テスト結果を個別に表示できるようになりました。</li>
-			<li>XML-RPC クラスのクラス変数 <kbd>$xss_clean</kbd> により，セキュリティクラスの <kbd>xss_clean()</kbd> メソッドを使用できるようになりました。</li>
+			<li><a href="libraries/unit_testing.html">ユニットテストクラス</a>において、オプションで "notes" フィールドが使えるようになりました。また、 <kbd>$this-&gt;unit-&gt;set_test_items()</kbd> を使用して、テスト結果を個別に表示できるようになりました。</li>
+			<li>XML-RPC クラスのクラス変数 <kbd>$xss_clean</kbd> により、セキュリティクラスの <kbd>xss_clean()</kbd> メソッドを使用できるようになりました。</li>
 			<li><a href="libraries/ftp.html">FTP メソッド</a>に <kbd>download()</kbd> メソッドを追加しました。</li>
 			<li><kbd>do_xss_clean()</kbd> メソッドでアップロードファイルの XSS チェックに失敗したときは FALSE を返すように変更しました。</li>
-			<li>アップロードクラスにおいて，$_FILES の type の値を stripslashes() と trim() で処理するように変更しました。</li>
-			<li><kbd>$this-&gt;zip-&gt;read_dir('/path/to/directory', FALSE)</kbd> メソッドに第2引数 (boolean) を追加しました。ZIP アーカイブを作成するときに，指定フォルダまでのパスで，空のフォルダを含まないようにできます。</li>
-			<li>画像操作クラスにおいて，GD ライブラリで PNG の透過画像のリサイズが行なえるようになりました。</li>
-			<li>セッションクラスを使用する際は，設定ファイル内で暗号化キー (encryption_key) の指定が必須になりました。</li>
+			<li>アップロードクラスにおいて、$_FILES の type の値を stripslashes() と trim() で処理するように変更しました。</li>
+			<li><kbd>$this-&gt;zip-&gt;read_dir('/path/to/directory', FALSE)</kbd> メソッドに第2引数 (boolean) を追加しました。ZIP アーカイブを作成するときに、指定フォルダまでのパスで、空のフォルダを含まないようにできます。</li>
+			<li>画像操作クラスにおいて、GD ライブラリで PNG の透過画像のリサイズが行なえるようになりました。</li>
+			<li>セッションクラスを使用する際は、設定ファイル内で暗号化キー (encryption_key) の指定が必須になりました。</li>
 			<li>セッションクラスに新たな設定項目 <kbd>sess_expire_on_close</kbd> を追加しました。ブラウザが閉じられると自動で期限切れにすることができます。</li>
-			<li>Mcrypt が利用可能なサーバにおいて，暗号化クラスのパフォーマンスが向上しました。</li>
-			<li>暗号化クラスにおいて，標準の暗号化方式を CBC に変更しました。</li>
+			<li>Mcrypt が利用可能なサーバにおいて、暗号化クラスのパフォーマンスが向上しました。</li>
+			<li>暗号化クラスにおいて、標準の暗号化方式を CBC に変更しました。</li>
 			<li><kbd>encode_from_legacy()</kbd> メソッドを追加しました。CodeIgniter 1.x で暗号化されたデータを CodeIgniter 2.x に移行するのに使用します。
 				詳細は「<a href="./installation/upgrade_200.html">以前のバージョンからのアップグレード</a>」をご覧ください。</li>
-			<li>Form_Validation クラスの <kbd>set_rules()</kbd>, <kbd>set_message()</kbd> および <kbd>set_error_delimiters()</kbd> メソッドにおいて，“メソッドの連結” ができるようになりました。</li>
+			<li>Form_Validation クラスの <kbd>set_rules()</kbd>, <kbd>set_message()</kbd> および <kbd>set_error_delimiters()</kbd> メソッドにおいて、“メソッドの連結” ができるようになりました。</li>
 			<li>Email クラスで “メソッドの連結” ができるようになりました。</li>
 			<li>入力クラスに <kbd>request_headers()</kbd>, <kbd>get_request_header()</kbd> および <kbd>is_ajax_request()</kbd> メソッドを追加しました。</li>
-			<li class="reactor"><a href="libraries/user_agent.html">ユーザエージェントクラス</a> の <kbd>is_browser()</kbd>, <kbd>is_mobile()</kbd> および <kbd>is_robot()</kbd> メソッドで，特定のブラウザおよび携帯デバイスをチェックできるようになりました。</li>
+			<li class="reactor"><a href="libraries/user_agent.html">ユーザエージェントクラス</a> の <kbd>is_browser()</kbd>, <kbd>is_mobile()</kbd> および <kbd>is_robot()</kbd> メソッドで、特定のブラウザおよび携帯デバイスをチェックできるようになりました。</li>
 			<li class="reactor"><a href="libraries/input.html">入力クラス</a> の <kbd>post()</kbd> と <kbd>get()</kbd> が、引数を与えなかった場合にPOSTとGETそれぞれの値をすべて返すようになりました。</li>
 		</ul>
 	</li>
@@ -209,31 +209,31 @@ Hg Tag: v2.0.0</p>
 			<li><a href="./database/configuration.html">データベース設定</a>に設定値 <kbd>autoinit</kbd> を追加しました。</li>
 			<li><a href="./database/configuration.html">データベース設定</a>に設定値 <kbd>stricton</kbd> を追加しました。</li>
 			<li><a href="database/utilities.html">データベースユーティリティクラス</a>に <kbd>database_exists()</kbd> メソッドを追加しました。</li>
-			<li>db-&gt;version() メソッドにおいて，それ用の SQL クエリの代わりに，例外的に関数でバージョンを取得するデータベースのリストを変更しました。現在，このリストは Oracle と SQLite のみです。</li>
-			<li> <kbd>field_data()</kbd> メソッドにおいて，ドライバの特定のテーブル識別子保護機能が不正なクエリを発行することがある不具合を修正しました。</li>
-			<li>データベースドライバにおいて，未定義のクラス変数が参照されていた不具合を修正しました。</li>
+			<li>db-&gt;version() メソッドにおいて、それ用の SQL クエリの代わりに、例外的に関数でバージョンを取得するデータベースのリストを変更しました。現在、このリストは Oracle と SQLite のみです。</li>
+			<li> <kbd>field_data()</kbd> メソッドにおいて、ドライバの特定のテーブル識別子保護機能が不正なクエリを発行することがある不具合を修正しました。</li>
+			<li>データベースドライバにおいて、未定義のクラス変数が参照されていた不具合を修正しました。</li>
 			<li>問題があるクエリのデータベースエラーでファイル名と行数を表示するように変更しました。</li>
 			<li>廃止予定であった次のメソッドを削除しました: orwhere, orlike, groupby, orhaving, orderby, getwhere</li>
 			<li>非推奨であった drop_database() と create_database() メソッドをデータベースユーティリティドライバから削除しました。</li>
-			<li>データベースフォージクラスにおいて，Postgres のドライバの create_table() メソッドを改良しました。</li>
+			<li>データベースフォージクラスにおいて、Postgres のドライバの create_table() メソッドを改良しました。</li>
 		</ul>
 	</li>
 	<li>ヘルパ
 		<ul>
 			<li><a href="./helpers/text_helper.html">テキストヘルパ</a>に <kbd>convert_accented_characters()</kbd> メソッドを追加しました。</li>
 			<li><a href="helpers/form_helper.html">Form ヘルパ</a>の <kbd>form_open()</kbd> 関数で挿入される属性のリストに accept-charset を追加しました。</li>
-			<li>命名規則により，<kbd>dohash()</kbd> 関数は推奨されないので <kbd>do_hash()</kbd> を使用してください。</li>
-			<li><a href="helpers/file_helper.html">ファイルヘルパ</a>の <kbd>get_dir_file_info()</kbd> メソッドにおいて，以前のバージョンと互換性のない変更がありました。もう責任ある利用の観点により
+			<li>命名規則により、<kbd>dohash()</kbd> 関数は推奨されないので <kbd>do_hash()</kbd> を使用してください。</li>
+			<li><a href="helpers/file_helper.html">ファイルヘルパ</a>の <kbd>get_dir_file_info()</kbd> メソッドにおいて、以前のバージョンと互換性のない変更がありました。もう責任ある利用の観点により
 				デフォルトでは再帰処理を行ないません (気を付けないとこの関数はサーバのパフォーマンスの問題を引き起こし得ます) 。</li>
-			<li><a href="helpers/directory_helper.html">ディレクトリヘルパ</a>の <kbd>directory_map()</kbd> メソッドにおいて，再帰的に探索する深さを第 2 引数で指定できるようになりました。</li>
-			<li><a href="helpers/file_helper.html">ファイルヘルパ</a>の <kbd>delete_files()</kbd> メソッドでにおいて，失敗したときは FALSE を返すように変更しました。</li>
+			<li><a href="helpers/directory_helper.html">ディレクトリヘルパ</a>の <kbd>directory_map()</kbd> メソッドにおいて、再帰的に探索する深さを第 2 引数で指定できるようになりました。</li>
+			<li><a href="helpers/file_helper.html">ファイルヘルパ</a>の <kbd>delete_files()</kbd> メソッドでにおいて、失敗したときは FALSE を返すように変更しました。</li>
 			<li><a href="helpers/number_helper.html">数字ヘルパ</a>の <kbd>byte_format()</kbd> メソッドの第 2 引数で精度を指定できるようになりました。</li>
 			<li><a href="helpers/string_helper.html">文字列ヘルパ</a>の <kbd>random_string()</kbd> 関数に文字列のタイプとして alpha と sha1 を追加しました。</li>
-			<li><kbd>prep_url()</kbd> 関数で，すでにスキーマ [ 訳注: “http://” など ] がついた文字列が与えられた場合，先頭に http:// を追加しないように変更しました。</li>
-			<li>ファイルヘルパの <kbd>get_file_info()</kbd> 関数で，更新時刻の取得に filectime() から filemtime() を使うように変更しました。</li>
-			<li><kbd>smiley_js()</kbd> 関数で，script タグを含まない JavaScript を返すオプションの第 3 引数を追加しました。</li>
-			<li><a href="./helpers/html_helper.html">HTML ヘルパ</a>の <kbd>img()</kbd> メソッドは，alt 属性が指定されない場合，空の alt 属性を出力するようになりました。</li>
-			<li>アプリケーションの設定ファイルで CSRF が有効になっている場合，<kbd>form_open()</kbd> は自動的に hidden フィールドを挿入します。</li>
+			<li><kbd>prep_url()</kbd> 関数で、すでにスキーマ [ 訳注: “http://” など ] がついた文字列が与えられた場合、先頭に http:// を追加しないように変更しました。</li>
+			<li>ファイルヘルパの <kbd>get_file_info()</kbd> 関数で、更新時刻の取得に filectime() から filemtime() を使うように変更しました。</li>
+			<li><kbd>smiley_js()</kbd> 関数で、script タグを含まない JavaScript を返すオプションの第 3 引数を追加しました。</li>
+			<li><a href="./helpers/html_helper.html">HTML ヘルパ</a>の <kbd>img()</kbd> メソッドは、alt 属性が指定されない場合、空の alt 属性を出力するようになりました。</li>
+			<li>アプリケーションの設定ファイルで CSRF が有効になっている場合、<kbd>form_open()</kbd> は自動的に hidden フィールドを挿入します。</li>
 		  <li><a href="./helpers/security_helper.html">セキュリティヘルパ</a>に <kbd>sanitize_filename()</kbd> 関数を追加しました。</li>
 			<li><a href="./helpers/text_helper.html">テキストヘルパ</a>に <kbd>ellipsize()</kbd> メソッドを追加しました。</li>
 			<li><a href="./helpers/array_helper.html">配列ヘルパ</a>に <kbd>elements()</kbd> メソッドを追加しました。</li>
@@ -242,14 +242,14 @@ Hg Tag: v2.0.0</p>
 	<li>その他の変更
 		<ul>
 			<li><kbd>show_404()</kbd> にログの記録を無効にするための第 2 引数 (オプション) を追加しました。</li>
-			<li>ローダにおいて，クラスをロードする際にオプションとしてサブクラスのプレフィックスを自動的に与えられるようになりました。クラス名のプレフィックスには，標準の &quot;CI_&quot; かサブクラスのプレフィックスと同じもの，またはプレフィックス無しが可能です。</li>
-			<li><kbd>is_really_writable()</kbd> において，同時に数百から数千のリクエストがあった際に衝突を避けるため，乱数を大きくしました。</li>
-			<li>ディレクトリではなくファイルが操作されているところでは，いくつかの定数を DIR_WRITE_MODE から FILE_WRITE_MODE に変更しました。</li>
+			<li>ローダにおいて、クラスをロードする際にオプションとしてサブクラスのプレフィックスを自動的に与えられるようになりました。クラス名のプレフィックスには、標準の &quot;CI_&quot; かサブクラスのプレフィックスと同じもの、またはプレフィックス無しが可能です。</li>
+			<li><kbd>is_really_writable()</kbd> において、同時に数百から数千のリクエストがあった際に衝突を避けるため、乱数を大きくしました。</li>
+			<li>ディレクトリではなくファイルが操作されているところでは、いくつかの定数を DIR_WRITE_MODE から FILE_WRITE_MODE に変更しました。</li>
 			<li><kbd>get_mime_by_extension()</kbd> は大文字と小文字を区別しません。</li>
 			<li><a href="general/reserved_names.html">予約語一覧</a> に "default" を追加しました。</li>
 			<li>config/mimes.php に 'application/x-msdownload' (.exe) と ''application/x-gzip-compressed' (.tgz) を追加しました。</li>
-			<li>zlib.output_compression が有効でサーバが動作している場合，出力クラスはもう出力の圧縮や content-length ヘッダの送信を行ないません。</li>
-			<li>出力のキャッシングにおいて，必要でないときは is_really_writable() をコールしないようにしました。</li>
+			<li>zlib.output_compression が有効でサーバが動作している場合、出力クラスはもう出力の圧縮や content-length ヘッダの送信を行ないません。</li>
+			<li>出力のキャッシングにおいて、必要でないときは is_really_writable() をコールしないようにしました。</li>
 			<li><a href="libraries/output.html">出力クラス</a>に <kbd>append_output()</kbd> のドキュメントを作成しました。</li>
 			<li><a href="libraries/encryption.html">暗号化クラス</a>に <kbd>decode()</kbd> メソッドの第 2 引数のドキュメントを作成しました。</li>
 			<li>db->close() のドキュメントを作成しました。</li>
@@ -263,19 +263,19 @@ Hg Tag: v2.0.0</p>
 <h3> 2.0.0 の不具合修正</h3>
 <ul>
 	<li class="reactor">メール送信時に  User-Agent を変更できない不具合を修正しました。</li>
-	<li>出力クラスにおいて，<dfn>_output()</dfn> メソッドでコントローラに誤ったキャッシュを送る<span class="reactor">不具合を修正しました。</span></li>
-	<li>プロファイラにおいて，失敗したクエリがクエリ実行時間を持たない<span class="reactor">不具合を修正しました。</span></li>
+	<li>出力クラスにおいて、<dfn>_output()</dfn> メソッドでコントローラに誤ったキャッシュを送る<span class="reactor">不具合を修正しました。</span></li>
+	<li>プロファイラにおいて、失敗したクエリがクエリ実行時間を持たない<span class="reactor">不具合を修正しました。</span></li>
 	<li>複数の同じヘルパやプラグインがロードされたときにログが記録される<span class="reactor">不具合を修正しました。</span></li>
 	<li>ユーザガイドの様々な誤記を修正しました (#10693, #8951, #7825, #8660, #7883, #6771, #10656)。</li>
 	<li>プロファイラの言語ファイルのキーを "profiler_no_memory_usage" から "profiler_no_memory" に<span class="reactor">修正しました。</span></li>
-	<li>Zip 圧縮クラスにおいて，PHP 4 のサーバでダウンロードできない<span class="reactor">不具合を修正しました。</span></li>
-	<li>Form バリデーションクラスで，ルールパラメータとして渡されたフィールドが翻訳されない<span class="reactor">不具合を修正しました</span> (#9132)。</li>
-	<li>語形変換ヘルパにおいて，'ch' および 'sh' で終わる単語を適切に複数形にできるように修正しました。</li>
+	<li>Zip 圧縮クラスにおいて、PHP 4 のサーバでダウンロードできない<span class="reactor">不具合を修正しました。</span></li>
+	<li>Form バリデーションクラスで、ルールパラメータとして渡されたフィールドが翻訳されない<span class="reactor">不具合を修正しました</span> (#9132)。</li>
+	<li>語形変換ヘルパにおいて、'ch' および 'sh' で終わる単語を適切に複数形にできるように修正しました。</li>
 	<li>xss_clean() が送信された URL のクエリ文字列中のハイフンを許さない<span class="reactor">不具合を修正しました</span>。</li>
-	<li>ファイルヘルパの get_dir_file_info() と get_file_info() で，再帰および Windows 上でのファイルパスに関する<span class="reactor">不具合を修正しました</span>。</li>
-	<li>データベースの設定ファイルで有効化されている場合に，Active Record のオーバーライドパラメータで Active Record 無効化できない<span class="reactor">不具合を修正しました</span>。</li>
-	<li>文字列ヘルパの reduce_double_slashes() で，先頭の複数のスラッシュもきちんと取り除くように<span class="reactor">修正しました</span> (#7585)。</li>
-	<li>XML-RPC クラスの values_parsing() で，NULL 値が '文字列型' として適切に処理されない不具合を<span class="reactor">修正しました</span>。</li>
+	<li>ファイルヘルパの get_dir_file_info() と get_file_info() で、再帰および Windows 上でのファイルパスに関する<span class="reactor">不具合を修正しました</span>。</li>
+	<li>データベースの設定ファイルで有効化されている場合に、Active Record のオーバーライドパラメータで Active Record 無効化できない<span class="reactor">不具合を修正しました</span>。</li>
+	<li>文字列ヘルパの reduce_double_slashes() で、先頭の複数のスラッシュもきちんと取り除くように<span class="reactor">修正しました</span> (#7585)。</li>
+	<li>XML-RPC クラスの values_parsing() で、NULL 値が '文字列型' として適切に処理されない不具合を<span class="reactor">修正しました</span>。</li>
 	<li>form_open_multipart() が属性を指定する引数を受け付けない<span class="reactor">不具合を修正しました</span> (#10930)。</li>
 	<li>get_mime_by_extension()</kbd> が大文字小文字を区別する<span class="reactor">不具合を修正しました</span> (#10470)。</li>
 	<li>SQLite と Oracle のドライバでいくつかのエラーメッセージが表示されない<span class="reactor">不具合を修正しました</span>。</li>
@@ -286,12 +286,12 @@ Hg Tag: v2.0.0</p>
 	<li>is_allowed_type() 中で getimagesize() が画像ファイル以外も不必要にチェックしていた<span class="reactor">不具合を修正しました</span>。</li>
 	<li>暗号化クラスでキーが空の場合にエラーにならない<span class="reactor">不具合を修正しました</span>。</li>
 	<li>Email クラスで clear() メソッドを使用した際に CC と BCC がリセットされない<span class="reactor">不具合を修正しました</span> (#109)。</li>
-	<li>PHP のバージョンが 5.1.2 未満の場合，URL ヘルパの prep_url() で PHP のエラーが発生する<span class="reactor">不具合を修正しました</span>。</li>
-	<li>キャッシュディレクトリの設定値が見つからない場合，core/output のログメッセージを出力するように<span class="reactor">修正しました</span>。</li>
+	<li>PHP のバージョンが 5.1.2 未満の場合、URL ヘルパの prep_url() で PHP のエラーが発生する<span class="reactor">不具合を修正しました</span>。</li>
+	<li>キャッシュディレクトリの設定値が見つからない場合、core/output のログメッセージを出力するように<span class="reactor">修正しました</span>。</li>
 	<li>load-&gt;library() に配列を渡しても複数のライブラリがロードできない<span class="reactor">不具合を修正しました</span>。</li>
-	<li>HTML ヘルパにおいて，img() 関数で src と alt の間に必要以上のスペースが入る<span class="reactor">不具合を修正しました</span>。</li>
+	<li>HTML ヘルパにおいて、img() 関数で src と alt の間に必要以上のスペースが入る<span class="reactor">不具合を修正しました</span>。</li>
 	<li>profilers _compile_queries() メソッドの<span class="reactor">不具合を修正しました</span>。</li>
-	<li>日付ヘルパで，DATE_ISO8601 定数が不正な書式の日付を返す<span class="reactor">不具合を修正しました</span>。</li>
+	<li>日付ヘルパで、DATE_ISO8601 定数が不正な書式の日付を返す<span class="reactor">不具合を修正しました</span>。</li>
 </ul>
 
 <h2>Version 1.7.2</h2>
