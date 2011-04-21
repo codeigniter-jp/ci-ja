@@ -85,9 +85,9 @@ echo  $this->pagination->create_links();</code>
 20程度の項目を設定できますが、例のように、最低限3つの設定項目が必要です。上で示したそれらの設定項目についての説明です:</p>
 
 <ul>
-	<li><strong>base_url</strong> ページネーション処理が含まれるコントローラクラス/ メソッドへの完全なURL。
-	上の例では、URLは、"Test"という名前のコントローラと "page" という名前のメソッドを指しています。
-	<a href="../general/routing.html">URIを再ルーティング</a> することが可能ですが、その場合は、URLに違った構造を指定する必要があることを忘れないようにしてください。</li>
+	<li><strong>base_url</strong> ページネーション処理が含まれるコントローラクラス/ メソッドへの完全な URL。
+	上の例では、URL は、"Test" という名前のコントローラと "page" という名前のメソッドを指しています。
+	<a href="../general/routing.html">URI を再ルーティング</a> することが可能ですが、その場合は、URL に違った構造を指定する必要があることを忘れないようにしてください。</li>
 	<li><strong>total_rows</strong> この数字は、ページネーションで表示すべき結果セットの総行数をあらわします。
 	典型的には、この数字は、データベースクエリが返した総行数になります。
 	</li>
@@ -112,7 +112,7 @@ echo  $this->pagination->create_links();</code>
 
 <h4>$config['uri_segment'] = 3;</h4>
 
-<p>ページネーション 機能は、URIのどのセグメントにページ番号が含まれるかを自動的に決定します。
+<p>ページネーション 機能は、URI のどのセグメントにページ番号が含まれるかを自動的に決定します。
 もしこれを違うようにする場合は、指定することができます。</p>
 
 <h4>$config['num_links'] = 2;</h4>
@@ -120,7 +120,7 @@ echo  $this->pagination->create_links();</code>
 <p>選択中のページ番号の前後に表示したい &quot;数字&quot; リンクの数。たとえば、2
 を指定すると、このページの一番上の方のサンプルのリンクのように、現在のページのページ番号の両脇に2つの番号リンクが置かれます。</p>
 <h4>$config['page_query_string'] = TRUE</h4>
-<p>デフォルトでは、ページネーションライブラリは、<a href="../general/urls.html">URIセグメント</a> を使用しているものとして、以下のようなリンクを生成します。</p>
+<p>デフォルトでは、ページネーションライブラリは、<a href="../general/urls.html">URI セグメント</a> を使用しているものとして、以下のようなリンクを生成します。</p>
 <p><code>http://example.com/index.php/test/page/20</code></p>
 <p>もし、$config['enable_query_strings'] を TRUE に設定している場合は、リンクは自動的にクエリ文字列に書き換えられます。$config['page_query_string'] を TRUE に設定することで、クエリ文字列を明示的に指定できます。この場合、ページネーションリンクは、以下のようになります。</p>
 <p><code>http://example.com/index.php?c=test&amp;m=page&amp;per_page=20</code></p>
