@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Formヘルパ：CodeIgniter ユーザガイド 日本語版</title>
+<title>Form ヘルパ：CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -88,7 +88,7 @@ Form ヘルパ
 
 <h4>属性の追加</h4>
 
-<p>次のように、第2パラメータに連想配列で渡すことで、属性を追加できます:</p>
+<p>次のように、第2引数に連想配列で渡すことで、属性を追加できます:</p>
 
 <code>
 $attributes = array('class' => 'email', 'id' => 'myform');<br />
@@ -101,7 +101,7 @@ echo form_open('email/send', $attributes);</code>
 
 <h4>隠しフィールドの追加</h4>
 
-<p>次のように、第3パラメータに連想配列で渡すことで、隠しフィールドを追加できます:</p>
+<p>次のように、第3引数に連想配列で渡すことで、隠しフィールドを追加できます:</p>
 
 <code>
 $hidden = array('username' => 'Joe', 'member_id' => '234');<br />
@@ -122,7 +122,7 @@ echo form_open('email/send', '', $hidden);</code>
 
 <h2>form_hidden()</h2>
 
-<p>隠しフィールドを生成します。一つのフィールドの 名前 / 値 の両方の文字列を渡すことができます:</p>
+<p>隠しフィールドを生成します。1つのフィールドの 名前 / 値 の両方の文字列を渡すことができます:</p>
 
 <code>form_hidden('username', 'johndoe');<br />
 <br />
@@ -245,7 +245,7 @@ echo form_dropdown('shirts', $options, 'large', $js);</code>
 
 <p>標準的な複数選択フィールドを生成します。第1引数はフィールド名、
 第2引数はオプションの連想配列、第3引数は選択状態にしたい値です。
-フィールド名に <samp>foo[]</samp> のようなPOSTの配列構文を利用する必要がある、という点を除けば、
+フィールド名に <samp>foo[]</samp> のような POST の配列構文を利用する必要がある、という点を除けば、
 引数の使い方は上記の <kbd>form_dropdown()</kbd> と同じです。</p>
 
 
@@ -260,9 +260,9 @@ echo form_fieldset_close();
 // 下記のようなタグを生成します<br />
 &lt;fieldset&gt;
 <br />
-&lt;legend&gt;Address Information&lt;/legend&gt;  
+&lt;legend&gt;Address Information&lt;/legend&gt;
 <br />
-&lt;p&gt;form content here&lt;/p&gt;  
+&lt;p&gt;form content here&lt;/p&gt;
 <br />
 &lt;/fieldset&gt;</code>
 <p>他の関数同様、各属性に値を設定したい場合は、第2引数に連想配列を渡すことができます。</p>
@@ -378,7 +378,7 @@ echo form_button($data);<br />
 </code>
 
 フォームに追加のデータを持たせたい場合、JavaScript の様に3番目の引数に文字列で渡すことができます。
-<code> 
+<code>
 $js = 'onClick="some_function()"';<br /><br />
 echo form_button('mybutton', 'Click Me', $js);
 </code>
