@@ -133,7 +133,7 @@ $query = $this->db->get('mytable');<br />
 $query = $this-&gt;db-&gt;get('mytable');<br />
 </code></p>
 <h2>$this->db->select_max();</h2>
-<p>クエリの "SELECT MAX(field)" の部分を書き出します。 結果フィールドをリネームするために、追加で第二引数を指定できます。</p>
+<p>クエリの "SELECT MAX(field)" の部分を書き出します。 結果フィールドをリネームするために、追加で第2引数を指定できます。</p>
 <p><code>
 $this->db->select_max('age');<br />
 $query = $this->db->get('members');<br />
@@ -145,21 +145,21 @@ $query = $this-&gt;db-&gt;get('members');<br />
 // 次を生成: SELECT MAX(age) as member_age FROM members</code></p>
 
 <h2>$this->db->select_min();</h2>
-<p>クエリの "SELECT MIN(field)" の部分を書き出します。<dfn>select_max()</dfn> と同様に、結果フィールドをリネームするために、追加で第二引数を指定できます。</p>
+<p>クエリの "SELECT MIN(field)" の部分を書き出します。<dfn>select_max()</dfn> と同様に、結果フィールドをリネームするために、追加で第2引数を指定できます。</p>
 <p><code>
 $this->db->select_min('age');<br />
 $query = $this->db->get('members');<br />
 // 次を生成: SELECT MIN(age) as age FROM members</code></p>
 
 <h2>$this->db->select_avg();</h2>
-<p>クエリの"SELECT AVG(field)" の部分を書き出します。 <dfn>select_max()</dfn> と同様に、結果フィールドをリネームするために、追加で第二引数を指定できます。</p>
+<p>クエリの"SELECT AVG(field)" の部分を書き出します。 <dfn>select_max()</dfn> と同様に、結果フィールドをリネームするために、追加で第2引数を指定できます。</p>
 <p><code>
 $this->db->select_avg('age');<br />
 $query = $this->db->get('members');<br />
 // 次を生成: SELECT AVG(age) as age FROM members</code></p>
 
 <h2>$this->db->select_sum();</h2>
-<p>クエリの"SELECT SUM(field)"の部分を書き出します。<dfn>select_max()</dfn> と同様に、結果フィールドをリネームするために、追加で第二引数を指定できます。</p>
+<p>クエリの"SELECT SUM(field)"の部分を書き出します。<dfn>select_max()</dfn> と同様に、結果フィールドをリネームするために、追加で第2引数を指定できます。</p>
 <p><code>
 $this->db->select_sum('age');<br />
 $query = $this->db->get('members');<br />
@@ -232,7 +232,7 @@ $this->db->join('comments', 'comments.id = blogs.id', <strong>'left'</strong>);<
 
 	<li><strong>演算子を指定しながら キー/値 を指定する方法:</strong>
 
-	<p>比較方法を指定するために、第一引数に演算子を含めることができます:</p>
+	<p>比較方法を指定するために、第1引数に演算子を含めることができます:</p>
 
 	<code>$this->db->where('name !=', $name);<br />
 	$this->db->where('id <', $id);
@@ -323,7 +323,7 @@ $this->db->or_where('id >', $id);
 	$this->db->like('body', 'match');
 	<br /><br />
 	// WHERE title LIKE '%match%' AND  body LIKE '%match%'</code>
-	 ワイルドカード (%) が付加される場所を制御したい場合は、追加の第三引数を利用できます。'before'、'after' そして 'both' (規定値) が指定できる選択肢になります。 
+	 ワイルドカード (%) が付加される場所を制御したい場合は、追加の第3引数を利用できます。'before'、'after' そして 'both' (規定値) が指定できる選択肢になります。 
 	<code>$this->db->like('title', 'match', 'before');
 	<br />
 		// 次を生成: WHERE title LIKE '%match'	<br />
@@ -472,7 +472,7 @@ echo $this-&gt;db-&gt;count_all_results();<br />
 
 <h2>$this->db->count_all();</h2>
 
-<p>特定のテーブルのデータ件数（行数）をカウントします。第一引数にテーブル名を指定します。例:</p>
+<p>特定のテーブルのデータ件数（行数）をカウントします。第1引数にテーブル名を指定します。例:</p>
 
 <code>echo $this->db->count_all('<var>my_table</var>');<br />
 <br />
@@ -566,7 +566,7 @@ $this->db->insert('mytable');
 $this-&gt;db-&gt;set('title', $title);<br />
 $this-&gt;db-&gt;set('status', $status);<br />
 $this-&gt;db-&gt;insert('mytable'); </code>
-<p>また、<strong>set()</strong> は、FALSE をセットするとデータをエスケープするのを回避する、第三引数 ($escape) をセットできます。違いを示すため、escape パラメータを利用する場合と利用しない場合、両方の set() の使用の説明を挙げます。</p>
+<p>また、<strong>set()</strong> は、FALSE をセットするとデータをエスケープするのを回避する、第3引数 ($escape) をセットできます。違いを示すため、escape パラメータを利用する場合と利用しない場合、両方の set() の使用の説明を挙げます。</p>
 <p><code>$this-&gt;db-&gt;set('field', 'field+1', FALSE);<br />
 	$this-&gt;db-&gt;insert('mytable'); <br />
 	//  INSERT INTO mytable (field) VALUES (field+1) を生成<br />
