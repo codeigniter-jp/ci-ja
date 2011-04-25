@@ -266,7 +266,7 @@ $this->db->join('comments', 'comments.id = blogs.id', <strong>'left'</strong>);<
 <p><code>		$this-&gt;db-&gt;where('MATCH (field) AGAINST (&quot;value&quot;)', NULL, FALSE);<br /> 
 </code></p> 
 <h2>$this->db->or_where();</h2>
-<p>他の句とORで連結される以外は、上のメソッドと同じものです:</p>
+<p>他の句と OR で連結される以外は、上のメソッドと同じものです:</p>
 
 <code>
 $this->db->where('name !=', $name);<br />
@@ -345,7 +345,7 @@ $this->db->or_where('id >', $id);
 
 
 <h2>$this->db->or_like();</h2>
-<p>他の句とORで連結される以外は、上のメソッドと同じものです:</p>
+<p>他の句と OR で連結される以外は、上のメソッドと同じものです:</p>
 
 <code>
 $this->db->like('title', 'match');<br />
@@ -363,7 +363,7 @@ $this->db->or_like('body', $match);
 <br />
 // WHERE title NOT LIKE '%match%</code>
 <h2>$this-&gt;db-&gt;or_not_like();</h2>
-<p>この関数は、複数のものが、ORで連結されるということ以外は、<strong>not_like()</strong> と同じです:</p>
+<p>この関数は、複数のものが、OR で連結されるということ以外は、<strong>not_like()</strong> と同じです:</p>
 <code> $this-&gt;db-&gt;like('title', 'match');<br />
 $this-&gt;db-&gt;or_not_like('body', 'match'); <br />
 <br />
