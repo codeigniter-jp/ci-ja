@@ -119,16 +119,16 @@ foreach ($query->result() as $row)<br />
 <p class="important">Note: get_where() は、以前は getwhere() という名前でした。getwhere() は 2.0.0 で廃止されました。<br /></p>
 
 <h2>$this->db->select();</h2>
-<p>次のようにすると、クエリのSELECT の部分を指定できます [ 訳注： 選択したい列を指定できるということ ]:</p>
+<p>次のようにすると、クエリの SELECT の部分を指定できます [ 訳注: 選択したい列を指定できるということ ]:</p>
 <p><code>
 $this->db->select('title, content, date');<br />
 <br />
 $query = $this->db->get('mytable');<br />
 <br />
-// 生成されるSQL文: SELECT title, content, date FROM mytable</code></p>
+// 生成される SQL 文: SELECT title, content, date FROM mytable</code></p>
 <p class="important"><strong>Note:</strong> テーブルからすべての列(*)を取得する場合は、このメソッドは不要です。このメソッドが省略されると、CodeIgniter はすべての列を選択する（SELECT * ... ）ものとします。</p>
 
-<p>$this-&gt;db-&gt;select() は追加で第二引数をセットできます。第２引数にFALSEをセットすると、CodeIgniter はバッククォート（バックチック）でフィールド名やテーブル名を保護しないようになります。 [訳注：識別子（テーブル名や列名など）が予約語の場合や、特殊文字が含まれる場合、たとえばMySQLでは、バッククォート「`」でそれらを囲む必要があります。第２引数にFALSEをセットするとこれを自動では行いません。]これは、複合的なSELECT文が必要な場合に有用です。</p>
+<p>$this-&gt;db-&gt;select() は追加で第2引数をセットできます。第2引数に FALSE をセットすると、CodeIgniter はバッククォート（バックチック）でフィールド名やテーブル名を保護しないようになります [ 訳注: 識別子（テーブル名や列名など）が予約語の場合や、特殊文字が含まれる場合、たとえば MySQL では、バッククォート「`」でそれらを囲む必要があります。第2引数に FALSE をセットするとこれを自動では行いません ]。これは、複合的な SELECT 文が必要な場合に有用です。</p>
 <p><code>$this-&gt;db-&gt;select('(SELECT SUM(payments.amount) FROM payments WHERE payments.invoice_id=4') AS amount_paid', FALSE); <br />
 $query = $this-&gt;db-&gt;get('mytable');<br />
 </code></p>
@@ -175,7 +175,7 @@ $this->db->from('mytable');<br />
 <br />
 $query = $this->db->get();<br />
 <br />
-// 生成されるSQL文: SELECT title, content, date FROM mytable</code>
+// 生成される SQL 文: SELECT title, content, date FROM mytable</code>
 
 <p class="important">Note: 先に示したとおり、クエリの FROM の部分は、 <dfn>$this->db->get()</dfn> メソッドの中で指定できます。
 どちらを使うかは好みです。</p>
@@ -191,7 +191,7 @@ $this->db->join('comments', 'comments.id = blogs.id');<br />
 <br />
 $query = $this->db->get();<br />
 <br />
-// 生成されるSQL文: <br />
+// 生成される SQL 文: <br />
 // SELECT * FROM blogs<br />
 // JOIN comments ON comments.id = blogs.id<br />
 </code>
@@ -204,7 +204,7 @@ $query = $this->db->get();<br />
 <code>
 $this->db->join('comments', 'comments.id = blogs.id', <strong>'left'</strong>);<br />
 <br />
-// 生成されるSQL文: LEFT JOIN comments ON comments.id = blogs.id</code>
+// 生成される SQL 文: LEFT JOIN comments ON comments.id = blogs.id</code>
 
 
 
@@ -219,7 +219,7 @@ $this->db->join('comments', 'comments.id = blogs.id', <strong>'left'</strong>);<
 	<li><strong>単に キー/値 を指定する方法:</strong>
 
 	<code>$this->db->where('name', $name);
-	<br /><br />// 生成されるSQL文: WHERE name = 'Joe'	</code>
+	<br /><br />// 生成される SQL 文: WHERE name = 'Joe'	</code>
 
 	<p>等号 (=) が付加されることに注意してください。</p>
 
@@ -236,7 +236,7 @@ $this->db->join('comments', 'comments.id = blogs.id', <strong>'left'</strong>);<
 
 	<code>$this->db->where('name !=', $name);<br />
 	$this->db->where('id <', $id);
-	<br /><br />// 生成されるSQL文: WHERE name != 'Joe' AND id < 45	</code>	</li>
+	<br /><br />// 生成される SQL 文: WHERE name != 'Joe' AND id < 45	</code>	</li>
 	<li><strong>連想配列を使用する方法:</strong>
 
 
@@ -244,7 +244,7 @@ $this->db->join('comments', 'comments.id = blogs.id', <strong>'left'</strong>);<
 	$array = array('name' => $name, 'title' => $title, 'status' => $status);<br /><br />
 
 	$this->db->where($array);
-	<br /><br />// 生成されるSQL文: WHERE name = 'Joe' AND title = 'boss' AND status = 'active'	</code>
+	<br /><br />// 生成される SQL 文: WHERE name = 'Joe' AND title = 'boss' AND status = 'active'	</code>
 
 	<p>またこの方法を使う場合も、次のように、演算子を含めて指定することができます:</p>
 
@@ -272,7 +272,7 @@ $this->db->join('comments', 'comments.id = blogs.id', <strong>'left'</strong>);<
 $this->db->where('name !=', $name);<br />
 $this->db->or_where('id >', $id);
 <br />
-<br />// 生成されるSQL文: WHERE name != 'Joe' OR id > 50</code>
+<br />// 生成される SQL 文: WHERE name != 'Joe' OR id > 50</code>
 
 <p class="important">Note: or_where() は、以前は orwhere() という名前でした。 orwhere() は 2.0.0 で廃止されました。</p>
 
@@ -315,7 +315,7 @@ $this->db->or_where('id >', $id);
 	<li><strong>単に キー/値 を指定する方法:</strong>
 
 	<code>$this->db->like('title', 'match');
-	<br /><br />// 生成されるSQL文: WHERE title LIKE '%match%'	</code>
+	<br /><br />// 生成される SQL 文: WHERE title LIKE '%match%'	</code>
 
 	<p>複数回このメソッドを呼ぶと、それらは <var>AND </var>で連結されます:</p>
 
@@ -372,14 +372,14 @@ $this-&gt;db-&gt;or_not_like('body', 'match'); <br />
 <p>クエリの GROUP BY の部分を指定できます:</p>
 
 <code>$this->db->group_by("title");
-<br /><br />// 生成されるSQL文: GROUP BY title
+<br /><br />// 生成される SQL 文: GROUP BY title
 </code>
 
 <p>また、次のように、複数の値を配列で渡すこともできます:</p>
 
 <code>$this->db->group_by(array("title", "date");
 <br />
-<br />// 生成されるSQL文: GROUP BY title, date</code>
+<br />// 生成される SQL 文: GROUP BY title, date</code>
 
 <p class="important">Note: group_by() は、以前は groupby() という名前でした。groupby()は 2.0.0 で廃止されました。 </p>
 
@@ -395,10 +395,10 @@ $this-&gt;db-&gt;or_not_like('body', 'match'); <br />
 	
 <code>$this->db->having('user_id = 45');
 <br />
-// 生成されるSQL文 : HAVING user_id = 45<br />
+// 生成される SQL 文 : HAVING user_id = 45<br />
 <br /><br /> 
-$this-&gt;db-&gt;having('user_id',  45);<br />
-// 生成されるSQL文 : HAVING user_id = 45<br /> 
+$this-&gt;db-&gt;having('user_id',  45); <br />
+// 生成される SQL 文 : HAVING user_id = 45<br />
 <br />
 </code>
 
@@ -407,29 +407,29 @@ $this-&gt;db-&gt;having('user_id',  45);<br />
 
 <p><code>$this->db->having(array('title =' => 'My Title', 'id <' => $id)); <br />
 		<br />
-	// 生成されるSQL文: HAVING title = 'My Title', id < 45</code></p> 
-<p>CodeIgniterがクエリをエスケープすることのできるデータベースを使っている場合は、第3引数をFALSEにして、エスケープを無効にすることができます。</p>
-<p><code>$this-&gt;db-&gt;having('user_id',  45); <br /> 
-// 生成されるSQL文: HAVING `user_id` = 45 in some databases such as MySQL 
-		<br /> 
-		$this-&gt;db-&gt;having('user_id',  45, FALSE); <br /> 
-// 生成されるSQL文: HAVING user_id = 45</code></p> 
+	// 生成される SQL 文: HAVING title = 'My Title', id < 45</code></p> 
+<p>CodeIgniter がクエリをエスケープすることのできるデータベースを使っている場合は、第3引数を FALSE にして、エスケープを無効にすることができます。</p>
+<p><code>$this-&gt;db-&gt;having('user_id',  45); <br />
+// 生成される SQL 文: HAVING `user_id` = 45 in some databases such as MySQL
+		<br />
+		$this-&gt;db-&gt;having('user_id',  45, FALSE); <br />
+// 生成される SQL 文: HAVING user_id = 45</code></p>
 <h2>$this-&gt;db-&gt;or_having();</h2>
-<p>複数の句を &quot;OR&quot; で分つ以外は、having()と同じです。</p>
+<p>複数の句を &quot;OR&quot; で分つ以外は、having() と同じです。</p>
 <h2>$this->db->order_by();</h2>
 <p>ORDER BY 句を指定できます。第1引数は、並べ替えたい列の名前を指定します。
 第2引数は、並べ替え結果の順序を指定します。選択肢は <kbd>asc</kbd> または <kbd>desc</kbd> または <kbd>random</kbd> です。</p>
 
 <code>$this->db->order_by("title", "desc");
 <br />
-<br />// 生成されるSQL文: ORDER BY title DESC
+<br />// 生成される SQL 文: ORDER BY title DESC
 </code>
 
-<p>第一引数で、自由に文字列で指定することもできます:</p>
+<p>第1引数で、自由に文字列で指定することもできます:</p>
 
 <code>$this->db->order_by('title desc, name asc');
 <br />
-<br />// 生成されるSQL文: ORDER BY title DESC, name ASC
+<br />// 生成される SQL 文: ORDER BY title DESC, name ASC
 </code>
 
 <p>あるいは、複数のフィールドが必要な場合は、複数回のメソッド呼び出しもできます</p>
@@ -447,7 +447,7 @@ $this-&gt;db-&gt;having('user_id',  45);<br />
 <code>
 $this->db->limit(10);<br />
 <br />
-// 生成されるSQL文: LIMIT 10</code>
+// 生成される SQL 文: LIMIT 10</code>
 
 
 <p>第2引数でオフセットを指定できます.</p>
@@ -455,7 +455,7 @@ $this->db->limit(10);<br />
 <code>
 $this->db->limit(10, 20);<br />
 <br />
-// 生成されるSQL文: LIMIT 20, 10 (MySQLでの例。他のデータベースでは、若干違う構文になります。)</code>
+// 生成される SQL 文: LIMIT 20, 10 (MySQLでの例。他のデータベースでは、若干違う構文になります。)</code>
 
 
 <h2>$this->db->count_all_results();</h2>
@@ -496,7 +496,7 @@ $data = array(<br />
 <br />
 $this->db->insert('mytable', $data);
 <br /><br />
-// 生成されるSQL文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')</code>
+// 生成される SQL 文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')</code>
 
 <p>第1引数はテーブル名で、第2引数は、値の連想配列で指定します。</p>
 
@@ -515,11 +515,11 @@ $object = new Myclass;<br />
 <br />
 $this->db->insert('mytable', $object);
 <br /><br />
-// 生成されるSQL文: INSERT INTO mytable (title, content, date) VALUES ('My Title', 'My Content', 'My Date')</code>
+// 生成される SQL 文: INSERT INTO mytable (title, content, date) VALUES ('My Title', 'My Content', 'My Date')</code>
 
 <p>第1引数はテーブル名で、第2引数はオブジェクトになります。</p>
 
-<p class="important"><strong>Note:</strong>すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
+<p class="important"><strong>Note:</strong> すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
 
 <h2>$this->db->insert_batch();</h2>
 <p>与えられたデータをもとに INSERT 文を生成し実行します。
@@ -541,35 +541,11 @@ $data = array(<br/>
 <br />
 $this->db->insert_batch('mytable', $data);
 <br /><br />
-// 生成されるSQL文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date'),  ('Another title', 'Another name', 'Another date')</code>
+// 生成される SQL 文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date'),  ('Another title', 'Another name', 'Another date')</code>
 
 <p>第1引数はテーブル名で、第2引数は、値の連想配列で指定します。</p>
 
-<h2>$this->db->insert_batch();</h2>
-<p>Generates an insert string based on the data you supply, and runs the query. You can either pass an
-<strong>array</strong> or an <strong>object</strong> to the function.  Here is an example using an array:</p>
-
-<code>
-$data = array(<br/>
-&nbsp;&nbsp;&nbsp;array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'My title' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'My Name' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'My date'<br />
-&nbsp;&nbsp;&nbsp;),<br />
-&nbsp;&nbsp;&nbsp;array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'Another title' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'Another Name' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'Another date'<br />
-&nbsp;&nbsp;&nbsp;)<br/>
-);<br />
-<br />
-$this->db->update_batch('mytable', $data);
-<br /><br />
-// Produces: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date'),  ('Another title', 'Another name', 'Another date')</code>
-
-<p>The first parameter will contain the table name, the second is an associative array of values.</p>
-
-<p class="important"><strong>Note:</strong> All values are escaped automatically producing safer queries.</p>
+<p class="important"><strong>Note:</strong> すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
 
 
 
@@ -582,7 +558,7 @@ $this->db->update_batch('mytable', $data);
 <br />
 $this->db->insert('mytable');
 <br /><br />
-// 生成されるSQL文: INSERT INTO mytable (name) VALUES ('{$name}')</code>
+// 生成される SQL 文: INSERT INTO mytable (name) VALUES ('{$name}')</code>
 
 <p>もし複数のメソッドをコールした場合、それらは insert か update かに基づき適切に組み立てられます:</p>
 
@@ -630,7 +606,7 @@ $this->db->insert('mytable');
 <h1>データの更新</h1>
 
 <h2>$this->db->update();</h2>
-<p>指定されたデータをもとにUPDATE文を生成してクエリを実行します。
+<p>指定されたデータをもとに UPDATE 文を生成してクエリを実行します。
 <strong>配列</strong> または <strong>オブジェクト</strong> をメソッドに渡すことができます。
 配列を使った例は次の通りです:</p>
 
@@ -644,7 +620,7 @@ $data = array(<br />
 $this->db->where('id', $id);<br />
 $this->db->update('mytable', $data);
 <br /><br />
-// 生成されるSQL文:<br />
+// 生成される SQL 文:<br />
 // UPDATE mytable <br />
 // SET title = '{$title}', name = '{$name}', date = '{$date}'<br />
 // WHERE id = $id</code>
@@ -666,7 +642,7 @@ $this->db->where('id', $id);<br />
 $this->db->update('mytable', $object);
 <br />
 <br />
-// 生成されるSQL文:<br />
+// 生成される SQL 文:<br />
 // UPDATE mytable <br />
 // SET title = '{$title}', name = '{$name}', date = '{$date}'<br />
 // WHERE id = $id</code>
@@ -698,17 +674,17 @@ $this->db->update('mytable', $object);
 <code>
 $this->db->delete('mytable', array('id' => $id));
 <br /><br />
-// 生成されるSQL文:<br />
+// 生成される SQL 文:<br />
 // DELETE FROM mytable <br />
 // WHERE id = $id</code>
 
-<p>第1引数はテーブル名で、第2引数は、WHERE句です。次のように、メソッドの第2引数にデータを渡す代わりに、 
+<p>第1引数はテーブル名で、第2引数は、WHERE 句です。次のように、メソッドの第2引数にデータを渡す代わりに、
 <dfn>where()</dfn> または <dfn>or_where()</dfn> メソッドを使うこともできます:</p>
 
 <p><code> $this->db->where('id', $id);<br />
 	$this->db->delete('mytable'); <br />
 	<br />
-	// 生成されるSQL文:<br />
+	// 生成される SQL 文:<br />
 	// DELETE FROM mytable <br />
 	// WHERE id = $id</code></p>
 <p>1つよりも多いテーブルを削除したい場合は、delete() にテーブル名の配列を渡すことができます</p>
@@ -717,7 +693,7 @@ $this-&gt;db-&gt;where('id', '5');<br />
 $this-&gt;db-&gt;delete($tables);</code></p>
 <p>テーブルの全データを削除したい場合は、 <dfn>truncate()</dfn> メソッドか <dfn>empty_table() </dfn>が利用できます。</p>
 <h2>$this-&gt;db-&gt;empty_table();</h2>
-<p>「delete」 SQL 文字列 を生成し、クエリを実行します。<code>    $this-&gt;db-&gt;empty_table('mytable'); <br />
+<p>「delete」 SQL 文字列 を生成し、クエリを実行します。<code>	$this-&gt;db-&gt;empty_table('mytable'); <br />
 	<br />
 // 次を生成<br />
 // DELETE FROM mytable</code></p>
@@ -750,7 +726,7 @@ $query = $this->db->get();</code>
 
 <p>&quot;本当の&quot; キャッシングではないのですが、Active Record では、後で再利用するためにクエリの特定の部分を保存（あるいは、&quot;キャッシュ&quot;）することができます。 通常は、Active Record の呼び出しが完了したときには、保存された全情報は、次の呼び出しのためにリセットされます。キャッシングを利用すると、このリセットを回避することができ、情報を簡単に再利用できます。</p>
 
-<p>キャッシュされた呼び出しは、累積されます。2 回のキャッシュされた select() を呼び出し、その後に 2回キャッシュされていないselect() を呼び出した場合、4回 select() を呼び出したことになります。3つのキャッシュ関連メソッドが利用できます:</p>
+<p>キャッシュされた呼び出しは、累積されます。2回のキャッシュされた select() を呼び出し、その後に 2回キャッシュされていないselect() を呼び出した場合、4回 select() を呼び出したことになります。3つのキャッシュ関連メソッドが利用できます:</p>
 
 <h2>$this-&gt;db-&gt;start_cache()</h2>
 
