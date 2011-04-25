@@ -126,7 +126,7 @@ Hg Tag: v2.0.1</p>
 	</li>
 	<li>ヘルパー
 		<ul>
-			<li class="reactor"><a href="helpers/form_helper.html">Form ヘルパー</a> の <kbd>form_open()</kbd> はロジックが変更され、値が渡されない場合、現在の URL に投稿するようになりました。</li>
+			<li class="reactor"><a href="helpers/form_helper.html">フォームヘルパー</a> の <kbd>form_open()</kbd> はロジックが変更され、値が渡されない場合、現在の URL に投稿するようになりました。</li>
 		</ul>
 	</li>
 </ul>
@@ -221,7 +221,7 @@ Hg Tag: v2.0.0</p>
 	<li>ヘルパー
 		<ul>
 			<li><a href="./helpers/text_helper.html">テキストヘルパー</a>に <kbd>convert_accented_characters()</kbd> メソッドを追加しました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_open()</kbd> 関数で挿入される属性のリストに accept-charset を追加しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_open()</kbd> 関数で挿入される属性のリストに accept-charset を追加しました。</li>
 			<li>命名規則により、<kbd>dohash()</kbd> 関数は推奨されないので <kbd>do_hash()</kbd> を使用してください。</li>
 			<li><a href="helpers/file_helper.html">ファイルヘルパー</a>の <kbd>get_dir_file_info()</kbd> メソッドにおいて、以前のバージョンと互換性のない変更がありました。もう責任ある利用の観点により
 				デフォルトでは再帰処理を行ないません (気を付けないとこの関数はサーバのパフォーマンスの問題を引き起こし得ます) 。</li>
@@ -318,10 +318,10 @@ Hg Tag: v1.7.2</p>
 	</li>
 	<li>ヘルパー
 		<ul>
-			<li><a href="helpers/form_helper.html">Form ヘルパー</a>に <kbd>form_multiselect()</kbd> を追加しました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_hidden()</kbd> を多次元配列を受け入れるように修正しました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_prep()</kbd> を処理済みのフィールドを追跡するように修正しました。
-			これは、Form バリデーション(検証)や Form フィールドを出力するために Form ヘルパー関数を使った際に起こりうる、連続したform_prep()の呼び出しによる多重の処理・変換を避けるためです。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>に <kbd>form_multiselect()</kbd> を追加しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_hidden()</kbd> を多次元配列を受け入れるように修正しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_prep()</kbd> を処理済みのフィールドを追跡するように修正しました。
+			これは、Form バリデーション(検証)や Form フィールドを出力するためにフォームm ヘルパー関数を使った際に起こりうる、連続したform_prep()の呼び出しによる多重の処理・変換を避けるためです。</li>
 			<li><a href="helpers/directory_helper.html">ディレクトリヘルパー</a>の <kbd>directory_map()</kbd> を、隠しファイルを含められるようにし、ディレクトリの読み取りに失敗した際に FALSE を返すように修正しました。</li>
 			<li><a href="helpers/smiley_helper.html">スマイリーヘルパー</a>を複数のフィールドで動作するようにし、最後のカーソルの場所に、スマイリーを挿入するようにしました。</li>
 		</ul>
@@ -386,10 +386,10 @@ Hg Tag: 1.7.1</p>
 	</li>
 	<li>ヘルパー
 		<ul>
-			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_dropdown()</kbd> で optgroup タグを含めることができるようにしました。</li>
+			<li><a href="helpers/form_helper.html">フォーム ヘルパー</a>の <kbd>form_dropdown()</kbd> で optgroup タグを含めることができるようにしました。</li>
 			<li><a href="helpers/html_helper.html">HTML ヘルパー</a>に doctype() 関数を追加しました。</li>
 			<li><a href="helpers/url_helper.html">URL ヘルパー</a>の <kbd>url_title()</kbd> で、強制的に小文字に変換することができるようになりました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_button()</kbd> の既定の "type" 属性の値を "submit" から "button" に変更しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_button()</kbd> の既定の "type" 属性の値を "submit" から "button" に変更しました。</li>
 			<li>URL ヘルパーの redirect() を CI のサイトの外部の URL へリダイレクトできるように変更しました。</li>
 			<li>要求されたクッキーの名前が存在しない場合、グローバルのクッキープリフィックスを使って、クッキーを読み取るよう、get_cookie()を変更しました。</li>
 		</ul>
@@ -478,10 +478,10 @@ Hg Tag: 1.7.0</p>
 	</li>
 	<li>ヘルパー
 		<ul>
-			<li><a href="helpers/form_helper.html">Form ヘルパー</a> に POST データを読み取って、フォームにセットすることができる、いくつかの&quot;セット&quot;関数を追加しました。これらは、独立で、または、新たな<a href="libraries/form_validation.html">Formバリデーション（検証）クラス</a>と一緒に使うのを想定しています。</li>
-			<li><a href="helpers/url_helper.html">URLヘルパー</a>に<kbd>current_url()</kbd> と uri_segments() を追加しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a> に POST データを読み取って、フォームにセットすることができる、いくつかの&quot;セット&quot;関数を追加しました。これらは、独立で、または、新たな<a href="libraries/form_validation.html">Formバリデーション（検証）クラス</a>と一緒に使うのを想定しています。</li>
+			<li><a href="helpers/url_helper.html">URL ヘルパー</a>に<kbd>current_url()</kbd> と uri_segments() を追加しました。</li>
 			<li>&quot;+&quot;を含む Email アドレスがリンクになるように、<a href="helpers/url_helper.html">URL ヘルパー</a>の<kbd>auto_link()</kbd>を置き換えました。</li>
-			<li><a href="helpers/html_helper.html">HTMLヘルパー</a>に <kbd>meta()</kbd> 関数を追加しました。</li>
+			<li><a href="helpers/html_helper.html">HTML ヘルパー</a>に <kbd>meta()</kbd> 関数を追加しました。</li>
 			<li><a href="helpers/number_helper.html">数字ヘルパー</a>における計算の精度を改善しました。</li>
 			<li>FormおよびHTMLヘルパー関数の大部分から、付加された改行(&quot;\n&quot;)を取り除きました。</li>
 			<li><a href="helpers/date_helper.html">日付ヘルパー</a>の<kbd>human_to_unix()</kbd> 関数での検証を厳密にし、POSIX 正規表現を削除しました。</li>
@@ -563,7 +563,7 @@ Hg Tag: v1.6.3</p>
 		<ul>
 			<li><a href="helpers/language_helper.html">言語ヘルパー</a>を追加しました。</li>
 			<li><a href="helpers/number_helper.html">数字ヘルパー</a>を追加しました。</li>
-			<li><kbd>form_open()</kbd> および <kbd>form_fieldset()</kbd> で、配列または文字列の引数を受け取ることができるように<a href="helpers/form_helper.html">Form ヘルパー</a>をリファクタリングしました。</li>
+			<li><kbd>form_open()</kbd> および <kbd>form_fieldset()</kbd> で、配列または文字列の引数を受け取ることができるように<a href="helpers/form_helper.html">フォームヘルパー</a>をリファクタリングしました。</li>
 		</ul>
 	</li>
 	<li>その他の変更
@@ -572,10 +572,10 @@ Hg Tag: v1.6.3</p>
 			<li><kbd>_display_cache()</kbd> での未使用のルータへの参照を削除しました。</li>
 			<li>XSS に関して、アップロードのセキュリティ有用な、<a href="libraries/input.html">use xss_clean() で画像をテストする</a>機能を追加しました。</li>
 			<li>config/user_agents.php のモバイル ユーザエージェントのリストを大幅に拡張しました。</li>
-			<li>国際化の目的(#4614)のため、ユーザガイドの文字セット情報をtitleの上に移動しました。</li>
+			<li>国際化の目的(#4614)のため、ユーザガイドの文字セット情報を title の上に移動しました。</li>
 			<li><a href="libraries/xmlrpc.html">ユーザガイドの XMLRPC のページ</a>に、&quot;リクエストパラメータに連想配列を使用する&quot;の例を追加しました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパー</a>のform_input() で自動的に maxlength と size 属性が追加されないようにしました。</li>
-			<li><a href="helpers/number_helper.html">数字ヘルパー</a>の<kbd>byte_format()</kbd>の言語ファイルの使用についてドキュメントに記述しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>のform_input() で自動的に maxlength と size 属性が追加されないようにしました。</li>
+			<li><a href="helpers/number_helper.html">数字ヘルパー</a>の <kbd>byte_format()</kbd> の言語ファイルの使用についてドキュメントに記述しました。</li>
 		</ul>
 	</li>
 </ul>
@@ -638,7 +638,7 @@ Hg Tag: 1.6.2</p>
 	<li>ヘルパー
 		<ul>
 			<li>PHP4 のサーバで実行される可能性があるアプリケーションでいくつかの PHP5 のネイティブ関数が安全に利用できるよう<a href="helpers/compatibility_helper.html">互換性ヘルパー</a>を追加しました。(Seppo の大変な作業とコードの提供に感謝します)</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパー</a>に <kbd>form_button()</kbd> を追加しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>に <kbd>form_button()</kbd> を追加しました。</li>
 			<li><kbd>radio()</kbd> と <kbd>checkbox()</kbd> 関数で、デフォルトでチェック状態にしないように変更しました。</li>
 			<li><a href="helpers/url_helper.html">URL ヘルパー</a>の <kbd>redirect()</kbd> 関数で、追加の HTTP レスポンスコードを含めることができる機能を追加しました。</li>
 			<li><a href="helpers/html_helper.html">HTML ヘルパー</a>の <kbd>img()</kbd> で、不要なスペースを削除しました。(#4208)</li>
@@ -837,7 +837,7 @@ Hg Tag: 1.6.2</p>
 			<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に、 <kbd>strip_quotes()</kbd> 関数を追加しました。</li>
 			<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に <kbd>reduce_multiples()</kbd> 関数を追加しました。</li>
 			<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に、<kbd>quotes_to_entities()</kbd> 関数を追加しました。</li>
-			<li><kbd>form_fieldset()</kbd>, <kbd>form_fieldset_close()</kbd>, <kbd>form_label()</kbd>, および <kbd>form_reset()</kbd> 関数を<a href="./helpers/form_helper.html">Form ヘルパー</a>に追加しました。</li>
+			<li><kbd>form_fieldset()</kbd>, <kbd>form_fieldset_close()</kbd>, <kbd>form_label()</kbd>, および <kbd>form_reset()</kbd> 関数を<a href="./helpers/form_helper.html">フォームヘルパー</a>に追加しました。</li>
 			<li><kbd>form_open()</kbd> で外部の URL をサポートするようにしました。</li>
 			<li>互換性のない関数のため、MySQLi の db_backup のサポートを取りやめました。</li>
 			<li>Javascript カレンダープラグインで、ハードコードされた値を使う代わりに、月と日をカレンダー言語ファイルのものを使うようにし、国際対応にしました。</li>
@@ -956,7 +956,7 @@ Hg Tag: 1.6.2</p>
 	<li>アップロードライブラリの is_image() メソッドで、Windows IE 6/7 の MIME を取り扱う際の一般的でない挙動を考慮するようにしました。</li>
 	<li>XSS クリーニング処理のパフォーマンスを改善し、PHP 5.2 の新しい PCRE のバックトラックと再帰処理制限に対応するようにしました。</li>
 	<li><a href="./helpers/url_helper.html">URL ヘルパー</a>で、数値が渡された場合に、$title を文字列にキャストするようにしました。</li>
-	<li>Modified Form ヘルパーの form_dropdown() で、選択肢の配列のキーと値を文字列にキャストするようにし、'selected' を適切にセットするために、数値を受け入れることができるようにしました。</li>
+	<li>Modified フォームヘルパーの form_dropdown() で、選択肢の配列のキーと値を文字列にキャストするようにし、'selected' を適切にセットするために、数値を受け入れることができるようにしました。</li>
 	<li>各所で使われていた <kbd>is_numeric()</kbd> は、ピリオドが通ってしまうため、使わないようにしました。<kbd>ctype_digit()</kbd> は、互換性の問題があり、いくつかの環境で信頼性が得られなかったため、次の正規表現を代わりに使用します:  <kbd>preg_match("/[^0-9]/", $n)</kbd></li>
 	<li>非推奨: APPVER は、非推奨となり、明確さのため、CI_VERSION に置き換えられました。</li>
 </ul>
@@ -972,7 +972,7 @@ Hg Tag: 1.6.2</p>
 	<li><a href="./helpers/url_helper.html">URL ヘルパー</a>の redirect 関数の不具合を修正しました。 </li>
 	<li>ローダの未定義の変数を修正しました。</li>
 	<li>Postgreドライバのバージョンバグを修正しました。</li>
-	<li>Form ヘルパーの textarea 関数で、文字列を使用する際の不具合を修正しました。</li>
+	<li>フォームヘルパーの textarea 関数で、文字列を使用する際の不具合を修正しました。</li>
 	<li>ドキュメントの誤字を修正しました。</li>
 </ul>
 <h2>Version 1.5.2</h2>
@@ -984,7 +984,7 @@ Hg Tag: 1.6.2</p>
 	<li>Active Record の Join メソッドで、テーブルプリフィクスが考慮されない不具合を修正しました。</li>
 	<li>入力およびルータクラスのエラーメッセージからエスケープされていない変数を削除しました。</li>
 	<li>ローダで、ライブラリが2回ロードされたときに、エラーになっていた不具合を修正しました。デバッグメッセージは、表示されずに、ログ出力されるようになりました。</li>
-	<li><a href="./helpers/form_helper.html">Form ヘルパー</a>で、textarea に value 属性をセットしていた不具合を修正しました。</li>
+	<li><a href="./helpers/form_helper.html">フォームヘルパー</a>で、textarea に value 属性をセットしていた不具合を修正しました。</li>
 	<li><a href="./libraries/image_lib.php">画像ライブラリ</a>で、同一サイズの画像のリサイズが無視されていた不具合を修正しました。</li>
 	<li>ドキュメントのいくつかの誤字を修正しました。</li>
 </ul>
@@ -1286,8 +1286,8 @@ Hg Tag: 1.6.2</p>
 <li>mysql クラスの "where" メソッドのバグを修正しました。</li>
 <li>重複するスラッシュを取り除く、いつかのコードでの正規表現の問題を修正しました。</li>
 <li>HTML ヘルパーの br() 関数のバグを修正しました。</li>
-<li>Form ヘルパーの form_dropdown 関数の文法ミスを修正しました。</li>
-<li>form ヘルパーから "style" 属性を取り除きました。</li>
+<li>フォームヘルパーの form_dropdown 関数の文法ミスを修正しました。</li>
+<li>フォームヘルパーから "style" 属性を取り除きました。</li>
 <li>ドキュメントを更新しました。"次へ/前へ" のリンクを各ページに追加し、多くの誤字を修正しました。</li>
 </ul>
 

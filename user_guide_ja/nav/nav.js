@@ -126,7 +126,7 @@ function create_menu(basepath)
 		'<li><a href="'+base+'helpers/download_helper.html">ダウンロードヘルパー</a></li>' +
 		'<li><a href="'+base+'helpers/email_helper.html">Email ヘルパー</a></li>' +
 		'<li><a href="'+base+'helpers/file_helper.html">ファイルヘルパー</a></li>' +
-		'<li><a href="'+base+'helpers/form_helper.html">Form ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/form_helper.html">フォームヘルパー</a></li>' +
 		'<li><a href="'+base+'helpers/html_helper.html">HTML ヘルパー</a></li>' +
 		'<li><a href="'+base+'helpers/inflector_helper.html">語形変換ヘルパー</a></li>' +
 		'<li><a href="'+base+'helpers/language_helper.html">言語ヘルパー</a></li>' +
