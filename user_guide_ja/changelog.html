@@ -76,9 +76,9 @@ Hg Tag: v2.0.2</p>
 			<li class="reactor"><a href="./general/cli.html">CLIの使い方</a> がドキュメントに追加されました。</li>
 		</ul>
 	</li>
-	<li>ヘルパ
+	<li>ヘルパー
 		<ul>
-			<li>以前から非推奨となっていた <kbd>dohash()</kbd> が <a href="./helpers/security_helper.html">セキュリティヘルパ</a> から削除されました。代わりに <kbd>do_hash()</kbd> を使用してください。</li>
+			<li>以前から非推奨となっていた <kbd>dohash()</kbd> が <a href="./helpers/security_helper.html">セキュリティヘルパー</a> から削除されました。代わりに <kbd>do_hash()</kbd> を使用してください。</li>
 			<li class="reactor">渡した文字列のキャピタライゼーションを損なわないように plural 関数が変更されました。全て大文字の場合も考慮されています。</li>
 		</ul>
 	</li>
@@ -119,14 +119,14 @@ Hg Tag: v2.0.1</p>
 		<ul>
 			<li class="reactor"><kbd>decimal</kbd>, <kbd>less_than</kbd> and <kbd>greater_than</kbd> ルールが <a href="libraries/form_validation.html">Form バリデーションクラス</a> に追加されました。</li>
 			<li class="reactor"><a href="libraries/input.html">入力クラス</a> の <kbd>post()</kbd> と <kbd>get()</kbd> メソッドは第1引数が指定されない場合、配列全体を返すようになりました。</li>
-			<li class="reactor">セキュアクッキーが <kbd>set_cookie()</kbd> ヘルパと <a href="libraries/input.html">入力クラス</a> のメソッドで指定出きるようになりました。</li>
+			<li class="reactor">セキュアクッキーが <kbd>set_cookie()</kbd> ヘルパーと <a href="libraries/input.html">入力クラス</a> のメソッドで指定出きるようになりました。</li>
 			<li class="reactor"><a href="libraries/output.html">出力クラス</a> に <kbd>set_content_type()</kbd> が追加され、<kbd>Content-Type</kbd> HTTP ヘッダを MIME タイプまたは config/mimes.php の配列のキーに基づき出力します。</li>
 			<li class="reactor"><a href="libraries/output.html">出力クラス</a> がメソッドチェーンをサポートするようになりました。</li>
 		</ul>
 	</li>
-	<li>ヘルパ
+	<li>ヘルパー
 		<ul>
-			<li class="reactor"><a href="helpers/form_helper.html">Form ヘルパ</a> の <kbd>form_open()</kbd> はロジックが変更され、値が渡されない場合、現在の URL に投稿するようになりました。</li>
+			<li class="reactor"><a href="helpers/form_helper.html">Form ヘルパー</a> の <kbd>form_open()</kbd> はロジックが変更され、値が渡されない場合、現在の URL に投稿するようになりました。</li>
 		</ul>
 	</li>
 </ul>
@@ -148,7 +148,7 @@ Hg Tag: v2.0.0</p>
 		<ul>
 			<li>PHP 4 への対応は打ち切られました。動作には PHP 5.1.6 以上が必要です。</li>
 			<li>以前から非推奨であった Scaffolding 機能は削除されました。</li>
-			<li>プラグイン機能は削除されました。代わりにヘルパを使用してください。CAPTCHA プラグインはヘルパに変更されました (<a href="./helpers/captcha_helper.html">ドキュメント</a>)。JavaScript カレンダープラグインは、jQuery 等に有用なものがあるため、削除されました。</li>
+			<li>プラグイン機能は削除されました。代わりにヘルパーを使用してください。CAPTCHA プラグインはヘルパーに変更されました (<a href="./helpers/captcha_helper.html">ドキュメント</a>)。JavaScript カレンダープラグインは、jQuery 等に有用なものがあるため、削除されました。</li>
 			<li><a href="./general/drivers.html">ドライバ</a>機能が追加されました。</li>
 			<li class="reactor">完全な QUERY STRING に対応しました。詳細は設定ファイルを参照してください。</li>
 			<li>application フォルダを system の外に移動しました。</li>
@@ -218,25 +218,25 @@ Hg Tag: v2.0.0</p>
 			<li>データベースフォージクラスにおいて、Postgres のドライバの create_table() メソッドを改良しました。</li>
 		</ul>
 	</li>
-	<li>ヘルパ
+	<li>ヘルパー
 		<ul>
-			<li><a href="./helpers/text_helper.html">テキストヘルパ</a>に <kbd>convert_accented_characters()</kbd> メソッドを追加しました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパ</a>の <kbd>form_open()</kbd> 関数で挿入される属性のリストに accept-charset を追加しました。</li>
+			<li><a href="./helpers/text_helper.html">テキストヘルパー</a>に <kbd>convert_accented_characters()</kbd> メソッドを追加しました。</li>
+			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_open()</kbd> 関数で挿入される属性のリストに accept-charset を追加しました。</li>
 			<li>命名規則により、<kbd>dohash()</kbd> 関数は推奨されないので <kbd>do_hash()</kbd> を使用してください。</li>
-			<li><a href="helpers/file_helper.html">ファイルヘルパ</a>の <kbd>get_dir_file_info()</kbd> メソッドにおいて、以前のバージョンと互換性のない変更がありました。もう責任ある利用の観点により
+			<li><a href="helpers/file_helper.html">ファイルヘルパー</a>の <kbd>get_dir_file_info()</kbd> メソッドにおいて、以前のバージョンと互換性のない変更がありました。もう責任ある利用の観点により
 				デフォルトでは再帰処理を行ないません (気を付けないとこの関数はサーバのパフォーマンスの問題を引き起こし得ます) 。</li>
-			<li><a href="helpers/directory_helper.html">ディレクトリヘルパ</a>の <kbd>directory_map()</kbd> メソッドにおいて、再帰的に探索する深さを第 2 引数で指定できるようになりました。</li>
-			<li><a href="helpers/file_helper.html">ファイルヘルパ</a>の <kbd>delete_files()</kbd> メソッドでにおいて、失敗したときは FALSE を返すように変更しました。</li>
-			<li><a href="helpers/number_helper.html">数字ヘルパ</a>の <kbd>byte_format()</kbd> メソッドの第 2 引数で精度を指定できるようになりました。</li>
-			<li><a href="helpers/string_helper.html">文字列ヘルパ</a>の <kbd>random_string()</kbd> 関数に文字列のタイプとして alpha と sha1 を追加しました。</li>
+			<li><a href="helpers/directory_helper.html">ディレクトリヘルパー</a>の <kbd>directory_map()</kbd> メソッドにおいて、再帰的に探索する深さを第 2 引数で指定できるようになりました。</li>
+			<li><a href="helpers/file_helper.html">ファイルヘルパー</a>の <kbd>delete_files()</kbd> メソッドでにおいて、失敗したときは FALSE を返すように変更しました。</li>
+			<li><a href="helpers/number_helper.html">数字ヘルパー</a>の <kbd>byte_format()</kbd> メソッドの第 2 引数で精度を指定できるようになりました。</li>
+			<li><a href="helpers/string_helper.html">文字列ヘルパー</a>の <kbd>random_string()</kbd> 関数に文字列のタイプとして alpha と sha1 を追加しました。</li>
 			<li><kbd>prep_url()</kbd> 関数で、すでにスキーマ [ 訳注: “http://” など ] がついた文字列が与えられた場合、先頭に http:// を追加しないように変更しました。</li>
-			<li>ファイルヘルパの <kbd>get_file_info()</kbd> 関数で、更新時刻の取得に filectime() から filemtime() を使うように変更しました。</li>
+			<li>ファイルヘルパーの <kbd>get_file_info()</kbd> 関数で、更新時刻の取得に filectime() から filemtime() を使うように変更しました。</li>
 			<li><kbd>smiley_js()</kbd> 関数で、script タグを含まない JavaScript を返すオプションの第 3 引数を追加しました。</li>
-			<li><a href="./helpers/html_helper.html">HTML ヘルパ</a>の <kbd>img()</kbd> メソッドは、alt 属性が指定されない場合、空の alt 属性を出力するようになりました。</li>
+			<li><a href="./helpers/html_helper.html">HTML ヘルパー</a>の <kbd>img()</kbd> メソッドは、alt 属性が指定されない場合、空の alt 属性を出力するようになりました。</li>
 			<li>アプリケーションの設定ファイルで CSRF が有効になっている場合、<kbd>form_open()</kbd> は自動的に hidden フィールドを挿入します。</li>
-		  <li><a href="./helpers/security_helper.html">セキュリティヘルパ</a>に <kbd>sanitize_filename()</kbd> 関数を追加しました。</li>
-			<li><a href="./helpers/text_helper.html">テキストヘルパ</a>に <kbd>ellipsize()</kbd> メソッドを追加しました。</li>
-			<li><a href="./helpers/array_helper.html">配列ヘルパ</a>に <kbd>elements()</kbd> メソッドを追加しました。</li>
+		  <li><a href="./helpers/security_helper.html">セキュリティヘルパー</a>に <kbd>sanitize_filename()</kbd> 関数を追加しました。</li>
+			<li><a href="./helpers/text_helper.html">テキストヘルパー</a>に <kbd>ellipsize()</kbd> メソッドを追加しました。</li>
+			<li><a href="./helpers/array_helper.html">配列ヘルパー</a>に <kbd>elements()</kbd> メソッドを追加しました。</li>
 		</ul>
 	</li>
 	<li>その他の変更
@@ -265,16 +265,16 @@ Hg Tag: v2.0.0</p>
 	<li class="reactor">メール送信時に  User-Agent を変更できない不具合を修正しました。</li>
 	<li>出力クラスにおいて、<dfn>_output()</dfn> メソッドでコントローラに誤ったキャッシュを送る<span class="reactor">不具合を修正しました。</span></li>
 	<li>プロファイラにおいて、失敗したクエリがクエリ実行時間を持たない<span class="reactor">不具合を修正しました。</span></li>
-	<li>複数の同じヘルパやプラグインがロードされたときにログが記録される<span class="reactor">不具合を修正しました。</span></li>
+	<li>複数の同じヘルパーやプラグインがロードされたときにログが記録される<span class="reactor">不具合を修正しました。</span></li>
 	<li>ユーザガイドの様々な誤記を修正しました (#10693, #8951, #7825, #8660, #7883, #6771, #10656)。</li>
 	<li>プロファイラの言語ファイルのキーを "profiler_no_memory_usage" から "profiler_no_memory" に<span class="reactor">修正しました。</span></li>
 	<li>Zip 圧縮クラスにおいて、PHP 4 のサーバでダウンロードできない<span class="reactor">不具合を修正しました。</span></li>
 	<li>Form バリデーションクラスで、ルールパラメータとして渡されたフィールドが翻訳されない<span class="reactor">不具合を修正しました</span> (#9132)。</li>
-	<li>語形変換ヘルパにおいて、'ch' および 'sh' で終わる単語を適切に複数形にできるように修正しました。</li>
+	<li>語形変換ヘルパーにおいて、'ch' および 'sh' で終わる単語を適切に複数形にできるように修正しました。</li>
 	<li>xss_clean() が送信された URL のクエリ文字列中のハイフンを許さない<span class="reactor">不具合を修正しました</span>。</li>
-	<li>ファイルヘルパの get_dir_file_info() と get_file_info() で、再帰および Windows 上でのファイルパスに関する<span class="reactor">不具合を修正しました</span>。</li>
+	<li>ファイルヘルパーの get_dir_file_info() と get_file_info() で、再帰および Windows 上でのファイルパスに関する<span class="reactor">不具合を修正しました</span>。</li>
 	<li>データベースの設定ファイルで有効化されている場合に、Active Record のオーバーライドパラメータで Active Record 無効化できない<span class="reactor">不具合を修正しました</span>。</li>
-	<li>文字列ヘルパの reduce_double_slashes() で、先頭の複数のスラッシュもきちんと取り除くように<span class="reactor">修正しました</span> (#7585)。</li>
+	<li>文字列ヘルパーの reduce_double_slashes() で、先頭の複数のスラッシュもきちんと取り除くように<span class="reactor">修正しました</span> (#7585)。</li>
 	<li>XML-RPC クラスの values_parsing() で、NULL 値が '文字列型' として適切に処理されない不具合を<span class="reactor">修正しました</span>。</li>
 	<li>form_open_multipart() が属性を指定する引数を受け付けない<span class="reactor">不具合を修正しました</span> (#10930)。</li>
 	<li>get_mime_by_extension()</kbd> が大文字小文字を区別する<span class="reactor">不具合を修正しました</span> (#10470)。</li>
@@ -286,12 +286,12 @@ Hg Tag: v2.0.0</p>
 	<li>is_allowed_type() 中で getimagesize() が画像ファイル以外も不必要にチェックしていた<span class="reactor">不具合を修正しました</span>。</li>
 	<li>暗号化クラスでキーが空の場合にエラーにならない<span class="reactor">不具合を修正しました</span>。</li>
 	<li>Email クラスで clear() メソッドを使用した際に CC と BCC がリセットされない<span class="reactor">不具合を修正しました</span> (#109)。</li>
-	<li>PHP のバージョンが 5.1.2 未満の場合、URL ヘルパの prep_url() で PHP のエラーが発生する<span class="reactor">不具合を修正しました</span>。</li>
+	<li>PHP のバージョンが 5.1.2 未満の場合、URL ヘルパーの prep_url() で PHP のエラーが発生する<span class="reactor">不具合を修正しました</span>。</li>
 	<li>キャッシュディレクトリの設定値が見つからない場合、core/output のログメッセージを出力するように<span class="reactor">修正しました</span>。</li>
 	<li>load-&gt;library() に配列を渡しても複数のライブラリがロードできない<span class="reactor">不具合を修正しました</span>。</li>
-	<li>HTML ヘルパにおいて、img() 関数で src と alt の間に必要以上のスペースが入る<span class="reactor">不具合を修正しました</span>。</li>
+	<li>HTML ヘルパーにおいて、img() 関数で src と alt の間に必要以上のスペースが入る<span class="reactor">不具合を修正しました</span>。</li>
 	<li>profilers _compile_queries() メソッドの<span class="reactor">不具合を修正しました</span>。</li>
-	<li>日付ヘルパで、DATE_ISO8601 定数が不正な書式の日付を返す<span class="reactor">不具合を修正しました</span>。</li>
+	<li>日付ヘルパーで、DATE_ISO8601 定数が不正な書式の日付を返す<span class="reactor">不具合を修正しました</span>。</li>
 </ul>
 
 <h2>Version 1.7.2</h2>
@@ -316,14 +316,14 @@ Hg Tag: v1.7.2</p>
 			<li>MSSQL ドライバで、エラーメッセージに、mssql_get_last_message() を使うよう変更しました。</li>
 		</ul>
 	</li>
-	<li>ヘルパ
+	<li>ヘルパー
 		<ul>
-			<li><a href="helpers/form_helper.html">Form ヘルパ</a>に <kbd>form_multiselect()</kbd> を追加しました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパ</a>の <kbd>form_hidden()</kbd> を多次元配列を受け入れるように修正しました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパ</a>の <kbd>form_prep()</kbd> を処理済みのフィールドを追跡するように修正しました。
-			これは、Form バリデーション(検証)や Form フィールドを出力するために Form ヘルパ関数を使った際に起こりうる、連続したform_prep()の呼び出しによる多重の処理・変換を避けるためです。</li>
-			<li><a href="helpers/directory_helper.html">ディレクトリヘルパ</a>の <kbd>directory_map()</kbd> を、隠しファイルを含められるようにし、ディレクトリの読み取りに失敗した際に FALSE を返すように修正しました。</li>
-			<li><a href="helpers/smiley_helper.html">スマイリーヘルパ</a>を複数のフィールドで動作するようにし、最後のカーソルの場所に、スマイリーを挿入するようにしました。</li>
+			<li><a href="helpers/form_helper.html">Form ヘルパー</a>に <kbd>form_multiselect()</kbd> を追加しました。</li>
+			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_hidden()</kbd> を多次元配列を受け入れるように修正しました。</li>
+			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_prep()</kbd> を処理済みのフィールドを追跡するように修正しました。
+			これは、Form バリデーション(検証)や Form フィールドを出力するために Form ヘルパー関数を使った際に起こりうる、連続したform_prep()の呼び出しによる多重の処理・変換を避けるためです。</li>
+			<li><a href="helpers/directory_helper.html">ディレクトリヘルパー</a>の <kbd>directory_map()</kbd> を、隠しファイルを含められるようにし、ディレクトリの読み取りに失敗した際に FALSE を返すように修正しました。</li>
+			<li><a href="helpers/smiley_helper.html">スマイリーヘルパー</a>を複数のフィールドで動作するようにし、最後のカーソルの場所に、スマイリーを挿入するようにしました。</li>
 		</ul>
 	</li>
 	<li>一般
@@ -342,14 +342,14 @@ Hg Tag: v1.7.2</p>
 <ul>
 	<li>様々なユーザガイドの誤字やサンプルコードを修正しました。 (#6743, #7214, #7516, #7287, #7852, #8224, #8324, #8349)</li>
 	<li>Form バリデーション(検証)ライブラリで、複数のコールバックが動作しない不具合を修正しました。(#6110)</li>
-	<li>doctype ヘルパ関数のデフォルト値で、"1" が設定されていなかったのを修正しました。</li>
+	<li>doctype ヘルパー関数のデフォルト値で、"1" が設定されていなかったのを修正しました。</li>
 	<li>言語クラスで、ファイルが見つからない場合にエラーを出力する際の不具合を修正しました。</li>
 	<li>カレンダーライブラリで、5月に対応する短縮名を出力する際の不具合を修正しました。</li>
 	<li>ORIG_PATH_INFO を利用する際に、スラッシュひとつだけの URI を許可していた不具合を修正しました。</li>
 	<li>Oracle と ODBC ドライバの致命的なエラーを修正しました。(#6752)</li>
 	<li>xml_from_result() が、存在しないメソッドをチェックしていた不具合を修正しました。</li>
 	<li>データベースフォージの add_column と modify_column で、複数のフィールドが送られた際に、ループ処理していなかった不具合を修正しました。</li>
-	<li>ファイルヘルパで、DIRECTORY_SEPARATOR 定数の代わりに、'/'が使用されていた不具合を修正しました。</li>
+	<li>ファイルヘルパーで、DIRECTORY_SEPARATOR 定数の代わりに、'/'が使用されていた不具合を修正しました。</li>
 	<li>PHPのpopen()関数が手動で無効にされたサーバ上の sendmail を利用しようとする際に起こる PHP エラーを回避するよう修正しました。</li>
 	<li>特定の XML-RPC 型 がPHPのデータ型と一致しない場合に起こる XML-RPC データの PHP エラーに起因する不具合を修正しました。</li>
 	<li>XML-RPC クラスが dateTime.iso8601 データ型を解析する際の不具合を修正しました。</li>
@@ -384,13 +384,13 @@ Hg Tag: 1.7.1</p>
 			<li><kbd>delete()</kbd> が受け取ることができる引数のリストに、where_in を追加しました。</li>
 		</ul>
 	</li>
-	<li>ヘルパ
+	<li>ヘルパー
 		<ul>
-			<li><a href="helpers/form_helper.html">Form ヘルパ</a>の <kbd>form_dropdown()</kbd> で optgroup タグを含めることができるようにしました。</li>
-			<li><a href="helpers/html_helper.html">HTML ヘルパ</a>に doctype() 関数を追加しました。</li>
-			<li><a href="helpers/url_helper.html">URL ヘルパ</a>の <kbd>url_title()</kbd> で、強制的に小文字に変換することができるようになりました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパ</a>の <kbd>form_button()</kbd> の既定の "type" 属性の値を "submit" から "button" に変更しました。</li>
-			<li>URL ヘルパの redirect() を CI のサイトの外部の URL へリダイレクトできるように変更しました。</li>
+			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_dropdown()</kbd> で optgroup タグを含めることができるようにしました。</li>
+			<li><a href="helpers/html_helper.html">HTML ヘルパー</a>に doctype() 関数を追加しました。</li>
+			<li><a href="helpers/url_helper.html">URL ヘルパー</a>の <kbd>url_title()</kbd> で、強制的に小文字に変換することができるようになりました。</li>
+			<li><a href="helpers/form_helper.html">Form ヘルパー</a>の <kbd>form_button()</kbd> の既定の "type" 属性の値を "submit" から "button" に変更しました。</li>
+			<li>URL ヘルパーの redirect() を CI のサイトの外部の URL へリダイレクトできるように変更しました。</li>
 			<li>要求されたクッキーの名前が存在しない場合、グローバルのクッキープリフィックスを使って、クッキーを読み取るよう、get_cookie()を変更しました。</li>
 		</ul>
 	</li>
@@ -432,15 +432,15 @@ Hg Tag: 1.7.1</p>
 	<li>Typography::auto_typography() の、ノンブレークスペースのクリア処理の不具合を修正しました。</li>
 	<li>データベースプリフィックスがある場合に複合文（ie:SUM()）で、データベースのエスケープ処理が正しく処理されない不具合を修正しました。</li>
 	<li>段落タグに続いて引用の開始があり、そのすぐ後に別のタグがあるときの不具合を修正しました。</li>
-	<li>テキストヘルパで、アクセント付き文字で開始または終了する単語に対し word_censor() が動作しないという、いくつかのロケールに影響する不具合を修正しました。</li>
-	<li>テキストヘルパの character_limiter で、文字列の最後の単語が、指定された制限文字数にかかる場合の不具合を修正しました。</li>
-	<li>語形変換ヘルパの plural() で、"y" で終わる単語を扱う際の不具合(#6342)を修正しました。</li>
+	<li>テキストヘルパーで、アクセント付き文字で開始または終了する単語に対し word_censor() が動作しないという、いくつかのロケールに影響する不具合を修正しました。</li>
+	<li>テキストヘルパーの character_limiter で、文字列の最後の単語が、指定された制限文字数にかかる場合の不具合を修正しました。</li>
+	<li>語形変換ヘルパーの plural() で、"y" で終わる単語を扱う際の不具合(#6342)を修正しました。</li>
 	<li>URI::rsegment() メソッドによって返される、ルーティングされた後のURIセグメントが、デフォルトコントローラに関するURIの場合に間違っている不具合(#6517)を修正しました。</li>
-	<li> セキュリティヘルパの xss_clean() で、古い形式の第2引数を使用していた不具合(#6706)を修正しました。</li>
-	<li>URLヘルパの url_title() 関数で、ピリオドをURLの最後に付加することができる不具合を修正しました。</li>
+	<li> セキュリティヘルパーの xss_clean() で、古い形式の第2引数を使用していた不具合(#6706)を修正しました。</li>
+	<li>URLヘルパーの url_title() 関数で、ピリオドをURLの最後に付加することができる不具合を修正しました。</li>
 	<li>Emailクラスで、&quot;mail&quot;プロトコルを利用する際に、 ヘッダに CRLF が改行文字として使用されるときの不具合(#6669)を修正しました。</li>
 	<li>URI::A_filter_uri() で、show_error() を使う代わりに、exit() で終了していた不具合(#6500)を修正しました。</li>
-	<li>ファイルヘルパの  get_dir_file_info()で、再帰処理が適切に行われない不具合 (#6592)を修正しました。</li>
+	<li>ファイルヘルパーの  get_dir_file_info()で、再帰処理が適切に行われない不具合 (#6592)を修正しました。</li>
 	<li> Typography::auto_typography() を特定の状況下について調整しました。</li>
 </ul>
 
@@ -452,7 +452,7 @@ Hg Tag: 1.7.0</p>
 <ul>
 	<li>ライブラリ
 		<ul>
-			<li>新しく<a href="libraries/form_validation.html">Form バリデーション（検証）クラス</a>を追加しました。これにより、ルールやフィールド名の設定が簡単になり、配列によるフィールド名の設定がサポートされ、設定ファイルに保存できる検証ルールのグループを取り扱うことが可能になり、ビューファイルで利用できるヘルパ関数も追加されました。<strong>古いバリデーション（検証）クラスは、非推奨となったので、注意してください。</strong> 古いクラスは、既存のアプリケーションが停止しないように、いくらかの間は、ライブラリフォルダの中に残しますが、新しいバージョンに移行することを推奨します。</li>
+			<li>新しく<a href="libraries/form_validation.html">Form バリデーション（検証）クラス</a>を追加しました。これにより、ルールやフィールド名の設定が簡単になり、配列によるフィールド名の設定がサポートされ、設定ファイルに保存できる検証ルールのグループを取り扱うことが可能になり、ビューファイルで利用できるヘルパー関数も追加されました。<strong>古いバリデーション（検証）クラスは、非推奨となったので、注意してください。</strong> 古いクラスは、既存のアプリケーションが停止しないように、いくらかの間は、ライブラリフォルダの中に残しますが、新しいバージョンに移行することを推奨します。</li>
 			<li>セッションクッキーにではなく（セッションデータを保存するのにデータベースを使用しているとした場合）、データベースに、どんなユーザデータも保存できるよう、<a href="libraries/sessions.html">セッションクラス</a>を更新しました。より多くのデータを保存することができます。</li>
 			<li>メインの "libraries" または、ローカルアプリケーションの "libraries" フォルダの中にサブディレクトリを作ってライブラリを設置できるようにしました。詳しくは、 <a href="libraries/loader.html">ローダー（読込み処理）クラス</a>をご覧ください。</li>
 			<li><kbd>$this->load->library()</kbd> を使う際に、ユーザが指定した名前でライブラリオブジェクトを割り当てることができるようになりました。詳しくは <a href="libraries/loader.html">ローダー（読込み処理）クラス</a> をご覧ください。</li>
@@ -476,19 +476,19 @@ Hg Tag: 1.7.0</p>
 			<li>バグレポート #4436 に基づいて、各 DB ドライバにドライバ名の変数を追加しました。</li>
 		</ul>
 	</li>
-	<li>ヘルパ
+	<li>ヘルパー
 		<ul>
-			<li><a href="helpers/form_helper.html">Form ヘルパ</a> に POST データを読み取って、フォームにセットすることができる、いくつかの&quot;セット&quot;関数を追加しました。これらは、独立で、または、新たな<a href="libraries/form_validation.html">Formバリデーション（検証）クラス</a>と一緒に使うのを想定しています。</li>
-			<li><a href="helpers/url_helper.html">URLヘルパ</a>に<kbd>current_url()</kbd> と uri_segments() を追加しました。</li>
-			<li>&quot;+&quot;を含む Email アドレスがリンクになるように、<a href="helpers/url_helper.html">URL ヘルパ</a>の<kbd>auto_link()</kbd>を置き換えました。</li>
-			<li><a href="helpers/html_helper.html">HTMLヘルパ</a>に <kbd>meta()</kbd> 関数を追加しました。</li>
-			<li><a href="helpers/number_helper.html">数字ヘルパ</a>における計算の精度を改善しました。</li>
-			<li>FormおよびHTMLヘルパ関数の大部分から、付加された改行(&quot;\n&quot;)を取り除きました。</li>
-			<li><a href="helpers/date_helper.html">日付ヘルパ</a>の<kbd>human_to_unix()</kbd> 関数での検証を厳密にし、POSIX 正規表現を削除しました。</li>
-			<li><a href="helpers/date_helper.html">日付ヘルパ</a> を現在のタイムゾーンと時差に適合するよう変更しました。</li>
+			<li><a href="helpers/form_helper.html">Form ヘルパー</a> に POST データを読み取って、フォームにセットすることができる、いくつかの&quot;セット&quot;関数を追加しました。これらは、独立で、または、新たな<a href="libraries/form_validation.html">Formバリデーション（検証）クラス</a>と一緒に使うのを想定しています。</li>
+			<li><a href="helpers/url_helper.html">URLヘルパー</a>に<kbd>current_url()</kbd> と uri_segments() を追加しました。</li>
+			<li>&quot;+&quot;を含む Email アドレスがリンクになるように、<a href="helpers/url_helper.html">URL ヘルパー</a>の<kbd>auto_link()</kbd>を置き換えました。</li>
+			<li><a href="helpers/html_helper.html">HTMLヘルパー</a>に <kbd>meta()</kbd> 関数を追加しました。</li>
+			<li><a href="helpers/number_helper.html">数字ヘルパー</a>における計算の精度を改善しました。</li>
+			<li>FormおよびHTMLヘルパー関数の大部分から、付加された改行(&quot;\n&quot;)を取り除きました。</li>
+			<li><a href="helpers/date_helper.html">日付ヘルパー</a>の<kbd>human_to_unix()</kbd> 関数での検証を厳密にし、POSIX 正規表現を削除しました。</li>
+			<li><a href="helpers/date_helper.html">日付ヘルパー</a> を現在のタイムゾーンと時差に適合するよう変更しました。</li>
 			<li>文字エンティティの一部の文字や数字を取り除き、セパレータ（$separator）であるかないかにかかわらず、
-			ダッシュ、アンダースコア、ピリオドを許可し、大文字の文字を許可するよう、<a href="helpers/url_helper.html">URLヘルパ</a>の url_title() を変更しました。</li>
-			<li><a href="helpers/url_helper.html">URL ヘルパ</a>の anchor_popup() で任意の属性をサポートするようにしました。</li>
+			ダッシュ、アンダースコア、ピリオドを許可し、大文字の文字を許可するよう、<a href="helpers/url_helper.html">URLヘルパー</a>の url_title() を変更しました。</li>
+			<li><a href="helpers/url_helper.html">URL ヘルパー</a>の anchor_popup() で任意の属性をサポートするようにしました。</li>
 		</ul>
 	</li>
 	<li>その他の変更
@@ -514,12 +514,12 @@ Hg Tag: 1.7.0</p>
 	<li>セッションクラスで、データベースセッションを利用しているとき、セッション更新時にすべてのユーザデータが誤ってセッションクッキーに書かれる不具合を修正しました。</li>
 	<li>MySQL ドライバでのバックアップで、いくつかの古いコードが原因で、特定の文字が二重にエスケープされていた不具合(#4536)を修正しました。</li>
 	<li>デフォルトのルートがサブフォルダの場合に起こるルーティングの不具合 (#4661)を修正しました。</li>
-	<li><a href="helpers/date_helper.html">日付ヘルパ</a>の <kbd>timezone_menu()</kbd> 関数の &quot;Dhaka&quot; のスペルを修正しました。</li>
+	<li><a href="helpers/date_helper.html">日付ヘルパー</a>の <kbd>timezone_menu()</kbd> 関数の &quot;Dhaka&quot; のスペルを修正しました。</li>
 	<li>config/smileys.php の &quot;raspberry&quot; のスペルを修正しました。</li>
 	<li><kbd>form_open()</kbd> 関数で、 不正な丸括弧が出力される不具合 (#5135) を修正しました。</li>
 	<li>コントローラのメソッドを比較する際に、大文字小文字の区別が無視される不具合(#4560)を修正しました。</li>
 	<li>initialize メソッドを使用した際に、SMTP の認証設定が有効にならない不具合 (#4615)を修正しました。</li>
-	<li><a href="helpers/text_helper.html">テキストヘルパ</a> の <kbd>highlight_code()</kbd> で、特定のケースで、対応するタグがない &lt;/span&gt; が取り残される不具合を修正しました。</li>
+	<li><a href="helpers/text_helper.html">テキストヘルパー</a> の <kbd>highlight_code()</kbd> で、特定のケースで、対応するタグがない &lt;/span&gt; が取り残される不具合を修正しました。</li>
 	<li>1度のアクションで、複数のクエリを発行できないOracle の不具合 (#3306)を修正しました。</li>
 	<li>コンストラクタを使用すると接続パラメータが無視されるODBCの不具合を修正しました。</li>
 	<li>Oracle ドライバで num_rows() を使用した際にエラーが起こる不具合を修正しました。</li>
@@ -559,11 +559,11 @@ Hg Tag: v1.6.3</p>
 			<li><a href="libraries/language.html">言語クラス</a>で、自動で言語項目をフォームラベルとして出力できるようになりました。</li>
 		</ul>
 	</li>
-	<li>ヘルパ
+	<li>ヘルパー
 		<ul>
-			<li><a href="helpers/language_helper.html">言語ヘルパ</a>を追加しました。</li>
-			<li><a href="helpers/number_helper.html">数字ヘルパ</a>を追加しました。</li>
-			<li><kbd>form_open()</kbd> および <kbd>form_fieldset()</kbd> で、配列または文字列の引数を受け取ることができるように<a href="helpers/form_helper.html">Form ヘルパ</a>をリファクタリングしました。</li>
+			<li><a href="helpers/language_helper.html">言語ヘルパー</a>を追加しました。</li>
+			<li><a href="helpers/number_helper.html">数字ヘルパー</a>を追加しました。</li>
+			<li><kbd>form_open()</kbd> および <kbd>form_fieldset()</kbd> で、配列または文字列の引数を受け取ることができるように<a href="helpers/form_helper.html">Form ヘルパー</a>をリファクタリングしました。</li>
 		</ul>
 	</li>
 	<li>その他の変更
@@ -574,8 +574,8 @@ Hg Tag: v1.6.3</p>
 			<li>config/user_agents.php のモバイル ユーザエージェントのリストを大幅に拡張しました。</li>
 			<li>国際化の目的(#4614)のため、ユーザガイドの文字セット情報をtitleの上に移動しました。</li>
 			<li><a href="libraries/xmlrpc.html">ユーザガイドの XMLRPC のページ</a>に、&quot;リクエストパラメータに連想配列を使用する&quot;の例を追加しました。</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパ</a>のform_input() で自動的に maxlength と size 属性が追加されないようにしました。</li>
-			<li><a href="helpers/number_helper.html">数字ヘルパ</a>の<kbd>byte_format()</kbd>の言語ファイルの使用についてドキュメントに記述しました。</li>
+			<li><a href="helpers/form_helper.html">Form ヘルパー</a>のform_input() で自動的に maxlength と size 属性が追加されないようにしました。</li>
+			<li><a href="helpers/number_helper.html">数字ヘルパー</a>の<kbd>byte_format()</kbd>の言語ファイルの使用についてドキュメントに記述しました。</li>
 		</ul>
 	</li>
 </ul>
@@ -635,17 +635,17 @@ Hg Tag: 1.6.2</p>
 			<li><a href="libraries/zip.html">Zip 圧縮クラス</a> は、速度とコードの明瞭さのために、大きく書きなおされました。 (stanleyxu のバグレポート #3425 についての大変な作業とソースコードの提供に感謝します!)</li>
 		</ul>
 	</li>
-	<li>ヘルパ
+	<li>ヘルパー
 		<ul>
-			<li>PHP4 のサーバで実行される可能性があるアプリケーションでいくつかの PHP5 のネイティブ関数が安全に利用できるよう<a href="helpers/compatibility_helper.html">互換性ヘルパ</a>を追加しました。(Seppo の大変な作業とコードの提供に感謝します)</li>
-			<li><a href="helpers/form_helper.html">Form ヘルパ</a>に <kbd>form_button()</kbd> を追加しました。</li>
+			<li>PHP4 のサーバで実行される可能性があるアプリケーションでいくつかの PHP5 のネイティブ関数が安全に利用できるよう<a href="helpers/compatibility_helper.html">互換性ヘルパー</a>を追加しました。(Seppo の大変な作業とコードの提供に感謝します)</li>
+			<li><a href="helpers/form_helper.html">Form ヘルパー</a>に <kbd>form_button()</kbd> を追加しました。</li>
 			<li><kbd>radio()</kbd> と <kbd>checkbox()</kbd> 関数で、デフォルトでチェック状態にしないように変更しました。</li>
-			<li><a href="helpers/url_helper.html">URL ヘルパ</a>の <kbd>redirect()</kbd> 関数で、追加の HTTP レスポンスコードを含めることができる機能を追加しました。</li>
-			<li><a href="helpers/html_helper.html">HTML ヘルパ</a>の <kbd>img()</kbd> で、不要なスペースを削除しました。(#4208)</li>
-			<li><a href="helpers/url_helper.html">URLヘルパ</a>の <kbd>anchor()</kbd> を、デフォルトのタイトル属性を付加しないよう変更しました。(#4209)</li>
-			<li><a href="helpers/download_helper.html">ダウンロードヘルパ</a>に <kbd>force_download()</kbd> が追加されました。</li>
-			<li><kbd>get_dir_file_info()</kbd>, <kbd>get_file_info()</kbd>, および <kbd>get_mime_by_extension()</kbd> を<a href="helpers/file_helper.html">ファイルヘルパ</a>に追加しました。</li>
-			<li><kbd>symbolic_permissions()</kbd> と <kbd>octal_permissions()</kbd> を<a href='helpers/file_helper.html'>ファイルヘルパ</a>に追加しました。</li>
+			<li><a href="helpers/url_helper.html">URL ヘルパー</a>の <kbd>redirect()</kbd> 関数で、追加の HTTP レスポンスコードを含めることができる機能を追加しました。</li>
+			<li><a href="helpers/html_helper.html">HTML ヘルパー</a>の <kbd>img()</kbd> で、不要なスペースを削除しました。(#4208)</li>
+			<li><a href="helpers/url_helper.html">URLヘルパー</a>の <kbd>anchor()</kbd> を、デフォルトのタイトル属性を付加しないよう変更しました。(#4209)</li>
+			<li><a href="helpers/download_helper.html">ダウンロードヘルパー</a>に <kbd>force_download()</kbd> が追加されました。</li>
+			<li><kbd>get_dir_file_info()</kbd>, <kbd>get_file_info()</kbd>, および <kbd>get_mime_by_extension()</kbd> を<a href="helpers/file_helper.html">ファイルヘルパー</a>に追加しました。</li>
+			<li><kbd>symbolic_permissions()</kbd> と <kbd>octal_permissions()</kbd> を<a href='helpers/file_helper.html'>ファイルヘルパー</a>に追加しました。</li>
 		</ul>
 	</li>
 	<li>プラグイン
@@ -681,7 +681,7 @@ Hg Tag: 1.6.2</p>
 	<li>XML-RPC クラスで、dateTime.iso8601 が使用できない不具合(#4153)を修正しました。</li>
 	<li>Active Record で、or_where_not_in() を使ったときの不具合 (#4171)を修正しました。</li>
 	<li><a href="libraries/input.html">xss_clean()</a> GET の URI 文字列にセミコロンが付加されてしまう不具合を修正しました。</li>
-	<li>ディレクトリリソースが閉じられない、ディレクトリヘルパでの不具合(#4206)を修正し、小規模な改善を行いました。</li>
+	<li>ディレクトリリソースが閉じられない、ディレクトリヘルパーでの不具合(#4206)を修正し、小規模な改善を行いました。</li>
 	<li>delete_dir() が再帰的に動作しない、FTP ライブラリの不具合(#4215)を修正しました。</li>
 	<li>set_rules() で配列でないフィールド名およびルールが使用された時のバリデーション（検証）の不具合(#4220)を修正しました。</li>
 	<li>戻り値で取得した DB オブジェクトや複数の DB コネクションにおいて、DB キャッシングが動作しない不具合(#4223)を修正しました。</li>
@@ -689,7 +689,7 @@ Hg Tag: 1.6.2</p>
 	<li>テーブル別名とテーブルプリフィクスを使って結合（Join）する際の ActiveRecord の不具合(#4400)を修正しました。</li>
 	<li>DB クラスで $params 引数をチェックする処理の不具合を修正しました。</li>
 	<li>HTML テーブルライブラリで、セルのデータが0のときに、空白のセルとして表示される不具合を修正しました。</li>
-	<li><a href="helpers/url_helper.html">URL ヘルパ</a>の値の代わりにキーが渡されてしまう <kbd>link_tag()</kbd> の不具合を修正しました。</li>
+	<li><a href="helpers/url_helper.html">URL ヘルパー</a>の値の代わりにキーが渡されてしまう <kbd>link_tag()</kbd> の不具合を修正しました。</li>
 	<li>DB_result::row() で、MySQL の NULL 値の個々のフィールドを返すことができない不具合を修正しました。</li>
 	<li>SMTP で送信しようとする email で、ドットから始まっている行については、ドットの整形処理が動作しない不具合を修正しました。</li>
 	<li>DB ドライバの display_error() で、エラー処理に使用されない言語および例外オブジェクトが生成されていた不具合を修正しました。</li>
@@ -719,16 +719,16 @@ Hg Tag: 1.6.2</p>
 		<ul>
 			<li><kbd>xss_clean()</kbd> で、URL エンコードされた文字列の処理をよりインテリジェントに行うようにしました。</li>
 			<li>$_SERVER, $_FILES, $_ENV, および $_SESSION をグローバル変数のサニタイズに加えました。</li>
-			<li><a href="./helpers/path_helper.html">パスヘルパ</a>を追加しました。</li>
+			<li><a href="./helpers/path_helper.html">パスヘルパー</a>を追加しました。</li>
 			<li>URI クラスの <kbd>_reindex_segments()</kbd> の処理を単純化しました。</li>
 			<li>'permitted_uri_chars' 設定項目で、開発者が既定の設定の末尾に文字を追加しようとしただけで、エラーになってしまうのを避けるため、既定の設定項目中の '-' をエスケープしました。</li>
 			<li>private または protected メソッドが URL 経由でアクセスされた際に、コントローラで、404 を表示するよう、メソッドの呼び出し処理を変更しました。</li>
 			<li>404 エラーで、不正なリクエストで指定されているコントローラおよびメソッド名をログ出力するよう、フレームワークを変更しました。</li>
 		</ul>
 	</li>
-	<li>ヘルパ
+	<li>ヘルパー
 		<ul>
-			<li>$source_dir が読み取れない場合に、FALSE を返すよう、ファイルヘルパの <kbd>get_filenames()</kbd> を変更しました。</li>
+			<li>$source_dir が読み取れない場合に、FALSE を返すよう、ファイルヘルパーの <kbd>get_filenames()</kbd> を変更しました。</li>
 		</ul>
 	</li>
 </ul>
@@ -828,16 +828,16 @@ Hg Tag: 1.6.2</p>
 		</ul>
 	</li>
 	
-	<li>ヘルパとプラグイン
+	<li>ヘルパーとプラグイン
 		<ul>
-			<li><a href="./helpers/html_helper.html">HTML ヘルパ</a>に link_tag() を追加しました。</li>
-			<li><a href="./helpers/html_helper.html">HTML ヘルパ</a>に img() を追加しました。</li>
-			<li><a href="./general/helpers.html">"拡張した" ヘルパ</a>を使えるようになりました。</li>
-			<li><a href="./helpers/email_helper.html">email ヘルパ</a> をコアヘルパに追加しました。</li>
-			<li><a href="./helpers/string_helper.html">文字列ヘルパ</a>に、 <kbd>strip_quotes()</kbd> 関数を追加しました。</li>
-			<li><a href="./helpers/string_helper.html">文字列ヘルパ</a>に <kbd>reduce_multiples()</kbd> 関数を追加しました。</li>
-			<li><a href="./helpers/string_helper.html">文字列ヘルパ</a>に、<kbd>quotes_to_entities()</kbd> 関数を追加しました。</li>
-			<li><kbd>form_fieldset()</kbd>, <kbd>form_fieldset_close()</kbd>, <kbd>form_label()</kbd>, および <kbd>form_reset()</kbd> 関数を<a href="./helpers/form_helper.html">Form ヘルパ</a>に追加しました。</li>
+			<li><a href="./helpers/html_helper.html">HTML ヘルパー</a>に link_tag() を追加しました。</li>
+			<li><a href="./helpers/html_helper.html">HTML ヘルパー</a>に img() を追加しました。</li>
+			<li><a href="./general/helpers.html">"拡張した" ヘルパー</a>を使えるようになりました。</li>
+			<li><a href="./helpers/email_helper.html">email ヘルパー</a> をコアヘルパーに追加しました。</li>
+			<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に、 <kbd>strip_quotes()</kbd> 関数を追加しました。</li>
+			<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に <kbd>reduce_multiples()</kbd> 関数を追加しました。</li>
+			<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に、<kbd>quotes_to_entities()</kbd> 関数を追加しました。</li>
+			<li><kbd>form_fieldset()</kbd>, <kbd>form_fieldset_close()</kbd>, <kbd>form_label()</kbd>, および <kbd>form_reset()</kbd> 関数を<a href="./helpers/form_helper.html">Form ヘルパー</a>に追加しました。</li>
 			<li><kbd>form_open()</kbd> で外部の URL をサポートするようにしました。</li>
 			<li>互換性のない関数のため、MySQLi の db_backup のサポートを取りやめました。</li>
 			<li>Javascript カレンダープラグインで、ハードコードされた値を使う代わりに、月と日をカレンダー言語ファイルのものを使うようにし、国際対応にしました。</li>
@@ -853,7 +853,7 @@ Hg Tag: 1.6.2</p>
 			<li><a href="http://codeigniter.com/user_guide/libraries/zip.html">Zip 圧縮クラス</a>をユーザガイドの目次に追加しました。</li>
 			<li>ユーザガイドのメニューの javascript の部分を外部ファイルに移動しました。</li>
 			<li><a href="./database/active_record.html">Active Record</a> の <kbd>distinct()</kbd> の記述をドキュメントに追加しました。 </li>
-			<li><a href="./helpers/date_helper.html">日付ヘルパ</a>の <kbd>timezones()</kbd> 関数についての記述をドキュメントに追加しました。</li>
+			<li><a href="./helpers/date_helper.html">日付ヘルパー</a>の <kbd>timezones()</kbd> 関数についての記述をドキュメントに追加しました。</li>
 			<li><a href="./libraries/sessions.html">セッションクラス</a>の unset_userdata に関する記述をドキュメントに追加しました。</li>
 			<li><a href="./database/configuration.html">データベース設定</a> ページに、2つの設定項目についての記述を追加しました。</li>
 		</ul>
@@ -876,37 +876,37 @@ Hg Tag: 1.6.2</p>
 	<li>ページネーションの不具合(#2754)について、正の数でない数値リンクをスキャンするように修正しました。</li>
 	<li><a href="./libraries/sessions.html">セッションライブラリ</a>でスペースで終わるユーザエージェントで、ユーザエージェントのマッチ処理が失敗する不具合(#2762)を修正しました。 </li>
 	<li>postgre および sqlite ドライバで、$field_names[] を $Ffield_names[] としていた不具合(#2784)を修正しました。</li>
-	<li>タイポグラフィヘルパで、文字列がタグを含む場合に、余分な段落タグを生成してしまう不具合(#2810)を修正しました。</li>
+	<li>タイポグラフィヘルパーで、文字列がタグを含む場合に、余分な段落タグを生成してしまう不具合(#2810)を修正しました。</li>
 	<li>サブフォルダのコントローラ、メソッドに引数が渡されるとき、不正確にシフトされてしまい、第3引数の値が欠落してしまう不具合(#2849) を修正しました。</li>
 	<li>画像クラスで、誤った変数を参照していた不具合(#2858)を修正しました。</li>
 	<li>_pi でなく _plugin としてプラグインファイルをロードする不具合(#2875)を修正しました。</li>
-	<li><a href="./helpers/file_helper.html">ファイルヘルパ</a>の <kbd>get_filenames()</kbd> で、各呼び出しの度に配列がクリアされないの不具合(#2912)を修正しました。</li>
+	<li><a href="./helpers/file_helper.html">ファイルヘルパー</a>の <kbd>get_filenames()</kbd> で、各呼び出しの度に配列がクリアされないの不具合(#2912)を修正しました。</li>
 	<li>スラッシュを伴う場合に、<kbd>highlight_phrase()</kbd> でエラーが起こる不具合(#2974)を修正しました。</li>
 	<li>暗号化ライブラリの不具合(#3003)を、MCRYPT_MODE_ECB 以外のモードをサポートするよう修正しました。</li>
 	<li><a href="./libraries/user_agent.html">ユーザエージェントライブラリ</a>の languages() で、2つ以上の言語が報告されない不具合(#3015)を修正しました。</li>
 	<li><a href="./libraries/email.html">Email</a> ライブラリで、いくつかのタイムゾーンが誤って計算される不具合(#3017)を修正しました。 </li>
 	<li>画像ライブラリの clear() で、master_dim がリセットされない不具合(#3024)を修正しました。</li>
-	<li>テキストヘルパの highlight_code() で、PHP タグが正しく取り扱われない不具合(#3156)を修正しました。</li>
+	<li>テキストヘルパーの highlight_code() で、PHP タグが正しく取り扱われない不具合(#3156)を修正しました。</li>
 	<li>num_rows が Oracle で動作しない不具合(#3166)を修正しました。</li>
 	<li>PHP 4 環境で、特定のライブラリのオートロードが正しく機能しない不具合(#3175)を修正しました。</li>
-	<li>タイポグラフィヘルパで、順序なしリストが、&quot;un&quot;として [ 訳注: HTML タグの ul でなく、誤ったタグで ] リストアップされていた不具合(#3267)を修正しました。</li>
+	<li>タイポグラフィヘルパーで、順序なしリストが、&quot;un&quot;として [ 訳注: HTML タグの ul でなく、誤ったタグで ] リストアップされていた不具合(#3267)を修正しました。</li>
 	<li>ルータでパスに '/' を残す場合がある不具合(#3268)を修正しました。</li>
 	<li>Email クラスで、いくつかの文字セットについて、誤った Content-Transfer-Encoding が送出されてしまう不具合(#3279)を修正しました。</li>
 	<li>リクエストされた URI が、ルーティング済みの URI よりも多くのセグメントを含む場合に、rsegment 配列が正しくセットされない不具合(#3284)を修正しました。</li>
 	<li>出力クラスの _display_cache() で、$CFGが余分にロードされていた個所を削除しました。(#3285)</li>
 	<li>モデルのロードが余分に呼び出される個所を削除しました。(#3286)</li>
 	<li>CI のグローバル変数の値を無効化する可能性がある、入力クラスのグローバル変数のサニタイズに関する不具合(#3310)を修正しました。</li>
-	<li>ファイルヘルパの delete_files() で、トップレベルのパスが削除されてしまう不具合(#3314)を修正しました。</li>
-	<li>スマイリーヘルパで、未定義の変数が返される不具合(#3328)を修正しました。</li>
+	<li>ファイルヘルパーの delete_files() で、トップレベルのパスが削除されてしまう不具合(#3314)を修正しました。</li>
+	<li>スマイリーヘルパーで、未定義の変数が返される不具合(#3328)を修正しました。</li>
 	<li>FTP クラスで、比較が行われない不具合(#3330)を修正しました。</li>
 	<li>プロファイラで、使用されていないパラメータを削除しました。(#3332)</li>
 	<li>データベースドライバで、num_rows プロパティが更新されない不具合を修正しました。</li>
 	<li><a href="./libraries/file_uploading.html">アップロードライブラリ</a>で、allowed_files が定義されていなかった不具合を修正しました。</li>
-	<li>テキストヘルパの <kbd>word_wrap()</kbd> で、誤ってオブジェクトを参照してた不具合を修正しました。</li>
+	<li>テキストヘルパーの <kbd>word_wrap()</kbd> で、誤ってオブジェクトを参照してた不具合を修正しました。</li>
 	<li>バリデーション (検証) で、<kbd>valid_ip()</kbd> が適切に呼び出されない不具合を修正しました。</li>
 	<li>バリデーション (検証) で、チェックボックスに対応する個別のエラーメッセージがサポートされていなかった不具合を修正しました。</li>
 	<li>captcha で、不正なPHP関数を呼び出していた不具合を修正しました。</li>
-	<li>クッキーヘルパの "set_cookie" 関数の設定を受け取っていなかった不具合を修正しました。</li>
+	<li>クッキーヘルパーの "set_cookie" 関数の設定を受け取っていなかった不具合を修正しました。</li>
 	<li>バリデーションで、コールバックを必要であると設定していなくても、コールバックが要求される不具合を修正しました。</li>
 	<li>XML-RPC ライブラリの不具合を修正しました。これにより、型が指定された場合、デフォルトの型に関して、よりインテリジェントな決定がされるようになります。</li>
 	<li>Email ライブラリのドキュメントで、カンマ区切りの email についてのサンプルコードを修正しました。</li>
@@ -916,7 +916,7 @@ Hg Tag: 1.6.2</p>
 	<li>XML RPC のサンプルコードを修正しました。</li>
 	<li><a href="./libraries/user_agent.html">ユーザエージェントライブラリ</a>の <kbd>accept_charset()</kbd> のサンプルコードを修正しました。</li>
 	<li>docblock コメントで、CodeIgniter が CodeIgnitorとなっていた誤字を修正しました。</li>
-	<li><a href="./helpers/string_helper.html">文字列ヘルパ</a> の誤字を修正しました(uniquid を uniqid に変更)。</li>
+	<li><a href="./helpers/string_helper.html">文字列ヘルパー</a> の誤字を修正しました(uniquid を uniqid に変更)。</li>
 	<li>email クラスの言語ファイルの誤字(email_attachment_unredable, email_filed_smtp_login), および FTP クラスの言語ファイルの誤字(ftp_unable_to_remame)を修正しました。</li>
 	<li>アップロードライブラリに stripslashes() を追加しました。</li>
 	<li>言語ファイルの一連の文法エラーとスペルミスを修正しました。</li>
@@ -930,7 +930,7 @@ Hg Tag: 1.6.2</p>
 	<li><a href="general/profiling.html">プロファイラ</a>で、配列を文字列に展開して表示するようにしました。</li>
 	<li>application/config/mimes.php に、さらにいくつかの MIME タイプを追加しました。</li>
 	<li><a href="./libraries/input.html">入力ライブラリ</a>に、filename_security() メソッドを追加しました。</li>
-	<li><a href="./helpers/inflector_helper.html">語形変換ヘルパ</a>の singular() に、"s"で終わる単語についての処理を補うよう、さらにいくつかの引数を追加しました。また pluralize() に、強制処理させるための引数を追加しました。</li>
+	<li><a href="./helpers/inflector_helper.html">語形変換ヘルパー</a>の singular() に、"s"で終わる単語についての処理を補うよう、さらにいくつかの引数を追加しました。また pluralize() に、強制処理させるための引数を追加しました。</li>
 	<li>設定ファイルに、$config['charset'] を追加しました。規定値は、'UTF-8' で、いくつかの文字列を取り扱う関数で使用されます。</li>
 	<li>MSSQL の insert_id() を修正しました。</li>
 	<li>DBのtrans_status() メソッドの、論理の誤りを修正しました。誤って、失敗した場合に TRUE を返し、成功した場合に FALSE を返していました。</li>
@@ -949,14 +949,14 @@ Hg Tag: 1.6.2</p>
 	<li>GET または POST データ経由で PHP のスーパーグローバルをセットする事により、そのひとつが、ある PHP のスーパーグローバルの値を無効化してしまう可能性がある不具合を修正しました。</li>
 	<li>PostgreSQL ドライバの insert_id() メソッドの、関数の未定義エラーを修正しました。</li>
 	<li>様々なドキュメントの誤字を修正しました。</li>
-	<li>ユーザガイドで記述がなかった、<a href="./helpers/string_helper.html">文字列ヘルパ </a>の2つの関数: trim_slashes() と reduce_double_slashes() についての記述をドキュメントに追加しました。</li>
+	<li>ユーザガイドで記述がなかった、<a href="./helpers/string_helper.html">文字列ヘルパー </a>の2つの関数: trim_slashes() と reduce_double_slashes() についての記述をドキュメントに追加しました。</li>
 	<li>ドキュメントは、XHTML 1 transitional の妥当な文書になりました。</li>
 	<li>IE の expression() でできることについて考慮するようXSS フィルタリングをアップデートし、潜在的な脆弱性を回避するための、ある削除処理を改善しました。</li>
 	<li>ルータで、クエリ文字列を有効にできるようにし、コントローラトリガおよびメソッドトリガの値は、ファイル名の包含に関するセキュリティについてサニタイズするようにしました。</li>
 	<li>アップロードライブラリの is_image() メソッドで、Windows IE 6/7 の MIME を取り扱う際の一般的でない挙動を考慮するようにしました。</li>
 	<li>XSS クリーニング処理のパフォーマンスを改善し、PHP 5.2 の新しい PCRE のバックトラックと再帰処理制限に対応するようにしました。</li>
-	<li><a href="./helpers/url_helper.html">URL ヘルパ</a>で、数値が渡された場合に、$title を文字列にキャストするようにしました。</li>
-	<li>Modified Form ヘルパの form_dropdown() で、選択肢の配列のキーと値を文字列にキャストするようにし、'selected' を適切にセットするために、数値を受け入れることができるようにしました。</li>
+	<li><a href="./helpers/url_helper.html">URL ヘルパー</a>で、数値が渡された場合に、$title を文字列にキャストするようにしました。</li>
+	<li>Modified Form ヘルパーの form_dropdown() で、選択肢の配列のキーと値を文字列にキャストするようにし、'selected' を適切にセットするために、数値を受け入れることができるようにしました。</li>
 	<li>各所で使われていた <kbd>is_numeric()</kbd> は、ピリオドが通ってしまうため、使わないようにしました。<kbd>ctype_digit()</kbd> は、互換性の問題があり、いくつかの環境で信頼性が得られなかったため、次の正規表現を代わりに使用します:  <kbd>preg_match("/[^0-9]/", $n)</kbd></li>
 	<li>非推奨: APPVER は、非推奨となり、明確さのため、CI_VERSION に置き換えられました。</li>
 </ul>
@@ -966,13 +966,13 @@ Hg Tag: 1.6.2</p>
 	<li>プロファイラで配列を文字列として展開して表示するようにしました。</li>
 	<li>Code Igniter への参照を CodeIgniter に変更しました。</li>
 	<li>pMachine への参照を EllisLab に変更しました。</li>
-	<li><a href="./helpers/string_helper.html">文字列ヘルパ</a>のrepeater 関数の不具合を修正しました。</li>
+	<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>のrepeater 関数の不具合を修正しました。</li>
 	<li>ODBC ドライバの不具合を修正しました。</li>
 	<li>result_array() の、結果が生成されないときに空の配列を返す不具合を修正しました。</li>
-	<li><a href="./helpers/url_helper.html">URL ヘルパ</a>の redirect 関数の不具合を修正しました。 </li>
+	<li><a href="./helpers/url_helper.html">URL ヘルパー</a>の redirect 関数の不具合を修正しました。 </li>
 	<li>ローダの未定義の変数を修正しました。</li>
 	<li>Postgreドライバのバージョンバグを修正しました。</li>
-	<li>Form ヘルパの textarea 関数で、文字列を使用する際の不具合を修正しました。</li>
+	<li>Form ヘルパーの textarea 関数で、文字列を使用する際の不具合を修正しました。</li>
 	<li>ドキュメントの誤字を修正しました。</li>
 </ul>
 <h2>Version 1.5.2</h2>
@@ -984,7 +984,7 @@ Hg Tag: 1.6.2</p>
 	<li>Active Record の Join メソッドで、テーブルプリフィクスが考慮されない不具合を修正しました。</li>
 	<li>入力およびルータクラスのエラーメッセージからエスケープされていない変数を削除しました。</li>
 	<li>ローダで、ライブラリが2回ロードされたときに、エラーになっていた不具合を修正しました。デバッグメッセージは、表示されずに、ログ出力されるようになりました。</li>
-	<li><a href="./helpers/form_helper.html">Form ヘルパ</a>で、textarea に value 属性をセットしていた不具合を修正しました。</li>
+	<li><a href="./helpers/form_helper.html">Form ヘルパー</a>で、textarea に value 属性をセットしていた不具合を修正しました。</li>
 	<li><a href="./libraries/image_lib.php">画像ライブラリ</a>で、同一サイズの画像のリサイズが無視されていた不具合を修正しました。</li>
 	<li>ドキュメントのいくつかの誤字を修正しました。</li>
 </ul>
@@ -1008,8 +1008,8 @@ Hg Tag: 1.6.2</p>
 <h2>Version 1.5.0.1</h2>
 <p>リリース日付: 2006年10月31日</p>
 <ul>
-<li>重複したヘルパおよびクラスの読み込みが停止されない問題を修正しました。</li>
-<li>word_wrap() ヘルパ関数の不具合を修正しました。</li>
+<li>重複したヘルパーおよびクラスの読み込みが停止されない問題を修正しました。</li>
+<li>word_wrap() ヘルパー関数の不具合を修正しました。</li>
 <li>プロファイラクラスの正しくない16進カラーコードを修正しました。</li>
 <li>ユーザガイドの壊れた画像を修正しました。</li>
 </ul>
@@ -1030,15 +1030,15 @@ Hg Tag: 1.6.2</p>
 <li><a href="./libraries/ftp.html">FTP ライブラリ</a>を追加しました。</li>
 <li><a href="./general/creating_libraries.html">ライブラリの拡張</a>および<a href="./general/core_classes.html">コアクラスの拡張</a>が可能になり、加えて、それらの置き換えも可能になりました。</li>
 <li><a href="./general/models.html">モデルをサブフォルダの中に</a>設置することが出来るようになりました。</li>
-<li><a href="./helpers/download_helper.html">ダウンロードヘルパ</a>を追加しました。</li>
+<li><a href="./helpers/download_helper.html">ダウンロードヘルパー</a>を追加しました。</li>
 <li><a href="./database/queries.html">simple_query()</a> メソッドをデータベースクラスに追加しました。</li>
-<li><a href="./helpers/date_helper.html">standard_date()</a> 関数を日付ヘルパに追加しました。</li>
+<li><a href="./helpers/date_helper.html">standard_date()</a> 関数を日付ヘルパーに追加しました。</li>
 <li><a href="./database/results.html">$query->free_result()</a> メソッドをデータベースクラスに追加しました。</li>
 <li><a href="./database/fields.html">$query->list_fields()</a> メソッドをデータベースクラスに追加しました。</li>
 <li><a href="./database/helpers.html">$this->db->platform()</a> メソッドを追加しました。</li>
-<li>新しい<a href="./helpers/file_helper.html">ファイルヘルパ</a>：get_filenames() を追加しました。</li>
-<li>新しいヘルパ: <a href="./helpers/smiley_helper.html">スマイリー（顔文字）ヘルパ</a>を追加しました。</li>
-<li>&lt;ul&gt; および &lt;ol&gt; リストのサポートを<a href="./helpers/html_helper.html">HTML ヘルパ</a>に加えました。</li>
+<li>新しい<a href="./helpers/file_helper.html">ファイルヘルパー</a>：get_filenames() を追加しました。</li>
+<li>新しいヘルパー: <a href="./helpers/smiley_helper.html">スマイリー（顔文字）ヘルパー</a>を追加しました。</li>
+<li>&lt;ul&gt; および &lt;ol&gt; リストのサポートを<a href="./helpers/html_helper.html">HTML ヘルパー</a>に加えました。</li>
 <li><a href="./general/alternative_php.html">ショートタグ</a>をオン・ザ・フライで書き換えられるようにしました。ショートタグをサポートしないサーバでは、ショートタグは通常の PHP ステートメントに変換されます。これにより、サーバでショートタグがサポートされているかを考慮することなく、クリーンな構文が利用できます。</li>
 <li><a href="./general/managing_apps.html">"application" フォルダのリネームまたは再配置</a>ができるようになりました。</li>
 <li>アップロードクラスでより完全に初期化がおこなわれるようにしたので、すべてのフィールドがリセットされるようになりました。</li>
@@ -1049,9 +1049,9 @@ Hg Tag: 1.6.2</p>
 <li><a href="./libraries/input.html">入力クラス</a>の <dfn>input->cookie()</dfn> および <dfn>input->post()</dfn> メソッドを、XSS フィルタで使用される配列に、cookie を含むことができるように変更しました。</li>
 <li>ユーザガイドに記述されていなかったバリデーション (検証) クラスの 3 つのメソッド: set_select(), set_radio(), および set_checkbox() に関する記述をドキュメントに追加しました。</li>
 <li>SMTP の Helo データに関する Email クラスの不具合を修正しました。</li>
-<li>ワードラップヘルパおよび Email クラスの不具合を修正しました。</li>
+<li>ワードラップヘルパーおよび Email クラスの不具合を修正しました。</li>
 <li>バリデーション（検証）クラスの不具合を修正しました。</li>
-<li>タイポグラフィーヘルパで、不正にブロックレベル要素を段落タグで囲んでいた不具合を修正しました。</li>
+<li>タイポグラフィーヘルパーで、不正にブロックレベル要素を段落タグで囲んでいた不具合を修正しました。</li>
 <li>form_prep() 関数で、二重にエンティティをエンコードしていた問題を修正しました。</li>
 <li>いくつかのバージョンの PHP に影響する、出力バッファがネストされたときの不具合を修正しました。</li>
 <li>PHP のマジックメソッド __get() または __set() をモデルまたはコントローラで使用すると、CI の動作が停止する不具合を修正しました。</li>
@@ -1074,11 +1074,11 @@ Hg Tag: 1.6.2</p>
 <li>作成したコントローラで、出力クラスが生成した最終の出力を受け取ることができる <dfn>_output()</dfn> という名前のメソッドを追加しました。詳しくは、<a href="controllers.html">コントローラ</a>のページをご覧ください。</li>
 <li><a href="./libraries/uri.html">URI クラス</a>に、<a href="routing.html">URI ルーティング</a>機能を使って再ルーティングされたURIセグメントを、取得して操作するための、いくつかの新しいメソッドを追加しました。これまでは、URI クラスでは、再ルーティングされた URI セグメントにアクセスすることができませんでしたが、これからは、可能になります。</li>
 <li>サーバヘッダをセットすることができる<a href="./libraries/output.html">$this->output->set_header()</a> メソッドを追加しました。</li>
-<li><dfn>application</dfn> フォルダに、独自のプラグイン、ヘルパ、および言語フォルダを配置できるように、プラグイン、ヘルパ、言語クラスを変更しました。これまでは、インストール全体で、常にグローバルに取り扱う必要がありました。アプリケーションフォルダに、何らかのそれらのリソースが設置された場合、グローバルのそれに<em>代わって</em>使用されます。</li>
-<li><a href="./helpers/inflector_helper.html">語形変換ヘルパ</a>を追加しました。</li>
-<li><a href="./helpers/array_helper.html">配列ヘルパ</a>に、<dfn>element()</dfn> 関数を追加しました。</li>
+<li><dfn>application</dfn> フォルダに、独自のプラグイン、ヘルパー、および言語フォルダを配置できるように、プラグイン、ヘルパー、言語クラスを変更しました。これまでは、インストール全体で、常にグローバルに取り扱う必要がありました。アプリケーションフォルダに、何らかのそれらのリソースが設置された場合、グローバルのそれに<em>代わって</em>使用されます。</li>
+<li><a href="./helpers/inflector_helper.html">語形変換ヘルパー</a>を追加しました。</li>
+<li><a href="./helpers/array_helper.html">配列ヘルパー</a>に、<dfn>element()</dfn> 関数を追加しました。</li>
 <li>active record の <dfn>orderby()</dfn> メソッドに、<dfn>RAND()</dfn> を追加しました。</li>
-<li>入力クラスにも、クッキーを読み取るメソッドがありますが、<dfn>delete_cookie()</dfn> と <dfn>get_cookie()</dfn> を<a href="./helpers/cookie_helper.html">クッキーヘルパ</a>に追加しました。</li>
+<li>入力クラスにも、クッキーを読み取るメソッドがありますが、<dfn>delete_cookie()</dfn> と <dfn>get_cookie()</dfn> を<a href="./helpers/cookie_helper.html">クッキーヘルパー</a>に追加しました。</li>
 <li>Oracle データベースドライバを追加しました。(テスト中のため、いくつかの不具合がある可能性があります）</li>
 <li>テンプレートパーサクラスを、擬似変数と PHP 変数を混合して使用する事ができるようにしました。</li>
 <li>設定ファイルに、出力圧縮の項目を追加しました。</li>
@@ -1086,7 +1086,7 @@ Hg Tag: 1.6.2</p>
 <li>MySQLi で、適切なエラーデータを含まずエラーメッセージが表示される不具合を修正しました。</li>
 <li>明示的に指定した代替ヘッダが無視される、Email クラスの不具合を修正しました。</li>
 <li>get_config() 関数で、例外クラスが呼ばれる時に、問題が発生して PHP エラーが起こっていた不具合を修正しました。</li>
-<li>クッキーヘルパで、設定ファイルのクッキー設定が使用されていなかった見落としを修正しました。</li>
+<li>クッキーヘルパーで、設定ファイルのクッキー設定が使用されていなかった見落としを修正しました。</li>
 <li>アップロードクラスの見落としを修正しました。1.4 の変更履歴で述べられていた項目がありませんでした。</li>
 <li>Email のバッチ送信の時に、メールの添付をリセットできるよう、いくつかのコードを追加しました。</li>
 <li><dfn>application/scripts</dfn> フォルダは非推奨になりました。レガシーユーザのために、今後も動作しますが、
@@ -1107,15 +1107,15 @@ Hg Tag: 1.6.2</p>
 <li>作成したコントローラの中で、<a href="controllers.html">メソッド呼び出しを再マッピングする</a>ことができるようになりました。</li>
 <li>ユーザ作成のクラスで、<a href="core_classes.html">コアシステムクラスを置き換える</a>ことができるようになりました。</li>
 <li>% 文字をURLで使用できるようになりました。</li>
-<li><a href="./helpers/url_helper.html">anchor()</a> ヘルパ関数を使って、完全な URL を出力できるようにしました。</li>
-<li><a href="./helpers/file_helper.html">file_write()</a> ヘルパにモードを指定するパラメータを追加しました。</li>
+<li><a href="./helpers/url_helper.html">anchor()</a> ヘルパー関数を使って、完全な URL を出力できるようにしました。</li>
+<li><a href="./helpers/file_helper.html">file_write()</a> ヘルパーにモードを指定するパラメータを追加しました。</li>
 <li><a href="./database/configuration.html">Postgre ドライバ</a>で、ポート番号を変更できるようにしました。</li>
 <li>"許可された URI 文字（allowed URI characters）"のリストをルータクラスから、設定ファイルに移動しました。</li>
 <li>MIMEタイプの配列をアップロードクラスから、applications/config/ フォルダの中の、専用のファイルに移動しました。</li>
 <li><a href="./libraries/file_uploading.html">do_upload()</a> を呼び出す時に、アップロードするファイル名を指定するよう、アップロードクラスを変更しました。</li>
 <li><a href="./libraries/config.html">設定ライブラリ</a>を、自動的に設定ファイルをロードできるように変更し、(複数の設定を使用する時に衝突を避けるため)別々のインデックスを付けて、設定ファイルを割り当てられるようにしました。</li>
 <li>異なる環境で、URL がより高い信頼性のもとで動作するよう、URI プロトコルのコードに、さらに選択肢を追加しました。</li>
-<li><dfn>form_open()</dfn> ヘルパで GET メソッドを利用できるようにしました。</li>
+<li><dfn>form_open()</dfn> ヘルパーで GET メソッドを利用できるようにしました。</li>
 <li>MySQLiの<dfn>execute()</dfn> メソッドに、コネクション切断エラーを避けるためいくつかのコードを追加して変更しました。</li>
 <li>SQLite ドライバで、結果をオブジェクトとして返す前に、オブジェクトをチェックするように変更しました。サポートされてない場合は、配列を返します。</li>
 <li>同一のモデルを複数ロードできるよう、モデル読み込みメソッドを変更しました。</li>
@@ -1133,11 +1133,11 @@ Hg Tag: 1.6.2</p>
 <li>XSSフィルタリング機能が、不意に特定の語を変更してしまうことによるセッションの不具合を修正しました。</li>
 <li>データベースプリフィクス機能を使用している時の、プリフィクスの欠落を修正しました。</li>
 <li>カレンダークラスの誤字 (cal_november) を修正しました。</li>
-<li><dfn>form_checkbox()</dfn> ヘルパの不具合を修正しました。</li>
+<li><dfn>form_checkbox()</dfn> ヘルパーの不具合を修正しました。</li>
 <li>2番目の URI セグメントがクラス名と同じであることが許可されていた不具合を修正しました。</li>
 <li>データベース初期化メソッドの評価関連の不具合を修正しました。</li>
 <li>言語クラスのエラーメッセージの一つの小さな不具合を修正しました。</li>
-<li>日付ヘルパの <dfn>timespan</dfn> 関数の不具合を修正しました。</li>
+<li>日付ヘルパーの <dfn>timespan</dfn> 関数の不具合を修正しました。</li>
 <li>DB ドライバクラスの未定義の変数を修正しました。</li>
 <li>DB クラスで、バインディングで置換される値として使用するドル記号が正規表現の後方参照として取り扱われる不具合を修正しました。</li>
 <li><dfn>set_hash()</dfn> 関数で、MD5 が使用されない不具合を修正しました。</li>
@@ -1163,12 +1163,12 @@ Hg Tag: 1.6.2</p>
 <li>alternator() 関数を引数なしで呼び出し場合、再初期化するようにし、複数回呼び出せるようにしました。</li>
 <li>active record の "having" メソッドの不具合を修正しました。</li>
 <li>バリデーション（検証）クラスで、required の場合に、チェックボックスが無視される問題を修正しました。</li>
-<li>word_limiter() ヘルパ関数の不具合を修正しました。最初の単語が切り取られていました。</li>
+<li>word_limiter() ヘルパー関数の不具合を修正しました。最初の単語が切り取られていました。</li>
 <li>xss_clean 関数で、いくつかのバージョンに影響する html_entity_decode の PHP の不具合を修正しました。</li>
 <li>一つのコントローラで、ルールを2回セットできないバリデーションの不具合を修正しました。</li>
 <li>動的に読み込んだ言語を使用しないカレンダーの不具合を修正しました。</li>
 <li>LIKE を使った WHERE 句を使用する時の active record クラスの不具合を修正しました。</li>
-<li>セキュリティヘルパの hash() の不具合を修正しました。</li>
+<li>セキュリティヘルパーの hash() の不具合を修正しました。</li>
 <li>いくつかの誤字を修正しました。</li>
 </ul>
 
@@ -1182,7 +1182,7 @@ Hg Tag: 1.6.2</p>
 <li>"required" がフィールドに明示的にセット「されていなかった」場合、その他のテストが無視されるという、バリデーションの振る舞いを変更しました。</li>
 <li>コントローラクラスで、メインシステムフォルダでなく、ローカルの"init"フォルダを見ていた不具合を修正しました。</li>
 <li>init_pagination ファイルの不具合を修正しました。$config 設定項目が正常にセットされませんでした。</li>
-<li>オートタイポグラフィヘルパで、一貫しない振る舞いを引き起こしていた不具合を修正しました。</li>
+<li>オートタイポグラフィヘルパーで、一貫しない振る舞いを引き起こしていた不具合を修正しました。</li>
 <li>モデルクラスの一対の不具合を修正しました。</li>
 <li>ドキュメントのいくつかの誤字や誤りを修正しました。</li>
 </ul>
@@ -1224,7 +1224,7 @@ Hg Tag: 1.6.2</p>
 <li>通常の<a href="urls.html">クエリ文字列 URL</a> でも動作するようにしました。これらは、設定ファイルでオプションで有効にできます。</li>
 <li>URL に付加できる<a href="urls.html">"サフィックス(suffix)"を指定</a>出来るようにしました。たとえば、.html を URL に付加することができ、静的ファイルのように見せることができます。この機能は、設定ファイルで有効にします。</li>
 <li>ネイティブの PHP エラーに使用する新しいエラーテンプレートを追加しました。</li>
-<li><a href="./helpers/string_helper.html">文字列ヘルパ</a>に、"alternator" 関数を追加しました。</li>
+<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に、"alternator" 関数を追加しました。</li>
 <li>入力クラスからスラッシュ付加処理を削除しました。良く議論した結果、この機能をなくしました。</li>
 <li>IDE や phpDocumenter のようなツールがコメントを収集できるよう、スクリプトのコメントスタイルを PEAR 標準に変更しました。</li>
 <li>ユーザ開発のクラスとの衝突を避けるため、クラスと関数のネームスペースを改善しました。衝突回避のため、CodeIgniter の全クラスは <dfn>CI_</dfn> というプリフィクスが付き、
@@ -1251,8 +1251,8 @@ Hg Tag: 1.6.2</p>
 <ul>
 <li>ベータテストで明らかになったスコープの問題を解決するため、フレームワーク内部の一部を再設計しました。この問題は、コンストラクタで、クラスをインスタンス化する際に、とくに、それらのクラスが順次コンストラクタで処理を行う際に、もっともよく明らかになります。</li>
 <li>ユーザ定義クラスの中で、メインの Codeigniter オブジェクトにアクセスできるよう、<a href="ancillary_classes.html">get_instance()</a> というグローバル関数を追加しました。</li>
-<li>新しい<a href="./helpers/file_helper.html">ファイルヘルパ</a>を追加しました:  delete_files()</li>
-<li>新しい<a href="./helpers/url_helper.html">URL ヘルパ</a>を追加しました:  base_url(), index_page()</li>
+<li>新しい<a href="./helpers/file_helper.html">ファイルヘルパー</a>を追加しました:  delete_files()</li>
+<li>新しい<a href="./helpers/url_helper.html">URL ヘルパー</a>を追加しました:  base_url(), index_page()</li>
 <li>ユーザ定義の <a href="creating_libraries.html">コアライブラリ</a> を作成し、ローカルの application ディレクトリに保管できるようにしました。</li>
 <li>与えられたファイル名のファイルに追加するのではなく、上書きできるよう、<kbd>overwrite（上書き）</kbd> オプションを<a href="./libraries/file_uploading.html">アップロードクラス</a>に追加しました。</li>
 <li>Javascript のカレンダープラグインを追加しました。</li>
@@ -1279,15 +1279,15 @@ Hg Tag: 1.6.2</p>
 <li>コンストラクタの処理中に $this->load->library メソッドが動作しない問題を修正しました。</li>
 <li>自動読み込み処理でセッションクラスが詠みこまれるときに発生するバグを修正しました。</li>
 <li>E_STRICT 定数をサポートしない PHP のバージョンで発生するバグを修正しました。</li>
-<li>form_radio 関数 (フォームヘルパ) のデータ型に関するエラーを修正しました。</li>
+<li>form_radio 関数 (フォームヘルパー) のデータ型に関するエラーを修正しました。</li>
 <li>バリデーション（検証）クラスから xss_clean メソッドの呼び出しに失敗するバグを修正しました。</li>
 <li>$config ではなく、誤って $conf となっていた cookie 関連の設定項目名を修正しました。</li>
 <li>スカッフォールディングでのページネーションの問題を修正しました。</li>
 <li>mysql クラスの "where" メソッドのバグを修正しました。</li>
 <li>重複するスラッシュを取り除く、いつかのコードでの正規表現の問題を修正しました。</li>
-<li>HTML ヘルパの br() 関数のバグを修正しました。</li>
-<li>Form ヘルパの form_dropdown 関数の文法ミスを修正しました。</li>
-<li>form ヘルパから "style" 属性を取り除きました。</li>
+<li>HTML ヘルパーの br() 関数のバグを修正しました。</li>
+<li>Form ヘルパーの form_dropdown 関数の文法ミスを修正しました。</li>
+<li>form ヘルパーから "style" 属性を取り除きました。</li>
 <li>ドキュメントを更新しました。"次へ/前へ" のリンクを各ページに追加し、多くの誤字を修正しました。</li>
 </ul>
 

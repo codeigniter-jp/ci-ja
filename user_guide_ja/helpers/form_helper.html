@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Form ヘルパ：CodeIgniter ユーザガイド 日本語版</title>
+<title>Form ヘルパー：CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -42,7 +42,7 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-Form ヘルパ
+Form ヘルパー
 </td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
@@ -56,14 +56,14 @@ Form ヘルパ
 <div id="content">
 
 
-<h1>Form ヘルパ</h1>
+<h1>Form ヘルパー</h1>
 
-<p>Form ヘルパのファイルには、HTML フォームを使って作業するのを支援する関数が含まれています。</p>
+<p>Form ヘルパーのファイルには、HTML フォームを使って作業するのを支援する関数が含まれています。</p>
 
 
-<h2>ヘルパのロード</h2>
+<h2>ヘルパーのロード</h2>
 
-<p>このヘルパは次のコードを使ってロードします:</p>
+<p>このヘルパーは次のコードを使ってロードします:</p>
 <code>$this->load->helper('form');</code>
 
 <p>次の関数が利用できます:</p>
@@ -294,7 +294,7 @@ echo fieldset_close($string);<br />
 <br />
 &lt;input type="checkbox" name="newsletter" value="accept" checked="checked" /></code>
 <p>第3引数には、チェックボックスがチェック済みかそうでないかを決めるブール値の TRUE/FALSE を設定できます。</p>
-<p>このヘルパも他の関数と同様に属性を連想配列で渡すことができます:</p>
+<p>このヘルパーも他の関数と同様に属性を連想配列で渡すことができます:</p>
 
 <code>$data = array(<br />
 &nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'newsletter',<br />
@@ -415,7 +415,7 @@ form_prep 関数はこれを安全に使えるよう、HTML を変換します:<
 
 <code>&lt;input type="text" name="myform" value="<var>&lt;?php echo form_prep($string); ?></var>" /></code>
 
-<p class="important"><strong>Note:</strong> このページにリストアップされたいずれの Form ヘルパ関数を使うときも、
+<p class="important"><strong>Note:</strong> このページにリストアップされたいずれの Form ヘルパー関数を使うときも、
 値は自動的に整形処理されるので、この関数を呼び出す必要はありません。
 自分で書いた Form 要素の中でだけ、この関数を使用してください。</p>
 
@@ -471,11 +471,11 @@ form_prep 関数はこれを安全に使えるよう、HTML を変換します:<
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="file_helper.html">ファイルヘルパ</a>
+前のトピック:&nbsp;&nbsp;<a href="file_helper.html">ファイルヘルパー</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="html_helper.html">HTMLヘルパ</a>
+次のトピック:&nbsp;&nbsp;<a href="html_helper.html">HTMLヘルパー</a>
 </p>
 <p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>

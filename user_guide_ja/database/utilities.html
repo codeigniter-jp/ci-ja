@@ -194,7 +194,7 @@ echo $this->dbutil->csv_from_result($query, $delimiter, $newline);
 </code>
 
 <p><strong>Important:</strong>&nbsp; このメソッドは、CSV を ファイルには書き出しません。単に、CSV に整形するだけです。
-ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパ</a> を利用します。</p>
+ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパー</a> を利用します。</p>
 
 
 <h2><a name="xml"></a>$this->dbutil->xml_from_result($db_result)</h2>
@@ -218,12 +218,12 @@ echo $this->dbutil->xml_from_result($query, $config);
 </code>
 
 <p><strong>Important:</strong>&nbsp;このメソッドは、XML を ファイルには書き出しません。単に、XML に整形するだけです。
-ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパ</a> を利用します。</p>
+ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパー</a> を利用します。</p>
 
 
 <h2><a name="backup"></a>$this->dbutil->backup()</h2>
 
-<p>データベース全体もしくは個別のテーブルをバックアップできます。バックアップデータは Zip または Gzip フォーマットのどちらかの形式で圧縮できます [ 訳注: バックアップ結果をファイルに保存するには、ファイルヘルパを利用する必要があります ]。</p>
+<p>データベース全体もしくは個別のテーブルをバックアップできます。バックアップデータは Zip または Gzip フォーマットのどちらかの形式で圧縮できます [ 訳注: バックアップ結果をファイルに保存するには、ファイルヘルパーを利用する必要があります ]。</p>
 
 <p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL データベースでのみ使用できます。</p>
 
@@ -241,12 +241,12 @@ $this->load->dbutil();<br /><br />
 $backup =& $this->dbutil->backup();
 
 <br /><br />
-<dfn>// ヘルパをロードし、サーバにファイルを書き出す</dfn><br />
+<dfn>// ヘルパーをロードし、サーバにファイルを書き出す</dfn><br />
 $this->load->helper('file');<br />
 write_file('/path/to/mybackup.gz', $backup);
 
 <br /><br />
-<dfn>// ダウンロードヘルパをロードし、ファイルをデスクトップに送信する</dfn><br />
+<dfn>// ダウンロードヘルパーをロードし、ファイルをデスクトップに送信する</dfn><br />
 $this->load->helper('download');<br />
 force_download('mybackup.gz', $backup);
 </code>

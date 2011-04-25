@@ -47,7 +47,7 @@ function create_menu(basepath)
 			'<li><a href="'+base+'general/reserved_names.html">予約語一覧</a></li>' +
 			'<li><a href="'+base+'general/views.html">ビュー</a></li>' +
 			'<li><a href="'+base+'general/models.html">モデル</a></li>' +
-			'<li><a href="'+base+'general/helpers.html">ヘルパ関数</a></li>' +
+			'<li><a href="'+base+'general/helpers.html">ヘルパー関数</a></li>' +
 			'<li><a href="'+base+'general/libraries.html">CodeIgniter ライブラリの使用</a></li>' +
 			'<li><a href="'+base+'general/creating_libraries.html">ユーザライブラリの作成</a></li>' +
 			'<li><a href="'+base+'general/core_classes.html">コアクラスの作成</a></li>' +
@@ -116,29 +116,29 @@ function create_menu(basepath)
 		'<li><a href="'+base+'libraries/javascript.html">JavaScript クラス</a></li>' +
 		'</ul>' +
 
-		'<h3>ヘルパ関数リファレンス</h3>' +
+		'<h3>ヘルパー関数リファレンス</h3>' +
 		'<ul>' +
-		'<li><a href="'+base+'helpers/array_helper.html">配列ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/captcha_helper.html">CAPTCHA ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/cookie_helper.html">Cookie ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/date_helper.html">日付ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/directory_helper.html">ディレクトリヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/download_helper.html">ダウンロードヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/email_helper.html">Email ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/file_helper.html">ファイルヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/form_helper.html">Form ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/html_helper.html">HTML ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/inflector_helper.html">語形変換ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/language_helper.html">言語ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/number_helper.html">数字ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/path_helper.html">パスヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/security_helper.html">セキュリティヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/smiley_helper.html">スマイリーヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/string_helper.html">文字列ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/text_helper.html">テキストヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/typography_helper.html">タイポグラフィーヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/url_helper.html">URL ヘルパ</a></li>' +
-		'<li><a href="'+base+'helpers/xml_helper.html">XML ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/array_helper.html">配列ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/captcha_helper.html">CAPTCHA ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/cookie_helper.html">Cookie ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/date_helper.html">日付ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/directory_helper.html">ディレクトリヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/download_helper.html">ダウンロードヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/email_helper.html">Email ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/file_helper.html">ファイルヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/form_helper.html">Form ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/html_helper.html">HTML ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/inflector_helper.html">語形変換ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/language_helper.html">言語ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/number_helper.html">数字ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/path_helper.html">パスヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/security_helper.html">セキュリティヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/smiley_helper.html">スマイリーヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/string_helper.html">文字列ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/text_helper.html">テキストヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/typography_helper.html">タイポグラフィーヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/url_helper.html">URL ヘルパー</a></li>' +
+		'<li><a href="'+base+'helpers/xml_helper.html">XML ヘルパー</a></li>' +
 		'</ul>' +
 
 		'</td></tr></table>');
