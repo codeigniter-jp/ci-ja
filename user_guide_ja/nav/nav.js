@@ -14,7 +14,7 @@ function create_menu(basepath)
 		'<h3>基本情報</h3>' +
 		'<ul>' +
 			'<li><a href="'+base+'general/requirements.html">サーバ必要条件</a></li>' +
-			'<li><a href="'+base+'license.html">ライセンス契約書 (原文・参考訳)</a></li>' +
+			'<li><a href="'+base+'license.html">ライセンス契約書 (原文と参考訳)</a></li>' +
 			'<li><a href="'+base+'changelog.html">変更履歴</a></li>' +
 			'<li><a href="'+base+'general/credits.html">クレジット表示</a></li>' +
 		'</ul>' +
