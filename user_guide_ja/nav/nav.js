@@ -85,7 +85,7 @@ function create_menu(basepath)
 		'<li><a href="'+base+'libraries/email.html">Email クラス</a></li>' +
 		'<li><a href="'+base+'libraries/encryption.html">暗号化クラス</a></li>' +
 		'<li><a href="'+base+'libraries/file_uploading.html">ファイルアップロードクラス</a></li>' +
-		'<li><a href="'+base+'libraries/form_validation.html">Form バリデーション (検証) クラス</a></li>' +
+		'<li><a href="'+base+'libraries/form_validation.html">フォームバリデーション(検証)クラス</a></li>' +
 		'<li><a href="'+base+'libraries/ftp.html">FTP クラス</a></li>' +
 		'<li><a href="'+base+'libraries/table.html">HTML テーブルクラス</a></li>' +
 		'<li><a href="'+base+'libraries/image_lib.html">画像操作クラス</a></li>' +		
