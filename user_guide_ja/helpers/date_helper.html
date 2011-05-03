@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>日付ヘルパー : CodeIgniter ユーザガイド 日本語版</title>
+
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
 
@@ -41,7 +42,8 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-日付ヘルパー</td>
+日付ヘルパー
+</td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
@@ -69,16 +71,21 @@
 
 <h2>now()</h2>
 
-<p>現在時刻をUNIXタイムスタンプで返します。設定ファイルの "time reference" の設定により、サーバのローカル時間またはグリニッジ標準時間を指す時刻になります。マスターの時間をGMTに設定しないつもりなら、(各ユーザが各々のタイムゾーンを設定することができるサイトであれば通常そうすると思います)  PHP の time() 関数を使わずに、この関数を利用する利点はありません。</p>
+<p>現在時刻をUNIXタイムスタンプで返します。
+設定ファイルの "time reference" の設定により、サーバのローカル時間またはグリニッジ標準時間を指す時刻になります。マスターの時間を GMT に設定しないつもりなら、
+(各ユーザが各々のタイムゾーンを設定することができるサイトであれば通常そうすると思います) 
+PHP の time() 関数を使わずに、この関数を利用する利点はありません。</p>
 
 
 
 
 <h2>mdate()</h2>
 
-<p>この関数は、各コードの前に%がついているMySQLスタイルの日付コードを利用可能なこと以外は、PHPの<a href="http://www.php.net/date">date()</a> 関数と同じです。</p>
+<p>この関数は、各コードの前に % がついている MySQL スタイルの日付コードを利用可能なこと以外は、
+PHP の <a href="http://www.php.net/date">date()</a> 関数と同じです。</p>
 
-<p>日付をこの方法で扱う利点は、date() 関数を使った時には通常しなければならない、日付コードでない文字列のエスケープ処理について考慮する必要がないという点です。例:</p>
+<p>日付をこの方法で扱う利点は、date() 関数を使った時には通常しなければならない、
+日付コードでない文字列のエスケープ処理について考慮する必要がないという点です。例:</p>
 
 <code>$datestring = "Year: %Y Month: %m Day: %d - %h:%i %a";<br />
 $time = time();<br />
@@ -99,7 +106,7 @@ $time = time();<br />
 echo standard_date($format, $time);
 </code>
 
-<p>第1引数には、フォーマットを指定しなければならず、第2引数には、UNIXタイムスタンプを指定しなければなりません。</p>
+<p>第1引数には、フォーマットを指定しなければならず、第2引数には、UNIX タイムスタンプを指定しなければなりません。</p>
 
 <p>対応しているフォーマットです:</p>
 
@@ -109,7 +116,7 @@ echo standard_date($format, $time);
 		<th>対応フォーマット</th>
 		<th>サンプル</th>
 	</tr>
-	<tr>	
+	<tr>
 		<td>DATE_ATOM</td>
 		<td>Atom</td>
 		<td>2005-08-15T16:13:03+0000</td>
@@ -142,7 +149,7 @@ echo standard_date($format, $time);
 	<tr>
 		<td>DATE_RFC1123</td>
 		<td>RFC 1123</td>
-		<td>Sun, 14 Aug 2005 16:13:03 UTC</td>	 
+		<td>Sun, 14 Aug 2005 16:13:03 UTC</td>
 	</tr>
 	<tr>
 		<td>DATE_RFC2822</td>
@@ -163,7 +170,7 @@ echo standard_date($format, $time);
 
 <h2>local_to_gmt()</h2>
 
-<p>UNIXタイムスタンプを入力として、その時刻をGMT（グリニッジ標準時）として返します。例:</p>
+<p>UNIX タイムスタンプを入力として、その時刻を GMT（グリニッジ標準時）として返します。例:</p>
 
 <code>$now = time();<br />
 <br />
@@ -172,11 +179,12 @@ $gmt = local_to_gmt($now);</code>
 
 <h2>gmt_to_local()</h2>
 
-<p>UNIXタイムスタンプ (グリニッジ標準時を指します) を入力として、渡されたタイムゾーンとサマータイム適用区分にもとづいて、その地域の時刻に変換します。例:</p>
+<p>UNIX タイムスタンプ (グリニッジ標準時を指します) を入力として、
+渡されたタイムゾーンとサマータイム適用区分にもとづいて、その地域の時刻に変換します。例:</p>
 
 <code>
 $timestamp = '1140153693';<br />
-$timezone  = 'UM8';<br />
+$timezone = 'UM8';<br />
 $daylight_saving = TRUE;<br />
 <br />
 echo gmt_to_local($timestamp, $timezone, $daylight_saving);</code>
@@ -200,7 +208,8 @@ $unix = mysql_to_unix($mysql);</code>
 
 <p>これは、フォームの送信のために、フォームフィールドに表示したい場合に役立ちます。</p>
 
-<p>時間は、秒の部分をつける形式とつけない形式にフォーマットでき、ヨーロッパ形式またはアメリカ形式にセットできます。タイムスタンプだけが渡された時は、秒の部分がない形式で、アメリカ形式にフォーマットされます。例:</p>
+<p>時間は、秒の部分をつける形式とつけない形式にフォーマットでき、ヨーロッパ形式またはアメリカ形式にセットできます。
+タイムスタンプだけが渡された時は、秒の部分がない形式で、アメリカ形式にフォーマットされます。例:</p>
 
 <code>$now = time();<br />
 <br />
@@ -213,7 +222,9 @@ echo unix_to_human($now, TRUE, 'eu'); // 秒ありのヨーロッパ形式</code
 
 <h2>human_to_unix()</h2>
 
-<p>上の関数の反対です。"人" の時間を入力として、UNIXタイムスタンプを返します。これは、フォームから &quot;人&quot;  が読める形式にフォーマットされた日付を受け取る時に役立ちます。渡された文字列が、上で示したようなフォーマットでない場合、FALSE (ブール値)を返します。例:</p>
+<p>上の関数の反対です。"人" の時間を入力として、UNIX タイムスタンプを返します。これは、
+フォームから &quot;人&quot;  が読める形式にフォーマットされた日付を受け取る時に役立ちます。
+渡された文字列が、上で示したようなフォーマットでない場合、FALSE (ブール値)を返します。例:</p>
 
 <code>$now = time();<br />
 <br />
@@ -227,11 +238,13 @@ $unix = human_to_unix($human);</code>
 
 <h2>timespan()</h2>
 
-<p>UNIXタイムスタンプを次の例で示したようにフォーマットします:</p>
+<p>UNIX タイムスタンプを次の例で示したようにフォーマットします:</p>
 
 <code>1 Year, 10 Months, 2 Weeks, 5 Days, 10 Hours, 16 Minutes</code>
 
-<p>第1引数には、UNIXタイムスタンプを指定する必要があります。第2引数には、第1引数で渡したタイムスタンプよりも大きい（後の時間の）UNIXタイムスタンプを指定する必要があります。もし第2引数が空だった場合は現在時刻が使用されます。この関数の主要な目的は、過去のある時点から現在までの経過時間を表示するというものです。例:</p>
+<p>第1引数には、UNIX タイムスタンプを指定する必要があります。第2引数には、
+第1引数で渡したタイムスタンプよりも大きい（後の時間の）UNIX タイムスタンプを指定する必要があります。
+もし第2引数が空だった場合は現在時刻が使用されます。この関数の主要な目的は、過去のある時点から現在までの経過時間を表示するというものです。例:</p>
 
 <code>$post_date = '1079621429';<br />
 $now = time();<br />
@@ -248,13 +261,10 @@ echo timespan($post_date, $now);</code>
 
 <p>第2引数が空の時、現在の年が使われます。</p>
 <h2>timezones()</h2>
-<p> タイムゾーンリファレンス(有効なタイムゾーンのリストは、下の&quot;タイムゾーンリファレンス&quot;を参照してください)を引数にとり、UTCからの時差を数字で返します。</p>
+<p> タイムゾーンリファレンス(有効なタイムゾーンのリストは、下の &quot;タイムゾーンリファレンス&quot; を参照してください)を引数にとり、UTC からの時差を数字で返します。</p>
 <p><code>echo timezones('UM5');</code></p>
-<p>このメソッドは、timezone_menu()とともに使うと役立ちます。</p>
-
-
+<p>このメソッドは、timezone_menu() とともに使うと役立ちます。</p>
 <h2>timezone_menu()</h2>
-
 <p>次のようなタイムゾーンのプルダウンメニューを生成します:</p>
 
 <form action="#">
@@ -295,11 +305,12 @@ echo timespan($post_date, $now);</code>
 <p>このメニューは、ユーザごとのローカル時間ををセットできる会員制サイトの場合に使えます。</p>
 
 <p>第1引数で、メニューの "選択(selected)" 状態 を指定します。たとえば、太平洋標準時をデフォルト値にセットしたい場合は、次のようにします:</p>
+
 <code>echo timezone_menu('UM8');</code>
 
 <p>メニューに指定する値を調べるには、下記のタイムゾーンリファレンスをご覧ください。</p>
 
-<p>第2引数では、メニューのCSSクラスの名前を指定できます。</p>
+<p>第2引数では、メニューの CSS クラスの名前を指定できます。</p>
 
 <p class="important"><strong>Note:</strong>このメニューに含まれるテキストは、次の言語ファイルの中にあります: language/&lt;あなたの言語&gt;/date_lang.php</p>
 
@@ -313,128 +324,71 @@ echo timespan($post_date, $now);</code>
 <tr>
 <th>タイムゾーン</th>
 <th>地域</th>
-</tr>
-<tr>
-<td class="td">UM12</td>
-<td class="td">(UTC - 12:00) エニウェトク、クェゼリン環礁</td>
-</tr>
-<tr>
-<td class="td">UM11</td>
-<td class="td">(UTC - 11:00) ノーム、 ミッドウェイ島、サモア</td>
-</tr>
-<tr>
-<td class="td">UM10</td>
-<td class="td">(UTC - 10:00) ハワイ</td>
-</tr>
-<tr>
-<td class="td">UM9</td>
-<td class="td">(UTC - 9:00) アラスカ</td>
-</tr>
-<tr>
-<td class="td">UM8</td>
-<td class="td">(UTC - 8:00) 太平洋標準時</td>
-</tr>
-<tr>
-<td class="td">UM7</td>
-<td class="td">(UTC - 7:00) 山地標準時</td>
-</tr>
-<tr>
-<td class="td">UM6</td>
-<td class="td">(UTC - 6:00) 中部標準時、メキシコシティー</td>
-</tr>
-<tr>
-<td class="td">UM5</td>
-<td class="td">(UTC - 5:00) 東部標準時、ボゴタ、リマ、キト</td>
-</tr>
-<tr>
-<td class="td">UM4</td>
-<td class="td">(UTC - 4:00) 大西洋標準時、カラカス、ラパス</td>
-</tr>
-<tr>
-<td class="td">UM25</td>
-<td class="td">(UTC - 3:30) ニューファンドランド</td>
-</tr>
-<tr>
-<td class="td">UM3</td>
-<td class="td">(UTC - 3:00) ブラジル、ブエノスアイレス、ジョージタウン、フォークランド諸島</td>
-</tr>
-<tr>
-<td class="td">UM2</td>
-<td class="td">(UTC - 2:00) 中央大西洋、 アセンション島、 セントヘレナ</td>
-</tr>
-<tr>
-<td class="td">UM1</td>
-<td class="td">(UTC - 1:00) アゾレス諸島、カーボベルデ諸島</td>
-</tr>
-<tr>
-<td class="td">UTC</td>
-<td class="td">(UTC) カサブランカ、 ダブリン, エディンバラ、 ロンドン、 リスボン、モンロビア</td>
-</tr>
-<tr>
-<td class="td">UP1</td>
-<td class="td">(UTC + 1:00) ベルリン、ブリュッセル、コペンハーゲン、マドリッド、パリ、ローマ</td>
-</tr>
-<tr>
-<td class="td">UP2</td>
-<td class="td">(UTC + 2:00) カリーニングラード、 南アフリカ、ワルシャワ</td>
-</tr>
-<tr>
-<td class="td">UP3</td>
-<td class="td">(UTC + 3:00) バグダッド、リヤド、モスクワ、ナイロビ</td>
-</tr>
-<tr>
-<td class="td">UP25</td>
-<td class="td">(UTC + 3:30) テヘラン</td>
-</tr>
-<tr>
-<td class="td">UP4</td>
-<td class="td">(UTC + 4:00) アブダビ、バク、マスカット、トビリシ</td>
-</tr>
-<tr>
-<td class="td">UP35</td>
-<td class="td">(UTC + 4:30) カブール</td>
-</tr>
-<tr>
-<td class="td">UP5</td>
-<td class="td">(UTC + 5:00) イスラマバード、カラチ、 タシケント</td>
-</tr>
-<tr>
-<td class="td">UP45</td>
-<td class="td">(UTC + 5:30) ボンベイ、カルカッタ、マドラス、ニューデリー</td>
-</tr>
-<tr>
-<td class="td">UP6</td>
-<td class="td">(UTC + 6:00) アルマティ、コロンビア、 ダッカ</td>
-</tr>
-<tr>
-<td class="td">UP7</td>
-<td class="td">(UTC + 7:00) バンコク、ハノイ、ジャカルタ</td>
-</tr>
-<tr>
-<td class="td">UP8</td>
-<td class="td">(UTC + 8:00) 北京、香港、パース、シンガポール、台北</td>
-</tr>
-<tr>
-<td class="td">UP9</td>
-<td class="td">(UTC + 9:00) 大阪、札幌、ソウル、東京、ヤクーツク</td>
-</tr>
-<tr>
-<td class="td">UP85</td>
-<td class="td">(UTC + 9:30) アデレード、ダーウィン</td>
-</tr>
-<tr>
-<td class="td">UP10</td>
-<td class="td">(UTC + 10:00) メルボルン、パプアニューギニア、シドニー、ウラジオストック</td>
-</tr>
-<tr>
-<td class="td">UP11</td>
-<td class="td">(UTC + 11:00) マガダン、 ニューカレドニア、ソロモン諸島</td>
-</tr>
-<tr>
-<td class="td">UP12</td>
-<td class="td">(UTC + 12:00) オークランド、ウエリントン、フィジー、マーシャル諸島</td>
+</tr><tr>
+
+<td class="td">UM12</td><td class="td">(UTC - 12:00) エニウェトク、クェゼリン環礁</td>
+</tr><tr>
+<td class="td">UM11</td><td class="td">(UTC - 11:00) ノーム、 ミッドウェイ島、サモア</td>
+</tr><tr>
+<td class="td">UM10</td><td class="td">(UTC - 10:00) ハワイ</td>
+</tr><tr>
+<td class="td">UM9</td><td class="td">(UTC - 9:00) アラスカ</td>
+</tr><tr>
+<td class="td">UM8</td><td class="td">(UTC - 8:00) 太平洋標準時</td>
+</tr><tr>
+<td class="td">UM7</td><td class="td">(UTC - 7:00) 山地標準時</td>
+</tr><tr>
+<td class="td">UM6</td><td class="td">(UTC - 6:00) 中部標準時、メキシコシティー</td>
+</tr><tr>
+<td class="td">UM5</td><td class="td">(UTC - 5:00) 東部標準時、ボゴタ、リマ、キト</td>
+</tr><tr>
+<td class="td">UM4</td><td class="td">(UTC - 4:00) 大西洋標準時、カラカス、ラパス</td>
+</tr><tr>
+<td class="td">UM25</td><td class="td">(UTC - 3:30) ニューファンドランド</td>
+</tr><tr>
+<td class="td">UM3</td><td class="td">(UTC - 3:00) ブラジル、ブエノスアイレス、ジョージタウン、フォークランド諸島</td>
+</tr><tr>
+<td class="td">UM2</td><td class="td">(UTC - 2:00) 中央大西洋、 アセンション島、 セントヘレナ</td>
+</tr><tr>
+<td class="td">UM1</td><td class="td">(UTC - 1:00) アゾレス諸島、カーボベルデ諸島</td>
+</tr><tr>
+<td class="td">UTC</td><td class="td">(UTC) カサブランカ、 ダブリン, エディンバラ、 ロンドン、 リスボン、モンロビア</td>
+</tr><tr>
+<td class="td">UP1</td><td class="td">(UTC + 1:00) ベルリン、ブリュッセル、コペンハーゲン、マドリッド、パリ、ローマ</td>
+</tr><tr>
+<td class="td">UP2</td><td class="td">(UTC + 2:00) カリーニングラード、 南アフリカ、ワルシャワ</td>
+</tr><tr>
+<td class="td">UP3</td><td class="td">(UTC + 3:00) バグダッド、リヤド、モスクワ、ナイロビ</td>
+</tr><tr>
+<td class="td">UP25</td><td class="td">(UTC + 3:30) テヘラン</td>
+</tr><tr>
+<td class="td">UP4</td><td class="td">(UTC + 4:00) アブダビ、バク、マスカット、トビリシ</td>
+</tr><tr>
+<td class="td">UP35</td><td class="td">(UTC + 4:30) カブール</td>
+</tr><tr>
+<td class="td">UP5</td><td class="td">(UTC + 5:00) イスラマバード、カラチ、 タシケント</td>
+</tr><tr>
+<td class="td">UP45</td><td class="td">(UTC + 5:30) ボンベイ、カルカッタ、マドラス、ニューデリー</td>
+</tr><tr>
+<td class="td">UP6</td><td class="td">(UTC + 6:00) アルマティ、コロンビア、 ダッカ</td>
+</tr><tr>
+<td class="td">UP7</td><td class="td">(UTC + 7:00) バンコク、ハノイ、ジャカルタ</td>
+</tr><tr>
+<td class="td">UP8</td><td class="td">(UTC + 8:00) 北京、香港、パース、シンガポール、台北</td>
+</tr><tr>
+<td class="td">UP9</td><td class="td">(UTC + 9:00) 大阪、札幌、ソウル、東京、ヤクーツク</td>
+</tr><tr>
+<td class="td">UP85</td><td class="td">(UTC + 9:30) アデレード、ダーウィン</td>
+</tr><tr>
+<td class="td">UP10</td><td class="td">(UTC + 10:00) メルボルン、パプアニューギニア、シドニー、ウラジオストック</td>
+</tr><tr>
+<td class="td">UP11</td><td class="td">(UTC + 11:00) マガダン、 ニューカレドニア、ソロモン諸島</td>
+</tr><tr>
+<td class="td">UP12</td><td class="td">(UTC + 12:00) オークランド、ウエリントン、フィジー、マーシャル諸島</td>
 </tr>
 </table>
+
+
 </div>
 <!-- END CONTENT -->
 

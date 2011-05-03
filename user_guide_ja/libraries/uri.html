@@ -58,7 +58,7 @@ URI クラス
 
 <h1>URI クラス</h1>
 
-<p>URI クラスは、URI文字列から情報を取り出すのに役立つメソッドを提供しています。
+<p>URI クラスは、URI 文字列から情報を取り出すのに役立つメソッドを提供しています。
 また、URI ルーティングを利用している場合、再ルーティングされたあとのセグメントについての情報を取り出すことができます。</p>
 
 <p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
@@ -66,7 +66,7 @@ URI クラス
 <h2>$this->uri->segment(<var>n</var>)</h2>
 
 <p>特定のセグメントを取り出すことができます。ここでの <var>n</var> は取り出したいセグメント番号になります。
-セグメントは左から順に番号がつけられています。たとえば、完全なURLが次のようなものだった場合:</p>
+セグメントは左から順に番号がつけられています。たとえば、完全な URL が次のようなものだった場合:</p>
 
 <code>http://example.com/index.php/news/local/metro/crime_is_up</code>
 
@@ -99,7 +99,7 @@ else<br />
 
 <h2>$this->uri->rsegment(<var>n</var>)</h2>
 
-<p>このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
+<p>このメソッドは、CodeIgniter の <a href="../general/routing.html">URI ルーティング</a>
 機能を使っている場合にできる再ルートされた後のURIの特定のセグメントを取得することを除いて、先のメソッドと同じものです。</p>
 
 
@@ -130,11 +130,11 @@ $this->uri->slash_segment(<var>3</var>, 'both');</code>
 
 <h2>$this->uri->uri_to_assoc(<var>n</var>)</h2>
 
-<p>このメソッドは、URIセグメントを キー/値 ペアの連想配列に変換します。次のようなURIがあるとします:</p>
+<p>このメソッドは、URI セグメントを キー/値 ペアの連想配列に変換します。次のような URI があるとします:</p>
 
 <code>index.php/user/search/name/joe/location/UK/gender/male</code>
 
-<p>このメソッドを使うと、次の例のように、URIが連想配列に変換されます:</p>
+<p>このメソッドを使うと、次の例のように、URI が連想配列に変換されます:</p>
 
 <code>[array]<br />
 (<br />
@@ -153,39 +153,39 @@ echo $array['name'];
 </code>
 
 
-<p>第2引数では、デフォルトのキー名をセットできます。こうすることで、URIに存在しない場合でも、返される配列には、常に期待される添字が含まれることになります。例:</p>
+<p>第2引数では、デフォルトのキー名をセットできます。こうすることで、URI に存在しない場合でも、返される配列には、常に期待される添字が含まれることになります。例:</p>
 
 <code>
 $default = array('name', 'gender', 'location', 'type', 'sort');<br />
 <br />
 $array = $this->uri->uri_to_assoc(3, $default);</code>
 
-<p>もともとURIに値が含まれない場合、配列の添字はその名前にセットされ、値には、FALSEがセットされます。</p>
+<p>もともと URI に値が含まれない場合、配列の添字はその名前にセットされ、値には、FALSE がセットされます。</p>
 
-<p>最後に、キーが指定されているにもかかわらず、対応する値が見つからなかった場合 (URIセグメント数が奇数だった場合)、値はFALSE (ブール値) にセットされます。</p>
+<p>最後に、キーが指定されているにもかかわらず、対応する値が見つからなかった場合 (URI セグメント数が奇数だった場合)、値はFALSE (ブール値) にセットされます。</p>
 
 
 <h2>$this->uri->ruri_to_assoc(<var>n</var>)</h2>
 
 <p>このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
-機能を使っている場合にできる再ルートされた後のURIを使って連想配列に変換することを除いて、先のメソッドと同じものです。</p>
+機能を使っている場合にできる再ルートされた後の URI を使って連想配列に変換することを除いて、先のメソッドと同じものです。</p>
 
 
 <h2>$this->uri->assoc_to_uri()</h2>
 
-<p>連想配列を入力とし、URI文字列をそこから生成します。配列のキーがURL文字列に含まれます。例:</p>
+<p>連想配列を入力とし、URI 文字列をそこから生成します。配列のキーがURL文字列に含まれます。例:</p>
 
 <code>$array = array('product' => 'shoes', 'size' => 'large', 'color' => 'red');<br />
 <br />
 $str = $this->uri->assoc_to_uri($array);<br />
 <br />
-// 次の文字列を生成します:  product/shoes/size/large/color/red
+// 次の文字列を生成します: product/shoes/size/large/color/red
 </code>
 
 
 <h2>$this->uri->uri_string()</h2>
 
-<p>完全なURIをもとにして、URL文字列を返します。たとえば、次のような完全URLだった場合:</p>
+<p>完全な URI をもとにして、URL 文字列を返します。たとえば、次のような完全URLだった場合:</p>
 
 <code>http://example.com/index.php/news/local/345</code>
 
@@ -197,7 +197,7 @@ $str = $this->uri->assoc_to_uri($array);<br />
 <h2>$this->uri->ruri_string()</h2>
 
 <p> このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
-機能を使っている場合にできる再ルートされた後のURIを返すことを除いて、先のメソッドと同じものです。</p>
+機能を使っている場合にできる再ルートされた後の URI を返すことを除いて、先のメソッドと同じものです。</p>
 
 
 
@@ -228,8 +228,8 @@ foreach ($segs as $segment)<br />
 
 <h2>$this->uri->rsegment_array()</h2>
 
-<p> このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
-機能を使っている場合にできる再ルートされた後のURIセグメントからなる配列を返すことを除いて、先のメソッドと同じものです。</p>
+<p> このメソッドは、CodeIgniter の <a href="../general/routing.html">URI ルーティング</a>
+機能を使っている場合にできる再ルートされた後の URI セグメントからなる配列を返すことを除いて、先のメソッドと同じものです。</p>
 
 
 

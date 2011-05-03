@@ -145,7 +145,12 @@ example.com/product/4/
 上の例では、"welcome" クラスがロードされます。デフォルトルートは常に設定しておくことをおすすめします。
 そうしておかないと、デフォルトで404ページが表示されてしまいます。</p>
 
-<p class="important"><strong>重要:</strong>&nbsp; 予約済みのルートは、ワイルドカードあるいは正規表現で定義したルートよりも前に来なければなりません。</p>
+<code>$route['404_override'] = '';</code>
+
+<p>This route indicates which controller class should be loaded if the requested controller is not found. It will override the default 404
+error page. It won't affect to the <samp>show_404()</samp> function, which will continue loading the default <dfn>error_404.php</dfn> file at <var>application/errors/error_404.php</var>.</p>
+
+<p class="important"><strong>Important:</strong>&nbsp; The reserved routes must come before any wildcard or regular expression routes.</p>
 
 </div>
 <!-- END CONTENT -->

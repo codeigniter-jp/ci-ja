@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -34,25 +34,25 @@ class CI_Email {
 	var	$useragent		= "CodeIgniter";
 	var	$mailpath		= "/usr/sbin/sendmail";	// Sendmail path
 	var	$protocol		= "mail";	// mail/sendmail/smtp
-	var	$smtp_host		= "";		// SMTP Server.  Example: mail.earthlink.net
+	var	$smtp_host		= "";		// SMTP Server. Example: mail.earthlink.net
 	var	$smtp_user		= "";		// SMTP Username
 	var	$smtp_pass		= "";		// SMTP Password
 	var	$smtp_port		= "25";		// SMTP Port
 	var	$smtp_timeout	= 5;		// SMTP Timeout in seconds
-	var	$wordwrap		= TRUE;		// TRUE/FALSE  Turns word-wrap on/off
+	var	$wordwrap		= TRUE;		// TRUE/FALSE Turns word-wrap on/off
 	var	$wrapchars		= "76";		// Number of characters to wrap at.
-	var	$mailtype		= "text";	// text/html  Defines email formatting
+	var	$mailtype		= "text";	// text/html Defines email formatting
 	var	$charset		= "utf-8";	// Default char set: iso-8859-1 or us-ascii
 	var	$multipart		= "mixed";	// "mixed" (in the body) or "related" (separate)
 	var $alt_message	= '';		// Alternative message for HTML emails
-	var	$validate		= FALSE;	// TRUE/FALSE.  Enables email validation
+	var	$validate		= FALSE;	// TRUE/FALSE. Enables email validation
 	var	$priority		= "3";		// Default priority (1 - 5)
 	var	$newline		= "\n";		// Default newline. "\r\n" or "\n" (Use "\r\n" to comply with RFC 822)
-	var $crlf			= "\n";		// The RFC 2045 compliant CRLF for quoted-printable is "\r\n".  Apparently some servers,
+	var $crlf			= "\n";		// The RFC 2045 compliant CRLF for quoted-printable is "\r\n". Apparently some servers,
 									// even on the receiving end think they need to muck with CRLFs, so using "\n", while
 									// distasteful, is the only thing that seems to work for all environments.
-	var $send_multipart	= TRUE;		// TRUE/FALSE - Yahoo does not like multipart alternative, so this is an override.  Set to FALSE for Yahoo.
-	var	$bcc_batch_mode	= FALSE;	// TRUE/FALSE  Turns on/off Bcc batch feature
+	var $send_multipart	= TRUE;		// TRUE/FALSE - Yahoo does not like multipart alternative, so this is an override. Set to FALSE for Yahoo.
+	var	$bcc_batch_mode	= FALSE;	// TRUE/FALSE Turns on/off Bcc batch feature
 	var	$bcc_batch_size	= 200;		// If bcc_batch_mode = TRUE, sets max number of Bccs in each batch
 	var $_safe_mode		= FALSE;
 	var	$_subject		= "";
@@ -406,7 +406,7 @@ class CI_Email {
 	{
 		$this->_attach_name[] = $filename;
 		$this->_attach_type[] = $this->_mime_types(next(explode('.', basename($filename))));
-		$this->_attach_disp[] = $disposition; // Can also be 'inline'  Not sure if it matters
+		$this->_attach_disp[] = $disposition; // Can also be 'inline' Not sure if it matters
 		return $this;
 	}
 
@@ -610,7 +610,7 @@ class CI_Email {
 		$from = str_replace(">", "", $from);
 		$from = str_replace("<", "", $from);
 
-		return  "<".uniqid('').strstr($from, '@').">";
+		return "<".uniqid('').strstr($from, '@').">";
 	}
 
 	// --------------------------------------------------------------------
@@ -670,15 +670,15 @@ class CI_Email {
 	 */
 	private function _get_content_type()
 	{
-		if	($this->mailtype == 'html' &&  count($this->_attach_name) == 0)
+		if	($this->mailtype == 'html' && count($this->_attach_name) == 0)
 		{
 			return 'html';
 		}
-		elseif	($this->mailtype == 'html' &&  count($this->_attach_name)  > 0)
+		elseif	($this->mailtype == 'html' && count($this->_attach_name) > 0)
 		{
 			return 'html-attach';
 		}
-		elseif	($this->mailtype == 'text' &&  count($this->_attach_name)  > 0)
+		elseif	($this->mailtype == 'text' && count($this->_attach_name) > 0)
 		{
 			return 'plain-attach';
 		}
@@ -732,7 +732,7 @@ class CI_Email {
 	{
 		if ( ! is_array($email))
 		{
-			$this->_set_error_message('email_must_be_array');
+			$this->_set_error_message('lang:email_must_be_array');
 			return FALSE;
 		}
 
@@ -740,7 +740,7 @@ class CI_Email {
 		{
 			if ( ! $this->valid_email($val))
 			{
-				$this->_set_error_message('email_invalid_address', $val);
+				$this->_set_error_message('lang:email_invalid_address', $val);
 				return FALSE;
 			}
 		}
@@ -891,7 +891,7 @@ class CI_Email {
 
 		// Use PHP's native public function to do the initial wordwrap.
 		// We set the cut flag to FALSE so that any individual words that are
-		// too long get left alone.  In the next step we'll deal with them.
+		// too long get left alone. In the next step we'll deal with them.
 		$str = wordwrap($str, $charlim, "\n", FALSE);
 
 		// Split the string into individual lines of text and cycle through them
@@ -1009,7 +1009,7 @@ class CI_Email {
 	 */
 	private function _build_message()
 	{
-		if ($this->wordwrap === TRUE  AND  $this->mailtype != 'html')
+		if ($this->wordwrap === TRUE AND $this->mailtype != 'html')
 		{
 			$this->_body = $this->word_wrap($this->_body);
 		}
@@ -1141,11 +1141,11 @@ class CI_Email {
 
 			if ( ! file_exists($filename))
 			{
-				$this->_set_error_message('email_attachment_missing', $filename);
+				$this->_set_error_message('lang:email_attachment_missing', $filename);
 				return FALSE;
 			}
 
-			$h  = "--".$this->_atc_boundary.$this->newline;
+			$h = "--".$this->_atc_boundary.$this->newline;
 			$h .= "Content-type: ".$ctype."; ";
 			$h .= "name=\"".$basename."\"".$this->newline;
 			$h .= "Content-Disposition: ".$this->_attach_disp[$i].";".$this->newline;
@@ -1156,7 +1156,7 @@ class CI_Email {
 
 			if ( ! $fp = fopen($filename, FOPEN_READ))
 			{
-				$this->_set_error_message('email_attachment_unreadable', $filename);
+				$this->_set_error_message('lang:email_attachment_unreadable', $filename);
 				return FALSE;
 			}
 
@@ -1247,7 +1247,7 @@ class CI_Email {
 				// encode = signs
 				if ($ascii == '61')
 				{
-					$char = $escape.strtoupper(sprintf('%02s', dechex($ascii)));  // =3D
+					$char = $escape.strtoupper(sprintf('%02s', dechex($ascii))); // =3D
 				}
 
 				// If we're at the character limit, add the line to the output,
@@ -1277,7 +1277,7 @@ class CI_Email {
 	/**
 	 * Prep Q Encoding
 	 *
-	 * Performs "Q Encoding" on a string for use in email headers.  It's related
+	 * Performs "Q Encoding" on a string for use in email headers. It's related
 	 * but not identical to quoted-printable, so it has its own method
 	 *
 	 * @access	public
@@ -1359,17 +1359,17 @@ class CI_Email {
 			$this->reply_to($this->_headers['From']);
 		}
 
-		if (( ! isset($this->_recipients) AND ! isset($this->_headers['To']))  AND
+		if (( ! isset($this->_recipients) AND ! isset($this->_headers['To'])) AND
 			( ! isset($this->_bcc_array) AND ! isset($this->_headers['Bcc'])) AND
 			( ! isset($this->_headers['Cc'])))
 		{
-			$this->_set_error_message('email_no_recipients');
+			$this->_set_error_message('lang:email_no_recipients');
 			return FALSE;
 		}
 
 		$this->_build_headers();
 
-		if ($this->bcc_batch_mode  AND  count($this->_bcc_array) > 0)
+		if ($this->bcc_batch_mode AND count($this->_bcc_array) > 0)
 		{
 			if (count($this->_bcc_array) > $this->bcc_batch_size)
 				return $this->batch_bcc_send();
@@ -1390,7 +1390,7 @@ class CI_Email {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Batch Bcc Send.  Sends groups of BCCs in batches
+	 * Batch Bcc Send. Sends groups of BCCs in batches
 	 *
 	 * @access	public
 	 * @return	bool
@@ -1494,7 +1494,7 @@ class CI_Email {
 
 					if ( ! $this->_send_with_mail())
 					{
-						$this->_set_error_message('email_send_failure_phpmail');
+						$this->_set_error_message('lang:email_send_failure_phpmail');
 						return FALSE;
 					}
 			break;
@@ -1502,7 +1502,7 @@ class CI_Email {
 
 					if ( ! $this->_send_with_sendmail())
 					{
-						$this->_set_error_message('email_send_failure_sendmail');
+						$this->_set_error_message('lang:email_send_failure_sendmail');
 						return FALSE;
 					}
 			break;
@@ -1510,14 +1510,14 @@ class CI_Email {
 
 					if ( ! $this->_send_with_smtp())
 					{
-						$this->_set_error_message('email_send_failure_smtp');
+						$this->_set_error_message('lang:email_send_failure_smtp');
 						return FALSE;
 					}
 			break;
 
 		}
 
-		$this->_set_error_message('email_sent', $this->_get_protocol());
+		$this->_set_error_message('lang:email_sent', $this->_get_protocol());
 		return TRUE;
 	}
 
@@ -1588,8 +1588,8 @@ class CI_Email {
 
 		if ($status != 0)
 		{
-			$this->_set_error_message('email_exit_status', $status);
-			$this->_set_error_message('email_no_socket');
+			$this->_set_error_message('lang:email_exit_status', $status);
+			$this->_set_error_message('lang:email_no_socket');
 			return FALSE;
 		}
 
@@ -1608,7 +1608,7 @@ class CI_Email {
 	{
 		if ($this->smtp_host == '')
 		{
-			$this->_set_error_message('email_no_hostname');
+			$this->_set_error_message('lang:email_no_hostname');
 			return FALSE;
 		}
 
@@ -1657,7 +1657,7 @@ class CI_Email {
 
 		if (strncmp($reply, '250', 3) != 0)
 		{
-			$this->_set_error_message('email_smtp_error', $reply);
+			$this->_set_error_message('lang:email_smtp_error', $reply);
 			return FALSE;
 		}
 
@@ -1684,7 +1684,7 @@ class CI_Email {
 
 		if ( ! is_resource($this->_smtp_connect))
 		{
-			$this->_set_error_message('email_smtp_error', $errno." ".$errstr);
+			$this->_set_error_message('lang:email_smtp_error', $errno." ".$errstr);
 			return FALSE;
 		}
 
@@ -1747,7 +1747,7 @@ class CI_Email {
 
 		if (substr($reply, 0, 3) != $resp)
 		{
-			$this->_set_error_message('email_smtp_error', $reply);
+			$this->_set_error_message('lang:email_smtp_error', $reply);
 			return FALSE;
 		}
 
@@ -1762,7 +1762,7 @@ class CI_Email {
 	// --------------------------------------------------------------------
 
 	/**
-	 *  SMTP Authenticate
+	 * SMTP Authenticate
 	 *
 	 * @access	private
 	 * @return	bool
@@ -1774,9 +1774,9 @@ class CI_Email {
 			return TRUE;
 		}
 
-		if ($this->smtp_user == ""  AND  $this->smtp_pass == "")
+		if ($this->smtp_user == "" AND $this->smtp_pass == "")
 		{
-			$this->_set_error_message('email_no_smtp_unpw');
+			$this->_set_error_message('lang:email_no_smtp_unpw');
 			return FALSE;
 		}
 
@@ -1786,7 +1786,7 @@ class CI_Email {
 
 		if (strncmp($reply, '334', 3) != 0)
 		{
-			$this->_set_error_message('email_failed_smtp_login', $reply);
+			$this->_set_error_message('lang:email_failed_smtp_login', $reply);
 			return FALSE;
 		}
 
@@ -1796,7 +1796,7 @@ class CI_Email {
 
 		if (strncmp($reply, '334', 3) != 0)
 		{
-			$this->_set_error_message('email_smtp_auth_un', $reply);
+			$this->_set_error_message('lang:email_smtp_auth_un', $reply);
 			return FALSE;
 		}
 
@@ -1806,7 +1806,7 @@ class CI_Email {
 
 		if (strncmp($reply, '235', 3) != 0)
 		{
-			$this->_set_error_message('email_smtp_auth_pw', $reply);
+			$this->_set_error_message('lang:email_smtp_auth_pw', $reply);
 			return FALSE;
 		}
 
@@ -1825,7 +1825,7 @@ class CI_Email {
 	{
 		if ( ! fwrite($this->_smtp_connect, $data . $this->newline))
 		{
-			$this->_set_error_message('email_smtp_data_failure', $data);
+			$this->_set_error_message('lang:email_smtp_data_failure', $data);
 			return FALSE;
 		}
 		else
@@ -1952,7 +1952,7 @@ class CI_Email {
 		$CI =& get_instance();
 		$CI->lang->load('email');
 
-		if (FALSE === ($line = $CI->lang->line($msg)))
+		if (substr($msg, 0, 5) != 'lang:' || FALSE === ($line = $CI->lang->line(substr($msg, 5))))
 		{
 			$this->_debug_msg[] = str_replace('%s', $val, $msg)."<br />";
 		}

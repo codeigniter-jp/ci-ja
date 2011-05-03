@@ -132,7 +132,7 @@ $this->config->load('<var>blog_settings</var>', <kbd>TRUE</kbd>);</code>
 <kbd>$this->config->item()</kbd> メソッドの第2引数でも指定した添字の名前を設定することで、それを読み取ることができます。例:</p>
 
 <code>
-//  blog_settings.php というファイル名の設定ファイルをロードし、"blog_settings" というインデックスに代入します<br />
+// blog_settings.php というファイル名の設定ファイルをロードし、"blog_settings" というインデックスに代入します<br />
 $this->config->load('<var>blog_settings</var>', <kbd>TRUE</kbd>);<br /><br />
 
 // blog_settings 配列にある site_name という設定項目を取得します<br />
@@ -154,23 +154,23 @@ $site_name = $blog_config['site_name'];</code>
 <h2>複数の環境</h2>
 
 <p>
-    現状の環境により異なった設定ファイルをロードすることができます。
-    定数 <kbd>ENVIRONMENT</kbd> が index.php で定義されており、
-    <a href="../general/environments.html">複数の環境の取扱い</a> のセクションに詳細が記述されて
-    います。
+  現状の環境により異なった設定ファイルをロードすることができます。
+  定数 <kbd>ENVIRONMENT</kbd> が index.php で定義されており、
+  <a href="../general/environments.html">複数の環境の取扱い</a> のセクションに詳細が記述されて
+  います。
 </p>
 
 <p>
-    環境固有の設定ファイルを作成するには、
-    application/config/{ENVIRONMENT}/{FILENAME}.php に設定ファイルを作成またはコピーします。
+  環境固有の設定ファイルを作成するには、
+  application/config/{ENVIRONMENT}/{FILENAME}.php に設定ファイルを作成またはコピーします。
 </p>
 
 <p>たとえば、本番環境での config.php を作成するには、以下のようにします:</p>
 
 <ol>
-    <li>ディレクトリ application/config/production/ を作成します</li>
-    <li>既存の config.php を上記のディレクトリにコピーします</li>
-    <li>application/config/production/config.php を編集し本番環境の設定を記述します</li>
+  <li>ディレクトリ application/config/production/ を作成します</li>
+  <li>既存の config.php を上記のディレクトリにコピーします</li>
+  <li>application/config/production/config.php を編集し本番環境の設定を記述します</li>
 </ol>
 
 <p>

@@ -153,25 +153,42 @@
 
 <p>セッション配列にデータを追加するには、次のメソッドを使って、新しいデータを含む配列を渡す必要があります:</p>
 
-<code>$this-&gt;session-&gt;set_userdata(<samp>$array</samp>);</code>
+<code>$this->session->set_userdata(<samp>$array</samp>);</code>
 
 <p>ここでの <samp>$array</samp> は、新しいデータの連想配列になります。以下は例です:</p>
 
 
 <p><code>$newdata = array(<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'username'&nbsp; =&gt; 'johndoe',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'email'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 'johndoe@some-site.com',<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'logged_in' =&gt; TRUE<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'username'&nbsp; => 'johndoe',<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'email'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'johndoe@some-site.com',<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'logged_in' => TRUE<br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
 	<br />
-	$this-&gt;session-&gt;set_userdata(<samp>$newdata</samp>);</code></p>
+	$this->session->set_userdata(<samp>$newdata</samp>);</code></p>
 <p>一度に一つの値を追加したいのであれば、set_userdata() メソッドが次の構文で、サポートされています。 </p>
 <p><code>$this-&gt;session-&gt;set_userdata('some_name', 'some_value');</code></p>
 <p class="important"><strong>Note:</strong> クッキーは 4KB のデータだけを保持できますので、許容量を超えないよう注意してください。
 ここの暗号化処理をすると、元の文字列より長い文字列になりますので、どの程度のデータを保存したのかを把握するよう注意してください。</p>
 
-<h2>セッションデータの削除</h2>
-<p>ちょうど set_userdata() がセッションに情報を追加できるように、unset_userdata() は、セッションキーを渡すことにより、情報を取り除くことができます。たとえば、'some_name' を セッション情報から削除したいとすると、次のようになります: </p>
+<h2>Retrieving All Session Data</h2>
+<p>An array of all userdata can be retrieved as follows:</p>
+<code>$this-&gt;session-&gt;all_userdata()</code>
+
+<p>And returns an associative array like the following:</p>
+
+<pre>
+Array
+(
+  [session_id] => 4a5a5dca22728fb0a84364eeb405b601
+  [ip_address] => 127.0.0.1
+  [user_agent] => Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7;
+  [last_activity] => 1303142623
+)
+</pre>
+
+
+<h2>Removing Session Data</h2>
+<p>Just as set_userdata() can be used to add information into a session, unset_userdata() can be used to remove it, by passing the session key. For example, if you wanted to remove 'some_name' from your session information: </p>
 <p><code>$this-&gt;session-&gt;unset_userdata('some_name');</code></p>
 <p>このメソッドは、削除したい項目の連想配列を渡すこともできます。</p>
 <p><code>$array_items = array('username' => '', 'email' => '');<br />
@@ -201,15 +218,17 @@ $this-&gt;session-&gt;unset_userdata(<samp>$array_items</samp>);</code></p>
 <p>セッションを記録するには、セッション保存用のデータベーステーブルをまず作成しなければなりません。
 次は、セッションクラスが必要とする (MySQL 用の) 基本的な例です。:</p>
 
-<textarea name="textarea" cols="50" rows="8" class="textarea" style="width:99%">
-CREATE TABLE IF NOT EXISTS  `ci_sessions` (
-session_id varchar(40) DEFAULT '0' NOT NULL,
-ip_address varchar(16) DEFAULT '0' NOT NULL,
-user_agent varchar(50) NOT NULL,
-last_activity int(10) unsigned DEFAULT 0 NOT NULL,
-user_data text DEFAULT '' NOT NULL,
-PRIMARY KEY (session_id)
-);</textarea>
+<textarea class="textarea" style="width:100%" cols="50" rows="10">
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+	session_id varchar(40) DEFAULT '0' NOT NULL,
+	ip_address varchar(16) DEFAULT '0' NOT NULL,
+	user_agent varchar(120) NOT NULL,
+	last_activity int(10) unsigned DEFAULT 0 NOT NULL,
+	user_data text NOT NULL,
+	PRIMARY KEY (session_id),
+	KEY `last_activity_idx` (`last_activity`)
+);
+</textarea>
 
 <p><strong>Note:</strong> デフォルトでは、<dfn>ci_sessions</dfn>という名前のテーブルになりますが <kbd>application/config/config.php</kbd> ファイルを更新する限り、
 望みどおりどんな名前も付けれらますので、テーブル名は、選んだ名前になります。データベーステーブルを作成したら、

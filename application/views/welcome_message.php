@@ -2,63 +2,87 @@
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
-	<title>CodeIgniterへようこそ</title>
+	<title>CodeIgniter へようこそ</title>
 
-<style type="text/css">
+	<style type="text/css">
 
-body {
- background-color: #fff;
- margin: 40px;
- font-family: Lucida Grande, Verdana, Sans-serif;
- font-size: 14px;
- color: #4F5155;
-}
+	::selection{ background-color: #E13300; color: white; }
+	::moz-selection{ background-color: #E13300; color: white; }
+	::webkit-selection{ background-color: #E13300; color: white; }
 
-a {
- color: #003399;
- background-color: transparent;
- font-weight: normal;
-}
+	body {
+		background-color: #fff;
+		margin: 40px;
+		font: 13px/20px normal Helvetica, Arial, sans-serif;
+		color: #4F5155;
+	}
 
-h1 {
- color: #444;
- background-color: transparent;
- border-bottom: 1px solid #D0D0D0;
- font-size: 16px;
- font-weight: bold;
- margin: 24px 0 2px 0;
- padding: 5px 0 6px 0;
-}
+	a {
+		color: #003399;
+		background-color: transparent;
+		font-weight: normal;
+	}
 
-code {
- font-family: Monaco, Verdana, Sans-serif;
- font-size: 12px;
- background-color: #f9f9f9;
- border: 1px solid #D0D0D0;
- color: #002166;
- display: block;
- margin: 14px 0 14px 0;
- padding: 12px 10px 12px 10px;
-}
+	h1 {
+		color: #444;
+		background-color: transparent;
+		border-bottom: 1px solid #D0D0D0;
+		font-size: 19px;
+		font-weight: normal;
+		margin: 0 0 14px 0;
+		padding: 14px 15px 10px 15px;
+	}
 
-</style>
+	code {
+		font-family: Consolas, Monaco, Courier New, Courier, monospace;
+		font-size: 12px;
+		background-color: #f9f9f9;
+		border: 1px solid #D0D0D0;
+		color: #002166;
+		display: block;
+		margin: 14px 0 14px 0;
+		padding: 12px 10px 12px 10px;
+	}
+
+	#body{
+		margin: 0 15px 0 15px;
+	}
+	
+	p.footer{
+		text-align: right;
+		font-size: 11px;
+		border-top: 1px solid #D0D0D0;
+		line-height: 32px;
+		padding: 0 10px 0 10px;
+		margin: 20px 0 0 0;
+	}
+	
+	#container{
+		margin: 10px;
+		border: 1px solid #D0D0D0;
+		-webkit-box-shadow: 0 0 8px #D0D0D0;
+	}
+	</style>
 </head>
 <body>
 
-<h1>CodeIgniter へようこそ!</h1>
+<div id="container">
+	<h1>CodeIgniter へようこそ!</h1>
 
-<p>今ご覧のこのページは、CodeIgniter によって動的に生成されました。</p>
+	<div id="body">
+		<p>今ご覧のこのページは、CodeIgniter によって動的に生成されました。</p>
 
-<p>このページを編集したい場合は、次の場所にあります:</p>
-<code>application/views/welcome_message.php</code>
+		<p>このページを編集したい場合は、次の場所にあります:</p>
+		<code>application/views/welcome_message.php</code>
 
-<p>このページのコントローラは次の場所にあります:</p>
-<code>application/controllers/welcome.php</code>
+		<p>このページのコントローラは次の場所にあります:</p>
+		<code>application/controllers/welcome.php</code>
 
-<p>CodeIgniterを使うのが初めてなら、<a href="user_guide_ja/">ユーザガイド</a>を読むことから始めてください。</p>
+		<p>CodeIgniter を使うのが初めてなら、<a href="user_guide_ja/">ユーザガイド</a>を読むことから始めてください。</p>
+	</div>
 
-
-<p><br />このページは、{elapsed_time} 秒でレンダリングされました。</p>
+	<p class="footer">このページは、<strong>{elapsed_time}</strong> 秒でレンダリングされました。seconds</p>
+</div>
 
 </body>
 </html>

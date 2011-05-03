@@ -87,7 +87,12 @@ HTML ヘルパー
 <p>HTML &lt;h1> タグを生成できます。
 第1引数にデータを、第2引数には見出しレベルを指定します。例としては:</p>
 <code>echo heading('Welcome!', 3);</code>
-<p>上のコードは次のような HTML を生成します:  &lt;h3>Welcome!&lt;/h3></p>
+<p>上のコードは次のような HTML を生成します: &lt;h3>Welcome!&lt;/h3></p>
+
+<p>Additionally, in order to add attributes to the heading tag such as HTML classes, ids or inline styles, a third parameter is available.</p>
+<code>echo heading('Welcome!', 3, 'class="pink"')</code>
+<p>The above code produces: &lt;h3 class="pink">Welcome!<&lt;h3></p>
+
 
 <h2><a name="img"></a>img()</h2>
 <p>&lt;img /&gt; タグを生成できます。第1引数には画像のソースを指定します。 例:</p>
@@ -270,16 +275,16 @@ echo ul($list, $attributes);</code>
 
 <code>
 echo meta('description', 'My Great site');<br />
-// 生成するメタタグ:  &lt;meta name="description" content="My Great Site" /><br />
+// 生成するメタタグ: &lt;meta name="description" content="My Great Site" /><br />
 <br /><br />
 
-echo meta('Content-type', 'text/html; charset=utf-8', 'equiv'); // Note the third parameter.  Can be "equiv" or "name"<br />
-// 生成するメタタグ:  &lt;meta http-equiv="Content-type" content="text/html; charset=utf-8" /><br />
+echo meta('Content-type', 'text/html; charset=utf-8', 'equiv'); // Note the third parameter. Can be "equiv" or "name"<br />
+// 生成するメタタグ: &lt;meta http-equiv="Content-type" content="text/html; charset=utf-8" /><br />
 
 <br /><br />
 
 echo meta(array('name' => 'robots', 'content' => 'no-cache'));<br />
-// 生成するメタタグ:  &lt;meta name="robots" content="no-cache" /><br />
+// 生成するメタタグ: &lt;meta name="robots" content="no-cache" /><br />
 
 <br /><br />
 
@@ -293,7 +298,7 @@ $meta = array(<br />
 <br />
 echo meta($meta);
 <br />
-// 生成するメタタグ:  <br />
+// 生成するメタタグ: <br />
 // &lt;meta name="robots" content="no-cache" /><br />
 // &lt;meta name="description" content="My Great Site" /><br />
 // &lt;meta name="keywords" content="love, passion, intrigue, deception" /><br />

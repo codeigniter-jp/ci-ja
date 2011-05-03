@@ -50,6 +50,8 @@ function create_menu(basepath)
 			'<li><a href="'+base+'general/helpers.html">ヘルパー関数</a></li>' +
 			'<li><a href="'+base+'general/libraries.html">CodeIgniter ライブラリの使用</a></li>' +
 			'<li><a href="'+base+'general/creating_libraries.html">ユーザライブラリの作成</a></li>' +
+			'<li><a href="'+base+'general/drivers.html">CodeIgniter ドライバの使用</a></li>' +
+			'<li><a href="'+base+'general/creating_drivers.html">ユーザドライバの作成</a></li>' +
 			'<li><a href="'+base+'general/core_classes.html">コアクラスの作成</a></li>' +
 			'<li><a href="'+base+'general/hooks.html">フック - コアの拡張</a></li>' +
 			'<li><a href="'+base+'general/autoloader.html">リソースの自動読み込み</a></li>' +

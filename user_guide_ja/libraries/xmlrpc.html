@@ -65,23 +65,23 @@ XML-RPCサーバをセットアップしたりできます。</p>
 
 <h2>XML-RPCとは?</h2>
 
-<p>インターネット上の2つのコンピュータが対話する方法で非常にシンプルなのは、XMLを使うものです。
+<p>インターネット上の2つのコンピュータが対話する方法で非常にシンプルなのは、XML を使うものです。
 <dfn>クライアント</dfn>と呼ばれる一方のコンピュータは、XML-RPC <strong>リクエスト</strong>を
 <dfn>サーバ</dfn>と呼ばれるもう一方のコンピュータに送信します。サーバがリクエストを受信し、処理すると、
 クライアントに<strong>レスポンス</strong>を返します。</p>
 
-<p>たとえば、MetaWeblog APIを使う場合、XML-RPC クライアント (大抵は、デスクトップの投稿ツール) は、
-サイトで実行されているXML-RPC サーバにリクエストを送ります。記事を公開するために、
+<p>たとえば、MetaWeblog API を使う場合、XML-RPC クライアント (大抵は、デスクトップの投稿ツール) は、
+サイトで実行されている XML-RPC サーバにリクエストを送ります。記事を公開するために、
 新しいブログの記事を作成するリクエストであったり、既存の記事を編集するためのリクエストであったりします。
 
-XML-RPCサーバはリクエストを受信すると、リクエストを処理するために、どのクラス/メソッドを呼び出せばいいのかを決定します。
+XML-RPC サーバはリクエストを受信すると、リクエストを処理するために、どのクラス/メソッドを呼び出せばいいのかを決定します。
 処理されると、サーバはレスポンスメッセージを送り返します。</p>
 
 <p>仕様の詳細については、<a href="http://www.xmlrpc.com/">XML-RPC</a> のサイトをみてください。</p>
 
 <h2>クラスの初期化</h2>
 
-<p>CodeIgniterのほとんどのクラスと同様、XML-RPC および XML-RPCS クラスは、コントローラの中で <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
+<p>CodeIgniter のほとんどのクラスと同様、XML-RPC および XML-RPCS クラスは、コントローラの中で <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
 
 <p>XML-RPC クラスを読み込むには次のようにします:</p>
 <code>$this->load->library('xmlrpc');</code>
@@ -103,7 +103,7 @@ $this->load->library('xmlrpcs');
 <p>XML-RPC サーバにリクエストを送信するには、次の情報を指定する必要があります:</p>
 
 <ul>
-<li>サーバのURL</li>
+<li>サーバの URL</li>
 <li>呼び出したいサーバ上のメソッド</li>
 <li><em>リクエスト</em> データ (後述)</li>
 </ul>
@@ -127,17 +127,17 @@ if ( ! $this->xmlrpc->send_request())<br />
 
 <h3>解説</h3>
 
-<p>上のコードでは、XML-RPC クラスを初期化し、サーバのURLと呼び出すメソッド(weblogUpdates.ping)をセットしています。
-リクエスト (この場合は、タイトルと自分のサイトのURL) が送信用に配列に格納され、
+<p>上のコードでは、XML-RPC クラスを初期化し、サーバの URL と呼び出すメソッド(weblogUpdates.ping)をセットしています。
+リクエスト (この場合は、タイトルと自分のサイトの URL) が送信用に配列に格納され、
 request() メソッドを使ってコンパイルされます。
-最後に、完全なリクエストが送信されます。<dfn>send_request()</dfn> メソッドがFALSEを返した場合は、
+最後に、完全なリクエストが送信されます。<dfn>send_request()</dfn> メソッドが FALSE を返した場合は、
 XML-RPC サーバから返ってきたエラーメッセージを表示します。</p>
 
 <h2>リクエストの詳細</h2>
 
-<p><dfn>リクエスト</dfn>とは単純にXML-RPC サーバに送信するデータのことです。
+<p><dfn>リクエスト</dfn>とは単純に XML-RPC サーバに送信するデータのことです。
 リクエストの中の各データは<dfn>リクエストパラメータ</dfn>として参照されます。上の例では、2つのパラメータをもっています:
-自分のサイトのURL と タイトルです。XML-RPC サーバがリクエストを受信したとき、必要なパラメータを探します。</p>
+自分のサイトの URL と タイトルです。XML-RPC サーバがリクエストを受信したとき、必要なパラメータを探します。</p>
 
 <p>リクエストパラメータは、送信のため、配列に格納する必要があり、
 各パラメータは7つのデータ型(文字列、数値、日付 など) のうちのどれかになります。
@@ -201,7 +201,7 @@ $this->xmlrpcs->serve();</code>
 <p>上のサンプルのメソッド名には、任意のものを指定できます。サーバで上でどのように呼ばれるべきかを決めるか、
 Blogger や MetaWeblog API などの標準のAPIを使う場合は、それらのメソッド名にします。</p>
 
-<p>補足的な2つの設定キーがあり、それらは XML-RPC サーバクラスを初期化するときに使用するものとします: <var>debug</var> にTRUEをセットすることでデバッグ機能を有効にできます、そして <var>xss_clean</var> は、FALSEをセットすることで、Security ライブラリの xss_clean 関数を通さずにデータを送信します。</p>
+<p>補足的な2つの設定キーがあり、それらは XML-RPC サーバクラスを初期化するときに使用するものとします: <var>debug</var> に TRUE をセットすることでデバッグ機能を有効にできます、そして <var>xss_clean</var> は、FALSE をセットすることで、Security ライブラリの xss_clean 関数を通さずにデータを送信します。</p>
 
 <h2>サーバリクエストの処理</h2>
 
@@ -225,8 +225,8 @@ Blogger や MetaWeblog API などの標準のAPIを使う場合は、それら�
 処理が終わったら <dfn>レスポンス</dfn> をクライアントに送り返します。</p>
 
 <p>下は、Blogger API を使った実際のサンプルです。Blogger API のメソッドには、<dfn>getUserInfo() </dfn>というものがあります。
-このメソッドを使うとXML-RPC クライアントはサーバにユーザ名とパスワードを送信し、
-特定ユーザの情報 (ニックネーム、ユーザID、emailアドレスなど) をサーバに送り返してもらうことができます。
+このメソッドを使うと XML-RPC クライアントはサーバにユーザ名とパスワードを送信し、
+特定ユーザの情報 (ニックネーム、ユーザID、email アドレスなど) をサーバに送り返してもらうことができます。
 以下は、このメソッドを使った処理方法がどのようになるかを示した例です:</p>
 
 
@@ -276,7 +276,7 @@ Blogger や MetaWeblog API などの標準のAPIを使う場合は、それら�
 しかし、リクエストと違って、レスポンスは<strong>項目を一つずつ格納した</strong>配列になります。
 配列を構成する項目は、複数の追加の配列からなる配列であってもかまいませんが、ルート（プライマリ）の配列は、1次元でなければなりません。言い換えると、基本的な例は次のようになります:</p>
 
-<code>$response = array('Response data',  'array');</code>
+<code>$response = array('Response data', 'array');</code>
 
 <p>しかし、レスポンスは、通常複数のデータをもっています。これを実現するためには、ルート（プライマリ）の配列は、1次元でなければならないので、
 レスポンスそのものを配列にする必要があります。以下は、どのようにして実現するかを示した例です:</p>
@@ -336,7 +336,7 @@ class Xmlrpc_client extends CI_Controller {
 		$this->xmlrpc->method('Greetings');
 
 		$request = array('How is it going?');
-		$this->xmlrpc->request($request);	
+		$this->xmlrpc->request($request);
 
 		if ( ! $this->xmlrpc->send_request())
 		{
@@ -381,7 +381,7 @@ class Xmlrpc_server extends CI_Controller {
 
 		$response = array(
 							array(
-									'you_said'  => $parameters['0'],
+									'you_said' => $parameters['0'],
 									'i_respond' => 'Not bad at all.'),
 							'struct');
 
@@ -392,7 +392,7 @@ class Xmlrpc_server extends CI_Controller {
 
 <h3>やってみよう!</h3>
 
-<p>では、次のURLを使ってサイトを表示させてみます:</p>
+<p>では、次の URL を使ってサイトを表示させてみます:</p>
 <code>example.com/index.php/<var>xmlrpc_client</var>/</code>
 
 <p>サーバに送ったメッセージとその応答を見ることができるはずです。</p>
@@ -402,7 +402,7 @@ class Xmlrpc_server extends CI_Controller {
 
 <h2>リクエストパラメータに連想配列を使用する</h2>
 
-<p>メソッドパラメータに連想配列を使用したい場合は、structデータタイプを使用する必要があります:</p>
+<p>メソッドパラメータに連想配列を使用したい場合は、struct データタイプを使用する必要があります:</p>
 
 <code>$request = array(<br />
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />
@@ -433,7 +433,7 @@ class Xmlrpc_server extends CI_Controller {
 <h1>XML-RPC メソッドリファレンス</h1>
 
 <h2>$this->xmlrpc->server()</h2>
-<p>リクエストが送信されるサーバのURLとポート番号をセットします:</p>
+<p>リクエストが送信されるサーバの URL とポート番号をセットします:</p>
 <code>$this->xmlrpc->server('http://www.sometimes.com/pings.php', 80);</code>
 
 <h2>$this->xmlrpc->timeout()</h2>
@@ -452,7 +452,7 @@ class Xmlrpc_server extends CI_Controller {
 $this->xmlrpc->request($request);</code>
 
 <h2>$this->xmlrpc->send_request()</h2>
-<p>リクエスト送信メソッド。条件判断ができるように、成功か失敗かに応じてブール値のTRUEかFALSEを返します。</p>
+<p>リクエスト送信メソッド。条件判断ができるように、成功か失敗かに応じてブール値の TRU Eか FALSE を返します。</p>
 
 <h2>$this->xmlrpc->set_debug(TRUE);</h2>
 <p>開発中に役立つ、様々な情報とエラーを表示させるデバッグ機能を有効化します。</p>

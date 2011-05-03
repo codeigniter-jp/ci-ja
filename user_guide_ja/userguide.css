@@ -261,8 +261,7 @@ padding: 3px 0 7px 3px;
 
 li.reactor {
  list-style-image: url(images/reactor-bullet.png);
-} 
-
+}
 #content li {
  margin-bottom: 9px;
 }
@@ -392,7 +391,7 @@ form {
 
 .select {
  background-color: #fff;
- font-size:  11px;
+ font-size: 11px;
  font-weight: normal;
  color: #333;
  padding: 0;

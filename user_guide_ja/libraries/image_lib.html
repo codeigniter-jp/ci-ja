@@ -138,7 +138,7 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 &nbsp;&nbsp;&nbsp;&nbsp;echo $this->image_lib->display_errors();<br />
 }</code>
 
-<p>Note:  オプションで、次のようにメソッドに開始/終了タグを渡して、
+<p>Note: オプションで、次のようにメソッドに開始/終了タグを渡して、
 エラーメッセージを HTML で整形することもできます:</p>
 
 <code>$this->image_lib->display_errors('<var>&lt;p></var>', '<var>&lt;/p></var>');</code>
@@ -202,7 +202,7 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 <tr>
 <td class="td"><strong>dynamic_output</strong></td>
 <td class="td">FALSE</td>
-<td class="td">TRUE/FALSE  (ブール値)</td>
+<td class="td">TRUE/FALSE (ブール値)</td>
 <td class="td">新しい画像ファイルをディスクに書き込むか、動的に生成するかを決めます。Note: 動的に生成する設定を選んだ場合、画像は一度にひとつだけしか表示できず、ページ上に配置することもできません。単に、イメージヘッダに続いて、画像の生データを動的にブラウザに出力します。</td>
 <td class="td">R, C, X, W</td>
 </tr>
@@ -319,7 +319,7 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 <p>実用的な目的では、サムネイルの場合、名前の一部にサムネイルのマークがつく（たとえば、mypic_thumb.jpg）以外は、
 コピーの作成とサムネイルの作成とに違いはありません。</p>
 
-<p>このメソッドでは、上の表でリストアップした設定項目のうち次の3つを除いてすべてが利用可能です:  rotationa_angle, x_axis, y_axis。</p>
+<p>このメソッドでは、上の表でリストアップした設定項目のうち次の3つを除いてすべてが利用可能です: rotation_angle、x_axis、y_axis。</p>
 
 <h3>サムネイルの作成</h3>
 
@@ -358,7 +358,7 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 <code>$config['x_axis'] = '100';<br />
 $config['y_axis'] = '40';</code>
 
-<p>このメソッドでは、上の表でリストアップした設定項目のうち次のものを除いてすべてが利用可能です:  rotation、width、height、create_thumb、new_image。</p>
+<p>このメソッドでは、上の表でリストアップした設定項目のうち次のものを除いてすべてが利用可能です: rotation、width、height、create_thumb、new_image。</p>
 
 <p>次は、画像の切り抜きの方法を示したサンプルです:</p>
 
@@ -379,7 +379,7 @@ if ( ! $this->image_lib->crop())<br />
 
 <p>Note: ビジュアルインターフェースなしに画像の切り取りをするのは難しいので、
 このメソッドはそういったインターフェースを構築しない場合には、あまり役に立たないかもしれません。
-そのインターフェースとは、ちょうど、私たちが開発した ExpressionEngine のフォトギャラリーモジュールで使われているようなもののことです。
+そのインターフェースとは、ちょうど、私たちが開発した CMS の ExpressionEngine のフォトギャラリーモジュールで使われているようなもののことです。
 私たちが追加したのは、切り取る範囲を選択可能な JavaScript の UI でした。</p>
 
 <h2>$this->image_lib->rotate()</h2>

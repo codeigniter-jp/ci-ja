@@ -81,7 +81,7 @@ $this->zip->add_data($name, $data);<br />
 // Zipファイルをサーバのフォルダに書き込みます。"my_backup.zip" という名前にします。<br />
 $this->zip->archive('/path/to/directory/my_backup.zip');
 <br /><br />
- // "my_backup.zip"という名前で、デスクトップにファイルをダウンロードします。<br />
+ // "my_backup.zip" という名前で、デスクトップにファイルをダウンロードします。<br />
 $this->zip->download('my_backup.zip');
 </code>
 
@@ -155,7 +155,7 @@ $this->zip->add_data($name, $data);
 $path = '/path/to/photo.jpg';<br /><br />
 $this->zip->read_file($path);
 <br /><br />
- // "my_backup.zip"という名前でデスクトップにダウンロードさせます。<br />
+ // "my_backup.zip" という名前でデスクトップにダウンロードさせます。<br />
 $this->zip->download('my_backup.zip');
 </code>
 
@@ -167,25 +167,25 @@ $this->zip->download('my_backup.zip');
 $path = '/path/to/photo.jpg';<br /><br />
 $this->zip->read_file($path, <kbd>TRUE</kbd>);
 <br /><br />
- // &quot;my_backup.zip&quot;という名前でデスクトップにダウンロードさせます。<br />
+ // "my_backup.zip" という名前でデスクトップにダウンロードさせます。<br />
 $this->zip->download('my_backup.zip');
 </code>
 
-<p>上の例では、<dfn>photo.jpg</dfn> が次の2つのフォルダの配下に置かれます。:  <kbd>path/to/</kbd></p>
+<p>上の例では、<dfn>photo.jpg</dfn> が次の2つのフォルダの配下に置かれます: <kbd>path/to/</kbd></p>
 
 
 
 <h2>$this->zip->read_dir()</h2>
 
 <p>サーバ上にすでに存在しているフォルダ (およびその中身) を圧縮できます。
-ディレクトリまでのパスを指定すると、Zipクラスは、再帰的にそのフォルダを読み込み、Zipファイルとして再作成します。
+ディレクトリまでのパスを指定すると、Zip クラスは、再帰的にそのフォルダを読み込み、Zip ファイルとして再作成します。
 指定されたパスに含まれるサブフォルダの配下にあるものも含めてすべてのファイルが圧縮されます。例:</p>
 
 <code>
 $path = '/path/to/your/directory/';<br /><br />
 $this->zip->read_dir($path);
 <br /><br />
- // &quot;my_backup.zip&quot;という名前でデスクトップにダウンロードさせます。<br />
+ // "my_backup.zip"という名前でデスクトップにダウンロードさせます。<br />
 $this->zip->download('my_backup.zip');
 </code>
 
@@ -204,7 +204,7 @@ $this-&gt;zip-&gt;read_dir($path, FALSE);
 
 <h2>$this->zip->archive()</h2>
 
-<p>Zip圧縮ファイルをサーバ上のディレクトリに書き込みます。ファイル名で終わる正しいサーバのパスを渡します。
+<p>Zip 圧縮ファイルをサーバ上のディレクトリに書き込みます。ファイル名で終わる正しいサーバのパスを渡します。
 ディレクトリが書き込み可能 (666 か 777 であれば通常は大丈夫です) かどうかを確かめてください。例:</p>
 
 <code>$this->zip->archive('/path/to/folder/myarchive.zip'); // myarchive.zip という名前のファイルを作成します。</code>
@@ -223,7 +223,7 @@ $this-&gt;zip-&gt;read_dir($path, FALSE);
 
 <h2>$this->zip->get_zip()</h2>
 
-<p>Zip圧縮データを返します。データを使って何か特別な事をしない限りは、通常はこのメソッドは必要ではありません。
+<p>Zip 圧縮データを返します。データを使って何か特別な事をしない限りは、通常はこのメソッドは必要ではありません。
 例:</p>
 
 <code>
@@ -279,7 +279,7 @@ $this->zip->download('myphotos.zip');
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="../helpers/array_helper.html">配列ヘルパー</a>
+次のトピック:&nbsp;&nbsp;<a href="caching.html">キャッシングクラス</a>
 </p>
 <p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
