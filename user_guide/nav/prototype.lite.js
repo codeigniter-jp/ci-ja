@@ -8,7 +8,7 @@
 /*--------------------------------------------------------------------------*/
 
 
-//メモ: mad4milk(http://moofx.mad4milk.net) の moo.fx 用に、プロトイタイプから何点か削ったバージョンです。
+//note: this is a stripped down version of prototype, to be used with moo.fx by mad4milk (http://moofx.mad4milk.net).
 
 var Class = {
  create: function() {
@@ -115,7 +115,7 @@ Object.extend(Element, {
 	element.className = newClassName;
  },
 
- // 空白のみのテキストノードの子を削除する
+ // removes whitespace-only text node children
  cleanWhitespace: function(element) {
 	element = $(element);
 	for (var i = 0; i < element.childNodes.length; i++) {
