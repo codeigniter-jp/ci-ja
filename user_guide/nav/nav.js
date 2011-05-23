@@ -7,139 +7,139 @@ function create_menu(basepath)
 		'<td class="td" valign="top">' +
 
 		'<ul>' +
-		'<li><a href="'+base+'index.html">User Guide Home</a></li>' +
-		'<li><a href="'+base+'toc.html">Table of Contents Page</a></li>' +
+		'<li><a href="'+base+'index.html">ユーザーガイド Home</a></li>' +
+		'<li><a href="'+base+'toc.html">目次</a></li>' +
 		'</ul>' +
 
-		'<h3>Basic Info</h3>' +
+		'<h3>基本情報</h3>' +
 		'<ul>' +
-			'<li><a href="'+base+'general/requirements.html">Server Requirements</a></li>' +
-			'<li><a href="'+base+'license.html">License Agreement</a></li>' +
-			'<li><a href="'+base+'changelog.html">Change Log</a></li>' +
-			'<li><a href="'+base+'general/credits.html">Credits</a></li>' +
+			'<li><a href="'+base+'general/requirements.html">サーバ必要条件</a></li>' +
+			'<li><a href="'+base+'license.html">ライセンス契約書 (原文・参考訳)</a></li>' +
+			'<li><a href="'+base+'changelog.html">変更履歴</a></li>' +
+			'<li><a href="'+base+'general/credits.html">クレジット表示</a></li>' +
 		'</ul>' +
 
-		'<h3>Installation</h3>' +
+		'<h3>インストール</h3>' +
 		'<ul>' +
-			'<li><a href="'+base+'installation/downloads.html">Downloading CodeIgniter</a></li>' +
-			'<li><a href="'+base+'installation/index.html">Installation Instructions</a></li>' +
-			'<li><a href="'+base+'installation/upgrading.html">Upgrading from a Previous Version</a></li>' +
-			'<li><a href="'+base+'installation/troubleshooting.html">Troubleshooting</a></li>' +
+			'<li><a href="'+base+'installation/downloads.html">CodeIgniter のダウンロード</a></li>' +
+			'<li><a href="'+base+'installation/index.html">インストール方法</a></li>' +
+			'<li><a href="'+base+'installation/upgrading.html">以前のバージョンからのアップグレード</a></li>' +
+			'<li><a href="'+base+'installation/troubleshooting.html">トラブルシューティング</a></li>' +
 		'</ul>' +
 
-		'<h3>Introduction</h3>' +
+		'<h3>イントロダクション</h3>' +
 		'<ul>' +
-			'<li><a href="'+base+'overview/getting_started.html">Getting Started</a></li>' +
-			'<li><a href="'+base+'overview/at_a_glance.html">CodeIgniter at a Glance</a></li>' +
-			'<li><a href="'+base+'overview/cheatsheets.html">CodeIgniter Cheatsheets</a></li>' +
-			'<li><a href="'+base+'overview/features.html">Supported Features</a></li>' +
-			'<li><a href="'+base+'overview/appflow.html">Application Flow Chart</a></li>' +
+			'<li><a href="'+base+'overview/getting_started.html">はじめよう</a></li>' +
+			'<li><a href="'+base+'overview/at_a_glance.html">CodeIgniter の簡単な紹介</a></li>' +
+			'<li><a href="'+base+'overview/cheatsheets.html">CodeIgniter チートシート</a></li>' +
+			'<li><a href="'+base+'overview/features.html">サポートしている機能</a></li>' +
+			'<li><a href="'+base+'overview/appflow.html">アプリケーションフローチャート</a></li>' +
 			'<li><a href="'+base+'overview/mvc.html">Model-View-Controller</a></li>' +
-			'<li><a href="'+base+'overview/goals.html">Architectural Goals</a></li>' +
+			'<li><a href="'+base+'overview/goals.html">アーキテクチャのゴール</a></li>' +
 		'</ul>' +
 
 		'</td><td class="td_sep" valign="top">' +
 
-		'<h3>General Topics</h3>' +
+		'<h3>一般的なトピック</h3>' +
 		'<ul>' +
-			'<li><a href="'+base+'general/urls.html">CodeIgniter URLs</a></li>' +
-			'<li><a href="'+base+'general/controllers.html">Controllers</a></li>' +
-			'<li><a href="'+base+'general/reserved_names.html">Reserved Names</a></li>' +
-			'<li><a href="'+base+'general/views.html">Views</a></li>' +
-			'<li><a href="'+base+'general/models.html">Models</a></li>' +
-			'<li><a href="'+base+'general/helpers.html">Helpers</a></li>' +
-			'<li><a href="'+base+'general/libraries.html">Using CodeIgniter Libraries</a></li>' +
-			'<li><a href="'+base+'general/creating_libraries.html">Creating Your Own Libraries</a></li>' +
-			'<li><a href="'+base+'general/drivers.html">Using CodeIgniter Drivers</a></li>' +
-			'<li><a href="'+base+'general/creating_drivers.html">Creating Your Own Drivers</a></li>' +
-			'<li><a href="'+base+'general/core_classes.html">Creating Core Classes</a></li>' +
-			'<li><a href="'+base+'general/hooks.html">Hooks - Extending the Core</a></li>' +
-			'<li><a href="'+base+'general/autoloader.html">Auto-loading Resources</a></li>' +
-			'<li><a href="'+base+'general/common_functions.html">Common Functions</a></li>' +
-			'<li><a href="'+base+'general/routing.html">URI Routing</a></li>' +
-			'<li><a href="'+base+'general/errors.html">Error Handling</a></li>' +
-			'<li><a href="'+base+'general/caching.html">Caching</a></li>' +
-			'<li><a href="'+base+'general/profiling.html">Profiling Your Application</a></li>' +
-			'<li><a href="'+base+'general/cli.html">Running via the CLI</a></li>' +
-			'<li><a href="'+base+'general/managing_apps.html">Managing Applications</a></li>' +
-			'<li><a href="'+base+'general/environments.html">Handling Multiple Environments</a></li>' +
-			'<li><a href="'+base+'general/alternative_php.html">Alternative PHP Syntax</a></li>' +
-			'<li><a href="'+base+'general/security.html">Security</a></li>' +
-			'<li><a href="'+base+'general/styleguide.html">PHP Style Guide</a></li>' +
-			'<li><a href="'+base+'doc_style/index.html">Writing Documentation</a></li>' +
+			'<li><a href="'+base+'general/urls.html">CodeIgniter の URL</a></li>' +
+			'<li><a href="'+base+'general/controllers.html">コントローラ</a></li>' +
+			'<li><a href="'+base+'general/reserved_names.html">予約語一覧</a></li>' +
+			'<li><a href="'+base+'general/views.html">ビュー</a></li>' +
+			'<li><a href="'+base+'general/models.html">モデル</a></li>' +
+			'<li><a href="'+base+'general/helpers.html">ヘルプ関数</a></li>' +
+			'<li><a href="'+base+'general/libraries.html">CodeIgniter ライブラリの使用</a></li>' +
+			'<li><a href="'+base+'general/creating_libraries.html">ユーザーライブラリの作成</a></li>' +
+			'<li><a href="'+base+'general/drivers.html">CodeIgniter ドライバの使用</a></li>' +
+			'<li><a href="'+base+'general/creating_drivers.html">ユーザードライバの作成</a></li>' +
+			'<li><a href="'+base+'general/core_classes.html">コアクラスの作成</a></li>' +
+			'<li><a href="'+base+'general/hooks.html">フック - コアの拡張</a></li>' +
+			'<li><a href="'+base+'general/autoloader.html">リソースの自動読み込み</a></li>' +
+			'<li><a href="'+base+'general/common_functions.html">共通関数</a></li>' +
+			'<li><a href="'+base+'general/routing.html">URI ルーティング</a></li>' +
+			'<li><a href="'+base+'general/errors.html">エラー処理</a></li>' +
+			'<li><a href="'+base+'general/caching.html">キャッシュ</a></li>' +
+			'<li><a href="'+base+'general/profiling.html">アプリケーションのプロファイリング</a></li>' +
+			'<li><a href="'+base+'general/cli.html">CLI を介して実行</a></li>' +
+			'<li><a href="'+base+'general/managing_apps.html">アプリケーションの管理</a></li>' +
+			'<li><a href="'+base+'general/environments.html">複数環境のハンドリング</a></li>' +
+			'<li><a href="'+base+'general/alternative_php.html">代替の PHP 構文</a></li>' +
+			'<li><a href="'+base+'general/security.html">セキュリティ</a></li>' +
+			'<li><a href="'+base+'general/styleguide.html">PHP スタイルガイド</a></li>' +
+			'<li><a href="'+base+'doc_style/index.html">ドキュメントを書く</a></li>' +
 		'</ul>' +
 
-		'<h3>Additional Resources</h3>' +
+		'<h3>その他の情報源</h3>' +
 		'<ul>' +
-		'<li><a href="http://codeigniter.com/forums/">Community Forums</a></li>' +
-		'<li><a href="http://codeigniter.com/wiki/">Community Wiki</a></li>' +
-		'</ul>' +
-
-		'</td><td class="td_sep" valign="top">' +
-
-		'<h3>Class Reference</h3>' +
-		'<ul>' +
-		'<li><a href="'+base+'libraries/benchmark.html">Benchmarking Class</a></li>' +
-		'<li><a href="'+base+'libraries/calendar.html">Calendar Class</a></li>' +
-		'<li><a href="'+base+'libraries/cart.html">Cart Class</a></li>' +
-		'<li><a href="'+base+'libraries/config.html">Config Class</a></li>' +
-		'<li><a href="'+base+'libraries/email.html">Email Class</a></li>' +
-		'<li><a href="'+base+'libraries/encryption.html">Encryption Class</a></li>' +
-		'<li><a href="'+base+'libraries/file_uploading.html">File Uploading Class</a></li>' +
-		'<li><a href="'+base+'libraries/form_validation.html">Form Validation Class</a></li>' +
-		'<li><a href="'+base+'libraries/ftp.html">FTP Class</a></li>' +
-		'<li><a href="'+base+'libraries/table.html">HTML Table Class</a></li>' +
-		'<li><a href="'+base+'libraries/image_lib.html">Image Manipulation Class</a></li>' +
-		'<li><a href="'+base+'libraries/input.html">Input Class</a></li>' +
-		'<li><a href="'+base+'libraries/javascript.html">Javascript Class</a></li>' +
-		'<li><a href="'+base+'libraries/loader.html">Loader Class</a></li>' +
-		'<li><a href="'+base+'libraries/language.html">Language Class</a></li>' +
-		'<li><a href="'+base+'libraries/output.html">Output Class</a></li>' +
-		'<li><a href="'+base+'libraries/pagination.html">Pagination Class</a></li>' +
-		'<li><a href="'+base+'libraries/security.html">Security Class</a></li>' +
-		'<li><a href="'+base+'libraries/sessions.html">Session Class</a></li>' +
-		'<li><a href="'+base+'libraries/trackback.html">Trackback Class</a></li>' +
-		'<li><a href="'+base+'libraries/parser.html">Template Parser Class</a></li>' +
-		'<li><a href="'+base+'libraries/typography.html">Typography Class</a></li>' +
-		'<li><a href="'+base+'libraries/unit_testing.html">Unit Testing Class</a></li>' +
-		'<li><a href="'+base+'libraries/uri.html">URI Class</a></li>' +
-		'<li><a href="'+base+'libraries/user_agent.html">User Agent Class</a></li>' +
-		'<li><a href="'+base+'libraries/xmlrpc.html">XML-RPC Class</a></li>' +
-		'<li><a href="'+base+'libraries/zip.html">Zip Encoding Class</a></li>' +
+		'<li><a href="http://codeigniter.com/forums/">コミュニティフォーラム (英語)</a></li>' +
+		'<li><a href="http://codeigniter.com/wiki/">コミュニティ Wiki (英語)</a></li>' +
 		'</ul>' +
 
 		'</td><td class="td_sep" valign="top">' +
 
-		'<h3>Driver Reference</h3>' +
+		'<h3>クラスリファレンス</h3>' +
 		'<ul>' +
-		'<li><a href="'+base+'libraries/caching.html">Caching Class</a></li>' +
-		'<li><a href="'+base+'database/index.html">Database Class</a></li>' +
-		'<li><a href="'+base+'libraries/javascript.html">Javascript Class</a></li>' +
+		'<li><a href="'+base+'libraries/benchmark.html">ベンチ－マーククラス</a></li>' +
+		'<li><a href="'+base+'libraries/calendar.html">カレンダークラス</a></li>' +
+		'<li><a href="'+base+'libraries/cart.html">カートクラス</a></li>' +
+		'<li><a href="'+base+'libraries/config.html">設定クラス</a></li>' +
+		'<li><a href="'+base+'libraries/email.html">Email クラス</a></li>' +
+		'<li><a href="'+base+'libraries/encryption.html">暗号化クラス</a></li>' +
+		'<li><a href="'+base+'libraries/file_uploading.html">ファイルアップロードクラス</a></li>' +
+		'<li><a href="'+base+'libraries/form_validation.html">Form バリデーション (検証) クラス</a></li>' +
+		'<li><a href="'+base+'libraries/ftp.html">FTP クラス</a></li>' +
+		'<li><a href="'+base+'libraries/table.html">HTML テーブルクラス</a></li>' +
+		'<li><a href="'+base+'libraries/image_lib.html">画像操作クラス</a></li>' +
+		'<li><a href="'+base+'libraries/input.html">入力クラス</a></li>' +
+		'<li><a href="'+base+'libraries/javascript.html">Javascript クラス</a></li>' +
+		'<li><a href="'+base+'libraries/loader.html">ローダ (読み込み処理) クラス</a></li>' +
+		'<li><a href="'+base+'libraries/language.html">言語クラス</a></li>' +
+		'<li><a href="'+base+'libraries/output.html">出力クラス</a></li>' +
+		'<li><a href="'+base+'libraries/pagination.html">ページネーションクラス</a></li>' +
+		'<li><a href="'+base+'libraries/security.html">セキュリティクラス</a></li>' +
+		'<li><a href="'+base+'libraries/sessions.html">セッションクラス</a></li>' +
+		'<li><a href="'+base+'libraries/trackback.html">トラックバッククラス</a></li>' +
+		'<li><a href="'+base+'libraries/parser.html">テンプレートパーサクラス</a></li>' +
+		'<li><a href="'+base+'libraries/typography.html">タイポグラフィークラス</a></li>' +
+		'<li><a href="'+base+'libraries/unit_testing.html">ユニットテストクラス</a></li>' +
+		'<li><a href="'+base+'libraries/uri.html">URI クラス</a></li>' +
+		'<li><a href="'+base+'libraries/user_agent.html">ユーザーエージェントクラス</a></li>' +
+		'<li><a href="'+base+'libraries/xmlrpc.html">XML-RPC クラス</a></li>' +
+		'<li><a href="'+base+'libraries/zip.html">Zip 圧縮クラス</a></li>' +
 		'</ul>' +
 
-		'<h3>Helper Reference</h3>' +
+		'</td><td class="td_sep" valign="top">' +
+
+		'<h3>ドライバリファレンス</h3>' +
 		'<ul>' +
-		'<li><a href="'+base+'helpers/array_helper.html">Array Helper</a></li>' +
-		'<li><a href="'+base+'helpers/captcha_helper.html">CAPTCHA Helper</a></li>' +
-		'<li><a href="'+base+'helpers/cookie_helper.html">Cookie Helper</a></li>' +
-		'<li><a href="'+base+'helpers/date_helper.html">Date Helper</a></li>' +
-		'<li><a href="'+base+'helpers/directory_helper.html">Directory Helper</a></li>' +
-		'<li><a href="'+base+'helpers/download_helper.html">Download Helper</a></li>' +
-		'<li><a href="'+base+'helpers/email_helper.html">Email Helper</a></li>' +
-		'<li><a href="'+base+'helpers/file_helper.html">File Helper</a></li>' +
-		'<li><a href="'+base+'helpers/form_helper.html">Form Helper</a></li>' +
-		'<li><a href="'+base+'helpers/html_helper.html">HTML Helper</a></li>' +
-		'<li><a href="'+base+'helpers/inflector_helper.html">Inflector Helper</a></li>' +
-		'<li><a href="'+base+'helpers/language_helper.html">Language Helper</a></li>' +
-		'<li><a href="'+base+'helpers/number_helper.html">Number Helper</a></li>' +
-		'<li><a href="'+base+'helpers/path_helper.html">Path Helper</a></li>' +
-		'<li><a href="'+base+'helpers/security_helper.html">Security Helper</a></li>' +
-		'<li><a href="'+base+'helpers/smiley_helper.html">Smiley Helper</a></li>' +
-		'<li><a href="'+base+'helpers/string_helper.html">String Helper</a></li>' +
-		'<li><a href="'+base+'helpers/text_helper.html">Text Helper</a></li>' +
-		'<li><a href="'+base+'helpers/typography_helper.html">Typography Helper</a></li>' +
-		'<li><a href="'+base+'helpers/url_helper.html">URL Helper</a></li>' +
-		'<li><a href="'+base+'helpers/xml_helper.html">XML Helper</a></li>' +
+		'<li><a href="'+base+'libraries/caching.html">キャッシングクラス</a></li>' +
+		'<li><a href="'+base+'database/index.html">データベースクラス</a></li>' +
+		'<li><a href="'+base+'libraries/javascript.html">Javascript クラス</a></li>' +
+		'</ul>' +
+
+		'<h3>ヘルパ関数リファレンス</h3>' +
+		'<ul>' +
+		'<li><a href="'+base+'helpers/array_helper.html">配列ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/captcha_helper.html">CAPTCHA ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/cookie_helper.html">Cookie ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/date_helper.html">日付ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/directory_helper.html">ディレクトリヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/download_helper.html">ダウンロードヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/email_helper.html">Email ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/file_helper.html">ファイルヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/form_helper.html">Form ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/html_helper.html">HTML ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/inflector_helper.html">互換変換ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/language_helper.html">言語ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/number_helper.html">数学ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/path_helper.html">パスヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/security_helper.html">セキュリティヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/smiley_helper.html">スマイリーヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/string_helper.html">文字列ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/text_helper.html">テキストヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/typography_helper.html">タイポフラフィヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/url_helper.html">URL ヘルパ</a></li>' +
+		'<li><a href="'+base+'helpers/xml_helper.html">XML ヘルパ</a></li>' +
 		'</ul>' +
 
 		'</td></tr></table>');
