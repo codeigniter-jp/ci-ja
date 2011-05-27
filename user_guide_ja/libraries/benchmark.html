@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -59,7 +59,7 @@
 <h1>ベンチマーククラス</h1>
 
 <p>CodeIgniter には、常時アクティブなベンチマーククラスがあります。
-ベンチマーククラスは、あらかじめマークしておいた複数の観測点のうちの任意の２つの時点の時間差を計算できます。</p>
+ベンチマーククラスは、あらかじめマークしておいた複数の観測点のうちの任意の 2 つの時点の時間差を計算できます。</p>
 
 <p class="important"><strong>Note:</strong> このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
 
@@ -83,12 +83,12 @@
 <a name="using"></a>
 <h2>ベンチマーククラスを使用する</h2>
 
-<p>ベンチマーククラスは<a href="../general/controllers.html">コントローラ</a>、<a href="../general/views.html">ビュー</a>または<a href="../general/models.html">モデル</a> の中で使用できます。使う手順は次のとおりです:</p>
+<p>ベンチマーククラスは<a href="../general/controllers.html">コントローラ</a>、<a href="../general/views.html">ビュー</a>または<a href="../general/models.html">モデル</a>の中で使用できます。使う手順は次のとおりです:</p>
 
 <ol>
 <li>観測開始点をマークします。</li>
 <li>観測終了点をマークします。</li>
-<li>結果を見るため「経過時間（&quot;elapsed time&quot;）」メソッドを実行します。</li>
+<li>結果を見るため「経過時間 （&quot;elapsed time&quot;） 」メソッドを実行します。</li>
 </ol>
 
 <p>実際のコードでの使用例です:</p>
@@ -124,8 +124,8 @@ echo $this->benchmark->elapsed_time('dog', 'bird');</code>
 
 <p><a href="../general/profiling.html">プロファイラ</a> でベンチマークデータを使用するには、
 観測点はペアにする必要があり、各々の観測点の名前の末尾を <kbd>_start</kbd> と <kbd>_end</kbd> にしなければなりません。
-さらに、ペアになる観測点の名前は、元が同じ（identicaly）である必要があります
-[ 訳注： ペアになっている開始点と終了点の名前は、末尾の<kbd>_start </kbd><kbd>_end</kbd> を除いた部分が同じものでなければなりません ]。 例:</p>
+さらに、ペアになる観測点の名前は、元が同じ （identicaly） である必要があります
+[訳注： ペアになっている開始点と終了点の名前は、末尾の<kbd>_start </kbd><kbd>_end</kbd> を除いた部分が同じものでなければなりません] 。 例:</p>
 
 <code>
 $this->benchmark->mark('my_mark<kbd>_start</kbd>');<br />

@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -61,7 +61,7 @@
 <p>設定クラスは、設定情報を取得する手段を提供します。設定情報は、
 デフォルトの設定ファイル (<samp>application/config/config.php</samp>) または、ユーザ定義の設定ファイルから取得できます。</p>
 
-<p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
+<p class="important"><strong>Note: </strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
 
 
 <h2>設定ファイルの詳細</h2>
@@ -102,7 +102,7 @@ $this->config->load('<var>blog_settings</var>', <kbd>TRUE</kbd>);</code>
 
 <p>上記の方法でセットした設定項目を読み取る方法については、下の <dfn>設定項目の取り出し</dfn> というタイトルのセクションを見てください。</p>
 
-<p>第3引数で、設定ファイルが存在しなかった時に発生するエラーを出さないようにすることができます[ 訳注: TRUEに設定するとエラーがでなくなります。 ]:</p>
+<p>第3引数で、設定ファイルが存在しなかった時に発生するエラーを出さないようにすることができます [訳注: TRUEに設定するとエラーがでなくなります。] :</p>
 
 <code>$this->config->load('<var>blog_settings</var>', <dfn>FALSE</dfn>, <kbd>TRUE</kbd>);</code>
 
@@ -126,7 +126,7 @@ $this->config->load('<var>blog_settings</var>', <kbd>TRUE</kbd>);</code>
 
 <code>$lang = $this->config->item('language');</code>
 
-<p>このメソッドは、読み取ろうとする項目が存在しない場合、FALSE (ブール値) を返します。</p>
+<p>このメソッドは、読み取ろうとする項目が存在しない場合、FALSE (ブール値)を返します。</p>
 
 <p>指定の添字に設定項目を代入するために、<kbd>$this->config->load</kbd> メソッドの第2引数を使った場合、
 <kbd>$this->config->item()</kbd> メソッドの第2引数でも指定した添字の名前を設定することで、それを読み取ることができます。例:</p>
@@ -156,7 +156,7 @@ $site_name = $blog_config['site_name'];</code>
 <p>
   現状の環境により異なった設定ファイルをロードすることができます。
   定数 <kbd>ENVIRONMENT</kbd> が index.php で定義されており、
-  <a href="../general/environments.html">複数の環境の取扱い</a> のセクションに詳細が記述されて
+  <a href="../general/environments.html">複数の環境の取扱い</a>のセクションに詳細が記述されて
   います。
 </p>
 
@@ -174,7 +174,7 @@ $site_name = $blog_config['site_name'];</code>
 </ol>
 
 <p>
-    定数 <kbd>ENVIRONMENT</kbd> を 'production' に設定すると、, the settings
+    定数 <kbd>ENVIRONMENT</kbd> を 'production' に設定すると、
     新しく作成した本番環境用の config.php がロードされます。
 </p>
 
@@ -204,11 +204,11 @@ $site_name = $blog_config['site_name'];</code>
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="calendar.html">カレンダークラス</a>
+前のトピック:&nbsp;&nbsp;<a href="cart.html">カートクラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="../database/index.html">データベースクラス</a>
+次のトピック:&nbsp;&nbsp;<a href="email.html">Email クラス</a>
 </p>
 <p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>

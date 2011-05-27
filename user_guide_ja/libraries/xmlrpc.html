@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -42,7 +42,7 @@
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-XML-RPC および XML-RPC サーバクラス
+XML-RPC クラス
 </td>
 <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
@@ -60,10 +60,10 @@ XML-RPC および XML-RPC サーバクラス
 
 
 <p>CodeIgniter の XML-RPC クラスを使うと、他のサーバにリクエストを送信したり、リクエストを受信するために
-XML-RPCサーバをセットアップしたりできます。</p>
+XML-RPC サーバをセットアップしたりできます。</p>
 
 
-<h2>XML-RPCとは?</h2>
+<h2>XML-RPC とは?</h2>
 
 <p>インターネット上の2つのコンピュータが対話する方法で非常にシンプルなのは、XML を使うものです。
 <dfn>クライアント</dfn>と呼ばれる一方のコンピュータは、XML-RPC <strong>リクエスト</strong>を
@@ -108,7 +108,7 @@ $this->load->library('xmlrpcs');
 <li><em>リクエスト</em> データ (後述)</li>
 </ul>
 
-<p>以下は、<a href="http://pingomatic.com/">Ping-o-Matic</a> で、単純にWeblogs.comにPingを送信する基本的な例です。</p>
+<p>以下は、<a href="http://pingomatic.com/">Ping-o-Matic</a> で、単純に Weblogs.com に Ping を送信する基本的な例です。</p>
 
 
 <code>$this->load->library('xmlrpc');<br />
@@ -127,7 +127,7 @@ if ( ! $this->xmlrpc->send_request())<br />
 
 <h3>解説</h3>
 
-<p>上のコードでは、XML-RPC クラスを初期化し、サーバの URL と呼び出すメソッド(weblogUpdates.ping)をセットしています。
+<p>上のコードでは、XML-RPC クラスを初期化し、サーバの URL と呼び出すメソッド (weblogUpdates.ping) をセットしています。
 リクエスト (この場合は、タイトルと自分のサイトの URL) が送信用に配列に格納され、
 request() メソッドを使ってコンパイルされます。
 最後に、完全なリクエストが送信されます。<dfn>send_request()</dfn> メソッドが FALSE を返した場合は、
@@ -199,7 +199,7 @@ $this->xmlrpcs->serve();</code>
 サーバは<dfn>My_blog</dfn> クラスを読み込み、<dfn>update_entry </dfn>メソッドを呼び出します。</p>
 
 <p>上のサンプルのメソッド名には、任意のものを指定できます。サーバで上でどのように呼ばれるべきかを決めるか、
-Blogger や MetaWeblog API などの標準のAPIを使う場合は、それらのメソッド名にします。</p>
+Blogger や MetaWeblog API などの標準の API を使う場合は、それらのメソッド名にします。</p>
 
 <p>補足的な2つの設定キーがあり、それらは XML-RPC サーバクラスを初期化するときに使用するものとします: <var>debug</var> に TRUE をセットすることでデバッグ機能を有効にできます、そして <var>xss_clean</var> は、FALSE をセットすることで、Security ライブラリの xss_clean 関数を通さずにデータを送信します。</p>
 
@@ -265,7 +265,7 @@ Blogger や MetaWeblog API などの標準のAPIを使う場合は、それら�
 <p><dfn>output_parameters()</dfn> メソッドは、クライアントによって送信されたリクエストパラメータに対応する配列を取得します。
 上の例では、出力されたパラメータは、ユーザ名とパスワードになります。</p>
 
-<p>クライアントから送信されたユーザ名とパスワードが正しくない場合、<dfn>send_error_message()</dfn>を使ってエラーメッセージを返します。</p>
+<p>クライアントから送信されたユーザ名とパスワードが正しくない場合、<dfn>send_error_message()</dfn> を使ってエラーメッセージを返します。</p>
 
 <p>操作が成功した場合、ユーザ情報が格納された配列がクライアントに返送されます。</p>
 
@@ -356,7 +356,7 @@ class Xmlrpc_client extends CI_Controller {
 
 <h3>サーバ</h3>
 
-<p>テキストエディタを使って、<dfn>xmlrpc_server.php</dfn>.という名前のファイルを作成します。
+<p>テキストエディタを使って、<dfn>xmlrpc_server.php</dfn> という名前のファイルを作成します。
 その中に、下記のコードを書いて<samp>applications/controllers/</samp> フォルダにそれを保存します:</p>
 
 <textarea class="textarea" style="width:100%" cols="50" rows="30">&lt;?php
@@ -452,7 +452,7 @@ class Xmlrpc_server extends CI_Controller {
 $this->xmlrpc->request($request);</code>
 
 <h2>$this->xmlrpc->send_request()</h2>
-<p>リクエスト送信メソッド。条件判断ができるように、成功か失敗かに応じてブール値の TRU Eか FALSE を返します。</p>
+<p>リクエスト送信メソッド。条件判断ができるように、成功か失敗かに応じてブール値の TRUE か FALSE を返します。</p>
 
 <h2>$this->xmlrpc->set_debug(TRUE);</h2>
 <p>開発中に役立つ、様々な情報とエラーを表示させるデバッグ機能を有効化します。</p>
@@ -486,7 +486,7 @@ return $this->xmlrpc->send_response($response);</code>
 <h2>データ型</h2>
 
 <p><a href="http://www.xmlrpc.com/spec">XML-RPC の仕様</a>によれば、
-XML-RPC経由で送信できるデータ型は7つあります:</p>
+XML-RPC 経由で送信できるデータ型は7つあります:</p>
 
 <ul>
 <li><em>int</em> または <em>i4</em></li>

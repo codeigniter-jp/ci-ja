@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -187,7 +187,7 @@ class Upload extends CI_Controller {
 <h2>アップロードフォルダ</h2>
 
 <p>アップロードする画像用のアップロード先フォルダが必要です。  CodeIgniter をインストールした場所のルートに
-<dfn>uploads</dfn> という名前のフォルダを作り、パーミッションを777にセットしてください。</p>
+<dfn>uploads</dfn> という名前のフォルダを作り、パーミッションを 777 にセットしてください。</p>
 
 
 <h2>動かして試してみよう！</h2>
@@ -196,7 +196,7 @@ class Upload extends CI_Controller {
 
 <code>exmaple.com/index.php/<var>upload</var>/</code>
 
-<p>アップロードフォームが表示されるはずです。イメージファイル (jpg、gif、または png のいずれか)をアップロードしてみてください。
+<p>アップロードフォームが表示されるはずです。イメージファイル (jpg、gif、または png のいずれか) をアップロードしてみてください。
 動作させるには、コントローラに書いてあるパスが正しくなければなりません。</p>
 
 
@@ -264,7 +264,7 @@ $this->upload->initialize($config);</code>
 <td class="td">なし</td>
 <td class="td">目的のファイル名</td>
 <td class="td">
-	<p>設定すると、CodeIgniterはアップロードされたファイルをこのファイル名にリネームします。ファイル名の拡張子は許可されたファイルタイプのものでなければなりません。</p>
+	<p>設定すると、CodeIgniter はアップロードされたファイルをこのファイル名にリネームします。ファイル名の拡張子は許可されたファイルタイプのものでなければなりません。</p>
 </td>
 </tr>
 
@@ -280,28 +280,28 @@ $this->upload->initialize($config);</code>
 <td class="td"><strong>max_size</strong></td>
 <td class="td">0</td>
 <td class="td">なし</td>
-<td class="td">アップロードできるファイルの最大サイズ (KB) 。無制限にする場合には0を設定します。Note:  php.ini ファイルで、各 PHP 実行環境そのものの制限が指定されています。デフォルトの 2 MB (または 2048 KB) がたいていの場合セットされています。</td>
+<td class="td">アップロードできるファイルの最大サイズ (KB) 。無制限にする場合には 0 を設定します。Note:  php.ini ファイルで、各 PHP 実行環境そのものの制限が指定されています。デフォルトの 2 MB (または 2048 KB) がたいていの場合セットされています。</td>
 </tr>
 
 <tr>
 <td class="td"><strong>max_width</strong></td>
 <td class="td">0</td>
 <td class="td">なし</td>
-<td class="td">ファイル [ 訳注: ファイルが画像の場合の ] の幅の最大値 (ピクセル) 。無制限にするには、0を指定します。</td>
+<td class="td">ファイル [訳注: ファイルが画像の場合の] の幅の最大値(ピクセル)。無制限にするには、0 を指定します。</td>
 </tr>
 
 <tr>
 <td class="td"><strong>max_height</strong></td>
 <td class="td">0</td>
 <td class="td">なし</td>
-<td class="td">ファイル [ 訳注: ファイルが画像の場合の ] の高さの最大値 (ピクセル) 。無制限にするには、0を指定します。</td>
+<td class="td">ファイル [訳注: ファイルが画像の場合の] の高さの最大値(ピクセル)。無制限にするには、0 を指定します。</td>
 </tr>
 
 <tr>
 <td class="td"><strong>max_filename</strong></td>
 <td class="td">0</td>
 <td class="td">なし</td>
-<td class="td">ファイル名の最大文字数。無制限にするには、0を指定します。</td>
+<td class="td">ファイル名の最大文字数。無制限にするには、0 を指定します。</td>
 </tr>
 
 <tr>
@@ -353,7 +353,7 @@ $this->upload->do_upload($field_name)</code>
 このメソッドは、自動では出力（echo）しません。変数に代入することができるように、このメソッドはデータを返します。</p>
 
 <h3>エラーメッセージを整形する</h3>
-<p>デフォルトでは、このメソッドは、各エラーを&lt;p>タグで囲みます。次のように、エラーを囲むのに使う文字列を自分でセットすることもできます:</p>
+<p>デフォルトでは、このメソッドは、各エラーを &lt;p> タグで囲みます。次のように、エラーを囲むのに使う文字列を自分でセットすることもできます:</p>
 
 <code>$this->upload->display_errors('<var>&lt;p></var>', '<var>&lt;/p></var>');</code>
 
@@ -403,7 +403,7 @@ $this->upload->do_upload($field_name)</code>
 <td class="td">拡張子を除くファイル名</td></tr>
 
 <tr><td class="td"><strong>orig_name</strong></td>
-<td class="td">オリジナルのファイル名。この項目は暗号化された名前を使うとき [ 訳注: 設定項目の <strong>encrypt_name</strong> をTRUEにした場合 ] だけ意味があります。</td></tr>
+<td class="td">オリジナルのファイル名。この項目は暗号化された名前を使うとき [訳注: 設定項目の <strong>encrypt_name</strong> をTRUEにした場合] だけ意味があります。</td></tr>
 
 <tr><td class="td"><strong>client_name</strong></td>
 <td class="td">インクリメント処理やファイル名を調整する前の、クライアントユーザエージェントから与えられたファイル名。</td></tr>

@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -91,10 +91,10 @@ Mcrypt が有効な場合は、保管に適した高いレベルのセキュリ�
 <h2>メッセージの長さ</h2>
 
 <p>暗号化メソッドで生成されたメッセージは元のメッセージより約 2.6 倍長くなるということを知っておくのは重要です。
-たとえば、21 文字の "my super secret data" という文字列を暗号化した場合は、暗号化された文字列は、およそ55文字になります
+たとえば、21 文字の "my super secret data" という文字列を暗号化した場合は、暗号化された文字列は、およそ 55 文字になります
 (暗号化された文字列は、64 ビットのクラスタごとに長さが増加し、正確にはリニアに増加しないので、「およそ」になります)。
 データの保管方式を選ぶ際に、このことを考慮するようにしてください。
-たとえば、クッキーは 4KB のデータしか保持できません。</p>
+たとえば、クッキーは 4 KB のデータしか保持できません。</p>
 
 
 <h2>クラスの初期化</h2>
@@ -142,7 +142,7 @@ $encrypted_string = $this->encrypt->decode($msg, $key);</code>
 
 <h2>$this->encrypt->set_cipher();</h2>
 
-<p>Mcryptの暗号アルゴリズムをセットできます。デフォルトでは、<samp>MCRYPT_RIJNDAEL_256</samp> を使用します。例:</p>
+<p>Mcrypt の暗号アルゴリズムをセットできます。デフォルトでは、<samp>MCRYPT_RIJNDAEL_256</samp> を使用します。例:</p>
 <code>$this->encrypt->set_cipher(MCRYPT_BLOWFISH);</code>
 <p><a href="http://jp.php.net/mcrypt">利用できる暗号アルゴリズム</a>のリストを見るには、php.net を訪問してください。</p>
 
@@ -158,7 +158,7 @@ $encrypted_string = $this->encrypt->decode($msg, $key);</code>
 
 
 <h2>$this->encrypt->sha1();</h2>
-<p>SHA1 エンコードメソッド。文字列を渡すと160ビットの一方向ハッシュを返します。Note:  SHA1 はちょうど MD5 のように、復号できません。例:</p>
+<p>SHA1 エンコードメソッド。文字列を渡すと 160 ビットの一方向ハッシュを返します。Note:  SHA1 はちょうど MD5 のように、復号できません。例:</p>
 <code>$hash = $this->encrypt->sha1('何かの文字列');</code>
 
 <p>多くの PHP 環境では、SHA1 がデフォルトでサポートされていますので、

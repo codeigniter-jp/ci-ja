@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
 </tr>
 </table>
@@ -58,7 +58,7 @@ JavaScript ドライバ
 
 <p class="important"><strong>Note:</strong> このドライバは実験的なものです。機能や実装は将来のリリースで変更されるかもしれません。</p><p class="important"><strong>訳注:</strong> 　現時点では、このページの記述は一部正しくない可能性があります。</p><br>
 
-<h1>JavaScript クラス</h1>
+<h1>JavaScript ドライバ</h1>
 <p>CodeIgniter では一般的な JavaScript の機能を提供します。ここで注意していただきたいのは、CodeIgniter の動作に jQuery ライブラリは必須ではありません。ここでは単に、jQuery ライブラリが便利であるということを紹介します。</p>
 <h2>クラスの初期化</h2>
 <p>JavaScript クラスをコントローラのコンストラクタで手動で初期化するには、<dfn>$this-&gt;load-&gt;library</dfn> メソッドを使います。 現在のところ、使用できるライブラリは jQuery のみで、これは次のようにすると自動的にロードされます。</p>
@@ -75,7 +75,7 @@ JavaScript ドライバ
 <h2>準備と設定</h2>
 <h3>ビューに変数をセットする</h3>
 <p>アプリケーションから JavaScript ライブラリを読み込めるようにする必要があります。</p>
-<p>JavaScript はクライアントサイドの言語なので、ライブラリは最終的な出力 (つまりビュー) に含まれなければいけません。次の変数をビューの &lt;head&gt; タグ内に挿入します。</p>
+<p>JavaScript はクライアントサイドの言語なので、ライブラリは最終的な出力(つまりビュー)に含まれなければいけません。次の変数をビューの &lt;head&gt; タグ内に挿入します。</p>
 <p><code>&lt;?php echo $library_src;?&gt;<br />
 &lt;?php echo $script_head;?&gt;
 </code></p>
@@ -209,7 +209,7 @@ $this-&gt;jquery-&gt;slideToggle(target, optional speed, optional extra informat
 <p>このライブラリによりいくつかの jQuery プラグインが使用可能です。</p>
 
 <h3>corner()</h3>
-<p>ページの要素の角を特徴的 (訳注: 角丸など) にします。詳細は次のページを参照してください: <a href="http://www.malsup.com/jquery/corner/">http://www.malsup.com/jquery/corner/</a></p>
+<p>ページの要素の角を特徴的(訳注: 角丸など)にします。詳細は次のページを参照してください: <a href="http://www.malsup.com/jquery/corner/">http://www.malsup.com/jquery/corner/</a></p>
 <p><code>$this-&gt;jquery-&gt;corner(target, corner_style);</code></p>
 <ul>
 	<li>&quot;target&quot; は有効な jQuery のセレクタです (複数可)。</li>

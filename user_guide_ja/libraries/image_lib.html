@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -58,7 +58,7 @@
 
 <h1>画像操作クラス</h1>
 
-<p>CodeIgniterの画像操作クラスを使うと、次のことが行えます:</p>
+<p>CodeIgniter の画像操作クラスを使うと、次のことが行えます:</p>
 
 <ul>
 <li>画像のリサイズ</li>
@@ -70,9 +70,9 @@
 
 <p>次の3つのよく使われている画像ライブラリすべてに対応しています:  GD/GD2、NetPBM、および ImageMagick</p>
 
-<p class="important"><strong>Note:</strong> 画像の合成は、GD/GD2 ライブラリを使用した場合のみ利用可能です。
+<p class="important"><strong>Note: </strong> 画像の合成は、GD/GD2 ライブラリを使用した場合のみ利用可能です。
 加えて、他のライブラリを指定した場合でも、
-画像のプロパティを取得するためにはGDが必要になります。
+画像のプロパティを取得するためには GD が必要になります。
 しかし、画像の処理に関しては指定したライブラリだけで可能です。</p>
 
 
@@ -107,12 +107,12 @@ $this->image_lib->resize();</code>
 GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイルを作成するよう、<dfn>image_resize</dfn> メソッドに設定しています。
 <dfn>maintain_ratio</dfn> オプションが有効になっているので、サムネイルはもともとのアスペクト比を維持したまま、
 指定された <dfn>width</dfn>（幅） と <dfn>height</dfn>（高さ） にできるだけ近づけるようにします。
-サムネイルは<em> mypic_thumb.jpg</em>という名前になります。</p>
+サムネイルは <em>mypic_thumb.jpg</em> という名前になります。</p>
 
-<p class="important"><strong>Note:</strong> 画像クラスに全ての処理を許可するため、
+<p class="important"><strong>Note: </strong> 画像クラスに全ての処理を許可するため、
 画像が含まれるフォルダと画像のパーミッションを書き込み可能に設定する必要があります。</p>
 
-<p class="important"><strong>Note:</strong> 画像処理はいくつかの操作において、かなりのサーバのメモリを必要とします。画像処理の最中に out of memory エラーに遭遇した場合は、最大サイズの制限や PHP の memory_limit の調整が必要かも知れません。</p>
+<p class="important"><strong>Note: </strong> 画像処理はいくつかの操作において、かなりのサーバのメモリを必要とします。画像処理の最中に out of memory エラーに遭遇した場合は、最大サイズの制限や PHP の memory_limit の調整が必要かも知れません。</p>
 
 <h2>処理メソッド</h2>
 
@@ -187,7 +187,7 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 <td class="td"><strong>library_path</strong></td>
 <td class="td">なし</td>
 <td class="td">なし</td>
-<td class="td"> ImageMagick または NetPBM libraryへのサーバパスを指定してください。どちらかのライブラリを使う場合は、パスを指定する必要があります。</td>
+<td class="td"> ImageMagick または NetPBM library へのサーバパスを指定してください。どちらかのライブラリを使う場合は、パスを指定する必要があります。</td>
 <td class="td">R, C, X</td>
 </tr>
 
@@ -221,7 +221,7 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 <td class="td"><strong>new_image</strong></td>
 <td class="td">なし</td>
 <td class="td">なし</td>
-<td class="td">出力対象の画像ファイル名/パスをセットします。この設定項目は、画像のコピーを作成するときに使います。パスは、URLではなく、サーバの相対、または、絶対パスを指定する必要があります。</td>
+<td class="td">出力対象の画像ファイル名/パスをセットします。この設定項目は、画像のコピーを作成するときに使います。パスは、URL ではなく、サーバの相対、または、絶対パスを指定する必要があります。</td>
 <td class="td">R, C, X, W</td>
 </tr>
 
@@ -253,7 +253,7 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 <td class="td"><strong>thumb_marker</strong></td>
 <td class="td">_thumb</td>
 <td class="td">なし</td>
-<td class="td">サムネイルの識別子を指定します。ここで指定したものが拡張子の直前に挿入されます。mypic.jpg の場合はmypic_thumb.jpg になります。</td>
+<td class="td">サムネイルの識別子を指定します。ここで指定したものが拡張子の直前に挿入されます。mypic.jpg の場合は mypic_thumb.jpg になります。</td>
 <td class="td">R</td>
 </tr>
 
@@ -270,7 +270,7 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 <td class="td"><strong>master_dim</strong></td>
 <td class="td">auto</td>
 <td class="td">auto、width、height</td>
-<td class="td">リサイズするか、またはサムネイルを作成するとき、基準軸としてどれを使用したらよいかを指定します。たとえば、イメージを100X75ピクセルにリサイズしたいとします。元の画像サイズが縦も横も両方ぴったりリサイズできないものであるとき[ 訳注:アスペクト比を固定している場合など ]、この設定により、どの軸を絶対の基準の値として使用すべきかが決まります。"auto" にすると、画像の高さが幅より長いか、あるいはその逆かにより、軸が自動的に決定されます。</td>
+<td class="td">リサイズするか、またはサムネイルを作成するとき、基準軸としてどれを使用したらよいかを指定します。たとえば、イメージを100X75ピクセルにリサイズしたいとします。元の画像サイズが縦も横も両方ぴったりリサイズできないものであるとき [訳注:アスペクト比を固定している場合など]、この設定により、どの軸を絶対の基準の値として使用すべきかが決まります。"auto" にすると、画像の高さが幅より長いか、あるいはその逆かにより、軸が自動的に決定されます。</td>
 <td class="td">R</td>
 </tr>
 
@@ -316,7 +316,7 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 <p>画像リサイズメソッドを使うと、元の画像をリサイズすることができ、
 （リサイズするかどうかにかかわらず）コピーを作成したり、サムネイルを作成したりできます。</p>
 
-<p>実用的な目的では、サムネイルの場合、名前の一部にサムネイルのマークがつく（たとえば、mypic_thumb.jpg）以外は、
+<p>実用的な目的では、サムネイルの場合、名前の一部にサムネイルのマークがつく （たとえば、mypic_thumb.jpg） 以外は、
 コピーの作成とサムネイルの作成とに違いはありません。</p>
 
 <p>このメソッドでは、上の表でリストアップした設定項目のうち次の3つを除いてすべてが利用可能です: rotation_angle、x_axis、y_axis。</p>
@@ -346,13 +346,13 @@ GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイル�
 
 <h3>元画像のリサイズ</h3>
 
-<p>上で使われている2つの設定項目( create_thumb と new_image )を指定しない場合、
+<p>上で使われている2つの設定項目 (create_thumb と new_image) を指定しない場合、
 リサイズメソッドでは代わりに元画像が処理の対象になります。</p>
 
 
 <h2>$this->image_lib->crop()</h2>
 
-<p>切り抜きメソッドは、次のように切り取る場所を指定する X および Y 軸 (ピクセル) を設定する必要があるのを除いて、
+<p>切り抜きメソッドは、次のように切り取る場所を指定する X および Y 軸(ピクセル)を設定する必要があるのを除いて、
 リサイズメソッドと大体同じように動作します:</p>
 
 <code>$config['x_axis'] = '100';<br />
@@ -430,10 +430,9 @@ if ( ! $this->image_lib->rotate())<br />
 
 <ul>
 <li><strong>テキスト</strong>: メッセージの合成は指定した TrueType フォントか、GD ライブラリで組み込みでサポートされている文字のどちらかでテキストをもとに生成されます。
-TrueType を使用する場合、GD のインストール時に、TrueType をサポートするようコンパイルれている必要があります
-（ほとんどはそうなっていますが、すべてそうだとは限りません）。</li>
+TrueType を使用する場合、GD のインストール時に、TrueType をサポートするようコンパイルれている必要があります（ほとんどはそうなっていますが、すべてそうだとは限りません）。</li>
 
-<li><strong>オーバーレイ</strong>: 画像（たいていは透過 PNG か透過 GIF ）のオーバーレイにより、
+<li><strong>オーバーレイ</strong>: 画像 （たいていは透過 PNG か透過 GIF） のオーバーレイにより、
 元の画像に合成するイメージを重ねて合成メッセージが生成されます。</li>
 
 </ul>
@@ -465,7 +464,7 @@ $this->image_lib->watermark();</code>
 <p>上の例では、16ピクセルの TrueType フォントを "Copyright 2006 - John Doe" というテキストを作成するのに使用しています。
 合成する画像は、下詰めの中央揃えで、画像の下から20ピクセルのところに配置されます。</p>
 
-<p class="important"><strong>Note:</strong> 画像クラスのどんな処理も利用できるようにするには、画像ファイルに&quot;書き込み&quot;のパーミッションがある必要があります。たとえば、パーミッションを 777 に設定してください。</p>
+<p class="important"><strong>Note: </strong>画像クラスのどんな処理も利用できるようにするには、画像ファイルに&quot;書き込み&quot;のパーミッションがある必要があります。たとえば、パーミッションを 777 に設定してください。</p>
 
 
 <h2>画像合成の設定</h2>
@@ -491,7 +490,7 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>source_image</strong></td>
 <td class="td">なし</td>
 <td class="td">なし</td>
-<td class="td">画像ファイルの 名前/パス を指定します。パスは、URL ではなくサーバの相対または絶対パスで指定しなければなりません。</td>
+<td class="td">画像ファイルの名前/パスを指定します。パスは、URL ではなくサーバの相対または絶対パスで指定しなければなりません。</td>
 </tr>
 
 <tr>
@@ -533,14 +532,14 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>wm_hor_offset</strong></td>
 <td class="td">なし</td>
 <td class="td">なし</td>
-<td class="td">合成画像に適用する 水平方向のオフセット(ピクセル) を指定できます。このオフセットは、通常、合成画像を右へずらすものですが、横方向の整列を &quot;右&quot; に設定している場合、左方向に向かってずれます。</td>
+<td class="td">合成画像に適用する水平方向のオフセット(ピクセル)を指定できます。このオフセットは、通常、合成画像を右へずらすものですが、横方向の整列を &quot;右&quot; に設定している場合、左方向に向かってずれます。</td>
 </tr>
 
 <tr>
 <td class="td"><strong>wm_vrt_offset</strong></td>
 <td class="td">なし</td>
 <td class="td">なし</td>
-<td class="td">合成画像に適用する 垂直方向のオフセット(ピクセル) を指定できます。このオフセットは、通常、合成画像を下へずらすものですが、縦方向の整列を &quot;下&quot; に設定している場合、上方向に向かってずれます。</td>
+<td class="td">合成画像に適用する垂直方向のオフセット(ピクセル)を指定できます。このオフセットは、通常、合成画像を下へずらすものですが、縦方向の整列を &quot;下&quot; に設定している場合、上方向に向かってずれます。</td>
 </tr>
 
 </table>
@@ -577,14 +576,14 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>wm_font_size</strong></td>
 <td class="td">16</td>
 <td class="td">なし</td>
-<td class="td">テキストのサイズ。Note:  上の TrueType オプションを使わなかった場合、1-5で番号を指定します。逆に TrueType オプションを使った場合は、使用するフォントにおいて正しいピクセルサイズであればどの値でも使えます。</td>
+<td class="td">テキストのサイズ。Note: 上の TrueType オプションを使わなかった場合、1-5で番号を指定します。逆に TrueType オプションを使った場合は、使用するフォントにおいて正しいピクセルサイズであればどの値でも使えます。</td>
 </tr>
 
 <tr>
 <td class="td"><strong>wm_font_color</strong></td>
 <td class="td">ffffff</td>
 <td class="td">なし</td>
-<td class="td">フォントの色を16進数で指定します。Note: 16進を、3文字の省略形 (たとえば fff )でなく、6桁 (たとえば 993300)で指定します。</td>
+<td class="td">フォントの色を16進数で指定します。Note: 16進を、3文字の省略形 (たとえば fff) でなく、6桁 (たとえば 993300) で指定します。</td>
 </tr>
 
 
@@ -592,7 +591,7 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>wm_shadow_color</strong></td>
 <td class="td">なし</td>
 <td class="td">なし</td>
-<td class="td">フォントのシャドウカラーを16進数で指定します。空にしておくと、ドロップシャドウは使用されません。Note: 16進を、3文字の省略形 (たとえば fff )でなく、6桁 (たとえば 993300)で指定します。</td>
+<td class="td">フォントのシャドウカラーを16進数で指定します。空にしておくと、ドロップシャドウは使用されません。Note: 16進を、3文字の省略形 (たとえば fff) でなく、6桁 (たとえば 993300) で指定します。</td>
 </tr>
 
 <tr>
@@ -630,7 +629,7 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>wm_opacity</strong></td>
 <td class="td">50</td>
 <td class="td">1 - 100</td>
-<td class="td">画像の不透明度。 合成画像の不透明度 (透明度) を指定できます。これにより、合成する画像は、薄くなって、背後にある元の画像の詳細を完全には隠しません。50% の不透明度が典型的です。</td>
+<td class="td">画像の不透明度。 合成画像の不透明度(透明度)を指定できます。これにより、合成する画像は、薄くなって、背後にある元の画像の詳細を完全には隠しません。50% の不透明度が典型的です。</td>
 </tr>
 
 <tr>

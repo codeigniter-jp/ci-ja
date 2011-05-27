@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="./toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -60,43 +60,43 @@
 <p><img src="images/reactor-bullet.png" width="16" height="16" alt="Reactor Marker" /> 印は CodeIgniter Reactor から提供されたものです。</p>
 
 <h2>Version 2.0.3</h2>
-<p>Release Date: Not Released</p>
+<p>リリース日付:  未リリース</p>
 
 <ul>
-	<li>Security
+	<li>セキュリティ
 		<ul>
-			<li>An improvement was made to the MySQL and MySQLi drivers to prevent exposing a potential vector for SQL injection on sites using multi-byte character sets in the database client connection. <p>An incompatibility in PHP versions &lt; 5.2.3 and MySQL &lt; 5.0.7 with <em>mysql_set_charset()</em> creates a situation where using multi-byte character sets on these environments may potentially expose a SQL injection attack vector. Latin-1, UTF-8, and other "low ASCII" character sets are unaffected on all environments.</p> <p class="critical">If you are running or considering running a multi-byte character set for your database connection, please pay close attention to the server environment you are deploying on to ensure you are not vulnerable.</p></li>
+			<li>データベースクライアント接続において、マルチバイトの文字セットを使用したサイトで、ベクトルポテンシャルが SQL インジェクションによって晒されるのを防ぐため、MySQL と MySQL ドライバの改善を行いました。<p>不適合とされる PHP 5.2.3 と MySQL 5.0.7 の組み合わせ <em>mysql_set_charset()</em> マルチバイトの文字セットを使用した環境で、攻撃ベクトルを利用した SQL インジェクションによって、晒される可能性が発生します。 Latin-1、UTF-8、他 "low ASCII" 文字セットなど、すべての環境において影響を受けるものではありません。</p> <p class="critical">もしデータベース接続において、マルチバイトの文字セットにて実行、または実行しようと考えているのなら、細心の注意を払ってください。脆弱性の影響を受けないよう、あなたのサーバ環境に展開してください。</p></li>
 		</ul>
-	<li>General Changes
+	<li>全体的な変更
 		<ul>
-			<li>Fixed a bug where there was a misspelling within a code comment in the index.php file.</li>
-			<li>Added Session Class userdata to the output profiler. Additionally, added a show/hide toggle on HTTP Headers, Session Data and Config Variables.</li>
-			<li>Removed internal usage of the <samp>EXT</samp> constant.</li>
-			<li>Visual updates to the welcome_message view file and default error templates. Thanks to <a href="https://bitbucket.org/danijelb">danijelb</a> for the pull request.</li>
-			<li>Added <samp>insert_batch()</samp> function to the PostgreSQL database driver.  Thanks to epallerols for the patch.</li>
+			<li>index.php のコードのコメント内にあるスペルミスを修正しました。</li>
+			<li>出力プロファイラに、セッションクラスユーザデータを追加しました。さらに HTTP ヘッダー、セッションデータと Config 変数に show/hide トグルを追加しました。</li>
+			<li><samp>EXT</samp> 定数の内部的使用を削除しました。</li>
+			<li>welcome_message view ファイルと、デフォルトのエラーテンプレートの見た目を変更しました。 <a href="https://bitbucket.org/danijelb">danijelb</a> さんの pull リクエストに感謝します。</li>
+			<li>PostgreSQL データベースのドライバに <samp>insert_batch()</samp> 関数を追加しました。 epallerols さんのパッチに感謝します。</li>
 
 		</ul>
 	</li>
-	<li>Helpers
+	<li>ヘルパー
 		<ul>
-			<li>Added an optional third parameter to <samp>heading()</samp> which allows adding html attributes to the rendered heading tag.</li>
+			<li>HTML属性を追加する際に見出しタグをレンダリングし、 <samp>heading()</samp> で第3パラメータ（オプショナル）を追加することができます。</li>
 		</ul>
 	</li>
-	<li>Libraries
+	<li>ライブラリ
 		<ul>
-			<li>Altered Session to use a longer match against the user_agent string. See upgrade notes if using database sessions.</li>
+			<li>user_agent 文字列に対して longer match を使用するよう、設定を変更しました。データベースの設定を使用している場合は、<a href="installation/upgrade_203.html">2.0.2 から 2.0.3 へのアップグレード</a> を確認してください。</li>
 		</ul>
 	</li>
 </ul>
 
-<h3>Bug fixes for 2.0.3</h3>
+<h3>2.0.3の不具合修正</h3>
 <ul>
-	<li class="reactor">Added ENVIRONMENT to reserved constants. (Reactor #196)</li>
-	<li class="reactor">Changed server check to ensure SCRIPT_NAME is defined. (Reactor #57)</li>
-	<li class="reactor">Removed <samp>APPPATH.'third_party'</samp> from the packages autoloader to negate needless file stats if no packages exist or if the developer does not load any other packages by default.</li>
-	<li>Fixed a bug (Reactor #231) where Sessions Library database table example SQL did not contain an index on last_activity. See <a href="installation/upgrade_203.html">Upgrade Notes</a>.</li>
-	<li>Fixed a bug (Reactor #229) where the Sessions Library example SQL in the documentation contained incorrect SQL.</li>
-	<li>Fixed a bug (Core #340) where when passing in the second parameter to $this->db->select(), column names in subsequent queries would not be properly escaped.</li>
+	<li class="reactor">予約定数の環境を追加しました。 (Reactor #196)</li>
+	<li class="reactor">SCRIPT_NAME が確実に定義されているか、サーバをチェックするよう変更しました。 (Reactor #57)</li>
+	<li class="reactor">オートローダから不必要なファイル統計を無効にし、もし1つもパッケージが存在しないか、デベロッパが他のパッケージをデフォルトで読み込まない場合、パッケージから <samp>APPPATH.'third_party'</samp> を削除します。</li>
+	<li>ライブラリデータベースのテーブル、 last_activity で SQL に index が含まれていない不具合(Reactor #231)を修正しました。 <a href="installation/upgrade_203.html">2.0.2 から 2.0.3 へのアップグレード</a> を確認してください。</li>
+	<li>ライブラリドキュメント内の SQL に不正な SQL が含まれている不具合(Reactor #229)を修正しました。</li>
+	<li>第2パラメータを $this->db->select() へ渡してしまう不具合(Core #340)を修正しました。後続クエリの中でカラム名が正しくエスケープする必要はありません。</li>
 </ul>
 
 <h2>Version 2.0.2</h2>

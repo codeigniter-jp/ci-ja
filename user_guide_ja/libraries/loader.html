@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -59,7 +59,7 @@
 <h1>ローダ(読み込み処理)クラス</h1>
 
 <p>ローダは、その名のとおり要素をロードするために使用されます。
-要素とは、ライブラリ (クラス) <a href="../general/views.html">ビューファイル</a>、<a href="../general/helpers.html">ヘルパー</a>、<a href="../general/models.html">モデル</a>、あるいは、ユーザファイルになります。</p>
+要素とは、ライブラリ(クラス)<a href="../general/views.html">ビューファイル</a>、<a href="../general/helpers.html">ヘルパー</a>、<a href="../general/models.html">モデル</a>、あるいは、ユーザファイルになります。</p>
 
 <p class="important"><strong>Note:</strong> このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
 
@@ -70,7 +70,7 @@
 
 
 <p>このメソッドはコアのクラスを読み込むために使われます。ここでの <var>class_name</var> は読み込みたいクラスの名前になります。
-Note: "クラス" と "ライブラリ"は同じ意味として使っています。</p>
+Note: "クラス"と"ライブラリ"は同じ意味として使っています。</p>
 
 <p>たとえば、CodeIgniter でメールを送信したいとしたら、最初のステップは、次のように email クラスをコントローラで読み込むことです:</p>
 
@@ -138,11 +138,11 @@ $this->my_session
 
 <p><strong>オプションの</strong>第2引数は、連想配列またはオブジェクトを入力とします。
 指定した連想配列またはオブジェクトは、ビューファイルの中で使用するために、
-PHPの <a href="http://www.php.net/extract">extract</a> 関数を使用して変数に変換されます。
+PHP の <a href="http://www.php.net/extract">extract</a> 関数を使用して変数に変換されます。
 再度いいますが、使い方を説明した<a href="../general/views.html">ビュー</a>の解説ページをお読みください。</p>
 
 <p><strong>オプションの</strong>第3引数はブラウザにデータを送信するのではなく、文字列としてデータを返すようメソッドの振る舞いを変えるものです。
-これは、何らかの方法でデータを処理したいときに役立ちます。パラメータを <kbd>true</kbd> (ブール値) にセットしたとき、データを返します。
+これは、何らかの方法でデータを処理したいときに役立ちます。パラメータを <kbd>true</kbd> (ブール値)にセットしたとき、データを返します。
 デフォルトの動作は、ブラウザにデータを送信する設定の <kbd>false</kbd> になっています。
 データを返すようにしたときは、変数に代入するのを忘れないでください:</p>
 
@@ -176,7 +176,7 @@ $this-&gt;<kbd>fubar</kbd>-&gt;function();</code>
 
 
 <h2>$this->load->helper('<var>file_name</var>')</h2>
-<p>このメソッドで、ヘルパーファイルをロードします。ここでの <var>file_name</var> は<kbd>_helper.php</kbd> の拡張子 [ 訳注: およびサフィックス ] を除外したファイルの名前です。</p>
+<p>このメソッドで、ヘルパーファイルをロードします。ここでの <var>file_name</var> は<kbd>_helper.php</kbd> の拡張子 [訳注: およびサフィックス] を除外したファイルの名前です。</p>
 
 
 <h2>$this->load->file('<var>filepath/filename</var>', <kbd>true/false</kbd>)</h2>
@@ -210,42 +210,42 @@ libraries/<br />
 models/<br />
 </code>
 
-<p>サンプルアプリケーションパッケージである "Foo Bar" のここでの目的は 設定ファイル、ヘルパー、言語ファイル、ライブラリ、そしてモデルを配置することです。これらのリソースをあなたのコントローラで使用するには、まず初めにLoaderに対して パッケージパスを追加して、読み込みたいリソースを伝える必要があります。</p>
+<p>サンプルアプリケーションパッケージである "Foo Bar" のここでの目的は 設定ファイル、ヘルパー、言語ファイル、ライブラリ、そしてモデルを配置することです。これらのリソースをあなたのコントローラで使用するには、まず初めに Loader に対して パッケージパスを追加して、読み込みたいリソースを伝える必要があります。</p>
 
 <h3>$this->load->add_package_path()</h3>
 
-<p>Loaderクラスにパッケージパスを追加する処理は与えられたパッケージパスを 後で要求されるリソース名の先頭に追加します。たとえば、上述の "Foo Bar" アプリケーションパッケージは <dfn>Foo_bar.php</dfn> という名前のライブラリを持っています。コントローラーでは以下のように記述します:</p>
+<p>Loader クラスにパッケージパスを追加する処理は与えられたパッケージパスを後で要求されるリソース名の先頭に追加します。たとえば、上述の "Foo Bar" アプリケーションパッケージは <dfn>Foo_bar.php</dfn> という名前のライブラリを持っています。コントローラーでは以下のように記述します:</p>
 
 <code>$this->load->add_package_path(<var>APPPATH</var>.'third_party/<var>foo_bar</var>/');<br />
 $this->load->library('foo_bar');</code>
 
 <h3>$this->load->remove_package_path()</h3>
 
-<p>あなたのコントローラーが あるアプリケーションパッケージのリソースを使い終えたときに、あなたが他のアプリケーションパッケージを持っていて それを使いたいならば、あなたは使い終えた方のパッケージパスを取り除きたいかもしれません、そうすれば Loader は そのリソースのフォルダを見ることはなくなります。最後に追加されたパスを除去するには、このメソッドを引数無しで呼ぶだけです。</p>
+<p>あなたのコントローラーが、あるアプリケーションパッケージのリソースを使い終えたときに、あなたが他のアプリケーションパッケージを持っていてそれを使いたいならば、あなたは使い終えた方のパッケージパスを取り除きたいかもしれません、そうすれば Loader は そのリソースのフォルダを見ることはなくなります。最後に追加されたパスを除去するには、このメソッドを引数無しで呼ぶだけです。</p>
 
 <h3>$this->load->remove_package_path()</h3>
 
-<p>または特定のパッケージパスを取り除くには、<kbd>add_package_path() で追加したパッケージ</kbd> と同じパスを引数で指定します:</p>
+<p>または特定のパッケージパスを取り除くには、<kbd>add_package_path()</kbd> で追加したパッケージと同じパスを引数で指定します:</p>
 
 <code>$this->load->remove_package_path(<var>APPPATH</var>.'third_party/<var>foo_bar</var>/');</code>
 
 <h3>パッケージのビューファイル</h3>
 
-<p>By Default, package view files paths are set when <samp>add_package_path()</samp> is called. View paths are looped through, and once a match is encountered that view is loaded.</p>
-<p>In this instance, it is possible for view naming collisions within packages to occur, and possibly the incorrect package being loaded. To ensure against this, set an optional second parameter of <var>FALSE</var> when calling <samp>add_package_path()</samp>.</p>
+<p>デフォルトでは <samp>add_package_path()</samp> を呼び出すことで、パッケージのビューファイルのパスがセットされます。ビューをロードした際に一致が検出されれば、ビューのパスがループ処理を行います。</p>
+<p>この例では、ビューのネーミングでパッケージ内の衝突が発生する可能性があり、また間違っているパッケージが読み込まれる可能性もあります。対処方法として、<samp>add_package_path()</samp> を呼び出す時には第2パラメータ（オプション）を <var>FALSE</var> とします。</p>
 
 <code>
 $this->load->add_package_path(APPPATH.'my_app', TRUE);<br>
-$this->load->view('my_app_index'); // Loads<br>
-$this->load->view('welcome_message'); // Will not load the default welcome_message b/c the second param to add_package_path is TRUE<br>
+$this->load->view('my_app_index'); // ロード<br>
+$this->load->view('welcome_message'); // デフォルトの welcome_message はロードしません。add_package_path の第2パラメータが TRUE だから。<br>
 <br>
-// Reset things<br>
+// リセットする<br>
 $this->load->remove_package_path(APPPATH.'my_app');<br>
 <br>
-// Again without the second parameter:<br>
+// 今度は第2パラメータ抜きで:<br>
 $this->load->add_package_path(APPPATH.'my_app', TRUE);<br>
-$this->load->view('my_app_index'); // Loads<br>
-$this->load->view('welcome_message'); // Loads<br>
+$this->load->view('my_app_index'); // ロード<br>
+$this->load->view('welcome_message'); // ロード<br>
 </code>
 
 </div>
@@ -254,7 +254,7 @@ $this->load->view('welcome_message'); // Loads<br>
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="input.html">入力クラス</a>
+前のトピック:&nbsp;&nbsp;<a href="javascript.html">JavaScript クラス</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;

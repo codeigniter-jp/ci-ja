@@ -27,7 +27,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -57,14 +57,14 @@ HTML テーブルクラス
 
 <h1>HTML テーブルクラス</h1>
 
-<p>テーブルクラスは、配列またはデータベースの結果セットからHTMLテーブルを自動生成するメソッドを提供します。</p>
+<p>テーブルクラスは、配列またはデータベースの結果セットから HTML テーブルを自動生成するメソッドを提供します。</p>
 
 <h2>クラスの初期化</h2>
 
 <p>CodeIgniter の他の大部分のクラスと同様に、テーブルクラスは、コントローラの中で<dfn> $this->load->library</dfn> メソッドを使用することで初期化できます:</p>
 
 <code>$this->load->library('table');</code>
-<p>ロードされれば、HTMLテーブルクラスのオブジェクトは、次のようにして利用できます: <dfn>$this->table</dfn></p>
+<p>ロードされれば、HTML テーブルクラスのオブジェクトは、次のようにして利用できます: <dfn>$this->table</dfn></p>
 
 
 <h2>例</h2>
@@ -159,7 +159,7 @@ $tmpl = array (<br />
 $this->table->set_template($tmpl);
 </code>
 
-<p class="important"><strong>Note:</strong> テンプレートに2セットの"row" ブロックがあるのがわかると思います。
+<p class="important"><strong>Note:</strong> テンプレートに2セットの "row" ブロックがあるのがわかると思います。
 これにより、繰り返すたびに交互に変わる行の色やデザイン要素のパターンを作成することができます。</p>
 
 <p>完全なテンプレートを指定しなくても構いません。レイアウトの一部分だけを変更したい場合、単にその部分だけを指定することができます。
@@ -283,7 +283,7 @@ echo $this->table->generate();
 
 <h2>$this->table->function</h2>
 
-<p>ネイティブのPHP関数や適切な関数を指定することで配列オブジェクトの全セルデータに適用することができます。</p>
+<p>ネイティブの PHP 関数や適切な関数を指定することで配列オブジェクトの全セルデータに適用することができます。</p>
 
 <code>$this->load->library('table');<br />
 <br />

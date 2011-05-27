@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -63,14 +63,14 @@
 
 <h2>クラスの初期化</h2>
 
-<p>CodeIgniterの大部分のクラスと同様に、ユーザエージェントクラスは、コントローラで <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
+<p>CodeIgniter の大部分のクラスと同様に、ユーザエージェントクラスは、コントローラで <dfn>$this->load->library</dfn> メソッドを使って初期化します:</p>
 
 <code>$this->load->library('user_agent');</code>
 <p>一度初期化されると、そのオブジェクトは次のようにして利用できます: <dfn>$this->agent</dfn></p>
 
 <h2>User Agent の定義</h2>
 
-<p>ユーザエージェントの名前の定義は、次の設定ファイルにあります: <dfn>application/config/user_agents.php</dfn>。
+<p>ユーザエージェントの名前の定義は、次の設定ファイルにあります: <dfn>application/config/user_agents.php</dfn> 
 必要であれば、様々なユーザエージェントの配列を項目に追加できます。</p>
 
 <h2>例</h2>
@@ -109,7 +109,7 @@ echo $this->agent->platform(); // プラットフォーム情報 (Windows、Linu
 
 
 <h2>$this->agent->is_browser()</h2>
-<p>ユーザエージェントのブラウザが既知のものかどうかに応じてTRUE/FALSE (ブール値) を返します。</p>
+<p>ユーザエージェントのブラウザが既知のものかどうかに応じて TRUE/FALSE (ブール値) を返します。</p>
 
 <code> if ($this->agent->is_browser('Safari'))<br />
 {<br />
@@ -124,7 +124,7 @@ else if ($this->agent->is_browser())<br />
 このリストは <dfn>application/config/user_agents.php</dfn> で定義されており、新しいブラウザを追加したり文字列を変更することができます。</p>
 
 <h2>$this->agent->is_mobile()</h2>
-<p>ユーザエージェントの携帯機器が既知のものかどうかに応じてTRUE/FALSE (ブール値) を返します。</p>
+<p>ユーザエージェントの携帯機器が既知のものかどうかに応じて TRUE/FALSE (ブール値) を返します。</p>
 
 <code> if ($this->agent->is_mobile('iphone'))<br />
 {<br />
