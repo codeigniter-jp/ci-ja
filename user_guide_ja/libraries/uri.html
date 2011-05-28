@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -79,7 +79,7 @@ URI クラス
 <li>crime_is_up</li>
 </ol>
 
-<p>このメソッドは、初期状態では、セグメントが存在しない場合に FALSE (ブール値) を返します。
+<p>このメソッドは、初期状態では、セグメントが存在しない場合にFALSE (ブール値) を返します。
 第2引数はオプションで、セグメントが存在しなかった場合のデフォルト値をセットすることができます。
 たとえば、以下では、失敗したときに0を返すよう、このメソッドに通知しています:</p>
 
@@ -123,8 +123,8 @@ $this->uri->slash_segment(<var>3</var>, 'both');</code>
 
 <h2>$this->uri->slash_rsegment(<var>n</var>)</h2>
 
-<p>このメソッドは、CodeIgniter の <a href="../general/routing.html">URI ルーティング</a>
-機能を使っている場合にできる再ルートされた後の URI の特定のセグメントにスラッシュを追加することを除いて、先のメソッドと同じものです。</p>
+<p>このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
+機能を使っている場合にできる再ルートされた後のURIの特定のセグメントにスラッシュを追加することを除いて、先のメソッドと同じものです。</p>
 
 
 
@@ -162,18 +162,18 @@ $array = $this->uri->uri_to_assoc(3, $default);</code>
 
 <p>もともと URI に値が含まれない場合、配列の添字はその名前にセットされ、値には、FALSE がセットされます。</p>
 
-<p>最後に、キーが指定されているにもかかわらず、対応する値が見つからなかった場合 (URI セグメント数が奇数だった場合)、値は FALSE (ブール値) にセットされます。</p>
+<p>最後に、キーが指定されているにもかかわらず、対応する値が見つからなかった場合 (URI セグメント数が奇数だった場合)、値はFALSE (ブール値) にセットされます。</p>
 
 
 <h2>$this->uri->ruri_to_assoc(<var>n</var>)</h2>
 
-<p>このメソッドは、CodeIgniter の <a href="../general/routing.html">URI ルーティング</a>
+<p>このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
 機能を使っている場合にできる再ルートされた後の URI を使って連想配列に変換することを除いて、先のメソッドと同じものです。</p>
 
 
 <h2>$this->uri->assoc_to_uri()</h2>
 
-<p>連想配列を入力とし、URI 文字列をそこから生成します。配列のキーが URL 文字列に含まれます。例:</p>
+<p>連想配列を入力とし、URI 文字列をそこから生成します。配列のキーがURL文字列に含まれます。例:</p>
 
 <code>$array = array('product' => 'shoes', 'size' => 'large', 'color' => 'red');<br />
 <br />
@@ -185,7 +185,7 @@ $str = $this->uri->assoc_to_uri($array);<br />
 
 <h2>$this->uri->uri_string()</h2>
 
-<p>完全な URI をもとにして、URL 文字列を返します。たとえば、次のような完全 URL だった場合:</p>
+<p>完全な URI をもとにして、URL 文字列を返します。たとえば、次のような完全URLだった場合:</p>
 
 <code>http://example.com/index.php/news/local/345</code>
 
@@ -196,7 +196,7 @@ $str = $this->uri->assoc_to_uri($array);<br />
 
 <h2>$this->uri->ruri_string()</h2>
 
-<p> このメソッドは、CodeIgniter の <a href="../general/routing.html">URI ルーティング</a>
+<p> このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
 機能を使っている場合にできる再ルートされた後の URI を返すことを除いて、先のメソッドと同じものです。</p>
 
 
@@ -208,14 +208,14 @@ $str = $this->uri->assoc_to_uri($array);<br />
 
 <h2>$this->uri->total_rsegments()</h2>
 
-<p>このメソッドは、CodeIgniter の <a href="../general/routing.html">URI ルーティング</a>
+<p>このメソッドは、CodeIgniterの <a href="../general/routing.html">URI ルーティング</a>
 機能を使っている場合にできる再ルートされた後のURIのセグメント総数を返すことを除いて、先のメソッドと同じものです。</p>
 
 
 
 <h2>$this->uri->segment_array()</h2>
 
-<p>URI セグメントからなる配列を返します。例:</p>
+<p>URIセグメントからなる配列を返します。例:</p>
 
 <code>
 $segs = $this->uri->segment_array();<br />

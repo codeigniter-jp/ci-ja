@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -61,7 +61,7 @@
 <p>出力クラスはリクエストを発信したブラウザに処理済みの Web ページを送信するという一つの主要機能をもった小さなクラスです。また、このクラスは、
 キャッシュ機能を利用する場合にページを<a href="../general/caching.html">キャッシュ</a>する責任も持っています。</p>
 
-<p class="important"><strong>Note: </strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
+<p class="important"><strong>Note:</strong>このクラスは、システムで自動的に初期化されるので、手動で初期化する必要はありません。</p>
 
 <p>出力クラスは、ユーザの介入なしに隠れて動作するので、通常の環境では、出力クラスを意識することはありません。
 たとえばビューファイルを読み込むために<a href="../libraries/loader.html">ローダ（読み込み処理）</a>クラスを使用した場合、
@@ -112,7 +112,7 @@ $this->output<br/>
 
 <h2>$this->output->set_header();</h2>
 
-<p>最終レンダリングされた表示を出力クラスが出力する際に、サーバが返す HTTP レスポンスのヘッダを手動でセットできます。例:</p>
+<p>最終レンダリングされた表示を出力クラスが出力する際に、サーバが返すHTTPレスポンスのヘッダを手動でセットできます。例:</p>
 
 <code>
 $this->output->set_header("HTTP/1.0 200 OK");<br />
@@ -125,18 +125,19 @@ $this->output->set_header("Pragma: no-cache");	</code>
 
 <h2>$this->output->set_status_header(<var>code</var>, '<var>text</var>');</h2>
 
-<p>サーバが返す HTTP レスポンスヘッダのステータスを手動でセットできます。例:</p>
+<p>サーバが返すHTTPレスポンスヘッダのステータスを手動でセットできます。例:</p>
 
 <code>$this->output->set_status_header('401');<br />
 // ヘッダは Unauthorized に設定されます</code>
 
-<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">全ての HTTP レスポンスヘッダの一覧</a>をご覧ください。</p>
+<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">全てのHTTPレスポンスヘッダの一覧</a>をご覧ください。</p>
 
 <h2>$this->output->enable_profiler();</h2>
 
-<p>デバッグあるいは最適化のためにベンチマークなどのデータをページの末尾に表示する<a href="../general/profiling.html">プロファイラ</a>を有効/無効にします。</p>
+<p>デバッグあるいは最適化のためにベンチマークなどのデータをページの末尾に表示する
+<a href="../general/profiling.html">プロファイラ</a>を有効/無効にします。</p>
 
-<p>プロファイラを有効にするには、<a href="../general/controllers.html">コントローラ</a>のメソッド内のいずれかの場所に、次のメソッドを設置してください:</p>
+<p>プロファイラを有効にするには、<a href="../general/controllers.html">コントローラ</a> のメソッド内のいずれかの場所に、次のメソッドを設置してください:</p>
 <code>$this->output->enable_profiler(TRUE);</code>
 
 <p>有効化されると、レポートが生成され、ページの最下部に挿入されます。</p>
@@ -146,10 +147,10 @@ $this->output->set_header("Pragma: no-cache");	</code>
 
 <h2>$this->output->set_profiler_sections();</h2> 
 
-<p>プロファイラが有効な場合に各セクションの有効／無効を指定することができます。より詳しい情報は<a href="../general/profiling.html">プロファイラ</a>をご覧下さい。</p>
+<p>プロファイラが有効な場合に各セクションの有効／無効を指定することができます。より詳しい情報は <a href="../general/profiling.html">プロファイラ</a> をご覧下さい。</p>
 
 <h2>$this->output->cache();</h2>
-<p>CodeIgniter の出力クラスはキャッシュ操作も可能です。より詳しい情報は、<a href="../general/caching.html">Webページのキャッシュ</a>をご覧下さい。</p>
+<p>CodeIgniterの出力クラスはキャッシュ操作も可能です。より詳しい情報は、<a href="../general/caching.html">Webページのキャッシュ</a>をご覧下さい。</p>
 
 <h2>実行変数の解析</h2> 
 

@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -82,8 +82,8 @@
 <p>これらの疑似変数は、本当の PHP 変数ではなく、テンプレート (ビューファイル) からPHPを取り除くための、
 普通のテキストです。</p>
 
-<p class="important"><strong>Note:</strong> ビューページで純粋な PHP を使う方が少し早いので、CodeIgniter では、
-このクラスを必ずしも <strong>必要としません</strong>。しかし、PHP のコードで混乱してしまうデザイナーと一緒に仕事をしている場合、
+<p class="important"><strong>Note:</strong> ビューページで純粋なPHPを使う方が少し早いので、CodeIgniterでは、
+このクラスを必ずしも <strong>必要としません</strong>。しかし、PHPのコードで混乱してしまうデザイナーと一緒に仕事をしている場合、
 開発者の中には、テンプレートエンジンを使用したい人もいると思います。</p>
 
 <p><strong>Also Note:</strong> テンプレートパーサクラスは、本格的なテンプレート解析ソリューションでは<strong>ありません</strong>。
@@ -113,13 +113,13 @@ $data = array(<br />
 <br />
 $this->parser->parse('blog_template', $data);</code>
 
-<p>第1引数は、<a href="../general/views.html">ビューファイル</a>の名前(この例でのファイルは、blog_template.php という名前です)になり、
+<p>第1引数は、<a href="../general/views.html">ビューファイル</a>の名前(この例では、ファイルは、blog_template.phpという名前です)になり、
 第2引数は、テンプレートに渡すデータの連想配列になります。
 上の例では、テンプレートには、次の2つの擬似変数が含まれています: {blog_title} と {blog_heading}</p>
 
 <p><dfn>$this->parser->parse()</dfn> メソッドが返す値は、"echo" で出力したりする必要はありません。
 ブラウザに送信するために、出力クラスに自動的に渡されます。しかし、出力クラスにデータを渡す代わりに、
-データを返すようにするために、第3引数に TRUE を設定することができます:</p>
+データを返すようにするために、第3引数にTRUEを設定することができます:</p>
 
 <code>$string = $this->parser->parse('blog_template', $data, TRUE);</code>
 
