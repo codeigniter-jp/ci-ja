@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -57,7 +57,7 @@ Zip 圧縮クラス
 
 
 <h1>Zip圧縮クラス</h1>
-<p>CodeIgniter の Zip 圧縮クラスを使うと、Zip アーカイブが作成できます。アーカイブは、
+<p>CodeIgniter のZip圧縮クラスを使うと、Zipアーカイブが作成できます。アーカイブは、
 デスクトップにダウンロードさせたり、ディレクトリに保存したりできます。</p>
 
 
@@ -65,7 +65,7 @@ Zip 圧縮クラス
 <p>CodeIgniterの大部分のクラスと同様に、Zip クラスはコントローラの中で <dfn>$this->load->library</dfn> メソッドを使って初期化できます:</p>
 
 <code>$this->load->library('zip');</code>
-<p>いったん読み込まれれば、Zip ライブラリのオブジェクトは次のようにして利用できます: <dfn>$this->zip</dfn></p>
+<p>いったん読み込まれれば、Zipライブラリのオブジェクトは次のようにして利用できます: <dfn>$this->zip</dfn></p>
 
 
 <h2>使用例</h2>
@@ -78,7 +78,7 @@ $data = 'A Data String!';<br />
 <br />
 $this->zip->add_data($name, $data);<br />
 <br />
-// Zip ファイルをサーバのフォルダに書き込みます。"my_backup.zip" という名前にします。<br />
+// Zipファイルをサーバのフォルダに書き込みます。"my_backup.zip" という名前にします。<br />
 $this->zip->archive('/path/to/directory/my_backup.zip');
 <br /><br />
  // "my_backup.zip" という名前で、デスクトップにファイルをダウンロードします。<br />
@@ -142,14 +142,14 @@ $this->zip->add_data($name, $data);
 <p>ディレクトリを追加できます。<dfn>$this->zip->add_data() </dfn>を使った時にデータをフォルダに追加できるので、
 通常はこのメソッドは必要ないですが、空のフォルダを作成したい場合は、そうすることもできます。例:</p>
 
-<code>$this->zip->add_dir('myfolder'); // "myfolder" というフォルダを作成します</code>
+<code>$this->zip->add_dir('myfolder'); // "myfolder"というフォルダを作成します</code>
 
 
 
 <h2>$this->zip->read_file()</h2>
 
 <p>サーバ上のどこかに、すでにあるファイルを圧縮できます。
-ファイルのパスを指定すると Zip クラスはそれを読み取ってアーカイブに追加します:</p>
+ファイルのパスを指定するとZipクラスはそれを読み取ってアーカイブに追加します:</p>
 
 <code>
 $path = '/path/to/photo.jpg';<br /><br />
@@ -197,7 +197,7 @@ $path = '/path/to/your/directory/';<br><br>
 $this-&gt;zip-&gt;read_dir($path, FALSE);
 </code>
 
-<p>これは、"directory" フォルダの中身を含んだ Zip を作成します。すべてのサブフォルダは正しく保存されますが、<samp>/path/to/your</samp> は含まれません。</p>
+<p>これは、"directory" フォルダの中身を含んだ ZIP を作成します。すべてのサブフォルダは正しく保存されますが、<samp>/path/to/your</samp> は含まれません。</p>
 
 
 
@@ -212,7 +212,7 @@ $this-&gt;zip-&gt;read_dir($path, FALSE);
 
 <h2>$this->zip->download()</h2>
 
-<p>サーバから Zip ファイルをダウンロードさせます。このメソッドは、Zip ファイルにつけたい名前を指定する必要があります。
+<p>サーバから Zipファイルをダウンロードさせます。このメソッドは、Zipファイルにつけたい名前を指定する必要があります。
 例:</p>
 
 <code>$this->zip->download('latest_stuff.zip'); // "latest_stuff.zip" という名前になります。</code>
@@ -238,8 +238,8 @@ $zip_file = $this->zip->get_zip();
 
 <h2>$this->zip->clear_data()</h2>
 
-<p>Zip クラスは、上のメソッドを使うたびにZipアーカイブを再圧縮しなくて済むように、Zip データをキャッシュします。
-しかし、それぞれ異なるデータの複数の Zip を作成する場合、それらのメソッドを呼び出す間で、キャッシュをクリアすることができます。例:</p>
+<p>Zip クラスは、上のメソッドを使うたびにZipアーカイブを再圧縮しなくて済むように、Zipデータをキャッシュします。
+しかし、それぞれ異なるデータの複数のZipを作成する場合、それらのメソッドを呼び出す間で、キャッシュをクリアすることができます。例:</p>
 
 <code>
 $name = 'my_bio.txt';<br />

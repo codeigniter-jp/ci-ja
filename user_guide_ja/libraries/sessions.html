@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -44,7 +44,7 @@
 <a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
 セッションクラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -73,7 +73,10 @@
 
 <h2>セッションの初期化</h2>
 
-<p>セッションは通常、各ページの読込みに対してグローバルに動作します。ですので、セッションクラスは、<a href="../general/controllers.html">コントローラ</a>のコンストラクタで<a href="../general/libraries.html">初期化</a>されるか、あるいは、システムで<a href="../general/autoloader.html">自動読込み</a>されるか、どちらかが必要になります。
+<p>セッションは通常、各ページの読込みに対してグローバルに動作します。ですので、セッションクラスは、
+<a href="../general/controllers.html">コントローラ</a>のコンストラクタで
+<a href="../general/libraries.html">初期化</a>されるか、あるいは、システムで
+<a href="../general/autoloader.html">自動読込み</a>されるか、どちらかが必要になります。
 単にクラスを初期化することが、セッションを読み込み、作成し、更新することになるので、大部分で、
 セッションクラスはバックグラウンドで勝手に動作します。</p>
 
@@ -100,7 +103,7 @@
 <p><em>セッション</em>は、CodeIgniter に関する限りは、単に次のデータを保持している配列だといえます:</p>
 
 <ul>
-<li>ユーザの固有のセッション ID (これは、扱いやすいように MD5 でハッシュ計算された、非常にばらつき度合いが大きい統計的にランダムな文字列で、（規定では）5分ごとに再生成されます。)</li>
+<li>ユーザの固有のセッションID(これは、扱いやすいように MD5 でハッシュ計算された、非常にばらつき度合いが大きい統計的にランダムな文字列で、（規定では）5分ごとに再生成されます。)</li>
 <li>ユーザの IP アドレス</li>
 <li>ユーザのユーザエージェントデータ (ブラウザデータの文字列の最初の50文字)</li>
 <li>"最終アクティブ日時"。</li>
@@ -167,11 +170,11 @@
 <p class="important"><strong>Note:</strong> クッキーは 4KB のデータだけを保持できますので、許容量を超えないよう注意してください。
 ここの暗号化処理をすると、元の文字列より長い文字列になりますので、どの程度のデータを保存したのかを把握するよう注意してください。</p>
 
-<h2>すべてのセッションデータを取得する</h2>
-<p>全てのユーザーデータの配列を次のように取得することができます:</p>
+<h2>Retrieving All Session Data</h2>
+<p>An array of all userdata can be retrieved as follows:</p>
 <code>$this-&gt;session-&gt;all_userdata()</code>
 
-<p>また次のように連想配列に返すことができます:</p>
+<p>And returns an associative array like the following:</p>
 
 <pre>
 Array
@@ -184,15 +187,14 @@ Array
 </pre>
 
 
-<h2>セッションデータの削除</h2>
-<p>set_userdata() は、ただセッションにインフォメーションを追加するためだけに使用することができます。unset_userdata() は、セッションキーを渡すことによって、削除に使用することができます。例えば、もしセッションインフォメーションから 'some_name' を削除したい場合は: </p>
+<h2>Removing Session Data</h2>
+<p>Just as set_userdata() can be used to add information into a session, unset_userdata() can be used to remove it, by passing the session key. For example, if you wanted to remove 'some_name' from your session information: </p>
 <p><code>$this-&gt;session-&gt;unset_userdata('some_name');</code></p>
 <p>このメソッドは、削除したい項目の連想配列を渡すこともできます。</p>
 <p><code>$array_items = array('username' => '', 'email' => '');<br />
 <br />
 $this-&gt;session-&gt;unset_userdata(<samp>$array_items</samp>);</code></p>
-
-<h2>フラッシュデータ</h2>
+<h2>Flashdata</h2>
 <p>CodeIgniter では、&quot;フラッシュデータ&quot;、言い換えると、次のサーバリクエストだけで利用可能で、その後自動的に削除されるセッションデータをサポートしています。これは、非常に有用で、通知メッセージやステータスメッセージ（たとえば次のようなものです：「レコード2は削除されました」）によく利用されます。</p>
 <p>Note: フラッシュ変数の前には、&quot;flash_&quot; が付加されますので、セッション名にはこのプリフィックスを使わないようにしてください。</p>
 <p>フラッシュデータを追加するには:</p>
@@ -202,7 +204,6 @@ $this-&gt;session-&gt;unset_userdata(<samp>$array_items</samp>);</code></p>
 <p><code>$this-&gt;session-&gt;flashdata('item');</code></p>
 <p>追加のリクエストまでフラッシュ変数を持ち越す必要が出てきた場合、keep_flashdata() メソッドを使って、そうすることができます。</p>
 <p><code>$this-&gt;session-&gt;keep_flashdata('item');</code></p>
-
 <h2>セッションデータをデータベースに保存する</h2>
 <p>ユーザのクッキーの中に保管されるセッションデータの配列にはセッション ID が含まれていますが、セッションデータをデータベースに保存しているのでないなら、セッション ID を検証する方法はありません。
 少しかあるいはまったくセキュリティを必要としなアプリケーション用には、セッション ID の検証は必要ありません。
@@ -229,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 );
 </textarea>
 
-<p><strong>Note:</strong> デフォルトでは、<dfn>ci_sessions</dfn> という名前のテーブルになりますが <kbd>application/config/config.php</kbd> ファイルを更新する限り、
+<p><strong>Note:</strong> デフォルトでは、<dfn>ci_sessions</dfn>という名前のテーブルになりますが <kbd>application/config/config.php</kbd> ファイルを更新する限り、
 望みどおりどんな名前も付けれらますので、テーブル名は、選んだ名前になります。データベーステーブルを作成したら、
 config.php ファイルで次のようにデータベースオプションを有効にできます:</p>
 
@@ -296,14 +297,14 @@ config.php ファイルで次のようにデータベースオプションを有
 <tr>
 	<td class="td"><strong>sess_table_name</strong></td>
 	<td class="td">ci_sessions</td>
-	<td class="td">正しい SQL テーブル名</td>
+	<td class="td">正しいSQLテーブル名</td>
 	<td class="td">セッションデータベーステーブル名。</td>
 </tr>
 <tr>
 	<td class="td"><strong>sess_time_to_update</strong></td>
 	<td class="td">300</td>
 	<td class="td">秒</td>
-	<td class="td">この項目は、セッションクラスが、どれくらい頻繁にセッションを再生成し新しいセッション ID を作成するかを設定します。</td>
+	<td class="td">この項目は、セッションクラスが、どれくらい頻繁にセッションを再生成し新しいセッションIDを作成するかを設定します。</td>
 </tr>
 <tr>
 	<td class="td"><strong>sess_match_ip</strong></td>

@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
 </tr>
 </table>
@@ -69,7 +69,7 @@
 
 <h2>ステップ 2: 必要に応じて get_dir_file_info() の調整</h2>
 
-<p>バージョン 2.0.0 では、<a href="../helpers/file_helper.html">ファイルヘルパー</a>の <kbd>get_dir_file_info()</kbd> に後方非互換の変更があります。CodeIgniter では後方互換性の無い変更は非常にまれですが、
+<p>バージョン2.0.0では、<a href="../helpers/file_helper.html">ファイルヘルパー</a>の <kbd>get_dir_file_info()</kbd> に後方非互換の変更があります。CodeIgniter では後方互換性の無い変更は非常にまれですが、
 これは簡単に深刻なサーバのパフォーマンスの問題を生じさせることから、この変更は正当化できる気がします。もし、このヘルパー関数で再帰的な処理 <em>必要</em>なら、
 第2引数 <kbd>$top_level_only</kbd> を FALSE に設定してください。</p>
 
@@ -98,7 +98,7 @@
 一連の処理を助けるために、以前のアルゴリズムで復号化し新たに改良されたメソッドで暗号化しなおす新しいメソッド <kbd>encode_from_legacy()</kbd> が追加されています。
 このメソッドは、その場であるいはまとめて、以前の暗号化データを新しい暗号化データに簡単に置き換えることができます。</p>
 
-<p>暗号化ライブラリのドキュメントの<a href="../libraries/encryption.html#legacy">このメソッドの使い方</a>を読んでください。</p>
+<p>暗号化ライブラリのドキュメントの <a href="../libraries/encryption.html#legacy">このメソッドの使い方</a> を読んでください。</p>
 
 <h2>Step 5: 互換性ヘルパーの読み込みの削除</h2>
 <p>互換性ヘルパーは CodeIgniter のコアから削除されました。すべてのメソッドは動作環境の PHP バージョンではネイティブに含まれています。</p>
@@ -112,7 +112,7 @@
 <h2>ステップ 8: ユーザガイドの更新</h2>
 <p>ローカルにあるユーザガイドも、画像ファイルを含めて新しいバージョンのもので置き換えてください。</p>
 
-<p class="important"> [訳注: ドキュメントされていませんが、<a href="../libraries/input.html">入力クラス</a>の xss_clean() メソッドは<a href="../libraries/security.html">セキュリティクラス</a>に移動されましたので変更が必要です] </p></div>
+<p class="important">[ 訳注: ドキュメントされていませんが、<a href="../libraries/input.html">入力クラス</a>の xss_clean() メソッドは<a href="../libraries/security.html">セキュリティクラス</a>に移動されましたので変更が必要です ]</p></div>
 <!-- END CONTENT -->
 
 

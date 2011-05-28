@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -61,7 +61,7 @@ FTP クラス
 <p>CodeIgniter の FTP クラスを使うと、リモートサーバにファイルを転送できます。リモートにあるファイルは、移動、リネーム、そして削除も可能です。
 また、FTP クラスには、FTP 経由でローカルディレクトリをすべてリモートに再作成する "ミラーリング" 機能もあります。</p>
 
-<p class="important"><strong>Note: </strong>&nbsp;SFTP と SSL FTP プロトコルはサポートされていません。通常の FTP のみサポートされます。</p>
+<p class="important"><strong>Note:</strong>&nbsp; SFTP と SSL FTP プロトコルはサポートされていません。通常の FTP のみサポートされます。</p>
 
 <h2>クラスの初期化</h2>
 
@@ -74,7 +74,7 @@ FTP クラス
 <h2>使用例</h2>
 
 <p>以下の例では、FTP サーバに対してコネクションが開かれ、ローカルファイルが ASCII モードで読み取られてアップロードされます。
-ファイルのパーミッションは 755 に設定します。Note: パーミッションを設定するには PHP 5 が必要です。</p>
+ファイルのパーミッションは755に設定します。Note: パーミッションを設定するには PHP 5 が必要です。</p>
 
 <code>
 $this->load->library('ftp');<br />
@@ -267,10 +267,10 @@ $this->ftp->mirror('/path/to/myfolder/', '/public_html/myfolder/');
 <h2>$this->ftp->mkdir()</h2>
 
 <p>サーバにディレクトリを作成できます。作成したいフォルダ名を末尾にスラッシュをつけて指定します。
-パーミッションは、<kbd>8進数</kbd>の値で第2引数に指定できます (PHP 5 で実行している場合) 。</p>
+パーミッションは、<kbd>8進数</kbd>の値で第2引数に指定できます(PHP 5 で実行している場合)。</p>
 
 <code>
-// "bar" という名前のフォルダを作成します。<br />
+// "bar"という名前のフォルダを作成します。<br />
 $this->ftp->mkdir('/public_html/foo/bar/', DIR_WRITE_MODE);
 </code>
 
