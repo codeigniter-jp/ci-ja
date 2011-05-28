@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>HTMLヘルパー：CodeIgniter ユーザガイド 日本語版</title>
+<title>HTML ヘルパー：CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -85,20 +85,20 @@ HTML ヘルパー
 
 <h2><a name="heading"></a>heading()</h2>
 <p>HTML &lt;h1> タグを生成できます。
-第1引数にデータを、第2引数には見出しレベルを指定します。例としては:</p>
+第 1 引数にデータを、第 2 引数には見出しレベルを指定します。例としては:</p>
 <code>echo heading('Welcome!', 3);</code>
 <p>上のコードは次のような HTML を生成します: &lt;h3>Welcome!&lt;/h3></p>
 
-<p>Additionally, in order to add attributes to the heading tag such as HTML classes, ids or inline styles, a third parameter is available.</p>
+<p>また、HTML クラスとして見出しタグに属性を追加するために、ID、またはインラインスタイルを第 3 引数として使用可能です。</p>
 <code>echo heading('Welcome!', 3, 'class="pink"')</code>
-<p>The above code produces: &lt;h3 class="pink">Welcome!<&lt;h3></p>
+<p>上のコードは次のような HTML を生成します: &lt;h3 class="pink">Welcome!<&lt;h3></p>
 
 
 <h2><a name="img"></a>img()</h2>
-<p>&lt;img /&gt; タグを生成できます。第1引数には画像のソースを指定します。 例:</p>
+<p>&lt;img /&gt; タグを生成できます。第 1 引数には画像のソースを指定します。 例:</p>
 <code>echo img('images/picture.jpg');<br />
 // 結果 &lt;img src=&quot;http://site.com/images/picture.jpg&quot; alt=&quot;&quot; /&gt;</code>
-<p>第2引数には、$config['index_page'] に設定されている値を src に含めるかどうかをTRUE/FALSEで指定します。</p>
+<p>第 2 引数には、$config['index_page'] に設定されている値を src に含めるかどうかを TRUE/FALSE で指定します。</p>
 <p><code>echo img('images/picture.jpg', TRUE);<br />
 // 結果 &lt;img src=&quot;http://site.com/index.php/images/picture.jpg&quot; /&gt;</code></p>
 <p>また、連想配列を使うことで全ての属性と値を渡すことができます。alt 属性が与えられない場合は空の文字列を出力します。</p>
@@ -382,7 +382,7 @@ echo doctype('html4-trans');<br />
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
 <a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="path_helper.html"> パスヘルパー</a></p>
+次のトピック:&nbsp;&nbsp;<a href="inflector_helper.html">語形変換ヘルパー</a></p>
 <p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 

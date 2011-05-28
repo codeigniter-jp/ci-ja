@@ -28,7 +28,7 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
 <td id="breadcrumb_right"><a href="./toc.html">目次ページ </a></td>
 </tr>
 </table>
@@ -60,43 +60,43 @@
 <p><img src="images/reactor-bullet.png" width="16" height="16" alt="Reactor Marker" /> 印は CodeIgniter Reactor から提供されたものです。</p>
 
 <h2>Version 2.0.3</h2>
-<p>Release Date: Not Released</p>
+<p>リリース日付:  未リリース</p>
 
 <ul>
-	<li>Security
+	<li>セキュリティ
 		<ul>
-			<li>An improvement was made to the MySQL and MySQLi drivers to prevent exposing a potential vector for SQL injection on sites using multi-byte character sets in the database client connection. <p>An incompatibility in PHP versions &lt; 5.2.3 and MySQL &lt; 5.0.7 with <em>mysql_set_charset()</em> creates a situation where using multi-byte character sets on these environments may potentially expose a SQL injection attack vector. Latin-1, UTF-8, and other "low ASCII" character sets are unaffected on all environments.</p> <p class="critical">If you are running or considering running a multi-byte character set for your database connection, please pay close attention to the server environment you are deploying on to ensure you are not vulnerable.</p></li>
+			<li>データベースクライアント接続において、マルチバイトの文字セットを使用したサイトで、ベクトルポテンシャルが SQL インジェクションによって晒されるのを防ぐため、MySQL と MySQL ドライバの改善を行いました。<p>不適合とされる PHP 5.2.3 と MySQL 5.0.7 の組み合わせ <em>mysql_set_charset()</em> マルチバイトの文字セットを使用した環境で、攻撃ベクトルを利用した SQL インジェクションによって、晒される可能性が発生します。 Latin-1、UTF-8、他 "low ASCII" 文字セットなど、すべての環境において影響を受けるものではありません。</p> <p class="critical">もしデータベース接続において、マルチバイトの文字セットにて実行、または実行しようと考えているのなら、細心の注意を払ってください。脆弱性の影響を受けないよう、あなたのサーバ環境に展開してください。</p></li>
 		</ul>
-	<li>General Changes
+	<li>全体的な変更
 		<ul>
-			<li>Fixed a bug where there was a misspelling within a code comment in the index.php file.</li>
-			<li>Added Session Class userdata to the output profiler. Additionally, added a show/hide toggle on HTTP Headers, Session Data and Config Variables.</li>
-			<li>Removed internal usage of the <samp>EXT</samp> constant.</li>
-			<li>Visual updates to the welcome_message view file and default error templates. Thanks to <a href="https://bitbucket.org/danijelb">danijelb</a> for the pull request.</li>
-			<li>Added <samp>insert_batch()</samp> function to the PostgreSQL database driver.  Thanks to epallerols for the patch.</li>
+			<li>index.php のコードのコメント内にあるスペルミスを修正しました。</li>
+			<li>出力プロファイラに、セッションクラスユーザデータを追加しました。さらに HTTP ヘッダー、セッションデータと Config 変数に show/hide トグルを追加しました。</li>
+			<li><samp>EXT</samp> 定数の内部的使用を削除しました。</li>
+			<li>welcome_message view ファイルと、デフォルトのエラーテンプレートの見た目を変更しました。 <a href="https://bitbucket.org/danijelb">danijelb</a> さんの pull リクエストに感謝します。</li>
+			<li>PostgreSQL データベースのドライバに <samp>insert_batch()</samp> 関数を追加しました。 epallerols さんのパッチに感謝します。</li>
 
 		</ul>
 	</li>
-	<li>Helpers
+	<li>ヘルパー
 		<ul>
-			<li>Added an optional third parameter to <samp>heading()</samp> which allows adding html attributes to the rendered heading tag.</li>
+			<li>HTML属性を追加する際に見出しタグをレンダリングし、 <samp>heading()</samp> で第 3 引数（オプショナル）を追加することができます。</li>
 		</ul>
 	</li>
-	<li>Libraries
+	<li>ライブラリ
 		<ul>
-			<li>Altered Session to use a longer match against the user_agent string. See upgrade notes if using database sessions.</li>
+			<li>user_agent 文字列に対して longer match を使用するよう、設定を変更しました。データベースの設定を使用している場合は、<a href="installation/upgrade_203.html">2.0.2 から 2.0.3 へのアップグレード</a> を確認してください。</li>
 		</ul>
 	</li>
 </ul>
 
-<h3>Bug fixes for 2.0.3</h3>
+<h3>2.0.3の不具合修正</h3>
 <ul>
-	<li class="reactor">Added ENVIRONMENT to reserved constants. (Reactor #196)</li>
-	<li class="reactor">Changed server check to ensure SCRIPT_NAME is defined. (Reactor #57)</li>
-	<li class="reactor">Removed <samp>APPPATH.'third_party'</samp> from the packages autoloader to negate needless file stats if no packages exist or if the developer does not load any other packages by default.</li>
-	<li>Fixed a bug (Reactor #231) where Sessions Library database table example SQL did not contain an index on last_activity. See <a href="installation/upgrade_203.html">Upgrade Notes</a>.</li>
-	<li>Fixed a bug (Reactor #229) where the Sessions Library example SQL in the documentation contained incorrect SQL.</li>
-	<li>Fixed a bug (Core #340) where when passing in the second parameter to $this->db->select(), column names in subsequent queries would not be properly escaped.</li>
+	<li class="reactor">予約定数の環境を追加しました。 (Reactor #196)</li>
+	<li class="reactor">SCRIPT_NAME が確実に定義されているか、サーバをチェックするよう変更しました。 (Reactor #57)</li>
+	<li class="reactor">オートローダから不必要なファイル統計を無効にし、もし1つもパッケージが存在しないか、デベロッパが他のパッケージをデフォルトで読み込まない場合、パッケージから <samp>APPPATH.'third_party'</samp> を削除します。</li>
+	<li>ライブラリデータベースのテーブル、 last_activity で SQL に index が含まれていない不具合(Reactor #231)を修正しました。 <a href="installation/upgrade_203.html">2.0.2 から 2.0.3 へのアップグレード</a> を確認してください。</li>
+	<li>ライブラリドキュメント内の SQL に不正な SQL が含まれている不具合(Reactor #229)を修正しました。</li>
+	<li>第 2 引数を $this->db->select() へ渡してしまう不具合(Core #340)を修正しました。後続クエリの中でカラム名が正しくエスケープする必要はありません。</li>
 </ul>
 
 <h2>Version 2.0.2</h2>
@@ -118,7 +118,7 @@ Hg Tag: v2.0.2</p>
 	</li>
 	<li>ヘルパー
 		<ul>
-			<li>以前から非推奨となっていた <kbd>dohash()</kbd> が <a href="./helpers/security_helper.html">セキュリティヘルパー</a> から削除されました。代わりに <kbd>do_hash()</kbd> を使用してください。</li>
+			<li>以前から非推奨となっていた <kbd>dohash()</kbd> が<a href="./helpers/security_helper.html">セキュリティヘルパー</a> から削除されました。代わりに <kbd>do_hash()</kbd> を使用してください。</li>
 			<li class="reactor">渡した文字列のキャピタライゼーションを損なわないように plural 関数が変更されました。全て大文字の場合も考慮されています。</li>
 		</ul>
 	</li>
@@ -132,7 +132,7 @@ Hg Tag: v2.0.2</p>
 <h3>2.0.2の不具合修正</h3>
 <ul>
 	<li class="reactor">出力クラスの parse_exec_vars が protected に修正されました。(Reactor #145)</li>
-	<li class="reactor">Windows またはセーフモードが有効な状態で、 is_really_writable が空ファイルを作る不具合(Reactor #80)が修正されました。</li>
+	<li class="reactor">Windows またはセーフモードが有効な状態で、 is_really_writable が空ファイルを作る不具合 (Reactor #80) が修正されました。</li>
 	<li class="reactor">ユーザガイドのさまざまな不具合が修正されました。</li>
 	<li class="reactor">is_cli_request() メソッドが <a href="libraries/input.html">入力クラス</a> のドキュメントに追加されました。</li>
 	<li class="reactor">form_validation クラスのルールに <kbd>decimal</kbd>、<kbd>less_than</kbd> と <kbd>greater_than</kbd> が追加されました。</li>
@@ -148,25 +148,25 @@ Hg Tag: v2.0.1</p>
 <ul>
 	<li>全体的な変更
 		<ul>
-			<li>セキュア(HTTPS)クッキーをセットするたの <kbd>$config['cookie_secure']</kbd> が設定ファイルに追加されました。</li>
+			<li>セキュア (HTTPS) クッキーをセットするたの <kbd>$config['cookie_secure']</kbd> が設定ファイルに追加されました。</li>
 			<li class="reactor">Core と Reactor を区別するための定数 <kbd>CI_CORE</kbd> が追加されました。Core: TRUE、Reactor: FALSE。</li>
 			<li class="reactor">index.php に定数 <kbd>ENVIRONMENT</kbd> が追加され、PHP のエラー報告や、
-		オプションでロードされる設定ファイルに影響します(以下を参照)。<a href="general/environments.html">環境の取扱い</a> のページをご覧ください。</li>
-			<li class="reactor"><a href="libraries/config.html#environments">環境固有</a> の設定ファイルのサポートが追加されました。</li>
+		オプションでロードされる設定ファイルに影響します(以下を参照)。<a href="general/environments.html">環境の取扱い</a>のページをご覧ください。</li>
+			<li class="reactor"><a href="libraries/config.html#environments">環境固有</a>の設定ファイルのサポートが追加されました。</li>
 		</ul>
 	</li>
 	<li>ライブラリ
 		<ul>
-			<li class="reactor"><kbd>decimal</kbd>, <kbd>less_than</kbd> and <kbd>greater_than</kbd> ルールが <a href="libraries/form_validation.html">フォームバリデーション(検証)クラス</a> に追加されました。</li>
-			<li class="reactor"><a href="libraries/input.html">入力クラス</a> の <kbd>post()</kbd> と <kbd>get()</kbd> メソッドは第1引数が指定されない場合、配列全体を返すようになりました。</li>
-			<li class="reactor">セキュアクッキーが <kbd>set_cookie()</kbd> ヘルパーと <a href="libraries/input.html">入力クラス</a> のメソッドで指定出きるようになりました。</li>
-			<li class="reactor"><a href="libraries/output.html">出力クラス</a> に <kbd>set_content_type()</kbd> が追加され、<kbd>Content-Type</kbd> HTTP ヘッダを MIME タイプまたは config/mimes.php の配列のキーに基づき出力します。</li>
-			<li class="reactor"><a href="libraries/output.html">出力クラス</a> がメソッドチェーンをサポートするようになりました。</li>
+			<li class="reactor"><kbd>decimal</kbd>, <kbd>less_than</kbd> and <kbd>greater_than</kbd> ルールが<a href="libraries/form_validation.html">フォームバリデーション(検証)クラス</a>に追加されました。</li>
+			<li class="reactor"><a href="libraries/input.html">入力クラス</a>の <kbd>post()</kbd> と <kbd>get()</kbd> メソッドは第 1 引数が指定されない場合、配列全体を返すようになりました。</li>
+			<li class="reactor">セキュアクッキーが <kbd>set_cookie()</kbd> ヘルパーと<a href="libraries/input.html">入力クラス</a>のメソッドで指定出きるようになりました。</li>
+			<li class="reactor"><a href="libraries/output.html">出力クラス</a>に <kbd>set_content_type()</kbd> が追加され、<kbd>Content-Type</kbd> HTTP ヘッダを MIME タイプまたは config/mimes.php の配列のキーに基づき出力します。</li>
+			<li class="reactor"><a href="libraries/output.html">出力クラス</a>がメソッドチェーンをサポートするようになりました。</li>
 		</ul>
 	</li>
 	<li>ヘルパー
 		<ul>
-			<li class="reactor"><a href="helpers/form_helper.html">フォームヘルパー</a> の <kbd>form_open()</kbd> はロジックが変更され、値が渡されない場合、現在の URL に投稿するようになりました。</li>
+			<li class="reactor"><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_open()</kbd> はロジックが変更され、値が渡されない場合、現在の URL に投稿するようになりました。</li>
 		</ul>
 	</li>
 </ul>
@@ -188,7 +188,7 @@ Hg Tag: v2.0.0</p>
 		<ul>
 			<li>PHP 4 への対応は打ち切られました。動作には PHP 5.1.6 以上が必要です。</li>
 			<li>以前から非推奨であった Scaffolding 機能は削除されました。</li>
-			<li>プラグイン機能は削除されました。代わりにヘルパーを使用してください。CAPTCHA プラグインはヘルパーに変更されました (<a href="./helpers/captcha_helper.html">ドキュメント</a>)。JavaScript カレンダープラグインは、jQuery 等に有用なものがあるため、削除されました。</li>
+			<li>プラグイン機能は削除されました。代わりにヘルパーを使用してください。CAPTCHA プラグインはヘルパーに変更されました(<a href="./helpers/captcha_helper.html">ドキュメント</a>)。JavaScript カレンダープラグインは、jQuery 等に有用なものがあるため、削除されました。</li>
 			<li><a href="./general/drivers.html">ドライバ</a>機能が追加されました。</li>
 			<li class="reactor">完全な QUERY STRING に対応しました。詳細は設定ファイルを参照してください。</li>
 			<li>application フォルダを system の外に移動しました。</li>
@@ -198,23 +198,23 @@ Hg Tag: v2.0.0</p>
 			<li>設定ファイルに <kbd>$config['directory_trigger']</kbd> を追加しました。URI セグメントの代わりに $_GET 文字列で動かしているときでも、コントローラのサブディレクトリを指定できます。</li>
 			<li>パッケージのパスを指定できるようになりました。ローダーと設定クラスは要求があると、指定されたパスを最初に探しにいこうとします。これにより、サブアプリケーションの配布において、ひとつのパッケージディレクトリで独自のライブラリやモデル、設定ファイルを使用することができます。詳細は<a href="libraries/loader.html">ローダ (読み込み処理) クラス</a>のドキュメントを参照してください。</li>
 			<li>開発中のコードは現在 <a href="http://bitbucket.org/ellislab/codeigniter-reactor/">BitBucket</a> でホスティングされています。</li>
-			<li>非推奨となっていた Validation クラスは削除されました。[ 訳注: 代わりに Form_validation クラスを使用してください ]</li>
+			<li>非推奨となっていた Validation クラスは削除されました。[訳注: 代わりに Form_validation クラスを使用してください]</li>
 			<li>すべてのコアクラスに CI_ というプレフィックスを追加しました。</li>
 			<li class="reactor">パッケージのパスは application/config/autoload.php で設定できます。</li>
 			<li class="reactor"><a href="libraries/file_uploading.html">アップロードクラス</a>で拡張子なしのファイル名を指定できるようになりました。拡張子は、ファイル名の代わりにアップロードされたファイルから与えられます。</li>
-			<li class="reactor"><a href="database/forge.html">データベースフォージクラス</a> において、テーブル名を変更していない場合は名前を省略できるようになりました。</li>
+			<li class="reactor"><a href="database/forge.html">データベースフォージクラス</a>において、テーブル名を変更していない場合は名前を省略できるようになりました。</li>
 			<li class="reactor"><kbd>$config['base_url']</kbd> はデフォルトで空になり、自動的に推測されるようになりました。</li>
 			<li class="reactor"><kbd>config['uri_protocol'] = 'CLI'</kbd> とすることで、コマンドラインインターフェイス互換が利用できるようになりました。</li>
 		</ul>
 	<li>ライブラリ
 		<ul>
-			<li class="reactor"><a href="libraries/caching.html">キャッシュドライバ</a> を追加しました。APC、memcached およびファイルベースをサポートします。</li>
-			<li><a href="./libraries/pagination.html">ページネーションクラス</a>で <var>$prefix</var>, <var>$suffix</var> および <var>$first_url</var> を指定できるようになりました。</li>
+			<li class="reactor"><a href="libraries/caching.html">キャッシュドライバ</a>を追加しました。APC、memcached およびファイルベースをサポートします。</li>
+			<li><a href="./libraries/pagination.html">ページネーションクラス</a>で <var>$prefix</var>、 <var>$suffix</var> および <var>$first_url</var> を指定できるようになりました。</li>
 			<li><a href="./libraries/pagination.html">ページネーションクラス</a>で first、previous、next、last および各ページへのリンクを FALSE とすることで、それぞれ非表示にできるようになりました。</li>
 			<li><a href="./libraries/security.html">セキュリティクラス</a>を追加しました。現在のところ、<dfn>xss_clean</dfn> メソッド、<dfn>filename_security</dfn> メソッド他のセキュリティに関する機能が使用できます。</li>
 			<li><a href="./libraries/security.html">セキュリティクラス</a>に CSRF (クロスサイトリクエストフォージェリ) 保護を追加しました。</li>
 			<li>出力クラスに <var>$parse_exec_vars</var> プロパティを追加しました。</li>
-			<li><a href="general/profiling.html">プロファイラクラス</a>において、個々のプロファイラセクションの 有効化/無効化 を指定できるようになりました。</li>
+			<li><a href="general/profiling.html">プロファイラクラス</a>において、個々のプロファイラセクションの有効化/無効化を指定できるようになりました。</li>
 			<li><a href="./libraries/file_uploading.html">ファイルアップロードクラス</a>にワイルドカードオプション  <kbd>$config['allowed_types'] = '*'</kbd> を追加しました。</li>
 			<li>XML-RPC クラスに設定値 'object' を追加しました。これにより、要求されたメソッドを探すために、$CI スーパーオブジェクトにある assuming の代わりにオブジェクトを指定できます。</li>
 			<li>ユニットテストクラスで使用できるリストに "is_object" を追加しました。</li>
@@ -228,7 +228,7 @@ Hg Tag: v2.0.0</p>
 			<li><a href="libraries/ftp.html">FTP メソッド</a>に <kbd>download()</kbd> メソッドを追加しました。</li>
 			<li><kbd>do_xss_clean()</kbd> メソッドでアップロードファイルの XSS チェックに失敗したときは FALSE を返すように変更しました。</li>
 			<li>アップロードクラスにおいて、$_FILES の type の値を stripslashes() と trim() で処理するように変更しました。</li>
-			<li><kbd>$this-&gt;zip-&gt;read_dir('/path/to/directory', FALSE)</kbd> メソッドに第2引数 (boolean) を追加しました。ZIP アーカイブを作成するときに、指定フォルダまでのパスで、空のフォルダを含まないようにできます。</li>
+			<li><kbd>$this-&gt;zip-&gt;read_dir('/path/to/directory', FALSE)</kbd> メソッドに第 2 引数 (boolean) を追加しました。ZIP アーカイブを作成するときに、指定フォルダまでのパスで、空のフォルダを含まないようにできます。</li>
 			<li>画像操作クラスにおいて、GD ライブラリで PNG の透過画像のリサイズが行なえるようになりました。</li>
 			<li>セッションクラスを使用する際は、設定ファイル内で暗号化キー (encryption_key) の指定が必須になりました。</li>
 			<li>セッションクラスに新たな設定項目 <kbd>sess_expire_on_close</kbd> を追加しました。ブラウザが閉じられると自動で期限切れにすることができます。</li>
@@ -236,8 +236,8 @@ Hg Tag: v2.0.0</p>
 			<li>暗号化クラスにおいて、標準の暗号化方式を CBC に変更しました。</li>
 			<li><kbd>encode_from_legacy()</kbd> メソッドを追加しました。CodeIgniter 1.x で暗号化されたデータを CodeIgniter 2.x に移行するのに使用します。
 				詳細は「<a href="./installation/upgrade_200.html">以前のバージョンからのアップグレード</a>」をご覧ください。</li>
-			<li>Form_Validation クラスの <kbd>set_rules()</kbd>, <kbd>set_message()</kbd> および <kbd>set_error_delimiters()</kbd> メソッドにおいて、“メソッドの連結” ができるようになりました。</li>
-			<li>Email クラスで “メソッドの連結” ができるようになりました。</li>
+			<li>Form_Validation クラスの <kbd>set_rules()</kbd>, <kbd>set_message()</kbd> および <kbd>set_error_delimiters()</kbd> メソッドにおいて、"メソッドの連結" ができるようになりました。</li>
+			<li>Email クラスで "メソッドの連結" ができるようになりました。</li>
 			<li>入力クラスに <kbd>request_headers()</kbd>, <kbd>get_request_header()</kbd> および <kbd>is_ajax_request()</kbd> メソッドを追加しました。</li>
 			<li class="reactor"><a href="libraries/user_agent.html">ユーザエージェントクラス</a> の <kbd>is_browser()</kbd>, <kbd>is_mobile()</kbd> および <kbd>is_robot()</kbd> メソッドで、特定のブラウザおよび携帯デバイスをチェックできるようになりました。</li>
 			<li class="reactor"><a href="libraries/input.html">入力クラス</a> の <kbd>post()</kbd> と <kbd>get()</kbd> が、引数を与えなかった場合にPOSTとGETそれぞれの値をすべて返すようになりました。</li>
@@ -269,7 +269,7 @@ Hg Tag: v2.0.0</p>
 			<li><a href="helpers/file_helper.html">ファイルヘルパー</a>の <kbd>delete_files()</kbd> メソッドでにおいて、失敗したときは FALSE を返すように変更しました。</li>
 			<li><a href="helpers/number_helper.html">数字ヘルパー</a>の <kbd>byte_format()</kbd> メソッドの第 2 引数で精度を指定できるようになりました。</li>
 			<li><a href="helpers/string_helper.html">文字列ヘルパー</a>の <kbd>random_string()</kbd> 関数に文字列のタイプとして alpha と sha1 を追加しました。</li>
-			<li><kbd>prep_url()</kbd> 関数で、すでにスキーマ [ 訳注: “http://” など ] がついた文字列が与えられた場合、先頭に http:// を追加しないように変更しました。</li>
+			<li><kbd>prep_url()</kbd> 関数で、すでにスキーマ [訳注: "http://" など] がついた文字列が与えられた場合、先頭に http:// を追加しないように変更しました。</li>
 			<li>ファイルヘルパーの <kbd>get_file_info()</kbd> 関数で、更新時刻の取得に filectime() から filemtime() を使うように変更しました。</li>
 			<li><kbd>smiley_js()</kbd> 関数で、script タグを含まない JavaScript を返すオプションの第 3 引数を追加しました。</li>
 			<li><a href="./helpers/html_helper.html">HTML ヘルパー</a>の <kbd>img()</kbd> メソッドは、alt 属性が指定されない場合、空の alt 属性を出力するようになりました。</li>
@@ -464,7 +464,7 @@ Hg Tag: 1.7.1</p>
 	<li>auto typography で、送信された段落タグを保護するための正規表現の不具合を修正しました。</li>
 	<li>タグの属性に含まれるダブルスラッシュが、em ダッシュ[長いダッシュ] HTML エンティティに変換される不具合を修正しました。</li>
 	<li>タグの属性に含まれる2重スペースが、ノンブレークスペース HTML エンティティに変換される不具合を修正しました。</li>
-	<li>Typography::format_characters() のカーリークォート[“”]の正確性の問題を修正しました。</li>
+	<li>Typography::format_characters() のカーリークォート[""]の正確性の問題を修正しました。</li>
 	<li>いくつかの docblock コメントを実際の戻り値に対応させるよう変更しました。</li>
 	<li> 件名やメールヘッダに含まれる上位ビットの ascii 文字についての不具合を修正しました。</li>
 	<li>xss_clean() で、検証済みの文字エンティティに続くホワイトスペースが保持されない不具合を修正しました。</li>
