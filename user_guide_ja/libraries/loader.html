@@ -229,15 +229,15 @@ $this->load->library('foo_bar');</code>
 
 <code>$this->load->remove_package_path(<var>APPPATH</var>.'third_party/<var>foo_bar</var>/');</code>
 
-<h3>view ファイルパッケージ</h3>
+<h3>パッケージのビューファイル</h3>
 
-<p>デフォルトでは、<samp>add_package_path()</samp> を使用すると、view ファイルパッケージのパスが設定されます。view が読み込まれた際に一度に一致が検出されたら、view のパスはループ処理されます。</p>
-<p>この場合は、パッケージ内で view のファイル名が衝突を起こしているか、不適切なパッケージが読み込まれている可能性があります。対処方法として、<samp>add_package_path()</samp> を使用する際には、第 2 引数に <var>FALSE</var> を設定してください。</p>
+<p>デフォルトでは、パッケージのビューファイルは <samp>add_package_path()</samp> が呼び出されたときに設定されます。ビューのパスはループで処理され、一旦一致するとそのビューファイルが読み込まれます。</p>
+<p>この場合は、パッケージ内でビューファイル名が衝突を起こしているか、不適切なパッケージが読み込まれている可能性があります。そのようなことが起こらないようにするためには、<samp>add_package_path()</samp> を呼び出す際に、オプションの第 2 引数に <var>FALSE</var> を設定してください。</p>
 
 <code>
 $this->load->add_package_path(APPPATH.'my_app', TRUE);<br>
-$this->load->view('my_app_index'); // Loads<br>
-$this->load->view('welcome_message'); // add_package_path の第 2 引数に TRUE を設定してしまうため、デフォルトの welcome_message は使用しないでください<br>
+$this->load->view('my_app_index'); // 読み込む<br>
+$this->load->view('welcome_message'); // add_package_path の第 2 引数に TRUE を設定しているため、デフォルトの welcome_message は読み込まれない<br>
 <br>
 // リセットする<br>
 $this->load->remove_package_path(APPPATH.'my_app');<br>
