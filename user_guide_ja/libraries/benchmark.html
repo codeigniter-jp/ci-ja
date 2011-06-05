@@ -125,7 +125,7 @@ echo $this->benchmark->elapsed_time('dog', 'bird');</code>
 <p><a href="../general/profiling.html">プロファイラ</a> でベンチマークデータを使用するには、
 観測点はペアにする必要があり、各々の観測点の名前の末尾を <kbd>_start</kbd> と <kbd>_end</kbd> にしなければなりません。
 さらに、ペアになる観測点の名前は、元が同じ（identicaly）である必要があります
-[ 訳注： ペアになっている開始点と終了点の名前は、末尾の<kbd>_start </kbd><kbd>_end</kbd> を除いた部分が同じものでなければなりません ]。 例:</p>
+[ 訳注: ペアになっている開始点と終了点の名前は、末尾の<kbd>_start </kbd><kbd>_end</kbd> を除いた部分が同じものでなければなりません ]。 例:</p>
 
 <code>
 $this->benchmark->mark('my_mark<kbd>_start</kbd>');<br />
