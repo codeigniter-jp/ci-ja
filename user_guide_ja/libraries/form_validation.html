@@ -68,7 +68,7 @@
 		<li><a href="#thecontroller">コントローラ</a></li>
 		<li><a href="#validationrules">検証ルールを設定する</a></li>
 		<li><a href="#validationrulesasarray">配列を使って検証ルールを設定する</a></li>
-		<li><a href="#cascadingrules">ルールの連結（カスケード）</a></li>
+		<li><a href="#cascadingrules">ルールの連結(カスケード)</a></li>
 		<li><a href="#preppingdata">データの整形</a></li>
 		<li><a href="#repopulatingform">フォームの再表示</a></li>
 		<li><a href="#callbacks">コールバック</a></li>
@@ -299,7 +299,7 @@ class Form extends CI_Controller {
 </ol>
 
 
-<p><br />例を示します。 <dfn>コントローラ</dfn> (form.php) の中のバリデーションクラスを初期化（ロード）したすぐ下のところに、このコードを追加してください:</p>
+<p><br />例を示します。 <dfn>コントローラ</dfn> (form.php) の中のバリデーションクラスを初期化(ロード)したすぐ下のところに、このコードを追加してください:</p>
 
 <code>
 $this->form_validation->set_rules('username', 'ユーザ名', 'required');<br />
@@ -385,7 +385,7 @@ $this->form_validation->set_rules($config);
 
 
 <a name="cascadingrules"></a>
-<h2>ルールの連結（カスケード）</h2>
+<h2>ルールの連結(カスケード)</h2>
 
 <p>CodeIgniter では、複数のルールを互いにパイプすることができます。ではやってみましょう。ルール設定メソッドの第 3 引数を次のように変更してみてください。:</p>
 
@@ -599,7 +599,7 @@ class Form extends CI_Controller {
 $this->form_validation->set_rules('first_name', '<kbd>lang:</kbd>first_name', 'required');<br />
 </code>
 
-<p>次に言語ファイル内に配列を1つ格納します。（添字にはプレフィックスは付けません）:</p>
+<p>次に言語ファイル内に配列を1つ格納します。(添字にはプレフィックスは付けません):</p>
 
 <code>$lang['first_name'] = 'First Name';</code>
 
@@ -800,7 +800,7 @@ else<br />
 
 <h3>コントローラー内のメソッドにルールグループを関連づける</h3>
 
-<p>ルールグループを呼び出す別の方法（自動的な方法）としては、コントローラーやメソッドの名称に沿って名前を付けます。
+<p>ルールグループを呼び出す別の方法(自動的な方法)としては、コントローラーやメソッドの名称に沿って名前を付けます。
 たとえば、コントローラーを <kbd>Member</kbd> という名前に、メソッドを <kbd>signup</kbd> という名前にしてみましょう。クラスは次の様になります:</p>
 
 <code>
@@ -891,7 +891,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 
 <code>&lt;?php echo form_error('<kbd>sports[nba][basketball]</kbd>'); ?></code>
 
-<p>複数の選択肢を持つチェックボックス（もしくは他のフォーム）を使う場合は、それぞれの名前には空白のカッコを付ける事を忘れないでください。
+<p>複数の選択肢を持つチェックボックス(もしくは他のフォーム)を使う場合は、それぞれの名前には空白のカッコを付ける事を忘れないでください。
 そうしないと POST 時の配列に全ての選択が渡りません:</p>
 
 <code>
@@ -1196,7 +1196,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 
 <p><dfn>&lt;select></dfn> メニューを使うとき、この関数は選択されたメニュー項目を表示できます。
 第 1 引数は SELECT フォームの名前を指定します。
-第 2 引数(オプション)にはデフォルト値（TRUE/FALSE のブール値）を指定します。</p>
+第 2 引数(オプション)にはデフォルト値(TRUE/FALSE のブール値)を指定します。</p>
 
 <p>例:</p>
 
@@ -1212,7 +1212,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 <h2>set_checkbox()</h2>
 
 <p>送信されたチェックボックスの状態を表示できます。
-第 1 引数にはチェックボックスの名前を指定します。第 2 引数には value に設定した値を指定します。第 3 引数(オプション)にはデフォルト値（TRUE/FALSEのブール値）を指定します。例:</p>
+第 1 引数にはチェックボックスの名前を指定します。第 2 引数には value に設定した値を指定します。第 3 引数(オプション)にはデフォルト値(TRUE/FALSEのブール値)を指定します。例:</p>
 
 <code>&lt;input type="checkbox" name="mycheck[]" value="1" <dfn>&lt;?php echo set_checkbox('mycheck[]', '1'); ?></dfn> /><br />
 &lt;input type="checkbox" name="mycheck[]" value="2" <dfn>&lt;?php echo set_checkbox('mycheck[]', '2'); ?></dfn> /></code>

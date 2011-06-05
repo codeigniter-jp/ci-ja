@@ -100,9 +100,9 @@ RewriteRule ^(.*)$ /index.php/$1 [L]</code>
 index.php ファイルへのリクエストとして取り扱われます。</p>
 
 
-<h2>URL サフィックス（接尾辞）の追加</h2>
+<h2>URL サフィックス(接尾辞)の追加</h2>
 
-<p><dfn>config/config.php</dfn> ファイルの中で、CodeIgniter で生成されるすべての URL に付加されるサフィックス（接尾辞）を指定することができます。
+<p><dfn>config/config.php</dfn> ファイルの中で、CodeIgniter で生成されるすべての URL に付加されるサフィックス(接尾辞)を指定することができます。
 たとえば、URL が次のようなものだったとき:</p>
 
 <code>example.com/index.php/products/view/shoes</code>
@@ -126,12 +126,12 @@ $config['controller_trigger'] = 'c';<br />
 $config['function_trigger'] = 'm';</code>
 
 <p>"enable_query_strings" を TRUE に変更すると、この機能が有効になります。
-次の例のように、コントローラとメソッドを呼び出すために "トリガ（trigger）"に指定した語句 [ 訳注: この例では、「c」と「m」。上の設定の $config['controller_trigger'] などのところで指定している語句 ] を使ってコントローラとメソッドにアクセスします:</p>
+次の例のように、コントローラとメソッドを呼び出すために "トリガ(trigger)"に指定した語句 [ 訳注: この例では、「c」と「m」。上の設定の $config['controller_trigger'] などのところで指定している語句 ] を使ってコントローラとメソッドにアクセスします:</p>
 
 <code>index.php?c=controller&amp;m=method</code>
 
 <p class="important"><strong>Please note:</strong> クエリ文字列を使用している場合は、
-セグメントベースの URL で機能するように設計されている URL ヘルパー（それと、フォームヘルパーなどの URL を生成するヘルパー）で便利に利用できる機能が使えないので、
+セグメントベースの URL で機能するように設計されている URL ヘルパー(それと、フォームヘルパーなどの URL を生成するヘルパー)で便利に利用できる機能が使えないので、
 かわりに URL を自分で組み立てる必要があります。</p>
 
 

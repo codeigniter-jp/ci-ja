@@ -164,7 +164,7 @@
 	// これで id は INT(9) NOT NULL AUTO_INCREMENT になります。</code></p>
 <h2><a name="add_key" id="add_key"></a>キーの追加</h2>
 <p>一般的にテーブルにはキーがあります。キーは <dfn>$this-&gt;dbforge-&gt;add_key('field')</dfn> で設定できます。オプションの2つ目の引数は、TRUE を指定すると主キーになります。<dfn>add_key()</dfn> の後に <dfn>create_table()</dfn> を呼ぶ必要があることに注意してください。</p>
-<p>主キー（PRIMARY KEY）ではないコラムは配列で送信されます。以下は MySQL 用のサンプルです。</p>
+<p>主キー(PRIMARY KEY)ではないコラムは配列で送信されます。以下は MySQL 用のサンプルです。</p>
 <p><code>$this-&gt;dbforge-&gt;add_key('blog_id', TRUE);<br />
 	// PRIMARY KEY は `blog_id`(`blog_id`) になります。<br />
 	<br />

@@ -79,7 +79,7 @@ CodeIgniter ではデータベースごとに専用のクラスを必要とし�
 
 <p>次のメソッドを使えば、SQLの<strong>SELECT</strong>文を組み立てられます。</p>
 
-<p><strong>Note: PHP 5 を使用している場合、よりコンパクトな構文にするためメソッドの連結（method chaining）を使用することができます。これについては、ページの最後で述べています。</strong></p>
+<p><strong>Note: PHP 5 を使用している場合、よりコンパクトな構文にするためメソッドの連結(method chaining)を使用することができます。これについては、ページの最後で述べています。</strong></p>
 
 
 <h2>$this->db->get();</h2>
@@ -126,9 +126,9 @@ $this->db->select('title, content, date');<br />
 $query = $this->db->get('mytable');<br />
 <br />
 // 生成される SQL 文: SELECT title, content, date FROM mytable</code></p>
-<p class="important"><strong>Note:</strong> テーブルからすべての列(*)を取得する場合は、このメソッドは不要です。このメソッドが省略されると、CodeIgniter はすべての列を選択する（SELECT * ... ）ものとします。</p>
+<p class="important"><strong>Note:</strong> テーブルからすべての列(*)を取得する場合は、このメソッドは不要です。このメソッドが省略されると、CodeIgniter はすべての列を選択する(SELECT * ... )ものとします。</p>
 
-<p>$this-&gt;db-&gt;select() は追加で第2引数をセットできます。第2引数に FALSE をセットすると、CodeIgniter はバッククォート（バックチック）でフィールド名やテーブル名を保護しないようになります [ 訳注: 識別子（テーブル名や列名など）が予約語の場合や、特殊文字が含まれる場合、たとえば MySQL では、バッククォート「`」でそれらを囲む必要があります。第2引数に FALSE をセットするとこれを自動では行いません ]。これは、複合的な SELECT 文が必要な場合に有用です。</p>
+<p>$this-&gt;db-&gt;select() は追加で第2引数をセットできます。第2引数に FALSE をセットすると、CodeIgniter はバッククォート(バックチック)でフィールド名やテーブル名を保護しないようになります [ 訳注: 識別子(テーブル名や列名など)が予約語の場合や、特殊文字が含まれる場合、たとえば MySQL では、バッククォート「`」でそれらを囲む必要があります。第2引数に FALSE をセットするとこれを自動では行いません ]。これは、複合的な SELECT 文が必要な場合に有用です。</p>
 <p><code>$this-&gt;db-&gt;select('(SELECT SUM(payments.amount) FROM payments WHERE payments.invoice_id=4') AS amount_paid', FALSE); <br />
 $query = $this-&gt;db-&gt;get('mytable');<br />
 </code></p>
@@ -472,7 +472,7 @@ echo $this-&gt;db-&gt;count_all_results();<br />
 
 <h2>$this->db->count_all();</h2>
 
-<p>特定のテーブルのデータ件数（行数）をカウントします。第1引数にテーブル名を指定します。例:</p>
+<p>特定のテーブルのデータ件数(行数)をカウントします。第1引数にテーブル名を指定します。例:</p>
 
 <code>echo $this->db->count_all('<var>my_table</var>');<br />
 <br />
@@ -724,7 +724,7 @@ $query = $this->db->get();</code>
 
 <h1><a name="caching">&nbsp;</a>Active Record キャッシング</h1>
 
-<p>&quot;本当の&quot; キャッシングではないのですが、Active Record では、後で再利用するためにクエリの特定の部分を保存（あるいは、&quot;キャッシュ&quot;）することができます。 通常は、Active Record の呼び出しが完了したときには、保存された全情報は、次の呼び出しのためにリセットされます。キャッシングを利用すると、このリセットを回避することができ、情報を簡単に再利用できます。</p>
+<p>&quot;本当の&quot; キャッシングではないのですが、Active Record では、後で再利用するためにクエリの特定の部分を保存(あるいは、&quot;キャッシュ&quot;)することができます。 通常は、Active Record の呼び出しが完了したときには、保存された全情報は、次の呼び出しのためにリセットされます。キャッシングを利用すると、このリセットを回避することができ、情報を簡単に再利用できます。</p>
 
 <p>キャッシュされた呼び出しは、累積されます。2回のキャッシュされた select() を呼び出し、その後に 2回キャッシュされていないselect() を呼び出した場合、4回 select() を呼び出したことになります。3つのキャッシュ関連メソッドが利用できます:</p>
 

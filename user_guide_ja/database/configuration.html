@@ -82,7 +82,7 @@ $db['default']['autoinit'] = TRUE;<br />
 $db['default']['stricton'] = FALSE;</code>
 
 <p>単純な１次元配列を使わずに、多次元配列を使う理由は、オプションで、接続用のデータを複数セット利用できるようにするためです。
-たとえば、ひとつのインストール方法で、複数の環境（開発用、製品用、テスト用など）で実行するような場合に、
+たとえば、ひとつのインストール方法で、複数の環境(開発用、製品用、テスト用など)で実行するような場合に、
 各環境ごとに接続設定をグループ化しておき、動かす環境に必要なグループに切り替えるといったことが可能です。
 たとえば、"test" 用の環境をセットアップするには次のようにします:</p>
 
@@ -108,11 +108,11 @@ $db['test']['stricton'] = FALSE;</code>
 <code>$active_group = "test";</code>
 
 <p>Note: 名前の "test" は任意です。好きなように設定できます。初期状態では、"default"
-を優先（プライマリ）接続として使っていますが、この名前もプロジェクトにふさわしい名前にリネームすることができます。 </p>
+を優先(プライマリ)接続として使っていますが、この名前もプロジェクトにふさわしい名前にリネームすることができます。 </p>
 
 <h3>Active Record</h3>
 
-<p><a href="active_record.html">Active Record クラス</a> はデータベース設定ファイルの $active_record 変数に TRUE/FALSE（ブール値）をセットすることによりグローバルに有効または無効にできます。active record クラスを使用しない場合は、FALSEをセットするとデータベースクラスを初期化したときに、少ないリソースを有効活用できます。</p>
+<p><a href="active_record.html">Active Record クラス</a> はデータベース設定ファイルの $active_record 変数に TRUE/FALSE(ブール値)をセットすることによりグローバルに有効または無効にできます。active record クラスを使用しない場合は、FALSEをセットするとデータベースクラスを初期化したときに、少ないリソースを有効活用できます。</p>
 
 <code>$active_record = TRUE;</code>
 
@@ -126,7 +126,7 @@ $db['test']['stricton'] = FALSE;</code>
 <li><strong>password</strong> - データベースに接続するために使用するパスワード。</li>
 <li><strong>database</strong> - 接続したいデータベース名。</li>
 <li><strong>dbdriver</strong> - データベースの種類。例: mysql、postgres、odbc など。小文字で指定しなければなりません。</li>
-<li><strong>dbprefix</strong> - オプションのテーブル名プリフィックス（接頭辞）。これは、<a href="active_record.html">Active Record</a> を使った問い合わせを実行するときに、テーブル名に付加される接頭辞になります。これを指定すると、単一のデータベースを共有して CodeIgniter を複数インストールすることが可能になります。</li>
+<li><strong>dbprefix</strong> - オプションのテーブル名プリフィックス(接頭辞)。これは、<a href="active_record.html">Active Record</a> を使った問い合わせを実行するときに、テーブル名に付加される接頭辞になります。これを指定すると、単一のデータベースを共有して CodeIgniter を複数インストールすることが可能になります。</li>
 <li><strong>pconnect</strong> - TRUE/FALSE (boolean) - 永続的な接続を使うかどうか。</li>
 <li><strong>db_debug</strong> - TRUE/FALSE (boolean) - データベースエラーを表示するかどうか。</li>
 <li><strong>cache_on</strong> - TRUE/FALSE (boolean) - データベースクエリのキャッシュを有効にするかどうか。<a href="caching.html">データベースキャッシュクラス</a>を参照してください。</li>

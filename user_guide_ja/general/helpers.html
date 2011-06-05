@@ -122,10 +122,10 @@
 <p>既存のヘルパーにいくつかの機能を追加する - 恐らくひとつかふたつの関数を追加するか、特定のヘルパー関数が
 	どのように動作するかを変更する - だけだとすると、ヘルパー全体をユーザバージョンに置き換えてしまうのは、やり過ぎです。こういう場合には、ヘルパーを単に
 	"拡張"する方がベターです。ヘルパー関数は、手続き型で、それぞれ独立しており、
-	通例のプログラミング上の意味では、拡張（継承）できません。ですので、ここでの"拡張"という言葉は、広い意味で使っています。  
+	通例のプログラミング上の意味では、拡張(継承)できません。ですので、ここでの"拡張"という言葉は、広い意味で使っています。  
 	こういった意味で、ヘルパーが提供する関数を追加したり、もともとのヘルパー関数がどのように動作するかを変更することができます。</p>
 
-<p>たとえば、もともとの <kbd>Array Helper</kbd> を拡張するには、<dfn>application/helpers/</dfn><kbd>MY_array_helper.php</kbd> という名前のファイルを作成し、関数を追加または上書き（オーバーライド）します:</p>
+<p>たとえば、もともとの <kbd>Array Helper</kbd> を拡張するには、<dfn>application/helpers/</dfn><kbd>MY_array_helper.php</kbd> という名前のファイルを作成し、関数を追加または上書き(オーバーライド)します:</p>
 
 <code>
 // any_in_array() は、Array Helperの中にはありません。つまり、新しい関数を定義しています。<br />
@@ -144,7 +144,7 @@ function any_in_array($needle, $haystack)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;return FALSE;<br />
 }<br />
 <br />
-// random_element() は、Array Helper に含まれています。つまり、もともとの関数を上書き（オーバーライド）しています<br />
+// random_element() は、Array Helper に含まれています。つまり、もともとの関数を上書き(オーバーライド)しています<br />
 function random_element($array)<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;shuffle($array);<br />

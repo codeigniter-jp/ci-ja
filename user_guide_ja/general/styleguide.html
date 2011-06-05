@@ -294,7 +294,7 @@ function foo($bar = NULL)</code>
 
 		<h2><a name="logical_operators"></a>論理演算子</h2>
 		<div class="guidelineDetails">
-			<p><strong>||</strong> は解像度の低いデバイスでは明瞭でない（たとえば数字の11にとらえられてしまう）。
+			<p><strong>||</strong> は解像度の低いデバイスでは明瞭でない(たとえば数字の11にとらえられてしまう)。
 				どちらかと言うと<strong>&amp;&amp;</strong> が <strong>AND</strong> よりも好まれる。<strong>!</strong>の前後には空白を入れる。</p>
 <code><strong>間違い</strong>:
 if ($foo || $bar)
@@ -423,7 +423,7 @@ exp_pre_email_addresses
 
 		<h2><a name="one_file_per_class"></a>1ファイル1クラス</h2>
 		<div class="guidelineDetails">
-			<p>アドオンで使うクラスは、クラス同士が<em>非常に密接に関連</em>していない限り、クラスごとに違うファイルを使いましょう。 一例として、CodeIgniter で1つのファイルに複数のクラスが入っているのは、データベースクラスのファイル（ DB クラスと DB_Cache クラスが一緒に入っています）と、Magpie プラグインのファイル（ Magpie クラスと Snoopy クラスが一緒に入っています）です。</p>
+			<p>アドオンで使うクラスは、クラス同士が<em>非常に密接に関連</em>していない限り、クラスごとに違うファイルを使いましょう。 一例として、CodeIgniter で1つのファイルに複数のクラスが入っているのは、データベースクラスのファイル( DB クラスと DB_Cache クラスが一緒に入っています)と、Magpie プラグインのファイル( Magpie クラスと Snoopy クラスが一緒に入っています)です。</p>
 		</div>
 
 
@@ -535,7 +535,7 @@ foreach ($query->result() as $row) // PHP の制御構造の後ろには空白�
 
 		<h2><a name="localized_text"></a>コントロールパネルのローカライズされたテキスト</h2>
 		<div class="guidelineDetails">
-			<p>コントロールパネルに出力するテキストは全て、モジュールの言語ファイルを使ってローカライズできるように（生のテキストではなく）言語ファイルの変数を使いましょう。</p>
+			<p>コントロールパネルに出力するテキストは全て、モジュールの言語ファイルを使ってローカライズできるように(生のテキストではなく)言語ファイルの変数を使いましょう。</p>
 
 <code>間違い:
 return "Invalid Selection";
@@ -558,7 +558,7 @@ _convert_text()		// プライベートメソッド</code>
 
 		<h2><a name="php_errors"></a>PHP エラー</h2>
 		<div class="guidelineDetails">
-			<p>コードはエラーを起こさず、潜在的な WARNING や NOTICE もなく動作するようにしましょう。たとえば、最初に isset() で確かめずに（$_POST 配列のキーのような）未定義の変数を使わないようにしてください。</p>
+			<p>コードはエラーを起こさず、潜在的な WARNING や NOTICE もなく動作するようにしましょう。たとえば、最初に isset() で確かめずに($_POST 配列のキーのような)未定義の変数を使わないようにしてください。</p>
 
 			<p>アドオンの開発中は全てのユーザに対してエラーの表示を許可し、PHP の display_errors オプションが許可に設定されていることを確認してください。設定は以下のようにすれば確認できます：</p>
 
@@ -571,7 +571,7 @@ _convert_text()		// プライベートメソッド</code>
 
 <code>ini_set('display_errors', 1);</code>
 
-			<p class="important"><strong>注意:</strong> <a href="http://us.php.net/manual/en/ref.errorfunc.php#ini.display-errors">display_errors</a> を実行時に ini_set() で設定することと、php.ini で display_errors を「許可」に設定することは全く同じではないことに注意してください。すなわち、もしコード自体が致命的なエラー（FATAL）を含んでいる場合は（display_errors を許可に設定しても）意味が無いのです（エラーは表示されません）。</p>
+			<p class="important"><strong>注意:</strong> <a href="http://us.php.net/manual/en/ref.errorfunc.php#ini.display-errors">display_errors</a> を実行時に ini_set() で設定することと、php.ini で display_errors を「許可」に設定することは全く同じではないことに注意してください。すなわち、もしコード自体が致命的なエラー(FATAL)を含んでいる場合は(display_errors を許可に設定しても)意味が無いのです(エラーは表示されません)。</p>
 		</div>
 
 
@@ -647,9 +647,9 @@ $query = $this->db->query("SELECT foo, bar, baz, foofoo, foobar AS raboof, fooba
 
 
 
-		<h2><a name="default_function_arguments"></a>メソッド（関数）の引数のデフォルト値</h2>
+		<h2><a name="default_function_arguments"></a>メソッド(関数)の引数のデフォルト値</h2>
 		<div class="guidelineDetails">
-			<p>その時々に適切なメソッド（関数）のデフォルト値を設定しましょう。そうすることで、間違ったメソッド（関数）呼び出しによるPHPエラーを回避することができ、コードを数行節約できるような適切な代替値を用意することができます。例:</p>
+			<p>その時々に適切なメソッド(関数)のデフォルト値を設定しましょう。そうすることで、間違ったメソッド(関数)呼び出しによるPHPエラーを回避することができ、コードを数行節約できるような適切な代替値を用意することができます。例:</p>
 
 <code>function foo($bar = '', $baz = FALSE)</code>
 		</div>
