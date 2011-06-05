@@ -198,7 +198,7 @@ Hg Tag: v2.0.0</p>
 			<li>設定ファイルに <kbd>$config['directory_trigger']</kbd> を追加しました。URI セグメントの代わりに $_GET 文字列で動かしているときでも、コントローラのサブディレクトリを指定できます。</li>
 			<li>パッケージのパスを指定できるようになりました。ローダーと設定クラスは要求があると、指定されたパスを最初に探しにいこうとします。これにより、サブアプリケーションの配布において、ひとつのパッケージディレクトリで独自のライブラリやモデル、設定ファイルを使用することができます。詳細は<a href="libraries/loader.html">ローダ (読み込み処理) クラス</a>のドキュメントを参照してください。</li>
 			<li>開発中のコードは現在 <a href="http://bitbucket.org/ellislab/codeigniter-reactor/">BitBucket</a> でホスティングされています。</li>
-			<li>非推奨となっていた Validation クラスは削除されました。[訳注: 代わりに Form_validation クラスを使用してください]</li>
+			<li>非推奨となっていた Validation クラスは削除されました [ 訳注: 代わりに Form_validation クラスを使用してください ]。</li>
 			<li>すべてのコアクラスに CI_ というプレフィックスを追加しました。</li>
 			<li class="reactor">パッケージのパスは application/config/autoload.php で設定できます。</li>
 			<li class="reactor"><a href="libraries/file_uploading.html">アップロードクラス</a>で拡張子なしのファイル名を指定できるようになりました。拡張子は、ファイル名の代わりにアップロードされたファイルから与えられます。</li>
@@ -269,7 +269,7 @@ Hg Tag: v2.0.0</p>
 			<li><a href="helpers/file_helper.html">ファイルヘルパー</a>の <kbd>delete_files()</kbd> メソッドでにおいて、失敗したときは FALSE を返すように変更しました。</li>
 			<li><a href="helpers/number_helper.html">数字ヘルパー</a>の <kbd>byte_format()</kbd> メソッドの第 2 引数で精度を指定できるようになりました。</li>
 			<li><a href="helpers/string_helper.html">文字列ヘルパー</a>の <kbd>random_string()</kbd> 関数に文字列のタイプとして alpha と sha1 を追加しました。</li>
-			<li><kbd>prep_url()</kbd> 関数で、すでにスキーマ [訳注: "http://" など] がついた文字列が与えられた場合、先頭に http:// を追加しないように変更しました。</li>
+			<li><kbd>prep_url()</kbd> 関数で、すでにスキーマ [ 訳注: "http://" など ] がついた文字列が与えられた場合、先頭に http:// を追加しないように変更しました。</li>
 			<li>ファイルヘルパーの <kbd>get_file_info()</kbd> 関数で、更新時刻の取得に filectime() から filemtime() を使うように変更しました。</li>
 			<li><kbd>smiley_js()</kbd> 関数で、script タグを含まない JavaScript を返すオプションの第 3 引数を追加しました。</li>
 			<li><a href="./helpers/html_helper.html">HTML ヘルパー</a>の <kbd>img()</kbd> メソッドは、alt 属性が指定されない場合、空の alt 属性を出力するようになりました。</li>
