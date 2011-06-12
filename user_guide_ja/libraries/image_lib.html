@@ -104,7 +104,7 @@ $this->load->library('image_lib', $config);
 $this->image_lib->resize();</code>
 
 <p>上のコードでは、<dfn>source_image</dfn> に指定したフォルダの中から <em>mypic.jpg</em> を探し出して、
-GD2 <dfn>image_library</dfn> を使って75 X 50 ピクセルのサムネイルを作成するよう、<dfn>image_resize</dfn> メソッドに設定しています。
+GD2 <dfn>image_library</dfn> を使って75X50ピクセルのサムネイルを作成するよう、<dfn>image_resize</dfn> メソッドに設定しています。
 <dfn>maintain_ratio</dfn> オプションが有効になっているので、サムネイルはもともとのアスペクト比を維持したまま、
 指定された <dfn>width</dfn>(幅) と <dfn>height</dfn>(高さ) にできるだけ近づけるようにします。
 サムネイルは<em> mypic_thumb.jpg</em>という名前になります。</p>
@@ -465,7 +465,7 @@ $this->image_lib->watermark();</code>
 <p>上の例では、16ピクセルの TrueType フォントを "Copyright 2006 - John Doe" というテキストを作成するのに使用しています。
 合成する画像は、下詰めの中央揃えで、画像の下から20ピクセルのところに配置されます。</p>
 
-<p class="important"><strong>Note:</strong> 画像クラスのどんな処理も利用できるようにするには、画像ファイルに&quot;書き込み&quot;のパーミッションがある必要があります。たとえば、パーミッションを 777 に設定してください。</p>
+<p class="important"><strong>Note:</strong> 画像クラスのどんな処理も利用できるようにするには、画像ファイルに&quot;書き込み&quot;のパーミッションがある必要があります。たとえば、パーミッションを777に設定してください。</p>
 
 
 <h2>画像合成の設定</h2>
@@ -584,7 +584,7 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>wm_font_color</strong></td>
 <td class="td">ffffff</td>
 <td class="td">なし</td>
-<td class="td">フォントの色を16進数で指定します。Note: 16進を、3文字の省略形 (たとえば fff )でなく、6桁 (たとえば 993300)で指定します。</td>
+<td class="td">フォントの色を16進数で指定します。Note: 16進を、3文字の省略形(たとえば fff )でなく、6桁(たとえば993300)で指定します。</td>
 </tr>
 
 
@@ -630,7 +630,7 @@ $this->image_lib->watermark();</code>
 <td class="td"><strong>wm_opacity</strong></td>
 <td class="td">50</td>
 <td class="td">1 - 100</td>
-<td class="td">画像の不透明度。 合成画像の不透明度 (透明度) を指定できます。これにより、合成する画像は、薄くなって、背後にある元の画像の詳細を完全には隠しません。50% の不透明度が典型的です。</td>
+<td class="td">画像の不透明度。 合成画像の不透明度 (透明度) を指定できます。これにより、合成する画像は、薄くなって、背後にある元の画像の詳細を完全には隠しません。50%の不透明度が典型的です。</td>
 </tr>
 
 <tr>

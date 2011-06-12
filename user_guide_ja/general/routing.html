@@ -74,7 +74,7 @@ example.com/product/3/<br />
 example.com/product/4/
 </p>
 
-<p>通常は、URL の第 2 セグメントはメソッド名として予約されていますが、上の例では、代わりに商品 ID になっています。
+<p>通常は、URL の第2セグメントはメソッド名として予約されていますが、上の例では、代わりに商品 ID になっています。
 これに対応するため、CodeIgniter では URI ハンドラ [ 訳注: URI に関連付けられたコントローラ/メソッドのこと ] を再マッピングすることが可能です。</p>
 
 
@@ -91,7 +91,7 @@ example.com/product/4/
 <code>$route['product/:num'] = "catalog/product_lookup";</code>
 
 <p>ルートの中で、配列のキーはマッチさせる URI で、一方の配列の値は再ルート先になります。
-上の例では、リテラルの "product" が URL の第 1 セグメントに、数字が第 2 セグメントにそれぞれ設定されていた場合、
+上の例では、リテラルの "product" が URL の第1セグメントに、数字が第2セグメントにそれぞれ設定されていた場合、
 "catalog" クラスの "product_lookup" メソッドが通常のルールの代わりに使用されることになります。</p>
 
 <p>リテラル値または次の2種類のワイルドカードを使ってマッチさせることができます:</p>
@@ -111,13 +111,13 @@ example.com/product/4/
 <p>URL の第1セグメントに "journals" という語を含む URL は、"blogs" クラスに再マッピングされます。</p>
 
 <code>$route['blog/joe'] = "blogs/users/34";</code>
-<p>blog/joe というセグメントが含まれる URL は、"blogs" クラスの "users" メソッドに再マッピングされます。ID は "34" にセットされます。</p>
+<p>blog/joe というセグメントが含まれる URL は、"blogs" クラスの "users" メソッドに再マッピングされます。ID は"34"にセットされます。</p>
 
 <code>$route['product/(:any)'] = "catalog/product_lookup";</code>
-<p>第1セグメントが "product" 第 2 セグメントに何かが設定された URL であれば、"catalog" クラスの  "product_lookup" メソッドに再マッピングされます。</p>
+<p>第1セグメントが "product" 第2セグメントに何かが設定された URL であれば、"catalog" クラスの  "product_lookup" メソッドに再マッピングされます。</p>
 
 <code>$route['product/(:num)'] = "catalog/product_lookup_by_id/$1";</code>
-<p>第1セグメントが "product" 第 2 セグメントに数値が設定された URL であれば、"catalog" クラスの  "product_lookup_by_id" メソッドにマッチした値を変数として再マッピングされます。</p>
+<p>第1セグメントが "product" 第2セグメントに数値が設定された URL であれば、"catalog" クラスの  "product_lookup_by_id" メソッドにマッチした値を変数として再マッピングされます。</p>
 
 <p class="important"><strong>重要:</strong> マッチさせるワードには、先頭および末尾にスラッシュ ( &quot;/&quot; ) をつけてはいけません。</p>
 
@@ -147,7 +147,7 @@ example.com/product/4/
 
 <code>$route['404_override'] = '';</code>
 
-<p>このルートは、もしリクエストされたコントローラが見つからない場合、コントローラクラスがロードされている必要があることを示します。これはデフォルトの 404 ページを上書きします。
+<p>このルートは、もしリクエストされたコントローラが見つからない場合、コントローラクラスがロードされている必要があることを示します。これはデフォルトの404ページを上書きします。
 <var>application/errors/error_404.php</var> からデフォルトの <dfn>error_404.php</dfn> ファイル読み込みを続行しても、<samp>show_404()</samp> 関数には影響しません。</p>
 
 <p class="important"><strong>重要:</strong>&nbsp; 予約されたルートは、正規表記のルートか、任意のワイルドカードの前にこなければいけません。</p>

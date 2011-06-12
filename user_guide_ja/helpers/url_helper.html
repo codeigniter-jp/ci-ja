@@ -250,14 +250,14 @@ $url = prep_url($url);</code>
 ローカルのリンクなら単にコントローラのセグメントから指定します。URL は設定ファイルの値を元に生成されます。</p>
 
 <p>オプションの第2引数で "location" (デフォルト) を使う方法か "refresh" を使う方法かを選べます。Location は高速ですが、Windows サーバでは時々問題を起こします。オプションの第3引数では送りたい HTTP Response Code を指定することができます。
-たとえば検索エンジンが起こした 301 リダイレクトを送ることができます。デフォルトの Response Code は 302 です。第3引数は "location"<em> だけで</em>使え、"refresh" では使えません。例です:</p>
+たとえば検索エンジンが起こした301リダイレクトを送ることができます。デフォルトの Response Code は302です。第3引数は "location"<em> だけで</em>使え、"refresh" では使えません。例です:</p>
 
 <code>if ($logged_in == FALSE)<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redirect('/login/form/', 'refresh');<br />
 }<br /> 
 <br /> 
-// 301 リダイレクトの場合<br /> 
+// 301リダイレクトの場合<br /> 
 redirect('/article/13', 'location', 301);</code>
 
 <p class="important"><strong>Note:</strong> この関数はサーバのヘッダを利用するので、動作させるにはブラウザに何かを出力する前に、この関数を使う必要があります。<br />

@@ -111,18 +111,18 @@ if ($this->cache->apc->is_supported())<br />
 
 <h2>get(<var>id</var>['string'])</h2>
 
-<p>このメソッドはキャッシュから 1つのアイテムを取得することを試みます。もしそのアイテムが存在しない場合、このメソッドは <samp>FALSE</samp> を返します。</p>
+<p>このメソッドはキャッシュから1つのアイテムを取得することを試みます。もしそのアイテムが存在しない場合、このメソッドは <samp>FALSE</samp> を返します。</p>
 <code>$foo = $this->cache->get('my_cached_item');</code>
 
 <h2>save(<var>id</var>['string'], <var>data</var>['mixed'], <var>ttl</var>['int'])</h2>
 
-<p>このメソッドはキャッシュに 1つのアイテムを保存します。もし、保存に失敗した場合、このメソッドは <samp>FALSE</samp> を返します。</p>
+<p>このメソッドはキャッシュに1つのアイテムを保存します。もし、保存に失敗した場合、このメソッドは <samp>FALSE</samp> を返します。</p>
 <p>オプションの第3引数 (Time To Live) のデフォルトは 60 秒です。</p>
 <code>$this->cache->save('cache_item_id', 'data_to_cache');</code>
 
 <h2>delete(<var>id</var>['string'])</h2>
 
-<p>このメソッドは特定の 1つのアイテムをキャッシュから削除します。もし、削除に失敗した場合、このメソッドは <samp>FALSE</samp> を返します。</p>
+<p>このメソッドは特定の1つのアイテムをキャッシュから削除します。もし、削除に失敗した場合、このメソッドは <samp>FALSE</samp> を返します。</p>
 <code>$this->cache->delete('cache_item_id');</code>
 
 <h2>clean()</h2>
@@ -139,7 +139,7 @@ if ($this->cache->apc->is_supported())<br />
 
 <h2>get_metadata(<var>id</var>['string'])</h2>
 
-<p>このメソッドは、キャッシュの中の特定の 1つのアイテムに関する詳細な情報を返します。</p>
+<p>このメソッドは、キャッシュの中の特定の1つのアイテムに関する詳細な情報を返します。</p>
 
 <code>var_dump($this->cache->get_metadata('my_cached_item'));</code>
 

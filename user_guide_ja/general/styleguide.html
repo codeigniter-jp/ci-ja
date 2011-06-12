@@ -318,7 +318,7 @@ if ( ! is_array($foo))
 			<p>戻り値や変数の値をチェックする場合は、同じ厳密な比較を使います。 <strong>===</strong> や <strong>!==</strong> を必要に応じて使います。
 
 <code><strong>間違い</strong>:
-// 文字列の初めが 'foo' であれば、 strpos は 0 を返します
+// 文字列の初めが 'foo' であれば、 strpos は0を返します
 // 結果として、この条件式は TRUE になります
 if (strpos($str, 'foo') == FALSE)
 
@@ -329,7 +329,7 @@ if (strpos($str, 'foo') === FALSE)
 <code><strong>間違い</strong>:
 function build_string($str = "")
 {
-	if ($str == "")	// おっと! FALSE や整数値の 0 が引数に渡されるとどうなるでしょう?
+	if ($str == "")	// おっと! FALSE や整数値の0が引数に渡されるとどうなるでしょう?
 	{
 
 	}
@@ -416,7 +416,7 @@ exp_email_addresses	// アドオンの開発者を特定できる独自のプレ
 exp_pre_email_addresses
 </code>
 
-			<p class="important"><strong>NOTE:</strong> MySQL はテーブル名に 64文字の制限があることに注意しましょう。テーブル名でこの制限が問題になることは、不合理な名前を付けない限り滅多にありません。たとえば、以下のテーブル名はこの制限を 1文字超えています。ばかばかしいでしょ？ <strong>exp_pre_email_addresses_of_registered_users_in_seattle_washington</strong>
+			<p class="important"><strong>NOTE:</strong> MySQL はテーブル名に64文字の制限があることに注意しましょう。テーブル名でこの制限が問題になることは、不合理な名前を付けない限り滅多にありません。たとえば、以下のテーブル名はこの制限を 1文字超えています。ばかばかしいでしょ？ <strong>exp_pre_email_addresses_of_registered_users_in_seattle_washington</strong>
 		</div>
 
 

@@ -74,7 +74,7 @@ FTP クラス
 <h2>使用例</h2>
 
 <p>以下の例では、FTP サーバに対してコネクションが開かれ、ローカルファイルが ASCII モードで読み取られてアップロードされます。
-ファイルのパーミッションは755に設定します。Note: パーミッションを設定するには PHP 5 が必要です。</p>
+ファイルのパーミッションは755に設定します。Note: パーミッションを設定するには PHP 5が必要です。</p>
 
 <code>
 $this->load->library('ftp');<br />
@@ -185,7 +185,7 @@ $this->ftp->connect($config);<br />
 <p><strong>転送モードのオプション:</strong>&nbsp; <kbd>ascii、</kbd><kbd>binary、</kbd>および <kbd>auto</kbd> (初期値)。
 <kbd>auto</kbd> が使用されているときは、転送するファイルの拡張子によって転送モードが決められます。</p>
 
-<p>パーミッションは PHP5 で実行しているときに指定可能で、第4引数に<kbd>8進数</kbd>の値を渡します。</p>
+<p>パーミッションは PHP 5で実行しているときに指定可能で、第4引数に<kbd>8進数</kbd>の値を渡します。</p>
 
 
 <h2>$this-&gt;ftp-&gt;download()</h2>
@@ -267,7 +267,7 @@ $this->ftp->mirror('/path/to/myfolder/', '/public_html/myfolder/');
 <h2>$this->ftp->mkdir()</h2>
 
 <p>サーバにディレクトリを作成できます。作成したいフォルダ名を末尾にスラッシュをつけて指定します。
-パーミッションは、<kbd>8進数</kbd>の値で第2引数に指定できます(PHP 5 で実行している場合)。</p>
+パーミッションは、<kbd>8進数</kbd>の値で第2引数に指定できます(PHP 5で実行している場合)。</p>
 
 <code>
 // "bar"という名前のフォルダを作成します。<br />
@@ -280,7 +280,7 @@ $this->ftp->mkdir('/public_html/foo/bar/', DIR_WRITE_MODE);
 <p>ファイルのパーミッションをセットできます。パーミッションを設定したいファイルまたはフォルダのパスを指定します:</p>
 
 <code>
-// "bar" に 777 のパーミッションを設定します。 <br />
+// "bar" に777のパーミッションを設定します。 <br />
 $this->ftp->chmod('/public_html/foo/bar/', DIR_WRITE_MODE);
 </code>
 

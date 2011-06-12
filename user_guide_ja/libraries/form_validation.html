@@ -387,7 +387,7 @@ $this->form_validation->set_rules($config);
 <a name="cascadingrules"></a>
 <h2>ルールの連結(カスケード)</h2>
 
-<p>CodeIgniter では、複数のルールを互いにパイプすることができます。ではやってみましょう。ルール設定メソッドの第 3 引数を次のように変更してみてください。:</p>
+<p>CodeIgniter では、複数のルールを互いにパイプすることができます。ではやってみましょう。ルール設定メソッドの第3引数を次のように変更してみてください。:</p>
 
 <code>
 $this->form_validation->set_rules('username', 'ユーザ名', 'required|min_length[5]|max_length[12]');<br />
@@ -1185,8 +1185,8 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 
 <h2>set_value()</h2>
 
-<p>input フォームや textarea の value に値を入れることができます。メソッドの第 1 引数にフィールド名を指定します。
-第 2 引数(オプション)はフォームのデフォルト値を指定します。例:</p>
+<p>input フォームや textarea の value に値を入れることができます。メソッドの第1引数にフィールド名を指定します。
+第2引数(オプション)はフォームのデフォルト値を指定します。例:</p>
 
 <code>&lt;input type="text" name="quantity" value="<dfn>&lt;?php echo set_value('quantity', '0'); ?></dfn>" size="50" /></code>
 
@@ -1195,8 +1195,8 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 <h2>set_select()</h2>
 
 <p><dfn>&lt;select></dfn> メニューを使うとき、この関数は選択されたメニュー項目を表示できます。
-第 1 引数は SELECT フォームの名前を指定します。
-第 2 引数(オプション)にはデフォルト値(TRUE/FALSE のブール値)を指定します。</p>
+第1引数は SELECT フォームの名前を指定します。
+第2引数(オプション)にはデフォルト値(TRUE/FALSE のブール値)を指定します。</p>
 
 <p>例:</p>
 
@@ -1212,7 +1212,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 <h2>set_checkbox()</h2>
 
 <p>送信されたチェックボックスの状態を表示できます。
-第 1 引数にはチェックボックスの名前を指定します。第 2 引数には value に設定した値を指定します。第 3 引数(オプション)にはデフォルト値(TRUE/FALSEのブール値)を指定します。例:</p>
+第 1 引数にはチェックボックスの名前を指定します。第2引数には value に設定した値を指定します。第3引数(オプション)にはデフォルト値(TRUE/FALSEのブール値)を指定します。例:</p>
 
 <code>&lt;input type="checkbox" name="mycheck[]" value="1" <dfn>&lt;?php echo set_checkbox('mycheck[]', '1'); ?></dfn> /><br />
 &lt;input type="checkbox" name="mycheck[]" value="2" <dfn>&lt;?php echo set_checkbox('mycheck[]', '2'); ?></dfn> /></code>
