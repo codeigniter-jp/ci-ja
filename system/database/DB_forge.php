@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Code Igniter
  *
@@ -99,7 +99,7 @@ class CI_DB_forge {
 	{
 		if (is_array($key))
 		{
-			foreach($key as $one)
+			foreach ($key as $one)
 			{
 				$this->add_key($one, $primary);
 			}

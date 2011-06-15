@@ -1,9 +1,9 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | MIME TYPES
 | -------------------------------------------------------------------
-| This file contains an array of mime types.  It is used by the
+| This file contains an array of mime types. It is used by the
 | Upload class to help identify allowed file types.
 |
 */
@@ -51,12 +51,12 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'tgz'	=>	array('application/x-tar', 'application/x-gzip-compressed'),
 				'xhtml'	=>	'application/xhtml+xml',
 				'xht'	=>	'application/xhtml+xml',
-				'zip'	=>  array('application/x-zip', 'application/zip', 'application/x-zip-compressed'),
+				'zip'	=> array('application/x-zip', 'application/zip', 'application/x-zip-compressed'),
 				'mid'	=>	'audio/midi',
 				'midi'	=>	'audio/midi',
 				'mpga'	=>	'audio/mpeg',
 				'mp2'	=>	'audio/mpeg',
-				'mp3'	=>	array('audio/mpeg', 'audio/mpg', 'audio/mpeg3'),
+				'mp3'	=>	array('audio/mpeg', 'audio/mpg', 'audio/mpeg3', 'audio/mp3'),
 				'aif'	=>	'audio/x-aiff',
 				'aiff'	=>	'audio/x-aiff',
 				'aifc'	=>	'audio/x-aiff',
@@ -71,7 +71,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'jpeg'	=>	array('image/jpeg', 'image/pjpeg'),
 				'jpg'	=>	array('image/jpeg', 'image/pjpeg'),
 				'jpe'	=>	array('image/jpeg', 'image/pjpeg'),
-				'png'	=>	array('image/png',  'image/x-png'),
+				'png'	=>	array('image/png', 'image/x-png'),
 				'tiff'	=>	'image/tiff',
 				'tif'	=>	'image/tiff',
 				'css'	=>	'text/css',
@@ -97,7 +97,8 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'xlsx'	=>	'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 				'word'	=>	array('application/msword', 'application/octet-stream'),
 				'xl'	=>	'application/excel',
-				'eml'	=>	'message/rfc822'
+				'eml'	=>	'message/rfc822',
+				'json' => array('application/json', 'text/json')
 			);
 
 

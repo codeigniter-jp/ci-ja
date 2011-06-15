@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -42,7 +42,7 @@
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/general/encryption.html
  */
-class CI_SHA {
+class CI_SHA1 {
 
 	public function __construct()
 	{
@@ -74,10 +74,10 @@ class CI_SHA {
 
 		$x[$n * 16 - 1] = strlen($str) * 8;
 
-		$a =  1732584193;
+		$a = 1732584193;
 		$b = -271733879;
 		$c = -1732584194;
-		$d =  271733878;
+		$d = 271733878;
 		$e = -1009589776;
 
 		for ($i = 0; $i < count($x); $i += 16)
@@ -88,7 +88,7 @@ class CI_SHA {
 			$oldd = $d;
 			$olde = $e;
 
-			for($j = 0; $j < 80; $j++)
+			for ($j = 0; $j < 80; $j++)
 			{
 				if ($j < 16)
 				{
@@ -142,7 +142,7 @@ class CI_SHA {
 	// --------------------------------------------------------------------
 
 	/**
-	 *  Return result based on iteration
+	 * Return result based on iteration
 	 *
 	 * @access	private
 	 * @return	string

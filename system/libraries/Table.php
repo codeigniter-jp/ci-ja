@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -81,9 +81,9 @@ class CI_Table {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Set columns.  Takes a one-dimensional array as input and creates
+	 * Set columns. Takes a one-dimensional array as input and creates
 	 * a multi-dimensional array with a depth equal to the number of
-	 * columns.  This allows a single array with many elements to  be
+	 * columns. This allows a single array with many elements to be
 	 * displayed in a table that has a fixed column count.
 	 *
 	 * @access	public
@@ -108,7 +108,7 @@ class CI_Table {
 		}
 
 		$new = array();
-		while(count($array) > 0)
+		while (count($array) > 0)
 		{
 			$temp = array_splice($array, 0, $col_limit);
 
@@ -247,7 +247,7 @@ class CI_Table {
 			}
 		}
 
-		// Is there anything to display?  No?  Smite them!
+		// Is there anything to display? No? Smite them!
 		if (count($this->heading) == 0 AND count($this->rows) == 0)
 		{
 			return 'Undefined table data';
@@ -280,7 +280,7 @@ class CI_Table {
 			$out .= $this->template['heading_row_start'];
 			$out .= $this->newline;
 
-			foreach($this->heading as $heading)
+			foreach ($this->heading as $heading)
 			{
 				$temp = $this->template['heading_cell_start'];
 
@@ -310,7 +310,7 @@ class CI_Table {
 			$out .= $this->newline;
 
 			$i = 1;
-			foreach($this->rows as $row)
+			foreach ($this->rows as $row)
 			{
 				if ( ! is_array($row))
 				{
@@ -323,7 +323,7 @@ class CI_Table {
 				$out .= $this->template['row_'.$name.'start'];
 				$out .= $this->newline;
 
-				foreach($row as $cell)
+				foreach ($row as $cell)
 				{
 					$temp = $this->template['cell_'.$name.'start'];
 
@@ -367,13 +367,16 @@ class CI_Table {
 
 		$out .= $this->template['table_close'];
 
+		// Clear table class properties before generating the table
+		$this->clear();
+
 		return $out;
 	}
 
 	// --------------------------------------------------------------------
 
 	/**
-	 * Clears the table arrays.  Useful if multiple tables are being generated
+	 * Clears the table arrays. Useful if multiple tables are being generated
 	 *
 	 * @access	public
 	 * @return	void
@@ -492,7 +495,7 @@ class CI_Table {
 	 */
 	function _default_template()
 	{
-		return  array (
+		return array (
 						'table_open'			=> '<table border="0" cellpadding="4" cellspacing="0">',
 
 						'thead_open'			=> '<thead>',

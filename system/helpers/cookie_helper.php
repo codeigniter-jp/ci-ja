@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -37,18 +37,18 @@
  * @param	mixed
  * @param	string	the value of the cookie
  * @param	string	the number of seconds until expiration
- * @param	string	the cookie domain.  Usually:  .yourdomain.com
+ * @param	string	the cookie domain. Usually: .yourdomain.com
  * @param	string	the cookie path
  * @param	string	the cookie prefix
  * @return	void
  */
 if ( ! function_exists('set_cookie'))
 {
-	function set_cookie($name = '', $value = '', $expire = '', $domain = '', $path = '/', $prefix = '')
+	function set_cookie($name = '', $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = FALSE)
 	{
 		// Set the config file options
 		$CI =& get_instance();
-		$CI->input->set_cookie($name, $value, $expire, $domain, $path, $prefix);
+		$CI->input->set_cookie($name, $value, $expire, $domain, $path, $prefix, $secure);
 	}
 }
 
@@ -85,7 +85,7 @@ if ( ! function_exists('get_cookie'))
  * Delete a COOKIE
  *
  * @param	mixed
- * @param	string	the cookie domain.  Usually:  .yourdomain.com
+ * @param	string	the cookie domain. Usually: .yourdomain.com
  * @param	string	the cookie path
  * @param	string	the cookie prefix
  * @return	void

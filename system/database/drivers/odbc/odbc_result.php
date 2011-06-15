@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -120,7 +120,7 @@ class CI_DB_odbc_result extends CI_DB_result {
 	/**
 	 * Data Seek
 	 *
-	 * Moves the internal pointer to the desired offset.  We call
+	 * Moves the internal pointer to the desired offset. We call
 	 * this internally before fetching results to make sure the
 	 * result set starts at zero
 	 *
@@ -188,7 +188,7 @@ class CI_DB_odbc_result extends CI_DB_result {
 	 */
 	function _odbc_fetch_object(& $odbc_result) {
 		$rs = array();
-		$rs_obj = false;
+		$rs_obj = FALSE;
 		if (odbc_fetch_into($odbc_result, $rs)) {
 			foreach ($rs as $k=>$v) {
 				$field_name= odbc_field_name($odbc_result, $k+1);
@@ -210,7 +210,7 @@ class CI_DB_odbc_result extends CI_DB_result {
 	 */
 	function _odbc_fetch_array(& $odbc_result) {
 		$rs = array();
-		$rs_assoc = false;
+		$rs_assoc = FALSE;
 		if (odbc_fetch_into($odbc_result, $rs)) {
 			$rs_assoc=array();
 			foreach ($rs as $k=>$v) {
