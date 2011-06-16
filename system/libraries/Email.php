@@ -11,6 +11,9 @@
  * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
+ * 
+ * Modified by Kenji Suzuki, 2008/02/04
+ * - Fix function message() which breaks iso-2022-jp charactors
  */
 
 // ------------------------------------------------------------------------
@@ -379,7 +382,14 @@ class CI_Email {
 	 */
 	public function message($body)
 	{
-		$this->_body = stripslashes(rtrim(str_replace("\r", "", $body)));
+		if (strtolower($this->charset) == 'iso-2022-jp')
+		{
+			$this->_body = rtrim(str_replace("\r", "", $body));
+		}
+		else
+		{
+			$this->_body = stripslashes(rtrim(str_replace("\r", "", $body)));	
+		}
 		return $this;
 	}
 
