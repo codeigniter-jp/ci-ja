@@ -93,19 +93,19 @@ echo site_url($segments);</code>
 <p>設定ファイルで指定されているサイトのベース URL を返します。例:</p>
 <code>echo base_url();</code>
 
-<p>This function returns the same thing as site_url, without the <dfn>index_page</dfn> or <dfn>url_suffix</dfn> being appended.</p>
+<p>この関数は <dfn>index_page</dfn> と <dfn>url_suffix</dfn> の追加を除いた site_url() と同じ結果を返します。</p>
 
-<p>Also like site_url, you can supply segments as a string or an array.  Here is a string example:</p>
+<p>また site_url() のように、セグメントを文字列または配列として、この関数に渡すことができます。下記は文字列での例です:</p>
 
 <code>echo base_url("blog/post/123");</code>
 
-<p>The above example would return something like: http://example.com/blog/post/123</p>
+<p>上の例では、次のようなものが返されます:  http://example.com/blog/post/123</p>
 
-<p>This is useful because unlike site_url(), you can supply a string to a file, such as an image or stylesheet.  For example:</p>
+<p>この関数は site_url() とは違い、画像やスタイルシートなど、ファイルに文字列を渡すことができるのが便利です。例:</p>
 
 <code>echo base_url("images/icons/edit.png");</code>
 
-<p>This would give you something like: http://example.com/images/icons/edit.png</p>
+<p>上の例では、次のようなものが返されます: http://example.com/images/icons/edit.png</p>
 
 
 <h2>current_url()</h2>

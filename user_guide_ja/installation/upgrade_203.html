@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Upgrading from 2.0.2 to 2.0.3 : CodeIgniter User Guide</title>
+<title>2.0.2から2.0.3へのアップグレード: CodeIgniter ユーザガイド 日本語版</title>
 
 <style type='text/css' media='all'>@import url('../userguide.css');</style>
 <link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
@@ -28,8 +28,8 @@
 <div id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
-<td><h1>CodeIgniter User Guide Version 2.0.3</h1></td>
-<td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
 </tr>
 </table>
 </div>
@@ -41,10 +41,10 @@
 <tr>
 <td id="breadcrumb">
 <a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
-Upgrading from 2.0.2 to 2.0.3
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+2.0.2から2.0.3へのアップグレード
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -55,48 +55,48 @@ Upgrading from 2.0.2 to 2.0.3
 <!-- START CONTENT -->
 <div id="content">
 
-<h1>Upgrading from 2.0.2 to 2.0.3</h1>
+<h1>2.0.2から2.0.3へのアップグレード</h1>
 
-<p>Before performing an update you should take your site offline by replacing the index.php file with a static one.</p>
+<p>アップグレードの前には index.php を静的ページと置き換えてサイトを停止してください。</p>
 
 
-<h2>Step 1: Update your CodeIgniter files</h2>
+<h2>ステップ 1: CodeIgniter ファイルの更新(1/2)</h2>
 
-<p>Replace all files and directories in your "system" folder and replace your index.php file. If any modifications were made to your index.php they will need to be made fresh in this new one.</p>
+<p>"system" フォルダ内の全てのファイルとディレクトリを置き換え、そして index.php ファイルを置き換えます。もし、index.php に変更を加えている場合、新しい index.php に再度変更を加える必要があります。</p>
 
-<p class="important"><strong>Note:</strong> If you have any custom developed files in these folders please make copies of them first.</p>
+<p class="important"><strong>Note:</strong> もし、これらのフォルダの中のファイルを更新している場合は、必ず最初にコピーを残しておいてください。</p>
 
-<h2>Step 2: Update CodeIgniter files</h2>
+<h2>ステップ 2: CodeIgniter ファイルの更新(2/2)</h2>
 
-<p>Replace the files and directories in your "system" folder with the new versions:</p>
+<p>"system" フォルダ内の残り全てのファイルとディレクトリを新しいバージョンに置き換えます。</p>
 
-<h2>Step 3: Update your main index.php file</h2>
+<h2>ステップ 3: メインの index.php ファイルの更新</h2>
 
-<p>If you are running a stock <dfn>index.php</dfn> file simply replace your version with the new one.</p>
+<p>手を加えずに <dfn>index.php</dfn> を使用している場合は、古いバージョンのファイルを、新しいものに置き換えるだけです。</p>
 
-<p>If your <dfn>index.php</dfn> file has internal modifications, please add your modifications to the new file and use it.</p>
+<p>もし、<dfn>index.php</dfn> ファイルに変更を加えている場合、新しいファイルに再度変更を加える必要があります。</p>
 
-<h2>Step 4: Replace config/user_agents.php</h2>
+<h2>ステップ 4: config//user_agents.php の置き換え</h2>
 
-<p>This config file has been updated to contain more user agent types, please copy it to <kbd>application/config/user_agents.php</kbd>.</p>
+<p>この設定ファイルに、たくさんのユーザエージェントクラスが追加されていますので、このファイルを <kbd>application/config/user_agents.php</kbd> にコピーしてください。</p>
 
-<h2>Step 5: Change references of the EXT constant to ".php"</h2>
-<p class="important"><strong>Note:</strong> The EXT Constant has been marked as deprecated, but has not been removed from the application. You are encouraged to make the changes sooner rather than later.</p>
+<h2>ステップ 5: ".php" への EXT 定数のリファレンスを変更しました </h2>
+<p class="important"><strong>Note:</strong> EXT 定数は非推奨とされていますが、application から削除されていませんでした。すぐに変更することを推奨します。</p>
 
-<h2>Step 6: Remove APPPATH.'third_party' from autoload.php</h2>
+<h2>ステップ 6: autoload.php から APPPATH.'third_party' を削除しました</h2>
 
-<p>Open application/autoload.php, and look for the following:</p>
+<p>application/autoload.php を開いて、以下を探してください:</p>
 
 <code>$autoload['packages'] = array(APPPATH.'third_party');</code>
 
-<p>If you have not chosen to load any additional packages, that line can be changed to:</p>
+<p>もし任意の追加パッケージを使用していなければ、その行は次のように変更できます:</p>
 <code>$autoload['packages'] = array();</code>
 
-<p>Which should provide for nominal performance gains if not autoloading packages.</p>
+<p>もしパッケージを自動読み込みしていない場合は、公称性能向上のため設置してください。</p>
 
-<h2>Update Sessions Database Tables</h2>
+<h2>セッション保存用のデータベーステーブルを更新しました</h2>
 
-<p>If you are using database sessions with the CI Session Library, please update your <samp>ci_sessions</samp> database table as follows:</p>
+<p>もし、セッション保存用のデータベースを CI セッションライブラリと一緒に使用している場合、<samp>ci_sessions</samp> データベーステーブルを以下のように更新してください:</p>
 
 <code>
 	CREATE INDEX last_activity_idx ON ci_sessions(last_activity);
@@ -112,13 +112,13 @@ Upgrading from 2.0.2 to 2.0.3
 
 <div id="footer">
 <p>
-Previous Topic:&nbsp;&nbsp;<a href="index.html">Installation Instructions</a>
+前のトピック:&nbsp;&nbsp;<a href="index.html">インストール方法</a>
 &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-Next Topic:&nbsp;&nbsp;<a href="troubleshooting.html">Troubleshooting</a>
+<a href="#top">ページ先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="troubleshooting.html">トラブルシューティング</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>
