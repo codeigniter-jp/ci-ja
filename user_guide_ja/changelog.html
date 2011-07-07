@@ -60,43 +60,43 @@
 <p><img src="images/reactor-bullet.png" width="16" height="16" alt="Reactor Marker" /> 印は CodeIgniter Reactor から提供されたものです。</p>
 
 <h2>Version 2.0.3</h2>
-<p>リリース日付:  未リリース</p>
+<p>リリース日付: 未リリース</p>
 
 <ul>
 	<li>セキュリティ
 		<ul>
-			<li>データベースクライアント接続において、マルチバイトの文字セットを使用したサイトで、ベクトルポテンシャルが SQL インジェクションによって晒されるのを防ぐため、MySQL と MySQL ドライバの改善を行いました。<p>不適合とされる PHP 5.2.3と MySQL 5.0.7の組み合わせ <em>mysql_set_charset()</em> マルチバイトの文字セットを使用した環境で、攻撃ベクトルを利用した SQL インジェクションによって、晒される可能性が発生します。 Latin-1、UTF-8、他 "low ASCII" 文字セットなど、すべての環境において影響を受けるものではありません。</p> <p class="critical">もしデータベース接続において、マルチバイトの文字セットにて実行、または実行しようと考えているのなら、細心の注意を払ってください。脆弱性の影響を受けないよう、あなたのサーバ環境に展開してください。</p></li>
+			<li>データベースクライアント接続において、マルチバイトの文字セットを使用したサイトで、SQL インジェクションに晒されるのを防ぐため、MySQL と MySQLi ドライバの改善を行いました。<p><em>mysql_set_charset()</em> と非互換な PHP 5.2.3未満と MySQL 5.0.7未満の組み合わせでは、マルチバイトの文字セットを使用した環境では、潜在的な SQL インジェクション攻撃に晒される可能性があります。Latin-1、UTF-8、その他の "low ASCII" 文字セットの場合は、すべての環境において影響を受けません。</p> <p class="critical">もし、マルチバイトの文字セットでのデータベース接続を実行し、または、実行しようと考えているのなら、脆弱性の影響を受けないよう、サーバ環境に細心の注意を払ってください。</p></li>
 		</ul>
 	<li>全体的な変更
 		<ul>
-			<li>index.php のコードのコメント内にあるスペルミスを修正しました。</li>
-			<li>出力プロファイラに、セッションクラスユーザデータを追加しました。さらに HTTP ヘッダー、セッションデータと Config 変数に show/hide トグルを追加しました。</li>
+			<li>index.php ファイルのコードのコメント内にあるスペルミスを修正しました。</li>
+			<li>出力プロファイラに、セッションクラスのユーザデータを追加しました。さらに HTTP ヘッダ、セッションデータと設定変数に show/hide トグルを追加しました。</li>
 			<li><samp>EXT</samp> 定数の内部的使用を削除しました。</li>
-			<li>welcome_message view ファイルと、デフォルトのエラーテンプレートの見た目を変更しました。 <a href="https://bitbucket.org/danijelb">danijelb</a> さんの pull リクエストに感謝します。</li>
-			<li>PostgreSQL データベースのドライバに <samp>insert_batch()</samp> 関数を追加しました。 epallerols さんのパッチに感謝します。</li>
+			<li>welcome_message ビューファイルと、デフォルトのエラーテンプレートの見た目を更新しました。<a href="https://bitbucket.org/danijelb">danijelb</a> さんの pull リクエストに感謝します。</li>
+			<li>PostgreSQL データベースのドライバに <samp>insert_batch()</samp> 関数を追加しました。epallerols さんのパッチに感謝します。</li>
 
 		</ul>
 	</li>
 	<li>ヘルパー
 		<ul>
-			<li>HTML属性を追加する際に見出しタグをレンダリングし、 <samp>heading()</samp> で第3引数(オプション)を追加することができます。</li>
+			<li>レンダリングされた見出しタグに HTML 属性を追加できるように <samp>heading()</samp> に第3引数(オプション)を追加しました。</li>
 		</ul>
 	</li>
 	<li>ライブラリ
 		<ul>
-			<li>user_agent 文字列に対して longer match を使用するよう、設定を変更しました。データベースの設定を使用している場合は、<a href="installation/upgrade_203.html">2.0.2から2.0.3へのアップグレード</a> を確認してください。</li>
+			<li>セッションで、ユーザエージェント文字列の照合で照合する文字数を増やしました。データベースセッションを使用している場合は、アップグレードの注意事項 [ 訳注: <a href="installation/upgrade_203.html">2.0.2から2.0.3へのアップグレード</a> ] を確認してください。</li>
 		</ul>
 	</li>
 </ul>
 
 <h3>2.0.3の不具合修正</h3>
 <ul>
-	<li class="reactor">予約定数の環境を追加しました。 (Reactor #196)</li>
-	<li class="reactor">SCRIPT_NAME が確実に定義されているか、サーバをチェックするよう変更しました。 (Reactor #57)</li>
-	<li class="reactor">オートローダから不必要なファイル統計を無効にし、もし1つもパッケージが存在しないか、デベロッパが他のパッケージをデフォルトで読み込まない場合、パッケージから <samp>APPPATH.'third_party'</samp> を削除します。</li>
-	<li>ライブラリデータベースのテーブル、 last_activity で SQL に index が含まれていない不具合(Reactor #231)を修正しました。 <a href="installation/upgrade_203.html">2.0.2から2.0.3へのアップグレード</a> を確認してください。</li>
-	<li>ライブラリドキュメント内の SQL に不正な SQL が含まれている不具合(Reactor #229)を修正しました。</li>
-	<li>第2引数を $this->db->select() へ渡してしまう不具合(Core #340)を修正しました。後続クエリの中でカラム名が正しくエスケープする必要はありません。</li>
+	<li class="reactor">ENVIRONMENT を予約された定数に追加しました。(Reactor #196)</li>
+	<li class="reactor">SCRIPT_NAME が確実に定義されているか、サーバをチェックするよう変更しました。(Reactor #57)</li>
+	<li class="reactor">もし、パッケージが存在しない場合、または、開発者が他のパッケージをデフォルトで読み込まない場合に、不必要なファイル統計を取得しないように、パッケージオートローダから <samp>APPPATH.'third_party'</samp> を削除しました。</li>
+	<li>セッションライブラリデータベースのテーブルの SQL の例で、last_activity にインデックスが含まれていない不具合(Reactor #231)を修正しました。<a href="installation/upgrade_203.html">アップグレードの注意事項</a> を確認してください。</li>
+	<li>セッションライブラリのドキュメント内の SQL に不正な SQL が含まれている不具合(Reactor #229)を修正しました。</li>
+	<li>第2引数を $this->db->select() へ渡す際に、続くクエリの中でカラム名が正しくエスケープされない不具合(Core #340)を修正しました。</li>
 </ul>
 
 <h2>Version 2.0.2</h2>
