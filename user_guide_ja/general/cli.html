@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CLI からの実行 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.2</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ</a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+CLI からの実行
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>CLI からの実行</h1>
+
+<p>
+ブラウザに URL を入力してアプリケーションを呼び出すように、コマンドラインインターフェイス (CLI) から <a href="./controllers.html">コントローラ</a> を呼び出ことができます。
+</p>
+
+
+<ul>
+<li><a href="#what">CLI とは？</a></li>
+<li><a href="#why">なぜコマンドラインから実行するのか？</a></li>
+<li><a href="#how">やってみましょう:&nbsp; Hello World!</a></li>
+</ul>
+
+
+<a name="what"></a>
+<h2>CLI とは？</h2>
+
+<p><dfn>CLI は、コンピュータをテキストベースの対話形式で操作する方法です。</dfn>詳細は、<a href="http://en.wikipedia.org/wiki/Command-line_interface">Wikipedia の記事</a>を参照してください。</p>
+
+<a name="why"></a>
+
+<h2>なぜコマンドラインから実行するのか？</h2>
+
+<p>
+	コマンドラインから CodeIgniter を実行する理由はいくつもありますが、必ずしも明確な理由ではありません。</p>
+
+<ul>
+	<li>wget や curl を使用しなくても cron ジョブを実行することができます。</li>
+	<li><kbd>IS_CLI</kbd> をチェックすることで cron ジョブに URL からアクセスできないようにできます。</li>
+	<li>パーミッションの設定、キャッシュフォルダのファイル削除、バックアップの作成などの "タスク" が対話形式に実行できます。</li>
+	<li>他の言語によるアプリケーションと統合します。 例えば C++ のスクリプトをランダムに1つのコマンドとして呼び出したり、モデル内でそのコードを実行することができます！</li>
+</ul>
+
+<a name="how"></a>
+<h2>やってみましょう:&nbsp; Hello World!</h2>
+
+<p>実際の動作を確認するために簡単なコントローラーを作成しましょう。 テキストエディタで、 <dfn>tools.php</dfn> を作成し、以下のコードを入力してください。:</p>
+
+<textarea class="textarea" style="width:100%" cols="50" rows="10">
+&lt;?php
+class Tools extends CI_Controller {
+
+	public function message($to = 'World')
+	{
+		echo "Hello {$to}!".PHP_EOL;
+	}
+}
+?&gt;
+</textarea>
+
+<p>次に、このファイルを <dfn>application/controllers/</dfn> フォルダに保存します。</p>
+
+<p>通常は次の URL にアクセスすることでサイトを閲覧することができます。:</p>
+
+<code>example.com/index.php/<var>tools</var>/<var>message</var>/<var>to</var></code>
+
+<p>CodeIgniter プロジェクトを操作するために Mac/Linux ではターミナルを開き、Windows では "cmd" を実行します。</p>
+
+<blockquote>
+	$ cd /path/to/project;<br/>
+	$ php index.php tools message
+</blockquote>
+
+<p>正しく操作すれば <samp>Hello World!</samp> と表示されるはずです。</p>
+
+<blockquote>
+	$ php index.php tools message "John Smith"
+</blockquote>
+
+<p>URL の引数と同じように引数を渡すことができます。"John Smith" を引数として渡すことで、次のように表示されます。: <samp>Hello John Smith!</samp>.</p>
+
+<h2>これだけです！</h2>
+
+<p>コマンドラインでコントローラを使う方法をとても簡単に説明しました。ルーティングと _remap は正常に動作し、通常のコントローラと同じように扱えることを覚えておいてください。</p>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="urls.html">CodeIgniter の URL</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="reserved_names.html">予約語一覧</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

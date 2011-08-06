@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>インストール方法 : CodeIgniter ユーザガイド 日本語版</title>
+
+<style type='text/css' media='all'>@import url('../userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='../userguide.css' />
+
+<script type="text/javascript" src="../nav/nav.js"></script>
+<script type="text/javascript" src="../nav/prototype.lite.js"></script>
+<script type="text/javascript" src="../nav/moo.fx.js"></script>
+<script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td id="breadcrumb_right"><a href="../toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+インストール方法
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>インストール方法</h1>
+
+<p>CodeIgniter は次の4つのステップでインストールできます:</p>
+
+<ol>
+<li>ZIP パッケージを展開します。</li>
+<li>サーバに CodeIgniter のフォルダとファイルをアップロードします。通常は、index.php ファイルがルートになります。</li>
+<li><dfn>application/config/config.php</dfn> ファイルをテキストエディタで開き、ベース URL を記入します。暗号化、もしくはセッションを利用する際には暗号鍵を記入します。</li>
+<li>データベースを使用する際には、<dfn>application/config/database.php</dfn> ファイルをテキストエディタで開き、データベースの設定を記入します。</li>
+</ol>
+
+<p>CodeIgniter のファイルの設置場所を隠すことでセキュリティを高めたい場合は、<dfn>system</dfn> および <dfn>application</dfn> フォルダを別の名前に変更することができます。これらのフォルダ名を変更した場合は、<kbd>index.php</kbd> を開き <samp>$system_folder</samp> 変数と <samp>$application_folder</samp> 変数の値を新しいフォルダ名に書き換えてください。</p>
+
+<p>セキュリティ的にベストなのは、<dfn>system</dfn> および <dfn>application</dfn> フォルダをブラウザから直接アクセスできない位置に移すことです。デフォルトでは、ぞれぞれのフォルダに置かれた .htaccess ファイルにより、直接アクセスすることができないようになっています。しかし、Web サーバの設定変更や .htaccess に対応しない場合に備えて、これらは公開ディレクトリには置かないのがベストです。</p>
+
+<p>各フォルダを移動した場合は、
+  <kdb>index.php を開き <samp>$system_folder</samp> 変数と <samp>$application_folder</samp> 変数の値をフルパスで指定するのが好ましいでしょう。 例) '<dfn>/www/MyUser/system</dfn>'.</kdb>
+</p>
+
+<p>
+  追加の対策として、本番環境での PHP のエラー報告と、
+  他の開発専用の機能を無効にしました。CodeIgniter では、
+  <kbd>環境定数</kbd>は、設定することによって使用することができます。
+  詳細は<a href="../general/security.html">セキュリティクラス</a>を確認してください。
+</p>
+
+<p>これで終わりです！</p>
+
+<p>初めて CodeIgniter を使うのでしたら、ユーザガイドの<a href="../overview/getting_started.html">はじめよう</a>から読んでみてください。
+動的な PHP アプリケーションの構築方法を学習できますよ！</p>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="../general/credits.html">クレジット表示</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="upgrading.html">以前のバージョンからのアップグレード</a>
+</p>
+
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>

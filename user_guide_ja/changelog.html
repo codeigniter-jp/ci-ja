@@ -1,0 +1,1353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+
+<style type='text/css' media='all'>@import url('userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='userguide.css' />
+
+<script type="text/javascript" src="./nav/nav.js"></script>
+<script type="text/javascript" src="./nav/prototype.lite.js"></script>
+<script type="text/javascript" src="./nav/moo.fx.js"></script>
+<script type="text/javascript" src="./nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+<meta name='author' content='ExpressionEngine Dev Team' />
+<meta name='description' content='CodeIgniter ユーザガイド' />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>変更履歴 : CodeIgniter ユーザガイド 日本語版</title>
+
+</head>
+<body>
+
+<!-- START NAVIGATION -->
+<div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('./');</script></div></div>
+<div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="./images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle 目次" alt="Toggle 目次" /></a></div>
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>CodeIgniter ユーザガイド 日本語版 Version 2.0.3</h1></td>
+<td id="breadcrumb_right"><a href="./toc.html">目次ページ </a></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+
+<!-- START BREADCRUMB -->
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
+<a href="index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+変更履歴
+</td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+</tr>
+</table>
+<!-- END BREADCRUMB -->
+
+<br clear="all" />
+
+
+<!-- START CONTENT -->
+<div id="content">
+
+<h1>変更履歴</h1>
+
+<p><img src="images/reactor-bullet.png" width="16" height="16" alt="Reactor Marker" /> 印は CodeIgniter Reactor から提供されたものです。</p>
+
+<h2>Version 2.0.3</h2>
+<p>リリース日付: 未リリース</p>
+
+<ul>
+	<li>セキュリティ
+		<ul>
+			<li>データベースクライアント接続において、マルチバイトの文字セットを使用したサイトで、潜在的な SQL インジェクションの経路が開かれたままになるのを防ぐよう MySQL と MySQLi ドライバの改善を行いました。<p><em>mysql_set_charset()</em> と非互換な PHP 5.2.3未満と MySQL 5.0.7未満の組み合わせでは、マルチバイトの文字セットを使用した環境では、SQL インジェクションの攻撃経路を無防備な状態にさらすことになりかねません。Latin-1、UTF-8、その他の "low ASCII" 文字セットの場合は、すべての環境において影響を受けません。</p> <p class="critical">もし、マルチバイトの文字セットでのデータベース接続を実行し、または、実行しようと考えているのなら、脆弱性の影響を受けないよう、サーバ環境に細心の注意を払ってください。</p></li>
+		</ul>
+	<li>全体的な変更
+		<ul>
+			<li>index.php ファイルのコードのコメント内にあるスペルミスを修正しました。</li>
+			<li>出力プロファイラに、セッションクラスのユーザデータを追加しました。さらに HTTP ヘッダ、セッションデータと設定変数に show/hide トグルを追加しました。</li>
+			<li><samp>EXT</samp> 定数の内部的使用を削除しました。</li>
+			<li>welcome_message ビューファイルと、デフォルトのエラーテンプレートの見た目を更新しました。<a href="https://bitbucket.org/danijelb">danijelb</a> さんの pull リクエストに感謝します。</li>
+			<li>PostgreSQL データベースのドライバに <samp>insert_batch()</samp> 関数を追加しました。epallerols さんのパッチに感謝します。</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li>レンダリングされた見出しタグに HTML 属性を追加できるように <samp>heading()</samp> に第3引数(オプション)を追加しました。</li>
+		</ul>
+	</li>
+	<li>ライブラリ
+		<ul>
+			<li>セッションで、ユーザエージェント文字列の照合で照合する文字数を増やしました。データベースセッションを使用している場合は、アップグレードの注意事項 [ 訳注: <a href="installation/upgrade_203.html">2.0.2から2.0.3へのアップグレード</a> ] を確認してください。</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>2.0.3の不具合修正</h3>
+<ul>
+	<li class="reactor">ENVIRONMENT を予約された定数に追加しました。(Reactor #196)</li>
+	<li class="reactor">SCRIPT_NAME が確実に定義されているか、サーバをチェックするよう変更しました。(Reactor #57)</li>
+	<li class="reactor">もし、パッケージが存在しない場合、または、開発者が他のパッケージをデフォルトで読み込まない場合に、不必要なファイル統計を取得しないように、パッケージオートローダから <samp>APPPATH.'third_party'</samp> を削除しました。</li>
+	<li>セッションライブラリデータベースのテーブルの SQL の例で、last_activity にインデックスが含まれていない不具合(Reactor #231)を修正しました。<a href="installation/upgrade_203.html">アップグレードの注意事項</a> を確認してください。</li>
+	<li>セッションライブラリのドキュメント内の SQL に不正な SQL が含まれている不具合(Reactor #229)を修正しました。</li>
+	<li>第2引数を $this->db->select() へ渡す際に、続くクエリの中でカラム名が正しくエスケープされない不具合(Core #340)を修正しました。</li>
+</ul>
+
+<h2>Version 2.0.2</h2>
+<p>リリース日付: 2011年4月7日<br />
+Hg Tag: v2.0.2</p>
+
+<ul>
+	<li>全体的な変更
+		<ul>
+			<li><a href="./libraries/security.html">セキュリティクラス</a> は core ディレクトリに移動し自動的に呼び出されるようになりました。手動で呼び出している場合にはそれを削除してください。</li>
+			<li>CI_SHA クラスは非推奨になりました。PHP の全てのバージョンで <kbd>sha1()</kbd> 関数が提供されています。</li>
+			<li class="reactor"> <kbd>constants.php</kbd> は、環境設定毎のフォルダにファイルが存在すれば呼び出されるようになりました。</li>
+			<li class="reactor">言語ファイルの key エラーをログに記録するようになりました。</li>
+			<li class="reactor">複数環境サポートはオプションになりました。使用しない場合、環境設定をコメントアウトまたは削除してください。</li>
+			<li class="reactor">フックが複数環境サポートに対応しました。</li>
+			<li class="reactor"><a href="libraries/caching.html">キャッシングドライバ</a> に CI_ プリフィックスが追加されました。</li>
+			<li class="reactor"><a href="./general/cli.html">CLIの使い方</a> がドキュメントに追加されました。</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li>以前から非推奨となっていた <kbd>dohash()</kbd> が<a href="./helpers/security_helper.html">セキュリティヘルパー</a> から削除されました。代わりに <kbd>do_hash()</kbd> を使用してください。</li>
+			<li class="reactor">渡した文字列のキャピタライゼーションを損なわないように plural 関数が変更されました。全て大文字の場合も考慮されています。</li>
+		</ul>
+	</li>
+	<li>データベース
+		<ul>
+			<li class="reactor"><kbd>$this->db->count_all_results()</kbd> が文字列の代わりに数値を返すようになりました。</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>2.0.2の不具合修正</h3>
+<ul>
+	<li class="reactor">出力クラスの parse_exec_vars が protected に修正されました。(Reactor #145)</li>
+	<li class="reactor">Windows またはセーフモードが有効な状態で、 is_really_writable が空ファイルを作る不具合 (Reactor #80) が修正されました。</li>
+	<li class="reactor">ユーザガイドのさまざまな不具合が修正されました。</li>
+	<li class="reactor">is_cli_request() メソッドが <a href="libraries/input.html">入力クラス</a> のドキュメントに追加されました。</li>
+	<li class="reactor">form_validation クラスのルールに <kbd>decimal</kbd>、<kbd>less_than</kbd> と <kbd>greater_than</kbd> が追加されました。</li>
+	<li class="reactor"><a href="https://bitbucket.org/ellislab/codeigniter-reactor/issue/153/escape-str-bug-in-mssql-driver">issue #153</a> MSSQL ドライバの文字列エスケープの不具合が修正されました。</li>
+	<li class="reactor"><a href="https://bitbucket.org/ellislab/codeigniter-reactor/issue/172/bug-in-chrome-and-form_open-in-201">issue #172</a> Google Chrome 11で URL にアクションを指定しない場合、誤ったアクションに移動する不具合が修正されました。</li>
+
+</ul>
+
+<h2>Version 2.0.1</h2>
+<p>リリース日付: 2011年3月15日<br />
+Hg Tag: v2.0.1</p>
+
+<ul>
+	<li>全体的な変更
+		<ul>
+			<li>セキュア (HTTPS) クッキーをセットするたの <kbd>$config['cookie_secure']</kbd> が設定ファイルに追加されました。</li>
+			<li class="reactor">Core と Reactor を区別するための定数 <kbd>CI_CORE</kbd> が追加されました。Core: TRUE、Reactor: FALSE。</li>
+			<li class="reactor">index.php に定数 <kbd>ENVIRONMENT</kbd> が追加され、PHP のエラー報告や、
+		オプションでロードされる設定ファイルに影響します(以下を参照)。<a href="general/environments.html">環境の取扱い</a>のページをご覧ください。</li>
+			<li class="reactor"><a href="libraries/config.html#environments">環境固有</a>の設定ファイルのサポートが追加されました。</li>
+		</ul>
+	</li>
+	<li>ライブラリ
+		<ul>
+			<li class="reactor"><kbd>decimal</kbd>, <kbd>less_than</kbd> and <kbd>greater_than</kbd> ルールが<a href="libraries/form_validation.html">フォームバリデーション(検証)クラス</a>に追加されました。</li>
+			<li class="reactor"><a href="libraries/input.html">入力クラス</a>の <kbd>post()</kbd> と <kbd>get()</kbd> メソッドは第1引数が指定されない場合、配列全体を返すようになりました。</li>
+			<li class="reactor">セキュアクッキーが <kbd>set_cookie()</kbd> ヘルパーと<a href="libraries/input.html">入力クラス</a>のメソッドで指定出きるようになりました。</li>
+			<li class="reactor"><a href="libraries/output.html">出力クラス</a>に <kbd>set_content_type()</kbd> が追加され、<kbd>Content-Type</kbd> HTTP ヘッダを MIME タイプまたは config/mimes.php の配列のキーに基づき出力します。</li>
+			<li class="reactor"><a href="libraries/output.html">出力クラス</a>がメソッドチェーンをサポートするようになりました。</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li class="reactor"><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_open()</kbd> はロジックが変更され、値が渡されない場合、現在の URL に投稿するようになりました。</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>2.0.1の不具合修正</h3>
+<ul>
+	<li class="reactor">CLI リクエストは、index.php のあるフォルダに移動した後でなく、どのフォルダからでも実行できるようになりました。</li>
+	<li class="reactor">issue #41 の修正: mp3 の MIME タイプとして audio/mp3 が追加されました。</li>
+	<li class="reactor">ファイルキャッシングドライバが誤ったキャッシュディレクトリを参照していた不具合 (Core #329) を修正しました。</li>
+	<li class="reactor">SHA1 ライブラリの名前が誤っていた不具合 (Reactor #69) を修正しました。</li>
+</ul>
+
+<h2>Version 2.0.0</h2>
+<p>リリース日付: 2011年1月28日<br />
+Hg Tag: v2.0.0</p>
+
+<ul>
+	<li>全体的な変更
+		<ul>
+			<li>PHP 4への対応は打ち切られました。動作には PHP 5.1.6以上が必要です。</li>
+			<li>以前から非推奨であった Scaffolding 機能は削除されました。</li>
+			<li>プラグイン機能は削除されました。代わりにヘルパーを使用してください。CAPTCHA プラグインはヘルパーに変更されました(<a href="./helpers/captcha_helper.html">ドキュメント</a>)。JavaScript カレンダープラグインは、jQuery 等に有用なものがあるため、削除されました。</li>
+			<li><a href="./general/drivers.html">ドライバ</a>機能が追加されました。</li>
+			<li class="reactor">完全な QUERY STRING に対応しました。詳細は設定ファイルを参照してください。</li>
+			<li>application フォルダを system の外に移動しました。</li>
+			<li>system/cache ディレクトリと system/logs ディレクトリを application ディレクトリの中に移動しました。</li>
+			<li>index.php 内でルーティングをオーバーライドできるようになりました。 &quot;index&quot; ファイル毎にルーティングの上書きが可能です。</li>
+			<li>index.php 内のデータセットから、設定値を直接設定 (または上書き) できるようになりました。これにより、それぞれ独自の設定値を持つ複数のコントローラからひとつのアプリケーションを使用できます。</li>
+			<li>設定ファイルに <kbd>$config['directory_trigger']</kbd> を追加しました。URI セグメントの代わりに $_GET 文字列で動かしているときでも、コントローラのサブディレクトリを指定できます。</li>
+			<li>パッケージのパスを指定できるようになりました。ローダーと設定クラスは要求があると、指定されたパスを最初に探しにいこうとします。これにより、サブアプリケーションの配布において、ひとつのパッケージディレクトリで独自のライブラリやモデル、設定ファイルを使用することができます。詳細は<a href="libraries/loader.html">ローダ (読み込み処理) クラス</a>のドキュメントを参照してください。</li>
+			<li>開発中のコードは現在 <a href="http://bitbucket.org/ellislab/codeigniter-reactor/">BitBucket</a> でホスティングされています。</li>
+			<li>非推奨となっていた Validation クラスは削除されました [ 訳注: 代わりに Form_validation クラスを使用してください ]。</li>
+			<li>すべてのコアクラスに CI_ というプレフィックスを追加しました。</li>
+			<li class="reactor">パッケージのパスは application/config/autoload.php で設定できます。</li>
+			<li class="reactor"><a href="libraries/file_uploading.html">アップロードクラス</a>で拡張子なしのファイル名を指定できるようになりました。拡張子は、ファイル名の代わりにアップロードされたファイルから与えられます。</li>
+			<li class="reactor"><a href="database/forge.html">データベースフォージクラス</a>において、テーブル名を変更していない場合は名前を省略できるようになりました。</li>
+			<li class="reactor"><kbd>$config['base_url']</kbd> はデフォルトで空になり、自動的に推測されるようになりました。</li>
+			<li class="reactor"><kbd>config['uri_protocol'] = 'CLI'</kbd> とすることで、コマンドラインインターフェイス互換が利用できるようになりました。</li>
+		</ul>
+	<li>ライブラリ
+		<ul>
+			<li class="reactor"><a href="libraries/caching.html">キャッシュドライバ</a>を追加しました。APC、memcached およびファイルベースをサポートします。</li>
+			<li><a href="./libraries/pagination.html">ページネーションクラス</a>で <var>$prefix</var>、 <var>$suffix</var> および <var>$first_url</var> を指定できるようになりました。</li>
+			<li><a href="./libraries/pagination.html">ページネーションクラス</a>で first、previous、next、last および各ページへのリンクを FALSE とすることで、それぞれ非表示にできるようになりました。</li>
+			<li><a href="./libraries/security.html">セキュリティクラス</a>を追加しました。現在のところ、<dfn>xss_clean</dfn> メソッド、<dfn>filename_security</dfn> メソッド他のセキュリティに関する機能が使用できます。</li>
+			<li><a href="./libraries/security.html">セキュリティクラス</a>に CSRF (クロスサイトリクエストフォージェリ) 保護を追加しました。</li>
+			<li>出力クラスに <var>$parse_exec_vars</var> プロパティを追加しました。</li>
+			<li><a href="general/profiling.html">プロファイラクラス</a>において、個々のプロファイラセクションの有効化/無効化を指定できるようになりました。</li>
+			<li><a href="./libraries/file_uploading.html">ファイルアップロードクラス</a>にワイルドカードオプション  <kbd>$config['allowed_types'] = '*'</kbd> を追加しました。</li>
+			<li>XML-RPC クラスに設定値 'object' を追加しました。これにより、要求されたメソッドを探すために、$CI スーパーオブジェクトにある assuming の代わりにオブジェクトを指定できます。</li>
+			<li>ユニットテストクラスで使用できるリストに "is_object" を追加しました。</li>
+			<li>HTML テーブルクラスは空もしくは NULL でもセルを出力します。</li>
+			<li>HTML テーブルクラスで個々のセルのタグの属性を指定できるようになりました。</li>
+			<li><a href="libraries/parser.html">テンプレートパーサクラス</a>に <kbd>parse_string()</kbd> メソッドを追加しました。</li>
+			<li><a href="general/profiling.html">プロファイラクラス</a>の出力に HTTP ヘッダおよび設定情報を追加しました。</li>
+			<li><a href="libraries/user_agent.html">ユーザエージェントクラス</a>の <kbd>browser()</kbd> メソッドで判別できるリストに Chrome と Flock を追加しました。</li>
+			<li><a href="libraries/unit_testing.html">ユニットテストクラス</a>において、オプションで "notes" フィールドが使えるようになりました。また、 <kbd>$this-&gt;unit-&gt;set_test_items()</kbd> を使用して、テスト結果を個別に表示できるようになりました。</li>
+			<li>XML-RPC クラスのクラス変数 <kbd>$xss_clean</kbd> により、セキュリティクラスの <kbd>xss_clean()</kbd> メソッドを使用できるようになりました。</li>
+			<li><a href="libraries/ftp.html">FTP メソッド</a>に <kbd>download()</kbd> メソッドを追加しました。</li>
+			<li><kbd>do_xss_clean()</kbd> メソッドでアップロードファイルの XSS チェックに失敗したときは FALSE を返すように変更しました。</li>
+			<li>アップロードクラスにおいて、$_FILES の type の値を stripslashes() と trim() で処理するように変更しました。</li>
+			<li><kbd>$this-&gt;zip-&gt;read_dir('/path/to/directory', FALSE)</kbd> メソッドに第2引数 (boolean) を追加しました。ZIP アーカイブを作成するときに、指定フォルダまでのパスで、空のフォルダを含まないようにできます。</li>
+			<li>画像操作クラスにおいて、GD ライブラリで PNG の透過画像のリサイズが行なえるようになりました。</li>
+			<li>セッションクラスを使用する際は、設定ファイル内で暗号化キー (encryption_key) の指定が必須になりました。</li>
+			<li>セッションクラスに新たな設定項目 <kbd>sess_expire_on_close</kbd> を追加しました。ブラウザが閉じられると自動で期限切れにすることができます。</li>
+			<li>Mcrypt が利用可能なサーバにおいて、暗号化クラスのパフォーマンスが向上しました。</li>
+			<li>暗号化クラスにおいて、標準の暗号化方式を CBC に変更しました。</li>
+			<li><kbd>encode_from_legacy()</kbd> メソッドを追加しました。CodeIgniter 1.x で暗号化されたデータを CodeIgniter 2.x に移行するのに使用します。
+				詳細は「<a href="./installation/upgrade_200.html">以前のバージョンからのアップグレード</a>」をご覧ください。</li>
+			<li>Form_Validation クラスの <kbd>set_rules()</kbd>, <kbd>set_message()</kbd> および <kbd>set_error_delimiters()</kbd> メソッドにおいて、"メソッドの連結" ができるようになりました。</li>
+			<li>Email クラスで "メソッドの連結" ができるようになりました。</li>
+			<li>入力クラスに <kbd>request_headers()</kbd>, <kbd>get_request_header()</kbd> および <kbd>is_ajax_request()</kbd> メソッドを追加しました。</li>
+			<li class="reactor"><a href="libraries/user_agent.html">ユーザエージェントクラス</a> の <kbd>is_browser()</kbd>, <kbd>is_mobile()</kbd> および <kbd>is_robot()</kbd> メソッドで、特定のブラウザおよび携帯デバイスをチェックできるようになりました。</li>
+			<li class="reactor"><a href="libraries/input.html">入力クラス</a> の <kbd>post()</kbd> と <kbd>get()</kbd> が、引数を与えなかった場合にPOSTとGETそれぞれの値をすべて返すようになりました。</li>
+		</ul>
+	</li>
+	<li>データベース
+		<ul>
+			<li><a href="./database/configuration.html">データベース設定</a>。</li>
+			<li><a href="./database/configuration.html">データベース設定</a>に設定値 <kbd>autoinit</kbd> を追加しました。</li>
+			<li><a href="./database/configuration.html">データベース設定</a>に設定値 <kbd>stricton</kbd> を追加しました。</li>
+			<li><a href="database/utilities.html">データベースユーティリティクラス</a>に <kbd>database_exists()</kbd> メソッドを追加しました。</li>
+			<li>db-&gt;version() メソッドにおいて、それ用の SQL クエリの代わりに、例外的に関数でバージョンを取得するデータベースのリストを変更しました。現在、このリストは Oracle と SQLite のみです。</li>
+			<li> <kbd>field_data()</kbd> メソッドにおいて、ドライバの特定のテーブル識別子保護機能が不正なクエリを発行することがある不具合を修正しました。</li>
+			<li>データベースドライバにおいて、未定義のクラス変数が参照されていた不具合を修正しました。</li>
+			<li>問題があるクエリのデータベースエラーでファイル名と行数を表示するように変更しました。</li>
+			<li>廃止予定であった次のメソッドを削除しました: orwhere, orlike, groupby, orhaving, orderby, getwhere</li>
+			<li>非推奨であった drop_database() と create_database() メソッドをデータベースユーティリティドライバから削除しました。</li>
+			<li>データベースフォージクラスにおいて、Postgres のドライバの create_table() メソッドを改良しました。</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li><a href="./helpers/text_helper.html">テキストヘルパー</a>に <kbd>convert_accented_characters()</kbd> メソッドを追加しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_open()</kbd> 関数で挿入される属性のリストに accept-charset を追加しました。</li>
+			<li>命名規則により、<kbd>dohash()</kbd> 関数は推奨されないので <kbd>do_hash()</kbd> を使用してください。</li>
+			<li><a href="helpers/file_helper.html">ファイルヘルパー</a>の <kbd>get_dir_file_info()</kbd> メソッドにおいて、以前のバージョンと互換性のない変更がありました。もう責任ある利用の観点により
+				デフォルトでは再帰処理を行ないません (気を付けないとこの関数はサーバのパフォーマンスの問題を引き起こし得ます) 。</li>
+			<li><a href="helpers/directory_helper.html">ディレクトリヘルパー</a>の <kbd>directory_map()</kbd> メソッドにおいて、再帰的に探索する深さを第2引数で指定できるようになりました。</li>
+			<li><a href="helpers/file_helper.html">ファイルヘルパー</a>の <kbd>delete_files()</kbd> メソッドでにおいて、失敗したときは FALSE を返すように変更しました。</li>
+			<li><a href="helpers/number_helper.html">数字ヘルパー</a>の <kbd>byte_format()</kbd> メソッドの第2引数で精度を指定できるようになりました。</li>
+			<li><a href="helpers/string_helper.html">文字列ヘルパー</a>の <kbd>random_string()</kbd> 関数に文字列のタイプとして alpha と sha1 を追加しました。</li>
+			<li><kbd>prep_url()</kbd> 関数で、すでにスキーマ [ 訳注: "http://" など ] がついた文字列が与えられた場合、先頭に http:// を追加しないように変更しました。</li>
+			<li>ファイルヘルパーの <kbd>get_file_info()</kbd> 関数で、更新時刻の取得に filectime() から filemtime() を使うように変更しました。</li>
+			<li><kbd>smiley_js()</kbd> 関数で、script タグを含まない JavaScript を返すオプションの第3引数を追加しました。</li>
+			<li><a href="./helpers/html_helper.html">HTML ヘルパー</a>の <kbd>img()</kbd> メソッドは、alt 属性が指定されない場合、空の alt 属性を出力するようになりました。</li>
+			<li>アプリケーションの設定ファイルで CSRF が有効になっている場合、<kbd>form_open()</kbd> は自動的に hidden フィールドを挿入します。</li>
+		  <li><a href="./helpers/security_helper.html">セキュリティヘルパー</a>に <kbd>sanitize_filename()</kbd> 関数を追加しました。</li>
+			<li><a href="./helpers/text_helper.html">テキストヘルパー</a>に <kbd>ellipsize()</kbd> メソッドを追加しました。</li>
+			<li><a href="./helpers/array_helper.html">配列ヘルパー</a>に <kbd>elements()</kbd> メソッドを追加しました。</li>
+		</ul>
+	</li>
+	<li>その他の変更
+		<ul>
+			<li><kbd>show_404()</kbd> にログの記録を無効にするための第2引数 (オプション) を追加しました。</li>
+			<li>ローダにおいて、クラスをロードする際にオプションとしてサブクラスのプレフィックスを自動的に与えられるようになりました。クラス名のプレフィックスには、標準の &quot;CI_&quot; かサブクラスのプレフィックスと同じもの、またはプレフィックス無しが可能です。</li>
+			<li><kbd>is_really_writable()</kbd> において、同時に数百から数千のリクエストがあった際に衝突を避けるため、乱数を大きくしました。</li>
+			<li>ディレクトリではなくファイルが操作されているところでは、いくつかの定数を DIR_WRITE_MODE から FILE_WRITE_MODE に変更しました。</li>
+			<li><kbd>get_mime_by_extension()</kbd> は大文字と小文字を区別しません。</li>
+			<li><a href="general/reserved_names.html">予約語一覧</a> に "default" を追加しました。</li>
+			<li>config/mimes.php に 'application/x-msdownload' (.exe) と ''application/x-gzip-compressed' (.tgz) を追加しました。</li>
+			<li>zlib.output_compression が有効でサーバが動作している場合、出力クラスはもう出力の圧縮や content-length ヘッダの送信を行ないません。</li>
+			<li>出力のキャッシングにおいて、必要でないときは is_really_writable() をコールしないようにしました。</li>
+			<li><a href="libraries/output.html">出力クラス</a>に <kbd>append_output()</kbd> のドキュメントを作成しました。</li>
+			<li><a href="libraries/encryption.html">暗号化クラス</a>に <kbd>decode()</kbd> メソッドの第2引数のドキュメントを作成しました。</li>
+			<li>db->close() のドキュメントを作成しました。</li>
+			<li>デフォルトルートで複数のセグメントを使用できるように router を変更しました。</li>
+			<li>remove_invisible_characters() 関数を<a href="libraries/security.html">セキュリティクラス</a>から<a href="general/common_functions.html">共通関数</a>に移動しました。</li>
+			<li>有効な MIME タイプとして MP3 の audio/mpeg3 を追加しました。</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>2.0.0の不具合修正</h3>
+<ul>
+	<li class="reactor">メール送信時に  User-Agent を変更できない不具合を修正しました。</li>
+	<li>出力クラスにおいて、<dfn>_output()</dfn> メソッドでコントローラに誤ったキャッシュを送る<span class="reactor">不具合を修正しました。</span></li>
+	<li>プロファイラにおいて、失敗したクエリがクエリ実行時間を持たない<span class="reactor">不具合を修正しました。</span></li>
+	<li>複数の同じヘルパーやプラグインがロードされたときにログが記録される<span class="reactor">不具合を修正しました。</span></li>
+	<li>ユーザガイドの様々な誤記を修正しました (#10693, #8951, #7825, #8660, #7883, #6771, #10656)。</li>
+	<li>プロファイラの言語ファイルのキーを "profiler_no_memory_usage" から "profiler_no_memory" に<span class="reactor">修正しました。</span></li>
+	<li>Zip 圧縮クラスにおいて、PHP 4のサーバでダウンロードできない<span class="reactor">不具合を修正しました。</span></li>
+	<li>フォームバリデーション(検証)クラスで、ルールパラメータとして渡されたフィールドが翻訳されない<span class="reactor">不具合を修正しました</span> (#9132)。</li>
+	<li>語形変換ヘルパーにおいて、'ch' および 'sh' で終わる単語を適切に複数形にできるように修正しました。</li>
+	<li>xss_clean() が送信された URL のクエリ文字列中のハイフンを許さない<span class="reactor">不具合を修正しました</span>。</li>
+	<li>ファイルヘルパーの get_dir_file_info() と get_file_info() で、再帰および Windows 上でのファイルパスに関する<span class="reactor">不具合を修正しました</span>。</li>
+	<li>データベースの設定ファイルで有効化されている場合に、Active Record のオーバーライドパラメータで Active Record 無効化できない<span class="reactor">不具合を修正しました</span>。</li>
+	<li>文字列ヘルパーの reduce_double_slashes() で、先頭の複数のスラッシュもきちんと取り除くように<span class="reactor">修正しました</span> (#7585)。</li>
+	<li>XML-RPC クラスの values_parsing() で、NULL 値が '文字列型' として適切に処理されない不具合を<span class="reactor">修正しました</span>。</li>
+	<li>form_open_multipart() が属性を指定する引数を受け付けない<span class="reactor">不具合を修正しました</span> (#10930)。</li>
+	<li>get_mime_by_extension()</kbd> が大文字小文字を区別する<span class="reactor">不具合を修正しました</span> (#10470)。</li>
+	<li>SQLite と Oracle のドライバでいくつかのエラーメッセージが表示されない<span class="reactor">不具合を修正しました</span>。</li>
+	<li>Zip 圧縮クラスで生成されたファイルの作成年が1980となる<span class="reactor">不具合を修正しました</span>。</li>
+	<li>セッションクラスでオブジェクトを保存しようとすると PHP のエラーが発生する<span class="reactor">不具合を修正しました</span>。</li>
+	<li>Controller クラスを継承しようとすると PHP の fatal  エラーが発生する<span class="reactor">不具合を修正しました</span>。</li>
+	<li>index.php ファイル中での PHP の Strict Standards エラーを<span class="reactor">修正しました</span>。</li>
+	<li>is_allowed_type() 中で getimagesize() が画像ファイル以外も不必要にチェックしていた<span class="reactor">不具合を修正しました</span>。</li>
+	<li>暗号化クラスでキーが空の場合にエラーにならない<span class="reactor">不具合を修正しました</span>。</li>
+	<li>Email クラスで clear() メソッドを使用した際に CC と BCC がリセットされない<span class="reactor">不具合を修正しました</span> (#109)。</li>
+	<li>PHP のバージョンが5.1.2未満の場合、URL ヘルパーの prep_url() で PHP のエラーが発生する<span class="reactor">不具合を修正しました</span>。</li>
+	<li>キャッシュディレクトリの設定値が見つからない場合、core/output のログメッセージを出力するように<span class="reactor">修正しました</span>。</li>
+	<li>load-&gt;library() に配列を渡しても複数のライブラリがロードできない<span class="reactor">不具合を修正しました</span>。</li>
+	<li>HTML ヘルパーにおいて、img() 関数で src と alt の間に必要以上のスペースが入る<span class="reactor">不具合を修正しました</span>。</li>
+	<li>profilers _compile_queries() メソッドの<span class="reactor">不具合を修正しました</span>。</li>
+	<li>日付ヘルパーで、DATE_ISO8601 定数が不正な書式の日付を返す<span class="reactor">不具合を修正しました</span>。</li>
+</ul>
+
+<h2>Version 1.7.2</h2>
+<p>リリース日付: 2009年9月11日<br />
+Hg Tag: v1.7.2</p>
+
+<ul>
+	<li>ライブラリ
+		<ul>
+			<li><a href="libraries/cart.html">カートクラス</a>を新しく追加しました。</li>
+			<li><a href="libraries/file_uploading.html">ファイルアップロードクラス</a>に $config['file_name'] を渡し、アップロードしたファイルをリネームできるようにしました。</li>
+			<li>リストアップされたユーザエージェントの順序を変更しました。Safari でアクセスした際に、より正確にユーザエージェント報告するようになります。(#6844)</li>
+		</ul>
+		</li>
+	<li>データベース
+		<ul>
+			<li>将来の PHP バージョンが出力を変えるかもしれないので、escape() 内で、gettype() を使用するのをやめ、 is_* メソッドを使用するようにしました。</li>
+			<li>escape_str() で配列を扱うよう、全データベースドライバを更新しました。</li>
+			<li>LIKE 条件で文字列をエスケープするための escape_like_str() メソッドを追加しました。</li>
+			<li>Active Record で、LIKE の新しいエスケープ方法を利用するよう変更しました。</li>
+			<li>接続の維持や長時間のアイドル状態の後の接続の再確立を試行できるよう reconnect() メソッドをデータベースドライバに追加しました。</li>
+			<li>MSSQL ドライバで、エラーメッセージに、mssql_get_last_message() を使うよう変更しました。</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>に <kbd>form_multiselect()</kbd> を追加しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_hidden()</kbd> を多次元配列を受け入れるように修正しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_prep()</kbd> を処理済みのフィールドを追跡するように修正しました。
+			これは、フォームバリデーション(検証)や Form フィールドを出力するためにフォームヘルパー関数を使った際に起こりうる、連続した form_prep() の呼び出しによる多重の処理や変換を避けるためです。</li>
+			<li><a href="helpers/directory_helper.html">ディレクトリヘルパー</a>の <kbd>directory_map()</kbd> を、隠しファイルを含められるようにし、ディレクトリの読み取りに失敗した際に FALSE を返すように修正しました。</li>
+			<li><a href="helpers/smiley_helper.html">スマイリーヘルパー</a>を複数のフィールドで動作するようにし、最後のカーソルの場所に、スマイリーを挿入するようにしました。</li>
+		</ul>
+	</li>
+	<li>一般
+		<ul>
+			<li>PHP 5.3.0に対応しました。</li>
+			<li><a href="general/errors.html">show_error()</a> を HTTP サーバレスポンスコードを送信するよう変更しました。</li>
+			<li><a href="general/errors.html">show_404()</a> を404ステータスコードを送信するように変更し、CGI と互換性のない header() を含む文を error_404.php テンプレートから取り除きました。</li>
+			<li>出力クラスが利用できない場合に使えるよう、<a href="general/common_functions.html">共通関数</a>に、set_status_header() を追加しました。</li>
+			<li>PHPバージョンの簡単な比較ができるよう、<a href="general/common_functions.html">共通関数</a>に、is_php() を追加しました。</p> 
+			<li>2つの CodeIgniter "チートシート" (DesignFellow.com からの寄贈に感謝します) を追加しました。 </li>
+		</ul>
+	</li>
+</ul>
+
+<h3>1.7.2の不具合修正</h3>
+<ul>
+	<li>様々なユーザガイドの誤字やサンプルコードを修正しました。 (#6743, #7214, #7516, #7287, #7852, #8224, #8324, #8349)</li>
+	<li>フォームバリデーション(検証)ライブラリで、複数のコールバックが動作しない不具合を修正しました。(#6110)</li>
+	<li>doctype ヘルパー関数のデフォルト値で、"1"が設定されていなかったのを修正しました。</li>
+	<li>言語クラスで、ファイルが見つからない場合にエラーを出力する際の不具合を修正しました。</li>
+	<li>カレンダーライブラリで、5月に対応する短縮名を出力する際の不具合を修正しました。</li>
+	<li>ORIG_PATH_INFO を利用する際に、スラッシュひとつだけの URI を許可していた不具合を修正しました。</li>
+	<li>Oracle と ODBC ドライバの致命的なエラーを修正しました。(#6752)</li>
+	<li>xml_from_result() が、存在しないメソッドをチェックしていた不具合を修正しました。</li>
+	<li>データベースフォージの add_column と modify_column で、複数のフィールドが送られた際に、ループ処理していなかった不具合を修正しました。</li>
+	<li>ファイルヘルパーで、DIRECTORY_SEPARATOR 定数の代わりに、'/'が使用されていた不具合を修正しました。</li>
+	<li>PHPのpopen()関数が手動で無効にされたサーバ上の sendmail を利用しようとする際に起こる PHP エラーを回避するよう修正しました。</li>
+	<li>特定の XML-RPC 型 がPHPのデータ型と一致しない場合に起こる XML-RPC データの PHP エラーに起因する不具合を修正しました。</li>
+	<li>XML-RPC クラスが dateTime.iso8601 データ型を解析する際の不具合を修正しました。</li>
+	<li>xss_clean() のケースセンシティブな(大文字小文字を区別する)文字列の置換を修正しました。</li>
+	<li>form_textarea() で、フォームデータが正常に処理されない不具合を修正しました。</li>
+	<li>form_prep() を使用すると、フォーム要素に値が呼び戻されるときに、ユーザのオリジナルの入力によるHTMLエンティティが保存されない不具合を修正しました。</li>
+	<li>_protect_identifiers() メソッドで、置き換えられたデータベースプリフィクス($swap_pre)をチェックしていなかった不具合を修正しました。</li>
+	<li>'disallowed URI characters [許可されない URI 文字]' のエラーの際に送信される400ステータスヘッダが、CGI 環境と互換性がない不具合を修正しました。</li>
+	<li>タイポグラフィクラスで、auto_typography() を使用すると、見出しタグの中に段落タグが挿入されてしまうことがある不具合を修正しました。</li>
+</ul>
+
+<h2>Version 1.7.1</h2>
+<p>リリース日付: 2009年2月10日<br />
+Hg Tag: 1.7.1</p>
+
+<ul>
+	<li>ライブラリ
+		<ul>
+			<li>フォームバリデーション(検証)ライブラリで、任意のスクリプトが実行されるセキュリティ上の欠陥(#6068)を修正しました。  (hkk さんに感謝します)</li>
+			<li>ページネーションライブラリの、現在のページの既定のインディケータで、&lt;b&gt;の代わりに&lt;strong&gt;を使用するようにしました。</li>
+			<li>不正な文字列が検出された場合に、 "HTTP/1.1 400 Bad Request" ヘッダを送信するようにしました。 </li>
+			<li>&lt;big&gt;, &lt;small&gt;, &lt;q&gt;  および &lt;tt&gt; をタイポグラフィパーサのインライン要素に追加しました。</li>
+			<li>sendmail を使用した際に、Email ライブラリで、より正確なエラー報告をするようにしました。</li>
+			<li><a href="libraries/image_lib.html">画像操作クラス</a>の <kbd>rotate()</kbd> メソッドで厳密な型チェックをしないようにしました。</li>
+			<li>GD ライブラリを使用した際、画像ライブラリでファイルを保存するときのエラー報告を改善しました。</li>
+			<li>多くの MUA との互換性を高めるため、マルチパート Email ヘッダと MIME メッセージテキストの間に新しい行を追加するようにしました。</li>
+			<li>画像ライブラリの explode_name() で、効率と正確性を少し改善しました。</li>
+		</ul>
+	</li>
+	<li>データベース
+		<ul>
+			<li><kbd>delete()</kbd> が受け取ることができる引数のリストに、where_in を追加しました。</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li><a href="helpers/form_helper.html">フォーム ヘルパー</a>の <kbd>form_dropdown()</kbd> で optgroup タグを含めることができるようにしました。</li>
+			<li><a href="helpers/html_helper.html">HTML ヘルパー</a>に doctype() 関数を追加しました。</li>
+			<li><a href="helpers/url_helper.html">URL ヘルパー</a>の <kbd>url_title()</kbd> で、強制的に小文字に変換することができるようになりました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>の <kbd>form_button()</kbd> の既定の "type" 属性の値を "submit" から "button" に変更しました。</li>
+			<li>URL ヘルパーの redirect() を CI のサイトの外部の URL へリダイレクトできるように変更しました。</li>
+			<li>要求されたクッキーの名前が存在しない場合、グローバルのクッキープリフィックスを使って、クッキーを読み取るよう、get_cookie()を変更しました。</li>
+		</ul>
+	</li>
+	<li>その他の変更
+		<ul>
+			<li>Internet Explorer を対象とした攻撃を回避するのに利用できるよう、<kbd>xss_clean()</kbd> のセキュリティを改善しました。</li>
+			<li>.xls ファイル用に config/mimes.php に 'application/msexcel' を追加しました。</li>
+			<li>訪問者のIPアドレスを決定するために、
+			HTTP_X_FORWARDED_FOR ヘッダを信頼して良いリバースプロキシサーバのホワイトリストを設定できる 'proxy_ips' 設定項目を追加しました。</li>
+			<li>Upload::is_allowed_filetype() で、画像を対象に正確性を改善しました。 (#6715)</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>1.7.1の不具合修正</h3>
+<ul>
+	<li>データベース
+		<ul>
+			<li>order_by() で、'random' を指定した際の不具合(#5706)を修正しました。</li>
+			<li>データベースフォージを使って主キーを追加しようとすると失敗する事がある不具合(#5731)を修正しました。</li>
+			<li>複数のデータベースを利用して、データベースキャッシュを使った時に起こる不具合 (#5737)を修正しました。</li>
+			<li>TRUNCATE が"書き込み" クエリとして処理されない不具合(#6619)を修正しました。</li>
+			<li>csv_from_result() で、存在しないメソッドをチェックしていた不具合を修正しました。</li>
+			<li>_protect_identifiers() で、項目から不適切にパイプシンボルをすべて除去していた不具合を修正しました。</li>
+		</ul>
+	</li>
+	<li>様々なユーザガイドの誤字やサンプルコードを修正しました。(#5998, #6093, #6259, #6339, #6432, #6521)</li>
+	<li>MySQLi ドライバで、ポートが指定されていない場合の不具合を修正しました。</li>
+	<li>あるフィールドがもう一方と "一致" する場合に、フィールドのラベルを適切に読み取れない不具合(#5702)を修正しました。</li>
+	<li>予約文字が使用されていた場合に、識別子が適切にエスケープされない不具合を修正しました。</li>
+	<li>auto typography で、送信された段落タグを保護するための正規表現の不具合を修正しました。</li>
+	<li>タグの属性に含まれるダブルスラッシュが、em ダッシュ[長いダッシュ] HTML エンティティに変換される不具合を修正しました。</li>
+	<li>タグの属性に含まれる2重スペースが、ノンブレークスペース HTML エンティティに変換される不具合を修正しました。</li>
+	<li>Typography::format_characters() のカーリークォート[""]の正確性の問題を修正しました。</li>
+	<li>いくつかの docblock コメントを実際の戻り値に対応させるよう変更しました。</li>
+	<li> 件名やメールヘッダに含まれる上位ビットの ascii 文字についての不具合を修正しました。</li>
+	<li>xss_clean() で、検証済みの文字エンティティに続くホワイトスペースが保持されない不具合を修正しました。</li>
+	<li>Typography::auto_typography() において、HTML コメントおよび&lt;pre&gt; タグが、変換されてしまう不具合を修正しました。</li>
+	<li>Typography::auto_typography() の、ノンブレークスペースのクリア処理の不具合を修正しました。</li>
+	<li>データベースプリフィックスがある場合に複合文(ie:SUM())で、データベースのエスケープ処理が正しく処理されない不具合を修正しました。</li>
+	<li>段落タグに続いて引用の開始があり、そのすぐ後に別のタグがあるときの不具合を修正しました。</li>
+	<li>テキストヘルパーで、アクセント付き文字で開始または終了する単語に対し word_censor() が動作しないという、いくつかのロケールに影響する不具合を修正しました。</li>
+	<li>テキストヘルパーの character_limiter で、文字列の最後の単語が、指定された制限文字数にかかる場合の不具合を修正しました。</li>
+	<li>語形変換ヘルパーの plural() で、"y" で終わる単語を扱う際の不具合(#6342)を修正しました。</li>
+	<li>URI::rsegment() メソッドによって返される、ルーティングされた後のURIセグメントが、デフォルトコントローラに関するURIの場合に間違っている不具合(#6517)を修正しました。</li>
+	<li> セキュリティヘルパーの xss_clean() で、古い形式の第2引数を使用していた不具合(#6706)を修正しました。</li>
+	<li>URLヘルパーの url_title() 関数で、ピリオドをURLの最後に付加することができる不具合を修正しました。</li>
+	<li>Emailクラスで、&quot;mail&quot;プロトコルを利用する際に、 ヘッダに CRLF が改行文字として使用されるときの不具合(#6669)を修正しました。</li>
+	<li>URI::A_filter_uri() で、show_error() を使う代わりに、exit() で終了していた不具合(#6500)を修正しました。</li>
+	<li>ファイルヘルパーの  get_dir_file_info()で、再帰処理が適切に行われない不具合 (#6592)を修正しました。</li>
+	<li> Typography::auto_typography() を特定の状況下について調整しました。</li>
+</ul>
+
+
+<h2>Version 1.7</h2>
+<p>リリース日付: 2008年10月23日<br />
+Hg Tag: 1.7.0</p>
+
+<ul>
+	<li>ライブラリ
+		<ul>
+			<li>新しく<a href="libraries/form_validation.html">フォームバリデーション(検証)クラス</a>を追加しました。これにより、ルールやフィールド名の設定が簡単になり、配列によるフィールド名の設定がサポートされ、設定ファイルに保存できる検証ルールのグループを取り扱うことが可能になり、ビューファイルで利用できるヘルパー関数も追加されました。<strong>古いバリデーション(検証)クラスは、非推奨となったので、注意してください。</strong> 古いクラスは、既存のアプリケーションが停止しないように、いくらかの間は、ライブラリフォルダの中に残しますが、新しいバージョンに移行することを推奨します。</li>
+			<li>セッションクッキーにではなく(セッションデータを保存するのにデータベースを使用しているとした場合)、データベースに、どんなユーザデータも保存できるよう、<a href="libraries/sessions.html">セッションクラス</a>を更新しました。より多くのデータを保存することができます。</li>
+			<li>メインの "libraries" または、ローカルアプリケーションの "libraries" フォルダの中にサブディレクトリを作ってライブラリを設置できるようにしました。詳しくは、 <a href="libraries/loader.html">ローダー(読込み処理)クラス</a>をご覧ください。</li>
+			<li><kbd>$this->load->library()</kbd> を使う際に、ユーザが指定した名前でライブラリオブジェクトを割り当てることができるようになりました。詳しくは <a href="libraries/loader.html">ローダー(読込み処理)クラス</a> をご覧ください。</li>
+			<li><a href="general/profiling.html">プロファイラクラス</a>にコントローラのクラス/メソッド情報を追加し、複数のデータベース接続にも対応しました。</li>
+			<li>"auto typography" 機能を改善し、ヘルパーから<a href="libraries/typography.html">タイポグラフィクラス</a>にそれらの機能を移しました。</li>
+			<li>画像/ファイル検査での見逃しを減らすなど、<kbd>xss_clean()</kbd> のパフォーマンスと正確性を改善しました。</li>
+			<li><a href="./libraries/parser.html">パーサクラス</a> で parse() メソッドを複数回呼び出せるよう改善しました。各出力は最終出力に追加されます。</li>
+			<li><a href="libraries/file_uploading.html">ファイルアップロードクラス</a>に、ファイル名の最大長をセットできる <dfn>max_filename</dfn> オプションを追加しました。</li>
+			<li><dfn>set_status_header()</dfn> メソッドを<a href="libraries/output.html">出力クラス</a>に追加しました。</li>
+			<li><a href="libraries/pagination.html">ページネーション</a>クラスで、1ページ目へのリンクが表示されないときにだけ、"最初のページ" のリンクを表示するようにしました。</li>
+			<li><a href="libraries/form_validation.html">フォームバリデーション</a>クラスで、マルチバイトの言語での文字列の長さを正確に計算できるよう、mb_strlen をサポートするようにしました。</li>
+		</ul>
+	</li>
+	<li>データベース
+		<ul>
+			<li>Active Record クラスで、フルパスの列およびテーブル名:  ホスト名.データベース.テーブル.列 の取り扱いを改善しました。また、別名の取り扱いも改善しました。</li>
+			<li>テーブルおよび列名のエスケープおよびプリフィックス付加の方法を改善しました。プリフィックスを付加した場合やエスケープした場合でも、フルパスの名前が使えます。</li>
+			<li>update および delete メソッドにActive Record キャッシュ機能を追加しました。</li>
+			<li>DBドライバの <kbd>escape_str()</kbd> にネイティブ PHP のエスケープ処理 (mssql, oci8, odbc)にはない、非プリント文字、制御文字の除去を追加しました。これは、潜在的な SQL エラーや潜在的な SQL インジェクションの起点になるのを回避するためです。</li>
+			<li>MySQL, MySQLi, および MS SQL データベースドライバにポート番号のサポートを追加しました。</li>
+			<li>バグレポート #4436 に基づいて、各 DB ドライバにドライバ名の変数を追加しました。</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a> に POST データを読み取って、フォームにセットすることができる、いくつかの&quot;セット&quot;関数を追加しました。これらは、独立で、または、新たな<a href="libraries/form_validation.html">フォームバリデーション(検証)クラス</a>と一緒に使うのを想定しています。</li>
+			<li><a href="helpers/url_helper.html">URL ヘルパー</a>に<kbd>current_url()</kbd> と uri_segments() を追加しました。</li>
+			<li>&quot;+&quot;を含む Email アドレスがリンクになるように、<a href="helpers/url_helper.html">URL ヘルパー</a>の<kbd>auto_link()</kbd>を置き換えました。</li>
+			<li><a href="helpers/html_helper.html">HTML ヘルパー</a>に <kbd>meta()</kbd> 関数を追加しました。</li>
+			<li><a href="helpers/number_helper.html">数字ヘルパー</a>における計算の精度を改善しました。</li>
+			<li>FormおよびHTMLヘルパー関数の大部分から、付加された改行(&quot;\n&quot;)を取り除きました。</li>
+			<li><a href="helpers/date_helper.html">日付ヘルパー</a>の<kbd>human_to_unix()</kbd> 関数での検証を厳密にし、POSIX 正規表現を削除しました。</li>
+			<li><a href="helpers/date_helper.html">日付ヘルパー</a> を現在のタイムゾーンと時差に適合するよう変更しました。</li>
+			<li>文字エンティティの一部の文字や数字を取り除き、セパレータ($separator)であるかないかにかかわらず、
+			ダッシュ、アンダースコア、ピリオドを許可し、大文字の文字を許可するよう、<a href="helpers/url_helper.html">URLヘルパー</a>の url_title() を変更しました。</li>
+			<li><a href="helpers/url_helper.html">URL ヘルパー</a>の anchor_popup() で任意の属性をサポートするようにしました。</li>
+		</ul>
+	</li>
+	<li>その他の変更
+		<ul>
+			<li><a href="./general/styleguide.html">PHP スタイルガイド</a>をドキュメントに追加しました。</li>
+			<li>Internet Explorer でのユーザ入力で乱用されうる非奨励タグのサニタイズ処理を <kbd>xss_clean()</kbd> に追加しました。</li>
+			<li>いくらかの openxml ドキュメントのMIMEタイプおよび、モバイルエージェントを mimes.php と user_agents.php にそれぞれ追加しました。</li>
+			<li>キャッシュ処理中で、ファイルに書き込む前に、ファイルのロック状態をチェックするようにしました。</li>
+			<li>CI の実行が停止しないように、特定の環境下で明らかになった問題を起こしそうなキー名を無効にするよう、Cookieのキークリーニング処理を変更しました。</li>
+			<li>プロファイラの出力をclear属性を使用せず style 属性を使用するようにし、div コンテナに、&quot;codeigniter_profiler&quot; という id 属性を追加しました。</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>1.7.0の不具合修正</h3>
+<ul>
+	<li><kbd>xss_clean()</kbd> で、タグの必須属性を削除してしまう不具合を修正しました。</li>
+	<li>様々なユーザガイドの誤字やサンプルコードを修正しました。(#4807, #4812, #4840, #4862, #4864, #4899, #4930, #5006, #5071, #5158, #5229, #5254, #5351)</li>
+	<li>1.6.3からの変更で、user_agents.php の中の、$robots 配列が消えていたのを修正しました。</li>
+	<li><a href="libraries/email.html">Email ライブラリ</a>で quoted-printable エンコーディングを使用するときに、スペースとタブが不適切にエンコードされてしまう不具合を修正しました。</li>
+	<li>XSS サニタイズ[無害化] において、M&amp;M's, B&amp;Bなどの、&amp;[1文字] の後にセミコロンを付加しないようにしました。</li>
+	<li>XSS サニタイズ[無害化]において、XHTML の画像タグの終了スラッシュを除去しないようにしました。</li>
+	<li>セッションクラスで、データベースセッションを利用しているとき、セッション更新時にすべてのユーザデータが誤ってセッションクッキーに書かれる不具合を修正しました。</li>
+	<li>MySQL ドライバでのバックアップで、いくつかの古いコードが原因で、特定の文字が二重にエスケープされていた不具合(#4536)を修正しました。</li>
+	<li>デフォルトのルートがサブフォルダの場合に起こるルーティングの不具合 (#4661)を修正しました。</li>
+	<li><a href="helpers/date_helper.html">日付ヘルパー</a>の <kbd>timezone_menu()</kbd> 関数の &quot;Dhaka&quot; のスペルを修正しました。</li>
+	<li>config/smileys.php の &quot;raspberry&quot; のスペルを修正しました。</li>
+	<li><kbd>form_open()</kbd> 関数で、 不正な丸括弧が出力される不具合 (#5135) を修正しました。</li>
+	<li>コントローラのメソッドを比較する際に、大文字小文字の区別が無視される不具合(#4560)を修正しました。</li>
+	<li>initialize メソッドを使用した際に、SMTP の認証設定が有効にならない不具合 (#4615)を修正しました。</li>
+	<li><a href="helpers/text_helper.html">テキストヘルパー</a> の <kbd>highlight_code()</kbd> で、特定のケースで、対応するタグがない &lt;/span&gt; が取り残される不具合を修正しました。</li>
+	<li>1度のアクションで、複数のクエリを発行できないOracle の不具合 (#3306)を修正しました。</li>
+	<li>コンストラクタを使用すると接続パラメータが無視されるODBCの不具合を修正しました。</li>
+	<li>Oracle ドライバで num_rows() を使用した際にエラーが起こる不具合を修正しました。</li>
+	<li>MS SQL の不具合 (#4915)を修正しました。MS SQL ドライバで、名前に予約語が含まれている場合にデータベースを選択する際、追加のカッコがデータベース名に付加されていました。 </li>
+	<li>URIセグメントがない場合にパスが不正になる、DB キャッシングの不具合(4718)を修正しました。</li>
+	<li>Image_lib クラスの不具合 #4562 を修正しました。  NetPBM 向けにパスが定義されませんでした。</li>
+	<li>Image_lib クラスの不具合 #4532 を修正しました。  出力に同一の高さと幅が設定されているときにトリミングした際に、コピーが作成されます。</li>
+	<li>データベースエラーが正しくログ出力されない DB_driver の不具合(4900)を修正しました。</li>
+	<li>フィールド名がエスケープされないデータベースバックアップの不具合を修正しました。</li>
+	<li>データベース Active Record キャッシングで、キャッシュされたデータを複数回呼ぶと、データを受け取れない不具合を修正しました。</li>
+	<li>セッションクラスで、シリアル化した配列でスラッシュを使用できない不具合を修正しました。</li>
+	<li>フォームバリデーションで、&quot;isset&quot; のエラーメッセージが &quot;required&quot; ルールにより呼び出される不具合を修正しました。</li>
+	<li>ローダーのエラーメッセージのスペルミスを修正しました。</li>
+	<li>空のセグメントの場合の IP の検証に関する不具合(5050)を修正しました。</li>
+	<li>複数の同一のタグの組が現れた際に、パーサーで、最長マッチが行われてしまう不具合を修正しました。</li>
+</ul>
+
+<h2>Version 1.6.3</h2>
+<p>リリース日付: 2008年6月26日<br />
+Hg Tag: v1.6.3</p>
+
+<p>バージョン1.6.3は、セキュリティおよびメンテナンスリリースで、すべてのユーザに推奨されます。</p>
+<ul>
+	<li>データベース
+		<ul>
+			<li>キーに明示的な名前を付けるよう MySQL/MySQLi フォージクラスを変更しました。</li>
+			<li><a href="database/forge.html">フォージクラス</a>を複数の列からなる主キーでないキーをセットできるようにしました。</li>
+			<li><a href="database/connecting.html">DSN コネクション</a>で、クエリ文字列を経由して、追加のデータベース設定ができるようになりました。</li>
+		</ul>
+	</li>
+	<li>ライブラリ
+		<ul>
+			<li><a href="libraries/file_uploading.html">アップロードクラス</a> のMIMEタイプチェックで、グローバル変数"mimes" を参照するようにしました。</li>
+			<li>自動検出または、明示的な宣言による<a href="libraries/pagination.html">ページネーションクラス</a>でのクエリ文字列のサポートを追加しました。</li>
+			<li><a href="libraries/input.html">入力クラス</a>に <kbd>get_post()</kbd> を追加しました。</li>
+			<li><a href="libraries/input.html">入力クラス</a>の <kbd>get()</kbd> についての記述をドキュメントに追加しました。</li>
+			<li><a href="libraries/language.html">言語クラス</a>で、自動で言語項目をフォームラベルとして出力できるようになりました。</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li><a href="helpers/language_helper.html">言語ヘルパー</a>を追加しました。</li>
+			<li><a href="helpers/number_helper.html">数字ヘルパー</a>を追加しました。</li>
+			<li><kbd>form_open()</kbd> および <kbd>form_fieldset()</kbd> で、配列または文字列の引数を受け取ることができるように<a href="helpers/form_helper.html">フォームヘルパー</a>をリファクタリングしました。</li>
+		</ul>
+	</li>
+	<li>その他の変更
+		<ul>
+			<li><kbd>xss_clean()</kbd> のセキュリティを改善しました。</li>
+			<li><kbd>_display_cache()</kbd> での未使用のルータへの参照を削除しました。</li>
+			<li>XSS に関して、アップロードのセキュリティ有用な、<a href="libraries/input.html">use xss_clean() で画像をテストする</a>機能を追加しました。</li>
+			<li>config/user_agents.php のモバイル ユーザエージェントのリストを大幅に拡張しました。</li>
+			<li>国際化の目的(#4614)のため、ユーザガイドの文字セット情報を title の上に移動しました。</li>
+			<li><a href="libraries/xmlrpc.html">ユーザガイドの XMLRPC のページ</a>に、&quot;リクエストパラメータに連想配列を使用する&quot;の例を追加しました。</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>のform_input() で自動的に maxlength と size 属性が追加されないようにしました。</li>
+			<li><a href="helpers/number_helper.html">数字ヘルパー</a>の <kbd>byte_format()</kbd> の言語ファイルの使用についてドキュメントに記述しました。</li>
+		</ul>
+	</li>
+</ul>
+
+
+<h3>1.6.3の不具合修正</h3>
+
+<ul>
+	<li>validation_lang.php に、valid_emails 検証ルールのための language key を追加しました。</li>
+	<li>DSN データベース接続をパースする際のバグ(#3419)を修正しました。</li>
+	<li><kbd>_has_operators()</kbd> メソッドを  DB_active_rec から DB_driver に移動しました。(#4535)</li>
+	<li>upload_lang.php の文法エラーを修正しました。</li>
+	<li>画像ライブラリの中の正規表現に関する不具合(#4542)を修正しました。</li>
+	<li><kbd>orhaving()</kbd> が適切に値を渡していなかった不具合(#4561)を修正しました。</li>
+	<li>いくつかの未使用の変数を削除しました。 (#4563)</li>
+	<li><kbd>having()</kbd> で、文に=が追加されない不具合 (#4568) を修正しました。</li>
+	<li>様々なユーザガイドの誤字やサンプルコードを修正しました。(#4574, #4706)</li>
+	<li>マルチパートが無効化されているときに、Email クラスで quoted-printable ヘッダを追加するようにしました。</li>
+	<li>各システムディレクトリのindexページの 開始 &lt;p&gt; タグが2重になっていたのを修正しました。</li>
+</ul>
+
+<h2>Version 1.6.2</h2>
+<p>リリース日付: 2008年5月13日<br />
+Hg Tag: 1.6.2</p>
+<ul>
+	<li>Active Record
+		<ul>
+			<li><kbd>having()</kbd> 句で、エスケープを回避できるようにしました。</li>
+			<li><a href="./database/forge.html">DB フォージ</a>に<kbd>rename_table()</kbd> を追加しました。</li>
+			<li>クエリの値が NULL であった場合に、無効化され、エスケープ処理ができなかった不具合を修正しました。</li>
+			<li>DBフォージがすべてのモデルに割り当てられるようになりました。モデルのロード後に使えます。(#3457)</li>
+		</ul>
+	</li>
+	<li>データベース
+		<ul>
+			<li>データベーストランザクションに<a href="./database/transactions.html">厳密な(Strict)モード</a>を追加しました。</li>
+			<li>where() 句でのエスケープ方法が変わりました。&quot;FALSE&quot; を引数で指定した場合、値はエスケープ(ie:クォート処理)されません。</li>
+		</ul>
+	</li>
+	<li>設定
+		<ul>
+			<li>MIMEタイプのリストに、'application/vnd.ms-powerpoint' を追加しました。</li>
+			<li>MIMEタイプのリストに、'audio/mpg' を追加しました。</li>
+			<li>ファイルモードおよび fopen 定数を含むユーザで変更可能なファイル、constants.php を新たに追加しました。</li>
+			<li><a href="libraries/email.html">Email</a> クラスの設定項目で、CRLF をセットできる機能を追加しました。</li>
+		</ul>
+	</li>
+	<li>ライブラリ
+		<ul>
+			<li>アップロードライブラリで、ファイル名の取り扱いに関するセキュリティを強化しました。</li>
+			<li>クライアントサイドでのデータ改ざんに対するセッションのセキュリティを強化しました。</li>
+			<li>MySQLi フォージクラスが、MySQL フォージと協調して動作するようになりました。 </li>
+			<li><a href="libraries/email.html">Email</a> クラスの設定項目で、CRLF をセットできる機能を追加しました。</li>
+			<li><a href="libraries/unit_testing.html">ユニットテスト</a> の結果で、コードが色づけされ、これらの変更を結果表示のデフォルトのテンプレートとしました。</li>
+			<li>バリデーション (検証) クラスに、valid_emails ルールを追加しました。</li>
+			<li><a href="libraries/zip.html">Zip 圧縮クラス</a>で <kbd>download()</kbd> が利用できるようになりました。</li>
+			<li><a href="libraries/zip.html">Zip 圧縮クラス</a> は、速度とコードの明瞭さのために、大きく書きなおされました。 (stanleyxu のバグレポート #3425 についての大変な作業とソースコードの提供に感謝します!)</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li>PHP 4のサーバで実行される可能性があるアプリケーションでいくつかの PHP 5のネイティブ関数が安全に利用できるよう<a href="helpers/compatibility_helper.html">互換性ヘルパー</a>を追加しました。(Seppo の大変な作業とコードの提供に感謝します)</li>
+			<li><a href="helpers/form_helper.html">フォームヘルパー</a>に <kbd>form_button()</kbd> を追加しました。</li>
+			<li><kbd>radio()</kbd> と <kbd>checkbox()</kbd> 関数で、デフォルトでチェック状態にしないように変更しました。</li>
+			<li><a href="helpers/url_helper.html">URL ヘルパー</a>の <kbd>redirect()</kbd> 関数で、追加の HTTP レスポンスコードを含めることができる機能を追加しました。</li>
+			<li><a href="helpers/html_helper.html">HTML ヘルパー</a>の <kbd>img()</kbd> で、不要なスペースを削除しました。(#4208)</li>
+			<li><a href="helpers/url_helper.html">URLヘルパー</a>の <kbd>anchor()</kbd> を、デフォルトのタイトル属性を付加しないよう変更しました。(#4209)</li>
+			<li><a href="helpers/download_helper.html">ダウンロードヘルパー</a>に <kbd>force_download()</kbd> が追加されました。</li>
+			<li><kbd>get_dir_file_info()</kbd>, <kbd>get_file_info()</kbd>, および <kbd>get_mime_by_extension()</kbd> を<a href="helpers/file_helper.html">ファイルヘルパー</a>に追加しました。</li>
+			<li><kbd>symbolic_permissions()</kbd> と <kbd>octal_permissions()</kbd> を<a href='helpers/file_helper.html'>ファイルヘルパー</a>に追加しました。</li>
+		</ul>
+	</li>
+	<li>プラグイン
+		<ul>
+			<li>最初に imagecreatetruecolor 関数をチェックし、それが利用できない場合に、imagecreate に機能を落として captcha 生成を行うよう変更しました。(#4226)</li>
+		</ul>
+	</li>
+	<li>その他の
+		変更
+		<ul>
+			<li><a href="libraries/input.html">xss_clean()</a>で配列を受け取れるようになりました。</li>
+			<li>不慮の出力がされてしまい、'cannot modify headers' エラーが起こらないよう、すべての PHP ファイルから PHP の終了タグを取り除きました。</li>
+			<li>オートロード(自動読み込み)の検索パスから &quot;scripts&quot; を削除しました。
+			Scripts は、Version 1.4.1 (2006年9月21日)から廃止予定とされていました。古い形式が必要な理由があってまだ使用している場合は、各コントローラで手動で読み込む必要があります。</li>
+			<li><a href="general/reserved_names.html">予約語一覧</a> のページをユーザガイドに追加し、コントローラの予約名をこの中に移動しました。</li>
+			<li>グローバルに利用可能な関数の説明のため、<a href="general/common_functions.html">共通関数</a> のページをユーザガイドに追加しました。</li>
+			<li>xss_clean() のセキュリティおよびパフォーマンスを改善しました。</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>1.6.2の不具合修正</h3>
+<ul>
+	<li>SET クエリが、"書き込み" クエリとして取り扱われない不具合を修正しました。</li>
+	<li>ORIG_PATH_INFO の URI をパースするときの不具合(#3191)を修正しました。</li>
+	<li>id フィールドを挿入するときの DB フォージの不具合(#3456)を修正しました。</li>
+	<li>HTML テーブルライブラリで、同様の内容で作成された行が抜けてしまう不具合(#3459)を修正しました。</li>
+	<li>DBドライバ および MySQLi のクエリ結果で、オブジェクトの代わりにリソースをチェックしていた不具合(#3461)を修正しました。</li>
+	<li>テーブルの別名を追跡していなかった AR_caching エラー(#3463)を修正しました。</li>
+	<li>引数を伴う select 文が、不正にエスケープされてしまう、Active Record のコンパイルの不具合(#3478)を修正しました。</li>
+	<li>ドキュメントでの $this-&gt;load-&gt;language についての誤った記述(#3520)を修正しました。</li>
+	<li>get_filenames() での再帰処理での不具合、および、 $include_path が使用されているときの、Windows での問題(#3523, #4350)を修正しました。</li>
+	<li>XML-RPC クラスで、dateTime.iso8601 が使用できない不具合(#4153)を修正しました。</li>
+	<li>Active Record で、or_where_not_in() を使ったときの不具合 (#4171)を修正しました。</li>
+	<li><a href="libraries/input.html">xss_clean()</a> GET の URI 文字列にセミコロンが付加されてしまう不具合を修正しました。</li>
+	<li>ディレクトリリソースが閉じられない、ディレクトリヘルパーでの不具合(#4206)を修正し、小規模な改善を行いました。</li>
+	<li>delete_dir() が再帰的に動作しない、FTP ライブラリの不具合(#4215)を修正しました。</li>
+	<li>set_rules() で配列でないフィールド名およびルールが使用された時のバリデーション(検証)の不具合(#4220)を修正しました。</li>
+	<li>戻り値で取得した DB オブジェクトや複数の DB コネクションにおいて、DB キャッシングが動作しない不具合(#4223)を修正しました。</li>
+	<li>アップロードライブラリで、同一のエラーを2回出力する事がある不具合(#4390)を修正しました。</li>
+	<li>テーブル別名とテーブルプリフィクスを使って結合(Join)する際の ActiveRecord の不具合(#4400)を修正しました。</li>
+	<li>DB クラスで $params 引数をチェックする処理の不具合を修正しました。</li>
+	<li>HTML テーブルライブラリで、セルのデータが0のときに、空白のセルとして表示される不具合を修正しました。</li>
+	<li><a href="helpers/url_helper.html">URL ヘルパー</a>の値の代わりにキーが渡されてしまう <kbd>link_tag()</kbd> の不具合を修正しました。</li>
+	<li>DB_result::row() で、MySQL の NULL 値の個々のフィールドを返すことができない不具合を修正しました。</li>
+	<li>SMTP で送信しようとする email で、ドットから始まっている行については、ドットの整形処理が動作しない不具合を修正しました。</li>
+	<li>DB ドライバの display_error() で、エラー処理に使用されない言語および例外オブジェクトが生成されていた不具合を修正しました。</li>
+	<li>スラッシュのみからなるURI、たとえば 'http://example.com/index.php?//' が PHP エラーを引き起こす不具合(#4413)を修正しました。</li>
+	<li>バリデーション(検証)ライブラリの配列から文字列への変換のエラー (#4425) を修正しました。</li>
+	<li>デバッグモードが有効な場合に、失敗したトランザクションがロールバックされない不具合 (#4451, #4299, #4339) を修正しました。</li>
+	<li>画像ライブラリの overlay_watermark() で、アルファチャンネルを含む PNG-24 形式がサポートされていなかった不具合(#4506)を修正しました。</li>
+	<li>ユーザガイドの様々な誤字(#3453, #4364, #4379, #4399, #4408, #4412, #4448, #4488)を修正しました。</li>
+</ul>
+
+<h2>Version 1.6.1</h2>
+<p>リリース日付: 2008年2月12日<br />
+	Hg Tag: 1.6.1</p>
+<ul>
+	<li>Active Record
+		<ul>
+			<li><a href="./database/active_record.html#caching">Active Record キャッシング</a>を追加しました。</li>
+			<li>Active Record で完全にデータベースプリフィクスを考慮するようにしました。</li>
+		</ul>
+	</li>
+	<li>データベースドライバ
+		<ul>
+			<li>MySQLi を使用するときに、クライアントの文字セットおよび照合順序をセットできるようになりました。</li>
+		</ul>
+	</li>
+	<li>コアの変更
+		<ul>
+			<li><kbd>xss_clean()</kbd> で、URL エンコードされた文字列の処理をよりインテリジェントに行うようにしました。</li>
+			<li>$_SERVER, $_FILES, $_ENV, および $_SESSION をグローバル変数のサニタイズに加えました。</li>
+			<li><a href="./helpers/path_helper.html">パスヘルパー</a>を追加しました。</li>
+			<li>URI クラスの <kbd>_reindex_segments()</kbd> の処理を単純化しました。</li>
+			<li>'permitted_uri_chars' 設定項目で、開発者が既定の設定の末尾に文字を追加しようとしただけで、エラーになってしまうのを避けるため、既定の設定項目中の '-' をエスケープしました。</li>
+			<li>private または protected メソッドが URL 経由でアクセスされた際に、コントローラで、404を表示するよう、メソッドの呼び出し処理を変更しました。</li>
+			<li>404エラーで、不正なリクエストで指定されているコントローラおよびメソッド名をログ出力するよう、フレームワークを変更しました。</li>
+		</ul>
+	</li>
+	<li>ヘルパー
+		<ul>
+			<li>$source_dir が読み取れない場合に、FALSE を返すよう、ファイルヘルパーの <kbd>get_filenames()</kbd> を変更しました。</li>
+		</ul>
+	</li>
+</ul>
+
+
+<h3>1.6.1の不具合修正</h3>
+<ul>
+	<li>検証ルールにおいて、is_numeric を非推奨としました。numeric と integer の使用が推奨されます。</li>
+	<li>DB フォージで、SQLite のテーブル作成における不具合(#3379)を修正しました。</li>
+	<li>Active Record で完全にデータベースプリフィクスを考慮するようにしました。(#3384)</li>
+	<li>DB フォージで、Postgres の FROM 句でテーブル名を角括弧で囲んでしまう不正な SQL を出力していた不具合を修正しました。</li>
+	<li>WHERE 句を追加指定できるよう、Active Record の update() の振る舞いを変更しました。(#3395)</li>
+	<li>特定の POST 変数が PHP の警告を引き起こす不具合(#3396)を修正しました。</li>
+	<li>クエリの構築における不具合(#3402)を修正しました。</li>
+	<li>プロファイラの $highlight 配列でのSQLキーワードの順序を変更したので、OR が ORDER BY の前でハイライトされなくなりました。</li>
+	<li>MySQLi ドライバで、$this->conn_id がオブジェクトでなく、リソースであるかどうかをチェックしていた不具合(#3404)を修正しました。</li>
+	<li>DSN 文字列で、データベースに接続する際の不具合(#3419)を修正しました。</li>
+	<li>デフォルトコントローラが使用される場合に、ルート済みのセグメントの配列が、1を起点として再インデックスされない不具合(#3445)を修正しました。</li>
+	<li>ユーザガイドの様々な誤字を修正しました。</li>
+</ul>
+
+
+
+<h2>Version 1.6.0</h2>
+<p>リリース日付: 2008年1月30日 </p>
+<ul>
+	<li>DBフォージ
+		<ul>
+			<li>データベースツールに、<a href="./database/forge.html">DB フォージ</a>を追加しました。</li>
+			<li><kbd>create_database()</kbd> と <kbd>drop_database()</kbd> を <a href="./database/forge.html">DB フォージ</a>に移動しました。</li>
+			<li><kbd>add_field()</kbd>, <kbd>add_key()</kbd>, <kbd>create_table()</kbd>, <kbd>drop_table()</kbd>, <kbd>add_column()</kbd>, <kbd>drop_column()</kbd>, <kbd>modify_column()</kbd> を<a href="./database/forge.html">DB フォージ</a>に追加しました。</li>
+		</ul>
+	</li>
+	
+	<li>Active Record
+		<ul>
+			<li><kbd>protect_identifiers()</kbd> を<a href="./database/active_record.html">Active Record</a> に追加しました。</li>
+			<li>利用中のデータベースに適合する場合、すべての Active Recode のクエリは、バッククォート(バックチック)が付加されるようになりました。</li>
+			<li><kbd>where_in()</kbd>, <kbd>or_where_in()</kbd>, <kbd>where_not_in()</kbd>,  <kbd>or_where_not_in()</kbd>, <kbd>not_like()</kbd> および <kbd>or_not_like()</kbd> を <a href="./database/active_record.html">Active Record</a> に追加しました。</li>
+			<li><a href="./database/active_record.html">Active Record</a> の <kbd>update()</kbd> および <kbd>delete()</kbd> 文で、<kbd>limit()</kbd> のサポートを追加しました。</li>
+			<li><kbd>empty_table()</kbd> と <kbd>truncate_table()</kbd> を <a href="./database/active_record.html">Active Record</a> に追加しました。</li>
+			<li><a href="./database/active_record.html">Active Record</a> の <kbd>delete()</kbd> 文で、テーブルの配列を渡せる機能を追加しました。</li>
+			<li><kbd>count_all_results()</kbd> メソッドを <a href="./database/active_record.html">Active Record</a> に追加しました。</li>
+			<li><kbd>select_max()</kbd>, <kbd>select_min()</kbd>, <kbd>select_avg()</kbd> および <kbd>select_sum()</kbd> を <a href="./database/active_record.html">Active Record</a> に追加しました。</li>
+			<li><a href="./database/active_record.html">Active Record</a> のテーブル結合で、別名(エイリアス)を使用できるようにしました。</li>
+			<li>Active Record の <kbd>like()</kbd> 句に、ワイルドカードの扱いをコントロールするための第3引数を追加しました。</li>
+			<li><a href="./database/active_record.html">Active Record</a> の <kbd>set()</kbd> に、データをエスケープしないようにするための第3引数を追加しました。</li>
+			<li>where() 句に渡された値が何もない時、&quot;IS NULL&quot;が自動でセットされるよう、振る舞いを変更しました。</li>
+		</ul>
+	</li>
+	
+	<li>その他のデータベース関連
+		<ul>
+			<li>MySQL ドライバの動作条件が、MySQL 4.1以上になりました。</li>
+			<li>DB ドライバに、クエリを保存するかどうかを指定できるよう、$this->DB->save_queries フィールドを追加しました。以前は、常に保存されていました。</li>
+			<li>データベースプリフィクスを手動で追加するための、$this->db->dbprefix() を追加しました。</li>
+			<li><kbd>order_by()</kbd> のオプションとして'random' を追加し、MySQL専用のリスト出力オプションであった、&quot;rand()&quot; を削除しました。</li>
+			<li>MySQL データベースバックアップユーティリティで、NULLのフィールドをチェックするようにしました。</li>
+			<li>db-&gt;list_table() メソッドのパラメータに &quot;constrain_by_prefix&quot; を追加しました。TRUEをセットした場合、現在のプリフィクスが付加されているテーブル名のみが結果に含まれるようになります。</li>
+			<li>Active Record で、次のものが廃止予定になりました： <kbd>getwhere()</kbd> が <kbd>get_where()</kbd> の旧形式とされました; <kbd>groupby()</kbd> が <kbd>group_by()</kbd> の旧形式とされました; <kbd>havingor()</kbd> が <kbd>having_or()</kbd> の旧形式とされました; <kbd>orderby()</kbd> が <kbd>order_by</kbd> の旧形式とされました; <kbd>orwhere()</kbd> が <kbd>or_where()</kbd> の旧形式とされました; そして <kbd>orlike()</kbd>  が <kbd>or_like()</kbd> の旧形式とされました。</li>
+			<li><kbd>csv_from_result()</kbd> を、いままでよりも、RFC 4180の基本ルールにそって CSV データを出力するように変更しました。</li>
+			<li>データベースの設定として、 'char_set' および 'dbcollat' を追加しました。これにより、明示的にクライアントのコミュニケーションが適切に設定できます。</li>
+			<li>設定から 'active_r' を削除し、グローバル変数の $active_record 設定と置き換えました。
+				この設定項目の使われ方が本質的にはグローバルであるというところに、より適合する形になりました。(#1834)</li>
+		</ul>
+	</li>
+	
+	<li>コアの変更
+		<ul>
+			<li>複数のビューをロードできるようになりました。ビューの内容は、ロードした順に出力に追加されます。</li>
+			<li><a href="./general/models.html">モデル</a>の<a href="./general/autoloader.html">自動読み込み(オートロード)</a>機能が追加されました。</li>
+			<li>よりわかりやすくするため、URI およびルータクラスが再編成されました。</li>
+			<li>特定の エクステンション / ライブラリがない古い PHP のバージョンや PHP の環境のため、関数をオーバーライドする事が可能な、Compat.phpを追加しました。</li>
+			<li>プロファイラの出力に、メモリ使用量、GET、URI ストリングデータ、個々のクエリの実行時間を加えました。</li>
+			<li>スカッフォールディングを、非推奨としました。</li>
+			<li>クラスプラットフォームで、信頼性がある ファイル/フォルダの書き込みテスト手段を提供するため、Common.php に、is_really_writable() を追加しました。</li>
+		</ul>
+	</li>
+	
+	<li>ライブラリ
+		<ul>
+			<li>拡張が可能なように、モデルのロード手順を変更しました。</li>
+			<li>MCRYPT_MODE_CBC モードを使用する際に、中間者攻撃(man-in-the-middle attack)に対しての防衛ができるよう、暗号化ライブラリを強化しました。</li>
+			<li>フラッシュデータ変数、 session_id の再生成および、設定可能なセッションのアップデート時間を<a href="./libraries/sessions.html">セッションクラス</a>に追加しました。</li>
+			<li>セッションクラスから、'last_visit' を削除しました。</li>
+			<li>valid_ip の検証エラーに対応した言語エントリを追加しました。</li>
+			<li>バリデーション (検証) クラスの prep_for_form() を、配列を受け取れるようにし、POST 配列の検証 (コールバック経由のみ)をサポートするように変更しました。</li>
+			<li>バリデーション (検証) ライブラリに &quot;integer&quot; ルールを追加しました。</li>
+			<li>バリデーション (検証) ライブラリに valid_base64() を追加しました。</li>
+			<li><a href="../libraries/image_lib.html">画像操作</a>ライブラリの clear() の記述をドキュメントに追加しました。</li>
+			<li>&quot;required&quot; ルールによって、ユーザ定義のコールバックが呼び出されないように、振る舞いを変更しました。 </li>
+			<li>アップロードクラスの $_FILES のエラーメッセージをより正確にするよう変更しました。</li>
+			<li>Email ライブラリのセーフモードおよび認証チェックをコンストラクタに移動しました。 </li>
+			<li>ビューの変数名との衝突を避けるため、ローダクラスの _ci_load() メソッドの変数名を変更しました。</li>
+			<li>CSV の MIME タイプの、さらにいくつかのバリエーションを追加しました。</li>
+			<li>XML-RPC サーバライブラリで、いまのところまだ利用できない 'system.multicall' 以外の、'system' メソッドを利用可能にしました。</li>
+		</ul>
+	</li>
+	
+	<li>ヘルパーとプラグイン
+		<ul>
+			<li><a href="./helpers/html_helper.html">HTML ヘルパー</a>に link_tag() を追加しました。</li>
+			<li><a href="./helpers/html_helper.html">HTML ヘルパー</a>に img() を追加しました。</li>
+			<li><a href="./general/helpers.html">"拡張した" ヘルパー</a>を使えるようになりました。</li>
+			<li><a href="./helpers/email_helper.html">email ヘルパー</a> をコアヘルパーに追加しました。</li>
+			<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に、 <kbd>strip_quotes()</kbd> 関数を追加しました。</li>
+			<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に <kbd>reduce_multiples()</kbd> 関数を追加しました。</li>
+			<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に、<kbd>quotes_to_entities()</kbd> 関数を追加しました。</li>
+			<li><kbd>form_fieldset()</kbd>, <kbd>form_fieldset_close()</kbd>, <kbd>form_label()</kbd>, および <kbd>form_reset()</kbd> 関数を<a href="./helpers/form_helper.html">フォームヘルパー</a>に追加しました。</li>
+			<li><kbd>form_open()</kbd> で外部の URL をサポートするようにしました。</li>
+			<li>互換性のない関数のため、MySQLi の db_backup のサポートを取りやめました。</li>
+			<li>Javascript カレンダープラグインで、ハードコードされた値を使う代わりに、月と日をカレンダー言語ファイルのものを使うようにし、国際対応にしました。</li>
+		</ul>
+	</li>
+	
+	
+	<li>ドキュメントの変更
+		<ul>
+			<li>コミュニティで独自のドキュメントを書くのに使用できるよう、<a href="./doc_style/index.html">ドキュメントを書く</a>のセクションを追加しました。</li>
+			<li>すべてのユーザマニュアルのページにタイトルを追加しました。</li>
+			<li>正当なHTMLのため、ユーザガイドの &lt;html&gt; に属性を追加しました。</li>
+			<li><a href="http://codeigniter.com/user_guide/libraries/zip.html">Zip 圧縮クラス</a>をユーザガイドの目次に追加しました。</li>
+			<li>ユーザガイドのメニューの javascript の部分を外部ファイルに移動しました。</li>
+			<li><a href="./database/active_record.html">Active Record</a> の <kbd>distinct()</kbd> の記述をドキュメントに追加しました。 </li>
+			<li><a href="./helpers/date_helper.html">日付ヘルパー</a>の <kbd>timezones()</kbd> 関数についての記述をドキュメントに追加しました。</li>
+			<li><a href="./libraries/sessions.html">セッションクラス</a>の unset_userdata に関する記述をドキュメントに追加しました。</li>
+			<li><a href="./database/configuration.html">データベース設定</a> ページに、2つの設定項目についての記述を追加しました。</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>1.6.0の不具合修正</h3>
+
+<ul>
+	<li>返されたデータベースオブジェクトがある場合に、同一アプリケーションで、$CI->db が利用できない不具合(#1813) を修正しました。</li>
+	<li>明示的なメソッドが指定されないコントローラにルーティングされた場合、$this->uri->rsegments の配列に、'index' が含まれていない不具合(#1842)を修正しました。</li>
+	<li>word_limiter() でホワイトスペースが保持されない不具合(#1872)を修正しました。</li>
+	<li>csv_from_result() で、内容に区切り文字を含む場合にファイルが壊れる不具合(#1890)を修正しました。</li>
+	<li>Email クラスの clean_email() メソッドの不具合(#2542)を、数値以外の / 連続しない 配列のキーを指定できるように修正しました。</li>
+	<li>'global_xss_filtering' が有効な場合の<kbd>_html_entity_decode_callback()</kbd> の不具合(#2545)を修正しました。</li>
+	<li><a href="./libraries/parser.html">パーサクラス</a>で、数値データが無視される不具合(#2668)を修正しました。</li>
+	<li>&quot;前のページへ&quot; のページネーションリンクが、最初のページで表示されてしまう不具合(#2679)を修正しました。</li>
+	<li>_object_to_array で、inserts および updates のいくつかの型が壊れてしまう不具合(#2702)を修正しました。</li>
+	<li>PHP 4環境の SQLite ドライバの不具合(#2732)を修正しました。</li>
+	<li>ページネーションの不具合(#2754)について、正の数でない数値リンクをスキャンするように修正しました。</li>
+	<li><a href="./libraries/sessions.html">セッションライブラリ</a>でスペースで終わるユーザエージェントで、ユーザエージェントのマッチ処理が失敗する不具合(#2762)を修正しました。 </li>
+	<li>postgre および sqlite ドライバで、$field_names[] を $Ffield_names[] としていた不具合(#2784)を修正しました。</li>
+	<li>タイポグラフィヘルパーで、文字列がタグを含む場合に、余分な段落タグを生成してしまう不具合(#2810)を修正しました。</li>
+	<li>サブフォルダのコントローラ、メソッドに引数が渡されるとき、不正確にシフトされてしまい、第3引数の値が欠落してしまう不具合(#2849) を修正しました。</li>
+	<li>画像クラスで、誤った変数を参照していた不具合(#2858)を修正しました。</li>
+	<li>_pi でなく _plugin としてプラグインファイルをロードする不具合(#2875)を修正しました。</li>
+	<li><a href="./helpers/file_helper.html">ファイルヘルパー</a>の <kbd>get_filenames()</kbd> で、各呼び出しの度に配列がクリアされないの不具合(#2912)を修正しました。</li>
+	<li>スラッシュを伴う場合に、<kbd>highlight_phrase()</kbd> でエラーが起こる不具合(#2974)を修正しました。</li>
+	<li>暗号化ライブラリの不具合(#3003)を、MCRYPT_MODE_ECB 以外のモードをサポートするよう修正しました。</li>
+	<li><a href="./libraries/user_agent.html">ユーザエージェントライブラリ</a>の languages() で、2つ以上の言語が報告されない不具合(#3015)を修正しました。</li>
+	<li><a href="./libraries/email.html">Email</a> ライブラリで、いくつかのタイムゾーンが誤って計算される不具合(#3017)を修正しました。 </li>
+	<li>画像ライブラリの clear() で、master_dim がリセットされない不具合(#3024)を修正しました。</li>
+	<li>テキストヘルパーの highlight_code() で、PHP タグが正しく取り扱われない不具合(#3156)を修正しました。</li>
+	<li>num_rows が Oracle で動作しない不具合(#3166)を修正しました。</li>
+	<li>PHP 4環境で、特定のライブラリのオートロードが正しく機能しない不具合(#3175)を修正しました。</li>
+	<li>タイポグラフィヘルパーで、順序なしリストが、&quot;un&quot;として [ 訳注: HTML タグの ul でなく、誤ったタグで ] リストアップされていた不具合(#3267)を修正しました。</li>
+	<li>ルータでパスに '/' を残す場合がある不具合(#3268)を修正しました。</li>
+	<li>Email クラスで、いくつかの文字セットについて、誤った Content-Transfer-Encoding が送出されてしまう不具合(#3279)を修正しました。</li>
+	<li>リクエストされた URI が、ルーティング済みの URI よりも多くのセグメントを含む場合に、rsegment 配列が正しくセットされない不具合(#3284)を修正しました。</li>
+	<li>出力クラスの _display_cache() で、$CFGが余分にロードされていた個所を削除しました。(#3285)</li>
+	<li>モデルのロードが余分に呼び出される個所を削除しました。(#3286)</li>
+	<li>CI のグローバル変数の値を無効化する可能性がある、入力クラスのグローバル変数のサニタイズに関する不具合(#3310)を修正しました。</li>
+	<li>ファイルヘルパーの delete_files() で、トップレベルのパスが削除されてしまう不具合(#3314)を修正しました。</li>
+	<li>スマイリーヘルパーで、未定義の変数が返される不具合(#3328)を修正しました。</li>
+	<li>FTP クラスで、比較が行われない不具合(#3330)を修正しました。</li>
+	<li>プロファイラで、使用されていないパラメータを削除しました。(#3332)</li>
+	<li>データベースドライバで、num_rows プロパティが更新されない不具合を修正しました。</li>
+	<li><a href="./libraries/file_uploading.html">アップロードライブラリ</a>で、allowed_files が定義されていなかった不具合を修正しました。</li>
+	<li>テキストヘルパーの <kbd>word_wrap()</kbd> で、誤ってオブジェクトを参照してた不具合を修正しました。</li>
+	<li>バリデーション (検証) で、<kbd>valid_ip()</kbd> が適切に呼び出されない不具合を修正しました。</li>
+	<li>バリデーション (検証) で、チェックボックスに対応する個別のエラーメッセージがサポートされていなかった不具合を修正しました。</li>
+	<li>captcha で、不正なPHP関数を呼び出していた不具合を修正しました。</li>
+	<li>クッキーヘルパーの "set_cookie" 関数の設定を受け取っていなかった不具合を修正しました。</li>
+	<li>バリデーションで、コールバックを必要であると設定していなくても、コールバックが要求される不具合を修正しました。</li>
+	<li>XML-RPC ライブラリの不具合を修正しました。これにより、型が指定された場合、デフォルトの型に関して、よりインテリジェントな決定がされるようになります。</li>
+	<li>Email ライブラリのドキュメントで、カンマ区切りの email についてのサンプルコードを修正しました。</li>
+	<li>カレンダライブラリの、前の月/次の月 のリンクを表示するサンプルコードを修正しました。</li>
+	<li>データベースライブラリの言語ファイルの誤字を修正しました。</li>
+	<li>画像ライブラリの言語ファイルの誤字 &quot;suppor&quot; を &quot;support&quot; に修正しました。</li>
+	<li>XML RPC のサンプルコードを修正しました。</li>
+	<li><a href="./libraries/user_agent.html">ユーザエージェントライブラリ</a>の <kbd>accept_charset()</kbd> のサンプルコードを修正しました。</li>
+	<li>docblock コメントで、CodeIgniter が CodeIgnitorとなっていた誤字を修正しました。</li>
+	<li><a href="./helpers/string_helper.html">文字列ヘルパー</a> の誤字を修正しました(uniquid を uniqid に変更)。</li>
+	<li>email クラスの言語ファイルの誤字(email_attachment_unredable, email_filed_smtp_login), および FTP クラスの言語ファイルの誤字(ftp_unable_to_remame)を修正しました。</li>
+	<li>アップロードライブラリに stripslashes() を追加しました。</li>
+	<li>言語ファイルの一連の文法エラーとスペルミスを修正しました。</li>
+	<li>様々なユーザガイドの誤字を修正しました。</li>
+</ul>
+<h2>Version 1.5.4</h2>
+<p>リリース日付: 2007年7月12日 </p>
+<ul>
+	<li><a href="./libraries/language.html">ユーザ定義言語ファイル</a>に<a href="./general/autoloader.html">自動読み込み</a>オプションを追加しました。</li>
+	<li><a href="./libraries/input.html">入力クラス</a>のstripslashes() に、magic quotes が ON のときに、フレームワークで、データが常にスラッシュ除去されるよう、_clean_input_data() を追加しました。</li>
+	<li><a href="general/profiling.html">プロファイラ</a>で、配列を文字列に展開して表示するようにしました。</li>
+	<li>application/config/mimes.php に、さらにいくつかの MIME タイプを追加しました。</li>
+	<li><a href="./libraries/input.html">入力ライブラリ</a>に、filename_security() メソッドを追加しました。</li>
+	<li><a href="./helpers/inflector_helper.html">語形変換ヘルパー</a>の singular() に、"s"で終わる単語についての処理を補うよう、さらにいくつかの引数を追加しました。また pluralize() に、強制処理させるための引数を追加しました。</li>
+	<li>設定ファイルに、$config['charset'] を追加しました。規定値は、'UTF-8' で、いくつかの文字列を取り扱う関数で使用されます。</li>
+	<li>MSSQL の insert_id() を修正しました。</li>
+	<li>DBのtrans_status() メソッドの、論理の誤りを修正しました。誤って、失敗した場合に TRUE を返し、成功した場合に FALSE を返していました。</li>
+	<li>拡張されたクラスの複数の読み込みを許可していた不具合を修正しました。</li>
+	<li>ユーザが明示的に設定していた場合でも、誤ってサーバのフルパスを識別しようとしていた、ブートストラップファイルの不具合を修正しました。</li>
+	<li>MySQL ドライバの、escape_str() メソッドの不具合を修正しました。</li>
+	<li><a href="./libraries/calendar.html">カレンダライブラリ</a>の誤字を修正しました。</li>
+	<li>rpcs.php ライブラリの誤字を修正しました。</li>
+	<li><a href="./libraries/zip.html">Zip ライブラリ</a>の不具合を修正しました。PC Zip ファイルで、Mac OS X との互換性が提供されます。</li>
+	<li>最適化のために、スカッフォールディング向けのルートをルータで無視していた不具合を修正しました。</li>
+	<li>IP の検証の不具合を修正しました。</li>
+	<li><a href="./general/profiling.html">プロファイラ</a>の出力で、POST キーを表示するときの不具合を修正しました。</li>
+	<li><a href="./general/profiling.html">プロファイラ</a>の出力で、HTML として解釈できる文字をともなうクエリを表示するときの不具合を修正しました。</li>
+	<li>Email クラスの print debugger で、デバッグ出力において、HTML として解釈できる文字が含まれる場合の不具合を修正しました。</li>
+	<li>quoted-printable MIME タイプの HTML メールの Content-Transfer-Encoding の不具合を修正しました。</li>
+	<li>GET または POST データ経由で PHP のスーパーグローバルをセットする事により、そのひとつが、ある PHP のスーパーグローバルの値を無効化してしまう可能性がある不具合を修正しました。</li>
+	<li>PostgreSQL ドライバの insert_id() メソッドの、関数の未定義エラーを修正しました。</li>
+	<li>様々なドキュメントの誤字を修正しました。</li>
+	<li>ユーザガイドで記述がなかった、<a href="./helpers/string_helper.html">文字列ヘルパー </a>の2つの関数: trim_slashes() と reduce_double_slashes() についての記述をドキュメントに追加しました。</li>
+	<li>ドキュメントは、XHTML 1 transitional の妥当な文書になりました。</li>
+	<li>IE の expression() でできることについて考慮するようXSS フィルタリングをアップデートし、潜在的な脆弱性を回避するための、ある削除処理を改善しました。</li>
+	<li>ルータで、クエリ文字列を有効にできるようにし、コントローラトリガおよびメソッドトリガの値は、ファイル名の包含に関するセキュリティについてサニタイズするようにしました。</li>
+	<li>アップロードライブラリの is_image() メソッドで、Windows IE 6/7の MIME を取り扱う際の一般的でない挙動を考慮するようにしました。</li>
+	<li>XSS クリーニング処理のパフォーマンスを改善し、PHP 5.2の新しい PCRE のバックトラックと再帰処理制限に対応するようにしました。</li>
+	<li><a href="./helpers/url_helper.html">URL ヘルパー</a>で、数値が渡された場合に、$title を文字列にキャストするようにしました。</li>
+	<li>Modified フォームヘルパーの form_dropdown() で、選択肢の配列のキーと値を文字列にキャストするようにし、'selected' を適切にセットするために、数値を受け入れることができるようにしました。</li>
+	<li>各所で使われていた <kbd>is_numeric()</kbd> は、ピリオドが通ってしまうため、使わないようにしました。<kbd>ctype_digit()</kbd> は、互換性の問題があり、いくつかの環境で信頼性が得られなかったため、次の正規表現を代わりに使用します:  <kbd>preg_match("/[^0-9]/", $n)</kbd></li>
+	<li>非推奨: APPVER は、非推奨となり、明確さのため、CI_VERSION に置き換えられました。</li>
+</ul>
+<h2>Version 1.5.3</h2>
+<p>リリース日付: 2007年4月15日 </p>
+<ul>
+	<li>プロファイラで配列を文字列として展開して表示するようにしました。</li>
+	<li>Code Igniter への参照を CodeIgniter に変更しました。</li>
+	<li>pMachine への参照を EllisLab に変更しました。</li>
+	<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>のrepeater 関数の不具合を修正しました。</li>
+	<li>ODBC ドライバの不具合を修正しました。</li>
+	<li>result_array() の、結果が生成されないときに空の配列を返す不具合を修正しました。</li>
+	<li><a href="./helpers/url_helper.html">URL ヘルパー</a>の redirect 関数の不具合を修正しました。 </li>
+	<li>ローダの未定義の変数を修正しました。</li>
+	<li>Postgreドライバのバージョンバグを修正しました。</li>
+	<li>フォームヘルパーの textarea 関数で、文字列を使用する際の不具合を修正しました。</li>
+	<li>ドキュメントの誤字を修正しました。</li>
+</ul>
+<h2>Version 1.5.2</h2>
+<p>リリース日付: 2007年2月13日 </p>
+<ul>
+	<li><a href="./installation/downloads.html">ダウンロード</a>ページに<a href="./installation/downloads.html#svn">subversion の情報</a>を追加しました。</li>
+	<li><a href="./libraries/table.html">HTML テーブルライブラリ</a>で、キャプションをサポートするようにしました。</li>
+	<li>Internet Explorer でダウンロードではなく、読み込みが行われてしまう<a href="./helpers/download_helper.html">download_helper</a> の不具合を修正しました。</li>
+	<li>Active Record の Join メソッドで、テーブルプリフィクスが考慮されない不具合を修正しました。</li>
+	<li>入力およびルータクラスのエラーメッセージからエスケープされていない変数を削除しました。</li>
+	<li>ローダで、ライブラリが2回ロードされたときに、エラーになっていた不具合を修正しました。デバッグメッセージは、表示されずに、ログ出力されるようになりました。</li>
+	<li><a href="./helpers/form_helper.html">フォームヘルパー</a>で、textarea に value 属性をセットしていた不具合を修正しました。</li>
+	<li><a href="./libraries/image_lib.php">画像ライブラリ</a>で、同一サイズの画像のリサイズが無視されていた不具合を修正しました。</li>
+	<li>ドキュメントのいくつかの誤字を修正しました。</li>
+</ul>
+
+
+<h2>Version 1.5.1</h2>
+<p>リリース日付: 2006年11月23日</p>
+<ul>
+	<li>$this-&gt;load-&gt;library メソッドで、ライブラリの配列を指定できるようにしました。</li>
+	<li>小文字または大文字のファイルで、ユーザ定義ライブラリ名をつけられるようにしました。</li>
+	<li>出力バッファリングに関する不具合を修正しました。</li>
+	<li>active record クラスで、クエリをコンパイルした後にクエリデータをリセットしていなかった不具合を修正しました。</li>
+	<li>コントローラで、エラーを差し止めていた不具合を修正しました。</li>
+	<li>設定ファイルが存在しない場合にループが起こってしまう問題を修正しました。</li>
+	<li>第3引数を TRUE に設定して複数のモデルをロードした際に起こる不具合を修正しました。</li>
+	<li>入力のサニタイズメソッドで、グローバル変数が適切にクリアされていなかった見落としを修正しました。</li>
+	<li>Oracle DB ドライバのいくつかの不具合を修正しました。</li>
+	<li>MySQLi result ドライバの誤って名付けられた変数を修正しました。</li>
+	<li>ドキュメントのいくつかの誤字を修正しました。</li>
+</ul>
+<h2>Version 1.5.0.1</h2>
+<p>リリース日付: 2006年10月31日</p>
+<ul>
+<li>重複したヘルパーおよびクラスの読み込みが停止されない問題を修正しました。</li>
+<li>word_wrap() ヘルパー関数の不具合を修正しました。</li>
+<li>プロファイラクラスの正しくない16進カラーコードを修正しました。</li>
+<li>ユーザガイドの壊れた画像を修正しました。</li>
+</ul>
+
+
+
+<h2>Version 1.5.0</h2>
+<p>リリース日付: 2006年10月30日</p>
+
+<ul>
+<li><a href="./database/utilities.html">データベースユーティリティクラス</a>を追加しました。データベースのバックアップ、データベース結果からの CSV または XML の生成、その他の様々な機能があります。</li>
+<li><a href="./database/caching.html">データベースキャシュクラス</a>を追加しました。</li>
+<li><a href="./database/transactions.html">トランザクションのサポート</a>をデータベースクラスに加えました。</li>
+<li><a href="./general/profiling.html">プロファイラクラス</a>を追加しました。実行時間のベンチマーク、クエリ、POST データのレポートをページの一番下で表示します。</li>
+<li><a href="./libraries/user_agent.html">ユーザエージェントライブラリ</a>を追加しました。これにより、ブラウザ、ロボット、モバイル機器の識別ができます。</li>
+<li><a href="./libraries/table.html">HTML テーブルクラス</a>を追加しました。データベースの結果の配列から、テーブルを生成することができます。</li>
+<li><a href="./libraries/zip.html">Zip 圧縮ライブラリ</a>を追加しました。</li>
+<li><a href="./libraries/ftp.html">FTP ライブラリ</a>を追加しました。</li>
+<li><a href="./general/creating_libraries.html">ライブラリの拡張</a>および<a href="./general/core_classes.html">コアクラスの拡張</a>が可能になり、加えて、それらの置き換えも可能になりました。</li>
+<li><a href="./general/models.html">モデルをサブフォルダの中に</a>設置することが出来るようになりました。</li>
+<li><a href="./helpers/download_helper.html">ダウンロードヘルパー</a>を追加しました。</li>
+<li><a href="./database/queries.html">simple_query()</a> メソッドをデータベースクラスに追加しました。</li>
+<li><a href="./helpers/date_helper.html">standard_date()</a> 関数を日付ヘルパーに追加しました。</li>
+<li><a href="./database/results.html">$query->free_result()</a> メソッドをデータベースクラスに追加しました。</li>
+<li><a href="./database/fields.html">$query->list_fields()</a> メソッドをデータベースクラスに追加しました。</li>
+<li><a href="./database/helpers.html">$this->db->platform()</a> メソッドを追加しました。</li>
+<li>新しい<a href="./helpers/file_helper.html">ファイルヘルパー</a>：get_filenames() を追加しました。</li>
+<li>新しいヘルパー: <a href="./helpers/smiley_helper.html">スマイリー(顔文字)ヘルパー</a>を追加しました。</li>
+<li>&lt;ul&gt; および &lt;ol&gt; リストのサポートを<a href="./helpers/html_helper.html">HTML ヘルパー</a>に加えました。</li>
+<li><a href="./general/alternative_php.html">ショートタグ</a>をオンザフライで書き換えられるようにしました。ショートタグをサポートしないサーバでは、ショートタグは通常の PHP ステートメントに変換されます。これにより、サーバでショートタグがサポートされているかを考慮することなく、クリーンな構文が利用できます。</li>
+<li><a href="./general/managing_apps.html">"application" フォルダのリネームまたは再配置</a>ができるようになりました。</li>
+<li>アップロードクラスでより完全に初期化がおこなわれるようにしたので、すべてのフィールドがリセットされるようになりました。</li>
+<li>PHP ネイティブの is_numeric 関数を使用した "is_numeric" ルールがバリデーションに追加されました。</li>
+<li>設定項目 $config['uri_protocol'] が AUTO にセットされていた場合に、URI の取り扱いをより信頼性のあるよう改善しました。</li>
+<li>コントローラクラスの大部分のメソッドをローダクラスに移動し、PHP 5で動作させる場合に、コントローラの定義済みメソッド名がより少なくなるようにしました。</li>
+<li>$query->result() が結果を生成しない場合に、空の配列を返すよう、DB Result クラスを変更しました。</li>
+<li><a href="./libraries/input.html">入力クラス</a>の <dfn>input->cookie()</dfn> および <dfn>input->post()</dfn> メソッドを、XSS フィルタで使用される配列に、cookie を含むことができるように変更しました。</li>
+<li>ユーザガイドに記述されていなかったバリデーション (検証) クラスの3つのメソッド: set_select(), set_radio(), および set_checkbox() に関する記述をドキュメントに追加しました。</li>
+<li>SMTP の Helo データに関する Email クラスの不具合を修正しました。</li>
+<li>ワードラップヘルパーおよび Email クラスの不具合を修正しました。</li>
+<li>バリデーション(検証)クラスの不具合を修正しました。</li>
+<li>タイポグラフィーヘルパーで、不正にブロックレベル要素を段落タグで囲んでいた不具合を修正しました。</li>
+<li>form_prep() 関数で、二重にエンティティをエンコードしていた問題を修正しました。</li>
+<li>いくつかのバージョンの PHP に影響する、出力バッファがネストされたときの不具合を修正しました。</li>
+<li>PHP のマジックメソッド __get() または __set() をモデルまたはコントローラで使用すると、CI の動作が停止する不具合を修正しました。</li>
+<li>URL に負の数が設定されるページネーションの不具合を修正しました。</li>
+<li>ローダクラスが拡張できない見落としを修正しました。</li>
+<li>メソッドがプライベートではないため、<dfn>_get_config()</dfn> を <dfn>get_config()</dfn> に変更しました。</li>
+<li><strong>"init" フォルダを非推奨としました。</strong> 初期化は自動的に行われるようになりました。<a href="./general/creating_libraries.html">ドキュメントをご覧ください</a>。</li>
+<li>$this->db->field_names() は<strong>非推奨になりました</strong>。$this->db->list_fields() を使用してください。</li>
+<li>config.php ファイルの設定項目 <dfn>$config['log_errors']</dfn> は<strong>非推奨になりました</strong>。オフにするためには、代わりに、<dfn>$config['log_threshold']</dfn> に"0"をセットできます。</li>
+</ul>
+
+
+
+
+<h2>Version 1.4.1</h2>
+<p>リリース日付: 2006年9月21日</p>
+
+<ul>
+<li>URIセグメントを直接ユーザが作成したメソッド呼び出しのパラメータとして渡せる新しい機能を追加しました。詳しくは、<a href="controllers.html">コントローラ</a>のページをご覧ください。</li>
+<li>作成したコントローラで、出力クラスが生成した最終の出力を受け取ることができる <dfn>_output()</dfn> という名前のメソッドを追加しました。詳しくは、<a href="controllers.html">コントローラ</a>のページをご覧ください。</li>
+<li><a href="./libraries/uri.html">URI クラス</a>に、<a href="routing.html">URI ルーティング</a>機能を使って再ルーティングされたURIセグメントを、取得して操作するための、いくつかの新しいメソッドを追加しました。これまでは、URI クラスでは、再ルーティングされた URI セグメントにアクセスすることができませんでしたが、これからは、可能になります。</li>
+<li>サーバヘッダをセットすることができる<a href="./libraries/output.html">$this->output->set_header()</a> メソッドを追加しました。</li>
+<li><dfn>application</dfn> フォルダに、独自のプラグイン、ヘルパー、および言語フォルダを配置できるように、プラグイン、ヘルパー、言語クラスを変更しました。これまでは、インストール全体で、常にグローバルに取り扱う必要がありました。アプリケーションフォルダに、何らかのそれらのリソースが設置された場合、グローバルのそれに<em>代わって</em>使用されます。</li>
+<li><a href="./helpers/inflector_helper.html">語形変換ヘルパー</a>を追加しました。</li>
+<li><a href="./helpers/array_helper.html">配列ヘルパー</a>に、<dfn>element()</dfn> 関数を追加しました。</li>
+<li>active record の <dfn>orderby()</dfn> メソッドに、<dfn>RAND()</dfn> を追加しました。</li>
+<li>入力クラスにも、クッキーを読み取るメソッドがありますが、<dfn>delete_cookie()</dfn> と <dfn>get_cookie()</dfn> を<a href="./helpers/cookie_helper.html">クッキーヘルパー</a>に追加しました。</li>
+<li>Oracle データベースドライバを追加しました。(テスト中のため、いくつかの不具合がある可能性があります）</li>
+<li>テンプレートパーサクラスを、擬似変数と PHP 変数を混合して使用する事ができるようにしました。</li>
+<li>設定ファイルに、出力圧縮の項目を追加しました。</li>
+<li>db->escape() メソッドから is_numeric によるチェックを削除しました。</li>
+<li>MySQLi で、適切なエラーデータを含まずエラーメッセージが表示される不具合を修正しました。</li>
+<li>明示的に指定した代替ヘッダが無視される、Email クラスの不具合を修正しました。</li>
+<li>get_config() 関数で、例外クラスが呼ばれる時に、問題が発生して PHP エラーが起こっていた不具合を修正しました。</li>
+<li>クッキーヘルパーで、設定ファイルのクッキー設定が使用されていなかった見落としを修正しました。</li>
+<li>アップロードクラスの見落としを修正しました。1.4の変更履歴で述べられていた項目がありませんでした。</li>
+<li>Email のバッチ送信の時に、メールの添付をリセットできるよう、いくつかのコードを追加しました。</li>
+<li><dfn>application/scripts</dfn> フォルダは非推奨になりました。レガシーユーザのために、今後も動作しますが、
+<a href="./general/libraries.html">ライブラリ</a>または<a href="./general/models.html">モデル</a>を代わりに作成するのを推奨します。もともとは、ユーザライブラリやモデルがCIにない時に追加されたものですが、もう必要ではなくなりました。</li>
+<li><kbd>autoload.php</kbd> ファイルの項目 <dfn>$autoload['core']</dfn> は非推奨になりました。今後は、代わりに <kbd>$autoload['libraries']</kbd> を使用してください。</li>
+<li>次のデータベースメソッドが非推奨になりました: $this->db->smart_escape_str() および $this->db->fields().</li>
+</ul>
+
+
+
+<h2>Version 1.4.0</h2>
+<p>リリース日付: 2006年9月17日</p>
+
+<ul>
+<li>コアのファイルをハックすることなく、フレームワークの内部動作に踏み込んで変更することができる<a href="hooks.html">フック</a>機能を追加しました。</li>
+<li><a href="controllers.html">サブフォルダの中に</a>コントローラファイルを構成できるようにしました。Marco のこの機能(および次の2つの機能)についての<a href="http://codeigniter.com/forums/viewthread/627/">提案</a>を称えます。</li>
+<li><a href="routing.html">ルーティングルール</a>で、正規表現をサポートするようにしました。</li>
+<li>作成したコントローラの中で、<a href="controllers.html">メソッド呼び出しを再マッピングする</a>ことができるようになりました。</li>
+<li>ユーザ作成のクラスで、<a href="core_classes.html">コアシステムクラスを置き換える</a>ことができるようになりました。</li>
+<li>% 文字をURLで使用できるようになりました。</li>
+<li><a href="./helpers/url_helper.html">anchor()</a> ヘルパー関数を使って、完全な URL を出力できるようにしました。</li>
+<li><a href="./helpers/file_helper.html">file_write()</a> ヘルパーにモードを指定するパラメータを追加しました。</li>
+<li><a href="./database/configuration.html">Postgre ドライバ</a>で、ポート番号を変更できるようにしました。</li>
+<li>"許可された URI 文字(allowed URI characters)"のリストをルータクラスから、設定ファイルに移動しました。</li>
+<li>MIMEタイプの配列をアップロードクラスから、applications/config/ フォルダの中の、専用のファイルに移動しました。</li>
+<li><a href="./libraries/file_uploading.html">do_upload()</a> を呼び出す時に、アップロードするファイル名を指定するよう、アップロードクラスを変更しました。</li>
+<li><a href="./libraries/config.html">設定ライブラリ</a>を、自動的に設定ファイルをロードできるように変更し、(複数の設定を使用する時に衝突を避けるため)別々のインデックスを付けて、設定ファイルを割り当てられるようにしました。</li>
+<li>異なる環境で、URL がより高い信頼性のもとで動作するよう、URI プロトコルのコードに、さらに選択肢を追加しました。</li>
+<li><dfn>form_open()</dfn> ヘルパーで GET メソッドを利用できるようにしました。</li>
+<li>MySQLiの<dfn>execute()</dfn> メソッドに、コネクション切断エラーを避けるためいくつかのコードを追加して変更しました。</li>
+<li>SQLite ドライバで、結果をオブジェクトとして返す前に、オブジェクトをチェックするように変更しました。サポートされてない場合は、配列を返します。</li>
+<li>同一のモデルを複数ロードできるよう、モデル読み込みメソッドを変更しました。</li>
+<li>MSSQL ドライバを変更し、シングルクォートがエスケープされるようになりました。</li>
+<li>Postgre および ODBC ドライバの互換性の改善のための変更を行いました。</li>
+<li>URLセグメントを小文字に変換する strtolower() の呼び出しを削除しました。</li>
+<li>PHP 4.4.1で干渉していたいくつかの参照を互換性のために削除しました。</li>
+<li>Postgre では必要でなかったため、バックチックを Postgre クラスから削除しました。</li>
+<li>出力クラスの <dfn>display()</dfn> をプライベートメソッドであるを明確にするため、<dfn>_display()</dfn> に名称を変更しました。</li>
+<li>同名のネイティブ PHP 関数と名前衝突するため、hash() を非推奨としました。代わりに <kbd>dohash()</kbd> を使用してください。</li>
+<li>入力クラスで、GET 変数をクリアしていなかった不具合を修正しました。</li>
+<li>セグメントのマッチの終わりが、長い範囲になってしまうルータの不具合を修正しました。</li>
+<li>複数の別々のデータベース呼び出しができない不具合を修正しました。</li>
+<li>言語ファイルをロードする際に、メッセージ "ファイルにデータがありません(file contains no data)" を生成する不具合を修正しました。</li>
+<li>XSSフィルタリング機能が、不意に特定の語を変更してしまうことによるセッションの不具合を修正しました。</li>
+<li>データベースプリフィクス機能を使用している時の、プリフィクスの欠落を修正しました。</li>
+<li>カレンダークラスの誤字 (cal_november) を修正しました。</li>
+<li><dfn>form_checkbox()</dfn> ヘルパーの不具合を修正しました。</li>
+<li>2番目の URI セグメントがクラス名と同じであることが許可されていた不具合を修正しました。</li>
+<li>データベース初期化メソッドの評価関連の不具合を修正しました。</li>
+<li>言語クラスのエラーメッセージの一つの小さな不具合を修正しました。</li>
+<li>日付ヘルパーの <dfn>timespan</dfn> 関数の不具合を修正しました。</li>
+<li>DB ドライバクラスの未定義の変数を修正しました。</li>
+<li>DB クラスで、バインディングで置換される値として使用するドル記号が正規表現の後方参照として取り扱われる不具合を修正しました。</li>
+<li><dfn>set_hash()</dfn> 関数で、MD5 が使用されない不具合を修正しました。</li>
+<li>ユニットテストクラスの1対の不具合を修正しました。</li>
+<li>バリデーション(検証)クラスの間違った名前の変数を修正しました。</li>
+<li>URI クラスの間違った名前の変数を修正しました。</li>
+<li>設定クラスで、ベース URL が適切に呼び出されていなかった不具合を修正しました。</li>
+<li>バリデーション(検証)クラスで、フィールドが空の場合に、コールバックが起こらなかった不具合を修正しました。</li>
+<li>MySQLi で、スカッフォールディングが適切に動作しない問題を修正しました。</li>
+<li>MS SQL のいくつかの不具合を修正しました。</li>
+<li>ドキュメントのいくつかの誤字を修正しました。</li>
+</ul>
+
+
+
+<h2>Version 1.3.3</h2>
+<p>リリース日付: 2006年6月1日</p>
+
+<ul>
+
+<li>このバージョンで、モデルは、自動的にデータベースに接続しなくなりました。<a href="./general/models.html">詳しくはこちら</a>。</li>
+<li>セッション関連のクエリを実行する際に、セッションクラスで、AcitveRecord を使用するようにしました。これまでは、クエリは、MySQL の構文になっていました。</li>
+<li>alternator() 関数を引数なしで呼び出し場合、再初期化するようにし、複数回呼び出せるようにしました。</li>
+<li>active record の "having" メソッドの不具合を修正しました。</li>
+<li>バリデーション(検証)クラスで、required の場合に、チェックボックスが無視される問題を修正しました。</li>
+<li>word_limiter() ヘルパー関数の不具合を修正しました。最初の単語が切り取られていました。</li>
+<li>xss_clean 関数で、いくつかのバージョンに影響する html_entity_decode の PHP の不具合を修正しました。</li>
+<li>一つのコントローラで、ルールを2回セットできないバリデーションの不具合を修正しました。</li>
+<li>動的に読み込んだ言語を使用しないカレンダーの不具合を修正しました。</li>
+<li>LIKE を使った WHERE 句を使用する時の active record クラスの不具合を修正しました。</li>
+<li>セキュリティヘルパーの hash() の不具合を修正しました。</li>
+<li>いくつかの誤字を修正しました。</li>
+</ul>
+
+
+
+
+<h2>Version 1.3.2</h2>
+<p>リリース日付: 2006年4月17日</p>
+
+<ul>
+<li>"required" がフィールドに明示的にセット「されていなかった」場合、その他のテストが無視されるという、バリデーションの振る舞いを変更しました。</li>
+<li>コントローラクラスで、メインシステムフォルダでなく、ローカルの"init"フォルダを見ていた不具合を修正しました。</li>
+<li>init_pagination ファイルの不具合を修正しました。$config 設定項目が正常にセットされませんでした。</li>
+<li>オートタイポグラフィヘルパーで、一貫しない振る舞いを引き起こしていた不具合を修正しました。</li>
+<li>モデルクラスの一対の不具合を修正しました。</li>
+<li>ドキュメントのいくつかの誤字や誤りを修正しました。</li>
+</ul>
+
+
+
+<h2>Version 1.3.1</h2>
+<p>リリース日付: 2006年4月11日</p>
+
+<ul>
+<li><a href="./libraries/unit_testing.html">ユニットテストライブラリ</a>を追加しました。</li>
+<li>データベースメソッドの <strong>insert()</strong> および  <strong>update()</strong> にオブジェクトを渡せるようにしました。
+この機能により、(特に)作成した<a href="./general/models.html">モデルクラス</a>の変数を使ってクエリを実行できるようになります。詳しくはモデルのページをご覧ください。</li>
+<li><a href="./general/views.html">ビュー読み込みメソッド</a>: $this->load->view('my_view', <var>$object</var>); でオブジェクトを渡せるようになりました。</li>
+<li><kbd>getwhere</kbd> メソッドを<a href="./database/active_record.html">Active Record クラス</a>に追加しました。</li>
+<li><kbd>count_all</kbd> メソッドを<a href="./database/active_record.html">Active Record クラス</a>に追加しました。</li>
+<li>スカッフォールディング用の言語ファイルを追加し、指定したテーブルに行がない場合に起こる不具合を修正しました。</li>
+<li>最後に実行したクエリを閲覧できるよう、<a href="./database/queries.html">$this->db->last_query()</a> を追加しました。</li>
+<li>互換性向上のため、アップロードクラスに新しい MIME タイプを追加しました。</li>
+<li>PHPでショートタグとして解釈される XML タグが含まれるキャッシュファイルについての PHP エラーを回避するため、キャッシュファイルの読み取り方法を変更しました。</li>
+<li>2つのactive record メソッド(where および orderby)の不具合を修正しました。</li>
+<li>realpath() が false を返す時の画像ライブラリの不具合を修正しました。</li>
+<li>モデルで、ライブラリを使用できない不具合を修正しました。</li>
+<li>バリデーション(検証)クラスの "exact_length" メソッドの不具合を修正しました。</li>
+<li>ユーザガイドのいくつかの誤字を修正しました。</li>
+</ul>
+
+
+<h2>Version 1.3</h2>
+<p>リリース日付: 2006年4月3日</p>
+
+<ul>
+<li><a href="models.html">モデル</a>をサポートするようになりました。</li>
+<li>追加の RDBMS (Postgre, MySQLi, etc.)をサポートするよう、データベースライブラリを再設計しました。</li>
+<li>簡単な構文で多くの種類の問合せができるよう、また、JOIN などのようなより進んだ機能を有効にするため、<a href="./database/active_record.html">Active Record クラス</a>を再設計しました。</li>
+<li>データベースクラスで、<a href="./database/call_function.html">PHP ネイティブ関数の呼び出し</a>ができるようになりました。</li>
+<li>コントローラで、<a href="controllers.html">プライベートメソッド</a>をサポートするようにしました。アンダースコア始まる名前のコントローラのメソッドはすべて、URI リクエストでは、呼び出されません。</li>
+<li>$this->load->library()を使う時に、<a href="creating_libraries.html">ユーザ定義のコアライブラリ</a>に、独自の初期化パラメータを渡せるようにしました。</li>
+<li>通常の<a href="urls.html">クエリ文字列 URL</a> でも動作するようにしました。これらは、設定ファイルでオプションで有効にできます。</li>
+<li>URL に付加できる<a href="urls.html">"サフィックス(suffix)"を指定</a>出来るようにしました。たとえば、.html を URL に付加することができ、静的ファイルのように見せることができます。この機能は、設定ファイルで有効にします。</li>
+<li>ネイティブの PHP エラーに使用する新しいエラーテンプレートを追加しました。</li>
+<li><a href="./helpers/string_helper.html">文字列ヘルパー</a>に、"alternator" 関数を追加しました。</li>
+<li>入力クラスからスラッシュ付加処理を削除しました。良く議論した結果、この機能をなくしました。</li>
+<li>IDE や phpDocumenter のようなツールがコメントを収集できるよう、スクリプトのコメントスタイルを PEAR 標準に変更しました。</li>
+<li>ユーザ開発のクラスとの衝突を避けるため、クラスと関数のネームスペースを改善しました。衝突回避のため、CodeIgniter の全クラスは <dfn>CI_</dfn> というプリフィクスが付き、
+すべてのコントローラのメソッドは、<dfn>_ci</dfn> というプリフィクスが付きます。定義済みのメソッド名については、<a href="controllers.html">こちらにあります</a>。</li>
+<li>PHP 5では、より少ないリソースでオブジェクトを管理できる素晴らしい方法が利用できるため、"CI" スーパーオブジェクトの参照方法を PHP 4か5のどちらが実行されているかによって変えるように、再設計しました。</li>
+<li>非推奨: <var>$this->db->use_table()</var> は、非推奨になりました。これについては、<a href="./database/active_record.html">Active Record</a> のページでご覧ください。</li>
+<li>非推奨: <var>$this->db->smart_escape_str()</var> は、非推奨になりました。<var>$this->db->escape()</var> を代わりに使用してください。</li>
+<li>例外ハンドラで、いくつかのPHPエラーが表示されない不具合を修正しました。</li>
+<li>URIクラスの誤字を修正しました。$this->total_segment() は複数形にすべきです: $this->total_segments()</li>
+<li>既定のカレンダーテンプレートのいくつかの誤字を修正しました。</li>
+<li>ユーザガイドのいくつかの誤字を修正しました。</li>
+</ul>
+
+
+
+
+
+
+
+
+<h2>Version 1.2</h2>
+<p>リリース日付: 2006年3月21日</p>
+
+<ul>
+<li>ベータテストで明らかになったスコープの問題を解決するため、フレームワーク内部の一部を再設計しました。この問題は、コンストラクタで、クラスをインスタンス化する際に、とくに、それらのクラスが順次コンストラクタで処理を行う際に、もっともよく明らかになります。</li>
+<li>ユーザ定義クラスの中で、メインの Codeigniter オブジェクトにアクセスできるよう、<a href="ancillary_classes.html">get_instance()</a> というグローバル関数を追加しました。</li>
+<li>新しい<a href="./helpers/file_helper.html">ファイルヘルパー</a>を追加しました:  delete_files()</li>
+<li>新しい<a href="./helpers/url_helper.html">URL ヘルパー</a>を追加しました:  base_url(), index_page()</li>
+<li>ユーザ定義の <a href="creating_libraries.html">コアライブラリ</a> を作成し、ローカルの application ディレクトリに保管できるようにしました。</li>
+<li>与えられたファイル名のファイルに追加するのではなく、上書きできるよう、<kbd>overwrite(上書き)</kbd> オプションを<a href="./libraries/file_uploading.html">アップロードクラス</a>に追加しました。</li>
+<li>Javascript のカレンダープラグインを追加しました。</li>
+<li>ユーザガイドに検索機能を追加しました。注意: これは Google を利用して実行されますが、これを書いている時点では、ドキュメントのページはまだ登録されていません。</li>
+<li>あるタグのペアの中に別のタグを入れ子にできるよう、パーサクラスをアップデートしました。</li>
+<li>データベースクラスの "where" メソッドの不具合を修正しました。</li>
+<li>ユーザ作成の設定ファイルを自動読み込みできない不具合を修正しました。</li>
+<li>置き換えデータの中のクエスチョンマークが有効にならない、mysql クラスのバインド機能の不具合を修正しました。</li>
+<li>xss_clean 関数の不具合を修正しました。</li>
+</ul>
+
+
+
+
+
+<h2>Version Beta 1.1</h2>
+<p>リリース日付: 2006年3月10日</p>
+
+<ul>
+<li><a href="./libraries/calendar.html">カレンダークラス</a>を追加しました。</li>
+<li>単一の共有の CodeIgniter のバックエンドでの<a href="managing_apps.html">複数アプリケーション</a>の実行をサポートしました。</li>
+<li>"uri protocol" 変数を index.php ファイルから config.php ファイルに移動しました。</li>
+<li>コンストラクタの処理中に関数のコールが失敗する問題を修正しました。</li>
+<li>コンストラクタの処理中に $this->load->library メソッドが動作しない問題を修正しました。</li>
+<li>自動読み込み処理でセッションクラスが詠みこまれるときに発生するバグを修正しました。</li>
+<li>E_STRICT 定数をサポートしない PHP のバージョンで発生するバグを修正しました。</li>
+<li>form_radio 関数 (フォームヘルパー) のデータ型に関するエラーを修正しました。</li>
+<li>バリデーション(検証)クラスから xss_clean メソッドの呼び出しに失敗するバグを修正しました。</li>
+<li>$config ではなく、誤って $conf となっていた cookie 関連の設定項目名を修正しました。</li>
+<li>スカッフォールディングでのページネーションの問題を修正しました。</li>
+<li>mysql クラスの "where" メソッドのバグを修正しました。</li>
+<li>重複するスラッシュを取り除く、いつかのコードでの正規表現の問題を修正しました。</li>
+<li>HTML ヘルパーの br() 関数のバグを修正しました。</li>
+<li>フォームヘルパーの form_dropdown 関数の文法ミスを修正しました。</li>
+<li>フォームヘルパーから "style" 属性を取り除きました。</li>
+<li>ドキュメントを更新しました。"次へ/前へ" のリンクを各ページに追加し、多くの誤字を修正しました。</li>
+</ul>
+
+<h2>Version Beta 1.0 </h2>
+<p>リリース日付: 2006年2月28日</p>
+<p>最初のパブリックリリースバージョン。</p>
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p>
+前のトピック:&nbsp;&nbsp;<a href="license.html">ライセンス契約書</a>
+&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+<a href="index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+次のトピック:&nbsp;&nbsp;<a href="./general/credits.html">クレジット表示</a>
+</p>
+<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+</div>
+
+</body>
+</html>
