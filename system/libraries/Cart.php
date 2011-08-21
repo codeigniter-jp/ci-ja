@@ -11,9 +11,6 @@
  * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
- * 
- * Modified by Kenji Suzuki, 2009/10/31
- * - Fix $product_name_rules which does not allow Japanese charactors (Thanks to Hajimesawa)
  */
 
 // ------------------------------------------------------------------------
@@ -31,7 +28,7 @@ class CI_Cart {
 
 	// These are the regular expression rules that we use to validate the product ID and product name
 	var $product_id_rules	= '\.a-z0-9_-'; // alpha-numeric, dashes, underscores, or periods
-	var $product_name_rules	= '一-龠ぁ-んァ-ヴーａ-ｚＡ-Ｚ０-９\.\:\-_ a-z0-9'; // Japanese, alpha-numeric, dashes, underscores, colons or periods
+	var $product_name_rules	= '\.\:\-_ a-z0-9'; // alpha-numeric, dashes, underscores, colons or periods
 
 	// Private variables.  Do not change!
 	var $CI;
@@ -377,6 +374,7 @@ class CI_Cart {
 
 		// Lets add up the individual prices and set the cart sub-total
 		$total = 0;
+		$items = 0;
 		foreach ($this->_cart_contents as $key => $val)
 		{
 			// We make sure the array contains the proper indexes
@@ -386,13 +384,14 @@ class CI_Cart {
 			}
 
 			$total += ($val['price'] * $val['qty']);
+			$items += $val['qty'];
 
 			// Set the subtotal
 			$this->_cart_contents[$key]['subtotal'] = ($this->_cart_contents[$key]['price'] * $this->_cart_contents[$key]['qty']);
 		}
 
 		// Set the cart total and total items.
-		$this->_cart_contents['total_items'] = count($this->_cart_contents);
+		$this->_cart_contents['total_items'] = $items;
 		$this->_cart_contents['cart_total'] = $total;
 
 		// Is our cart empty?  If so we delete it from the session
