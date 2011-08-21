@@ -27,7 +27,6 @@ EllisLab とは無関係です。
 * HTML
 * Welcome ページを日本語に
 ** meta タグでの charset の指定を追加 (titleタグの前に)
-** DOCTYPE を追加
 
 
 ■ライセンス

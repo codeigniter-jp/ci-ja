@@ -90,6 +90,29 @@ $mobiles = array(
 //					'motorola'			=> 'Motorola'
 
 					// Phones and Manufacturers
+					// Kuniharu Tsujioka 2007-10-03 Add Japanese Mobile Agent
+					'j-phone'			=> 'SoftBank-J',
+					'vodafone'			=> 'SoftBank-V',
+					'mot'				=> 'SoftBank-MOT',
+					'vemulator'			=> 'Softbank-EMU',
+					'j-emulator'		=> 'Softbank-EMU',
+					'softbank'			=> 'SoftBank-S',
+					'docomo'			=> 'DoCoMo',
+					'm1000'				=> 'DoCoMo-M1000',
+					'kddi'				=> 'au',
+					'up.browser'		=> 'au',
+					'willcom'			=> 'WILLCOM',
+					'sharp/ws'			=> 'WILLCOM',
+					'ddipocket'			=> 'WILLCOM',
+					// Kuniharu Tsujioka 2008-04-14 Add Japanese Mobile Agent
+					'emobile'			=> 'EMOBILE',
+					// Kuniharu Tsujioka 2008-09-23 Add Japanese Mobile Agent
+					'huawei'			=> 'EMOBILE Open Browser',
+					's11ht'				=> 'EMOBILE Open Browser',
+					's12ht'				=> 'EMOBILE Open Browser',
+					's21ht'				=> 'EMOBILE Open Browser',
+					'h11t; like gecko;'	=> 'EMOBILE Open Browser',
+
 					'motorola'			=> "Motorola",
 					'nokia'				=> "Nokia",
 					'palm'				=> "Palm",
