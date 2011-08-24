@@ -74,8 +74,8 @@
 			<li><samp>EXT</samp> 定数の内部的使用を削除しました。</li>
 			<li>welcome_message ビューファイルと、デフォルトのエラーテンプレートの見た目を更新しました。<a href="https://bitbucket.org/danijelb">danijelb</a> さんの pull リクエストに感謝します。</li>
 			<li>PostgreSQL データベースのドライバに <samp>insert_batch()</samp> 関数を追加しました。epallerols さんのパッチに感謝します。</li>
-			<li class="reactor">Added "application/x-csv" to mimes.php.</li>
-			<li>Fixed a bug where <a href="libraries/email.html">Email library</a> attachments with a "." in the name would using invalid MIME-types.</li>
+			<li class="reactor">mimes.php に "application/x-csv" を追加しました。</li>
+			<li><a href="libraries/email.html">Email ライブラリ</a> の、"." が名前に含まれる添付ファイルが無効な MIME タイプを使用してしまうバグを修正しました。</li>
 		</ul>
 	</li>
 	<li>ヘルパー
@@ -87,10 +87,10 @@
 		<ul>
 			<li>セッションで、ユーザエージェント文字列の照合で照合する文字数を増やしました。データベースセッションを使用している場合は、アップグレードの注意事項 [ 訳注: <a href="installation/upgrade_203.html">2.0.2から2.0.3へのアップグレード</a> ] を確認してください。</li>
 			<li class="reactor">Added <kbd>is_unique</kbd> to the <a href="libraries/form_validation.html">Form Validation library</a>.</li>
-			<li class="reactor">Added <kbd>$this->db->set_dbprefix()</kbd> to the <a href="database/queries.html">Database Driver</a>.</li>
-			<li class="reactor">Changed <kbd>$this->cart->insert()</kbd> in the <a href="libraries/cart.html">Cart Library</a> to return the Row ID if a single item was inserted successfully.</li>
-			<li class="reactor">Added <kbd>$this->load->get_var()</kbd> to the <a href="libraries/loader.html">Loader library</a> to retrieve global vars set with <kbd>$this->load->view()</kbd> and <kbd>$this->load->vars()</kbd>.</li>
-			<li>Changed <kbd>$this->db->having()</kbd> to insert quotes using escape() rather than escape_str().</li>
+			<li class="reactor"><a href="database/queries.html">データベースドライバ</a> に <kbd>$this->db->set_dbprefix()</kbd> を追加しました。</li>
+			<li class="reactor"><a href="libraries/cart.html">カートライブラリ</a> の <kbd>$this->cart->insert()</kbd> を、1つのアイテムの追加が成功した場合、行 ID を返すように変更しました。</li>
+			<li class="reactor"><a href="libraries/loader.html">ローダライブラリ</a> に、<kbd>$this->load->view()</kbd> と <kbd>$this->load->vars()</kbd> でセットされるグローバル変数を取得するための <kbd>$this->load->get_var()</kbd> を追加しました。</li>
+			<li><kbd>$this->db->having()</kbd> でインサート時のクォートを escape() ではなく escape_str() を使うように変更しました。</li>
 		</ul>
 	</li>
 </ul>
@@ -103,11 +103,11 @@
 	<li>セッションライブラリデータベースのテーブルの SQL の例で、last_activity にインデックスが含まれていない不具合(Reactor #231)を修正しました。<a href="installation/upgrade_203.html">アップグレードの注意事項</a> を確認してください。</li>
 	<li>セッションライブラリのドキュメント内の SQL に不正な SQL が含まれている不具合(Reactor #229)を修正しました。</li>
 	<li>第2引数を $this->db->select() へ渡す際に、続くクエリの中でカラム名が正しくエスケープされない不具合(Core #340)を修正しました。</li>
-	<li class="reactor">Fixed issue #199 - Attributes passed as string does not include a space between it and the opening tag.</li>
-	<li class="reactor">Fixed a bug where the method <kbd>$this->cart->total_items()</kbd> from <a href="libraries/cart.html">Cart Library</a> now returns the sum of the quantity of all items in the cart instead of your total count.</li>
-	<li class="reactor">Fixed a bug where not setting 'null' when adding fields in db_forge for mysql and mysqli drivers would default to NULL instead of NOT NULL as the docs suggest.</li>
-	<li class="reactor">Fixed a bug where using <kbd>$this->db->select_max()</kdb>, <kbd>$this->db->select_min()</kdb>, etc could throw notices. Thanks to w43l for the patch.</li>
-	<li class="reactor">Replace checks for STDIN with php_sapi_name() == 'cli' which on the whole is more reliable. This should get parameters in crontab working.</li>
+	<li class="reactor">issue #199 の修正 - 文字列として渡される属性が、それと開始タグとの間にスペースを含まない。</li>
+	<li class="reactor"><a href="libraries/cart.html">カートライブラリ</a> の <kbd>$this->cart->total_items()</kbd> メソッドが、アイテムの数ではなく、すべてのアイテムの数量の合計を返すようにバグを修正しました。</li>
+	<li class="reactor">db_forge でフィールドを追加した場合、mysql と mysqli ドライバがデフォルトをドキュメントが示すように NOT NULL ではなく NULL にしていまうバグを修正を修正しました。</li>
+	<li class="reactor"><kbd>$this->db->select_max()</kdb>、<kbd>$this->db->select_min()</kdb> などが Notice エラーを発生させる可能性があったバグを修正しました。w43l からのパッチのおかげです。</li>
+	<li class="reactor">STDIN でのチェックを、全体的に見るとより安全な php_sapi_name() == 'cli' に置き換えました。crontab からうまく動作するようにパラメータを取得できるでしょう。</li>
 </ul>
 
 <h2>Version 2.0.2</h2>
