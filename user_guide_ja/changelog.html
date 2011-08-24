@@ -105,7 +105,7 @@
 	<li class="reactor">issue #199 の修正 - 文字列として渡される属性が、それと開始タグとの間にスペースを含まない。</li>
 	<li class="reactor"><a href="libraries/cart.html">カートライブラリ</a> の <kbd>$this->cart->total_items()</kbd> メソッドが、アイテムの数ではなく、すべてのアイテムの数量の合計を返すようにバグを修正しました。</li>
 	<li class="reactor">db_forge でフィールドを追加した場合、mysql と mysqli ドライバがデフォルトをドキュメントが示すように NOT NULL ではなく NULL にしていまうバグを修正を修正しました。</li>
-	<li class="reactor"><kbd>$this->db->select_max()</kdb>、<kbd>$this->db->select_min()</kdb> などが Notice エラーを発生させる可能性があったバグを修正しました。w43l からのパッチのおかげです。</li>
+	<li class="reactor"><kbd>$this->db->select_max()</kdb>、<kbd>$this->db->select_min()</kdb> などが Notice エラーを発生させる可能性があったバグを修正しました。w43l さんからのパッチのおかげです。</li>
 	<li class="reactor">STDIN でのチェックを、全体的に見るとより安全な php_sapi_name() == 'cli' に置き換えました。crontab からうまく動作するようにパラメータを取得できるでしょう。</li>
 </ul>
 
