@@ -6,6 +6,7 @@ Version 2.0.3
   * Kenji Suzuki <kenji@codeigniter.jp>
   * Yoko Tamada <tmd45@users.sourceforge.jp>
   * Hayato Nasu <hayato@nasu.me>
+  * Sho Akagi <sho@codeigniter.jp>
   
 Version 2.0.2
   * Kenji Suzuki <kenji@codeigniter.jp>
@@ -20,7 +21,7 @@ Version 2.0.1
   * nekoget
 
 Version 2.0.0
-  * Sho Akagi <akagisho@users.sourceforge.jp>
+  * Sho Akagi <sho@codeigniter.jp>
   * Kenji Suzuki <kenji@codeigniter.jp>
   * mokokomi 
   * panther-king 
