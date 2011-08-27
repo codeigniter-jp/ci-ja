@@ -80,23 +80,23 @@
 
 <p>この設定ファイルに、たくさんのユーザエージェントクラスが追加されていますので、このファイルを <kbd>application/config/user_agents.php</kbd> にコピーしてください。</p>
 
-<h2>ステップ 5: ".php" への EXT 定数のリファレンスを変更しました </h2>
-<p class="important"><strong>Note:</strong> EXT 定数は非推奨とされていますが、application から削除されていませんでした。すぐに変更することを推奨します。</p>
+<h2>ステップ 5: EXT 定数を ".php" に変更</h2>
+<p class="important"><strong>Note:</strong> EXT 定数は非推奨とされていますが、application から削除されていません。すぐに変更することを推奨します。</p>
 
-<h2>ステップ 6: autoload.php から APPPATH.'third_party' を削除しました</h2>
+<h2>ステップ 6: autoload.php から APPPATH.'third_party' を削除</h2>
 
 <p>application/autoload.php を開いて、以下を探してください:</p>
 
 <code>$autoload['packages'] = array(APPPATH.'third_party');</code>
 
-<p>もし任意の追加パッケージを使用していなければ、その行は次のように変更できます:</p>
+<p>もし何らかの追加パッケージを使用していなければ、その行は次のように変更できます:</p>
 <code>$autoload['packages'] = array();</code>
 
-<p>もしパッケージを自動読み込みしていない場合は、公称性能向上のため設置してください。</p>
+<p>パッケージを自動読み込みしていない場合、これによりわずかに性能が向上します。</p>
 
-<h2>セッション保存用のデータベーステーブルを更新しました</h2>
+<h2>セッション用のデータベーステーブルの更新</h2>
 
-<p>もし、セッション保存用のデータベースを CI セッションライブラリと一緒に使用している場合、<samp>ci_sessions</samp> データベーステーブルを以下のように更新してください:</p>
+<p>セッションクラスでデータベースを使用している場合、データベースの <samp>ci_sessions</samp> テーブルを以下のように更新してください:</p>
 
 <code>
 	CREATE INDEX last_activity_idx ON ci_sessions(last_activity);
