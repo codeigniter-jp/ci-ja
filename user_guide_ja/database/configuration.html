@@ -132,7 +132,7 @@ $db['test']['stricton'] = FALSE;</code>
 <li><strong>cache_on</strong> - TRUE/FALSE (boolean) - データベースクエリのキャッシュを有効にするかどうか。<a href="caching.html">データベースキャッシュクラス</a>を参照してください。</li>
 <li><strong>cachedir</strong> - データベースクエリのキャッシュディレクトリへの絶対サーバパス。</li>
 <li><strong>char_set</strong> - データベースとの通信に使用される文字セット。</li>
-<li><strong>dbcollat</strong> - データベースとの通信に使用される照合順序。<p class="important"><strong>Note:</strong> MySQL および MySQLi データベースでは、サーバの PHP のバージョンが 5.2.3 未満または MySQL のバージョンが 5.0.7 未満の場合 [ 訳注: すなわち mysql_set_charset() が使用できない環境 ] のみ、この設定が代替的に使用されます。もしこれらのバージョン未満の環境でマルチバイトのキャラクタセットを使用している場合、PHP の mysql_real_escape_string() 関数はあなたのサイトを SQL インジェクション攻撃に対して脆弱にしかねないという不都合があります。データベースのキャラクタセットと照合順序に Latin-1 または UTF-8 を使用しているサイトには影響がありません。</p></li>
+<li><strong>dbcollat</strong> - データベースとの通信に使用される照合順序。<p class="important"><strong>Note:</strong> MySQL および MySQLi データベースでは、サーバの PHP のバージョンが 5.2.3 未満または MySQL のバージョンが 5.0.7 未満の場合 [ 訳注: すなわち mysql_set_charset() が使用できない環境 ] のみ、この設定が代替的に使用されます。もしこれらのバージョン未満の環境でマルチバイトの文字セットを使用している場合、PHP の mysql_real_escape_string() 関数はあなたのサイトを SQL インジェクション攻撃に対して脆弱にしかねないという不都合があります。データベースの文字セットと照合順序に Latin-1 または UTF-8 を使用しているサイトには影響がありません。</p></li>
 <li><strong>swap_pre</strong> - デフォルトのテーブル接頭辞が <var>dbprefix</var> と置き換えられます。これは、配布されたアプリケーションに手動で記述された [ 訳注: 接頭辞を含む ] クエリが含まれる場合でも、接頭辞をエンドユーザにカスタマイズ可能にする必要がある場合に役に立ちます。</li>
 <li><strong>autoinit</strong> - ライブラリがロードされたときに、データベースに自動的に接続するかどうか。もし FALSE に設定された場合、最初のクエリの実行の前に接続されます。</li>
 <li><strong>stricton</strong> - TRUE/FALSE (boolean) - "Strict Mode" での接続を強制するかどうか、アプリケーションの開発中に SQL の厳密性を確保するのに良い方法です。</li>
