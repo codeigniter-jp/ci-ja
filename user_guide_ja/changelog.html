@@ -75,38 +75,38 @@
 			<li>welcome_message ビューファイルと、デフォルトのエラーテンプレートの見た目を更新しました。<a href="https://bitbucket.org/danijelb">danijelb</a> さんの pull リクエストに感謝します。</li>
 			<li>PostgreSQL データベースのドライバに <samp>insert_batch()</samp> 関数を追加しました。epallerols さんのパッチに感謝します。</li>
 			<li class="reactor">mimes.php に "application/x-csv" を追加しました。</li>
-			<li><a href="libraries/email.html">Email ライブラリ</a> の、"." が名前に含まれる添付ファイルが無効な MIME タイプを使用してしまうバグを修正しました。</li>
+			<li><a href="libraries/email.html">Email ライブラリ</a>において、"." が名前に含まれる添付ファイルが無効な MIME タイプを使用してしまうバグを修正しました。</li>
 		</ul>
 	</li>
 	<li>ヘルパー
 		<ul>
-			<li>レンダリングされた見出しタグに HTML 属性を追加できるように <samp>heading()</samp> に第3引数(オプション)を追加しました。</li>
+			<li>レンダリングされた見出しタグに HTML 属性を追加できるように、<samp>heading()</samp> に第3引数(オプション)を追加しました。</li>
 		</ul>
 	</li>
 	<li>ライブラリ
 		<ul>
 			<li>セッションで、ユーザエージェント文字列の照合で照合する文字数を増やしました。データベースセッションを使用している場合は、アップグレードの注意事項 [ 訳注: <a href="installation/upgrade_203.html">2.0.2から2.0.3へのアップグレード</a> ] を確認してください。</li>
-			<li class="reactor"><a href="database/queries.html">データベースドライバ</a> に <kbd>$this->db->set_dbprefix()</kbd> を追加しました。</li>
-			<li class="reactor"><a href="libraries/cart.html">カートライブラリ</a> の <kbd>$this->cart->insert()</kbd> を、1つのアイテムの追加が成功した場合、行 ID を返すように変更しました。</li>
-			<li class="reactor"><a href="libraries/loader.html">ローダライブラリ</a> に、<kbd>$this->load->view()</kbd> と <kbd>$this->load->vars()</kbd> でセットされるグローバル変数を取得するための <kbd>$this->load->get_var()</kbd> を追加しました。</li>
-			<li><kbd>$this->db->having()</kbd> でインサート時のクォートを escape() ではなく escape_str() を使うように変更しました。</li>
+			<li class="reactor"><a href="database/queries.html">データベースドライバ</a>に <kbd>$this->db->set_dbprefix()</kbd> を追加しました。</li>
+			<li class="reactor"><a href="libraries/cart.html">カートライブラリ</a>の <kbd>$this->cart->insert()</kbd> を、1つのアイテムの追加が成功した場合、行 ID を返すように変更しました。</li>
+			<li class="reactor"><a href="libraries/loader.html">ローダライブラリ</a>に、<kbd>$this->load->view()</kbd> と <kbd>$this->load->vars()</kbd> でセットされるグローバル変数を取得するための <kbd>$this->load->get_var()</kbd> を追加しました。</li>
+			<li><kbd>$this->db->having()</kbd> で、クォートの挿入に escape() ではなく escape_str() を使うように変更しました。</li>
 		</ul>
 	</li>
 </ul>
 
 <h3>2.0.3の不具合修正</h3>
 <ul>
-	<li class="reactor">ENVIRONMENT を予約された定数に追加しました。(Reactor #196)</li>
-	<li class="reactor">SCRIPT_NAME が確実に定義されているか、サーバをチェックするよう変更しました。(Reactor #57)</li>
-	<li class="reactor">もし、パッケージが存在しない場合、または、開発者が他のパッケージをデフォルトで読み込まない場合に、不必要なファイル統計を取得しないように、パッケージオートローダから <samp>APPPATH.'third_party'</samp> を削除しました。</li>
-	<li>セッションライブラリデータベースのテーブルの SQL の例で、last_activity にインデックスが含まれていない不具合(Reactor #231)を修正しました。<a href="installation/upgrade_203.html">アップグレードの注意事項</a> を確認してください。</li>
+	<li class="reactor">ENVIRONMENT を予約済み定数に追加しました。(Reactor #196)</li>
+	<li class="reactor">SCRIPT_NAME が確実に定義されているか、サーバでチェックするよう変更しました。(Reactor #57)</li>
+	<li class="reactor">パッケージが存在しない場合、または開発者が他のパッケージをデフォルトで読み込まない場合に、不必要なファイル統計を取得しないように、パッケージオートローダから <samp>APPPATH.'third_party'</samp> を削除しました。</li>
+	<li>セッションライブラリのデータベーステーブルの SQL の例で、last_activity にインデックスが含まれていない不具合(Reactor #231)を修正しました。<a href="installation/upgrade_203.html">アップグレードの注意事項</a>を確認してください。</li>
 	<li>セッションライブラリのドキュメント内の SQL に不正な SQL が含まれている不具合(Reactor #229)を修正しました。</li>
-	<li>第2引数を $this->db->select() へ渡す際に、続くクエリの中でカラム名が正しくエスケープされない不具合(Core #340)を修正しました。</li>
+	<li>$this->db->select() に第2引数を渡す際に、続くクエリの中でカラム名が正しくエスケープされない不具合(Core #340)を修正しました。</li>
 	<li class="reactor">issue #199 の修正 - 文字列として渡される属性が、それと開始タグとの間にスペースを含まない。</li>
-	<li class="reactor"><a href="libraries/cart.html">カートライブラリ</a> の <kbd>$this->cart->total_items()</kbd> メソッドが、アイテムの数ではなく、すべてのアイテムの数量の合計を返すようにバグを修正しました。</li>
-	<li class="reactor">db_forge でフィールドを追加した場合、mysql と mysqli ドライバがデフォルトをドキュメントが示すように NOT NULL ではなく NULL にしていまうバグを修正を修正しました。</li>
+	<li class="reactor"><a href="libraries/cart.html">カートライブラリ</a>の <kbd>$this->cart->total_items()</kbd> メソッドが、アイテムの数ではなく、すべてのアイテムの数量の合計を返すようにバグを修正しました。</li>
+	<li class="reactor">db_forge でフィールドを追加する際に、mysql と mysqli ドライバがドキュメントで示している NOT NULL ではなく、NULL をデフォルトにしてしまうバグを修正しました。</li>
 	<li class="reactor"><kbd>$this->db->select_max()</kdb>、<kbd>$this->db->select_min()</kdb> などが Notice エラーを発生させる可能性があったバグを修正しました。w43l さんからのパッチのおかげです。</li>
-	<li class="reactor">STDIN でのチェックを、全体的に見るとより安全な php_sapi_name() == 'cli' に置き換えました。crontab からうまく動作するようにパラメータを取得できるでしょう。</li>
+	<li class="reactor">STDIN でのチェックを、全体的に見るとより安全な php_sapi_name() == 'cli' に置き換えました。crontab からの動作でうまくパラメータを取得できるでしょう。</li>
 </ul>
 
 <h2>Version 2.0.2</h2>
