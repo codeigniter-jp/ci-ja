@@ -117,7 +117,7 @@ Hg Tag: v2.0.2</p>
 	<li>全体的な変更
 		<ul>
 			<li><a href="./libraries/security.html">セキュリティクラス</a> は core ディレクトリに移動し自動的に呼び出されるようになりました。手動で呼び出している場合にはそれを削除してください。</li>
-			<li>CI_SHA クラスは非推奨になりました。PHP の全てのバージョンで <kbd>sha1()</kbd> 関数が提供されています。</li>
+			<li>CI_SHA クラスは非推奨になりました。PHP のすべてのバージョンで <kbd>sha1()</kbd> 関数が提供されています。</li>
 			<li class="reactor"> <kbd>constants.php</kbd> は、環境設定毎のフォルダにファイルが存在すれば呼び出されるようになりました。</li>
 			<li class="reactor">言語ファイルの key エラーをログに記録するようになりました。</li>
 			<li class="reactor">複数環境サポートはオプションになりました。使用しない場合、環境設定をコメントアウトまたは削除してください。</li>
@@ -129,7 +129,7 @@ Hg Tag: v2.0.2</p>
 	<li>ヘルパー
 		<ul>
 			<li>以前から非推奨となっていた <kbd>dohash()</kbd> が<a href="./helpers/security_helper.html">セキュリティヘルパー</a> から削除されました。代わりに <kbd>do_hash()</kbd> を使用してください。</li>
-			<li class="reactor">渡した文字列のキャピタライゼーションを損なわないように plural 関数が変更されました。全て大文字の場合も考慮されています。</li>
+			<li class="reactor">渡した文字列のキャピタライゼーションを損なわないように plural 関数が変更されました。すべて大文字の場合も考慮されています。</li>
 		</ul>
 	</li>
 	<li>データベース

@@ -349,7 +349,7 @@ class Form extends CI_Controller {
 <a name="validationrulesasarray"></a>
 <h2>配列を使った検証ルールの指定</h2>
 
-<p>一回で全ての検証ルールを設定したい場合は、検証ルール設定メソッドを通る配列の形式で記述しなければいけません。
+<p>一回ですべての検証ルールを設定したい場合は、検証ルール設定メソッドを通る配列の形式で記述しなければいけません。
 このアプローチを使う場合、配列のキーをここに示した通りの名前にしなければいけません。:</p>
 
 <code>
@@ -688,7 +688,7 @@ $this->form_validation->set_rules('first_name', '<kbd>lang:</kbd>first_name', 'r
 <a name="savingtoconfig"></a>
 <h1>検証ルールを設定ファイルに保存</h1>
 
-<p>フォーム検証クラスの素晴らしい特徴は、アプリケーション全体に適用する検証ルールを全て設定ファイル内に格納する事が出来る点です。
+<p>フォーム検証クラスの素晴らしい特徴は、アプリケーション全体に適用する検証ルールをすべて設定ファイル内に格納する事が出来る点です。
 ルールは"グループ"毎に整理することができます。
 この"グループ"は一致するコントローラーやメソッドが呼び出された時に自動的にロードさせる事も出来るし、必要な時に手動で呼び出す事も出来ます。</p>
 
@@ -892,7 +892,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 <code>&lt;?php echo form_error('<kbd>sports[nba][basketball]</kbd>'); ?></code>
 
 <p>複数の選択肢を持つチェックボックス(もしくは他のフォーム)を使う場合は、それぞれの名前には空白のカッコを付ける事を忘れないでください。
-そうしないと POST 時の配列に全ての選択が渡りません:</p>
+そうしないと POST 時の配列にすべての選択が渡りません:</p>
 
 <code>
 &lt;input type="checkbox" name="<kbd>options[]</kbd>" value="red" /><br />
@@ -1175,7 +1175,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 
 
 <h2>validation_errors()</h2>
-<p>文字列として全てのエラーメッセージを表示する:例:</p>
+<p>文字列としてすべてのエラーメッセージを表示する:例:</p>
 
 <code>&lt;?php echo validation_errors(); ?></code>
 
