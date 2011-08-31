@@ -27,7 +27,7 @@ hg archive -r "$tag" "$dir/$pkg"
 
 
 cd "$dir/$pkg"
-rm .hg_archival.txt .hgignore .hgtags
+rm .hg_archival.txt .hgignore .hgtags .hgflow
 rm -rf _scripts
 
 
