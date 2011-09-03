@@ -77,7 +77,7 @@
 <p>この設定ファイルに、たくさんのユーザエージェントクラスが追加されていますので、このファイルを <kbd>application/config/user_agents.php</kbd> にコピーしてください。</p>
 
 <h2>ステップ 4: EXT 定数を ".php" に置換</h2>
-<p class="important"><strong>Note:</strong> EXT 定数は非推奨とされていますが、application から削除されていません。すぐに変更することを推奨します。</p>
+<p class="important"><strong>Note:</strong> EXT 定数は廃止予定とされましたが、まだアプリケーションからは削除されていません。すぐに変更することを推奨します。</p>
 
 <h2>ステップ 5: autoload.php から APPPATH.'third_party' を削除</h2>
 
@@ -97,10 +97,10 @@
 <code>
 	CREATE INDEX last_activity_idx ON ci_sessions(last_activity);
 	ALTER TABLE ci_sessions MODIFY user_agent VARCHAR(120);
-</code>
-
-
-
+</code>	
+	
+	
+	
 
 </div>
 <!-- END CONTENT -->
