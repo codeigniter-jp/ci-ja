@@ -105,8 +105,8 @@
 	<br />
 	foreach ($query->result('User') as $user)<br />
 	{<br />
-	&nbsp;&nbsp;&nbsp;echo $row->name; // 属性を呼び出す<br />
-	&nbsp;&nbsp;&nbsp;echo $row->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
+	&nbsp;&nbsp;&nbsp;echo $user->name; // 属性を呼び出す<br />
+	&nbsp;&nbsp;&nbsp;echo $user->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
 	}
 	</code>
 
