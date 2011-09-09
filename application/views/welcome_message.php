@@ -81,7 +81,7 @@
 		<p>CodeIgniter を使うのが初めてなら、<a href="user_guide_ja/">ユーザガイド</a>を読むことから始めてください。</p>
 	</div>
 
-	<p class="footer">このページは、{elapsed_time} 秒でレンダリングされました。</p>
+	<p class="footer">このページは、<strong>{elapsed_time}</strong> 秒でレンダリングされました。<?php echo  (ENVIRONMENT == 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 
 </body>
