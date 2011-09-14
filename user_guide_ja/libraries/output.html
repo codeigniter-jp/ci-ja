@@ -82,12 +82,12 @@
 
 <p>JSON データや JPEG データ、XML などを簡単に提供できるように、ページの MIME タイプを設定できます。</p>
 
-<code>$this->output<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('application/json')<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;->set_output(json_encode(array('foo' => 'bar')));<br/>
-<br/>
-$this->output<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('jpeg') // ".jpeg" とすることもでき、その場合、ピリオドは config/mimes.php を検索する前に削除されます<br/>
+<code>$this->output<br />
+&nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('application/json')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;->set_output(json_encode(array('foo' => 'bar')));<br />
+<br />
+$this->output<br />
+&nbsp;&nbsp;&nbsp;&nbsp;->set_content_type('jpeg') // ".jpeg" とすることもでき、その場合、ピリオドは config/mimes.php を検索する前に削除されます<br />
 &nbsp;&nbsp;&nbsp;&nbsp;->set_output(file_get_contents('files/something.jpg'));</code>
 
 <p><strong>重要:</strong> config.mimes.php に存在する MIME タイプをこのメソッドに渡していることを確認してください。そうでないと、効果はありません。</p>
