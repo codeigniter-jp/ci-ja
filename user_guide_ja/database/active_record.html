@@ -79,9 +79,6 @@ CodeIgniter ではデータベースごとに専用のクラスを必要とし�
 
 <p>次のメソッドを使えば、SQLの<strong>SELECT</strong>文を組み立てられます。</p>
 
-<p><strong>Note: PHP 5 を使用している場合、よりコンパクトな構文にするためメソッドの連結(method chaining)を使用することができます。これについては、ページの最後で述べています。</strong></p>
-
-
 <h2>$this->db->get();</h2>
 
 <p>SELECT クエリを実行し、結果を返します。次のように、単独で使うと、テーブルの全レコードを取得するのに使えます:</p>
@@ -334,6 +331,13 @@ $this->db->or_where('id >', $id);
 	$this-&gt;db-&gt;like('title', 'match', 'both'); <br />
 // 次を生成: WHERE title LIKE '%match%' </code>	</li>
 
+ワイルドカード (%) を使いたくない場合は、オプションの第3引数を 'none' に指定することで外すことができます。
+
+<code>
+	$this-&gt;db-&gt;like('title', 'match', 'none'); <br />
+// 次を生成: WHERE title LIKE 'match'
+</code>
+
 	<li><strong>連想配列を使用する方法:</strong>
 
 	<code>
@@ -526,7 +530,7 @@ $this->db->insert('mytable', $object);
 <strong>配列</strong> または <strong>オブジェクト</strong> のどちらかでメソッドにデータを渡せます。配列を使った例は次の通りです:</p>
 
 <code>
-$data = array(<br/>
+$data = array(<br />
 &nbsp;&nbsp;&nbsp;array(<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'My title' ,<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'My Name' ,<br />
@@ -536,7 +540,7 @@ $data = array(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'Another title' ,<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'Another Name' ,<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'Another date'<br />
-&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;)<br />
 );<br />
 <br />
 $this->db->insert_batch('mytable', $data);
