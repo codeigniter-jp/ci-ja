@@ -183,14 +183,15 @@ $query = $this->db->query("SELECT * FROM mytable");<br />
 echo $this->dbutil->csv_from_result($query);
 </code>
 
-<p>第2、第3引数で、区切り文字(デリミタ)と改行文字を指定できます。
-デフォルトでは、デリミタにタブを改行に "\n" (LF) を使います。例:</p>
+<p>第2、第3、第4引数で、区切り文字(デリミタ)、改行文字と囲み文字をそれぞれ指定できます。
+デフォルトでは、デリミタにタブ、改行に "\n" (LF) 、囲み文字にダブルクォーテーションを使います。例:</p>
 
 <code>
 $delimiter = ",";<br />
 $newline = "\r\n";<br />
+$enclosure = '"';<br />
 <br />
-echo $this->dbutil->csv_from_result($query, $delimiter, $newline);
+echo $this->dbutil->csv_from_result($query, $delimiter, $newline, $enclosure);
 </code>
 
 <p><strong>Important:</strong>&nbsp; このメソッドは、CSV を ファイルには書き出しません。単に、CSV に整形するだけです。
