@@ -508,15 +508,13 @@ $this->form_validation->set_rules('email', 'メールアドレス', '<kbd>trim</
 
 <code>$this->form_validation->set_rules('username', 'ユーザ名', '<kbd>callback_username_check</kbd>');</code>
 
-
 <p>次に <dfn>username_check</dfn> という名前の新しいメソッドをコントローラに追加します。  コントローラは以下のようになっているはずです:</p>
-
 
 <textarea class="textarea" style="width:100%" cols="50" rows="44"><?php
 
 class Form extends CI_Controller {
 
-	function index()
+	public function index()
 	{
 		$this->load->helper(array('form', 'url'));
 
@@ -537,7 +535,7 @@ class Form extends CI_Controller {
 		}
 	}
 
-	function username_check($str)
+	public function username_check($str)
 	{
 		if ($str == 'test')
 		{
@@ -556,13 +554,12 @@ class Form extends CI_Controller {
 <p><dfn>フォームを再読み込みして、ユーザ名に "test" と入力して送信します。
 フォームフィールドのデータがコールバックメソッドに渡され処理されたのがわかります。</dfn></p>
 
-<p><strong>コールバックを呼び出すには、あるルールに従ってメソッド名を指定します。そのルールとは、"callback_" というプリフィックスをメソッド名に付け加えるというものです。</strong></p>
-
-<p>また、コールバックに渡されたフォームデータを処理し、結果を返すことができます。
+<p>コールバックを呼び出すには、あるルールに従ってメソッド名を指定します。そのルールとは、<strong>callback_</strong> というプリフィックスをメソッド名に付け加えるというものです。
+また、コールバックに渡されたフォームデータを処理し、結果を返すことができます。
 コールバックが bool 型の TRUE / FALSE 以外の値を返す場合、そのデータはフォームデータが処理された新しいものである事が想定されます。</p>
 
-
-
+<p><strong>Note:</strong> You can also process the form data that is passed to your callback and return it.  If your callback returns anything other than a boolean TRUE/FALSE
+it is assumed that the data is your newly processed form data.</p>
 
 <a name="settingerrors"></a>
 <h2>エラーメッセージを設定する</h2>
@@ -572,7 +569,7 @@ class Form extends CI_Controller {
 
 <p>ユーザ定義のメッセージを表示するには、このファイルを編集するか、または、次のメソッドを利用します:</p>
 
-<code>$this->form_validation->set_message('<var>ルール名</var>', '<var>エラーメッセージ</var>');</code>
+<code>$this->form_validation->set_message('<var>rule</var>', '<var>Error Message</var>');</code>
 
 <p>ここでの <var>rule</var> は特定のルール名になり、<var>Error Message</var> は表示したいテキストになります。</p>
 
@@ -582,7 +579,7 @@ class Form extends CI_Controller {
 
 <code>$this->form_validation->set_message('username_check')</code>
 
-<p>また、言語ファイル内にエラーメッセージが見つかれば上書きすることができます。たとえば、"required" ルールのメッセージを変更するには、次のようにします:</p>
+<p>また、言語ファイル内のエラーメッセージを上書きすることもできます。たとえば、"required" ルールのメッセージを変更するには、次のようにします:</p>
 
 <code>$this->form_validation->set_message('required', 'ここにカスタムメッセージ');</code>
 
@@ -947,6 +944,13 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 	</tr>
 
 	<tr>
+		<td class="td"><strong>is_unique</strong></td>
+		<td class="td">Yes</td>
+		<td class="td">Returns FALSE if the form element is not unique to the table and field name in the parameter.</td>
+		<td class="td">is_unique[table.field]</td>
+	</tr>
+
+	<tr>
 		<td class="td"><strong>min_length</strong></td>
 		<td class="td">あり</td>
 		<td class="td">フォームのデータが指定したサイズよりも文字数が短いときに FALSE を返します。</td>
@@ -1035,6 +1039,13 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 		<td class="td">なし</td>
 		<td class="td">フォームのデータが0を除く1, 2, 3, 等の自然数以外の場合 FALSE を返します。</td>
 		<td class="td">&nbsp;</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>is_unique</strong></td>
+		<td class="td">Yes</td>
+		<td class="td">Returns FALSE if the form element is not unique in a database table.</td>
+		<td class="td">is_unique[table.field]</td>
 	</tr>
 
 	<tr>
