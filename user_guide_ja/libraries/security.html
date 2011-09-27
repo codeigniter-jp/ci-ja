@@ -116,7 +116,7 @@ Note: この機能は、データの処理のみに使用してください。�
 
 <p><a href="../helpers/form_helper.html">フォームヘルパー</a> の <var>form_open()</var> 関数を使用すると、フォームに対して CSRF 保護用の hidden フィールドが自動的に挿入されます。</p>
 
-<p>Select URIs can be whitelisted from csrf protection (for example API endpoints expecting externally POSTed content). You can add these URIs by editing the 'csrf_exclude_uris' config parameter:</p>
+<p>CSRF 保護のホワイトリストに追加したい URI を設定します。（たとえば 外部から POST されたコンテンツの API のエンドポイント）&apos;csrf_exclude_uris&apos; パラメータを編集して URI を追加することができます。:</p>
 <code>$config['csrf_exclude_uris'] = array('api/person/add');</code>
 
 </div>
