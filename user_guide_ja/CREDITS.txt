@@ -6,6 +6,7 @@ Version 2.1.0
   * Kenji Suzuki <kenji@codeigniter.jp>
   * Yuya Terajima
   * Kazuhiro Takada
+  * Hitoshi Ikeda
 
 Version 2.0.3
   * Kenji Suzuki <kenji@codeigniter.jp>
