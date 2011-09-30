@@ -390,10 +390,10 @@ $this->form_validation->set_rules($config);
 <p>CodeIgniter では、複数のルールを互いにパイプすることができます。ではやってみましょう。ルール設定メソッドの第3引数を次のように変更してみてください。:</p>
 
 <code>
-$this->form_validation->set_rules('username', 'ユーザ名', 'required|min_length[5]|max_length[12]');<br />
+$this->form_validation->set_rules('username', 'ユーザ名', 'required|min_length[5]|max_length[12]|is_unique[users.username]');<br />
 $this->form_validation->set_rules('password', 'パスワード', 'required|matches[passconf]');<br />
 $this->form_validation->set_rules('passconf', 'パスワードの確認', 'required');<br />
-$this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email');<br />
+$this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email|is_unique[users.email]');<br />
 </code>
 
 <p>上のコードでは次のことが要求されます:</p>
