@@ -8,6 +8,7 @@ Version 2.1.0
   * Kazuhiro Takada
   * Hitoshi Ikeda
   * Fumito Mizuno
+  * Yoshiyuki Ieyama
 
 Version 2.0.3
   * Kenji Suzuki <kenji@codeigniter.jp>
