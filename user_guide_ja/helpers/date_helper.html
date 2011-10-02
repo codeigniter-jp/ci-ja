@@ -234,6 +234,20 @@ $unix = human_to_unix($human);</code>
 
 
 
+<h2>nice_date()</h2>
+
+<p>この関数は不完全な日付フォーマットの数字を引数に取り、有用な形式に変換します。正しい日付フォーマットを引数に取ることもできます。</p>
+<p>デフォルトでは UNIX タイムスタンプを返します。オプションとして、第2引数にフォーマット文字列( PHP の date 関数が引き受けるものと同じ)を渡すことができます。例:</p>
+
+<code>$bad_time = 199605<br />
+<br />
+// 次の日付を生成: 1996-05-01<br />
+$better_time = nice_date($bad_time,'Y-m-d');<br />
+<br />
+$bad_time = 9-11-2001<br />
+// 次の日付を生成: 2001-09-11<br />
+$better_time = nice_date($human,'Y-m-d');</code>
+
 
 
 <h2>timespan()</h2>
