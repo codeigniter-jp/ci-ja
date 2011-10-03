@@ -59,6 +59,75 @@
 
 <p><img src="images/reactor-bullet.png" width="16" height="16" alt="Reactor Marker" /> 印は CodeIgniter Reactor から提供されたものです。</p>
 
+<h2>Version 2.1.0 (planned)</h2>
+<p>Release Date: Not Released</p>
+
+<ul>
+	<li>General Changes
+		<ul>
+			<li>Added Android to the list of user agents.</li>
+			<li>Added Windows 7 to the list of user platforms.</li>
+			<li>Callback validation rules can now accept parameters like any other validation rule.</li>
+			<li>Ability to log certain error types, not all under a threshold.</li>
+			<li>Added html_escape() to <a href="general/common_functions.html">Common functions</a> to escape HTML output for preventing XSS.</li>
+			<li>Added support for pem,p10,p12,p7a,p7c,p7m,p7r,p7s,crt,crl,der,kdb,rsa,cer,sst,csr Certs to mimes.php.</li>
+			<li>Added support pgp,gpg to mimes.php.</li>
+			<li>Added support 3gp, 3g2, mp4, wmv, f4v, vlc Video files to mimes.php.</li>
+			<li>Added support m4a, aac, m4u, xspf, au, ac3, flac, ogg Audio files to mimes.php.</li>
+		</ul>
+	</li>
+	<li>Helpers
+		<ul>
+			<li>Added <samp>increment_string()</samp> to <a href="helpers/string_helper.html">String Helper</a> to turn "foo" into "foo-1" or "foo-1" into "foo-2".</li>
+			<li>Altered form helper - made action on form_open_multipart helper function call optional.  Fixes (#65)</li>
+			<li><samp>url_title()</samp> will now trim extra dashes from beginning and end.</li>
+			<li>Improved speed of <a href="helpers/string_helper.html">String Helper</a>'s <b>random_string()</b> method</li>
+		</ul>
+	</li>
+	<li>Database
+		<ul>
+			<li>Added a <a href="http://www.cubrid.org/" target="_blank">CUBRID</a> driver to the <a href="database/index.html">Database Driver</a>. Thanks to the CUBRID team for supplying this patch.</li>
+			<li>Typecast limit and offset in the <a href="database/queries.html">Database Driver</a> to integers to avoid possible injection.</li>
+			<li>
+				Added additional option 'none' for the optional third argument for  <kbd>$this->db->like()</kbd> in the <a href="database/active_record.html">Database Driver</a>.
+			</li>
+		</ul>
+	</li>
+	<li>Libraries
+		<ul>
+			<li>Changed <kbd>$this->cart->insert()</kbd> in the <a href="libraries/cart.html">Cart Library</a> to return the Row ID if a single item was inserted successfully.</li>
+			<li>Added support to set an optional parameter in your callback rules of validation using the <a href="libraries/form_validation.html">Form Validation Library</a>.</li>
+			<li>Added a <a href="libraries/migration.html">Migration Library</a> to assist with applying incremental updates to your database schema.</li>
+			<li>Driver children can be located in any package path.</li>
+			<li>Added max_filename_increment config setting for Upload library.</li>
+			<li><samp>CI_Loader::_ci_autoloader()</samp> is now a protected method.</li>
+			<li>Added <kbd>is_unique</kbd> to the <a href="libraries/form_validation.html">Form Validation library</a>.</li>
+		</ul>
+	</li>
+	<li>Core
+		<ul>
+			<li>Changed private functions in CI_URI to protected so MY_URI can override them.</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>Bug fixes for 2.1.0</h3>
+<ul>
+	<li class="reactor">Fixed #378 Robots identified as regular browsers by the User Agent class.</li>
+	<li class="reactor">If a config class was loaded first then a library with the same name is loaded, the config would be ignored.</li>
+	<li class="reactor">Fixed a bug (Reactor #19) where 1) the 404_override route was being ignored in some cases, and 2) auto-loaded libraries were not available to the 404_override controller when a controller existed but the requested method did not.</li>
+	<li class="rector">Fixed a bug (Reactor #89) where MySQL export would fail if the table had hyphens or other non alphanumeric/underscore characters.</li>
+	<li class="reactor">Fixed a bug (#200) where MySQL queries would be malformed after calling <samp>count_all()</samp> then <samp>db->get()</samp></li>
+	<li class="reactor">Fixed bug #105 that stopped query errors from being logged unless database debugging was enabled</li>
+	<li>Fixed a bug (#181) where a mis-spelling was in the form validation language file.</li>
+	<li>Fixed a bug (#160) - Removed unneeded array copy in the file cache driver.</li>
+	<li>Fixed a bug (#150) - <samp>field_data()</samp> now correctly returns column length.</li>
+	<li>Fixed a bug (#8) - <samp>load_class()</samp> now looks for core classes in <samp>APPPATH</samp> first, allowing them to be replaced.</li>
+	<li>Fixed a bug (#24) - ODBC database driver called incorrect parent in __construct().</li>
+	<li>Fixed a bug (#85) - OCI8 (Oracle) database escape_str() function did not escape correct.</li>
+	<li>Fixed a bug (#344) - Using schema found in <a href="libraries/sessions.html">Saving Session Data to a Database</a>, system would throw error "user_data does not have a default value" when deleting then creating a session.</li>
+</ul>
+
 <h2>Version 2.0.3</h2>
 <p>リリース日付: 2011年8月20日</p>
 
@@ -67,6 +136,7 @@
 		<ul>
 			<li>データベースクライアント接続において、マルチバイトの文字セットを使用したサイトで、潜在的な SQL インジェクションの経路が開かれたままになるのを防ぐよう MySQL と MySQLi ドライバの改善を行いました。<p><em>mysql_set_charset()</em> と非互換な PHP 5.2.3未満と MySQL 5.0.7未満の組み合わせでは、マルチバイトの文字セットを使用した環境では、SQL インジェクションの攻撃経路を無防備な状態にさらすことになりかねません。Latin-1、UTF-8、その他の "low ASCII" 文字セットの場合は、すべての環境において影響を受けません。</p> <p class="critical">もし、マルチバイトの文字セットでのデータベース接続を実行し、または、実行しようと考えているのなら、脆弱性の影響を受けないよう、サーバ環境に細心の注意を払ってください。</p></li>
 		</ul>
+	</li>
 	<li>全体的な変更
 		<ul>
 			<li>index.php ファイルのコードのコメント内にあるスペルミスを修正しました。</li>
@@ -75,12 +145,15 @@
 			<li>welcome_message ビューファイルと、デフォルトのエラーテンプレートの見た目を更新しました。<a href="https://bitbucket.org/danijelb">danijelb</a> さんの pull リクエストに感謝します。</li>
 			<li>PostgreSQL データベースのドライバに <samp>insert_batch()</samp> 関数を追加しました。epallerols さんのパッチに感謝します。</li>
 			<li class="reactor">mimes.php に "application/x-csv" を追加しました。</li>
+			<li class="reactor">Added CSRF protection URI whitelisting.</li>
 			<li><a href="libraries/email.html">Email ライブラリ</a>において、"." が名前に含まれる添付ファイルが無効な MIME タイプを使用してしまうバグを修正しました。</li>
 		</ul>
 	</li>
 	<li>ヘルパー
 		<ul>
 			<li>レンダリングされた見出しタグに HTML 属性を追加できるように、<samp>heading()</samp> に第3引数(オプション)を追加しました。</li>
+			<li class="reactor"><kbd>form_open()</kbd> now only adds a hidden (Cross-site Reference Forgery) protection field when the form's action is internal and is set to the post method. (Reactor #165)</li>
+			<li class="reactor">Re-worked <samp>plural()</samp> and <samp>singular()</samp> functions in the <a href="helpers/inflector_helper.html">Inflector helper</a> to support considerably more words.</li>
 		</ul>
 	</li>
 	<li>ライブラリ
