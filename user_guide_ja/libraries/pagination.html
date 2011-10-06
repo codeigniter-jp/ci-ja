@@ -119,7 +119,11 @@ echo $this->pagination->create_links();</code>
 
 <p>選択中のページ番号の前後に表示したい &quot;数字&quot; リンクの数。たとえば、2を指定すると、
 このページの一番上の方のサンプルのリンクのように、現在のページのページ番号の両脇に2つの番号リンクが置かれます。</p>
-<h4>$config['page_query_string'] = TRUE</h4>
+
+<h4>$config['use_page_numbers'] = TRUE;</h4>
+<p>By default, the URI segment will use the starting index for the items you are paginating. If you prefer to show the the actual page number, set this to TRUE.</p>
+
+<h4>$config['page_query_string'] = TRUE;</h4>
 <p>デフォルトでは、ページネーションライブラリは、<a href="../general/urls.html">URI セグメント</a> を使用しているものとして、以下のようなリンクを生成します。</p>
 <p><code>http://example.com/index.php/test/page/20</code></p>
 <p>もし、$config['enable_query_strings'] を TRUE に設定している場合は、リンクは自動的にクエリ文字列に書き換えられます。$config['page_query_string'] を TRUE に設定することで、クエリ文字列を明示的に指定できます。この場合、ページネーションリンクは、以下のようになります。</p>

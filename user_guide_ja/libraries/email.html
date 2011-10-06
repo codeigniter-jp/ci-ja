@@ -63,6 +63,7 @@ Email クラス
 
 <ul>
 <li>複数プロトコル: メール、Sendmail、および SMTP</li>
+<li>TLS and SSL Encryption for SMTP</li>
 <li>複数の受取人</li>
 <li>CC と BCC</li>
 <li>HTML または プレーンテキスト email</li>
@@ -151,6 +152,8 @@ $this->email->initialize($config);</code>
 <td class="td"><strong>smtp_port</strong></td><td class="td">25</td><td class="td">なし</td><td class="td">SMTP のポート番号</td>
 </tr><tr>
 <td class="td"><strong>smtp_timeout</strong></td><td class="td">5</td><td class="td">なし</td><td class="td">SMTP のタイムアウト (秒単位)</td>
+</tr><tr>
+<td class="td"><strong>smtp_crypto</strong></td><td class="td">No Default</td><td class="td">tls or ssl</td><td class="td">SMTP Encryption.</td>
 </tr><tr>
 <td class="td"><strong>wordwrap</strong></td><td class="td">TRUE</td><td class="td">TRUE または FALSE (boolean)</td><td class="td">ワードラップの有効化設定</td>
 </tr><tr>
