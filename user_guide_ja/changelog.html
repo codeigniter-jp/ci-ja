@@ -60,65 +60,65 @@
 <p><img src="images/reactor-bullet.png" width="16" height="16" alt="Reactor Marker" /> 印は CodeIgniter Reactor から提供されたものです。</p>
 
 <h2>Version 2.1.0 (planned)</h2>
-<p>Release Date: Not Released</p>
+<p>リリース日付: 未リリース</p>
 
 <ul>
-	<li>General Changes
+	<li>全体的な変更
 		<ul>
-			<li>Added Android to the list of user agents.</li>
-			<li>Added Windows 7 to the list of user platforms.</li>
-			<li>Callback validation rules can now accept parameters like any other validation rule.</li>
-			<li>Ability to log certain error types, not all under a threshold.</li>
-			<li>Added html_escape() to <a href="general/common_functions.html">Common functions</a> to escape HTML output for preventing XSS.</li>
-			<li>Added support for pem,p10,p12,p7a,p7c,p7m,p7r,p7s,crt,crl,der,kdb,rsa,cer,sst,csr Certs to mimes.php.</li>
-			<li>Added support pgp,gpg to mimes.php.</li>
-			<li>Added support 3gp, 3g2, mp4, wmv, f4v, vlc Video files to mimes.php.</li>
-			<li>Added support m4a, aac, m4u, xspf, au, ac3, flac, ogg Audio files to mimes.php.</li>
+			<li>Android 端末をユーザエージェントリストに追加しました。</li>
+			<li>Windows 7 をプラットフォームリストに追加されました。</li>
+			<li>コールバックの検証ルールが他の検証ルールと同じように引数を受け取れるようにしました。</li>
+			<li>しきい値以下のすべてのエラータイプではなく、特定のエラータイプを記録する能力を追加しました。</li>
+			<li><a href="general/common_functions.html">共通関数</a> に XSS を防ぐために HTML をエスケープする html_escape() を追加しました。</li>
+			<li>mimes.php に pem、p10、p12、p7a、p7c、p7m、p7r、p7s、crt、crl、der、kdb、rsa、cer、sst、csr 証明書のサポートを追加しました。</li>
+			<li>mimes.php に pgp、gpg を追加しました。</li>
+			<li>mimes.php に 3gp、 3g2、 mp4、 wmv、 f4v、 vlc ビデオファイルのサポートを追加しました。</li>
+			<li>mimes.php に m4a、 aac、 m4u、 xspf、 au、 ac3、 flac、 ogg オーディオファイルのサポートを追加しました。</li>
 		</ul>
 	</li>
-	<li>Helpers
+	<li>ヘルパー
 		<ul>
-			<li>Added <samp>increment_string()</samp> to <a href="helpers/string_helper.html">String Helper</a> to turn "foo" into "foo-1" or "foo-1" into "foo-2".</li>
-			<li>Altered form helper - made action on form_open_multipart helper function call optional.  Fixes (#65)</li>
-			<li><samp>url_title()</samp> will now trim extra dashes from beginning and end.</li>
-			<li>Improved speed of <a href="helpers/string_helper.html">String Helper</a>'s <b>random_string()</b> method</li>
-			<li>Added XHTML Basic 1.1 doctype to <a href="helpers/html_helper.html">HTML Helper</a>.</li>
+			<li><a href="helpers/string_helper.html">文字列ヘルパー</a> に "foo" を "foo-1" または "foo-1" を "foo-2" に変化させる <samp>increment_string()</samp> 関数を追加しました。</li>
+			<li>フォームヘルパーのうち form_open_multipart 関数の引数 action をオプションに変更しました。 Fixes (#65)</li>
+			<li><samp>url_title()</samp> 関数は最初と最後の余分なダッシュ記号を取り除きます。</li>
+			<li><a href="helpers/string_helper.html">文字列ヘルパー</a>の <b>random_string()</b> 関数の速度を改善しました。</li>
+			<li><a href="helpers/html_helper.html">HTMLヘルパー</a>に XHTML Basic 1.1 のドキュメントタイプを追加しました。</li>
 		</ul>
 	</li>
-	<li>Database
+	<li>データベース
 		<ul>
-			<li>Added a <a href="http://www.cubrid.org/" target="_blank">CUBRID</a> driver to the <a href="database/index.html">Database Driver</a>. Thanks to the CUBRID team for supplying this patch.</li>
-			<li>Added a PDO driver to the <a href="database/index.html">Database Driver</a>.</li>
-			<li>Typecast limit and offset in the <a href="database/queries.html">Database Driver</a> to integers to avoid possible injection.</li>
+			<li><a href="database/index.html">データベースドライバ</a>に <a href="http://www.cubrid.org/" target="_blank">CUBRID</a> ドライバを追加しました。このパッチを提供してくれた CUBID チームに感謝します。</li>
+			<li><a href="database/index.html">データベースドライバ</a>に PDOドライバを追加しました。</li>
+			<li><a href="database/index.html">データベースドライバ</a>が 可能なインジェクションを回避するために limit 値と offset 値を 整数型に型キャストするようにしました。</li>
 			<li>
-				Added additional option 'none' for the optional third argument for  <kbd>$this->db->like()</kbd> in the <a href="database/active_record.html">Database Driver</a>.
+				<a href="database/index.html">データベースドライバ</a>の <kbd>$this->db->like()</kbd> がオプションである第3引数に 'none' オプションを追加しました。
 			</li>
-			<li>Added <kbd>$this->db->insert_batch()</kbd> support to the OCI8 (Oracle) driver.</li>
+			<li><kbd>$this->db->insert_batch()</kbd> は OCI8 (Oracle) ドライバをサポートします。</li>
 		</ul>
 	</li>
-	<li>Libraries
+	<li>ライブラリ
 		<ul>
-			<li>Changed <kbd>$this->cart->insert()</kbd> in the <a href="libraries/cart.html">Cart Library</a> to return the Row ID if a single item was inserted successfully.</li>
-			<li>Added support to set an optional parameter in your callback rules of validation using the <a href="libraries/form_validation.html">Form Validation Library</a>.</li>
-			<li>Added a <a href="libraries/migration.html">Migration Library</a> to assist with applying incremental updates to your database schema.</li>
-			<li>Driver children can be located in any package path.</li>
-			<li>Added max_filename_increment config setting for Upload library.</li>
-			<li><samp>CI_Loader::_ci_autoloader()</samp> is now a protected method.</li>
-			<li>Added <kbd>is_unique</kbd> to the <a href="libraries/form_validation.html">Form Validation library</a>.</li>
-			<li>Modified valid_ip() to use PHP's filter_var() when possible (>= PHP 5.2) in the <a href="libraries/form_validation.html">Form Validation</a> library.</li>
-			<li>Added <kbd>$config['use_page_numbers']</kbd> to the <a href="libraries/pagination.html">Pagination library</a>, which enables real page numbers in the URI.</li>
-			<li>Added TLS and SSL Encryption for SMTP.</li>
+			<li><a href="libraries/cart.html">カートライブラリ</a>の <kbd>$this->cart->insert()</kbd> を1つの商品が正常に追加された場合に挿入した ID 番号を返すように変更しました。</li>
+			<li><a href="libraries/form_validation.html">フォームバリデーション(検証)ライブラリ</a> を使用する場合に、コールバックの検証ルールにオプションの引数を1つ設定できるように変更しました。</li>
+			<li><a href="libraries/migration.html">マイグレーションライブラリ</a> はデータベーススキーマの差分更新の適用を支援します。</li>
+			<li>子ドライバはいずれのパッケージパスにも配置することができます。</li>
+			<li>アップロードライブラリに max_filename_increment の設定を追加しました。</li>
+			<li><samp>CI_Loader::_ci_autoloader()</samp> を protected メソッドにしました。</li>
+			<li><a href="libraries/form_validation.html">フォームバリデーション(検証)ライブラリ</a>に <kbd>is_unique</kbd> を追加しました。</li>
+			<li><a href="libraries/form_validation.html">フォームバリデーション(検証)</a>ライブラリの valid_ip() が PHP の filter_var() 関数を使うように変更しました。(>= PHP 5.2)</li>
+			<li><a href="libraries/pagination.html">ページネーションライブラリ</a>に URI の実際のページ番号を使用できるように <kbd>$config['use_page_numbers']</kbd> を追加しました。</li>
+			<li>SMTP の TLS とSSL 暗号化を追加しました。</li>
 		</ul>
 	</li>
-	<li>Core
+	<li>コア
 		<ul>
-			<li>Changed private functions in CI_URI to protected so MY_URI can override them.</li>
-			<li>Removed CI_CORE boolean constant from CodeIgniter.php (no longer Reactor and Core versions).</li>
+			<li>CI_URI の private メソッドを MY_URI でオーバーライドできるように protected に変更しました。</li>
+			<li>CodeIgniter.php の 真偽値 CI_CORE 定数を削除しました。(もはや Reactor や Core のバージョンではないため)</li>
 		</ul>
 	</li>
 </ul>
 
-<h3>Bug fixes for 2.1.0</h3>
+<h3>2.1.0の不具合修正</h3>
 <ul>
 	<li class="reactor">Unlink raised an error if cache file did not exist when you try to delete it.</li>
 	<li class="reactor">Fixed #378 Robots identified as regular browsers by the User Agent class.</li>
@@ -160,15 +160,15 @@
 			<li>welcome_message ビューファイルと、デフォルトのエラーテンプレートの見た目を更新しました。<a href="https://bitbucket.org/danijelb">danijelb</a> さんの pull リクエストに感謝します。</li>
 			<li>PostgreSQL データベースのドライバに <samp>insert_batch()</samp> 関数を追加しました。epallerols さんのパッチに感謝します。</li>
 			<li class="reactor">mimes.php に "application/x-csv" を追加しました。</li>
-			<li class="reactor">Added CSRF protection URI whitelisting.</li>
+			<li class="reactor">CSRF 保護機能に URI ホワイトリストを追加しました。</li>
 			<li><a href="libraries/email.html">Email ライブラリ</a>において、"." が名前に含まれる添付ファイルが無効な MIME タイプを使用してしまうバグを修正しました。</li>
 		</ul>
 	</li>
 	<li>ヘルパー
 		<ul>
 			<li>レンダリングされた見出しタグに HTML 属性を追加できるように、<samp>heading()</samp> に第3引数(オプション)を追加しました。</li>
-			<li class="reactor"><kbd>form_open()</kbd> now only adds a hidden (Cross-site Reference Forgery) protection field when the form's action is internal and is set to the post method. (Reactor #165)</li>
-			<li class="reactor">Re-worked <samp>plural()</samp> and <samp>singular()</samp> functions in the <a href="helpers/inflector_helper.html">Inflector helper</a> to support considerably more words.</li>
+			<li class="reactor"><kbd>form_open()</kbd> 関数はフォームの action が内部 URL で method が post の場合のみ hidden (クロスサイトリファレンスフォージェリ) 保護フィールドを追加します。(Reactor #165)</li>
+			<li class="reactor"><a href="helpers/inflector_helper.html">語形変換ヘルパー</a>の <samp>plural()</samp> 関数と <samp>singular()</samp> 関数がより多くの単語をサポートするように変更されました。</li>
 		</ul>
 	</li>
 	<li>ライブラリ
