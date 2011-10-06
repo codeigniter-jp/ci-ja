@@ -666,10 +666,9 @@ $this->db->update('mytable', $object);
 
 <p>先に述べた、 <dfn>$this->db->set()</dfn> メソッドを更新に利用することもできます。</p>
 
-
 <h2>$this->db->update_batch();</h2>
-<p>Generates an update string based on the data you supply, and runs the query. You can either pass an
-<strong>array</strong> or an <strong>object</strong> to the function.  Here is an example using an array:</p>
+<p>与えられたデータをもとに UPDATE 文を生成し実行します。
+<strong>配列</strong> または <strong>オブジェクト</strong> のどちらかでメソッドにデータを渡せます。配列を使った例は次の通りです:</p>
 
 <code>
 $data = array(<br/>
@@ -687,7 +686,7 @@ $data = array(<br/>
 <br />
 $this->db->update_batch('mytable', $data, 'title');
 <br /><br />
-// Produces: <br />
+// 生成されるSQL文: <br />
 // UPDATE `mytable` SET `name` = CASE<br />
 // WHEN `title` = 'My title' THEN 'My Name 2'<br />
 // WHEN `title` = 'Another title' THEN 'Another Name 2'<br />
@@ -698,9 +697,9 @@ $this->db->update_batch('mytable', $data, 'title');
 // ELSE `date` END<br />
 // WHERE `title` IN ('My title','Another title')</code>
 
-<p>The first parameter will contain the table name, the second is an associative array of values, the third parameter is the where key.</p>
+<p>第1引数はテーブル名、第2引数は値の連想配列、第3引数は where 句を指定します。</p>
 
-<p class="important"><strong>Note:</strong> All values are escaped automatically producing safer queries.</p>
+<p class="important"><strong>Note:</strong> すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
 
 
 <a name="delete">&nbsp;</a>
