@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 フック - フレームワークコアの拡張
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -77,23 +77,23 @@ CodeIgniter は、<a href="../overview/appflow.html">アプリケーションフ
 
 <code>
 $hook['pre_controller'] = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'class'&nbsp;&nbsp;&nbsp;&nbsp;=> 'MyClass',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'function' => 'Myfunction',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename' => 'Myclass.php',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filepath' => 'hooks',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'params'&nbsp;&nbsp;&nbsp;=> array('beer', 'wine', 'snacks')<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</code>
+                                'class'    => 'MyClass',<br />
+                                'function' => 'Myfunction',<br />
+                                'filename' => 'Myclass.php',<br />
+                                'filepath' => 'hooks',<br />
+                                'params'   => array('beer', 'wine', 'snacks')<br />
+                                );</code>
 
 <p><strong>Notes:</strong><br />
 配列の添字は、利用したいフックポイントの名前になります。上の例では、フックポイントは <kbd>pre_controller</kbd> になります。フックポイントのリストは下の方をご覧ください。
 フックを定義する連想配列で、次の項目を定義する必要があります:</p>
 
 <ul>
-<li><strong>class</strong>&nbsp; 呼び出したいクラスの名前。クラスの代わりに手続き型の関数を使いたい場合は、空のままにしておきます。</li>
-<li><strong>function</strong>&nbsp; 呼び出したいメソッド名 (関数名)。</li>
-<li><strong>filename</strong>&nbsp; クラス/メソッド(関数)が含まれるファイル名。</li>
-<li><strong>filepath</strong>&nbsp; スクリプトが含まれるディレクトリ名。Note: スクリプトは、<kbd>application</kbd> フォルダの中にあるディレクトリに置く必要があり、パスは、<kbd>application</kbd> フォルダからの相対パスになります。たとえばスクリプトが <dfn>application/hooks</dfn> にあるとき、単に <samp>hooks</samp> が指定すべきファイルパスになります。スクリプトが <dfn>application/hooks/utilities</dfn> にあるときは、<samp>hooks/utilities</samp> をファイルパスとして用います。末尾にスラッシュをつけないようにしてください。</li>
-<li><strong>params</strong>&nbsp; スクリプトに渡したい全パラメータ。この項目はオプションです。</li>
+<li><strong>class</strong>  呼び出したいクラスの名前。クラスの代わりに手続き型の関数を使いたい場合は、空のままにしておきます。</li>
+<li><strong>function</strong>  呼び出したいメソッド名 (関数名)。</li>
+<li><strong>filename</strong>  クラス/メソッド(関数)が含まれるファイル名。</li>
+<li><strong>filepath</strong>  スクリプトが含まれるディレクトリ名。Note: スクリプトは、<kbd>application</kbd> フォルダの中にあるディレクトリに置く必要があり、パスは、<kbd>application</kbd> フォルダからの相対パスになります。たとえばスクリプトが <dfn>application/hooks</dfn> にあるとき、単に <samp>hooks</samp> が指定すべきファイルパスになります。スクリプトが <dfn>application/hooks/utilities</dfn> にあるときは、<samp>hooks/utilities</samp> をファイルパスとして用います。末尾にスラッシュをつけないようにしてください。</li>
+<li><strong>params</strong>  スクリプトに渡したい全パラメータ。この項目はオプションです。</li>
 </ul>
 
 
@@ -103,20 +103,20 @@ $hook['pre_controller'] = array(<br />
 
 <code>
 $hook['pre_controller']<kbd>[]</kbd> = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'class'&nbsp;&nbsp;&nbsp;&nbsp;=> 'MyClass',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'function' => 'Myfunction',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename' => 'Myclass.php',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filepath' => 'hooks',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'params'&nbsp;&nbsp;&nbsp;=> array('beer', 'wine', 'snacks')<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+                                'class'    => 'MyClass',<br />
+                                'function' => 'Myfunction',<br />
+                                'filename' => 'Myclass.php',<br />
+                                'filepath' => 'hooks',<br />
+                                'params'   => array('beer', 'wine', 'snacks')<br />
+                                );<br />
 <br />
 $hook['pre_controller']<kbd>[]</kbd> = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'class'&nbsp;&nbsp;&nbsp;&nbsp;=> 'MyOtherClass',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'function' => 'MyOtherfunction',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename' => 'Myotherclass.php',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filepath' => 'hooks',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'params'&nbsp;&nbsp;&nbsp;=> array('red', 'yellow', 'blue')<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</code>
+                                'class'    => 'MyOtherClass',<br />
+                                'function' => 'MyOtherfunction',<br />
+                                'filename' => 'Myotherclass.php',<br />
+                                'filepath' => 'hooks',<br />
+                                'params'   => array('red', 'yellow', 'blue')<br />
+                                );</code>
 
 <p>各配列の後ろにブラケットを忘れないよう留意してください:</p>
 
@@ -152,13 +152,13 @@ $hook['pre_controller']<kbd>[]</kbd> = array(<br />
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="core_classes.html">コアクラスの作成</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="autoloader.html">リソースの自動読み込み</a>
+前のトピック:  <a href="core_classes.html">コアクラスの作成</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="autoloader.html">リソースの自動読み込み</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

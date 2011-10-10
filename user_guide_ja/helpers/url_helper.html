@@ -39,11 +39,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 URL ヘルパー
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -139,7 +139,7 @@ echo site_url($segments);</code>
 <p>第1引数は、URL に追加したいセグメントを指定します。
 上の <dfn>site_url()</dfn> 関数のように、文字列または、配列でセグメントを指定します。</p>
 
-<p><strong>Note:</strong>&nbsp; アプリケーション内部のリンクを生成するときは、ベースURL (http://...) を含まないようにしてください。
+<p><strong>Note:</strong>  アプリケーション内部のリンクを生成するときは、ベースURL (http://...) を含まないようにしてください。
 設定ファイルで指定されている情報から、ベース URL は自動的に追加されます。URL に追加したい URI セグメントだけを含めるようにしてください。</p>
 
 <p>第2引数は、リンクに指定したいテキストになります。空のままにしておくと、URL が使用されます。</p>
@@ -168,14 +168,14 @@ echo site_url($segments);</code>
 <code>
 
 $atts = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'width'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '800',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'height'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '600',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'scrollbars' => 'yes',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'status'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'yes',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'resizable'&nbsp;&nbsp;=> 'yes',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'screenx'&nbsp;&nbsp;&nbsp;&nbsp;=> '0',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'screeny'&nbsp;&nbsp;&nbsp;&nbsp;=> '0'<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+              'width'      => '800',<br />
+              'height'     => '600',<br />
+              'scrollbars' => 'yes',<br />
+              'status'     => 'yes',<br />
+              'resizable'  => 'yes',<br />
+              'screenx'    => '0',<br />
+              'screeny'    => '0'<br />
+            );<br />
 <br />
 echo anchor_popup('news/local/123', 'Click Me!', $atts);</code>
 
@@ -268,7 +268,7 @@ $url = prep_url($url);</code>
 
 <code>if ($logged_in == FALSE)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redirect('/login/form/', 'refresh');<br />
+     redirect('/login/form/', 'refresh');<br />
 }<br /> 
 <br /> 
 // 301リダイレクトの場合<br /> 
@@ -289,13 +289,13 @@ redirect('/article/13', 'location', 301);</code>
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="typography_helper.html">タイポグラフィーヘルパー</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="xml_helper.html">XML ヘルパー</a>
+前のトピック:  <a href="typography_helper.html">タイポグラフィーヘルパー</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="xml_helper.html">XML ヘルパー</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

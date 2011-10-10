@@ -40,12 +40,12 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
+<a href="index.html">データベースライブラリ</a>  &#8250; 
 クエリ結果
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -75,9 +75,9 @@
 	<br />
 	foreach ($query->result() as $row)<br />
 	{<br />
-	&nbsp;&nbsp;&nbsp;echo $row->title;<br />
-	&nbsp;&nbsp;&nbsp;echo $row->name;<br />
-	&nbsp;&nbsp;&nbsp;echo $row->body;<br />
+	   echo $row->title;<br />
+	   echo $row->name;<br />
+	   echo $row->body;<br />
 	}</code>
 	
 	<p>上の<dfn>メソッド</dfn>は<dfn>result_object()</dfn> の別名です。</p>
@@ -89,12 +89,12 @@
 	<br />
 	if ($query->num_rows() > 0)<br />
 	{<br />
-	&nbsp;&nbsp;&nbsp;foreach ($query->result() as $row)<br />
-	&nbsp;&nbsp;&nbsp;{<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->title;<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->name;<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->body;<br />
-	&nbsp;&nbsp;&nbsp;}<br />
+	   foreach ($query->result() as $row)<br />
+	   {<br />
+	      echo $row->title;<br />
+	      echo $row->name;<br />
+	      echo $row->body;<br />
+	   }<br />
 	}
 </code>
 		
@@ -105,8 +105,8 @@
 	<br />
 	foreach ($query->result('User') as $user)<br />
 	{<br />
-	&nbsp;&nbsp;&nbsp;echo $user->name; // 属性を呼び出す<br />
-	&nbsp;&nbsp;&nbsp;echo $user->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
+	   echo $user->name; // 属性を呼び出す<br />
+	   echo $user->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
 	}
 	</code>
 
@@ -118,9 +118,9 @@
 	<br />
 	foreach ($query->result_array() as $row)<br />
 	{<br />
-	&nbsp;&nbsp;&nbsp;echo $row['title'];<br />
-	&nbsp;&nbsp;&nbsp;echo $row['name'];<br />
-	&nbsp;&nbsp;&nbsp;echo $row['body'];<br />
+	   echo $row['title'];<br />
+	   echo $row['name'];<br />
+	   echo $row['body'];<br />
 	}</code>
 
 
@@ -133,11 +133,11 @@
 	<br />
 	if ($query->num_rows() > 0)<br />
 	{<br />
-	&nbsp;&nbsp;&nbsp;$row = $query->row();
+	   $row = $query->row();
 	<br /><br />
-	&nbsp;&nbsp;&nbsp;echo $row->title;<br />
-	&nbsp;&nbsp;&nbsp;echo $row->name;<br />
-	&nbsp;&nbsp;&nbsp;echo $row->body;<br />
+	   echo $row->title;<br />
+	   echo $row->name;<br />
+	   echo $row->body;<br />
 	}
 	</code>
 
@@ -164,11 +164,11 @@
 	<br />
 	if ($query->num_rows() > 0)<br />
 	{<br />
-	&nbsp;&nbsp;&nbsp;$row = $query->row_array();
+	   $row = $query->row_array();
 	<br /><br />
-	&nbsp;&nbsp;&nbsp;echo $row['title'];<br />
-	&nbsp;&nbsp;&nbsp;echo $row['name'];<br />
-	&nbsp;&nbsp;&nbsp;echo $row['body'];<br />
+	   echo $row['title'];<br />
+	   echo $row['name'];<br />
+	   echo $row['body'];<br />
 	}
 	</code>
 
@@ -226,7 +226,7 @@ echo $query->num_fields();
 <code>$query = $this->db->query('SELECT title FROM my_table');<br /><br />
 foreach ($query->result() as $row)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;echo $row->title;<br />
+   echo $row->title;<br />
 }<br />
 $query->free_result();  // 結果オブジェクトの $query はもう利用できなくなります<br />
 <br />
@@ -246,13 +246,13 @@ $query2->free_result();  // 結果オブジェクトの $query2 はもう利用�
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="queries.html">クエリ</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="helpers.html">クエリヘルパーメソッド</a>
+前のトピック:  <a href="queries.html">クエリ</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="helpers.html">クエリヘルパーメソッド</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 ユーザエージェントクラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -84,19 +84,19 @@ $this->load->library('user_agent');<br />
 <br />
 if ($this->agent->is_browser())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$agent = $this->agent->browser().' '.$this->agent->version();<br />
+    $agent = $this->agent->browser().' '.$this->agent->version();<br />
 }<br />
 elseif ($this->agent->is_robot())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$agent = $this->agent->robot();<br />
+    $agent = $this->agent->robot();<br />
 }<br />
 elseif ($this->agent->is_mobile())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$agent = $this->agent->mobile();<br />
+    $agent = $this->agent->mobile();<br />
 }<br />
 else<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$agent = 'Unidentified User Agent';<br />
+    $agent = 'Unidentified User Agent';<br />
 }<br />
 <br />
 echo $agent;<br />
@@ -113,14 +113,14 @@ echo $this->agent->platform(); // プラットフォーム情報 (Windows、Linu
 
 <code> if ($this->agent->is_browser('Safari'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using Safari.';<br />
+    echo 'You are using Safari.';<br />
 }<br />
 else if ($this->agent->is_browser())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo 'You are using a browser.';<br />
+    echo 'You are using a browser.';<br />
 }</code>
 
-<p class="important"><strong>Note:</strong>&nbsp; この例での "Safari" という文字列は、ブラウザを定義するリストのキー値です。
+<p class="important"><strong>Note:</strong>  この例での "Safari" という文字列は、ブラウザを定義するリストのキー値です。
 このリストは <dfn>application/config/user_agents.php</dfn> で定義されており、新しいブラウザを追加したり文字列を変更することができます。</p>
 
 <h2>$this->agent->is_mobile()</h2>
@@ -128,21 +128,21 @@ else if ($this->agent->is_browser())<br />
 
 <code> if ($this->agent->is_mobile('iphone'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('iphone/home');<br />
+    $this->load->view('iphone/home');<br />
 }<br />
 else if ($this->agent->is_mobile())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('mobile/home');<br />
+    $this->load->view('mobile/home');<br />
 }<br />
 else<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('web/home');<br />
+    $this->load->view('web/home');<br />
 }</code>
 
 <h2>$this->agent->is_robot()</h2>
 <p>ユーザエージェントのロボット(クローラ)が既知のものかどうかに応じてTRUE/FALSE (ブール値) を返します。</p>
 
-<p class="important"><strong>Note:</strong>&nbsp; ユーザエージェントライブラリにはもっとも一般的なロボットしか定義されていません。
+<p class="important"><strong>Note:</strong>  ユーザエージェントライブラリにはもっとも一般的なロボットしか定義されていません。
 完全なロボットのリストではありません。何百ものロボットがあるので、それぞれを調べるのは効率がよくありません。
 リストにないロボットがいつもサイトを訪問するのがわかった場合は、
 <dfn>application/config/user_agents.php</dfn> ファイルにそれを追加することができます。</p>
@@ -171,7 +171,7 @@ else<br />
 
 <code> if ($this->agent->is_referral())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $this->agent->referrer();<br />
+    echo $this->agent->referrer();<br />
 }</code>
 
 
@@ -186,7 +186,7 @@ else<br />
 
 <code>if ($this->agent->accept_lang('en'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo 'You accept English!';<br />
+    echo 'You accept English!';<br />
 }</code>
 
 <p class="important"><strong>Note:</strong> 平均的には、ブラウザは言語の情報を提供していますが、
@@ -199,7 +199,7 @@ else<br />
 
 <code>if ($this->agent->accept_charset('utf-8'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo 'お使いのブラウザは、UTF-8 に対応しています!';<br />
+    echo 'お使いのブラウザは、UTF-8 に対応しています!';<br />
 }</code>
 
 <p class="important"><strong>Note:</strong>平均的には、ブラウザは文字セットの情報を提供していますが、
@@ -213,13 +213,13 @@ else<br />
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="uri.html">URI クラス</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="xmlrpc.html">XML-RPC クラス</a>
+前のトピック:  <a href="uri.html">URI クラス</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="xmlrpc.html">XML-RPC クラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

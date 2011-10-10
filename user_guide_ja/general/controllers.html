@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 コントローラ
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -89,7 +89,7 @@
 <p><strong>コントローラの名前がURIの最初のセグメントに一致した場合、それが読み込まれます。</strong></p>
 
 <a name="hello"></a>
-<h2>やってみよう:&nbsp; Hello World!</h2>
+<h2>やってみよう:  Hello World!</h2>
 
 <p>簡単なコントローラを作って、実際に動作を見てみましょう。  テキストエディタを使って、<dfn>blog.php</dfn> というファイルを作成し、次のコードを中に書きます:</p>
 
@@ -187,16 +187,16 @@ class Blog extends CI_Controller {
 &lt;?php<br />
 class Products extends CI_Controller {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;public function shoes($sandals, $id)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $sandals;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $id;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    public function shoes($sandals, $id)<br />
+    {<br />
+        echo $sandals;<br />
+        echo $id;<br />
+    }<br />
 }<br />
 ?&gt;
 </code>
 
-<p class="important"><strong>重要:</strong>&nbsp;<a href="routing.html">URI ルーティング</a> 機能を使う場合、メソッドに渡されるセグメントは、再ルーティングされた後のものになります。</p>
+<p class="important"><strong>重要:</strong> <a href="routing.html">URI ルーティング</a> 機能を使う場合、メソッドに渡されるセグメントは、再ルーティングされた後のものになります。</p>
 
 
 
@@ -222,10 +222,10 @@ CodeIgniter では <kbd>_remap()</kbd> メソッドを利用することで、�
 
 <code>public function _remap()<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;// ここに何かのコード...<br />
+    // ここに何かのコード...<br />
 }</code>
 
-<p class="important"><strong>重要:</strong>&nbsp; コントローラに <kbd>_remap()</kbd> という名前のメソッドが含まれる場合、
+<p class="important"><strong>重要:</strong>  コントローラに <kbd>_remap()</kbd> という名前のメソッドが含まれる場合、
 それは、URI に何がかかれていようが <strong>常に</strong>呼び出されます。
 それは、どのメソッドを呼ぶかを決めるという標準の振る舞いをオーバーライドするもので、独自のメソッドルーティングルールを定義することができます。</p>
 
@@ -233,26 +233,26 @@ CodeIgniter では <kbd>_remap()</kbd> メソッドを利用することで、�
 
 <code>public function _remap(<var>$method</var>)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;if ($method == 'some_method')<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->$method();<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;else<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->default_method();<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    if ($method == 'some_method')<br />
+    {<br />
+        $this->$method();<br />
+    }<br />
+    else<br />
+    {<br />
+        $this->default_method();<br />
+    }<br />
 }</code>
 
 <p>メソッド名以降のセグメントは、オプションである第 2 引数として <kbd>_remap()</kbd> メソッドに渡されます。この配列は、 PHP の <a href="http://php.net/call_user_func_array">call_user_func_array</a> 関数と組み合わせることで、CodeIgniter のデフォルトの動作を指定するのに使うことができます。</p>
 
 <code>public function _remap($method, $params = array())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$method = 'process_'.$method;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;if (method_exists($this, $method))<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return call_user_func_array(array($this, $method), $params);<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;show_404();<br />
+    $method = 'process_'.$method;<br />
+    if (method_exists($this, $method))<br />
+    {<br />
+        return call_user_func_array(array($this, $method), $params);<br />
+    }<br />
+    show_404();<br />
 }</code>
 
 
@@ -264,7 +264,7 @@ CodeIgniter では <kbd>_remap()</kbd> メソッドを利用することで、�
 処理が終わったデータを何らかの方法で事後処理し、自分でブラウザに送信したいときがあります。
 CodeIgniter では、最終処理された出力データを受け取ることができる <dfn>_output()</dfn> という名前のメソッドをコントローラに追加することができます。</p>
 
-<p><strong>重要:</strong>&nbsp; コントローラに <kbd>_output()</kbd> という名前のメソッドが含まれるとき、それは、処理済のデータが直接送出されるかわりに、<strong>常に</strong>出力(Output)クラスから呼ばれることになります。
+<p><strong>重要:</strong>  コントローラに <kbd>_output()</kbd> という名前のメソッドが含まれるとき、それは、処理済のデータが直接送出されるかわりに、<strong>常に</strong>出力(Output)クラスから呼ばれることになります。
 メソッドの第1引数には、処理済データが入ります。</p>
 
 <p>以下に例を示します:</p>
@@ -272,7 +272,7 @@ CodeIgniter では、最終処理された出力データを受け取ること�
 <code>
 public function _output($output)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $output;<br />
+    echo $output;<br />
 }</code>
 
 <p class="important"><dfn>_output()</dfn> メソッドではデータが処理済の状態で受け取られるということを注意してください。
@@ -283,7 +283,7 @@ public function _output($output)<br />
 
 <code>if ($this-&gt;output-&gt;cache_expiration &gt; 0)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;output-&gt;_write_cache($output);<br />
+    $this-&gt;output-&gt;_write_cache($output);<br />
 }</code>
 
 ページ実行タイマー機能やメモリ使用量の統計機能を使う場合、実行した追加の処理は考慮されないので、完全に正確にはなりません。
@@ -300,7 +300,7 @@ public function _output($output)<br />
 <code>
 private function _utility()<br />
 {<br />
-&nbsp;&nbsp;// 何かのコード<br />
+  // 何かのコード<br />
 }</code>
 
 <p>次のような URL でアクセスしてみてください。これは機能しません:</p>
@@ -316,7 +316,7 @@ private function _utility()<br />
 
 <p><dfn>application/controllers</dfn> ディレクトリの中に単純にフォルダを作成し、コントローラクラスをその中に配置します。</p>
 
-<p><strong>Note:</strong>&nbsp; この機能を使うと、URI の第1セグメントはフォルダを指すものになります。
+<p><strong>Note:</strong>  この機能を使うと、URI の第1セグメントはフォルダを指すものになります。
 たとえば、コントローラを次の場所に置いたとします:</p>
 
 <code>application/controllers/<kbd>products</kbd>/shoes.php</code>
@@ -346,11 +346,11 @@ private function _utility()<br />
 &lt;?php<br />
 class <kbd>Blog</kbd> extends CI_Controller {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public function <kbd>__construct()</kbd><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<var>parent::__construct();</var><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// これ以降にコードを書いていく<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+       public function <kbd>__construct()</kbd><br />
+       {<br />
+            <var>parent::__construct();</var><br />
+            // これ以降にコードを書いていく<br />
+       }<br />
 }<br />
 ?&gt;</code>
 
@@ -376,12 +376,12 @@ class <kbd>Blog</kbd> extends CI_Controller {<br />
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="urls.html">CodeIgniter の URL</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="reserved_names.html">予約語一覧</a></p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+前のトピック:  <a href="urls.html">CodeIgniter の URL</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="reserved_names.html">予約語一覧</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

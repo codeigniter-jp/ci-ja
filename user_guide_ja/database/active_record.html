@@ -39,12 +39,12 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
+<a href="index.html">データベースライブラリ</a>  &#8250; 
 Active Record
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -75,7 +75,7 @@ CodeIgniter ではデータベースごとに専用のクラスを必要とし�
 <li><a href="#caching">Active Record キャッシング</a></li>
 </ul>
 
-<h1><a name="select">&nbsp;</a>データの選択</h1>
+<h1><a name="select"> </a>データの選択</h1>
 
 <p>次のメソッドを使えば、SQLの<strong>SELECT</strong>文を組み立てられます。</p>
 
@@ -99,7 +99,7 @@ CodeIgniter ではデータベースごとに専用のクラスを必要とし�
 <br />
 foreach ($query->result() as $row)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $row->title;<br />
+    echo $row->title;<br />
 }</code>
 
 <p>結果の生成について完全に論じている <a href="results.html">結果メソッド</a>ページを見てみてください。</p>
@@ -484,7 +484,7 @@ echo $this-&gt;db-&gt;count_all_results();<br />
 
 
 
-<a name="insert">&nbsp;</a>
+<a name="insert"> </a>
 <h1>データの挿入</h1>
 
 <h2>$this->db->insert();</h2>
@@ -493,9 +493,9 @@ echo $this-&gt;db-&gt;count_all_results();<br />
 
 <code>
 $data = array(<br />
-&nbsp;&nbsp;&nbsp;'title' => 'My title' ,<br />
-&nbsp;&nbsp;&nbsp;'name' => 'My Name' ,<br />
-&nbsp;&nbsp;&nbsp;'date' => 'My date'<br />
+   'title' => 'My title' ,<br />
+   'name' => 'My Name' ,<br />
+   'date' => 'My date'<br />
 );<br />
 <br />
 $this->db->insert('mytable', $data);
@@ -508,11 +508,11 @@ $this->db->insert('mytable', $data);
 
 <code>
 /*<br />
-&nbsp;&nbsp;&nbsp;&nbsp;class Myclass {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $title = 'My Title';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $content = 'My Content';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $date = 'My Date';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    class Myclass {<br />
+        var $title = 'My Title';<br />
+        var $content = 'My Content';<br />
+        var $date = 'My Date';<br />
+    }<br />
 */<br />
 <br />
 $object = new Myclass;<br />
@@ -531,16 +531,16 @@ $this->db->insert('mytable', $object);
 
 <code>
 $data = array(<br />
-&nbsp;&nbsp;&nbsp;array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'My title' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'My Name' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'My date'<br />
-&nbsp;&nbsp;&nbsp;),<br />
-&nbsp;&nbsp;&nbsp;array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'Another title' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'Another Name' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'Another date'<br />
-&nbsp;&nbsp;&nbsp;)<br />
+   array(<br />
+      'title' => 'My title' ,<br />
+      'name' => 'My Name' ,<br />
+      'date' => 'My date'<br />
+   ),<br />
+   array(<br />
+      'title' => 'Another title' ,<br />
+      'name' => 'Another Name' ,<br />
+      'date' => 'Another date'<br />
+   )<br />
 );<br />
 <br />
 $this->db->insert_batch('mytable', $data);
@@ -591,11 +591,11 @@ $this->db->insert('mytable');
 
 <code>
 /*<br />
-&nbsp;&nbsp;&nbsp;&nbsp;class Myclass {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $title = 'My Title';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $content = 'My Content';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $date = 'My Date';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    class Myclass {<br />
+        var $title = 'My Title';<br />
+        var $content = 'My Content';<br />
+        var $date = 'My Date';<br />
+    }<br />
 */<br />
 <br />
 $object = new Myclass;<br />
@@ -606,7 +606,7 @@ $this->db->insert('mytable');
 
 
 
-<a name="update">&nbsp;</a>
+<a name="update"> </a>
 <h1>データの更新</h1>
 
 <h2>$this->db->update();</h2>
@@ -616,10 +616,10 @@ $this->db->insert('mytable');
 
 <code>
 $data = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => $title,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => $name,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => $date<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+               'title' => $title,<br />
+               'name' => $name,<br />
+               'date' => $date<br />
+            );<br />
 <br />
 $this->db->where('id', $id);<br />
 $this->db->update('mytable', $data);
@@ -633,11 +633,11 @@ $this->db->update('mytable', $data);
 
 <code>
 /*<br />
-&nbsp;&nbsp;&nbsp;&nbsp;class Myclass {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $title = 'My Title';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $content = 'My Content';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $date = 'My Date';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    class Myclass {<br />
+        var $title = 'My Title';<br />
+        var $content = 'My Content';<br />
+        var $date = 'My Date';<br />
+    }<br />
 */<br />
 <br />
 $object = new Myclass;<br />
@@ -672,16 +672,16 @@ $this->db->update('mytable', $object);
 
 <code>
 $data = array(<br/>
-&nbsp;&nbsp;&nbsp;array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'My title' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'My Name 2' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'My date 2'<br />
-&nbsp;&nbsp;&nbsp;),<br />
-&nbsp;&nbsp;&nbsp;array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'Another title' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'Another Name 2' ,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'Another date 2'<br />
-&nbsp;&nbsp;&nbsp;)<br/>
+   array(<br />
+      'title' => 'My title' ,<br />
+      'name' => 'My Name 2' ,<br />
+      'date' => 'My date 2'<br />
+   ),<br />
+   array(<br />
+      'title' => 'Another title' ,<br />
+      'name' => 'Another Name 2' ,<br />
+      'date' => 'Another date 2'<br />
+   )<br/>
 );<br />
 <br />
 $this->db->update_batch('mytable', $data, 'title');
@@ -702,7 +702,7 @@ $this->db->update_batch('mytable', $data, 'title');
 <p class="important"><strong>Note:</strong> すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
 
 
-<a name="delete">&nbsp;</a>
+<a name="delete"> </a>
 <h1>データの削除</h1>
 
 
@@ -748,7 +748,7 @@ $this-&gt;db-&gt;truncate('mytable'); <br />
 </code>
 <p class="important"><strong>Note:</strong> TRUNCATE コマンドが使えない場合は、truncate() メソッドは &quot;DELETE FROM table&quot; として実行します。</p>
 
-<h1><a name="chaining">&nbsp;</a>メソッドの連結</h1>
+<h1><a name="chaining"> </a>メソッドの連結</h1>
 
 <p>メソッドの連結を使えば、複数のメソッドをつなぐのがシンプルになります。次のような例が挙げられます:</p>
 
@@ -759,9 +759,9 @@ $query = $this->db->get();</code>
 
 <p class="important"><strong>Note:</strong> メソッドの連結は PHP 5 でのみ動作します。</p>
 
-<p>&nbsp;</p>
+<p> </p>
 
-<h1><a name="caching">&nbsp;</a>Active Record キャッシング</h1>
+<h1><a name="caching"> </a>Active Record キャッシング</h1>
 
 <p>&quot;本当の&quot; キャッシングではないのですが、Active Record では、後で再利用するためにクエリの特定の部分を保存(あるいは、&quot;キャッシュ&quot;)することができます。 通常は、Active Record の呼び出しが完了したときには、保存された全情報は、次の呼び出しのためにリセットされます。キャッシングを利用すると、このリセットを回避することができ、情報を簡単に再利用できます。</p>
 
@@ -801,20 +801,20 @@ $this-&gt;db-&gt;get('tablename');<br />
 // 次のようになります: SELECT `field2` FROM (`tablename`)</code></p>
 
 <p class="important"> <strong>Note:</strong> 次のフィールドがキャッシュ可能です: ‘select’, ‘from’, ‘join’, ‘where’, ‘like’, ‘groupby’, ‘having’, ‘orderby’, ‘set’</p>
-<p>&nbsp;</p>
+<p> </p>
 </div>
 <!-- END CONTENT -->
 
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="helpers.html">クエリヘルパーメソッド</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="transactions.html">トランザクション</a>
+前のトピック:  <a href="helpers.html">クエリヘルパーメソッド</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="transactions.html">トランザクション</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 フォームヘルパー
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -97,7 +97,7 @@ echo form_open('email/send', $attributes);</code>
 
 <p>上の例は、次のようなフォームを生成します:</p>
 
-<code>&lt;form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send" &nbsp;class="email" &nbsp;id="myform" /></code>
+<code>&lt;form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send"  class="email"  id="myform" /></code>
 
 <h4>隠しフィールドの追加</h4>
 
@@ -132,10 +132,10 @@ echo form_open('email/send', '', $hidden);</code>
 <p>あるいは、複数のフィールドを作成するために、連想配列を渡すこともできます:</p>
 
 <code>$data = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;=> 'John Doe',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'email' => 'john@example.com',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;=> 'http://example.com'<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+              'name'  => 'John Doe',<br />
+              'email' => 'john@example.com',<br />
+              'url'   => 'http://example.com'<br />
+            );<br />
 <br />
 echo form_hidden($data);<br />
 <br />
@@ -157,13 +157,13 @@ echo form_hidden($data);<br />
 <p>あるいは、フォームに設定すべきデータを含んだ連想配列を渡すこともできます:</p>
 
 <code>$data = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'username',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'username',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'value'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'johndoe',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'maxlength'&nbsp;&nbsp;&nbsp;=> '100',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'size'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '50',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'style'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => 'width:50%',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+              'name'        => 'username',<br />
+              'id'          => 'username',<br />
+              'value'       => 'johndoe',<br />
+              'maxlength'   => '100',<br />
+              'size'        => '50',<br />
+              'style'       => 'width:50%',<br />
+            );<br />
 <br />
 echo form_input($data);<br />
 <br />
@@ -201,11 +201,11 @@ Note: 上の例で "maxlength" と "size" 属性を指定する代わりに、"r
 設定します。 第3引数に複数の項目の配列を渡すことで、複数選択を生成することができます。 例:</p>
 
 <code>$options = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'small'&nbsp;&nbsp;=> 'Small Shirt',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'med'&nbsp;&nbsp;&nbsp;&nbsp;=> 'Medium Shirt',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'large'&nbsp;&nbsp; => 'Large Shirt',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'xlarge' => 'Extra Large Shirt',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+                  'small'  => 'Small Shirt',<br />
+                  'med'    => 'Medium Shirt',<br />
+                  'large'   => 'Large Shirt',<br />
+                  'xlarge' => 'Extra Large Shirt',<br />
+                );<br />
 <br />
 $shirts_on_sale = array('small', 'large');<br />
 <br />
@@ -297,12 +297,12 @@ echo form_fieldset_close($string);<br />
 <p>このヘルパーも他の関数と同様に属性を連想配列で渡すことができます:</p>
 
 <code>$data = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'name'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'newsletter',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'newsletter',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'value'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'accept',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'checked'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> TRUE,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'style'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => 'margin:10px',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+    'name'        => 'newsletter',<br />
+    'id'          => 'newsletter',<br />
+    'value'       => 'accept',<br />
+    'checked'     => TRUE,<br />
+    'style'       => 'margin:10px',<br />
+    );<br />
 <br />
 echo form_checkbox($data);<br />
 <br />
@@ -340,8 +340,8 @@ echo form_checkbox($data);<br />
 &lt;label for=&quot;username&quot;&gt;What is your Name&lt;/label&gt;</code>
 <p>他の関数同様、各属性に値を設定したい場合は、第3引数に連想配列を渡すことができます。</p>
 <p><code>$attributes = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'class' =&gt; 'mycustomclass',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'style' =&gt; 'color: #000;',<br />
+    'class' =&gt; 'mycustomclass',<br />
+    'style' =&gt; 'color: #000;',<br />
 );<br />
     echo form_label('What is your Name', 'username', $attributes);<br />
         <br />
@@ -364,11 +364,11 @@ echo form_button('name','content');<br />
 フォーム内に持たせたいデータを連想配列で渡すことができます：
 <code>
 $data = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'button',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'id' => 'button',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'value' => 'true',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'type' => 'reset',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'content' => 'Reset'<br />
+    'name' => 'button',<br />
+    'id' => 'button',<br />
+    'value' => 'true',<br />
+    'type' => 'reset',<br />
+    'content' => 'Reset'<br />
 );<br />
 <br />
 echo form_button($data);<br />
@@ -471,13 +471,13 @@ form_prep 関数はこれを安全に使えるよう、HTML を変換します:<
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="file_helper.html">ファイルヘルパー</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="html_helper.html">HTML ヘルパー</a>
+前のトピック:  <a href="file_helper.html">ファイルヘルパー</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="html_helper.html">HTML ヘルパー</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

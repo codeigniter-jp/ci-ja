@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 トラックバッククラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -78,21 +78,21 @@
 <code>$this->load->library('trackback');<br />
 <br />
 $tb_data = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ping_url'&nbsp;&nbsp;=> 'http://example.com/trackback/456',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'http://www.my-example.com/blog/entry/123',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '記事のタイトル',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'excerpt'&nbsp;&nbsp;&nbsp;=> '記事内容',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_name' => 'ブログの名前',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'charset'&nbsp;&nbsp;&nbsp;=> 'utf-8'<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+                'ping_url'  => 'http://example.com/trackback/456',<br />
+                'url'       => 'http://www.my-example.com/blog/entry/123',<br />
+                'title'     => '記事のタイトル',<br />
+                'excerpt'   => '記事内容',<br />
+                'blog_name' => 'ブログの名前',<br />
+                'charset'   => 'utf-8'<br />
+                );<br />
 <br />
 if ( ! $this->trackback->send($tb_data))<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $this->trackback->display_errors();<br />
+     echo $this->trackback->display_errors();<br />
 }<br />
 else<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo 'トラックバックが送信されました!';<br />
+     echo 'トラックバックが送信されました!';<br />
 }</code>
 
 <p>配列データについての説明です:</p>
@@ -170,24 +170,24 @@ $this->load->database();<br />
 <br />
 if ($this->uri->segment(3) == FALSE)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->trackback->send_error("記事IDを特定できません");<br />
+    $this->trackback->send_error("記事IDを特定できません");<br />
 }<br />
 <br />
 if ( ! $this->trackback->receive())<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$this->trackback->send_error("トラックバックデータに不正なデータが含まれます");<br />
+    $this->trackback->send_error("トラックバックデータに不正なデータが含まれます");<br />
 }<br />
 <br />
 $data = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tb_id'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> '',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'entry_id'&nbsp;&nbsp;&nbsp;=> $this->uri->segment(3),<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> $this->trackback->data('url'),<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> $this->trackback->data('title'),<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'excerpt'&nbsp;&nbsp;&nbsp;&nbsp;=> $this->trackback->data('excerpt'),<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'blog_name'&nbsp;&nbsp;=> $this->trackback->data('blog_name'),<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tb_date'&nbsp;&nbsp;&nbsp;&nbsp;=> time(),<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ip_address' => $this->input->ip_address()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+                'tb_id'      => '',<br />
+                'entry_id'   => $this->uri->segment(3),<br />
+                'url'        => $this->trackback->data('url'),<br />
+                'title'      => $this->trackback->data('title'),<br />
+                'excerpt'    => $this->trackback->data('excerpt'),<br />
+                'blog_name'  => $this->trackback->data('blog_name'),<br />
+                'tb_date'    => time(),<br />
+                'ip_address' => $this->input->ip_address()<br />
+                );<br />
 <br />
 $sql = $this->db->insert_string('trackbacks', $data);<br />
 $this->db->query($sql);<br />
@@ -233,13 +233,13 @@ $this->trackback->send_success();</code>
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="sessions.html">セッションクラス</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="parser.html">テンプレートパーサクラス</a>
+前のトピック:  <a href="sessions.html">セッションクラス</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="parser.html">テンプレートパーサクラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

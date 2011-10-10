@@ -40,12 +40,12 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
+<a href="index.html">データベースライブラリ</a>  &#8250; 
 データベースユーティリティクラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -79,7 +79,7 @@
 
 <h2><a name="init"></a>ユーティリティクラスの初期化</h2>
 
-<p class="important"><strong>Important:</strong>&nbsp;ユーティリティクラスは、データベースドライバに依存しているので、
+<p class="important"><strong>Important:</strong> ユーティリティクラスは、データベースドライバに依存しているので、
 ユーティリティクラスを初期化するには、あらかじめデータベースドライバが実行されている必要があります。</p>
 
 <p>ユーティリティクラスは次のようにロードします:</p>
@@ -98,7 +98,7 @@ $dbs = $this->dbutil->list_databases();<br />
 <br />
 foreach ($dbs as $db)<br />
 {<br />
-&nbsp;&nbsp;&nbsp; echo $db;<br />
+    echo $db;<br />
 }</code>
 
 
@@ -110,7 +110,7 @@ foreach ($dbs as $db)<br />
 <code>
 if ($this->dbutil->database_exists('database_name'))<br />
 {<br />
-&nbsp;&nbsp; // 何らかのコード...<br />
+   // 何らかのコード...<br />
 }
 </code>
 
@@ -120,7 +120,7 @@ if ($this->dbutil->database_exists('database_name'))<br />
 
 <h2><a name="opttb"></a>$this->dbutil->optimize_table('table_name');</h2>
 
-<p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL / MySQLi データベースでのみ使用できます。</p>
+<p class="important"><strong>Note:</strong> このメソッドは MySQL / MySQLi データベースでのみ使用できます。</p>
 
 
 <p>第1引数に指定した名前のテーブルを最適化できます。処理が成功したか失敗したかにより、TRUE / FALSE を返します:</p>
@@ -128,7 +128,7 @@ if ($this->dbutil->database_exists('database_name'))<br />
 <code>
 if ($this->dbutil->optimize_table('table_name'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp; echo '成功!';<br />
+    echo '成功!';<br />
 }
 </code>
 
@@ -137,7 +137,7 @@ if ($this->dbutil->optimize_table('table_name'))<br />
 
 <h2><a name="repair"></a>$this->dbutil->repair_table('table_name');</h2>
 
-<p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL / MySQLi データベースでのみ使用できます。</p>
+<p class="important"><strong>Note:</strong> このメソッドは MySQL / MySQLi データベースでのみ使用できます。</p>
 
 
 <p>第1引数に指定した名前のテーブルを修復できます。処理が成功したか失敗したかにより、TRUE / FALSE を返します:</p>
@@ -145,7 +145,7 @@ if ($this->dbutil->optimize_table('table_name'))<br />
 <code>
 if ($this->dbutil->repair_table('table_name'))<br />
 {<br />
-&nbsp;&nbsp;&nbsp; echo '成功!';<br />
+    echo '成功!';<br />
 }
 </code>
 
@@ -154,7 +154,7 @@ if ($this->dbutil->repair_table('table_name'))<br />
 
 <h2><a name="optdb"></a>$this->dbutil->optimize_database();</h2>
 
-<p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL / MySQLi データベースでのみ使用できます。</p>
+<p class="important"><strong>Note:</strong> このメソッドは MySQL / MySQLi データベースでのみ使用できます。</p>
 
 <p>現在接続中のデータベースを最適化します。DBステータスメッセージの配列または、失敗した場合に FALSE を返します。</p>
 
@@ -163,7 +163,7 @@ $result = $this->dbutil->optimize_database();<br />
 <br />
 if ($result !== FALSE)<br />
 {<br />
-&nbsp;&nbsp;&nbsp; print_r($result);<br />
+    print_r($result);<br />
 }
 </code>
 
@@ -194,7 +194,7 @@ $enclosure = '"';<br />
 echo $this->dbutil->csv_from_result($query, $delimiter, $newline, $enclosure);
 </code>
 
-<p><strong>Important:</strong>&nbsp; このメソッドは、CSV を ファイルには書き出しません。単に、CSV に整形するだけです。
+<p><strong>Important:</strong>  このメソッドは、CSV を ファイルには書き出しません。単に、CSV に整形するだけです。
 ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパー</a> を利用します。</p>
 
 
@@ -209,16 +209,16 @@ $this->load->dbutil();<br />
 $query = $this->db->query("SELECT * FROM mytable");<br />
 <br />
 $config = array (<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'root'&nbsp;&nbsp;&nbsp; => 'root',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'element' => 'element', <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'newline' => "\n", <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tab'&nbsp;&nbsp;&nbsp;&nbsp;=> "\t"<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+                  'root'    => 'root',<br />
+                  'element' => 'element', <br />
+                  'newline' => "\n", <br />
+                  'tab'    => "\t"<br />
+                );<br />
 <br />
 echo $this->dbutil->xml_from_result($query, $config);
 </code>
 
-<p><strong>Important:</strong>&nbsp;このメソッドは、XML を ファイルには書き出しません。単に、XML に整形するだけです。
+<p><strong>Important:</strong> このメソッドは、XML を ファイルには書き出しません。単に、XML に整形するだけです。
 ファイルに書き込む必要がある場合は、 <a href="../helpers/file_helper.html">ファイルヘルパー</a> を利用します。</p>
 
 
@@ -226,7 +226,7 @@ echo $this->dbutil->xml_from_result($query, $config);
 
 <p>データベース全体もしくは個別のテーブルをバックアップできます。バックアップデータは Zip または Gzip フォーマットのどちらかの形式で圧縮できます [ 訳注: バックアップ結果をファイルに保存するには、ファイルヘルパーを利用する必要があります ]。</p>
 
-<p class="important"><strong>Note:</strong>&nbsp;このメソッドは MySQL データベースでのみ使用できます。</p>
+<p class="important"><strong>Note:</strong> このメソッドは MySQL データベースでのみ使用できます。</p>
 
 <p>Note: 実行制限時間と PHP が利用できる空きメモリ容量に注意してください。
 大規模なデータベースのバックアップはできないかもしれません。データベースが大規模な場合は、
@@ -257,14 +257,14 @@ force_download('mybackup.gz', $backup);
 <p>バックアップのオプションは、バックアップメソッドの第1引数で配列で渡すことができます。例:</p>
 
 <code>$prefs = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tables'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array('table1', 'table2'),&nbsp;&nbsp;// バックアップするテーブルの配列。<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ignore'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> array(),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップしないテーブルのリスト。<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'format'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> 'txt',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// gzip, zip, txt<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filename'&nbsp;&nbsp;&nbsp;&nbsp;=> 'mybackup.sql',&nbsp;&nbsp;&nbsp;&nbsp;// ファイル名 - ZIP ファイルのときだけ必要<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_drop'&nbsp;&nbsp;&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップファイルにDROP TABLE 文を追加するかどうか<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'add_insert'&nbsp;&nbsp;=> TRUE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップファイルにINSERT 文を追加するかどうか<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'newline'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> "\n"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// バックアップファイルで使う改行文字<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+                'tables'      => array('table1', 'table2'),  // バックアップするテーブルの配列。<br />
+                'ignore'      => array(),           // バックアップしないテーブルのリスト。<br />
+                'format'      => 'txt',             // gzip, zip, txt<br />
+                'filename'    => 'mybackup.sql',    // ファイル名 - ZIP ファイルのときだけ必要<br />
+                'add_drop'    => TRUE,              // バックアップファイルにDROP TABLE 文を追加するかどうか<br />
+                'add_insert'  => TRUE,              // バックアップファイルにINSERT 文を追加するかどうか<br />
+                'newline'     => "\n"               // バックアップファイルで使う改行文字<br />
+              );<br />
 <br />
 $this->dbutil->backup($prefs);
 </code>
@@ -303,12 +303,12 @@ $this->dbutil->backup($prefs);
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="forge.html">DB フォージクラス</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="../libraries/javascript.html">Javascript クラス</a></p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+前のトピック:  <a href="forge.html">DB フォージクラス</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="../libraries/javascript.html">Javascript クラス</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

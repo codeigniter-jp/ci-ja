@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 コアシステムクラスの作成
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -64,7 +64,7 @@
 しかし、CodeIgniter のコアを大きく変えたい人のために、置き換えたり拡張したりできる選択肢が用意されています。</strong>
 </p>
 
-<p class="important"><strong>Note:</strong>&nbsp; コアのシステムクラスを扱うと様々な影響が出てきますので、コアクラスを変更する前には、必ず、
+<p class="important"><strong>Note:</strong>  コアのシステムクラスを扱うと様々な影響が出てきますので、コアクラスを変更する前には、必ず、
 変更することで何が起こるかを調べるようにしてください。</p>
 
 
@@ -131,13 +131,13 @@ class MY_Input extends CI_Input {<br /><br />
 <code>
 class MY_Input extends CI_Input {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function __construct()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    function __construct()<br />
+    {<br />
+        parent::__construct();<br />
+    }<br />
 }</code>
 
-<p class="important"><strong>Tip:</strong>&nbsp; 親クラスのメソッドと同じ名前のユーザクラスのメソッドはみな、ネイティブのものと置き換えられて使用されます
+<p class="important"><strong>Tip:</strong>  親クラスのメソッドと同じ名前のユーザクラスのメソッドはみな、ネイティブのものと置き換えられて使用されます
 ("メソッドのオーバーライド" として知られています ).
 これにより、実質的に、CodeIgniter のコアを置き換えることができます。</p>
 
@@ -145,15 +145,15 @@ class MY_Input extends CI_Input {<br />
 
 <code>class Welcome extends MY_Controller {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function __construct()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    function __construct()<br />
+    {<br />
+        parent::__construct();<br />
+    }<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function index()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('welcome_message');<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    function index()<br />
+    {<br />
+        $this->load->view('welcome_message');<br />
+    }<br />
 }</code>
 
 <h3>ユーザクラスのプリフィックス(接頭辞)の設定</h3>
@@ -173,13 +173,13 @@ class MY_Input extends CI_Input {<br />
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="creating_libraries.html">ユーザライブラリの作成</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="hooks.html">フック - コアの拡張</a>
+前のトピック:  <a href="creating_libraries.html">ユーザライブラリの作成</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="hooks.html">フック - コアの拡張</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

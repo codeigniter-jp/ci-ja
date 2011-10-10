@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 ライブラリの作成
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -88,7 +88,7 @@
 
 <ul>
 <li>ファイル名は先頭が大文字である必要があります。例: <dfn>Myclass.php</dfn></li>
-<li>クラスの宣言は先頭が大文字である必要があります。例:&nbsp;  <kbd>class Myclass</kbd></li>
+<li>クラスの宣言は先頭が大文字である必要があります。例:   <kbd>class Myclass</kbd></li>
 <li>クラス名とファイル名は一致する必要があります。</li>
 </ul>
 
@@ -101,9 +101,9 @@
 <br /><br />
 class Someclass {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;public function some_function()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    public function some_function()<br />
+    {<br />
+    }<br />
 }<br /><br />
 /* End of file Someclass.php */</code>
 
@@ -119,7 +119,7 @@ CodeIgniter ではどちらでも動きます。</p>
 
 <p>いったんロードされると、<kbd>小文字</kbd>で表したクラス名でクラスにアクセスできます:</p>
 
-<code>$this-><kbd>someclass</kbd>->some_function();&nbsp; // オブジェクトインスタンスは、常に小文字になります
+<code>$this-><kbd>someclass</kbd>->some_function();  // オブジェクトインスタンスは、常に小文字になります
 </code>
 
 
@@ -140,10 +140,10 @@ $this->load->library('Someclass', <kbd>$params</kbd>);</code>
 <br />
 class Someclass {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;public function __construct($params)<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// $params を使って何かを行う<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    public function __construct($params)<br />
+    {<br />
+        // $params を使って何かを行う<br />
+    }<br />
 }<br /><br />
 ?&gt;</code>
 
@@ -243,10 +243,10 @@ class MY_Email extends CI_Email {<br /><br />
 <code>
 class MY_Email extends CI_Email {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;public function __construct()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    public function __construct()<br />
+    {<br />
+        parent::__construct();<br />
+    }<br />
 }</code>
 
 
@@ -280,13 +280,13 @@ class MY_Email extends CI_Email {<br />
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="libraries.html">CodeIgniter ライブラリの使用</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="drivers.html">CodeIgniterドライバの利用</a>
+前のトピック:  <a href="libraries.html">CodeIgniter ライブラリの使用</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="drivers.html">CodeIgniterドライバの利用</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 FTP クラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -61,7 +61,7 @@ FTP クラス
 <p>CodeIgniter の FTP クラスを使うと、リモートサーバにファイルを転送できます。リモートにあるファイルは、移動、リネーム、そして削除も可能です。
 また、FTP クラスには、FTP 経由でローカルディレクトリをすべてリモートに再作成する "ミラーリング" 機能もあります。</p>
 
-<p class="important"><strong>Note:</strong>&nbsp; SFTP と SSL FTP プロトコルはサポートされていません。通常の FTP のみサポートされます。</p>
+<p class="important"><strong>Note:</strong>  SFTP と SSL FTP プロトコルはサポートされていません。通常の FTP のみサポートされます。</p>
 
 <h2>クラスの初期化</h2>
 
@@ -147,9 +147,9 @@ $this->load->library('ftp');<br />
 $config['hostname'] = 'ftp.example.com';<br />
 $config['username'] = 'your-username';<br />
 $config['password'] = 'your-password';<br />
-$config['port']&nbsp;&nbsp;&nbsp;&nbsp; = 21;<br />
-$config['passive']&nbsp;&nbsp;= FALSE;<br />
-$config['debug']&nbsp;&nbsp;&nbsp;&nbsp;= TRUE;<br />
+$config['port']     = 21;<br />
+$config['passive']  = FALSE;<br />
+$config['debug']    = TRUE;<br />
 <br />
 $this->ftp->connect($config);<br />
 </code>
@@ -164,7 +164,7 @@ $this->ftp->connect($config);<br />
 
 
 <ul>
-<li><strong>hostname</strong> -  FTP ホスト名。通常は次のようになります:&nbsp; <dfn>ftp.example.com</dfn></li>
+<li><strong>hostname</strong> -  FTP ホスト名。通常は次のようになります:  <dfn>ftp.example.com</dfn></li>
 <li><strong>username</strong> - FTP ユーザ名</li>
 <li><strong>password</strong> -  FTP パスワード</li>
 <li><strong>port</strong> - ポート番号。初期値は<dfn>21</dfn>に設定されています。</li>
@@ -182,7 +182,7 @@ $this->ftp->connect($config);<br />
 
 <code>$this->ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775);</code>
 
-<p><strong>転送モードのオプション:</strong>&nbsp; <kbd>ascii、</kbd><kbd>binary、</kbd>および <kbd>auto</kbd> (初期値)。
+<p><strong>転送モードのオプション:</strong>  <kbd>ascii、</kbd><kbd>binary、</kbd>および <kbd>auto</kbd> (初期値)。
 <kbd>auto</kbd> が使用されているときは、転送するファイルの拡張子によって転送モードが決められます。</p>
 
 <p>パーミッションは PHP 5で実行しているときに指定可能で、第4引数に<kbd>8進数</kbd>の値を渡します。</p>
@@ -195,7 +195,7 @@ $this->ftp->connect($config);<br />
 
 <code>$this-&gt;ftp-&gt;download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii');</code>
 
-<p><strong>モードオプション:</strong>&nbsp; <kbd>ascii</kbd>, <kbd>binary</kbd> および <kbd>auto</kbd> (デフォルト)。
+<p><strong>モードオプション:</strong>  <kbd>ascii</kbd>, <kbd>binary</kbd> および <kbd>auto</kbd> (デフォルト)。
 <kbd>auto</kbd> を指定した場合はソースのファイル名から判別されます。</p>
 
 <p>ダウンロードに成功しなかった場合は FALSE を返します。 (ローカルファイルに対するパーミッションがなかった場合も含む)</p>
@@ -231,7 +231,7 @@ $this->ftp->delete_file('/public_html/joe/blog.html');
 <h2>$this->ftp->delete_dir()</h2>
 <p>ディレクトリとそのディレクトリに含まれるものをすべて削除します。削除するディレクトリへのパスを末尾にスラッシュをつけて指定します。</p>
 
-<p class="important"><strong>重要</strong>&nbsp; このメソッドを使うときは、「厳重に」注意してください。
+<p class="important"><strong>重要</strong>  このメソッドを使うときは、「厳重に」注意してください。
 渡されたパス以下のサブフォルダと全ファイルの<b>すべてのもの</b>を再帰的に削除します。パスが完全に正しいかを確認するようにしてください。
 <kbd>list_files()</kbd> メソッドをまず使って、パスが正しいかを検証するようにしてください。</p>
 
@@ -303,13 +303,13 @@ $this->ftp->chmod('/public_html/foo/bar/', DIR_WRITE_MODE);
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="form_validation.html">フォームバリデーション(検証)クラス</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="table.html">HTML テーブルクラス</a>
+前のトピック:  <a href="form_validation.html">フォームバリデーション(検証)クラス</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="table.html">HTML テーブルクラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

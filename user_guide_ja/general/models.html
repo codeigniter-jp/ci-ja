@@ -39,11 +39,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 モデル
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -77,41 +77,41 @@ CodeIgniter を使ってブログを管理する場合について考えてみ�
 そういったモデルクラスは、どのようになっているかを示した例です:</p>
 
 <code>
-class&nbsp;Blogmodel&nbsp;extends&nbsp;CI_Model&nbsp;{<br />
+class Blogmodel extends CI_Model {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;var $title&nbsp;&nbsp; = '';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;var $content = '';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;var $date&nbsp;&nbsp;&nbsp; = '';<br />
+    var $title   = '';<br />
+    var $content = '';<br />
+    var $date    = '';<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;__construct()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Model クラスのコンストラクタを呼び出す<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;get_last_ten_entries()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$query = $this->db->get('entries', 10);<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $query->result();<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    function __construct()<br />
+    {<br />
+        // Model クラスのコンストラクタを呼び出す<br />
+        parent::__construct();<br />
+    }<br />
+    <br />
+    function get_last_ten_entries()<br />
+    {<br />
+        $query = $this->db->get('entries', 10);<br />
+        return $query->result();<br />
+    }<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;insert_entry()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->title&nbsp;&nbsp; = $_POST['title']; // 下の Note を参照してください<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->content = $_POST['content'];<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->date&nbsp;&nbsp;&nbsp; = time();<br />
+    function insert_entry()<br />
+    {<br />
+        $this->title   = $_POST['title']; // 下の Note を参照してください<br />
+        $this->content = $_POST['content'];<br />
+        $this->date    = time();<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->db->insert('entries',&nbsp;$this);<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        $this->db->insert('entries', $this);<br />
+    }<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;update_entry()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->title&nbsp;&nbsp; = $_POST['title'];<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->content = $_POST['content'];<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->date&nbsp;&nbsp;&nbsp; = time();<br />
+    function update_entry()<br />
+    {<br />
+        $this->title   = $_POST['title'];<br />
+        $this->content = $_POST['content'];<br />
+        $this->date    = time();<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->db->update('entries',&nbsp;$this, array('id' => $_POST['id']));<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        $this->db->update('entries', $this, array('id' => $_POST['id']));<br />
+    }<br />
 <br />
 }</code>
 
@@ -126,12 +126,12 @@ class&nbsp;Blogmodel&nbsp;extends&nbsp;CI_Model&nbsp;{<br />
 
 
 <code>
-class&nbsp;<var>Model_name</var>&nbsp;extends&nbsp;CI_Model&nbsp;{<br />
+class <var>Model_name</var> extends CI_Model {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;<var>__construct</var>()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    function <var>__construct</var>()<br />
+    {<br />
+        parent::__construct();<br />
+    }<br />
 }</code>
 
 <p>ここでの <var>Model_name</var> はクラス名になります。クラス名は <strong>必ず</strong> 大文字で始め、他の文字は小文字にする必要があります。
@@ -140,12 +140,12 @@ class&nbsp;<var>Model_name</var>&nbsp;extends&nbsp;CI_Model&nbsp;{<br />
 <p>ファイル名は、クラス名を小文字にしたものになります。たとえばクラスがこんな感じの場合は:</p>
 
 <code>
-class&nbsp;<var>User_model</var>&nbsp;extends&nbsp;CI_Model&nbsp;{<br />
+class <var>User_model</var> extends CI_Model {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;<var>__construct</var>()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct();<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+    function <var>__construct</var>()<br />
+    {<br />
+        parent::__construct();<br />
+    }<br />
 }</code>
 
 <p>ファイルは次のようになります:</p>
@@ -188,15 +188,15 @@ $this-><kbd>fubar</kbd>->function();
 <p>下の例では、コントローラがモデルを読み込み、ビューを表示しています:</p>
 
 <code>
-class&nbsp;Blog_controller&nbsp;extends&nbsp;CI_Controller&nbsp;{<br />
+class Blog_controller extends CI_Controller {<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;blog()<br />
-&nbsp;&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->model('Blog');<br />
+    function blog()<br />
+    {<br />
+        $this->load->model('Blog');<br />
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data['query'] = $this->Blog->get_last_ten_entries();<br /><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->load->view('blog', $data);<br />
-&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        $data['query'] = $this->Blog->get_last_ten_entries();<br /><br />
+        $this->load->view('blog', $data);<br />
+    }<br />
 }</code>
 
 <h2><a name="auto_load_model" id="auto_load_model"></a>モデルの自動読み込み</h2>
@@ -238,13 +238,13 @@ $this->load->model('<var>Model_name</var>', '', <kbd>$config</kbd>);</code></li>
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="views.html">ビュー</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="helpers.html">ヘルパー関数</a>
+前のトピック:  <a href="views.html">ビュー</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="helpers.html">ヘルパー関数</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

@@ -41,12 +41,12 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
-<a href="index.html">データベースライブラリ</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
+<a href="index.html">データベースライブラリ</a>  &#8250; 
 データベースサンプルコード
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -82,9 +82,9 @@
 <br />
 foreach ($query->result() as $row)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $row->title;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $row->name;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $row->email;<br />
+    echo $row->title;<br />
+    echo $row->name;<br />
+    echo $row->email;<br />
 }<br />
 <br />
 echo 'Total Results: ' . $query->num_rows();
@@ -99,9 +99,9 @@ echo 'Total Results: ' . $query->num_rows();
 <br />
 foreach ($query->result_array() as $row)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $row['title'];<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $row['name'];<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $row['email'];<br />
+    echo $row['title'];<br />
+    echo $row['name'];<br />
+    echo $row['email'];<br />
 }</code>
 
 <p>上の <dfn>result_array()</dfn> メソッドは標準的な添字を使う配列を返します。例:  $row['title']</p>
@@ -116,12 +116,12 @@ $query = $this->db->query("YOUR QUERY");<br />
 <br />
 if ($query->num_rows() > 0)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;foreach ($query->result() as $row)<br />
-&nbsp;&nbsp;&nbsp;{<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->title;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->name;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->body;<br />
-&nbsp;&nbsp;&nbsp;}<br />
+   foreach ($query->result() as $row)<br />
+   {<br />
+      echo $row->title;<br />
+      echo $row->name;<br />
+      echo $row->body;<br />
+   }<br />
 }
 </code>
 
@@ -154,7 +154,7 @@ echo $row['name'];<br />
 
 <code>
 $sql = "INSERT INTO mytable (title, name) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUES (".$this->db->escape($title).", ".$this->db->escape($name).")";<br />
+        VALUES (".$this->db->escape($title).", ".$this->db->escape($name).")";<br />
 <br />
 $this->db->query($sql);<br />
 <br />
@@ -172,7 +172,7 @@ $query = $this->db->get('table_name');<br />
 <br />
 foreach ($query->result() as $row)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $row->title;<br />
+    echo $row->title;<br />
 }</code>
 
 <p>上の <dfn>get()</dfn> メソッドは 指定されたテーブルの全データを取得します。 <a href="active_record.html">Active Record</a> クラスは、データを処理するためのフル装備のメソッドをもっています。</p>
@@ -182,10 +182,10 @@ foreach ($query->result() as $row)<br />
 
 <code>
 $data = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => $title,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => $name,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => $date<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+               'title' => $title,<br />
+               'name' => $name,<br />
+               'date' => $date<br />
+            );<br />
 <br />
 $this->db->insert('mytable', $data);
 <br /><br />
@@ -200,13 +200,13 @@ $this->db->insert('mytable', $data);
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="index.html">データベースクラス</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="configuration.html">データベース設定</a>
+前のトピック:  <a href="index.html">データベースクラス</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="configuration.html">データベース設定</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

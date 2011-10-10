@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 CAPTCHA ヘルパー
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -74,9 +74,9 @@ CAPTCHA ヘルパー
 
 <code>[array]<br />
 (<br />
-&nbsp;&nbsp;'image' => IMAGE TAG<br />
-&nbsp;&nbsp;'time'	=> TIMESTAMP (マイクロ秒まで含む)<br />
-&nbsp;&nbsp;'word'	=> CAPTCHA WORD<br />
+  'image' => IMAGE TAG<br />
+  'time'	=> TIMESTAMP (マイクロ秒まで含む)<br />
+  'word'	=> CAPTCHA WORD<br />
 )</code>
 
 	<p>"image" は実際の image タグです:
@@ -93,14 +93,14 @@ CAPTCHA ヘルパー
 	<p>一旦ロードすれば、このようなキャプチャを生成できます:</p>
 
 <code>$vals = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'word'		 => 'Random word',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'img_path'	 => './captcha/',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'img_url'	 => 'http://example.com/captcha/',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'font_path'	 => './path/to/fonts/texb.ttf',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'img_width'	 => '150',<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'img_height' => 30,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'expiration' => 7200<br />
-&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+    'word'		 => 'Random word',<br />
+    'img_path'	 => './captcha/',<br />
+    'img_url'	 => 'http://example.com/captcha/',<br />
+    'font_path'	 => './path/to/fonts/texb.ttf',<br />
+    'img_width'	 => '150',<br />
+    'img_height' => 30,<br />
+    'expiration' => 7200<br />
+    );<br />
 <br />
 $cap = create_captcha($vals);<br />
 echo $cap['image'];</code>
@@ -129,29 +129,29 @@ echo $cap['image'];</code>
 	<p>テーブルの定義:</p>
 
 <code>CREATE TABLE captcha (<br />
-&nbsp;captcha_id bigint(13) unsigned NOT NULL auto_increment,<br />
-&nbsp;captcha_time int(10) unsigned NOT NULL,<br />
-&nbsp;ip_address varchar(16) default '0' NOT NULL,<br />
-&nbsp;word varchar(20) NOT NULL,<br />
-&nbsp;PRIMARY KEY `captcha_id` (`captcha_id`),<br />
-&nbsp;KEY `word` (`word`)<br />
+ captcha_id bigint(13) unsigned NOT NULL auto_increment,<br />
+ captcha_time int(10) unsigned NOT NULL,<br />
+ ip_address varchar(16) default '0' NOT NULL,<br />
+ word varchar(20) NOT NULL,<br />
+ PRIMARY KEY `captcha_id` (`captcha_id`),<br />
+ KEY `word` (`word`)<br />
 );</code>
 
 	<p>データベースと組み合わせた際の例です。キャプチャを表示するページの例: </p>
 	
 <code>$this-&gt;load-&gt;helper(&#x27;captcha&#x27;);<br />
 $vals = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&#x27;img_path&#x27;	 =&gt; &#x27;./captcha/&#x27;,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&#x27;img_url&#x27;	 =&gt; &#x27;http://example.com/captcha/&#x27;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+    &#x27;img_path&#x27;	 =&gt; &#x27;./captcha/&#x27;,<br />
+    &#x27;img_url&#x27;	 =&gt; &#x27;http://example.com/captcha/&#x27;<br />
+    );<br />
 <br />
 $cap = create_captcha($vals);<br />
 <br />
 $data = array(<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&#x27;captcha_time&#x27;	=&gt; $cap[&#x27;time&#x27;],<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&#x27;ip_address&#x27;	=&gt; $this-&gt;input-&gt;ip_address(),<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&#x27;word&#x27;			=&gt; $cap[&#x27;word&#x27;]<br />
-&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+    &#x27;captcha_time&#x27;	=&gt; $cap[&#x27;time&#x27;],<br />
+    &#x27;ip_address&#x27;	=&gt; $this-&gt;input-&gt;ip_address(),<br />
+    &#x27;word&#x27;			=&gt; $cap[&#x27;word&#x27;]<br />
+    );<br />
 <br />
 $query = $this-&gt;db-&gt;insert_string(&#x27;captcha&#x27;, $data);<br />
 $this-&gt;db-&gt;query($query);<br />
@@ -174,7 +174,7 @@ $row = $query-&gt;row();<br />
 <br />
 if ($row-&gt;count == 0)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo &quot;You must submit the word that appears in the image&quot;;<br />
+    echo &quot;You must submit the word that appears in the image&quot;;<br />
 }</code>
 
 </div>
@@ -183,13 +183,13 @@ if ($row-&gt;count == 0)<br />
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="array_helper.html">配列ヘルパー</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+前のトピック:  <a href="array_helper.html">配列ヘルパー</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
 <a href="../index.html">ユーザガイド Home</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="cookie_helper.html">クッキーヘルパー</a></p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+   &middot;  
+次のトピック:  <a href="cookie_helper.html">クッキーヘルパー</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>

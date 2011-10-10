@@ -40,11 +40,11 @@
 <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
 <tr>
 <td id="breadcrumb">
-<a href="http://codeigniter.com/">CodeIgniter Home</a> &nbsp;&#8250;&nbsp;
-<a href="../index.html">ユーザガイド Home</a> &nbsp;&#8250;&nbsp;
+<a href="http://codeigniter.com/">CodeIgniter Home</a>  &#8250; 
+<a href="../index.html">ユーザガイド Home</a>  &#8250; 
 URI クラス
 </td>
-<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+<td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.jp/user_guide_ja/" />ユーザガイドを検索  <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit" class="submit" name="sa" value="Go" /></form></td>
 </tr>
 </table>
 <!-- END BREADCRUMB -->
@@ -89,11 +89,11 @@ URI クラス
 
 <code>if ($this->uri->segment(3) === FALSE)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$product_id = 0;<br />
+    $product_id = 0;<br />
 }<br />
 else<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;$product_id = $this->uri->segment(3);<br />
+    $product_id = $this->uri->segment(3);<br />
 }<br />
 </code>
 
@@ -138,9 +138,9 @@ $this->uri->slash_segment(<var>3</var>, 'both');</code>
 
 <code>[array]<br />
 (<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'joe'<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'location'	=> 'UK'<br />
-&nbsp;&nbsp;&nbsp;&nbsp;'gender'	=> 'male'<br />
+    'name' => 'joe'<br />
+    'location'	=> 'UK'<br />
+    'gender'	=> 'male'<br />
 )</code>
 
 <p>メソッドの第1引数で、オフセットを設定できます。通常は第1、第2セグメントは、コントローラ/メソッドになっているので、
@@ -222,8 +222,8 @@ $segs = $this->uri->segment_array();<br />
 <br />
 foreach ($segs as $segment)<br />
 {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo $segment;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;echo '&lt;br />';<br />
+    echo $segment;<br />
+    echo '&lt;br />';<br />
 }</code>
 
 <h2>$this->uri->rsegment_array()</h2>
@@ -239,13 +239,13 @@ foreach ($segs as $segment)<br />
 
 <div id="footer">
 <p>
-前のトピック:&nbsp;&nbsp;<a href="unit_testing.html">ユニットテストクラス</a>
-&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="#top">ページの先頭</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-<a href="../index.html">ユーザガイド Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-次のトピック:&nbsp;&nbsp;<a href="user_agent.html">ユーザエージェントクラス</a>
+前のトピック:  <a href="unit_testing.html">ユニットテストクラス</a>
+   &middot;  
+<a href="#top">ページの先頭</a>   &middot;  
+<a href="../index.html">ユーザガイド Home</a>   &middot;  
+次のトピック:  <a href="user_agent.html">ユーザエージェントクラス</a>
 </p>
-<p><a href="http://codeigniter.com">CodeIgniter</a> &nbsp;&middot;&nbsp; Copyright &#169; 2006 - 2011 &nbsp;&middot;&nbsp; <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
+<p><a href="http://codeigniter.com">CodeIgniter</a>  &middot;  Copyright &#169; 2006 - 2011  &middot;  <a href="http://ellislab.com/">EllisLab, Inc.</a><br />Japanese Translation: <a href="http://codeigniter.jp/">CodeIgniter Users Group in Japan</a></p>
 </div>
 
 </body>
