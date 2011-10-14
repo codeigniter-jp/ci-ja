@@ -1,6 +1,6 @@
-#############################
-CodeIgniter License Agreement
-#############################
+############################
+CodeIgniter ライセンス契約書
+############################
 
 Copyright (c) 2008 - 2011, EllisLab, Inc.
 All rights reserved.
@@ -80,9 +80,9 @@ CodeIgniter ライセンス契約書
 Copyright (c) 2008 - 2011, EllisLab, Inc.
 All rights reserved.
 
-このライセンスは、CodeIgniter ソフトウェア(以下「本ソフトウェア」と
-いいます)の使用に関する EllisLab Inc. との法的契約書です。本ソフト
-ウェアを入手することにより、このライセンスの条件に同意したものとします。
+このライセンスは、CodeIgniter ソフトウェア(以下「本ソフトウェア」といいます)
+の使用に関する EllisLab Inc. との法的契約書です。本ソフトウェアを入手する
+ことにより、このライセンスの条件に同意したものとします。
 
 使用許諾
 --------
