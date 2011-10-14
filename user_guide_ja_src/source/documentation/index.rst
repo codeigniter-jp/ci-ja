@@ -1,11 +1,11 @@
-#################################
-Writing CodeIgniter Documentation
-#################################
+################################
+CodeIgniter のドキュメントを書く
+################################
 
-CodeIgniter uses Sphinx to generate its documentation in a variety of formats,
-using reStructuredText to handle the formatting.  If you are familiar with
-Markdown or Textile, you will quickly grasp reStructuredText.  The focus is
-on readability, user friendliness, and an "I've got your hand, baby" feel.
+CodeIgniter は、reStructuredText という形式を使うことで様々なフォーマット
+でのドキュメントを生成できる Sphinx を使います。もし、Markdown や Textile
+に慣れているなら、reStructuredText を素早く把握することができるでしょう。
+焦点は、信頼性、ユーザフレンドリーさ、そして「I've got your hand, baby」という手触りです。
 While they can be quite technical, we always write for humans!
 
 A table of contents should always be included like the one below.
@@ -15,9 +15,9 @@ directive on a line by itself.
 .. contents:: Page Contents
 
 
-**************
-Tools Required
-**************
+************
+必要なツール
+************
 
 To see the rendered HTML, ePub, PDF, etc., you will need to install Sphinx
 along with the PHP domain extension for Sphinx.  The underlying requirement
@@ -89,9 +89,9 @@ create these with the following tab triggers::
 
 
 
-********************
-Method Documentation
-********************
+******************************
+メソッドのドキュメンテーション
+******************************
 
 When documenting class methods for third party developers, Sphinx provides
 directives to assist and keep things simple.  For example, consider the following
