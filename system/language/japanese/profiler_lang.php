@@ -9,6 +9,7 @@ $lang['profiler_post_data']		= 'POST データ';
 $lang['profiler_uri_string']	= 'URI 文字列';
 $lang['profiler_memory_usage']	= 'メモリ使用量';
 $lang['profiler_config']		= '設定変数';
+$lang['profiler_session_data']  = 'SESSION データ';
 $lang['profiler_headers']		= 'HTTP ヘッダ';
 $lang['profiler_no_db']			= 'データベースドライバは現在読み込まれていません';
 $lang['profiler_no_queries']	= '実行されたクエリはありません';
