@@ -2,15 +2,15 @@
 CodeIgniter の概要
 ##################
 
-下記のページでは、CodeIgniterの背景にある幅広いコンセプトについて説明
-しています:
+下記のページでは、CodeIgniterの背景にある幅広いコンセプトについて説明しています:
 
-
--  :doc:`CodeIgniter の簡単な紹介 <at_a_glance>`
--  :doc:`サポートされる機能 <features>`
--  :doc:`アプリケーションフローチャート <appflow>`
--  :doc:`Model-View-Controllerの紹介 <mvc>`
--  :doc:`設計とアーキテクチャのゴール <goals>`
--  :doc:`パッケージの説明 <package>`
-
-
+.. toctree::
+	:titlesonly:
+	
+	はじめよう <getting_started>
+	CodeIgniter の簡単な紹介 <at_a_glance>
+	CodeIgniter チートシート <cheatsheets>
+	サポートされる機能 <features>
+	アプリケーションフローチャート <appflow>
+	Model-View-Controller <mvc>
+	設計とアーキテクチャのゴール <goals>
