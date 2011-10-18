@@ -17,7 +17,7 @@ Version 2.1.0 (planned)
    -  :doc:`共通関数 <general/common_functions>` に XSS を防ぐために
       HTML をエスケープする html_escape() を
       追加しました。
-   -  mimes.php に pem、p10、p12、p7a、p7c、p7m、p7r、p7s、crt、crl、der、kdb、rsa、cer、sst、csr 証明書のサポートを追加しました。   -  mimes.php に pgp、gpg を追加しました。
+   -  mimes.php に pem、p10、p12、p7a、p7c、p7m、p7r、p7s、crt、crl、der、kdb、rsa、cer、sst、csr 証明書のサポートを追加しました。
    -  mimes.php に pgp、gpg のサポートを追加しました。
    -  mimes.php に 3gp、3g2、mp4、wmv、f4v、vlc ビデオファイルのサポートを追加しました。
    -  mimes.php に m4a、aac、m4u、xspf、au、ac3、flac、ogg オーディオファイルのサポートを追加しました。
