@@ -2,15 +2,10 @@
 変更履歴
 ########
 
-印は CodeIgniter Reactor から提供されたものです。
-
-
-
 Version 2.1.0 (planned)
 =======================
 
 リリース日付: 未リリース
-
 
 -  全体的な変更
 
@@ -18,17 +13,14 @@ Version 2.1.0 (planned)
    -  Windows 7 をプラットフォームリストに追加されました。
    -  コールバックの検証ルールが他の検証ルールと同じように引数を受け取れる
       ようにしました。
-   -  しきい値以下のすべてのエラータイプではなく、特定のエラータイプを記録
-      する能力を追加しました。
-   -  :doc:`共通関数 <general/common_functions>` に XSS を防ぐために HTML
-      をエスケープする html_escape() を追加しました。
-   -  mimes.php に pem、p10、p12、p7a、p7c、p7m、p7r、p7s、crt、crl、der、
-      kdb、rsa、cer、sst、csr 証明書のサポートを追加しました。
-   -  mimes.php に pgp、gpg を追加しました。
-   -  mimes.php に 3gp、 3g2、 mp4、 wmv、 f4v、 vlc
-      ビデオファイルのサポートを追加しました。
-   -  mimes.php に m4a、 aac、 m4u、 xspf、 au、 ac3、 flac、 ogg
-      オーディオファイルのサポートを追加しました。
+   -  しきい値以下のすべてのエラータイプではなく、特定のエラータイプを記録する能力を追加しました。
+   -  :doc:`共通関数 <general/common_functions>` に XSS を防ぐために
+      HTML をエスケープする html_escape() を
+      追加しました。
+   -  mimes.php に pem、p10、p12、p7a、p7c、p7m、p7r、p7s、crt、crl、der、kdb、rsa、cer、sst、csr 証明書のサポートを追加しました。   -  mimes.php に pgp、gpg を追加しました。
+   -  mimes.php に pgp、gpg のサポートを追加しました。
+   -  mimes.php に 3gp、3g2、mp4、wmv、f4v、vlc ビデオファイルのサポートを追加しました。
+   -  mimes.php に m4a、aac、m4u、xspf、au、ac3、flac、ogg オーディオファイルのサポートを追加しました。
 
 -  ヘルパー
 
@@ -38,26 +30,22 @@ Version 2.1.0 (planned)
    -  フォームヘルパーのうち form_open_multipart 関数の引数 action
       をオプションに変更しました。 Fixes (#65)
    -  url_title() 関数は最初と最後の余分なダッシュ記号を取り除きます。
-   -  :doc:`文字列ヘルパー <helpers/string_helper>` の **random_string()**
-      関数の速度を改善しました。
-   -  :doc:`HTMLヘルパー <helpers/html_helper>` に XHTML Basic 1.1
-      のドキュメントタイプを追加しました。
+   -  :doc:`文字列ヘルパー <helpers/string_helper>` の random_string() 関数の速度を改善しました。
+   -  :doc:`HTMLヘルパー <helpers/html_helper>` に XHTML Basic 1.1 のドキュメントタイプを追加しました。
 
 -  データベース
 
    -  :doc:`データベースドライバ <database/index>` に `CUBRID
-      <http://www.cubrid.org/>`_
-      ドライバを追加しました。このパッチを提供してくれた CUBID
-      チームに感謝します。
-   -  :doc:`データベースドライバ <database/index>` に
-      PDOドライバを追加しました。
+      <http://www.cubrid.org/>`_ ドライバを追加しました。このパッチを
+      提供してくれた CUBID チームに感謝します。
+   -  :doc:`データベースドライバ <database/index>` に PDOドライバを追加しました。
    -  :doc:`データベースドライバ <database/index>` が
       可能なインジェクションを回避するために limit 値と offset 値を
       整数型に型キャストするようにしました。
-   -  :doc:`データベースドライバ <database/index>` の $this->db->like()
-      がオプションである第3引数に 'none' オプションを追加しました。
-   -  $this->db->insert_batch() は OCI8 (Oracle)
-      ドライバをサポートします。
+   -  :doc:`データベースドライバ <database/index>` の 
+      $this->db->like() がオプションである第3引数に 'none' オプション
+      を追加しました。
+   -  $this->db->insert_batch() は OCI8 (Oracle) ドライバをサポートします。
 
 -  ライブラリ
 
@@ -70,50 +58,37 @@ Version 2.1.0 (planned)
    -  :doc:`マイグレーションライブラリ <libraries/migration>`
       はデータベーススキーマの差分更新の適用を支援します。
    -  子ドライバはいずれのパッケージパスにも配置することができます。
-   -  アップロードライブラリに max_filename_increment
-      の設定を追加しました。
+   -  アップロードライブラリに max_filename_increment の設定を追加しました。
    -  CI_Loader::_ci_autoloader() を protected メソッドにしました。
    -  :doc:`フォームバリデーション(検証)ライブラリ
       <libraries/form_validation>` に is_unique を追加しました。
-   -  :doc:`フォームバリデーション(検証) <libraries/form_validation>`
-      ライブラリの valid_ip() が PHP の filter_var()
-      関数を使うように変更しました。(>= PHP 5.2)
-   -  :doc:`ページネーションライブラリ <libraries/pagination>` に URI
-      の実際のページ番号を使用できるように $config['use_page_numbers']
-      を追加しました。
+   -  :doc:`フォームバリデーション(検証) <libraries/form_validation>` ライブラリの valid_ip() が PHP の filter_var() 関数を使うように変更しました。(>= PHP 5.2)
+   -  :doc:`ページネーションライブラリ <libraries/pagination>` に URI の実際のページ番号を使用できるように $config['use_page_numbers'] を追加しました。
    -  SMTP の TLS とSSL 暗号化を追加しました。
 
 -  コア
 
    -  CI_URI の private メソッドを MY_URI でオーバーライドできるように
       protected に変更しました。
-   -  CodeIgniter.php の 真偽値 CI_CORE 定数を削除しました。(もはや
-      Reactor や Core のバージョンはないため)
-
-
-
-
+   -  CodeIgniter.php の 真偽値 CI_CORE 定数を削除しました。(もはや Reactor や Core のバージョンはないため)
 
 2.1.0の不具合修正
-~~~~~~~~~~~~~~~~~
+-----------------
 
-
--  Unlink raised an error if cache file did not exist when you try to
-   delete it.
+-  Unlink raised an error if cache file did not exist when you try to delete it.
 -  Fixed #378 Robots identified as regular browsers by the User Agent
    class.
 -  If a config class was loaded first then a library with the same name
    is loaded, the config would be ignored.
 -  Fixed a bug (Reactor #19) where 1) the 404_override route was being
-   ignored in some cases, and 2) auto-loaded libraries were not available
-   to the 404_override controller when a controller existed but the
-   requested method did not.
+   ignored in some cases, and 2) auto-loaded libraries were not
+   available to the 404_override controller when a controller existed
+   but the requested method did not.
 -  Fixed a bug (Reactor #89) where MySQL export would fail if the table
    had hyphens or other non alphanumeric/underscore characters.
 -  Fixed a bug (#200) where MySQL queries would be malformed after
    calling count_all() then db->get()
--  Fixed bug #105 that stopped query errors from being logged unless
-   database debugging was enabled
+-  Fixed bug #105 that stopped query errors from being logged unless database debugging was enabled
 -  Fixed a bug (#181) where a mis-spelling was in the form validation
    language file.
 -  Fixed a bug (#160) - Removed unneeded array copy in the file cache
@@ -126,36 +101,20 @@ Version 2.1.0 (planned)
    __construct().
 -  Fixed a bug (#85) - OCI8 (Oracle) database escape_str() function did
    not escape correct.
--  Fixed a bug (#344) - Using schema found in :doc:`Saving Session Data
-   to a Database <libraries/sessions>` , system would throw error
-   "user_data does not have a default value" when deleting then creating
-   a session.
--  Fixed a bug (#112) - OCI8 (Oracle) driver didn't pass the configured
-   database character set when connecting.
--  Fixed a bug (#182) - OCI8 (Oracle) driver used to re-execute the
-   statement whenever num_rows() is called.
--  Fixed a bug (#82) - WHERE clause field names in the DB
-   update_string() method were not escaped, resulting in failed queries
-   in some cases.
--  Fixed a bug (#89) - Fix a variable type mismatch in DB
-   display_error() where an array is expected, but a string could be set
-   instead.
--  Fixed a bug (#467) - Suppress warnings generated from
-   get_magic_quotes_gpc() (deprecated in PHP 5.4)
--  Fixed a bug (#484) - First time _csrf_set_hash() is called, hash is
-   never set to the cookie (in Security.php).
--  Fixed a bug (#60) - Added _file_mime_type() method to the :doc:`File
-   Uploading Library <libraries/file_uploading>` in order to fix a
-   possible MIME-type injection (also fixes bug #394).
-
-
-
+-  Fixed a bug (#344) - Using schema found in <a href="libraries/sessions.html">Saving Session Data to a Database</a>, system would throw error "user_data does not have a default value" when deleting then creating a session.
+-  Fixed a bug (#112) - OCI8 (Oracle) driver didn't pass the configured database character set when connecting.
+-  Fixed a bug (#182) - OCI8 (Oracle) driver used to re-execute the statement whenever num_rows() is called.
+-  Fixed a bug (#82) - WHERE clause field names in the DB <samp>update_string()</samp> method were not escaped, resulting in failed queries in some cases.
+-  Fixed a bug (#89) - Fix a variable type mismatch in DB <samp>display_error()</samp> where an array is expected, but a string could be set instead.
+-  Fixed a bug (#467) - Suppress warnings generated from get_magic_quotes_gpc() (deprecated in PHP 5.4)
+-  Fixed a bug (#484) - First time _csrf_set_hash() is called, hash is never set to the cookie (in Security.php).
+-  Fixed a bug (#60) - Added _file_mime_type() method to the `File Uploading Library <libraries/file_uploading>` in order to fix a possible MIME-type injection.
+-  Fixed a bug (#537) - Support for all wav type in browser.
 
 Version 2.0.3
 =============
 
 リリース日付: 2011年8月20日
-
 
 -  セキュリティ
 
@@ -166,10 +125,12 @@ Version 2.0.3
       5.2.3未満と MySQL 5.0.7未満の組み合わせでは、マルチバイトの文字セット
       を使用した環境では、SQL インジェクションの攻撃経路を無防備な状態にさら
       すことになりかねません。Latin-1、UTF-8、その他の "low ASCII"
-      文字セットの場合は、すべての環境において影響を受けません。 もし、マル
-      チバイトの文字セットでのデータベース接続を実行し、または、実行しようと
-      考えているのなら、脆弱性の影響を受けないよう、サーバ環境に細心の注意を
-      払ってください。
+      文字セットの場合は、すべての環境において影響を受けません。
+
+      もし、マルチバイトの文字セットでのデータベース接続を実行し、
+      または、実行しようと考えているのなら、
+      脆弱性の影響を受けないよう、
+      サーバ環境に細心の注意を払ってください。
 
 -  全体的な変更
 
@@ -218,13 +179,8 @@ Version 2.0.3
    -  $this->db->having() で、クォートの挿入に escape() ではなく
       escape_str() を使うように変更しました。
 
-
-
-
-
 2.0.3の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  ENVIRONMENT を予約済み定数に追加しました。(Reactor #196)
 -  SCRIPT_NAME が確実に定義されているか、サーバでチェックするよう変更し
@@ -255,15 +211,11 @@ Version 2.0.3
    'cli' に置き換えました。crontab
    からの動作でうまくパラメータを取得できるでしょう。
 
-
-
-
 Version 2.0.2
 =============
 
 リリース日付: 2011年4月7日
 Hg Tag: v2.0.2
-
 
 -  全体的な変更
 
@@ -295,13 +247,8 @@ Hg Tag: v2.0.2
    -  $this->db->count_all_results()
       が文字列の代わりに数値を返すようになりました。
 
-
-
-
-
 2.0.2の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  出力クラスの parse_exec_vars が protected に修正されました。(Reactor
    #145)
@@ -320,15 +267,11 @@ Hg Tag: v2.0.2
    11で URL にアクションを指定しない場合、誤ったアクションに移動する不具
    合が修正されました。
 
-
-
-
 Version 2.0.1
 =============
 
 リリース日付: 2011年3月15日
 Hg Tag: v2.0.1
-
 
 -  全体的な変更
 
@@ -363,13 +306,8 @@ Hg Tag: v2.0.1
       はロジックが変更され、値が渡されない場合、現在の URL
       に投稿するようになりました。
 
-
-
-
-
 2.0.1の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  CLI リクエストは、index.php のあるフォルダに移動した後でなく、どのフ
    ォルダからでも実行できるようになりました。
@@ -380,15 +318,11 @@ Hg Tag: v2.0.1
 -  SHA1 ライブラリの名前が誤っていた不具合 (Reactor #69)
    を修正しました。
 
-
-
-
 Version 2.0.0
 =============
 
 リリース日付: 2011年1月28日
 Hg Tag: v2.0.0
-
 
 -  全体的な変更
 
@@ -610,13 +544,8 @@ Hg Tag: v2.0.0
       に移動しました。
    -  有効な MIME タイプとして MP3 の audio/mpeg3 を追加しました。
 
-
-
-
-
 2.0.0の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  メール送信時に User-Agent を変更できない不具合を修正しました。
 -  出力クラスにおいて、 _output()
@@ -679,15 +608,11 @@ Hg Tag: v2.0.0
 -  日付ヘルパーで、DATE_ISO8601
    定数が不正な書式の日付を返す不具合を修正しました。
 
-
-
-
 Version 1.7.2
 =============
 
 リリース日付: 2009年9月11日
 Hg Tag: v1.7.2
-
 
 -  ライブラリ
 
@@ -748,13 +673,8 @@ Hg Tag: v1.7.2
    -  2つの CodeIgniter "チートシート" (DesignFellow.com
       からの寄贈に感謝します) を追加しました。
 
-
-
-
-
 1.7.2の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  様々なユーザガイドの誤字やサンプルコードを修正しました。 (#6743,
    #7214, #7516, #7287, #7852, #8224, #8324, #8349)
@@ -796,15 +716,11 @@ Hg Tag: v1.7.2
 -  タイポグラフィクラスで、auto_typography() を使用すると、見出しタグの
    中に段落タグが挿入されてしまうことがある不具合を修正しました。
 
-
-
-
 Version 1.7.1
 =============
 
 リリース日付: 2009年2月10日
 Hg Tag: 1.7.1
-
 
 -  ライブラリ
 
@@ -858,13 +774,8 @@ Hg Tag: 1.7.1
    -  Upload::is_allowed_filetype() で、画像を対象に正確性を改善しました。
       (#6715)
 
-
-
-
-
 1.7.1の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  データベース
 
@@ -933,15 +844,11 @@ Hg Tag: 1.7.1
    (#6592)を修正しました。
 -  Typography::auto_typography() を特定の状況下について調整しました。
 
-
-
-
 Version 1.7
 ===========
 
 リリース日付: 2008年10月23日
 Hg Tag: 1.7.0
-
 
 -  ライブラリ
 
@@ -1052,13 +959,8 @@ Hg Tag: 1.7.0
       属性を使用するようにし、div コンテナに、"codeigniter_profiler" という
       id 属性を追加しました。
 
-
-
-
-
 1.7.0の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  xss_clean() で、タグの必須属性を削除してしまう不具合を修正しました。
 -  様々なユーザガイドの誤字やサンプルコードを修正しました。(#4807,
@@ -1122,9 +1024,6 @@ Hg Tag: 1.7.0
 -  複数の同一のタグの組が現れた際に、パーサーで、最長マッチが行われてし
    まう不具合を修正しました。
 
-
-
-
 Version 1.6.3
 =============
 
@@ -1133,7 +1032,6 @@ Hg Tag: v1.6.3
 
 バージョン1.6.3は、セキュリティおよびメンテナンスリリースで、すべての
 ユーザに推奨されます。
-
 
 -  データベース
 
@@ -1183,13 +1081,8 @@ Hg Tag: v1.6.3
    -  :doc:`数字ヘルパー <helpers/number_helper>` の byte_format()
       の言語ファイルの使用についてドキュメントに記述しました。
 
-
-
-
-
 1.6.3の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  validation_lang.php に、valid_emails 検証ルールのための language key
    を追加しました。
@@ -1208,15 +1101,11 @@ Hg Tag: v1.6.3
 -  各システムディレクトリのindexページの 開始 <p>
    タグが2重になっていたのを修正しました。
 
-
-
-
 Version 1.6.2
 =============
 
 リリース日付: 2008年5月13日
 Hg Tag: 1.6.2
-
 
 -  Active Record
 
@@ -1314,14 +1203,8 @@ Hg Tag: 1.6.2
       <general/common_functions>` のページをユーザガイドに追加しました。
    -  xss_clean() のセキュリティおよびパフォーマンスを改善しました。
 
-
-
-
-
 1.6.2の不具合修正
-~~~~~~~~~~~~~~~~~
-
-
+-----------------
 -  SET クエリが、"書き込み"
    クエリとして取り扱われない不具合を修正しました。
 -  ORIG_PATH_INFO の URI
@@ -1381,15 +1264,11 @@ Hg Tag: 1.6.2
 -  ユーザガイドの様々な誤字(#3453, #4364, #4379, #4399, #4408, #4412,
    #4448, #4488)を修正しました。
 
-
-
-
 Version 1.6.1
 =============
 
 リリース日付: 2008年2月12日
 Hg Tag: 1.6.1
-
 
 -  Active Record
 
@@ -1425,13 +1304,8 @@ Hg Tag: 1.6.1
    -  $source_dir が読み取れない場合に、FALSE
       を返すよう、ファイルヘルパーの get_filenames() を変更しました。
 
-
-
-
-
 1.6.1の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  検証ルールにおいて、is_numeric を非推奨としました。numeric と
    integer の使用が推奨されます。
@@ -1458,14 +1332,10 @@ Hg Tag: 1.6.1
    列が、1を起点として再インデックスされない不具合(#3445)を修正しました。
 -  ユーザガイドの様々な誤字を修正しました。
 
-
-
-
 Version 1.6.0
 =============
 
 リリース日付: 2008年1月30日
-
 
 -  DBフォージ
 
@@ -1630,13 +1500,8 @@ Version 1.6.0
    -  :doc:`データベース設定 <./database/configuration>`
       ページに、2つの設定項目についての記述を追加しました。
 
-
-
-
-
 1.6.0の不具合修正
-~~~~~~~~~~~~~~~~~
-
+-----------------
 
 -  返されたデータベースオブジェクトがある場合に、同一アプリケーションで
    、$CI->db が利用できない不具合(#1813) を修正しました。
@@ -1751,13 +1616,10 @@ Version 1.6.0
 -  言語ファイルの一連の文法エラーとスペルミスを修正しました。
 -  様々なユーザガイドの誤字を修正しました。
 
-
-
 Version 1.5.4
 =============
 
 リリース日付: 2007年7月12日
-
 
 -  :doc:`ユーザ定義言語ファイル <./libraries/language>` に
    :doc:`自動読み込み <./general/autoloader>` オプションを追加しました。
@@ -1834,13 +1696,10 @@ Version 1.5.4
 -  非推奨: APPVER は、非推奨となり、明確さのため、CI_VERSION
    に置き換えられました。
 
-
-
 Version 1.5.3
 =============
 
 リリース日付: 2007年4月15日
-
 
 -  プロファイラで配列を文字列として展開して表示するようにしました。
 -  Code Igniter への参照を CodeIgniter に変更しました。
@@ -1858,13 +1717,10 @@ Version 1.5.3
    関数で、文字列を使用する際の不具合を修正しました。
 -  ドキュメントの誤字を修正しました。
 
-
-
 Version 1.5.2
 =============
 
 リリース日付: 2007年2月13日
-
 
 -  :doc:`ダウンロード <./installation/downloads>` ページに
    :doc:`subversion の情報 <./installation/downloads.html#svn>`
@@ -1887,14 +1743,10 @@ Version 1.5.2
    で、同一サイズの画像のリサイズが無視されていた不具合を修正しました。
 -  ドキュメントのいくつかの誤字を修正しました。
 
-
-
-
 Version 1.5.1
 =============
 
 リリース日付: 2006年11月23日
-
 
 -  $this->load->library
    メソッドで、ライブラリの配列を指定できるようにしました。
@@ -1904,8 +1756,8 @@ Version 1.5.1
 -  active record クラスで、クエリをコンパイルした後にクエリデータをリセ
    ットしていなかった不具合を修正しました。
 -  コントローラで、エラーを差し止めていた不具合を修正しました。
--  設定ファイルが存在しない場合にループが起こってしまう問題を修正しまし
-   た。
+-  設定ファイルが存在しない場合にループが起こってしまう問題を
+   修正しました。
 -  第3引数を TRUE
    に設定して複数のモデルをロードした際に起こる不具合を修正しました。
 -  入力のサニタイズメソッドで、グローバル変数が適切にクリアされていなか
@@ -1914,28 +1766,21 @@ Version 1.5.1
 -  MySQLi result ドライバの誤って名付けられた変数を修正しました。
 -  ドキュメントのいくつかの誤字を修正しました。
 
-
-
 Version 1.5.0.1
 ===============
 
 リリース日付: 2006年10月31日
 
-
--  重複したヘルパーおよびクラスの読み込みが停止されない問題を修正しまし
-   た。
+-  重複したヘルパーおよびクラスの読み込みが停止されない問題を
+   修正しました。
 -  word_wrap() ヘルパー関数の不具合を修正しました。
 -  プロファイラクラスの正しくない16進カラーコードを修正しました。
 -  ユーザガイドの壊れた画像を修正しました。
-
-
-
 
 Version 1.5.0
 =============
 
 リリース日付: 2006年10月30日
-
 
 -  :doc:`データベースユーティリティクラス <./database/utilities>`
    を追加しました。データベースのバックアップ、データベース結果からの CSV
@@ -2027,14 +1872,10 @@ Version 1.5.0
    非推奨になりました 。オフにするためには、代わりに、
    $config['log_threshold'] に"0"をセットできます。
 
-
-
-
 Version 1.4.1
 =============
 
 リリース日付: 2006年9月21日
-
 
 -  URIセグメントを直接ユーザが作成したメソッド呼び出しのパラメータとし
    て渡せる新しい機能を追加しました。詳しくは、 :doc:`コントローラ
@@ -2092,14 +1933,10 @@ Version 1.4.1
 -  次のデータベースメソッドが非推奨になりました:
    $this->db->smart_escape_str() および $this->db->fields().
 
-
-
-
 Version 1.4.0
 =============
 
 リリース日付: 2006年9月17日
-
 
 -  コアのファイルをハックすることなく、フレームワークの内部動作に踏み込
    んで変更することができる :doc:`フック <hooks>` 機能を追加しました。
@@ -2189,46 +2026,37 @@ Version 1.4.0
 -  MS SQL のいくつかの不具合を修正しました。
 -  ドキュメントのいくつかの誤字を修正しました。
 
-
-
-
 Version 1.3.3
 =============
 
 リリース日付: 2006年6月1日
 
-
--  このバージョンで、モデルは、自動的にデータベースに接続しなくなりまし
-   た。 :doc:`詳しくはこちら <./general/models>` 。
-   -
-   セッション関連のクエリを実行する際に、セッションクラスで、AcitveRecord
+-  このバージョンで、モデルは自動的にデータベースに接続**しなく**なりました。
+   :doc:`詳しくはこちら <./general/models>` 。
+-  セッション関連のクエリを実行する際に、セッションクラスで、AcitveRecord
    を使用するようにしました。これまでは、クエリは、MySQL
    の構文になっていました。
--  alternator() 関数を引数なしで呼び出し場合、再初期化するようにし、複
-   数回呼び出せるようにしました。
+-  alternator() 関数を引数なしで呼び出し場合、再初期化するようにし、
+   複数回呼び出せるようにしました。
 -  active record の "having" メソッドの不具合を修正しました。
 -  バリデーション(検証)クラスで、required
    の場合に、チェックボックスが無視される問題を修正しました。
--  word_limiter()
-   ヘルパー関数の不具合を修正しました。最初の単語が切り取られていました。
+-  word_limiter() ヘルパー関数の不具合を修正しました。最初の単語が
+   切り取られていました。
 -  xss_clean 関数で、いくつかのバージョンに影響する html_entity_decode
    の PHP の不具合を修正しました。
--  一つのコントローラで、ルールを2回セットできないバリデーションの不具
-   合を修正しました。
+-  一つのコントローラで、ルールを2回セットできないバリデーションの
+   不具合を修正しました。
 -  動的に読み込んだ言語を使用しないカレンダーの不具合を修正しました。
 -  LIKE を使った WHERE 句を使用する時の active record
    クラスの不具合を修正しました。
 -  セキュリティヘルパーの hash() の不具合を修正しました。
 -  いくつかの誤字を修正しました。
 
-
-
-
 Version 1.3.2
 =============
 
 リリース日付: 2006年4月17日
-
 
 -  "required" がフィールドに明示的にセット「されていなかった」場合、そ
    の他のテストが無視されるという、バリデーションの振る舞いを変更しました
@@ -2242,14 +2070,10 @@ Version 1.3.2
 -  モデルクラスの一対の不具合を修正しました。
 -  ドキュメントのいくつかの誤字や誤りを修正しました。
 
-
-
-
 Version 1.3.1
 =============
 
 リリース日付: 2006年4月11日
-
 
 -  :doc:`ユニットテストライブラリ <./libraries/unit_testing>`
    を追加しました。
@@ -2281,14 +2105,10 @@ Version 1.3.1
    メソッドの不具合を修正しました。
 -  ユーザガイドのいくつかの誤字を修正しました。
 
-
-
-
 Version 1.3
 ===========
 
 リリース日付: 2006年4月3日
-
 
 -  :doc:`モデル <models>` をサポートするようになりました。
 -  追加の RDBMS (Postgre, MySQLi,
@@ -2338,14 +2158,10 @@ Version 1.3
 -  既定のカレンダーテンプレートのいくつかの誤字を修正しました。
 -  ユーザガイドのいくつかの誤字を修正しました。
 
-
-
-
 Version 1.2
 ===========
 
 リリース日付: 2006年3月21日
-
 
 -  ベータテストで明らかになったスコープの問題を解決するため、フレームワ
    ーク内部の一部を再設計しました。この問題は、コンストラクタで、クラスを
@@ -2377,14 +2193,10 @@ Version 1.2
    クラスのバインド機能の不具合を修正しました。
 -  xss_clean 関数の不具合を修正しました。
 
-
-
-
 Version Beta 1.1
 ================
 
 リリース日付: 2006年3月10日
-
 
 -  :doc:`カレンダークラス <./libraries/calendar>` を追加しました。
 -  単一の共有の CodeIgniter のバックエンドでの
@@ -2414,13 +2226,9 @@ Version Beta 1.1
 -  ドキュメントを更新しました。"次へ/前へ"
    のリンクを各ページに追加し、多くの誤字を修正しました。
 
-
-
-
 Version Beta 1.0
 ================
 
 リリース日付: 2006年2月28日
 
 最初のパブリックリリースバージョン。
-
