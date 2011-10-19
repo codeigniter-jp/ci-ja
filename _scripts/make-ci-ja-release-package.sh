@@ -23,11 +23,14 @@ pkg="ci-ja-all-in-one-${ci_ja_version}"
 rm -rf "$dir"
 mkdir -p "$dir/$pkg"
 
-hg archive -r "$tag" "$dir/$pkg"
+#hg archive -r "$tag" "$dir/$pkg"
+cd ..
+git archive --format=tar "$tag" | tar -C "_scripts/$dir/$pkg" -xf -
+cd _scripts
 
 
 cd "$dir/$pkg"
-rm .hg_archival.txt .hgignore .hgtags .hgflow
+rm .gitignore
 rm -rf _scripts
 
 
