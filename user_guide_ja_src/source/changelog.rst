@@ -9,6 +9,7 @@ Version 2.1.0 (planned)
 
 -  全体的な変更
 
+   -  Added an optional backtrace to php-error template.
    -  Android 端末をユーザエージェントリストに追加しました。
    -  Windows 7 をプラットフォームリストに追加されました。
    -  コールバックの検証ルールが他の検証ルールと同じように引数を受け取れる
@@ -46,6 +47,9 @@ Version 2.1.0 (planned)
       $this->db->like() がオプションである第3引数に 'none' オプション
       を追加しました。
    -  $this->db->insert_batch() は OCI8 (Oracle) ドライバをサポートします。
+   -  Added new :doc:`Active Record <database/active_record>` methods that return 
+      the SQL string of queries without executing them: get_compiled_select(), 
+      get_compiled_insert(), get_compiled_update(), get_compiled_delete().
 
 -  ライブラリ
 
@@ -110,6 +114,7 @@ Version 2.1.0 (planned)
 -  Fixed a bug (#484) - First time _csrf_set_hash() is called, hash is never set to the cookie (in Security.php).
 -  Fixed a bug (#60) - Added _file_mime_type() method to the `File Uploading Library <libraries/file_uploading>` in order to fix a possible MIME-type injection.
 -  Fixed a bug (#537) - Support for all wav type in browser.
+-  Fixed a bug (#576) - Using ini_get() function to detect if apc is enabled or not.
 
 Version 2.0.3
 =============
@@ -118,13 +123,13 @@ Version 2.0.3
 
 -  セキュリティ
 
-   -  データベースクライアント接続において、マルチバイトの文字セットを使用
-      したサイトで、潜在的な SQL
-      インジェクションの経路が開かれたままになるのを防ぐよう MySQL と MySQLi
-      ドライバの改善を行いました。 *mysql_set_charset()* と非互換な PHP
-      5.2.3未満と MySQL 5.0.7未満の組み合わせでは、マルチバイトの文字セット
-      を使用した環境では、SQL インジェクションの攻撃経路を無防備な状態にさら
-      すことになりかねません。Latin-1、UTF-8、その他の "low ASCII"
+   -  データベースクライアント接続において、マルチバイトの文字セットを
+      使用したサイトで、潜在的な SQL インジェクションの経路が
+      開かれたままになるのを防ぐよう MySQL と MySQLi ドライバの改善を
+      行いました。 *mysql_set_charset()* と非互換な PHP 5.2.3未満と 
+      MySQL 5.0.7未満の組み合わせでは、マルチバイトの文字セットを
+      使用した環境では、SQL インジェクションの攻撃経路を無防備な状態
+      にさらすことになりかねません。Latin-1、UTF-8、その他の "low ASCII"
       文字セットの場合は、すべての環境において影響を受けません。
 
       もし、マルチバイトの文字セットでのデータベース接続を実行し、
@@ -147,9 +152,8 @@ Version 2.0.3
       関数を追加しました。epallerols さんのパッチに感謝します。
    -  mimes.php に "application/x-csv" を追加しました。
    -  CSRF 保護機能に URI ホワイトリストを追加しました。
-   -  :doc:`Email ライブラリ <libraries/email>` において、"."
-      が名前に含まれる添付ファイルが無効な MIME
-      タイプを使用してしまうバグを修正しました。
+   -  :doc:`Email ライブラリ <libraries/email>` において、"." が名前に
+      含まれる添付ファイルが無効な MIME タイプを使用してしまうバグを修正しました。
 
 -  ヘルパー
 
@@ -165,9 +169,7 @@ Version 2.0.3
 -  ライブラリ
 
    -  セッションで、ユーザエージェント文字列の照合で照合する文字数を増やし
-      ました。データベースセッションを使用している場合は、アップグレードの注
-      意事項 [ 訳注: :doc:`2.0.2から2.0.3へのアップグレード
-      <installation/upgrade_203>` ] を確認してください。
+      ました。データベースセッションを使用している場合は、アップグレードの注意事項 [ 訳注: :doc:`2.0.2から2.0.3へのアップグレード <installation/upgrade_203>` ] を確認してください。
    -  :doc:`データベースドライバ <database/queries>` に
       $this->db->set_dbprefix() を追加しました。
    -  :doc:`カートライブラリ <libraries/cart>` の $this->cart->insert()
@@ -183,8 +185,7 @@ Version 2.0.3
 -----------------
 
 -  ENVIRONMENT を予約済み定数に追加しました。(Reactor #196)
--  SCRIPT_NAME が確実に定義されているか、サーバでチェックするよう変更し
-   ました。(Reactor #57)
+-  SCRIPT_NAME が確実に定義されているか、サーバでチェックするよう変更しました。(Reactor #57)
 -  パッケージが存在しない場合、または開発者が他のパッケージをデフォルト
    で読み込まない場合に、不必要なファイル統計を取得しないように、パッケー
    ジオートローダから APPPATH.'third_party' を削除しました。
@@ -230,17 +231,16 @@ Hg Tag: v2.0.2
    -  複数環境サポートはオプションになりました。使用しない場合、環境設定を
       コメントアウトまたは削除してください。
    -  フックが複数環境サポートに対応しました。
-   -  :doc:`キャッシングドライバ <libraries/caching>` に CI\_
-      プリフィックスが追加されました。
+   -  :doc:`キャッシングドライバ <libraries/caching>` に CI\_ プリフィックスが追加されました。
    -  :doc:`CLIの使い方 <./general/cli>` がドキュメントに追加されました。
 
 -  ヘルパー
 
    -  以前から非推奨となっていた dohash() が :doc:`セキュリティヘルパー
-      <./helpers/security_helper>` から削除されました。代わりに do_hash()
-      を使用してください。
-   -  渡した文字列のキャピタライゼーションを損なわないように plural
-      関数が変更されました。すべて大文字の場合も考慮されています。
+      <./helpers/security_helper>` から削除されました。代わりに do_hash() を使用してください。
+   -  渡した文字列のキャピタライゼーションを損なわないように 
+      plural 関数が変更されました。
+      すべて大文字の場合も考慮されています。
 
 -  データベース
 
@@ -262,10 +262,9 @@ Hg Tag: v2.0.2
 -  `issue #153 <https://bitbucket.org/ellislab/codeigniter-
    reactor/issue/153/escape-str-bug-in-mssql-driver>`_ MSSQL
    ドライバの文字列エスケープの不具合が修正されました。
--  `issue #172 <https://bitbucket.org/ellislab/codeigniter-
-   reactor/issue/172/bug-in-chrome-and-form_open-in-201>`_ Google Chrome
-   11で URL にアクションを指定しない場合、誤ったアクションに移動する不具
-   合が修正されました。
+-  `issue #172 <https://bitbucket.org/ellislab/codeigniter-reactor/issue/172/bug-in-chrome-and-form_open-in-201>`_
+   Google Chrome 11で URL にアクションを指定しない場合、
+   誤ったアクションに移動する不具合が修正されました。
 
 Version 2.0.1
 =============
@@ -281,18 +280,19 @@ Hg Tag: v2.0.1
       TRUE、Reactor: FALSE。
    -  index.php に定数 ENVIRONMENT が追加され、PHP のエラー報告や、
       オプションでロードされる設定ファイルに影響します(以下を参照)。
-      :doc:`環境の取扱い <general/environments>` のページをご覧ください。
+      :doc:`複数の環境の取扱い <general/environments>` のページを
+      ご覧ください。
    -  :ref:`環境固有 <config-environments>`
       の設定ファイルのサポートが
       追加されました。
 
 -  ライブラリ
 
-   -  decimal , less_than and greater_than ルールが
-      :doc:`フォームバリデーション(検証)クラス <libraries/form_validation>`
-      に追加されました。
+   -  decimal、less_than and greater_than ルールが :doc:`フォームバリデーション(検証)クラス 
+      <libraries/form_validation>` に追加されました。
    -  :doc:`入力クラス <libraries/input>` の post() と get()
-      メソッドは第1引数が指定されない場合、配列全体を返すようになりました。
+      メソッドは第1引数が指定されない場合、配列全体を返すように
+      なりました。
    -  セキュアクッキーが set_cookie() ヘルパーと :doc:`入力クラス
       <libraries/input>` のメソッドで指定出きるようになりました。
    -  :doc:`出力クラス <libraries/output>` に set_content_type()
@@ -312,12 +312,13 @@ Hg Tag: v2.0.1
 
 -  CLI リクエストは、index.php のあるフォルダに移動した後でなく、どのフ
    ォルダからでも実行できるようになりました。
--  issue #41 の修正: mp3 の MIME タイプとして audio/mp3
-   が追加されました。
--  ファイルキャッシングドライバが誤ったキャッシュディレクトリを参照して
-   いた不具合 (Core #329) を修正しました。
+-  issue #41 の修正: mp3 の MIME タイプとして audio/mp3 が追加されました。
+-  ファイルキャッシングドライバが誤ったキャッシュディレクトリを
+   参照していた不具合 (Core #329) を修正しました。
 -  SHA1 ライブラリの名前が誤っていた不具合 (Reactor #69)
    を修正しました。
+
+.. _2.0.0-changelog:
 
 Version 2.0.0
 =============
@@ -328,47 +329,49 @@ Hg Tag: v2.0.0
 -  全体的な変更
 
    -  PHP 4への対応は打ち切られました。動作には PHP 5.1.6以上が必要です。
-   -  以前から非推奨であった Scaffolding 機能は削除されました。
+   -  以前から非推奨であった Scaffolding 機能は
+      削除されました。
    -  プラグイン機能は削除されました。代わりにヘルパーを使用してください。
       CAPTCHA プラグインはヘルパーに変更されました( :doc:`ドキュメント
       <./helpers/captcha_helper>` )。JavaScript
       カレンダープラグインは、jQuery
       等に有用なものがあるため、削除されました。
-   -  :doc:`ドライバ <./general/drivers>` 機能が追加されました。
-   -  完全な QUERY STRING
-      に対応しました。詳細は設定ファイルを参照してください。
+   -  :doc:`ドライバ <./general/drivers>` 機能が
+      追加されました。
+   -  完全な QUERY STRING に対応しました。詳細は設定ファイルを参照してください。
    -  application フォルダを system の外に移動しました。
    -  system/cache ディレクトリと system/logs ディレクトリを application
       ディレクトリの中に移動しました。
    -  index.php 内でルーティングをオーバーライドできるようになりました。
       "index" ファイル毎にルーティングの上書きが可能です。
-   -  index.php 内のデータセットから、設定値を直接設定 (または上書き) でき
-      るようになりました。これにより、それぞれ独自の設定値を持つ複数のコント
-      ローラからひとつのアプリケーションを使用できます。
+   -  index.php 内のデータセットから、設定値を直接設定 (または上書き) 
+      できるようになりました。これにより、それぞれ独自の設定値を持つ
+      複数のフロントコントローラからひとつのアプリケーションを使用できます。
    -  設定ファイルに $config['directory_trigger'] を追加しました。URI
       セグメントの代わりに $_GET 文字列で動かしているときでも、コントローラ
       のサブディレクトリを指定できます。
-   -  パッケージのパスを指定できるようになりました。ローダーと設定クラスは
-      要求があると、指定されたパスを最初に探しにいこうとします。これにより、
-      サブアプリケーションの配布において、ひとつのパッケージディレクトリで独
-      自のライブラリやモデル、設定ファイルを使用することができます。詳細は
+   -  パッケージのパスを指定できるようになりました。ローダーと
+      設定クラスは要求があると、指定されたパスを最初に探しにいこうと
+      します。これにより、サブアプリケーションの配布において、ひとつの
+      パッケージディレクトリで独自のライブラリやモデル、設定ファイルを
+      使用することができます。詳細は
       :doc:`ローダ (読み込み処理) クラス <libraries/loader>`
       のドキュメントを参照してください。
    -  開発中のコードは現在 `BitBucket <http://bitbucket.org/ellislab
       /codeigniter-reactor/>`_ でホスティングされています。
-   -  非推奨となっていた Validation クラスは削除されました [ 訳注:
-      代わりに Form_validation クラスを使用してください ]。
+   -  非推奨となっていた Validation クラスは削除されました [ 訳注: 代わりに Form_validation クラスを使用してください ]。
    -  すべてのコアクラスに CI\_ というプレフィックスを追加しました。
    -  パッケージのパスは application/config/autoload.php で設定できます。
    -  :doc:`アップロードクラス <libraries/file_uploading>` で拡張子なしの
       ファイル名を指定できるようになりました。拡張子は、ファイル名の代わりに
       アップロードされたファイルから与えられます。
-   -  :doc:`データベースフォージクラス <database/forge>` において、テーブ
-      ル名を変更していない場合は名前を省略できるようになりました。
+   -  :doc:`データベースフォージクラス <database/forge>` において、
+      テーブル名を変更していない場合は名前を省略できるように
+      なりました。
    -  $config['base_url']
       はデフォルトで空になり、自動的に推測されるようになりました。
-   -  config['uri_protocol'] = 'CLI' とすることで、コマンドラインインター
-      フェイス互換が利用できるようになりました。
+   -  config['uri_protocol'] = 'CLI'; とすることで、コマンドライン
+      インターフェイス互換になりました。
 
 -  ライブラリ
 
@@ -388,48 +391,51 @@ Hg Tag: v2.0.0
    -  :doc:`プロファイラクラス <general/profiling>` において、個々のプロフ
       ァイラセクションの有効化/無効化を指定できるようになりました。
    -  :doc:`ファイルアップロードクラス <./libraries/file_uploading>`
-      にワイルドカードオプション $config['allowed_types'] = '*'
-      を追加しました。
-   -  XML-RPC クラスに設定値 'object'
-      を追加しました。これにより、要求されたメソッドを探すために、$CI
-      スーパーオブジェクトにある assuming
-      の代わりにオブジェクトを指定できます。
+      にワイルドカードオプション $config['allowed_types'] = '\*' を追加しました。
+   -  XML-RPC サーバライブラリに設定値 'object' を追加しました。これにより、
+      $CI スーパーオブジェクト内にあることを仮定する代わりに、
+      要求されたメソッドを探すためのオブジェクトを指定できます。
    -  ユニットテストクラスで使用できるリストに "is_object"
       を追加しました。
-   -  HTML テーブルクラスは空もしくは NULL でもセルを出力します。
-   -  HTML
-      テーブルクラスで個々のセルのタグの属性を指定できるようになりました。
+   -  HTML テーブルクラスは空もしくは NULL でも空のセルを
+      出力します。
+   -  HTML テーブルクラスで個々のセルのタグの属性を指定できるように
+      なりました。
    -  :doc:`テンプレートパーサクラス <libraries/parser>` に parse_string()
       メソッドを追加しました。
    -  :doc:`プロファイラクラス <general/profiling>` の出力に HTTP
       ヘッダおよび設定情報を追加しました。
    -  :doc:`ユーザエージェントクラス <libraries/user_agent>` の browser()
       メソッドで判別できるリストに Chrome と Flock を追加しました。
-   -  :doc:`ユニットテストクラス <libraries/unit_testing>`
-      において、オプションで "notes"
-      フィールドが使えるようになりました。また、
-      $this->unit->set_test_items()
-      を使用して、テスト結果を個別に表示できるようになりました。
-   -  XML-RPC クラスのクラス変数 $xss_clean により、セキュリティクラスの
-      xss_clean() メソッドを使用できるようになりました。
+   -  :doc:`ユニットテストクラス <libraries/unit_testing>` において、
+      オプションで "notes" フィールドが使えるようになりました。また、
+      $this->unit->set_test_items() を使用して、
+      テスト結果を個別に表示できるようになりました。
+   -  XML-RPC クラスのクラス変数 $xss_clean により、セキュリティクラス
+      の xss_clean() メソッドを使用できるように
+      なりました。
    -  :doc:`FTP メソッド <libraries/ftp>` に download()
       メソッドを追加しました。
    -  do_xss_clean() メソッドでアップロードファイルの XSS
       チェックに失敗したときは FALSE を返すように変更しました。
    -  アップロードクラスにおいて、$_FILES の type の値を stripslashes() と
       trim() で処理するように変更しました。
-   -  $this->zip->read_dir('/path/to/directory', FALSE) メソッドに第2引数
-      (boolean) を追加しました。ZIP アーカイブを作成するときに、指定フォルダ
-      までのパスで、空のフォルダを含まないようにできます。
+   -  $this->zip->read_dir('/path/to/directory', FALSE) メソッドに
+      第2引数(boolean)を追加しました。
+      ZIP アーカイブを作成するときに、
+      指定フォルダまでのパスで、空のフォルダを含まないように
+      できます。
    -  画像操作クラスにおいて、GD ライブラリで PNG
       の透過画像のリサイズが行なえるようになりました。
    -  セッションクラスを使用する際は、設定ファイル内で暗号化キー
       (encryption_key) の指定が必須になりました。
-   -  セッションクラスに新たな設定項目 sess_expire_on_close を追加しました
-      。ブラウザが閉じられると自動で期限切れにすることができます。
+   -  セッションクラスに新たな設定項目 sess_expire_on_close を
+      追加しました。ブラウザが閉じられると自動で期限切れに
+      することができます。
    -  Mcrypt が利用可能なサーバにおいて、暗号化クラスのパフォーマンスが向
       上しました。
-   -  暗号化クラスにおいて、標準の暗号化方式を CBC に変更しました。
+   -  暗号化クラスにおいて、
+      標準の暗号化方式を CBC に変更しました。
    -  encode_from_legacy() メソッドを追加しました。CodeIgniter 1.x
       で暗号化されたデータを CodeIgniter 2.x に移行するのに使用します。
       詳細は「 :doc:`以前のバージョンからのアップグレード
@@ -441,10 +447,11 @@ Hg Tag: v2.0.0
    -  入力クラスに request_headers() , get_request_header() および
       is_ajax_request() メソッドを追加しました。
    -  :doc:`ユーザエージェントクラス <libraries/user_agent>` の
-      is_browser() , is_mobile() および is_robot() メソッドで、特定のブラウ
-      ザおよび携帯デバイスをチェックできるようになりました。
-   -  :doc:`入力クラス <libraries/input>` の post() と get() が、引数を与
-      えなかった場合にPOSTとGETそれぞれの値をすべて返すようになりました。
+      is_browser() , is_mobile() および is_robot() メソッドで、
+      特定のブラウザおよび携帯デバイスをチェックできるようになりました。
+   -  :doc:`入力クラス <libraries/input>` の post() と get() が、
+      引数を与えなかった場合に POST と GET それぞれの値を
+      すべて返すようになりました。
 
 -  データベース
 
@@ -455,21 +462,21 @@ Hg Tag: v2.0.0
       を追加しました。
    -  :doc:`データベースユーティリティクラス <database/utilities>` に
       database_exists() メソッドを追加しました。
-   -  db->version() メソッドにおいて、それ用の SQL クエリの代わりに、例外
-      的に関数でバージョンを取得するデータベースのリストを変更しました。現在
-      、このリストは Oracle と SQLite のみです。
-   -  field_data() メソッドにおいて、ドライバの特定のテーブル識別子保護機
-      能が不正なクエリを発行することがある不具合を修正しました。
-   -  データベースドライバにおいて、未定義のクラス変数が参照されていた不具
-      合を修正しました。
+   -  db->version() メソッドにおいて、それ用の SQL クエリの代わりに、
+      例外的に関数でバージョンを取得するデータベースのリストを変更
+      しました。現在、このリストは 
+      Oracle と SQLite のみです。
+   -  field_data() メソッドにおいて、ドライバの特定のテーブル識別子保護機能
+      が不正なクエリを発行することがある不具合を修正しました。
+   -  データベースドライバにおいて、未定義のクラス変数が参照されていた
+      不具合を修正しました。
    -  問題があるクエリのデータベースエラーでファイル名と行数を表示するよう
       に変更しました。
    -  廃止予定であった次のメソッドを削除しました: orwhere, orlike,
       groupby, orhaving, orderby, getwhere
    -  非推奨であった drop_database() と create_database()
       メソッドをデータベースユーティリティドライバから削除しました。
-   -  データベースフォージクラスにおいて、Postgres のドライバの
-      create_table() メソッドを改良しました。
+   -  データベースフォージクラスにおいて、Postgres のドライバの create_table() メソッドを改良しました。
 
 -  ヘルパー
 
@@ -527,7 +534,8 @@ Hg Tag: v2.0.0
    -  :doc:`予約語一覧 <general/reserved_names>` に "default"
       を追加しました。
    -  config/mimes.php に 'application/x-msdownload' (.exe) と
-      ''application/x-gzip-compressed' (.tgz) を追加しました。
+      'application/x-gzip-compressed' (.tgz) 
+      を追加しました。
    -  zlib.output_compression
       が有効でサーバが動作している場合、出力クラスはもう出力の圧縮や
       content-length ヘッダの送信を行ないません。
@@ -548,7 +556,8 @@ Hg Tag: v2.0.0
 2.0.0の不具合修正
 -----------------
 
--  メール送信時に User-Agent を変更できない不具合を修正しました。
+-  メール送信時に User-Agent を変更できない不具合を
+   修正しました。
 -  出力クラスにおいて、 _output()
    メソッドでコントローラに誤ったキャッシュを送る不具合を修正しました。
 -  プロファイラにおいて、失敗したクエリがクエリ実行時間を持たない不具合
@@ -568,16 +577,14 @@ Hg Tag: v2.0.0
 -  xss_clean() が送信された URL
    のクエリ文字列中のハイフンを許さない不具合を修正しました。
 -  ファイルヘルパーの get_dir_file_info() と get_file_info()
-   で、再帰および Windows
-   上でのファイルパスに関する不具合を修正しました。
+   で、再帰および Windows 上でのファイルパスに関する不具合を修正しました。
 -  データベースの設定ファイルで有効化されている場合に、Active Record
-   のオーバーライドパラメータで Active Record
-   無効化できない不具合を修正しました。
+   のオーバーライドパラメータで Active Record 無効化できない不具合を修正しました。
 -  文字列ヘルパーの reduce_double_slashes()
-   で、先頭の複数のスラッシュもきちんと取り除くように修正しました
-   (#7585)。
+   で、先頭の複数のスラッシュもきちんと取り除くように修正しました(#7585)。
 -  XML-RPC クラスの values_parsing() で、NULL 値が '文字列型'
-   として適切に処理されない不具合を修正しました。
+   として適切に処理されない不具合を
+   修正しました。
 -  form_open_multipart()
    が属性を指定する引数を受け付けない不具合を修正しました (#10930)。
 -  get_mime_by_extension() が大文字小文字を区別する不具合を修正しました
@@ -590,11 +597,11 @@ Hg Tag: v2.0.0
    のエラーが発生する不具合を修正しました。
 -  Controller クラスを継承しようとすると PHP の fatal
    エラーが発生する不具合を修正しました。
--  index.php ファイル中での PHP の Strict Standards
-   エラーを修正しました。
+-  index.php ファイル中での PHP の Strict Standards エラーを修正しました。
 -  is_allowed_type() 中で getimagesize()
    が画像ファイル以外も不必要にチェックしていた不具合を修正しました。
--  暗号化クラスでキーが空の場合にエラーにならない不具合を修正しました。
+-  暗号化クラスでキーが空の場合にエラーにならない不具合を
+   修正しました。
 -  Email クラスで clear() メソッドを使用した際に CC と BCC
    がリセットされない不具合を修正しました (#109)。
 -  PHP のバージョンが5.1.2未満の場合、URL ヘルパーの prep_url() で PHP
@@ -622,20 +629,16 @@ Hg Tag: v1.7.2
       $config['file_name']
       を渡し、アップロードしたファイルをリネームできるようにしました。
    -  リストアップされたユーザエージェントの順序を変更しました。Safari で
-      アクセスした際に、より正確にユーザエージェント報告するようになります。
-      (#6844)
+      アクセスした際に、より正確にユーザエージェント報告するようになります。(#6844)
 
 -  データベース
 
    -  将来の PHP バージョンが出力を変えるかもしれないので、escape()
-      内で、gettype() を使用するのをやめ、 is_*
-      メソッドを使用するようにしました。
-   -  escape_str()
-      で配列を扱うよう、全データベースドライバを更新しました。
+      内で、gettype() を使用するのをやめ、 is\_* メソッドを使用するようにしました。
+   -  escape_str() で配列を扱うよう、全データベースドライバを更新しました。
    -  LIKE 条件で文字列をエスケープするための escape_like_str()
       メソッドを追加しました。
-   -  Active Record で、LIKE
-      の新しいエスケープ方法を利用するよう変更しました。
+   -  Active Record で、LIKE の新しいエスケープ方法を利用するよう変更しました。
    -  接続の維持や長時間のアイドル状態の後の接続の再確立を試行できるよう
       reconnect() メソッドをデータベースドライバに追加しました。
    -  MSSQL ドライバで、エラーメッセージに、mssql_get_last_message()
@@ -646,15 +649,16 @@ Hg Tag: v1.7.2
    -  :doc:`フォームヘルパー <helpers/form_helper>` に form_multiselect()
       を追加しました。
    -  :doc:`フォームヘルパー <helpers/form_helper>` の form_hidden()
-      を多次元配列を受け入れるように修正しました。
+      を多次元配列を受け入れるように
+      修正しました。
    -  :doc:`フォームヘルパー <helpers/form_helper>` の form_prep()
       を処理済みのフィールドを追跡するように修正しました。
       これは、フォームバリデーション(検証)や Form フィールドを出力するために
       フォームヘルパー関数を使った際に起こりうる、連続した form_prep()
       の呼び出しによる多重の処理や変換を避けるためです。
    -  :doc:`ディレクトリヘルパー <helpers/directory_helper>` の
-      directory_map() を、隠しファイルを含められるようにし、ディレクトリの読
-      み取りに失敗した際に FALSE を返すように修正しました。
+      directory_map() を、隠しファイルを含められるようにし、ディレクトリの
+      読み取りに失敗した際に FALSE を返すように修正しました。
    -  :doc:`スマイリーヘルパー <helpers/smiley_helper>` を複数のフィールド
       で動作するようにし、最後のカーソルの場所に、スマイリーを挿入するように
       しました。
@@ -668,7 +672,8 @@ Hg Tag: v1.7.2
       を404ステータスコードを送信するように変更し、CGI と互換性のない
       header() を含む文を error_404.php テンプレートから取り除きました。
    -  出力クラスが利用できない場合に使えるよう、 :doc:`共通関数
-      <general/common_functions>` に、set_status_header() を追加しました。
+      <general/common_functions>` に、set_status_header() 
+      を追加しました。
    -  PHPバージョンの簡単な比較ができるよう、
       :doc:`共通関数 <general/common_functions>` に、
       is_php() を追加しました。
@@ -682,12 +687,11 @@ Hg Tag: v1.7.2
    #7214, #7516, #7287, #7852, #8224, #8324, #8349)
 -  フォームバリデーション(検証)ライブラリで、複数のコールバックが動作し
    ない不具合を修正しました。(#6110)
--  doctype ヘルパー関数のデフォルト値で、"1"が設定されていなかったのを
-   修正しました。
+-  doctype ヘルパー関数のデフォルト値で、"1"が設定されていなかったのを修正しました。
 -  言語クラスで、ファイルが見つからない場合にエラーを出力する際の不具合
    を修正しました。
--  カレンダーライブラリで、5月に対応する短縮名を出力する際の不具合を修
-   正しました。
+-  カレンダーライブラリで、5月に対応する短縮名を出力する際の不具合を
+   修正しました。
 -  ORIG_PATH_INFO を利用する際に、スラッシュひとつだけの URI
    を許可していた不具合を修正しました。
 -  Oracle と ODBC ドライバの致命的なエラーを修正しました。(#6752)
@@ -703,18 +707,15 @@ Hg Tag: v1.7.2
    データの PHP エラーに起因する不具合を修正しました。
 -  XML-RPC クラスが dateTime.iso8601
    データ型を解析する際の不具合を修正しました。
--  xss_clean() のケースセンシティブな(大文字小文字を区別する)文字列の置
-   換を修正しました。
+-  xss_clean() のケースセンシティブな(大文字小文字を区別する)文字列の置換を修正しました。
 -  form_textarea()
    で、フォームデータが正常に処理されない不具合を修正しました。
 -  form_prep() を使用すると、フォーム要素に値が呼び戻されるときに、ユー
-   ザのオリジナルの入力によるHTMLエンティティが保存されない不具合を修正し
-   ました。
--  _protect_identifiers() メソッドで、置き換えられたデータベースプリフ
-   ィクス($swap_pre)をチェックしていなかった不具合を修正しました。
--  'disallowed URI characters [許可されない URI 文字]'
-   のエラーの際に送信される400ステータスヘッダが、CGI
-   環境と互換性がない不具合を修正しました。
+   ザのオリジナルの入力によるHTMLエンティティが保存されない不具合を修正しました。
+-  _protect_identifiers() メソッドで、置き換えられたデータベース
+   プリフィクス($swap_pre)をチェックしていなかった不具合を修正しました。
+-  'disallowed URI characters [許可されない URI 文字]' のエラーの際に
+   送信される400ステータスヘッダが、CGI 環境と互換性がない不具合を修正しました。
 -  タイポグラフィクラスで、auto_typography() を使用すると、見出しタグの
    中に段落タグが挿入されてしまうことがある不具合を修正しました。
 
