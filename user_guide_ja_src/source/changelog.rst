@@ -1679,7 +1679,7 @@ Version 1.5.2
 
 リリース日付: 2007年2月13日
 
--  :doc:`ダウンロード <./installation/downloads>` ページに
+-  :doc:`ダウンロード <installation/downloads>` ページに
    subversion の情報 を追加しました。
 -  :doc:`HTML テーブルライブラリ <./libraries/table>`
    で、キャプションをサポートするようにしました。
