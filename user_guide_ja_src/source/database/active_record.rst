@@ -325,9 +325,9 @@ SQLクエリを生成します
 
 ::
 
-		$names = array('Frank', 'Todd', 'James');
-		$this->db->where_not_in('username', $names);
-		// 次を生成: WHERE username NOT IN ('Frank', 'Todd', 'James')
+	$names = array('Frank', 'Todd', 'James');
+	$this->db->where_not_in('username', $names);
+	// 次を生成: WHERE username NOT IN ('Frank', 'Todd', 'James')
 
 
 $this->db->or_where_not_in()
@@ -368,15 +368,15 @@ $this->db->like()
 	利用できます。'before'、'after' そして 'both' (規定値)
 	が指定できる選択肢になります。
 
-::
+	::
 
 		$this->db->like('title', 'match', 'before');	// 次を生成: WHERE title LIKE '%match'
 		$this->db->like('title', 'match', 'after');		// 次を生成: WHERE title LIKE 'match%'
-		$this->db->like('title', 'match', 'both'); 		// 次を生成: WHERE title LIKE '%match%'
+		$this->db->like('title', 'match', 'both');		// 次を生成: WHERE title LIKE '%match%'
 
 #. **連想配列を使用する方法:**
 
-::
+	::
 
 		$array = array('title' => $match, 'page1' => $match, 'page2' => $match);
 		$this->db->like($array);
@@ -400,7 +400,7 @@ $this->db->not_like()
 この関数は、NOT LIKE 文を生成する事を除き、 **like()** と
 同じです::
 
-	 $this->db->not_like('title', 'match');  // WHERE title NOT LIKE '%match%
+	$this->db->not_like('title', 'match');  // WHERE title NOT LIKE '%match%
 
 $this->db->or_not_like()
 ========================
@@ -512,8 +512,8 @@ $this->db->limit()
 $this->db->count_all_results()
 ==============================
 
-特定のActive Record クエリの行数を調べることができます。
-クエリは、where()、 or_where()、like()、or_like()などのActive Record
+特定の Active Record クエリの行数を調べることができます。
+クエリは、where()、 or_where()、like()、or_like()などの Active Record
 の絞り込みが利用できます。例::
 
 	echo $this->db->count_all_results('my_table');  // 25のような整数が出力されます
@@ -556,9 +556,9 @@ $this->db->insert()
 
 	/*
 	class Myclass {
-		var $title = 'My Title';
-		var $content = 'My Content';
-		var $date = 'My Date';
+		var  $title = 'My Title';
+		var  $content = 'My Content';
+		var  $date = 'My Date';
 	}
 	*/
 	
@@ -570,6 +570,40 @@ $this->db->insert()
 なります。
 
 .. note:: すべての値は自動的にエスケープされ、安全なクエリを生成します。
+$this->db->get_compiled_insert()
+================================
+Compiles the insertion query just like `$this->db->insert()`_ but does not 
+*run* the query. This method simply returns the SQL query as a string.
+
+Example::
+
+	$data = array(
+		'title' => 'My title',
+		'name'  => 'My Name',
+		'date'  => 'My date'
+	);
+	
+	$sql = $this->db->set($data)->get_compiled_insert('mytable');
+	echo $sql;
+	
+	// Produces string: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')
+
+The second parameter enables you to set whether or not the active record query 
+will be reset (by default it will be--just like `$this->db->insert()`_)::
+	
+	echo $this->db->set('title', 'My Title')->get_compiled_insert('mytable', FALSE);
+	
+	// Produces string: INSERT INTO mytable (title) VALUES ('My Title')
+	
+	echo $this->db->set('content', 'My Content')->get_compiled_insert();
+
+	// Produces string: INSERT INTO mytable (title, content) VALUES ('My Title', 'My Content')
+	
+The key thing to notice in the above example is that the second query did not 
+utlize `$this->db->from()`_ nor did it pass a table name into the first 
+parameter. The reason this worked is because the query has not been executed 
+using `$this->db->insert()`_ which resets values or reset directly using 
+`$this->db->reset_query()`_.
 
 $this->db->insert_batch()
 =========================
@@ -586,15 +620,16 @@ $this->db->insert_batch()
 		),
 		array(
 			'title' => 'Another title',
-			'name' => 'Another Name' ,
+			'name' => 'Another Name',
 			'date' => 'Another date'
 		)
 	);
-
+	
 	$this->db->insert_batch('mytable', $data);
 	// 生成される SQL 文: INSERT INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date'),  ('Another title', 'Another name', 'Another date')
 
-第1引数はテーブル名で、第2引数は、値の連想配列で指定します。
+第1引数はテーブル名で、第2引数は、
+値の連想配列で指定します。
 
 .. note:: すべての値は自動的にエスケープされ、安全なクエリを生成します。
 
@@ -621,7 +656,7 @@ inserts または updates で値をセットするのに使います。
 
 また、 **set()** は、FALSE
 をセットするとデータをエスケープするのを回避する、
-第3引数 ($escape)をセットできます。違いを示すため、escape パラメータを
+第3引数($escape)をセットできます。違いを示すため、escape パラメータを
 利用する場合と利用しない場合、両方の set() の使用の
 説明を挙げます。
 
@@ -648,9 +683,9 @@ inserts または updates で値をセットするのに使います。
 
 	/*
 	class Myclass {
-		var $title = 'My Title';
-		var $content = 'My Content';
-		var $date = 'My Date';
+		var  $title = 'My Title';
+		var  $content = 'My Content';
+		var  $date = 'My Date';
 	}
 	*/
 	
@@ -669,7 +704,7 @@ $this->db->update()
 指定されたデータをもとに UPDATE 文を生成してクエリを実行します。
 **配列** または **オブジェクト** をメソッドに渡すことができます。
 配列を使った例は次の通りです::
-	
+
 	$data = array(
 		'title' => $title,
 		'name' => $name,
@@ -681,12 +716,12 @@ $this->db->update()
 	// 生成される SQL 文: // UPDATE mytable // SET title = '{$title}', name = '{$name}', date = '{$date}' // WHERE id = $id
 
 あるいは、次のようにオブジェクトを渡すこともできます::
-	
+
 	/*
 	class Myclass {
-		var $title = 'My Title';
-		var $content = 'My Content';
-		var $date = 'My Date';
+		var  $title = 'My Title';
+		var  $content = 'My Content';
+		var  $date = 'My Date';
 	}
 	*/
 	
@@ -716,7 +751,7 @@ $this->db->update_batch()
 与えられたデータをもとに UPDATE 文を生成し実行します。
 **配列** または **オブジェクト** のどちらかでメソッドにデータを渡せます。
 配列を使った例は次の通りです::
-	
+
 	$data = array(
 	   array(
 	      'title' => 'My title' ,
@@ -731,8 +766,8 @@ $this->db->update_batch()
 	);
 
 	$this->db->update_batch('mytable', $data, 'title');
-	
-	// 生成されるSQL文: 
+
+	// 生成される SQL 文: 
 	// UPDATE `mytable` SET `name` = CASE
 	// WHEN `title` = 'My title' THEN 'My Name 2'
 	// WHEN `title` = 'Another title' THEN 'Another Name 2'
@@ -747,6 +782,14 @@ $this->db->update_batch()
 句を指定します。
 
 .. note:: すべての値は自動的にエスケープされ、安全なクエリを生成します。
+
+$this->db->get_compiled_update()
+================================
+
+This works exactly the same way as ``$this->db->get_compiled_insert()`` except
+that it produces an UPDATE SQL string instead of an INSERT SQL string.
+
+For more information view documentation for `$this->get_compiled_insert()`_.
 
 
 ************
@@ -768,7 +811,7 @@ SQL の DELETE 文を生成して実行します。
 
 	$this->db->where('id', $id);
 	$this->db->delete('mytable');
-
+	
 	// 生成される SQL 文:
 	// DELETE FROM mytable
 	// WHERE id = $id
@@ -793,7 +836,7 @@ $this->db->empty_table()
 「delete」 SQL 文字列 を生成し、クエリを
 実行します。::
 
-	  $this->db->empty_table('mytable'); // 次を生成 // DELETE FROM mytable
+	  $this->db->empty_table('mytable'); // 次を生成: DELETE FROM mytable
 
 
 $this->db->truncate()
@@ -805,16 +848,23 @@ $this->db->truncate()
 
 	$this->db->from('mytable');
 	$this->db->truncate();
-
+	
 	// または
-
+	
 	$this->db->truncate('mytable');
-
+	
 	// 次を生成:
 	// TRUNCATE mytable 
 
 .. note:: TRUNCATE コマンドが使えない場合は、truncate() メソッドは
-	"DELETEFROM table" として実行します。
+	"DELETE FROM table" として実行します。
+	
+$this->db->get_compiled_delete()
+================================
+This works exactly the same way as ``$this->db->get_compiled_insert()`` except
+that it produces a DELETE SQL string instead of an INSERT SQL string.
+
+For more information view documentation for `$this->get_compiled_insert()`_.
 
 **************
 メソッドの連結
@@ -827,8 +877,6 @@ $this->db->truncate()
 				->where('id', $id)
 				->limit(10, 20)
 				->get('mytable');
-
-.. note:: メソッドの連結は PHP 5 でのみ動作します。
 
 .. _ar-caching:
 
@@ -885,3 +933,31 @@ $this->db->flush_cache()
 	where、like、group_by、having、order_by、set
 
 
+
+*******************
+Reset Active Record
+*******************
+
+Resetting Active Record allows you to start fresh with your query without 
+executing it first using a method like $this->db->get() or $this->db->insert(). 
+Just like the methods that execute a query, this will *not* reset items you've 
+cached using `Active Record Caching`_.
+
+This is useful in situations where you are using Active Record to generate SQL 
+(ex. ``$this->db->get_compiled_select()``) but then choose to, for instance, 
+run the query::
+
+	// Note that the second parameter of the get_compiled_select method is FALSE
+	$sql = $this->db->select(array('field1','field2'))
+					->where('field3',5)
+					->get_compiled_select('mytable', FALSE);
+
+	// ...
+	// Do something crazy with the SQL code... like add it to a cron script for
+	// later execution or something...
+	// ...
+
+	$data = $this->db->get()->result_array();
+
+	// Would execute and return an array of results of the following query:
+	// SELECT field1, field1 from mytable where field3 = 5;
