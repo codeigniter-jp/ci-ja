@@ -514,13 +514,7 @@ create a callback function that does that.  Let's create a example of this.</p>
 
 class Form extends CI_Controller {
 
-<<<<<<< HEAD
-class Form extends CI_Controller {
-
-	function index()
-=======
 	public function index()
->>>>>>> remotes/upstream/release/2.1.0
 	{
 		$this->load->helper(array('form', 'url'));
 
@@ -529,11 +523,7 @@ class Form extends CI_Controller {
 		$this->form_validation->set_rules('username', 'Username', 'callback_username_check');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-<<<<<<< HEAD
-		$this->form_validation->set_rules('email', 'Email', 'required');
-=======
 		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[users.email]');
->>>>>>> remotes/upstream/release/2.1.0
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -545,11 +535,7 @@ class Form extends CI_Controller {
 		}
 	}
 
-<<<<<<< HEAD
-	function username_check($str)
-=======
 	public function username_check($str)
->>>>>>> remotes/upstream/release/2.1.0
 	{
 		if ($str == 'test')
 		{
@@ -958,8 +944,6 @@ POST array:</p>
 	</tr>
 
 	<tr>
-<<<<<<< HEAD
-=======
 		<td class="td"><strong>is_unique</strong></td>
 		<td class="td">Yes</td>
 		<td class="td">Returns FALSE if the form element is not unique to the table and field name in the parameter.</td>
@@ -967,7 +951,6 @@ POST array:</p>
 	</tr>
 
 	<tr>
->>>>>>> remotes/upstream/release/2.1.0
 		<td class="td"><strong>min_length</strong></td>
 		<td class="td">Yes</td>
 		<td class="td">Returns FALSE if the form element is shorter then the parameter value.</td>
