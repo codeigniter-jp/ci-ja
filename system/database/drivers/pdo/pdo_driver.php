@@ -28,6 +28,7 @@
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/database/
  */
+
 class CI_DB_pdo_driver extends CI_DB {
 
 	var $dbdriver = 'pdo';
@@ -36,7 +37,7 @@ class CI_DB_pdo_driver extends CI_DB {
 	var $_escape_char = '';
 	var $_like_escape_str;
 	var $_like_escape_chr;
-	
+
 
 	/**
 	 * The syntax to count rows is slightly different across different
@@ -45,17 +46,27 @@ class CI_DB_pdo_driver extends CI_DB {
 	 */
 	var $_count_string = "SELECT COUNT(*) AS ";
 	var $_random_keyword;
-
+	
+	var $options = array();
 
 	function __construct($params)
 	{
 		parent::__construct($params);
-		
+
 		// clause and character used for LIKE escape sequences
 		if (strpos($this->hostname, 'mysql') !== FALSE)
 		{
 			$this->_like_escape_str = '';
 			$this->_like_escape_chr = '';
+
+			//Prior to this version, the charset can't be set in the dsn
+			if(is_php('5.3.6'))
+			{
+				$this->hostname .= ";charset={$this->char_set}";
+			}
+			
+			//Set the charset with the connection options
+			$this->options['PDO::MYSQL_ATTR_INIT_COMMAND'] = "SET NAMES {$this->char_set}";
 		}
 		else if (strpos($this->hostname, 'odbc') !== FALSE)
 		{
@@ -68,7 +79,7 @@ class CI_DB_pdo_driver extends CI_DB {
 			$this->_like_escape_chr = '!';
 		}
 		
-		$this->hostname = $this->hostname . ";dbname=".$this->database;
+		$this->hostname .= ";dbname=".$this->database;
 		$this->trans_enabled = FALSE;
 
 		$this->_random_keyword = ' RND('.time().')'; // database specific random keyword
@@ -82,9 +93,9 @@ class CI_DB_pdo_driver extends CI_DB {
 	 */
 	function db_connect()
 	{
-		return new PDO($this->hostname,$this->username,$this->password, array(
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT
-		));
+		$this->options['PDO::ATTR_ERRMODE'] = PDO::ERRMODE_SILENT;
+		
+		return new PDO($this->hostname, $this->username, $this->password, $this->options);
 	}
 
 	// --------------------------------------------------------------------
@@ -97,10 +108,10 @@ class CI_DB_pdo_driver extends CI_DB {
 	 */
 	function db_pconnect()
 	{
-		return new PDO($this->hostname,$this->username,$this->password, array(
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
-			PDO::ATTR_PERSISTENT => true
-		));
+		$this->options['PDO::ATTR_ERRMODE'] = PDO::ERRMODE_SILENT;
+		$this->options['PDO::ATTR_PERSISTENT'] = TRUE;
+	
+		return new PDO($this->hostname, $this->username, $this->password, $this->options);
 	}
 
 	// --------------------------------------------------------------------
@@ -179,7 +190,7 @@ class CI_DB_pdo_driver extends CI_DB {
 	{
 		$sql = $this->_prep_query($sql);
 		$result_id = $this->conn_id->query($sql);
-		
+
 		if (is_object($result_id))
 		{
 			$this->affect_rows = $result_id->rowCount();
@@ -188,7 +199,7 @@ class CI_DB_pdo_driver extends CI_DB {
 		{
 			$this->affect_rows = 0;
 		}
-		
+
 		return $result_id;
 	}
 
@@ -232,7 +243,7 @@ class CI_DB_pdo_driver extends CI_DB {
 		// Reset the transaction failure flag.
 		// If the $test_mode flag is set to TRUE transactions will be rolled back
 		// even if the queries produce a successful result.
-		$this->_trans_failure = ($test_mode === TRUE) ? TRUE : FALSE;
+		$this->_trans_failure = (bool) ($test_mode === TRUE);
 
 		return $this->conn_id->beginTransaction();
 	}
@@ -308,16 +319,16 @@ class CI_DB_pdo_driver extends CI_DB {
 
 			return $str;
 		}
-		
+
 		//Escape the string
 		$str = $this->conn_id->quote($str);
-		
+
 		//If there are duplicated quotes, trim them away
 		if (strpos($str, "'") === 0)
 		{
 			$str = substr($str, 1, -1);
 		}
-		
+
 		// escape LIKE condition wildcards
 		if ($like === TRUE)
 		{
@@ -519,7 +530,7 @@ class CI_DB_pdo_driver extends CI_DB {
 		if (strpos($item, '.') !== FALSE)
 		{
 			$str = $this->_escape_char.str_replace('.', $this->_escape_char.'.'.$this->_escape_char, $item).$this->_escape_char;
-			
+
 		}
 		else
 		{
@@ -569,7 +580,7 @@ class CI_DB_pdo_driver extends CI_DB {
 	{
 		return "INSERT INTO ".$table." (".implode(', ', $keys).") VALUES (".implode(', ', $values).")";
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -622,7 +633,7 @@ class CI_DB_pdo_driver extends CI_DB {
 
 		return $sql;
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -764,7 +775,7 @@ class CI_DB_pdo_driver extends CI_DB {
 			{
 				$sql .= " OFFSET ".$offset;
 			}
-			
+
 			return $sql;
 		}
 	}
