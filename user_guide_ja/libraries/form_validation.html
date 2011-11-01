@@ -390,10 +390,10 @@ $this->form_validation->set_rules($config);
 <p>CodeIgniter では、複数のルールを互いにパイプすることができます。ではやってみましょう。ルール設定メソッドの第3引数を次のように変更してみてください。:</p>
 
 <code>
-$this->form_validation->set_rules('username', 'ユーザ名', 'required|min_length[5]|max_length[12]');<br />
+$this->form_validation->set_rules('username', 'ユーザ名', 'required|min_length[5]|max_length[12]|is_unique[users.username]');<br />
 $this->form_validation->set_rules('password', 'パスワード', 'required|matches[passconf]');<br />
 $this->form_validation->set_rules('passconf', 'パスワードの確認', 'required');<br />
-$this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email');<br />
+$this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email|is_unique[users.email]');<br />
 </code>
 
 <p>上のコードでは次のことが要求されます:</p>
@@ -512,11 +512,11 @@ $this->form_validation->set_rules('email', 'メールアドレス', '<kbd>trim</
 <p>次に <dfn>username_check</dfn> という名前の新しいメソッドをコントローラに追加します。  コントローラは以下のようになっているはずです:</p>
 
 
-<textarea class="textarea" style="width:100%" cols="50" rows="44"><?php
+<textarea class="textarea" style="width:100%" cols="50" rows="40"><?php
 
 class Form extends CI_Controller {
 
-	function index()
+	public function index()
 	{
 		$this->load->helper(array('form', 'url'));
 
@@ -525,7 +525,7 @@ class Form extends CI_Controller {
 		$this->form_validation->set_rules('username', 'ユーザ名', 'callback_username_check');
 		$this->form_validation->set_rules('password', 'パスワード', 'required');
 		$this->form_validation->set_rules('passconf', 'パスワードの確認', 'required');
-		$this->form_validation->set_rules('email', 'メールアドレス', 'required');
+		$this->form_validation->set_rules('email', 'メールアドレス', 'required|is_unique[users.email]');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -537,7 +537,7 @@ class Form extends CI_Controller {
 		}
 	}
 
-	function username_check($str)
+	public function username_check($str)
 	{
 		if ($str == 'test')
 		{
@@ -556,13 +556,12 @@ class Form extends CI_Controller {
 <p><dfn>フォームを再読み込みして、ユーザ名に "test" と入力して送信します。
 フォームフィールドのデータがコールバックメソッドに渡され処理されたのがわかります。</dfn></p>
 
-<p><strong>コールバックを呼び出すには、あるルールに従ってメソッド名を指定します。そのルールとは、"callback_" というプリフィックスをメソッド名に付け加えるというものです。</strong></p>
+<p>コールバックを呼び出すには、あるルールに従ってメソッド名を指定します。そのルールとは、"callback_" という<strong>プリフィックス</strong>をメソッド名に付け加えるというものです。 If you need
+to receive an extra parameter in your callback function, just add it normally after the function name between square brackets,
+as in: "callback_foo<strong>[bar]</strong>", then it will be passed as the second argument of your callback function.</p>
 
-<p>また、コールバックに渡されたフォームデータを処理し、結果を返すことができます。
+<p><strong>Note:</strong> また、コールバックに渡されたフォームデータを処理し、結果を返すことができます。
 コールバックが bool 型の TRUE / FALSE 以外の値を返す場合、そのデータはフォームデータが処理された新しいものである事が想定されます。</p>
-
-
-
 
 <a name="settingerrors"></a>
 <h2>エラーメッセージを設定する</h2>
@@ -944,6 +943,13 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 		<td class="td">あり</td>
 		<td class="td">フォームのデータが他のフィールドの入力データと一致しないときに FALSE を返します。</td>
 		<td class="td">matches[form_item]</td>
+	</tr>
+
+	<tr>
+		<td class="td"><strong>is_unique</strong></td>
+		<td class="td">Yes</td>
+		<td class="td">Returns FALSE if the form element is not unique to the table and field name in the parameter.</td>
+		<td class="td">is_unique[table.field]</td>
 	</tr>
 
 	<tr>
