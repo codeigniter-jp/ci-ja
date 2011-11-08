@@ -37,7 +37,16 @@ function create_menu(basepath)
 			'<li><a href="'+base+'overview/mvc.html">Model-View-Controller</a></li>' +
 			'<li><a href="'+base+'overview/goals.html">アーキテクチャのゴール</a></li>' +
 		'</ul>' +
-
+		
+		'<h3>チュートリアル</h3>' +
+		'<ul>' +
+			'<li><a href="'+base+'tutorial/index.html">イントロダクション</a></li>' +
+			'<li><a href="'+base+'tutorial/static_pages.html">静的なページ</a></li>' +
+			'<li><a href="'+base+'tutorial/news_section.html">ニュース欄</a></li>' +
+			'<li><a href="'+base+'tutorial/create_news_items.html">ニュース記事の作成</a></li>' +
+			'<li><a href="'+base+'tutorial/conclusion.html">結び</a></li>' +
+		'</ul>' +
+		
 		'</td><td class="td_sep" valign="top">' +
 
 		'<h3>一般的なトピック</h3>' +
@@ -95,6 +104,7 @@ function create_menu(basepath)
 		'<li><a href="'+base+'libraries/javascript.html">JavaScript クラス</a></li>' +
 		'<li><a href="'+base+'libraries/loader.html">ローダー (読込み処理) クラス</a></li>' +
 		'<li><a href="'+base+'libraries/language.html">言語クラス</a></li>' +
+		'<li><a href="'+base+'libraries/migration.html">マイグレーションクラス</a></li>' +
 		'<li><a href="'+base+'libraries/output.html">出力クラス</a></li>' +
 		'<li><a href="'+base+'libraries/pagination.html">ページネーションクラス</a></li>' +
 		'<li><a href="'+base+'libraries/security.html">セキュリティクラス</a></li>' +
