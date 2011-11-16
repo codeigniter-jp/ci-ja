@@ -263,8 +263,8 @@ $this->db->join('comments', 'comments.id = blogs.id', <strong>'left'</strong>);<
 
 
 <p>$this-&gt;db-&gt;where() にはオプションで第3の引数を渡すこともできます。FALSEを渡した場合、CodeIgniterはフィールド名やテーブル名をバックチック(`)を使って守りません。</p>
-<p><code>		$this-&gt;db-&gt;where('MATCH (field) AGAINST (&quot;value&quot;)', NULL, FALSE);<br /> 
-</code></p> 
+<p><code>		$this-&gt;db-&gt;where('MATCH (field) AGAINST (&quot;value&quot;)', NULL, FALSE);<br />
+</code></p>
 <h2>$this->db->or_where();</h2>
 <p>他の句と OR で連結される以外は、上のメソッドと同じものです:</p>
 
@@ -334,6 +334,13 @@ $this->db->or_where('id >', $id);
 	$this-&gt;db-&gt;like('title', 'match', 'both'); <br />
 // 次を生成: WHERE title LIKE '%match%' </code>	</li>
 
+ワイルドカード(%)を使いたくない場合は、オプションの第3引数に 'none' を渡すことができます。
+
+<code>
+	$this-&gt;db-&gt;like('title', 'match', 'none'); <br />
+// 次を生成: WHERE title LIKE 'match'
+</code>
+
 	<li><strong>連想配列を使用する方法:</strong>
 
 	<code>
@@ -392,7 +399,7 @@ $this-&gt;db-&gt;or_not_like('body', 'match'); <br />
 	// 次を生成: SELECT DISTINCT * FROM table</code></p>
 <h2>$this->db->having();</h2>
 <p>クエリの HAVING の部分を指定できます。1つだけか2つ引数を渡す2種類の文法があります。</p>
-	
+
 <code>$this->db->having('user_id = 45');
 <br />
 // 生成される SQL 文 : HAVING user_id = 45<br />
@@ -433,12 +440,12 @@ $this-&gt;db-&gt;having('user_id',  45); <br />
 </code>
 
 <p>あるいは、複数のフィールドが必要な場合は、複数回のメソッド呼び出しもできます</p>
-  
+
 <p><code>$this->db->order_by("title", "desc");<br />
-    $this->db->order_by("name", "asc"); <br />
-    <br />
-    // 次を生成: ORDER BY title DESC, name ASC
-    </code></p>
+	$this->db->order_by("name", "asc"); <br />
+	<br />
+	// 次を生成: ORDER BY title DESC, name ASC
+	</code></p>
 <p class="important">Note: order_by() は、以前は orderby() という名前でした。orderby() は 2.0.0 で廃止されました。</p>
 <p class="important">Note: 現在のところ Oracle または MSSQL ドライバでは、ランダムな並べ替えはサポートされていません。これらは、'ASC' が規定値に設定されます。</p>
 <h2>$this->db->limit();</h2>
@@ -588,9 +595,9 @@ $this->db->insert('mytable');
 <code>
 /*<br />
 &nbsp;&nbsp;&nbsp;&nbsp;class Myclass {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $title = 'My Title';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $content = 'My Content';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $date = 'My Date';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $title = 'My Title';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $content = 'My Content';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $date = 'My Date';<br />
 &nbsp;&nbsp;&nbsp;&nbsp;}<br />
 */<br />
 <br />
@@ -630,9 +637,9 @@ $this->db->update('mytable', $data);
 <code>
 /*<br />
 &nbsp;&nbsp;&nbsp;&nbsp;class Myclass {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $title = 'My Title';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $content = 'My Content';<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $date = 'My Date';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $title = 'My Title';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $content = 'My Content';<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var  $date = 'My Date';<br />
 &nbsp;&nbsp;&nbsp;&nbsp;}<br />
 */<br />
 <br />
@@ -649,8 +656,8 @@ $this->db->update('mytable', $object);
 
 
 
-<p class="important"><strong>Note:</strong>すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
-	
+<p class="important"><strong>Note:</strong> すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
+
 <p><dfn>$this->db->where()</dfn> メソッドを使えば WHERE 句をセットできます。
 次のように、オプションで、更新メソッドに直接文字列で情報を渡すこともできます:</p>
 
@@ -661,6 +668,41 @@ $this->db->update('mytable', $object);
 <code>$this->db->update('mytable', $data, array('id' => $id));</code>
 
 <p>先に述べた、 <dfn>$this->db->set()</dfn> メソッドを更新に利用することもできます。</p>
+
+<h2>$this->db->update_batch();</h2>
+<p>与えられたデータをもとに UPDATE 文を生成し実行します。
+<strong>配列</strong>  または <strong>オブジェクト</strong> のどちらかでメソッドにデータを渡せます。配列を使った例は次の通りです:</p>
+
+<code>
+$data = array(<br/>
+&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'My title' ,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'My Name 2' ,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'My date 2'<br />
+&nbsp;&nbsp;&nbsp;),<br />
+&nbsp;&nbsp;&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'title' => 'Another title' ,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'Another Name 2' ,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'Another date 2'<br />
+&nbsp;&nbsp;&nbsp;)<br/>
+);<br />
+<br />
+$this->db->update_batch('mytable', $data, 'title');
+<br /><br />
+// 生成される SQL 文: <br />
+// UPDATE `mytable` SET `name` = CASE<br />
+// WHEN `title` = 'My title' THEN 'My Name 2'<br />
+// WHEN `title` = 'Another title' THEN 'Another Name 2'<br />
+// ELSE `name` END,<br />
+// `date` = CASE <br />
+// WHEN `title` = 'My title' THEN 'My date 2'<br />
+// WHEN `title` = 'Another title' THEN 'Another date 2'<br />
+// ELSE `date` END<br />
+// WHERE `title` IN ('My title','Another title')</code>
+
+<p>第1引数はテーブル名、第2引数は値の連想配列、第3引数は where 句を指定します。</p>
+
+<p class="important"><strong>Note:</strong> すべての値は自動的にエスケープされ、安全なクエリを生成します。</p>
 
 
 <a name="delete">&nbsp;</a>
