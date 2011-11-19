@@ -96,17 +96,17 @@
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $row->body;<br />
 	&nbsp;&nbsp;&nbsp;}<br />
 	}
-</code>
-		
+	</code>
+
 	<p>result() に各々の結果オブジェクトをインスタンス化するための文字列を渡すこともできます (note: このクラスはロードされなければなりません)</p>
 
 	<code>
 	$query = $this->db->query("SELECT * FROM users;");<br />
 	<br />
-	foreach ($query->result('User') as $user)<br />
+	foreach ($query->result('User') as $row)<br />
 	{<br />
-	&nbsp;&nbsp;&nbsp;echo $user->name; // 属性を呼び出す<br />
-	&nbsp;&nbsp;&nbsp;echo $user->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
+	&nbsp;&nbsp;&nbsp;echo $row->name; // 属性を呼び出す<br />
+	&nbsp;&nbsp;&nbsp;echo $row->reverse_name(); // または、'User' クラスに定義されたメソッド<br />
 	}
 	</code>
 
@@ -125,7 +125,7 @@
 
 
 	<h2>row()</h2>
-	
+
 	<p>このメソッドは単一行を返します。クエリの応答が一つ以上の行になる場合は、最初の行だけが返ります。
 	結果は<strong>オブジェクト</strong>で返ります。使用方法の例です:</p>
 	<code>
@@ -218,7 +218,7 @@ echo $query->num_fields();
 
 
 <h2>$query->free_result()</h2>
-<p>結果に関連付けられたメモリを解放し、結果のリソースIDを削除します。ふつうは、PHP は、スクリプトの実行を終えると、メモリを自動で解放します。
+<p>結果に関連付けられたメモリを解放し、結果のリソース ID を削除します。ふつうは、PHP は、スクリプトの実行を終えると、メモリを自動で解放します。
 しかし、特定のスクリプトで多くのクエリを実行しているとき、
 メモリの使用量を削減するために、各クエリの結果が生成されたあとにメモリを開放したい場合があります。例:
 </p>
