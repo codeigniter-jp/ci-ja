@@ -90,6 +90,17 @@
 <code>echo random_string('alnum', 16);</code>
 
 
+<h2>increment_string()</h2>
+
+<p>数字を付加し、または、その数字を増加させることで、文字列をインクリメントします。ファイルのコピーを作成したり、ユニークなタイトルやスラッグのデータベースコンテンツを複製するのに便利です。</p>
+
+<p>使用例です:</p>
+
+<code>echo increment_string('file', '_'); // "file_1"<br/>
+echo increment_string('file', '-', 2); // "file-2"<br/>
+echo increment_string('file-4'); // "file-5"<br/></code>
+
+
 <h2>alternator()</h2>
 
 <p>ループの中でローテーションで使うように、2つ以上の文字列を入れ替え可能にします。例:</p>
@@ -143,7 +154,7 @@ TRUE を指定した場合は先頭と末尾にある縮約文字が削除され
 
 <code>
 $string=",Fred, Bill,, Joe, Jimmy,";<br />
-$string=reduce_multiples($string,",",TRUE); // "Fred, Bill, Joe, Jimmy" を返します
+$string=reduce_multiples($string, ", ", TRUE); // "Fred, Bill, Joe, Jimmy" を返します
 </code>
 </p> 
 
