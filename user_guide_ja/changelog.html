@@ -58,77 +58,77 @@
 <h1>変更履歴</h1>
 
 <h2>Version 2.1.0</h2>
-<p>Release Date: November 14, 2011</p>
+<p>リリース日付: 2011年11月14日</p>
 
 <ul>
-	<li>General Changes
+	<li>全体的な変更
 		<ul>
-			<li>Fixed a potential parameter injection flaw in the <a href="libraries/security.html">Security Library</a> and strengthened the XSS filter for HTML5 vulnerabilites.</li>
-			<li>Callback validation rules can now accept parameters like any other validation rule.</li>
-			<li>Added html_escape() to the <a href="general/common_functions.html">Common functions</a> to escape HTML output for preventing XSS easliy.</li>
+			<li><a href="libraries/security.html">セキュリティライブラリ</a> に潜在していたパラメータインジェクションの欠陥を修正し、 HTML5 の脆弱性に対して XSS フィルタを強化しました。</li>
+			<li>コールバックの検証ルールが他の検証ルールと同じように引数を受け取れるようにしました。</li>
+			<li><a href="general/common_functions.html">共通関数</a> に、 XSS を楽に防ぐための、 HTML をエスケープする html_escape() を追加しました。</li>
 		</ul>
 	</li>
-	<li>Helpers
+	<li>ヘルパー
 		<ul>
-			<li>Added <samp>increment_string()</samp> to <a href="helpers/string_helper.html">String Helper</a> to turn "foo" into "foo-1" or "foo-1" into "foo-2".</li>
-			<li>Altered form helper - made action on form_open_multipart helper function call optional. Fixes (#65)</li>
-			<li><samp>url_title()</samp> will now trim extra dashes from beginning and end.</li>
-			<li>Improved speed of <a href="helpers/string_helper.html">String Helper</a>'s <b>random_string()</b> method</li>
+			<li><a href="helpers/string_helper.html">文字列ヘルパー</a> に "foo" を "foo-1" または "foo-1" を "foo-2" に変化させる <samp>increment_string()</samp> 関数を追加しました。</li>
+			<li>フォームヘルパーのうち form_open_multipart 関数の引数 action をオプションに変更しました。 Fixes (#65)</li>
+			<li><samp>url_title()</samp> 関数は最初と最後の余分なダッシュ記号を取り除きます。</li>
+			<li><a href="helpers/string_helper.html">文字列ヘルパー</a>の <b>random_string()</b> 関数の速度を改善しました。</li>
 		</ul>
 	</li>
-	<li>Database
+	<li>データベース
 		<ul>
-			<li>Added a <a href="http://www.cubrid.org/" target="_blank">CUBRID</a> driver to the <a href="libraries/database.html">Database driver</a>. Thanks to the CUBRID team for supplying this patch.</li>
-			<li>Added a <a href="http://www.php.net/manual/en/intro.pdo.php" target="_blank">PDO</a> driver to the <a href="libraries/database.html">Database driver</a>.</li>
-			<li>Typecast limit and offset in the <a href="database/queries.html">Database driver</a> to integers to avoid possible injection.</li>
-			<li>Added additional option 'none' for the optional third argument for <kbd>$this->db->like()</kbd> in the <a href="database/active_record.html">Database driver</a>.
+			<li><a href="database/index.html">データベースドライバ</a>に <a href="http://www.cubrid.org/" target="_blank">CUBRID</a> ドライバを追加しました。このパッチを提供してくれた CUBID チームに感謝します。</li>
+			<li><a href="database/index.html">データベースドライバ</a>に <a href="http://www.php.net/manual/ja/intro.pdo.php" target="_blank">PDO</a> ドライバを追加しました。</li>
+			<li><a href="database/index.html">データベースドライバ</a>が 可能なインジェクションを回避するために limit 値と offset 値を 整数型に型キャストするようにしました。</li>
+			<li><a href="database/index.html">データベースドライバ</a>の <kbd>$this->db->like()</kbd> について、オプションである第3引数に 'none' オプションを追加しました。
 			</li>
-			<li>Added <kbd>$this->db->insert_batch()</kbd> support to the OCI8 (Oracle) driver.</li>
+			<li><kbd>$this->db->insert_batch()</kbd> は OCI8 (Oracle) ドライバをサポートします。</li>
 		</ul>
 	</li>
-	<li>Libraries
+	<li>ライブラリ
 		<ul>
-			<li>Changed <kbd>$this->cart->insert()</kbd> in the <a href="libraries/cart.html">Cart library</a> to return the Row ID if a single item was inserted successfully.</li>
-			<li>Added support to set an optional parameter in your callback rules of validation using the <a href="libraries/form_validation.html">Form Validation library</a>.</li>
-			<li>Added a <a href="libraries/migration.html">Migration library</a> to assist with applying incremental updates to your database schema.</li>
-			<li>Driver children can be located in any package path.</li>
-			<li>Added <samp>is_unique</samp> to the <a href="libraries/form_validation.html">Form Validation library</a>.</li>
-			<li>Added <kbd>$config['use_page_numbers']</kbd> to the <a href="libraries/pagination.html">Pagination library</a>, which enables real page numbers in the URI.</li>
-			<li>Added TLS and SSL Encryption for SMTP.</li>
+			<li><a href="libraries/cart.html">カートライブラリ</a>の <kbd>$this->cart->insert()</kbd> を、1つの商品が正常に追加された場合に挿入した ID 番号を返すように変更しました。</li>
+			<li><a href="libraries/form_validation.html">フォームバリデーション(検証)ライブラリ</a> を使用する場合に、コールバックの検証ルールにオプションの引数を1つ設定できるように変更しました。</li>
+			<li><a href="libraries/migration.html">マイグレーションライブラリ</a> はデータベーススキーマの差分更新の適用を支援します。</li>
+			<li>子ドライバはいずれのパッケージパスにも配置することができます。</li>
+			<li><a href="libraries/form_validation.html">フォームバリデーション(検証)ライブラリ</a>に <kbd>is_unique</kbd> を追加しました。</li>
+			<li><a href="libraries/pagination.html">ページネーションライブラリ</a>に URI の実際のページ番号を使用できるように <kbd>$config['use_page_numbers']</kbd> を追加しました。</li>
+			<li>SMTP の TLS と SSL 暗号化を追加しました。</li>
 		</ul>
 	</li>
-	<li>Core
+	<li>コア
 		<ul>
-			<li>Changed private functions in <a href="libraries/cart.html">URI library</a> to protected so <kdb>MY_URI</kdb> can override them.</li>
-			<li>Removed <samp>CI_CORE</samp> boolean constant from CodeIgniter.php (there are no longer different Reactor and Core versions).</li>
+			<li><a href="libraries/uri.html">URI ライブラリ</a>の private メソッドを MY_URI でオーバーライドできるように protected に変更しました。</li>
+			<li>CodeIgniter.php の 真偽値 CI_CORE 定数を削除しました。(もはや Reactor や Core のバージョンはないため)</li>
 		</ul>
 	</li>
 </ul>
 
-<h3>Bug fixes for 2.1.0</h3>
+<h3>2.1.0の不具合修正</h3>
 <ul>
-	<li>Fixed #378 Robots identified as regular browsers by the <a href="libraries/user_agent.html">User Agent class</a>.</li>
-	<li>If a config class was loaded first then a library with the same name is loaded, the config would be ignored.</li>
-	<li>Fixed a bug (Reactor #19) where 1) the 404_override route was being ignored in some cases, and 2) auto-loaded libraries were not available to the 404_override controller when a controller existed but the requested method did not.</li>
-	<li>Fixed a bug (Reactor #89) where MySQL export would fail if the table had hyphens or other non alphanumeric/underscore characters.</li>
-	<li>Fixed a bug (#200) where MySQL queries would be malformed after calling <kbd>$this->db->count_all()</kbd> then <kdb>$this->db->get()</kdb></li>
-	<li>Fixed bug #105 that stopped query errors from being logged unless database debugging was enabled</li>
-	<li>Fixed a bug (#160) - Removed unneeded array copy in the file cache driver.</li>
-	<li>Fixed a bug (#150) - <samp>field_data()</samp> now correctly returns column length.</li>
-	<li>Fixed a bug (#8) - <samp>load_class()</samp> now looks for core classes in <samp>APPPATH</samp> first, allowing them to be replaced.</li>
-	<li>Fixed a bug (#24) - ODBC database driver called incorrect parent in __construct().</li>
-	<li>Fixed a bug (#85) - OCI8 (Oracle) database <kbd>escape_str()</kbd> function did not escape correct.</li>
-	<li>Fixed a bug (#344) - Using schema found in <a href="libraries/sessions.html">Saving Session Data to a Database</a>, system would throw error "user_data does not have a default value" when deleting then creating a session.</li>
-	<li>Fixed a bug (#112) - OCI8 (Oracle) driver didn't pass the configured database character set when connecting.</li>
-	<li>Fixed a bug (#182) - OCI8 (Oracle) driver used to re-execute the statement whenever num_rows() is called.</li>
-	<li>Fixed a bug (#82) - WHERE clause field names in the DB <kbd>update_string()</kbd> method were not escaped, resulting in failed queries in some cases.</li>
-	<li>Fixed a bug (#89) - Fix a variable type mismatch in DB <kbd>display_error()</kbd> where an array is expected, but a string could be set instead.</li>
-	<li>Fixed a bug (#467) - Suppress warnings generated from <kbd>get_magic_quotes_gpc()</kbd> (deprecated in PHP 5.4)</li>
-	<li>Fixed a bug (#484) - First time <kbd>_csrf_set_hash()</kbd> is called, hash is never set to the cookie (in Security.php).</li>
-	<li>Fixed a bug (#60) - Added <kbd>_file_mime_type()</kbd> method to the <a href="libraries/file_uploading.html">File Uploading Library</a> in order to fix a possible MIME-type injection (also fixes bug #394).</li>
-	<li>Fixed a bug (#537) - Support for all wav type in browser.</li>
-	<li>Fixed a bug (#576) - Using <kbd>ini_get()</kbd> function to detect if apc is enabled or not.</li>
-	<li>Fixed invalid date time format in <a href="helpers/date_helper.html">Date helper</a> and <a href="libraries/xmlrpc.html">XMLRPC library</a>.</li>
+	<li>#378 ユーザエージェントクラスによって、ロボットが正常なブラウザーとして認識されるよう修正しました。</li>
+	<li>config クラスが最初にロードされ、次に同じ名前のライブラリがロードされた場合、その設定は無視されます。</li>
+	<li>バグ (Reactor #19) 1) 404_override のルートがいくつかの場合において無視されていた点と、 2) コントローラは存在するが要求されたメソッドが存在しなかったとき、自動的にロードされるライブラリが 404_override のコントローラーで利用できなかった点を修正しました。</li>
+	<li>バグ (Reactor #89) テーブルにハイフンや英数字/アンダースコア文字列以外の文字列が含まれている場合、 MySQL のエクスポートが失敗する点を修正しました。</li>
+	<li>バグ (#200) <samp>count_all()</samp> を呼び出し、 <samp>db->get()</samp> を呼び出した後に、 MySQL のクエリが不正な形式になる点を修正しました。</li>
+	<li>バグ #105 データベースのデバッグが有効でない場合に限り、クエリのエラーがログに記録されないよう修正しました。</li>
+	<li>バグ (#160) - ファイルキャッシュドライバで、不要な配列のコピーを除去するよう修正しました。</li>
+	<li>バグ (#150) - <samp>field_data()</samp> がカラム数を正しく返すよう修正しました。</li>
+	<li>バグ (#8) - <samp>load_class()</samp> が、 <samp>APPPATH</samp> の中のコアクラスを最初に探すよう修正しました。</li>
+	<li>バグ (#24) - ODBC データベースドライバが __construct() の中で誤った親クラスを呼び出していたのを修正しました。</li>
+	<li>バグ (#85) - OCI8 (Oracle) データベースの <kbd>escape_str()</kbd> 関数が正しくエスケープしていなかったのを修正しました。</li>
+	<li>バグ (#344) - <a href="libraries/sessions.html">セッションデータをデータベースに保存する</a>で見られるスキーマを使った場合、システムがセッションを削除し作成したときに "user_data does not have a default value" エラーを投げていたのを修正しました。</li>
+	<li>バグ (#112) - OCI8 (Oracle) ドライバーが、接続する時にデータベースの文字セット設定を渡していなかったのを修正しました。</li>
+	<li>バグ (#182) - OCI8 (Oracle) ドライバーが、 num_rows() が呼び出された時に必ずステートメントを再実行していたのを修正しました。</li>
+	<li>バグ (#82) - DBの <kbd>update_string()</kbd> メソッドで WHERE 句のフィールド名がエスケープされていないとき、いくつかの場合でクエリーが失敗して終了していたのを修正しました。</li>
+	<li>バグ (#89) - DB の <kbd>display_error()</kbd> で、配列が期待されるところに代わりに文字列が設定されてしまう、変数型の不一致を修正しました。</li>
+	<li>バグ (#467) - (PHP 5.4 では非推奨の) <kbd>get_magic_quotes_gpc()</kbd> から生成される警告を抑えるよう修正しました。</li>
+	<li>バグ (#484) - 最初に <kbd>_csrf_set_hash()</kbd> が呼び出されたとき、(Security.php 内で) ハッシュが二度とクッキーに設定されないのを修正しました。</li>
+	<li>バグ (#60) - MIMEタイプインジェクションの可能性を修正するため、<a href="libraries/file_uploading.html">ファイルアップロードクラス</a>に <kbd>_file_mime_type()</kbd> メソッドを追加しました(また、バグ #394 を修正しました)。</li>
+	<li>バグ (#537) - ブラウザーで、すべての wav タイプをサポートするよう修正しました。</li>
+	<li>バグ (#576) - apc が利用可能かどうか検出するために、 <kbd>ini_get()</kbd> 関数を使うよう守成しました。</li>
+	<li><a href="helpers/date_helper.html">日付ヘルパー</a>と <a href="libraries/xmlrpc.html">XML-RPC クラス</a>での、不正な日時の書式を修正しました。</li>
 </ul>
 
 <h2>Version 2.0.3</h2>
