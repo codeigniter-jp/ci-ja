@@ -73,11 +73,11 @@
 <p>セキュリティフィルタ機能は、新しい<a href="../general/controllers.html">コントローラ</a> が起動されると自動的に呼び出されます。フィルタ機能は、次のことを行います:</p>
 
 <ul>
-<li>グローバルな GET 配列($_GET) のデータを消去します。CodeIgniter では GET 文字列(クエリ文字列)を使わないので、それを許可する理由はありません。</li>
+<li>$config['allow_get_array'] が FALSE(デフォルトでは TRUE) の場合、グローバルな GET 配列($_GET) のデータを消去します。</li>
 <li>register_globals が ON に設定されているときにセットされるグローバル変数は消去されます。</li>
-<li>英数字 (と少数の他の文字) だけを許可するよう POST/COOKIE 配列のキーがフィルタリングされます。</li>
+<li>英数字 (と少数の他の文字) だけを許可するよう GET/POST/COOKIE 配列のキーがフィルタリングされます。</li>
 <li>XSS (クロスサイトスクリプティング攻撃) フィルタリングを提供します。この機能は、グローバルまたは、リクエストごとに有効化できます。</li>
-<li>改行文字を \n に統一します。 </li>
+<li>改行文字を \n に統一します。(Windows では \r\n) </li>
 </ul>
 
 
@@ -153,9 +153,9 @@ else<br />
 <p>このメソッドは、取り出そうとして見つからなかった場合、FALSE (ブール値) を返します。</p>
 
 <code>
-	$this->input->get(); // GETされた値をXSSフィルタを通して返します
+	$this->input->get(NULL, TRUE); // GETされた値をXSSフィルタを通して返します
 	<br />
-	$this->input->get(NULL, FALSE); // GETされた値をXSSフィルタを通さずに返します
+	$this->input->get(); // GETされた値をXSSフィルタを通さずに返します
 </code>
 
 <h2>$this->input->get_post()</h2>
