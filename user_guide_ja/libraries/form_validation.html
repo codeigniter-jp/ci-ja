@@ -508,11 +508,9 @@ $this->form_validation->set_rules('email', 'メールアドレス', '<kbd>trim</
 
 <code>$this->form_validation->set_rules('username', 'ユーザ名', '<kbd>callback_username_check</kbd>');</code>
 
-
 <p>次に <dfn>username_check</dfn> という名前の新しいメソッドをコントローラに追加します。  コントローラは以下のようになっているはずです:</p>
 
-
-<textarea class="textarea" style="width:100%" cols="50" rows="40"><?php
+<textarea class="textarea" style="width:100%" cols="50" rows="40">&lt;?php
 
 class Form extends CI_Controller {
 
@@ -947,8 +945,8 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 
 	<tr>
 		<td class="td"><strong>is_unique</strong></td>
-		<td class="td">Yes</td>
-		<td class="td">Returns FALSE if the form element is not unique to the table and field name in the parameter.</td>
+		<td class="td">あり</td>
+		<td class="td">フォームのデータが、引数のテーブルやフィールド名に対して一意でないときに FALSE を返します。</td>
 		<td class="td">is_unique[table.field]</td>
 	</tr>
 
@@ -1025,7 +1023,7 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 	<tr>
 		<td class="td"><strong>decimal</strong></td>
 		<td class="td">あり</td>
-		<td class="td">Returns FALSE if the form element is not exactly the parameter value.</td>
+		<td class="td">フォームのデータが引数の値と正確に合っていない場合 FALSE を返します。</td>
 		<td class="td">&nbsp;</td>
 	</tr>
 
@@ -1201,8 +1199,8 @@ class <kbd>Member</kbd> extends CI_Controller {<br />
 <h2>set_select()</h2>
 
 <p><dfn>&lt;select></dfn> メニューを使うとき、この関数は選択されたメニュー項目を表示できます。
-第1引数は SELECT フォームの名前を指定します。
-第2引数(オプション)にはデフォルト値(TRUE/FALSE のブール値)を指定します。</p>
+第1引数は SELECT フォームの名前を指定し、第2引数はそれぞれの項目の値を指定し、
+そして第3引数(オプション)にはデフォルト値(TRUE/FALSE のブール値)を指定します。</p>
 
 <p>例:</p>
 
