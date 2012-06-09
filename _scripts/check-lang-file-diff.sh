@@ -14,6 +14,7 @@ if [ $# -eq 0 ]; then
   exit
 fi
 
+downloads_url="http://downloads.codeigniter.com/reactor/"
 old_version="CodeIgniter_$1"
 new_version="CodeIgniter_$2"
 
@@ -21,14 +22,14 @@ rm -rf "$old_version"
 rm -rf "$new_version"
 
 if [ ! -f $old_version.zip ]; then
-  wget http://codeigniter.com/download_files/$old_version.zip
+  wget ${downloads_url}$old_version.zip
   if [ $? -ne 0 ]; then
     echo "$old_version not found!"
     exit 1;
   fi
 fi
 if [ ! -f $new_version.zip ]; then
-  wget http://codeigniter.com/download_files/$new_version.zip
+  wget ${downloads_url}$new_version.zip
   if [ $? -ne 0 ]; then
     echo "$old_version not found!"
     exit 1;
