@@ -1,27 +1,22 @@
 ############
-Static pages
+静的ページ
 ############
 
-**Note:** This tutorial assumes you've downloaded CodeIgniter and
-`installed the framework <../installation/index.html>`_ in your
-development environment.
+**注意:** 
+このチュートリアルは、あなたが既にCodeIgniterをダウンロードし、開発環境に `フレームワークをインストール <../installation/index.html>`_ 
+している事を前提としています。
 
-The first thing you're going to do is set up a **controller** to handle
-static pages. A controller is simply a class that helps delegate work.
-It is the glue of your web application.
+まず最初に行なうのは静的ページを制御するための **コントローラ** を用意することです。
 
-For example, when a call is made to:
-``http://example.com/news/latest/10`` We might imagine that there is a
-controller named "news". The method being called on news would be
-"latest". The news method's job could be to grab 10 news items, and
-render them on the page. Very often in MVC, you'll see URL patterns that
-match:
+例えば、``http://example.com/news/latest/10`` がコールされた時、
+我々は"news"という名前のコントローラがあるのだと推測します。呼ばれるメソッドは"latest"となります。
+newsメソッドの仕事は、10件のニュース記事を取ってきてページ上に描画することかもしれません。
+MVCでは非常に頻繁にこのようなURLのパターンが見られます：
 ``http://example.com/[controller-class]/[controller-method]/[arguments]``
-As URL schemes become more complex, this may change. But for now, this
-is all we will need to know.
+URLスキームが複雑化するにつれてこのパターンは変化するかもしれません。
+しかし、一旦はこれを知っていれば十分です。
 
-Create a file at application/controllers/pages.php with the following
-code.
+application/controllers/pages.php　に、下記のコードを記述したファイルを作成してください。
 
 ::
 
@@ -35,40 +30,33 @@ code.
 		 
     }
 
-You have created a class named "pages", with a view method that accepts
-one argument named $page. The pages class is extending the
-CI_Controller class. This means that the new pages class can access the
-methods and variables defined in the CI_Controller class
-(system/core/Controller.php).
+あなたは "pages" という名のクラスを作り、そこに引数$pageを取る viewメソッドを作成しました。
+このpageクラスはCI_Controllerクラスを継承しています。すなわち、新しく作られたこのpagesクラスは
+CI_Controllerクラス(system/core/Controller.php)に定義されたメソッドや変数をアクセスする事が出来るという事です。
 
-The **controller is what will become the center of every request** to
-your web application. In very technical CodeIgniter discussions, it may
-be referred to as the *super object*. Like any php class, you refer to
-it within your controllers as $this. Referring to $this is how you will
-load libraries, views, and generally command the framework.
+**コントローラ**はあなたのアプリケーションの全てのリクエスト**の中心となる部分です。
+CodeIgniterの非常に専門的な議論において、これは*スーパーオブジェクト*と呼ばれる事があります。
+一般的なPHPクラスと同じように、コントローラ内では$thisという変数でこれを参照します。
+$thisを参照する事によってライブラリやビューをロードしたり、フレームワークの基本的な制御を行ないます。
 
-Now you've created your first method, it's time to make some basic page
-templates. We will be creating two "views" (page templates) that act as
-our page footer and header.
+最初のメソッドを作成したら、次は基本的なページテンプレートを作っていきましょう。
+まずは二つの"ビュー"(ページテンプレート)を作り、それらをページのフッターとヘッダーとします。
 
-Create the header at application/views/templates/header.php and add the
-following code.
+application/views/templates/header.php にヘッダーを作成し、下記のコードを記述してください。
 
 ::
 
     <html>
         <head>
-            <title>CodeIgniter 2 Tutorial</title>
+            <title><?php echo $title ?> - CodeIgniter 2 Tutorial</title>
         </head>
         <body>
 
             <h1>CodeIgniter 2 Tutorial<h1>
 
-The header contains the basic HTML code that you'll want to display
-before loading the main view, together with a heading. It will also
-output the $title variable, which we'll define later in the controller.
-Now create a footer at application/views/templates/footer.php that
-includes the following code:
+ヘッダーにはメインのビューをロードする前に表示させたい単純なHTMLコードが見出しと共に含まれています。
+ここで後々コントローラにて定義する$title変数を出力させる事にもなります。
+では次は application/views/templates/footer.php にフッターを作成し、下記のコードを記述してください。
 
 ::
 
@@ -76,20 +64,18 @@ includes the following code:
         </body>
     <html>
 
-Adding logic to the controller
+コントローラにロジックを追加
 ------------------------------
 
-Earlier you set up a controller with a view() method. The method accepts
-one parameter, which is the name of the page to be loaded. The static
-page templates will be located in the application/views/pages/
-directory.
+先ほどあなたはview()メソッドを持ったコントローラを準備しました。
+このメソッドは、ロードするページの名前になる引数を取ります。
+静的なページテンプレートは application/views/pages/ に配置されます。
 
-In that directory, create two files named home.php and about.php. Within
-those files, type some text − anything you'd like − and save them. If
-you like to be particularly un-original, try "Hello World!".
+そのディレクトリ内に home.php と about.php という二つのファイルを作ってください。
+それらのファイルの中に、何かしらの文言（あなたがご自由に決めてください）を入力し、保存します。
+もし特に思い浮かばなければ、"Hello World!"などを入れてみてください。
 
-In order to load those pages, you'll have to check whether the requested
-page actually exists:
+これらのページをロードするためには、まずそのページが存在するかどうかをチェックしなければなりません：
 
 ::
 
@@ -111,60 +97,50 @@ page actually exists:
 
     }
 
-Now, when the page does exist, it is loaded, including the header and
-footer, and displayed to the user. If the page doesn't exist, a "404
-Page not found" error is shown.
+ページが存在する場合、それはヘッダーとフッターと共にロードされユーザーに表示されます。
+もしページが存在しなければ、"404 Page not found"エラーが表示されます。
 
-The first line in this method checks whether the page actually exists.
-PHP's native file\_exists() function is used to check whether the file
-is where it's expected to be. show\_404() is a built-in CodeIgniter
-function that renders the default error page.
+このメソッドの一行目ではまずページが存在するかどうかをチェックしています。
+PHPのネイティブなfile\_exists()関数がファイルの存在有無を判別するために使用されています。
+show\_404()はCodeIgniterのビルトイン関数で、デフォルトのエラーページを描画してくれます。
 
-In the header template, the $title variable was used to customize the
-page title. The value of title is defined in this method, but instead of
-assigning the value to a variable, it is assigned to the title element
-in the $data array.
+ヘッダーテンプレートの中で、$title変数はページの題名をカスタマイズするために使われました。
+題名はこのメソッド内で定義されていますが、値を変数に代入するのではなく、$data配列のtitle要素に代入されます。
 
-The last thing that has to be done is loading the views in the order
-they should be displayed. The second parameter in the view() method is
-used to pass values to the view. Each value in the $data array is
-assigned to a variable with the name of its key. So the value of
-$data['title'] in the controller is equivalent to $title in the view.
+最後にしなければいけないのは、ビューを表示順にロードしてくことです。
+view()メソッドの第に引数はビューに値を引き渡すために使われます。
+$data配列のそれぞれの値はキーを変数名とした変数に代入されます。
+つまり、コントローラ内の$data['title']は、ビュー内の$titleと同等です。
 
-Routing
+ルーティング
 -------
 
-The controller is now functioning! Point your browser to
-[your-site-url]index.php/pages/view to see your page. When you visit
-index.php/pages/view/about you'll see the about page, again including
-the header and footer.
+これであなたのコントローラは稼働しています！ブラウザ上で　[your-site-url]index.php/pages/view　にアクセスしてみてください。
+index.php/pages/view/about　にアクセスすれば、ヘッダーとフッターを含んだaboutページが見えるはずです。
 
-Using custom routing rules, you have the power to map any URI to any
-controller and method, and break free from the normal convention:
+独自のルーティング規則を使い、あなたはどんなURIでも好きなコントローラの好きなメソッドにマッピングする事ができ、
+下記の平凡な慣習から自由になることができます：
 ``http://example.com/[controller-class]/[controller-method]/[arguments]``
 
-Let's do that. Open the routing file located at
-application/config/routes.php and add the following two lines. Remove
-all other code that sets any element in the $route array.
+実際にやってみましょう。application/config/routes.php に配置されているルーティングファイルを開き、
+次の二行を追記してください。
+そして$route配列に要素を追加している他のすべてのコードを削除してください。
 
 ::
 
     $route['default_controller'] = 'pages/view';
     $route['(:any)'] = 'pages/view/$1';
 
-CodeIgniter reads its routing rules from top to bottom and routes the
-request to the first matching rule. Each rule is a regular expression
-(left-side) mapped to a controller and method name separated by slashes
-(right-side). When a request comes in, CodeIgniter looks for the first
-match, and calls the appropriate controller and method, possibly with
-arguments.
+CodeIgniterはルーティング規則を上から下に解析していき、マッチした最初の規則にリクエストをルーティングします。
+それぞれの規則は正規表現（左辺）がスラッシュ区切りのコントローラとメソッド（右辺）にマッピングされた形で記述されています。
+リクエストが入ってくるとCodeIgniterは一番最初のマッチを探し、適切なコントローラとメソッドを必要に応じて引数付きで呼び出します。
 
-More information about routing can be found in the URI Routing
-`documentation <../general/routing.html>`_.
+ルーティングについてはURIルーティングの`ドキュメント  <../general/routing.html>`_ を参照してください。
 
-Here, the second rule in the $routes array matches **any** request using
-the wildcard string (:any). and passes the parameter to the view()
-method of the pages class.
+この例では、$route配列の二番目の規則は**どんな**リクエストでもワイルドカード文字列(:any)を使ってマッチします。
+そして、それをpagesクラスのviewメソッドに引数として渡します。
 
-Now visit index.php/about. Did it get routed correctly to the view()
-method in the pages controller? Awesome!
+では、 index.php/about にアクセスしてみてください。
+正しくpagesコントローラのview()メソッドにルーティングされましたか？
+素晴らしい！
+
