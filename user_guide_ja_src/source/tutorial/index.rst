@@ -1,39 +1,35 @@
 ########
-Tutorial
+チュートリアル
 ########
 
-This tutorial is intended to introduce you to the CodeIgniter framework
-and the basic principles of MVC architecture. It will show you how a
-basic CodeIgniter application is constructed in step-by-step fashion.
+このチュートリアルは、CodeIgniterフレームワークの基本と
+MVCアーキテクチャの基礎知識を説明する事を目的としています。
+ここではCodeIgniterを使ってどのようにアプリケーションを構築するか、
+ステップバイステップでお見せします。
 
-In this tutorial, you will be creating a **basic news application**. You
-will begin by writing the code that can load static pages. Next, you
-will create a news section that reads news items from a database.
-Finally, you'll add a form to create news items in the database.
+このチュートリアルを通して、あなたは**基本的なニュースアプリケーション**を作っていきます。
+最初は静的なページをロードするためのコードを書くところから始めます。
+次に、データベースから記事を読み込むニュースセクションを作ります。
+最後に、データベースに記事を追加するためのフォームを作って頂きます。
 
-This tutorial will primarily focus on:
+このチュートリアルの焦点となるのは：
 
+- モデル・ビュー・コントローラの基本
 -  Model-View-Controller basics
--  Routing basics
--  Form validation
--  Performing basic database queries using "Active Record"
+- ルーティングの基本
+- フォームバリデーション
+- "Active Record"を使用した基本的なデータベースクエリの実行
 
-The entire tutorial is split up over several pages, each explaining a
-small part of the functionality of the CodeIgniter framework. You'll go
-through the following pages:
+チュートリアル全体は複数ページに分かれており、それぞれCodeIgniterフレームワークの
+小さな一部機能を説明します。あなたには次のページを読んで頂きます：
 
--  Introduction, this page, which gives you an overview of what to
-   expect.
--  `Static pages <static_pages.html>`_, which will teach you the basics
-   of controllers, views and routing.
--  `News section <news_section.html>`_, where you'll start using models
-   and will be doing some basic database operations.
--  `Create news items <create_news_items.html>`_, which will introduce
-   more advanced database operations and form validation.
--  `Conclusion <conclusion.html>`_, which will give you some pointers on
-   further reading and other resources.
+-  イントロダクション（このページ）で、チュートリアルの全体像を説明
+-  `静的ページ <static_pages.html>`_で、コントローラ・ビュー・ルーティングの基本を説明
+-  `ニュースセクション <news_section.html>`_ で、モデルを使った基本的なデータベース操作について説明
+-  `ニュース記事の作成 <create_news_items.html>`_ で、より高度なデータベース操作とフォームバリデーションについて説明
+-  `結論 <conclusion.html>` で、次に読むべき資料やリソースの紹介
 
-Enjoy your exploration of the CodeIgniter framework.
+CodeIgniterフレームワークの探求の旅を是非お楽しみください。
 
 .. toctree::
 	:glob:
