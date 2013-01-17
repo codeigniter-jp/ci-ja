@@ -15,7 +15,7 @@
 モデルはデータを象徴するものです。
 
 application/models ディレクトリを開き、新しく news_model.php というファイルを作成して
-次のコードを記述してください。同時に`データベース設定 <../database/configuration.html>`_ が正しくされていることも確認してください。
+次のコードを記述してください。同時に `データベース設定 <../database/configuration.html>`_ が正しくされていることも確認してください。
 
 ::
 
