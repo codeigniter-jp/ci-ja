@@ -1,24 +1,21 @@
 ############
-News section
+ニュースセクション
 ############
 
-In the last section, we went over some basic concepts of the framework
-by writing a class that includes static pages. We cleaned up the URI by
-adding custom routing rules. Now it's time to introduce dynamic content
-and start using a database.
+前回我々はフレームワークの基本的な部分を静的ページをロードするクラスを書きながら学んでいきました。
+独自のルーティング規則を追加する事によりURIを綺麗にすることもしました。
+次は動的コンテンツについて学び、データベースを使ってみましょう。
 
-Setting up your model
+モデルの準備
 ---------------------
 
-Instead of writing database operations right in the controller, queries
-should be placed in a model, so they can easily be reused later. Models
-are the place where you retrieve, insert, and update information in your
-database or other data stores. They represent your data.
+データベース操作をコントローラに直接各書くより、クエリは後で使い回しがしやすくなるように
+モデル内に記述されるべきです。
+モデルとは、データベースや他のデータ格納場所からデータを抽出したり、追加したり、更新する場所です。
+モデルはデータを象徴するものです。
 
-Open up the application/models directory and create a new file called
-news_model.php and add the following code. Make sure you've configured
-your database properly as described
-`here <../database/configuration.html>`_.
+application/models ディレクトリを開き、新しく news_model.php というファイルを作成して
+次のコードを記述してください。同時に`データベース設定 <../database/configuration.html>`_ が正しくされていることも確認してください。
 
 ::
 
@@ -31,14 +28,11 @@ your database properly as described
         }
     }
 
-This code looks similar to the controller code that was used earlier. It
-creates a new model by extending CI\_Model and loads the database
-library. This will make the database class available through the
-$this->db object.
+このコードは以前使ったコントローラのコードに似ています。ここではCI\_Modelを継承する事により新しいモデルを作成しており、
+databaseライブラリをロードしています。これにより、databaseクラスが$this->dbオブジェクトを通して利用可能になります。
 
-Before querying the database, a database schema has to be created.
-Connect to your database and run the SQL command below. Also add some
-seed records.
+データベースにクエリを投げる前に、データベースのスキーマを作らなければいけません。
+自分のデータベースに接続し、下記のSQLコマンドを実行してください。それに加えてレコードもいくつか挿入してみてください。
 
 ::
 
@@ -51,13 +45,11 @@ seed records.
         KEY slug (slug)
     );
 
-Now that the database and a model have been set up, you'll need a method
-to get all of our posts from our database. To do this, the database
-abstraction layer that is included with CodeIgniter — `Active
-Record <../database/active_record.html>`_ — is used. This makes it
-possible to write your 'queries' once and make them work on `all
-supported database systems <../general/requirements.html>`_. Add the
-following code to your model.
+データベースとモデルの準備ができたら、次に必要なのはデータベースから全ての記事を取得するためのメソッドです。
+これをするには、CodeIgniterに含まれている `Active Record <../database/active_record.html>`_ という
+データベースの抽象化レイヤーが用いられます。これにより、
+`クエリを一度書くだけでサポート済みの全データベースシステム上で動かす事が出来ます <../general/requirements.html>`_ 。
+次のコードをモデルに追加してください。
 
 ::
 
@@ -73,19 +65,16 @@ following code to your model.
         return $query->row_array();
     }
 
-With this code you can perform two different queries. You can get all
-news records, or get a news item by its `slug <#>`_. You might have
-noticed that the $slug variable wasn't sanitized before running the
-query; Active Record does this for you.
+このコードにより二種類のクエリを実行する事が出来ます。全てのnewsレコードを取得するか、
+`slug <#>`_ を使って特定のnewsの行を取得する事が出来ます。$slug変数がサニタイズされてない事を
+気づいたかもしれませんが、Active Recordがこれを代わりに行なってくれています。
 
-Display the news
+ニュースの表示
 ----------------
 
-Now that the queries are written, the model should be tied to the views
-that are going to display the news items to the user. This could be done
-in our pages controller created earlier, but for the sake of clarity, a
-new "news" controller is defined. Create the new controller at
-application/controllers/news.php.
+クエリを書き終えたので、今度はニュース記事を表示するビューとモデルとを紐づけてユーザーに表示しなければいけません。
+これを行なうには以前作成したコントローラを使う事も出来ますが、わかりやすくするために新たに"news"コントローラを定義しましょう。
+application/controllers/news.php　で新しいコントローラを作成してください。
 
 ::
 
@@ -109,19 +98,16 @@ application/controllers/news.php.
         }
     }
 
-Looking at the code, you may see some similarity with the files we
-created earlier. First, the "\_\_construct" method: it calls the
-constructor of its parent class (CI\_Controller) and loads the model, so
-it can be used in all other methods in this controller.
+コードを見てみると、以前作られたファイルといくつか共通点があるのに気づくかもしれません。
+まず、"\_\_construct"メソッド：これは親クラス（CI\_Controller）のコンストラクタを呼んだ後に
+モデルをロードし、このコントローラ内の全てのメソッドで利用できるようにします。
 
-Next, there are two methods to view all news items and one for a
-specific news item. You can see that the $slug variable is passed to the
-model's method in the second method. The model is using this slug to
-identify the news item to be returned.
+次に、２つのメソッドがあります。一つは全ニュースを閲覧するためで、一つは特定のニュース記事のためです。
+二番目のメソッドでは$slug変数がモデルに渡されているのが見えます。
+モデルはこのslugを使い、どのニュース記事を返すかを見つけます。
 
-Now the data is retrieved by the controller through our model, but
-nothing is displayed yet. The next thing to do is passing this data to
-the views.
+これでコントローラはモデル経由でデータを取得する事が出来ましたが、まだ何も表示されていません。
+次にするべきは、このデータをviewに渡す事です。
 
 ::
 
@@ -135,11 +121,10 @@ the views.
         $this->load->view('templates/footer');
     }
 
-The code above gets all news records from the model and assigns it to a
-variable. The value for the title is also assigned to the $data['title']
-element and all data is passed to the views. You now need to create a
-view to render the news items. Create application/views/news/index.php
-and add the next piece of code.
+上記のコードは全ニュースレコードを取得し、変数に代入しています。
+題名の値も$data['title']に代入されており、全てのデータはビューに渡されています。
+今度はニュース記事を描画するためのビューを作成する必要があります。
+ application/views/news/index.php を作成し、次のコードを追加してください。
 
 ::
 
@@ -153,16 +138,15 @@ and add the next piece of code.
 
     <?php endforeach ?>
 
-Here, each news item is looped and displayed to the user. You can see we
-wrote our template in PHP mixed with HTML. If you prefer to use a
-template language, you can use CodeIgniter's `Template
-Parser <../libraries/parser.html>`_ class or a third party parser.
+ここでは、一つ一つのニュース記事がループされながらユーザに表示されています。
+このテンプレート内ではPHPがHTMLに混ざって表示されているのが確認できます。
+もしテンプレート言語を使いたい場合、CodeIgniterの`テンプレートパーサ <../libraries/parser.html>`_
+クラスを使うか、サードパーティのパーサを使う事が出来ます。
 
-The news overview page is now done, but a page to display individual
-news items is still absent. The model created earlier is made in such
-way that it can easily be used for this functionality. You only need to
-add some code to the controller and create a new view. Go back to the
-news controller and add the following lines to the file.
+全ニュース表示ページはこれで完成しましたが、特定のニュース記事を表示するページはまだ存在しません。
+先ほど作られたモデルはこの処理を簡単に行なえるように作られています。
+あなたがやらなければいけないのはコントローラに多少のコードを追記するのと、新規のビューを作成する事だけです。
+newsコントローラに戻り、次の行を追記してください。
 
 ::
 
@@ -182,10 +166,9 @@ news controller and add the following lines to the file.
         $this->load->view('templates/footer');
     }
 
-Instead of calling the get\_news() method without a parameter, the $slug
-variable is passed, so it will return the specific news item. The only
-things left to do is create the corresponding view at
-application/views/news/view.php. Put the following code in this file.
+get\_news()メソッドをパラメータ無しで呼び出す代わりに、$slug変数が渡され、
+特定のニュース記事が返ってくるようになります。あとは、これに対応したビューを application/views/news/view.php に作成するだけです。
+次のコードをこのファイルに記述してください。
 
 ::
 
@@ -193,15 +176,13 @@ application/views/news/view.php. Put the following code in this file.
     echo '<h2>'.$news_item['title'].'</h2>';
     echo $news_item['text'];
 
-Routing
+ルーティング
 -------
 
-Because of the wildcard routing rule created earlier, you need need an
-extra route to view the controller that you just made. Modify your
-routing file (application/config/routes.php) so it looks as follows.
-This makes sure the requests reaches the news controller instead of
-going directly to the pages controller. The first line routes URI's with
-a slug to the view method in the news controller.
+以前作ったワイルドカードルーティング規則のために、新たなルートをコントローラに作る必要があります。
+ルーティングファイル (application/config/routes.php) を下記のように修正してください。
+これによりリクエストがpagesコントローラにいくかわりに正しくnewsコントローラに到達する事が保証されます。
+最初の行はslug付きのURIをnewsコントローラのviewメソッドにルーティングしてくれます。
 
 ::
 
@@ -210,5 +191,6 @@ a slug to the view method in the news controller.
     $route['(:any)'] = 'pages/view/$1';
     $route['default_controller'] = 'pages/view';
 
-Point your browser to your document root, followed by index.php/news and
-watch your news page.
+ブラウザであなたのドキュメントルートに行き、そのあとに index.php/news にアクセスしてニュースページを見てみてください。
+
+
