@@ -1,26 +1,22 @@
 ##########
-Conclusion
+最後に
 ##########
 
-This tutorial did not cover all of the things you might expect of a
-full-fledged content management system, but it introduced you to the
-more important topics of routing, writing controllers, and models. We
-hope this tutorial gave you an insight into some of CodeIgniter's basic
-design patterns, which you can expand upon.
+このチュートリアルでは本格的なコンテンツ管理システムに求める全てのものを網羅しきれていませんが、
+一番重要なルーティング、コントローラ作成、そしてモデル作成について学ぶ事が出来ました。
+このチュートリアルがCodeIgniterの基本的なデザインパターンの習得と、先々の知識の追求に役立てたのであれば幸いです。
 
-Now that you've completed this tutorial, we recommend you check out the
-rest of the documentation. CodeIgniter is often praised because of its
-comprehensive documentation. Use this to your advantage and read the
-"Introduction" and "General Topics" sections thoroughly. You should read
-the class and helper references when needed.
+チュートリアルが終わったら、残りのドキュメンテーションに目を通す事をお勧めします。
+CodeIgniterはその包括的なドキュメントのおかげでよく好評を頂いています。
+是非これを活かして、"イントロダクション"や"一般的なトピック"を精読してみてください。
+クラスやヘルパーのリファレンスは必要に応じて読むと良いでしょう。
 
-Every intermediate PHP programmer should be able to get the hang of
-CodeIgniter within a few days.
+ほとんどの中級PHPプログラマーなら数日のうちにCodeIgniterを理解することができるはずです。
 
-If you still have questions about the framework or your own CodeIgniter
-code, you can:
+もしまだフレームワークや自分のCodeIgniterコードについて質問があれば、下記を参考にしてみてください（現在全て英語で提供されております）：
 
--  Check out our `forums <http://codeigniter.com/forums>`_
--  Visit our `IRC chatroom <http://codeigniter.com/wiki/IRC>`_
--  Explore the `Wiki <http://codeigniter.com/wiki/>`_
+- `CodeIgniterフォーラム <http://codeigniter.com/forums>`_
+- `IRCチャットルーム <http://codeigniter.com/wiki/IRC>`_
+- `CodeIgniter Wiki <http://codeigniter.com/wiki/>`_
+
 
