@@ -1,20 +1,17 @@
 #################
-Create news items
+ニュース記事作成
 #################
 
-You now know how you can read data from a database using CodeIgnite, but
-you haven't written any information to the database yet. In this section
-you'll expand your news controller and model created earlier to include
-this functionality.
+あなたはCodeIgniterを使ってデータベースからデータを読み出す方法を学びましたが、
+まだデータベースに何も情報を書き込む事をしていません。
+この章ではnewsコントローラと以前作ったモデルを拡張し、書き込み機能を追加していきます。
 
-Create a form
+フォーム作成
 -------------
 
-To input data into the database you need to create a form where you can
-input the information to be stored. This means you'll be needing a form
-with two fields, one for the title and one for the text. You'll derive
-the slug from our title in the model. Create the new view at
-application/views/news/create.php.
+データベースにデータを入力するには、情報を入力するためのフォームを作成しなければいけません。
+フォームには「題名」と「本文」を入力するための２つのフィールドが必要です。slugは題名を元にモデル内で生成します。
+application/views/news/create.php に新しいビューを作成してください。
 
 ::
 
@@ -34,19 +31,15 @@ application/views/news/create.php.
 
     </form>
 
-There are only two things here that probably look unfamiliar to you: the
-form_open() function and the validation_errors() function.
+この中で見慣れないものが２つあると思います： form_open() 関数と validation_errors() 関数です。
 
-The first function is provided by the `form
-helper <../helpers/form_helper.html>`_ and renders the form element and
-adds extra functionality, like adding a hidden `CSFR prevention
-field <../libraries/security.html>`_. The latter is used to report
-errors related to form validation.
+最初の関数は `formヘルパー <../helpers/form_helper.html>`_ によって提供されており、form要素を描画すると共に、
+ `CSRF保護フィールド <../libraries/security.html>`_ のような追加の機能も利用可能になります。
+２つ目の関数はフォームバリデーションに関するエラーを出力するためのものです。
 
-Go back to your news controller. You're going to do two things here,
-check whether the form was submitted and whether the submitted data
-passed the validation rules. You'll use the `form
-validation <../libraries/form_validation.html>`_ library to do this.
+ではnewsコントローラに戻ってください。ここで２つの事を行ないます：フォームが送信されたのかを確認する事と、
+送信されたデータがバリデーションのルールを満たすかどうか確認する事です。
+これをするには `form validation <../libraries/form_validation.html>`_ ライブラリを使用します。
 
 ::
 
@@ -74,29 +67,25 @@ validation <../libraries/form_validation.html>`_ library to do this.
         }
     }
 
-The code above adds a lot of functionality. The first few lines load the
-form helper and the form validation library. After that, rules for the
-form validation are set. The set\_rules() method takes three arguments;
-the name of the input field, the name to be used in error messages, and
-the rule. In this case the title and text fields are required.
+上記のコードは様々な処理を追加します。まず最初の数行でformヘルパーとform validationライブラリをロードします。
+次に、フォームバリデーションのルールが定義されます。set\_rules()メソッドには３つの引数が渡されます；
+入力フィールドの名前、エラーメッセージに使用される名前、そして実際のルール。
+この例ではtitleとtextフィールドは必須(required)とします。
 
-CodeIgniter has a powerful form validation library as demonstrated
-above. You can read `more about this library
-here <../libraries/form_validation.html>`_.
+CodeIgniterには上記のような強力なフォームバリデーションのライブラリが備わっています。
+`このライブラリについてはここで詳細を知ることができます <../libraries/form_validation.html>`_　。
 
-Continuing down, you can see a condition that checks whether the form
-validation ran successfully. If it did not, the form is displayed, if it
-was submitted **and** passed all the rules, the model is called. After
-this, a view is loaded to display a success message. Create a view at
-application/view/news/success.php and write a success message.
+コードの続きを見ていくと、フォームバリデーションが正しく行なわれたかの条件分岐があります。
+もし不正だった場合はフォームのページが表示され、送信されて **尚かつ** 全てのルールを通過した場合はモデルが呼ばれます。
+この後、成功時メッセージを表示するビューがロードされます。
+application/view/news/success.php にビューを作成し、成功時メッセージを書いてください。
 
-Model
+モデル
 -----
 
-The only thing that remains is writing a method that writes the data to
-the database. You'll use the Active Record class to insert the
-information and use the input library to get the posted data. Open up
-the model created earlier and add the following:
+残るはデータベースにデータを書き込むメソッドを実装する事です。
+これにはActive Recordsクラスを使用してデータを挿入し、inputライブラリを使用してpostされてきたデータを取得します。
+以前作成したモデルを開き、次のコードを追記してください：
 
 ::
 
@@ -115,29 +104,24 @@ the model created earlier and add the following:
         return $this->db->insert('news', $data);
     }
 
-This new method takes care of inserting the news item into the database.
-The third line contains a new function, url\_title(). This function -
-provided by the `URL helper <../helpers/url_helper.html>`_ - strips down
-the string you pass it, replacing all spaces by dashes (-) and makes
-sure everything is in lowercase characters. This leaves you with a nice
-slug, perfect for creating URIs.
+このメソッドはデータベースにニュース記事を挿入してくれます。3行目にはurl\_title()という新しい関数があります。
+ `URLヘルパー <../helpers/url_helper.html>`_ によって提供されるこの関数は、渡した文字列を解析し、
+空白スペースを全てハイフン(-)に置換して全文字を小文字にしてくれます。
+残るのはURIを生成するのにぴったりの綺麗なslugです。
 
-Let's continue with preparing the record that is going to be inserted
-later, inside the $data array. Each element corresponds with a column in
-the database table created earlier. You might notice a new method here,
-namely the post() method from the `input
-library <../libraries/input.html>`_. This method makes sure the data is
-sanitized, protecting you from nasty attacks from others. The input
-library is loaded by default. At last, you insert our $data array into
-our database.
+続けて、$data配列内に実際に挿入されるレコードを準備しましょう。
+それぞれの要素は以前作成したデータベースのカラムと対応しています。
+ここで post() という  `inputライブラリ <../libraries/input.html>`_ の新しいメソッドに気づくと思います。
+このメソッドはあなたのデータが正しくサニタイズされるようにして、悪意のある外部攻撃からあなたを守ってくれます。
+inputライブラリはデフォルトで読み込まれるライブラリです。
+最後に$data配列をデータベースに挿入しておしまいです。
 
-Routing
+ルーティング
 -------
 
-Before you can start adding news items into your CodeIgniter application
-you have to add an extra rule to config/routes.php file. Make sure your
-file contains the following. This makes sure CodeIgniter sees 'create'
-as a method instead of a news item's slug.
+CodeIgniterアプリケーションにニュース記事を追加し始められる前に、config/routes.php に新しいルールを追加しなければいけません。
+あなたのファイルに下記が追加されている事を確認してください。
+これによりCodeIgniterがcreateメソッドをニュース記事のslugではなく、独自のメソッドである事を保証します。
 
 ::
 
@@ -147,7 +131,7 @@ as a method instead of a news item's slug.
     $route['(:any)'] = 'pages/view/$1';
     $route['default_controller'] = 'pages/view';
 
-Now point your browser to your local development environment where you
-installed CodeIgniter and add index.php/news/create to the URL.
-Congratulations, you just created your first CodeIgniter application!
-Add some news and check out the different pages you made.
+ではブラウザ上であなたのCodeIgniterの開発環境を開き、URLに index.php/news/create を追加してみてください。
+おめでとうございます、これであなたは初めてのCodeIgniterアプリケーションを完成させました！
+いくつかニュースを追加してみて、それぞれのページを確認してみてください。
+
